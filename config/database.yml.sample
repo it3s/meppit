@@ -1,0 +1,31 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: adaptativa-elearning_development
+  pool: 5
+  username: postgres
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: adaptativa-elearning_test
+  pool: 5
+  username: postgres
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: adaptativa-elearning_production
+  pool: 5
+  username: postgres
+  password:
+
+staging:
+  adapter: postgresql
+  encoding: unicode
+  database: adaptativa-elearning_staging
+  pool: 5
+  username: postgres
+  password:
