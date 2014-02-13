@@ -1,0 +1,40 @@
+* {
+  font-family: Calibri, "Trebuchet MS", Verdana, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+h1 {
+  font-family: Cambria, Georgia, serif;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+h2 {
+  font-family: Cambria, Georgia, serif;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+h3 {
+  font-family: Calibri, "Trebuchet MS", Verdana, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+a.text-link {
+  color: #14636E;
+  text-decoration: underline;
+
+  &:hover {
+    color: #14636E;
+    background-color: #B1DDE8;
+  }
+
+  &:visited {
+    color: #004047;
+  }
+}
+
+// Tags: 12px Consolas, Courier, monospace; regular
+// #505050 underline
