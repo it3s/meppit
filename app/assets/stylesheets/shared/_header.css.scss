@@ -18,6 +18,8 @@ $menu-projects-bg: #f26700;
   #logo {
     margin: 0 35px;
     padding-top: 10px;
+
+    .image { @include sprite-image($logos-map, logo); }
   }
 
   #menu, #side_menu {

@@ -1,2 +1,31 @@
 .footer {
+  .it3s .image { @include sprite-image($logos-map, it3s); }
 }
+// #footer {
+//     clear: both;
+//     width: 900px;
+//     margin: 0 auto;
+//     padding: 1px 0 20px 60px;
+// }
+
+// #footer > div {
+//     text-align: center;
+//     display: inline-block;
+//     vertical-align: top;
+//     margin: 0 40px;
+// }
+
+// #footer h3 {
+//     font-size: 12px;
+//     margin-bottom: 1em;
+//     font-weight: normal;
+//     color: #706f6f;
+// }
+
+// #footer .partners { text-align: left }
+// #footer .partners img { margin: 5px }
+
+// #footer .license {
+//     width: 200px;
+//     text-align: justify;
+// }

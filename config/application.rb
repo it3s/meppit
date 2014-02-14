@@ -16,19 +16,14 @@ module Meppit
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Brasilia'
 
-    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**/*.{rb,yml}').to_s]
     # config.i18n.default_locale = :'pt-BR'
     config.encoding = "utf-8"
 
-    # config.active_support.escape_html_entities_in_json = true
-    # config.assets.enabled = true
-    # config.assets.initialize_on_precompile = false
-    # config.assets.logger = false
-    # config.assets.paths << Rails.root.join('vendor', 'assets', 'javascripts')
-    # config.assets.paths << Rails.root.join('vendor', 'assets', 'stylesheets')
+    config.active_support.escape_html_entities_in_json = true
+    config.assets.enabled = true
+    config.assets.initialize_on_precompile = false
+    config.assets.logger = false
 
   end
 end

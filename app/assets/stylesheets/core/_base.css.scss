@@ -53,3 +53,10 @@ h3 {
   width: $canvas-width;
   margin: 0 auto;
 }
+
+// Mixins
+@mixin sprite-image($map, $sprite) {
+  display: inline-block;
+  background: $map no-repeat;
+  @include sprite($map, $sprite, true);
+}

@@ -1,8 +1,14 @@
 $icon-spacing: 10px;
 @import "icons/*.png";
 @include all-icons-sprites;
-
+$icons-map: sprite-map("icons/*.png");
 
 $menu-spacing: 10px;
 @import "icons/menu/*.png";
 @include all-menu-sprites;
+$menu-map: sprite-map("icons/menu/*.png");
+
+$logos-spacing: 20px;
+@import "logos/*.png";
+@include all-logos-sprites;
+$logos-map: sprite-map("logos/*.png");
