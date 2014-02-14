@@ -1,0 +1,27 @@
+<nav id="side_menu">
+  <ul>
+    <li><a href="#"><%= t('header.sub_menu.about') %></a></li>
+    <li><a id="help_button"><%= t('header.sub_menu.help') %></a></li>
+    <!-- {% if not user.is_anonymous %} -->
+    <li id="user_menu" class="dropdown_menu">
+      <a>Anderson &#x25be;</a>
+      <ul>
+        <li><a href="#" ><%= t('header.sub_menu.profile')  %></a></li>
+        <li><a href="#" ><%= t('header.sub_menu.settings') %></a></li>
+        <li><a href="#" ><%= t('header.sub_menu.logout')   %></a></li>
+      </ul>
+    </li>
+    <!-- {% else %} - ->
+    <li id="login_button">
+      <a href="#" class="login-required" ><%= t('header.sub_menu.login') %></a>
+    </li>
+    <!- - {% endif %} -->
+    <li class="dropdown_menu">
+      <a>English &#x25be;</a>
+      <ul>
+        <li class="language selected"><a href="#set_lang">English</a></li>
+        <li class="language"><a href="#set_lang">Português</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
