@@ -10,9 +10,7 @@ $menu-projects-bg: #f26700;
   z-index: 11;
 
   box-shadow: 1px 1px 3px 1px $medium-grey;
-
   @include box-sizing(border-box);
-
 
   #logo, #menu, #search-bar { float: left }
   #side_menu { float: right }
@@ -40,57 +38,45 @@ $menu-projects-bg: #f26700;
           display: block;
         }
       }
-
-      .menu-icon {
-        display: inline-block;
-        vertical-align: -63%;
-        margin-right: 0.2em;
-        width: 25px;
-        height: 25px;
-      }
-
-      .map {
-        .menu-icon { @include menu-sprite(map); }
-
-        &:hover .menu-icon { @include menu-sprite(map-hover); }
-
-        &.active {
-          background-color: $menu-map-bg;
-
-          .menu-icon { @include menu-sprite(map-active); }
-        }
-      }
-
-      .objects {
-        .menu-icon { @include menu-sprite(objects); }
-
-        &:hover .menu-icon { @include menu-sprite(objects-hover); }
-
-        &.active {
-          background-color: $menu-objects-bg;
-
-          .menu-icon { @include menu-sprite(objects-active); }
-        }
-      }
-
-      .projects {
-        .menu-icon { @include menu-sprite(projects); }
-
-        &:hover .menu-icon { @include menu-sprite(projects-hover); }
-
-        &.active {
-          background-color: $menu-projects-bg;
-
-          .menu-icon { @include menu-sprite(projects-active); }
-        }
-      }
     }
   }
 
-
-  #menu > ul > li {
-    min-width: 120px;
+  .menu-icon {
+    display: inline-block;
+    vertical-align: -63%;
+    margin-right: 0.2em;
+    width: 25px;
+    height: 25px;
   }
+
+  .map {
+    .menu-icon { @include menu-sprite(map); }
+    &:hover .menu-icon { @include menu-sprite(map-hover); }
+    &.active {
+      background-color: $menu-map-bg;
+      .menu-icon { @include menu-sprite(map-active); }
+    }
+  }
+
+  .objects {
+    .menu-icon { @include menu-sprite(objects); }
+    &:hover .menu-icon { @include menu-sprite(objects-hover); }
+    &.active {
+      background-color: $menu-objects-bg;
+      .menu-icon { @include menu-sprite(objects-active); }
+    }
+  }
+
+  .projects {
+    .menu-icon { @include menu-sprite(projects); }
+    &:hover .menu-icon { @include menu-sprite(projects-hover); }
+    &.active {
+      background-color: $menu-projects-bg;
+      .menu-icon { @include menu-sprite(projects-active); }
+    }
+  }
+
+  #menu > ul > li { min-width: 120px; }
 
   #side_menu > ul > li {
     min-width: 60px;
@@ -116,7 +102,6 @@ $menu-projects-bg: #f26700;
 
       ul {
         box-shadow: 0px -5px 0px 0px $meppit-blue, 1px 1px 3px 1px $medium-grey;
-
         display: none;
         position: absolute;
         background-color: inherit;
@@ -128,7 +113,6 @@ $menu-projects-bg: #f26700;
 
         li {
           padding: 0 10px;
-
           &:hover { background: $meppit-light-blue; }
         }
       }
@@ -139,7 +123,6 @@ $menu-projects-bg: #f26700;
     width: 22%;
     margin-left: 3%;
     padding-top: 8px;
-
     position: relative;
 
     form {
