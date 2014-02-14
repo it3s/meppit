@@ -4,6 +4,10 @@
   font-weight: normal;
 }
 
+body {
+  margin: 0;
+}
+
 h1 {
   font-family: Cambria, Georgia, serif;
   font-size: 30px;
@@ -38,3 +42,8 @@ a.text-link {
 
 // Tags: 12px Consolas, Courier, monospace; regular
 // #505050 underline
+
+.content {
+  @include outer-container;
+  min-height: 600px;
+}

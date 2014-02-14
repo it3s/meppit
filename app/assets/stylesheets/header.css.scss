@@ -1,0 +1,177 @@
+.header {
+  width: 100%;
+  height: 45px;
+  background: #dceff4;
+  position: relative;
+  z-index: 11;
+
+  box-shadow: 1px 1px 3px 1px rgba(50, 50, 50, 0.5);
+
+  @include box-sizing(border-box);
+
+
+  #logo, #menu, #search-bar { float: left }
+  #side_menu { float: right }
+
+  #logo {
+    margin: 0 35px;
+    padding-top: 10px;
+  }
+
+  #menu, #side_menu {
+    cursor: pointer;
+    color: #505050;
+
+    ul {
+      height: 100%;
+      list-style-type: none;
+
+      li {
+        margin-top: -13px;
+        // height: 100%;
+        text-align: center;
+        display: inline-block;
+
+        &:hover {
+          background: #b1dde8;
+        }
+
+        &.active a {
+          color: #fff;
+        }
+
+        a {
+          padding-top: 13px;
+          padding-bottom: 6px;
+          text-decoration: inherit;
+          color: inherit;
+          display: block;
+        }
+      }
+
+      .menu-icon {
+        background: no-repeat center center;
+        display: inline-block;
+        vertical-align: -33%;
+        margin-right: 0.2em;
+        width: 25px;
+        height: 25px;
+      }
+
+      .map {
+        .menu-icon {
+          background-image: image-url('menu/map.png');
+        }
+
+        &:hover .menu-icon {
+          background-image: image-url('menu/map-hover.png');
+        }
+
+        &.active {
+          background-color: #ff3d2e;
+          .menu-icon {
+            background-image: image-url('menu/map-active.png');
+          }
+        }
+      }
+
+      .objects {
+        .menu-icon {
+          background-image: image-url('menu/objects.png');
+        }
+
+        &:hover .menu-icon {
+          background-image: image-url('menu/objects-hover.png');
+        }
+
+        &.active {
+          background-color: #951b81;
+          .menu-icon {
+            background-image: image-url('menu/objects-active.png');
+          }
+        }
+      }
+
+      .projects {
+        .menu-icon {
+          background-image: image-url('menu/projects.png');
+        }
+
+        &:hover .menu-icon {
+          background-image: image-url('menu/projects-hover.png');
+        }
+
+        &.active {
+          background-color: #f26700;
+          .menu-icon {
+            background-image: image-url('menu/projects-active.png');
+          }
+        }
+      }
+    }
+  }
+
+
+  #menu > ul > li {
+    min-width: 120px;
+    padding: 0 5px;
+  }
+
+  // #side_menu > ul > li {
+  //     min-width: 80px;
+  //     padding: 0 10px;
+  // }
+
+  // #side_menu {
+  //     li#login_button {
+  //         background: #cce5ce;
+  //         color: #009640;
+  //     }
+  //     li#login_button:hover {
+  //         background: #8EC89A;
+  //         color: #000;
+  //     }
+  //     li#user_menu {
+  //         width: 150px;
+  //     }
+  //     li.dropdown_menu {
+  //         ul {
+  //             li { padding: 0.3em }
+  //             li:hover { background: #dceff4 }
+
+  //             box-shadow: 0px -5px 0px 0px #b1dde8, 1px 1px 3px 1px rgba(50, 50, 50, 0.5);
+  //         }
+  //     }
+  // }
+
+  #search-bar {
+    width: 22%;
+    margin-left: 3%;
+    padding-top: 8px;
+
+    position: relative;
+
+    form {
+      width: 85%;
+      padding: 0;
+      margin: 0;
+      display: inline-block;
+
+      input[type="search"] {
+        width: 100%;
+        height: 28px;
+        border-radius: 14px;
+        background: #fff image-url('icons/glass.png') no-repeat 98% center;
+        padding-right: 6%;
+        padding-left: 8px;
+        box-shadow: inset 0px 1px 3px 0px rgba(150, 150, 150, 0.5);
+        border: 1px solid #aaa;
+
+        @include placeholder {
+          font-size: 11px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

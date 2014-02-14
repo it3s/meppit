@@ -1,0 +1,9 @@
+en:
+  header:
+    search:
+      placeholder: 'Search for places, users or contents...'
+
+    menu:
+      map: 'Map'
+      objects: 'Objects'
+      projects: 'Project Maps'

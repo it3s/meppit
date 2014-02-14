@@ -5,15 +5,22 @@
   <%= stylesheet_link_tag    "application", media: "all" %>
   <%= stylesheet_link_tag    params[:controller] %>
 
-  <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag params[:controller] %>
-
   <%= csrf_meta_tags %>
+
+  <%= javascript_include_tag "head" %>
+
+  <%= yield :head %>
 </head>
 <body>
-  <%= render 'shared/menu' %>
+  <%= render 'shared/header' %>
 
-  <%= yield %>
+  <div class="content">
+    <%= yield %>
+  </div>
 
+  <%= render 'shared/footer' %>
+
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag params[:controller] %>
 </body>
 </html>
