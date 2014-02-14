@@ -1,0 +1,55 @@
+body {
+  position: relative;
+  min-width: $canvas-width;
+  font: $base-font-size $main-font;
+  -webkit-font-smoothing: subpixel-antialiased;
+  color: $text-color;
+}
+
+a {
+  color: $text-color;
+  text-decoration: none;
+}
+
+a.text-link {
+  color: $link-color;
+  text-decoration: underline;
+
+  &:hover {
+    color: $link-color-hover-fg;
+    background-color: $link-color-hover-bg;
+  }
+
+  &:visited {
+    color: $link-color-visited;
+  }
+}
+
+iframe {
+  border: none;
+}
+
+h1 {
+  font-family: $highlight-font;
+  font-size: em(30);
+  font-weight: bold;
+}
+
+h2 {
+  font-family: $highlight-font;
+  font-size: em(24);
+  font-weight: bold;
+}
+
+h3 {
+  font-family: $main-font;
+  font-size: em(18);
+  font-weight: bold;
+}
+
+.wrapper {
+  @include clearfix;
+  position: relative;
+  width: $canvas-width;
+  margin: 0 auto;
+}

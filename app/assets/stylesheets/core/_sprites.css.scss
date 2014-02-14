@@ -1,0 +1,8 @@
+$icon-spacing: 10px;
+@import "icons/*.png";
+@include all-icons-sprites;
+
+
+$menu-spacing: 10px;
+@import "icons/menu/*.png";
+@include all-menu-sprites;

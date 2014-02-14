@@ -1,7 +1,13 @@
+@import "compass/reset";
 @import "bourbon";
-@import "neat";
+@import "compass/utilities/sprites";
 
-@import "common";
+@import "settings";
 
-@import "header";
-@import "footer";
+@import "core/normalize";
+@import "core/base";
+@import "core/form";
+@import "core/sprites";
+
+@import "shared/header";
+@import "shared/footer";

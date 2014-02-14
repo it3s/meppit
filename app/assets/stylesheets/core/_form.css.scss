@@ -1,0 +1,20 @@
+fieldset {
+  border: none;
+  &, ol {
+    padding: 0;
+    margin: 0;
+  }
+  ol {
+    list-style: none;
+    margin: 0;
+  }
+}
+
+label abbr[title] {
+  border: none;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  float: left;
+}

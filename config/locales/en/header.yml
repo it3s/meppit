@@ -6,7 +6,7 @@ en:
     menu:
       map: 'Map'
       objects: 'Objects'
-      projects: 'Project Maps'
+      projects: 'Projects'
 
     sub_menu:
       about: 'About'

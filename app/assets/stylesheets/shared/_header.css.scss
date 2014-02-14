@@ -1,0 +1,167 @@
+$menu-map-bg: #ff3d2e;
+$menu-objects-bg: #951b81;
+$menu-projects-bg: #f26700;
+
+.header {
+  width: 100%;
+  height: 45px;
+  background: $meppit-light-blue;
+  position: relative;
+  z-index: 11;
+
+  box-shadow: 1px 1px 3px 1px $medium-grey;
+
+  @include box-sizing(border-box);
+
+
+  #logo, #menu, #search-bar { float: left }
+  #side_menu { float: right }
+
+  #logo {
+    margin: 0 35px;
+    padding-top: 10px;
+  }
+
+  #menu, #side_menu {
+    cursor: pointer;
+
+    > ul {
+
+      > li {
+        display: inline-block;
+        text-align: center;
+
+        &:hover { background: $meppit-blue; }
+
+        &.active a { color: $white; }
+
+        a {
+          padding: 14px 5px 6px;
+          display: block;
+        }
+      }
+
+      .menu-icon {
+        display: inline-block;
+        vertical-align: -63%;
+        margin-right: 0.2em;
+        width: 25px;
+        height: 25px;
+      }
+
+      .map {
+        .menu-icon { @include menu-sprite(map); }
+
+        &:hover .menu-icon { @include menu-sprite(map-hover); }
+
+        &.active {
+          background-color: $menu-map-bg;
+
+          .menu-icon { @include menu-sprite(map-active); }
+        }
+      }
+
+      .objects {
+        .menu-icon { @include menu-sprite(objects); }
+
+        &:hover .menu-icon { @include menu-sprite(objects-hover); }
+
+        &.active {
+          background-color: $menu-objects-bg;
+
+          .menu-icon { @include menu-sprite(objects-active); }
+        }
+      }
+
+      .projects {
+        .menu-icon { @include menu-sprite(projects); }
+
+        &:hover .menu-icon { @include menu-sprite(projects-hover); }
+
+        &.active {
+          background-color: $menu-projects-bg;
+
+          .menu-icon { @include menu-sprite(projects-active); }
+        }
+      }
+    }
+  }
+
+
+  #menu > ul > li {
+    min-width: 120px;
+  }
+
+  #side_menu > ul > li {
+    min-width: 60px;
+    padding: 0 0 8px;
+  }
+
+  #side_menu {
+    ul { margin-right: 20px; }
+
+    li#login_button {
+      background: #cce5ce;
+      color: #009640;
+    }
+    li#login_button:hover {
+      background: #8EC89A;
+      color: #000;
+    }
+    li.dropdown_menu {
+      min-width: 100px;
+      position: relative;
+
+      &:hover > ul { display: block; }
+
+      ul {
+        box-shadow: 0px -5px 0px 0px $meppit-blue, 1px 1px 3px 1px $medium-grey;
+
+        display: none;
+        position: absolute;
+        background-color: inherit;
+        left: 0;
+        top: 100%;
+        width: 100%;
+        z-index: 100;
+        text-align: left;
+
+        li {
+          padding: 0 10px;
+
+          &:hover { background: $meppit-light-blue; }
+        }
+      }
+    }
+  }
+
+  #search-bar {
+    width: 22%;
+    margin-left: 3%;
+    padding-top: 8px;
+
+    position: relative;
+
+    form {
+      width: 85%;
+      padding: 0;
+      margin: 0;
+      display: inline-block;
+
+      input[type="search"] {
+        width: 100%;
+        height: 28px;
+        border-radius: 14px;
+        background: $white image-url('icons/glass.png') no-repeat 98% center;
+        padding: 0 1.2em 0 1em;
+        box-shadow: inset 0px 1px 3px 0px $soft-grey;
+        border: 1px solid $medium-grey;
+
+        @include placeholder {
+          font-size: 0.8em;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
