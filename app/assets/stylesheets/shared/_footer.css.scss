@@ -1,31 +1,47 @@
 .footer {
-  .it3s .image { @include sprite-image($logos-map, it3s); }
+
+  hr { color: $ultra-soft-grey; }
+
+  clear: both;
+  width: 900px;
+  margin: 0 auto;
+  padding: 1px 0 20px 60px;
+
+
+  > div {
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 40px;
+  }
+
+  h3 {
+    font-size: 12px;
+    margin-bottom: 1em;
+  }
+
+  .partners {
+    text-align: left;
+
+    img { margin: 5px }
+  }
+
+  .license {
+    width: 200px;
+    text-align: justify;
+  }
+
+  .it3s-logo     { @include sprite-image($logos-map, it3s); }
+
+  .cea-logo      { @include sprite-image($logos-map, cea-footer); }
+
+  .cenpec-logo   { @include sprite-image($logos-map, cenpec); }
+
+  .aldeias-logo  { @include sprite-image($logos-map, aldeias); }
+
+  .cedaps-logo   { @include sprite-image($logos-map, cedaps); }
+
+  .soudapaz-logo { @include sprite-image($logos-map, sou-da-paz); }
+
+  .polis-logo    { @include sprite-image($logos-map, polis); }
 }
-// #footer {
-//     clear: both;
-//     width: 900px;
-//     margin: 0 auto;
-//     padding: 1px 0 20px 60px;
-// }
-
-// #footer > div {
-//     text-align: center;
-//     display: inline-block;
-//     vertical-align: top;
-//     margin: 0 40px;
-// }
-
-// #footer h3 {
-//     font-size: 12px;
-//     margin-bottom: 1em;
-//     font-weight: normal;
-//     color: #706f6f;
-// }
-
-// #footer .partners { text-align: left }
-// #footer .partners img { margin: 5px }
-
-// #footer .license {
-//     width: 200px;
-//     text-align: justify;
-// }
