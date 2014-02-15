@@ -27,4 +27,15 @@
     }
   }
 
+  .call-for-action {
+    background-color: $ultra-soft-grey;
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+    margin: 0 auto;
+
+    h2 { margin-top: -10px; }
+    .button { margin: 0 0 -10px 20px; }
+  }
+
 }

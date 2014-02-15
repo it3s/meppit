@@ -12,6 +12,11 @@ $menu-projects-bg: #f26700;
   box-shadow: 1px 1px 3px 1px $medium-grey;
   @include box-sizing(border-box);
 
+  a {
+    color: $text-color;
+    &:hover { text-decoration: none; }
+  }
+
   #logo, #menu, #search-bar { float: left }
   #side_menu { float: right }
 

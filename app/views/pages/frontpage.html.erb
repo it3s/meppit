@@ -11,4 +11,16 @@
     </div>
   </section>
 
+  <section class="call-for-action">
+    <!-- {% if user.is_anonymous %} -->
+      <h2><%= t 'frontpage.call.anyone' %>
+        <a class="big button" href="#"><%= t 'frontpage.call.create_account' %></a>
+      </h2>
+    <!-- {% else %} - ->
+      <h2><%= t 'frontpage.call.participate' %>, Anderson?
+        <a href="#map-panel-add"><%= t 'frontpage.call.edit' %></a>
+      </h2>
+    <!- - {% endif %} -->
+  </section>
+
 </div>

@@ -1,3 +1,9 @@
 en:
   frontpage:
     title: 'colaborative mapping of your region.'
+
+    call:
+      participate: 'Want to participate'
+      edit: 'Edit the map.'
+      anyone: 'Anyone can help!'
+      create_account: 'Create your account'

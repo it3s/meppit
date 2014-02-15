@@ -7,21 +7,25 @@ body {
 }
 
 a {
-  color: $text-color;
+  color: $link-color;
   text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 a.text-link {
-  color: $link-color;
+  color: $text-link-color;
   text-decoration: underline;
 
   &:hover {
-    color: $link-color-hover-fg;
-    background-color: $link-color-hover-bg;
+    color: $text-link-hover-color-fg;
+    background-color: $text-link-hover-color-bg;
   }
 
   &:visited {
-    color: $link-color-visited;
+    color: $text-link-visited-color;
   }
 }
 
@@ -52,6 +56,32 @@ h3 {
   position: relative;
   width: $canvas-width;
   margin: 0 auto;
+}
+
+.button, button {
+  cursor: pointer;
+  display: inline-block;
+  color: $white;
+  background-color: $button-color;
+  border: 1px solid $ocean-blue;
+  border-radius: 4px;
+  padding: 5px 8px;
+
+  @include linear-gradient(to top, $button-light-color 0%, $button-color 100%);
+
+  text-decoration: none;
+  &:hover { text-decoration: none; }
+
+  &.big {
+    vertical-align: bottom;
+    border-radius: 12px;
+    padding: 0.5em 1em;
+  }
+
+  &:active, &:hover {
+    background: darken($button-color, 10%);
+    color: darken($white, 10%);
+  }
 }
 
 // Mixins
