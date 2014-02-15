@@ -25,3 +25,4 @@
 # Ignore generated sprites
 /app/assets/images/icons-*.png
 /app/assets/images/icons/menu-*.png
+/app/assets/images/logos-*.png

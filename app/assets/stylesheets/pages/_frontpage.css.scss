@@ -1,0 +1,30 @@
+.frontpage {
+
+  .title {
+
+    padding-top: 50px;
+    text-align: center;
+
+
+    .maps-logo {
+      @include sprite-image($logos-map, mootiro-maps);
+    }
+
+    h1 {
+      display: inline-block;
+      color: $ultra-dark-grey;
+      font-size: 32px;
+      letter-spacing: -1px;
+      font-weight: 400;
+      margin: -45px 0 0 10px;
+      vertical-align: middle;
+      text-rendering: optimizelegibility;
+    }
+
+    .video {
+      margin: 30px;
+      text-align: center;
+    }
+  }
+
+}
