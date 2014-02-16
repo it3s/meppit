@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/constantm/Flexslider-2-Rails-Gem.git
+  revision: 8fa05d5d3249f687313d0981d65768b0eb2a7280
+  specs:
+    flexslider (2.2.0)
+      sass-rails (>= 3.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -78,6 +85,8 @@ GEM
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.8.4)
+    oily_png (1.1.1)
+      chunky_png (~> 1.3.0)
     pg (0.17.1)
     polyglot (0.3.3)
     pry (0.9.12.6)
@@ -158,9 +167,11 @@ DEPENDENCIES
   clean_logger
   coffee-rails (~> 4.0.0)
   compass-rails
+  flexslider!
   foreman
   jbuilder (~> 1.2)
   jquery-rails
+  oily_png
   pg
   pry
   pry-rails

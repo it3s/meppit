@@ -1,43 +1,39 @@
 source 'https://rubygems.org'
 
+ruby "2.0.0"                        # ruby version (used by heroku and rvm)
+
 gem 'rails', '4.0.2'
-# Use unicorn as the app server
-# gem 'unicorn'
-gem 'foreman'
-gem 'pg'
+# gem 'unicorn'                     # app server
+gem 'foreman'                       # process supervision
+gem 'pg'                            # postgresql
 
-gem 'sass-rails', '~> 4.0.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
-gem 'jquery-rails'
-gem 'bourbon'
-gem 'compass-rails'
-gem 'underscore-rails'
+gem 'coffee-rails', '~> 4.0.0'      # coffeescript
+gem 'uglifier', '>= 1.3.0'          # minify
+gem 'jquery-rails'                  # jquery
+gem 'underscore-rails'              # underscore
+gem 'sass-rails', '~> 4.0.0'        # scss support
+gem 'bourbon'                       # sass mixins and utilities
+gem 'compass-rails'                 # sass mixins and sprites generation
+gem 'oily_png'                      # faster png sprite generation for compass
+gem 'flexslider', :git => 'https://github.com/constantm/Flexslider-2-Rails-Gem.git'  # jquery flexslider plugin
 
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
-# gem 'turbolinks'
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+# gem 'turbolinks'                  # speed page loading
+gem 'jbuilder', '~> 1.2'            # build json apis
 
 group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
+# gem 'bcrypt-ruby', '~> 3.1.2'     #Use ActiveModel has_secure_password
 
 group :development do
-  gem 'better_errors'
-  gem 'binding_of_caller', '0.7.1'
-  gem 'clean_logger'
+  gem 'better_errors'               # better error page, and shell session when crash
+  gem 'binding_of_caller', '0.7.1'  # used by better_errors
+  gem 'clean_logger'                # silence assets logging
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.0'
-  gem 'pry'
-  gem 'pry-rails'
+  gem 'rspec-rails', '~> 2.0'       # BDD
+  gem 'pry'                         # better shell sessions and debug tool
+  gem 'pry-rails'                   # use pry as rails console
 end
