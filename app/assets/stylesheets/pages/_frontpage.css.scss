@@ -1,10 +1,8 @@
 .frontpage {
 
   .title {
-
     padding-top: 50px;
     text-align: center;
-
 
     .maps-logo {
       @include sprite-image($logos-map, mootiro-maps);
@@ -27,6 +25,7 @@
     }
   }
 
+
   .call-for-action {
     background-color: $ultra-soft-grey;
     width: 80%;
@@ -38,4 +37,40 @@
     .button { margin: 0 0 -10px 20px; }
   }
 
+
+  .what-is-it-for {
+    white-space: nowrap; /* hack for windows */
+
+    *  { @include box-sizing(border-box); }
+    a  { color: inherit }
+    h2 { margin: 40px 0 10px 40px; }
+
+    .topic {
+      white-space: normal; /* hack for windows */
+
+      vertical-align: top;
+      display: inline-block;
+      width: 19%;
+      margin: 0 0.35%;
+
+      &:hover {
+        background: $ultra-soft-grey;
+        h3 { background: $meppit-blue; }
+      }
+
+      h3 {
+        display: inline-block;
+        padding: 0.5em 1em;
+        margin-bottom: 1em;
+        border-bottom: 1px solid $ocean-blue;
+        width: 100%;
+        font-size: 20px;
+        text-align: center;
+        color: $ocean-blue;
+      }
+
+      img { max-width: 100%; }
+      p { padding: 0.5em 0.2em 0; }
+    }
+  }
 }

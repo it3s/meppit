@@ -7,3 +7,17 @@ en:
       edit: 'Edit the map.'
       anyone: 'Anyone can help!'
       create_account: 'Create your account'
+
+    what:
+      what_is_it_for: 'What is it for?'
+      diagnosis: 'Community diagnosis'
+      diagnosis_explanation: "Map a region\'s resources and needs. Create indicators and analyze its diagnosis to know the true demands of the that community."
+      network: 'Network mapping'
+      network_explanation: "Map organizations that work for the same cause. Find new partakers to your network. Share knowledge and help to add visibility to the initiatives"
+      evaluation: 'Project evaluation'
+      evaluation_explanation: "Record indicator over the execution of a project. Evaluate and generate reports. Share methodologies and results."
+      journalism: 'Data journalism'
+      journalism_explanation: "Build maps using public data. Use them into your news and mobilize for changes."
+      guide: 'Neighborhood guide'
+      guide_explanation: "Map existing services in your neighborhood. Help other dwellers to know the territory better and use local resources."
+
