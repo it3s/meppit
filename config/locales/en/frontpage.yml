@@ -21,3 +21,6 @@ en:
       guide: 'Neighborhood guide'
       guide_explanation: "Map existing services in your neighborhood. Help other dwellers to know the territory better and use local resources."
 
+    projects:
+      title: 'Projects that uses MootiroMaps'
+

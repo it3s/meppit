@@ -73,4 +73,66 @@
       p { padding: 0.5em 0.2em 0; }
     }
   }
+
+  .projects {
+    background-color: $ultra-soft-grey;
+    margin-top: 50px;
+    h2 { padding: 20px; }
+
+    .flexslider {
+      background-color: inherit;
+      width: 800px;
+      height: 150px;
+      position: relative;
+      left: 50%;
+      margin-top: 20px;
+      margin-left: -400px;
+      border: none;
+      box-shadow: none;
+
+      .flex-prev { left:  -20px; }
+      .flex-next { right: -20px; }
+
+      img {
+        max-width: 220px;
+        max-height: 140px;
+      }
+
+      .testimony {
+        width: 450px;
+        height: 100px;
+        position: relative;
+        left: 300px;
+        top: -130px;
+
+        font-style: italic;
+        text-align: justify;
+
+        .author-info {
+          float: right;
+          text-align: right;
+          margin-top: 0.5em;
+          font-size: 80%;
+          max-width: 80%;
+          display: inline-block;
+        }
+      }
+
+      .aldeias-infantis {
+        img { margin-left: 30px }
+        p { margin-top: 15px }
+      }
+      .heliopolis-verde {
+        img { margin-left: 35px }
+        p { margin-top: 0 }
+      }
+      .bairro-educador {
+        img { margin-left: 40px }
+        p { margin-top: 20px }
+      }
+      .educar-na-cidade {
+        img { margin-left: 45px}
+      }
+    }
+  }
 }

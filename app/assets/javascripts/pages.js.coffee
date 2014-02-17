@@ -1,6 +1,4 @@
-#= require jquery.flexslider
+#= require components/flexslider
 
 $ ->
-  $('.flexslider').flexslider(
-    animation: 'slide'
-  ).flexslider('pause');
+  App.mediator.publish('components:start')

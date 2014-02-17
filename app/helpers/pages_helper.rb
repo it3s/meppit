@@ -34,4 +34,46 @@ module PagesHelper
       },
     ]
   end
+
+  def projects_slides
+    [
+      {
+        :name         => 'aldeias-infantis',
+        :href         => 'http://maps.mootiro.org/project/17',
+        :image        => 'imgs/aldeias-infantis.png',
+        :text         => "O MootiroMaps permite não apenas vizualizar o local onde está o possível parceiro, mas também obter informações sobre seus serviços e esfera de atuação. Para as Aldeias Infantis SOS, a ferramenta é um potencial para a identificação do nível de articulação desenvolvido.",
+        :author_href  => 'http://maps.mootiro.org/user/259',
+        :author_name  => 'Aline Cavalcanti',
+        :author_title => 'Analista de Monitoramento e<br/> Pesquisa das <a href="http://maps.mootiro.org/organization/2134">Aldeias Infantis SOS</a>'
+      },
+      {
+        :name         => 'heliopolis-verde',
+        :href         => 'http://maps.mootiro.org/project/2',
+        :image        => 'imgs/heliopolis-verde.png',
+        :text         => "O primeiro passo de um projeto social de base comunitária é a realização de um mapa de contexto, a fim de identificar demandas e conhecer os atores locais. A visualização das informações e a possibilidade de mapear coletivamente com o MootiroMaps favorecem e facilitam nosso trabalho com o Heliópolis Verde.",
+        :author_href  => 'http://maps.mootiro.org/user/101',
+        :author_name  => 'Raquel Porangaba',
+        :author_title => 'Analista de articulação <br/> do <a href="http://maps.mootiro.org/organization/793">Instituto Baccarelli</a>'
+      },
+      {
+        :name         => 'bairro-educador',
+        :href         => 'http://maps.mootiro.org/project/22',
+        :image        => 'imgs/bairro-educador.png',
+        :text         => 'É importante criarmos o mapa de nossa comunidade porque é possível quantificar no MootiroMaps a necessidade da comunidade em relação às políticas públicas bem como acompanhar os serviços públicos e as obras que acontecem em Heliópolis.',
+        :author_href  => '#',
+        :author_name  => 'Cleide Alves',
+        :author_title => 'Presidente da <a href="http://maps.mootiro.org/organization/796">UNAS</a>'
+      },
+      {
+        :name         => 'educar-na-cidade',
+        :href         => 'http://maps.mootiro.org/project/13',
+        :image        => 'imgs/educar-na-cidade.jpg',
+        :text         => "Mapeamos equipamentos sociais e iniciativas educativas para estimular a interação entre pessoas e organizações possibilitando assim a troca de experiências e conexões que fortaleçam vínculos entre esses agentes para o trabalho em rede e desenvolvimento local.",
+        :author_href  => 'http://maps.mootiro.org/user/237',
+        :author_name  => 'Maria Rita Ecosteguy',
+        :author_title => 'analista do <a href="http://maps.mootiro.org/organization/25">CENPEC</a>'
+      },
+    ]
+  end
+
 end

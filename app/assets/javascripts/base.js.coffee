@@ -1,17 +1,25 @@
-# Mediator
 mediator =
   obj: $({})
-  publish: (channel, data) ->
-    @obj.trigger(channel, data)
-  subscribe: (channel, fn) ->
-    @obj.bind(channel, fn)
-  unsubscribe: (channel, fn) ->
-    @obj.unbind(channel, fn)
+  publish: (channel, data) -> @obj.trigger(channel, data)
+  subscribe: (channel, fn) -> @obj.bind(channel, fn)
+  unsubscribe: (channel, fn) -> @obj.unbind(channel, fn)
 
-# Utils
-utils = {}
+components = {}
+
+setup_container = (container) ->
+  container = $(container)
+  names = container.data('components').split /\s+/
+  _.each names, (name) =>
+    new components[name]?(container)
+
+start_components = ->
+  $(document).find('[data-components]').each (i, container) =>
+    setup_container(container)
+
+mediator.subscribe 'components:start', start_components
 
 # App
 window.App =
   mediator: mediator
-  utils: utils
+  utils: {}
+  components: components
