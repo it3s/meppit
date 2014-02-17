@@ -35,6 +35,7 @@
         </div>
       </a>
     <% end %>
+
   </section>
 
 
@@ -43,7 +44,7 @@
 
     <div class="flexslider" data-components="Flexslider">
       <ul class="slides">
-        <% projects_slides.each do |proj| %>
+        <% projects_slides.each do |proj| %>  <%# pages_helper#projects_slides %>
           <li class="<%= proj[:name] %>">
             <a href="<%= proj[:href] %>"><%= image_tag proj[:image] %></a>
             <p class="testimony">
@@ -57,7 +58,12 @@
         <% end %>
       </ul>
     </div>
+  </section>
 
+
+  <section class="news">
+    <%= render 'pages/blog_updates', :news => @news %>
+    <%= render 'pages/updates', :updates => [] %>
   </section>
 
 </div>

@@ -24,3 +24,10 @@ en:
     projects:
       title: 'Projects that uses MootiroMaps'
 
+    news:
+      blog_title: 'IT3S blog'
+      blog_visit: 'visit the blog'
+
+      updates_title: 'Last updates'
+      updates_all: 'see all'
+

@@ -77,6 +77,8 @@
   .projects {
     background-color: $ultra-soft-grey;
     margin-top: 50px;
+    padding-bottom: 10px;
+
     h2 { padding: 20px; }
 
     .flexslider {
@@ -134,5 +136,50 @@
         img { margin-left: 45px}
       }
     }
+  }
+
+  .news {
+    margin: 20px 0 40px;
+    > div {
+      @include box-sizing(border-box);
+
+      display: inline-block;
+      vertical-align: top;
+      width: 45%;
+      margin: 1%;
+
+      h3{ text-indent: 5px; }
+    }
+
+    li {
+      :hover { background: $meppit-light-blue; }
+      a {
+        display: block;
+        padding: 5px;
+        text-decoration: none;
+      }
+      span { color: $text-color; }
+      img { margin-right: 0.2em }
+    }
+    .last_updates li a { color: inherit; }
+
+    .apart {
+      margin-top: 10px;
+      font-size: 0.9em;
+    }
+
+    .image.community        { @include sprite-image($icons-map, community); }
+    .image.importsheet      { @include sprite-image($icons-map, importsheet); }
+    .image.investment       { @include sprite-image($icons-map, investment); }
+    .image.need             { @include sprite-image($icons-map, need); }
+    .image.organization     { @include sprite-image($icons-map, organization); }
+    .image.project          { @include sprite-image($icons-map, project); }
+    .image.resource         { @include sprite-image($icons-map, resource); }
+    .image.added            { @include sprite-image($icons-map, added); }
+    .image.added-to-project { @include sprite-image($icons-map, added-to-project); }
+    .image.deleted          { @include sprite-image($icons-map, deleted); }
+    .image.discussed        { @include sprite-image($icons-map, discussed); }
+    .image.edited           { @include sprite-image($icons-map, edited); }
+    .image.inserted         { @include sprite-image($icons-map, inserted); }
   }
 }

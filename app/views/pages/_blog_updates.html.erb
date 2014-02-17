@@ -1,0 +1,18 @@
+<div class="blog">
+  <h3><%= t 'frontpage.news.blog_title' %></h3>
+  <ul>
+    <% news.each do |n| %>
+    <li>
+      <a href="<%= n.link %>" target="_blank">
+        <h4><%= n.title %></h4>
+        <span><%= n.date.strftime("%d/%m/%Y") %></span>
+      </a>
+    </li>
+    <% end %>
+  </ul>
+  <div class="apart">
+    <a href="http://blog.mootiro.org" target="_blank">
+      <%= t('frontpage.news.blog_visit') %>
+    </a>
+  </div>
+</div>
