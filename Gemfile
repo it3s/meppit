@@ -15,16 +15,14 @@ gem 'sass-rails', '~> 4.0.0'        # scss support
 gem 'bourbon'                       # sass mixins and utilities
 gem 'compass-rails'                 # sass mixins and sprites generation
 gem 'oily_png'                      # faster png sprite generation for compass
-gem 'flexslider', :git => 'https://github.com/constantm/Flexslider-2-Rails-Gem.git'  # jquery flexslider plugin
 
 # gem 'turbolinks'                  # speed page loading
-gem 'jbuilder', '~> 1.2'            # build json apis
+# gem 'jbuilder', '~> 1.2'          # build json apis
+# gem 'bcrypt-ruby', '~> 3.1.2'     #Use ActiveModel has_secure_password
 
 group :doc do
   gem 'sdoc', require: false
 end
-
-# gem 'bcrypt-ruby', '~> 3.1.2'     #Use ActiveModel has_secure_password
 
 group :development do
   gem 'better_errors'               # better error page, and shell session when crash
