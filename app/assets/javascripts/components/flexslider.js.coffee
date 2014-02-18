@@ -1,12 +1,18 @@
 #= require jquery.flexslider
 
-class App.components.Flexslider
-  constructor: (@container) ->
-    @start_plugin()
+App.components.flexslider = (container) ->
+  {
+    container: container,
 
-  start_plugin: ->
-    @container.flexslider
-      animation: 'slide'
+    init: ->
+      @start()
 
-  pause: ->
-    @container.flexslider 'pause'
+    start: ->
+      @container.flexslider
+        animation: 'slide'
+      console.log('components: started flexslider');
+
+
+    pause: ->
+       @container.flexslider 'pause'
+  }

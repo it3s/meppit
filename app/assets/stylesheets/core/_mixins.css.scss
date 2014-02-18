@@ -1,0 +1,13 @@
+@mixin sprite-image($map, $sprite) {
+  display: inline-block;
+  background: $map no-repeat;
+  @include sprite($map, $sprite, true);
+}
+
+@mixin modal() {
+  display: none;
+  min-width: 400px;
+  min-height: 300px;
+  background-color: $meppit-light-blue;
+  border-radius: 5px;
+}

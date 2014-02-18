@@ -10,7 +10,7 @@ setup_container = (container) ->
   container = $(container)
   names = container.data('components').split /\s+/
   _.each names, (name) =>
-    new components[name]?(container)
+    components[name]?(container).init()
 
 start_components = ->
   $(document).find('[data-components]').each (i, container) =>

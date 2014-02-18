@@ -1,13 +1,21 @@
+// reset and base libs
 @import "compass/reset";
 @import "bourbon";
 @import "compass/utilities/sprites";
 
+// settings, mixins and core style
 @import "settings";
-
 @import "core/normalize";
 @import "core/base";
-@import "core/form";
+@import "core/mixins";
+@import "core/forms";
 @import "core/sprites";
 
+// vendor
+@import "jquery.modal";
+
+// app common
 @import "shared/header";
 @import "shared/footer";
+@import "shared/login_box"
+

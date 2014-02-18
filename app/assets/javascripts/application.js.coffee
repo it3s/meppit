@@ -3,3 +3,5 @@
 #= require underscore
 
 #= require base
+
+#= require components/modal

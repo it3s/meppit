@@ -10,9 +10,9 @@ module ApplicationHelper
     hash.map { |k, v| "#{k}=\"#{v}\"" }.join(" ")
   end
 
-  def link_to_modal(content, href, opts={})
-    attrs = hash_to_attributes opts
-    "<a href=\"#{href}\" rel=\"modal:open\" #{attrs} >#{content}</a>".html_safe
+  def link_to_modal(body, url, html_options={})
+    attrs = hash_to_attributes html_options
+    "<a href=\"#{url}\" rel=\"modal:open\" #{attrs} >#{body}</a>".html_safe
   end
 
 end
