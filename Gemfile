@@ -40,4 +40,5 @@ end
 
 group :test do
   gem 'shoulda-matchers'            # extra matchers for rspec
+  gem 'factory_girl_rails'          # mock objects
 end

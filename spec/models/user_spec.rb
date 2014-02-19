@@ -14,12 +14,12 @@ describe User do
       Rails.application.config.SECRETS[:fixed_salt] = @salt
     end
 
-    let(:params) { {:name => 'John', :email => 'john@doe.com', :password => 'abcde' } }
-    let(:user) { User.create!(params) }
-    let(:crypted_password) { Digest::SHA1.hexdigest(@salt + params[:password]) }
+    let(:user) { FactoryGirl.create(:user) }
+    let(:password) { FactoryGirl.build(:user).password }
+    let(:crypted_password) { Digest::SHA1.hexdigest(@salt + password) }
 
     it { expect(user.crypted_password).to eq crypted_password }
-    it { expect(User.authenticate(user.email, params[:password])).to be_a_kind_of User }
+    it { expect(User.authenticate(user.email, password)).to be_a_kind_of User }
     it { expect(User.authenticate(user.email, 'wrong password')).to be_nil }
   end
 end
