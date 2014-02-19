@@ -1,9 +1,9 @@
-$login_box_width: 560px;
+$signin_box_width: 560px;
 
 #sign-in {
-  @include modal();
+  @include modal;
 
-  width: $login_box_width;
+  width: $signin_box_width;
 
   * { @include box-sizing(border-box); }
 
@@ -20,7 +20,7 @@ $login_box_width: 560px;
 
 #separator {
   $separator_height: 130px;
-  width: $login_box_width * 0.10;
+  width: $signin_box_width * 0.10;
   height: $separator_height;
   text-align: center;
   line-height: $separator_height;
@@ -45,7 +45,7 @@ $login_box_width: 560px;
 
 
 #external_providers {
-  width: $login_box_width * 0.4;
+  width: $signin_box_width * 0.4;
 
   li {
     margin: 15px 0;
@@ -87,7 +87,7 @@ $login_box_width: 560px;
 }
 
 #login-form {
-  width: $login_box_width * 0.5;
+  width: $signin_box_width * 0.5;
 
   .action-links { padding: 0 5px; }
 

@@ -5,6 +5,8 @@ en:
     login_facebook: 'Log in with Facebook'
     login_twitter: 'Log in with Twitter'
 
+    signup: 'Registration'
+
     forms:
       login:
         email: 'E-mail'

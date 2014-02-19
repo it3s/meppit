@@ -12,7 +12,7 @@ module ApplicationHelper
 
   def link_to_modal(body, url, html_options={})
     attrs = hash_to_attributes html_options
-    "<a href=\"#{url}\" rel=\"modal:open\" #{attrs} >#{body}</a>".html_safe
+    "<a href=\"#{url}\" data-modal=\"open\" #{attrs} >#{body}</a>".html_safe
   end
 
 end
