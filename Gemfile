@@ -37,3 +37,7 @@ group :development, :test do
   gem 'pry'                         # better shell sessions and debug tool
   gem 'pry-rails'                   # use pry as rails console
 end
+
+group :test do
+  gem 'shoulda-matchers'            # extra matchers for rspec
+end

@@ -22,7 +22,7 @@ describe ApplicationHelper do
 
   describe "#link_to_modal" do
     it "renders anchor tag with rel='modal:open'" do
-      anchor = '<a href="#some-id" rel="modal:open" class="button" >Open Modal</a>'
+      anchor = '<a href="#some-id" data-modal="open" class="button" >Open Modal</a>'
       expect(helper.link_to_modal 'Open Modal', '#some-id', :class => 'button' ).to eq anchor
     end
   end
