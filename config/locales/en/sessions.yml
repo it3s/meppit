@@ -1,0 +1,5 @@
+en:
+  sessions:
+    login: 'Log in'
+    login_google: 'Log in with Google'
+    login_facebook: 'Log in with Facebook'

@@ -1,3 +1,17 @@
 <section id="login-box" data-components="modal" >
-  LOGIN
+
+  <header>
+    <h1><%=  t 'sessions.login' %></h1>
+  </header>
+
+  <div>
+    <ul id="external_providers">
+      <%= render 'sessions/external_login', :provider => :google %>
+      <%= render 'sessions/external_login', :provider => :facebook %>
+    </ul>
+
+    <%= render 'shared/vertical_separator' %>
+
+    <%= render "sessions/login_form" %>
+  </div>
 </section>

@@ -1,3 +1,111 @@
+$login_box_width: 560px;
+
 #login-box {
   @include modal();
+
+  width: $login_box_width;
+
+  * { @include box-sizing(border-box); }
+
+  h1 {
+    text-align: center;
+    font-size: 20px;
+  }
+
+  #external_providers, form {
+    padding: 10px;
+    float: left;
+  }
+}
+
+#separator {
+  $separator_height: 130px;
+  width: $login_box_width * 0.10;
+  height: $separator_height;
+  text-align: center;
+  line-height: $separator_height;
+  font-style: italic;
+  font-weight: bold;
+  margin-top: 15;
+  float: left;
+
+
+  position: relative;
+
+  .vertical_line {
+    position: absolute;
+    left: 50%;
+    height: $separator_height * 0.35;
+    border-left: 1px solid #333;
+    width: 1px;
+  }
+  .vertical_line.top { top: 0 }
+  .vertical_line.bottom { bottom: 0 }
+}
+
+
+#external_providers {
+  width: $login_box_width * 0.4;
+
+  li {
+    margin: 15px 0;
+
+    button {
+      width: 100%;
+      padding: 7px 6px 2px;
+      border: 0;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 13px;
+
+      .image {
+        width: 22px;
+        height: 22px;
+        float: left;
+        display: block;
+      }
+    }
+
+    .login-google.image { @include sprite-image($logos-map, login-google); }
+    .login-facebook.image { @include sprite-image($logos-map, login-facebook); }
+
+    button.google {
+      background: $google_red;
+      &:hover { background: lighten($google_red, 20%%); }
+    }
+    button.facebook {
+      background: $facebook_blue;
+      &:hover { background: lighten($facebook_blue, 20%%); }
+    }
+    button.twitter {
+      background: $twitter_blue;
+      &:hover { background: lighten($twitter_blue, 20%%); }
+    }
+  }
+
+}
+
+#login-form {
+  width: $login_box_width * 0.5;
+
+  // input {
+  //   width: 100%;
+  //   height: 28px;
+  // }
+
+  // input[type=submit] {
+  //   width: 100%;
+  //   padding: 3px 6px;
+  //   border: 0;
+  //   border-radius: 5px;
+  //   font-weight: bold;
+  //   font-size: 120%;
+  //   color: #fff;
+  //   @include gradient(#1e9c5b, darken(#1e9c5b, 15%));
+  // }
+
+  // span {
+  //   margin-bottom: 5px;
+  //   display: block;
+  // }
 }
