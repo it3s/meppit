@@ -20,6 +20,8 @@ gem 'oily_png'                      # faster png sprite generation for compass
 # gem 'jbuilder', '~> 1.2'          # build json apis
 # gem 'bcrypt-ruby', '~> 3.1.2'     #Use ActiveModel has_secure_password
 
+gem 'sorcery'
+
 group :doc do
   gem 'sdoc', require: false
 end

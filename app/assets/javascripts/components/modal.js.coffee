@@ -9,7 +9,6 @@ App.components.modal = (container) ->
       @start()
 
     start: ->
-      # @container.modal()
       $("a[data-modal=open][href='##{ @ref }']").on 'click', (el) =>
         @container.modal( fadeDuration: 150 )
         false
