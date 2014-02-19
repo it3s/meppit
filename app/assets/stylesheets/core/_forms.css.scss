@@ -18,3 +18,15 @@ input[type="radio"],
 input[type="checkbox"] {
   float: left;
 }
+
+form {
+  p {
+    padding: 7px 5px 3px;
+  }
+  label {
+    display: block;
+  }
+  input {
+    width: 100%;
+  }
+}

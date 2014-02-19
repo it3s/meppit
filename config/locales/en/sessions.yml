@@ -3,3 +3,12 @@ en:
     login: 'Log in'
     login_google: 'Log in with Google'
     login_facebook: 'Log in with Facebook'
+    login_twitter: 'Log in with Twitter'
+
+    forms:
+      login:
+        email: 'E-mail'
+        password: 'Password'
+        create_account: 'Do not have an account yet?'
+        forgot_password: 'Forgot your password?'
+        submit: 'Log In'
