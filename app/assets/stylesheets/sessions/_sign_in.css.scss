@@ -1,6 +1,6 @@
 $login_box_width: 560px;
 
-#login-box {
+#sign-in {
   @include modal();
 
   width: $login_box_width;
