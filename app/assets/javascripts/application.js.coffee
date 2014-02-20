@@ -5,3 +5,5 @@
 #= require base
 
 #= require components/modal
+
+#= require sessions

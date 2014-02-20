@@ -4,6 +4,12 @@ Meppit::Application.routes.draw do
 
   root 'pages#frontpage'
 
+  get  "logout" => "sessions#destroy", :as => "logout"
+  post "login"  => "sessions#create",  :as => "login"
+  # get  "signup" => "users#new",        :as => "signup"
+
+  resources :users
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
