@@ -90,8 +90,6 @@ $signin_box_width: 560px;
 #login-form {
   width: $signin_box_width * 0.5;
 
-  .action-links { padding: 0 5px; }
-
   input[type=submit] {
     border: 0;
     border-radius: 5px;

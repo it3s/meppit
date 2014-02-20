@@ -1,0 +1,5 @@
+en:
+  users:
+    form:
+      signup_title: 'Registration'
+      has_account: 'Already have an account? Sign in.'

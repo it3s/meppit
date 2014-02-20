@@ -10,15 +10,18 @@ en:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: "Please review the problems below:"
-    # Labels and hints examples
-    # labels:
-    #   defaults:
-    #     password: 'Password'
-    #   user:
-    #     new:
-    #       email: 'E-mail to sign in.'
-    #     edit:
-    #       email: 'E-mail.'
+
+    labels:
+      defaults:
+        name: 'Name'
+        email: 'E-mail'
+        password: 'Password'
+
+      user:
+        new:
+          password_confirmation: 'Password Confirmation'
+          license_aggrement: "I've read and accept the <a href=\"/\">terms of use</a>"
+
     # hints:
     #   defaults:
     #     username: 'User name to sign in.'

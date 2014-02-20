@@ -1,3 +1,20 @@
 #sign-up {
-  // @include modal;
+  @include modal;
+  display: block;
+
+  form {
+    .password.field {
+      width: 47%;
+      display: inline-block;
+    }
+
+    input[type=submit] {
+      width: 50%;
+      margin: 0 25%;
+    }
+
+    .action-links {
+      margin: 10px 0;
+    }
+  }
 }

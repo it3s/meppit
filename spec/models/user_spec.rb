@@ -5,6 +5,7 @@ describe User do
 
   it { expect(subject).to have_db_index(:email).unique(:true) }
   it { expect(subject).to validate_presence_of :email }
+  it { expect(subject).to validate_presence_of :name }
   it { expect(subject).to validate_presence_of :password  }
   it { expect(subject).to validate_confirmation_of :password }
 
