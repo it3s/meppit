@@ -10,8 +10,9 @@ module ApplicationHelper
     hash.map { |k, v| "#{k}=\"#{v}\"" }.join(" ")
   end
 
-  def link_to_modal(body, url, remote=false, html_options={})
-    attrs = hash_to_attributes html_options
+  def link_to_modal(body, url, options={})
+    remote = options.fetch(:remote, false)
+    attrs = hash_to_attributes options.except! :remote
     if remote
       "<a href=\"#{url}\" rel=\"modal:open\" #{attrs} >#{body}</a>".html_safe
     else
