@@ -4,6 +4,11 @@
     <h1><%=  t 'sessions.signup' %></h1>
   </header>
 
-  <%= @user %>
+  <%= simple_form_for @user do |f| %>
+    <%= f.input :name %>
+    <%= f.input :email %>
+    <%= f.input :password %>
+    <%= f.input :password_confirmation %>
+  <% end %>
 
 </section>
