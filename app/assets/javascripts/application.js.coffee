@@ -5,5 +5,4 @@
 #= require base
 
 #= require components/modal
-
-#= require sessions
+#= require components/remote_form

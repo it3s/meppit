@@ -1,4 +1,7 @@
-<%= form_tag login_url, :method => :post, :id => 'login-form', :remote => true  do %>
+<%= form_tag login_url, :method => :post,
+                        :id => 'login-form',
+                        :remote => true,
+                        'data-components' => 'remote_form' do %>
   <p>
     <%= label_tag :email, t('sessions.forms.login.email') %>
     <%= email_field_tag :email %>

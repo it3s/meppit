@@ -29,4 +29,12 @@ form {
   input {
     width: 100%;
   }
+
+  .errors {
+    // TODO improve this. (used only on login-form for now)
+    color: $dark-red;
+    text-shadow: 1px 1px $white;
+    text-align: center;
+  }
+
 }

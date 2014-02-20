@@ -17,12 +17,6 @@ $signin_box_width: 560px;
     float: left;
   }
 
-  .errors {
-    // REFACTOR extract error form class
-    color: $dark-red;
-    text-shadow: 1px 1px $white;
-    text-align: center;
-  }
 }
 
 #separator {

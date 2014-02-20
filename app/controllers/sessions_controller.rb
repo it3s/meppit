@@ -5,14 +5,22 @@ class SessionsController < ApplicationController
     if user
       render :json => { :redirect => root_path }
     else
-      # REFACTOR i18n
-      render :json => { :error => "email or password invalid" },
-             :status => :unprocessable_entity
+      render :json => { :error => error_message }, :status => :unprocessable_entity
     end
   end
 
   def destroy
     logout
     redirect_to root_url
+  end
+
+  private
+
+  def error_message
+    if params[:email].blank? || params[:password].blank?
+      t('sessions.create.blank')
+    else
+      t('sessions.create.invalid')
+    end
   end
 end
