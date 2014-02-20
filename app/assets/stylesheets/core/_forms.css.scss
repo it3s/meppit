@@ -14,13 +14,6 @@
 //   border: none;
 // }
 
-input[type="radio"],
-input[type="checkbox"] {
-  float: left;
-  width: 1.2em;
-  margin-right: 8px;
-}
-
 form {
   p {
     padding: 7px 5px 3px;
@@ -49,9 +42,15 @@ form {
     &:hover { background: lighten($meppit-green, 3%); }
   }
 
+  input[type="radio"],
+  input[type="checkbox"] {
+    float: left;
+    width: 1.2em;
+    margin-right: 8px;
+  }
 
   .errors {
-    // TODO improve this. (used only on login-form for now)
+    // REFACTOR improve this. (used only on login-form for now)
     color: $dark-red;
     text-shadow: 1px 1px $white;
     text-align: center;
@@ -61,6 +60,5 @@ form {
     padding: 0 5px;
     font-size: 0.9em;
   }
-
 
 }
