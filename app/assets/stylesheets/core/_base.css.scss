@@ -87,3 +87,7 @@ h3 {
 .modal.current {
   background-color: $meppit-light-blue;
 }
+
+[data-modal=true] {
+  @include modal;
+}

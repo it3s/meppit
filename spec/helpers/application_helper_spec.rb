@@ -21,21 +21,10 @@ describe ApplicationHelper do
   end
 
   describe "#link_to_modal" do
-    context ":remote => false" do
-      let(:anchor) { '<a href="#some-id" data-modal="open" class="button" >Open Modal</a>' }
+    let(:anchor) { '<a href="#some-id" class="button" data-components="modal">Open Modal</a>' }
 
-      it "renders anchor tag with data-modal='open'" do
-        expect(helper.link_to_modal 'Open Modal', '#some-id', :class => 'button' ).to eq anchor
-      end
+    it "renders anchor tag with data-modal='open'" do
+      expect(helper.link_to_modal 'Open Modal', '#some-id', :class => 'button' ).to eq anchor
     end
-
-    context ":remote => false" do
-      let(:anchor) { '<a href="/ajax_url.json" rel="modal:open" class="button" >Open Modal</a>' }
-
-      it "renders anchor tag with rel='modal:open'" do
-        expect(helper.link_to_modal 'Open Modal', '/ajax_url.json', :class => 'button', :remote => true ).to eq anchor
-      end
-    end
-
   end
 end
