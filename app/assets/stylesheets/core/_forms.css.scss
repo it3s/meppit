@@ -49,11 +49,16 @@ form {
     margin-right: 8px;
   }
 
-  .errors {
-    // REFACTOR improve this. (used only on login-form for now)
+  .error {
     color: $dark-red;
     text-shadow: 1px 1px $white;
-    text-align: center;
+
+    &.all { text-align: center; }
+  }
+
+  .field_with_errors {
+    input { border: 1px solid $dark-red; }
+    label { color: $dark-red; }
   }
 
   .action-links {

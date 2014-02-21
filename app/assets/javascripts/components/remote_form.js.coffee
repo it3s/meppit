@@ -5,10 +5,23 @@ App.components.remote_form = (container) ->
     init: ->
       @bind_events()
 
+    clean_errors: ->
+      @container.find('.error').remove()
+      @container.find('.field_with_errors').removeClass('field_with_errors')
+
     on_error: (_this, el, response) ->
-      err_msg = JSON.parse(response.responseText)?.error || 'Error'
-      _this.container.find('.errors').remove()
-      _this.container.prepend("<p class='errors'>#{ err_msg }</p>")
+      err = JSON.parse(response.responseText)?.errors || 'Error'
+      _this.clean_errors()
+      try
+        err = JSON.parse err
+        _.each err, (value, key) ->
+          field = _this.container.find("[name*='[#{key}]']").closest('.field')
+          field.addClass('field_with_errors')
+          field.append("<div class='error'>#{value}</div>")
+
+      catch
+        _this.container.find('.error.all').remove()
+        _this.container.prepend("<p class='error all'>#{ err }</p>")
 
     on_success: (_this, el, response) ->
       window.location.href = response.redirect

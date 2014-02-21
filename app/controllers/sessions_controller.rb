@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     if user
       render :json => { :redirect => root_path }
     else
-      render :json => { :error => error_message }, :status => :unprocessable_entity
+      render :json => { :errors => error_message }, :status => :unprocessable_entity
     end
   end
 

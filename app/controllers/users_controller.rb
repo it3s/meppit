@@ -8,22 +8,20 @@ class UsersController < ApplicationController
   end
 
   def create
-    # REFACTOR proper strong parameters and login after create
     @user = User.new(user_params)
-
     if @user.save
-      # TODO login
-      redirect_to root_path
+      login(params[:email], params[:password])
+      render :json => { :redirect => root_path }
     else
-      render action: 'new'
+      render :json => { :errors => @user.errors.messages.to_json }, :status => :unprocessable_entity
     end
   end
 
 
   private
 
-    # Only allow a trusted parameter "white list" through.
     def user_params
-      params[:user]
+      params.require(:user).permit(:name, :email, :password,
+        :password_confirmation, :license_agrement)
     end
 end

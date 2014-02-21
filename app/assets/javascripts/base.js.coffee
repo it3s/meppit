@@ -13,7 +13,6 @@ setup_container = (container) ->
     components[name]?(container).init()
 
 start_components = (evt, root=document) ->
-  console.log("starting components for #{root}")
   $(root).find('[data-components]').each (i, container) =>
     setup_container(container)
 
