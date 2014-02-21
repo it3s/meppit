@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby "2.0.0"                        # ruby version (used by heroku and rvm)
 
 gem 'rails', '4.0.2'
-# gem 'unicorn'                     # app server
+gem 'puma'                          # faster app server
 gem 'foreman'                       # process supervision
 gem 'pg'                            # postgresql
 
@@ -17,8 +17,6 @@ gem 'compass-rails'                 # sass mixins and sprites generation
 gem 'oily_png'                      # faster png sprite generation for compass
 
 # gem 'turbolinks'                  # speed page loading
-# gem 'jbuilder', '~> 1.2'          # build json apis
-# gem 'bcrypt-ruby', '~> 3.1.2'     #Use ActiveModel has_secure_password
 
 gem 'sorcery'                       # authentication
 gem 'simple_form'                   # improved forms builder
