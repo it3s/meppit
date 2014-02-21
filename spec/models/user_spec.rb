@@ -2,12 +2,14 @@ require 'spec_helper'
 require "digest/sha1"
 
 describe User do
+  let(:user) { FactoryGirl.create(:user) }
 
   it { expect(subject).to have_db_index(:email).unique(:true) }
   it { expect(subject).to validate_presence_of :email }
   it { expect(subject).to validate_presence_of :name }
   it { expect(subject).to validate_presence_of :password  }
   it { expect(subject).to validate_confirmation_of :password }
+  it { expect(subject).to validate_acceptance_of :license_aggrement }
 
   describe "encryption matches legacy DB" do
     before(:all) do
@@ -15,7 +17,6 @@ describe User do
       Rails.application.config.SECRETS[:fixed_salt] = @salt
     end
 
-    let(:user) { FactoryGirl.create(:user) }
     let(:password) { FactoryGirl.build(:user).password }
     let(:crypted_password) { Digest::SHA1.hexdigest(@salt + password) }
 
@@ -23,4 +24,11 @@ describe User do
     it { expect(User.authenticate(user.email, password)).to be_a_kind_of User }
     it { expect(User.authenticate(user.email, 'wrong password')).to be_nil }
   end
+
+  describe "send welcome email" do
+    it "enqueues to sidekiq" do
+      expect { UserMailer.delay.welcome(user.id)}.to change(Sidekiq::Extensions::DelayedMailer.jobs, :size).by(1)
+    end
+  end
+
 end

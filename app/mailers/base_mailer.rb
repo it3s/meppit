@@ -3,6 +3,7 @@ class BaseMailer < ActionMailer::Base
   default from: 'MootiroMaps <no-reply@it3s.mailgun.org>'
 
   def self.delay
+    # specify sidekiq queue for our delayed mails
     super(:queue => 'mailer')
   end
 
