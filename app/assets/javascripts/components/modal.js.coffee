@@ -4,7 +4,16 @@ App.components.modal = (container) ->
   {
     container: container,
 
-    fadeDuration: 150,
+    defaults: {
+      fadeDuration: 150,
+    }
+
+    prevent_close: {
+      escapeClose: false,
+      clickClose: false,
+      closeText: '',
+      showClose: false,
+    }
 
     init: ->
       @data = JSON.parse(@container.attr('data-modal') || '{}')
@@ -13,32 +22,29 @@ App.components.modal = (container) ->
     refered_element: ->
       $("#{ @container.attr('href') }")
 
-    open: (_this, target) ->
-      opts = {fadeDuration: _this.fadeDuration}
-      if _this.data.prevent_close
-        opts = _.extend(opts, {
-          escapeClose: false,
-          clickClose: false,
-          closeText: '',
-          showClose: false,
-        })
-      target.modal(opts)
+    open: (_this) ->
+      opts = _.clone(_this.defaults)
+      opts = _.extend(opts, _this.prevent_close) if _this.data.prevent_close
+      _this.target.modal(opts)
       false
 
-    ajax_complete: (_this) ->
+    start_components: (time=0) ->
       setTimeout( ->
         current_modal = $('.modal.current')
         App.mediator.publish('components:start', current_modal)
-      , _this.fadeDuration)
+      , time)
 
     start: ->
-      target = if @data.remote then @container else @refered_element()
+      @target = if @data.remote || @data.autoload then @container else @refered_element()
 
-      # bind click to open modal
-      @container.on 'click', (el) => @open(this, target)
+      if @data.autoload
+        @open(this)
+      else
+        # bind click to open modal
+        @container.on 'click', => @open(this)
 
-      # trigger components:start for ajax loaded elements
-      @container.on 'modal:ajax:complete', (evt, data) => @ajax_complete(this)
+      if @data.remote
+        # trigger components:start for ajax loaded elements
+        @container.on 'modal:ajax:complete', => @start_components(@defaults.fadeDuration)
 
-      @open(this, @container) if @data.autoload
   }

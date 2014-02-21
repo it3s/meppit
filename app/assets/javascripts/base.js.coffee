@@ -11,6 +11,7 @@ setup_container = (container) ->
   names = container.data('components').split /\s+/
   _.each names, (name) =>
     components[name]?(container).init()
+    console.log("component:start => #{name}")
 
 start_components = (evt, root=document) ->
   $(root).find('[data-components]').each (i, container) =>

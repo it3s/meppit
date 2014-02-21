@@ -22,6 +22,6 @@
   <%= render 'sessions/sign_in' %>
 
   <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag params[:controller] %>
+  <%= javascript_include_tag params[:controller]  if javascript_exists?(params[:controller]) %>
 </body>
 </html>
