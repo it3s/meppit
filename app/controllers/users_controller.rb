@@ -1,7 +1,4 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-
-
   def new
     @user = User.new
     render :layout => nil
@@ -10,13 +7,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      @user.send_welcome_email
       login(user_params[:email], user_params[:password])
       render :json => { :redirect => root_path }
     else
       render :json => { :errors => @user.errors.messages.to_json }, :status => :unprocessable_entity
     end
   end
-
 
   private
 

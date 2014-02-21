@@ -3,3 +3,7 @@ en:
     form:
       signup_title: 'Registration'
       has_account: 'Already have an account? Sign in.'
+
+    mail:
+      welcome:
+        subject: 'Welcome to Meppit'

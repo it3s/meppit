@@ -77,4 +77,17 @@ Meppit::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default_url_options = { :host => 'www.meppit.com' }
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   :authentication => :plain,
+  #   :address => "smtp.mailgun.org",
+  #   :port => 587,
+  #   :domain => "MYDOMAIN.mailgun.org",
+  #   :user_name => "postmaster@MYDOMAIN.mailgun.org",
+  #   :password => "MYPASSWORD"
+  # }
+
 end
