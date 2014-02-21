@@ -14,4 +14,9 @@ module ApplicationHelper
     attrs = hash_to_attributes options
     "<a href=\"#{url}\" #{attrs} data-components=\"modal\">#{body}</a>".html_safe
   end
+
+  def remote_form_for(record, options={}, &block)
+    options.deep_merge!(:remote => true, :html => {'data-components' => 'remote_form'})
+    simple_form_for(record, options, &block)
+  end
 end
