@@ -22,6 +22,7 @@ gem 'oily_png'                      # faster png sprite generation for compass
 
 gem 'sorcery'                       # authentication
 gem 'simple_form'                   # improved forms builder
+gem 'sidekiq'                       # background jobs
 
 group :doc do
   gem 'sdoc', require: false
@@ -31,6 +32,7 @@ group :development do
   gem 'better_errors'               # better error page, and shell session when crash
   gem 'binding_of_caller', '0.7.1'  # used by better_errors
   gem 'clean_logger'                # silence assets logging
+  gem 'letter_opener'               # preview email in the browser
 end
 
 group :development, :test do

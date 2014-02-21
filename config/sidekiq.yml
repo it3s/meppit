@@ -1,0 +1,4 @@
+# :verbose: false
+:queues:
+  - [default, 1]
+  - [mailer, 1]
