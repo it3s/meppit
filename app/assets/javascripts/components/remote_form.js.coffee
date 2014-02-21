@@ -24,7 +24,7 @@ App.components.remote_form = (container) ->
         _this.container.prepend("<p class='error all'>#{ err }</p>")
 
     on_success: (_this, el, response) ->
-      window.location.href = response.redirect
+      window.location.href = response.redirect if response.redirect
 
     bind_events: ->
       @container.on 'ajax:error', (el, response) =>
