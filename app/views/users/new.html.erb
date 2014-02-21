@@ -8,7 +8,6 @@
                              :html => {'data-components' => 'remote_form'} do |f| %>
     <%= f.input :name %>
     <%= f.input :email %>
-    <%= f.error :email, id: 'user_name_error' %>
     <%= f.input :password %>
     <%= f.input :password_confirmation %>
     <%= f.input :license_aggrement, :as => :boolean, :label => t('simple_form.labels.user.new.license_aggrement').html_safe %>
