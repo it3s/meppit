@@ -5,6 +5,7 @@ Maps rebuild
 ### System dependencies:
 
 * postgresql
+* redis
 * you need to have a execjs runtime (i.e. Nodejs, rhyno, therubyracer)
 
 ### Setup:
@@ -14,4 +15,4 @@ Maps rebuild
 * create and configure your database.yml and secrets.yml (see .yml.sample files)
 * `rake db:create db:migrate`
 * `rspec` # run tests
-* `rails server`  OR  `foreman start` # start server
+* `foreman start`
