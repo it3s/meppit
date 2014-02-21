@@ -1,0 +1,16 @@
+<%= remote_form_for @user do |f| %>
+  <%= f.input :name %>
+  <%= f.input :email %>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+  <%= f.input :license_aggrement, :as => :boolean,
+        :label => t('simple_form.labels.user.new.license_aggrement').html_safe %>
+
+  <div class="action-links">
+    <%= link_to_modal t('users.form.has_account'), '#sign-in' %>
+  </div>
+
+  <p>
+    <%= f.button :submit, t('submit') %>
+  </p>
+<% end %>

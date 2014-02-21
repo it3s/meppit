@@ -12,13 +12,14 @@ describe User do
   it { expect(subject).to validate_acceptance_of :license_aggrement }
 
   describe "encryption matches legacy DB" do
-    before(:all) do
-      @salt = 'batata-frita'
-      Rails.application.config.SECRETS[:fixed_salt] = @salt
+    let(:salt) { 'batata-frita' }
+
+    before do
+      Rails.application.config.stub(:SECRETS).and_return({:fixed_salt => salt })
     end
 
     let(:password) { FactoryGirl.build(:user).password }
-    let(:crypted_password) { Digest::SHA1.hexdigest(@salt + password) }
+    let(:crypted_password) { Digest::SHA1.hexdigest(salt + password) }
 
     it { expect(user.crypted_password).to eq crypted_password }
     it { expect(User.authenticate(user.email, password)).to be_a_kind_of User }

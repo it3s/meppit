@@ -11,8 +11,10 @@ module ApplicationHelper
   end
 
   def link_to_modal(body, url, options={})
-    attrs = hash_to_attributes options
-    "<a href=\"#{url}\" #{attrs} data-components=\"modal\">#{body}</a>".html_safe
+    html_attrs = hash_to_attributes(options[:html]) if options[:html]
+    modal_attrs = options.except(:html).to_json
+
+    "<a href=\"#{url}\" #{html_attrs} data-components=\"modal\" data-modal='#{ modal_attrs }'>#{body}</a>".html_safe
   end
 
   def remote_form_for(record, options={}, &block)

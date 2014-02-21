@@ -31,6 +31,7 @@ group :development do
   gem 'binding_of_caller', '0.7.1'  # used by better_errors
   gem 'clean_logger'                # silence assets logging
   gem 'letter_opener'               # preview email in the browser
+  gem 'letter_opener_web'           # web ui for letter_opener
 end
 
 group :development, :test do

@@ -94,11 +94,11 @@ $menu-projects-bg: #f26700;
     ul { margin-right: 20px; }
 
     #login_button {
-      background: $transparent-green;
+      background: $meppit-green;
       color: #009640;
 
       &:hover {
-        background: $meppit-green;
+        background: darken($meppit-green, 10%);
         color: #000;
       }
     }

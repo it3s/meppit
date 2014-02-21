@@ -86,6 +86,9 @@ GEM
       addressable (~> 2.3)
     letter_opener (1.2.0)
       launchy (~> 2.2)
+    letter_opener_web (1.1.2)
+      letter_opener (~> 1.0)
+      rails (>= 3.2)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -209,6 +212,7 @@ DEPENDENCIES
   foreman
   jquery-rails
   letter_opener
+  letter_opener_web
   oily_png
   pg
   pry

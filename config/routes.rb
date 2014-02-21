@@ -6,10 +6,13 @@ Meppit::Application.routes.draw do
 
   get  "logout" => "sessions#destroy", :as => "logout"
   post "login"  => "sessions#create",  :as => "login"
-  # get  "signup" => "users#new",        :as => "signup"
 
-  resources :users
+  resources :users, :only => [:new, :create]
+  get "users/created" => "users#created", :as => "created_user"
 
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -15,7 +15,7 @@
     <%= link_to t('sessions.forms.login.forgot_password'), '#forgot_password' %>
   </div class="action-links">
   <div class="action-links">
-    <%= link_to_modal t('sessions.forms.login.create_account'), new_user_path %>
+    <%= link_to_modal t('sessions.forms.login.create_account'), new_user_path, :remote => true %>
   </div class="action-links">
 
   <p>

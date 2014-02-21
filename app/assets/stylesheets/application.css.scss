@@ -13,10 +13,15 @@
 
 // vendor
 @import "jquery.modal";
+@import "flexslider";
 
 // app common
 @import "shared/header";
 @import "shared/footer";
+
 @import "sessions/sign_in";
+
 @import "users/sign_up";
+
+@import "pages/frontpage";
 
