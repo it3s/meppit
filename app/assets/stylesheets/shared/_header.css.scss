@@ -87,7 +87,7 @@ $menu-projects-bg: #f26700;
 
   #side_menu > ul > li {
     min-width: 60px;
-    padding: 0 0 8px;
+    a { height: 25px; }
   }
 
   #side_menu {
