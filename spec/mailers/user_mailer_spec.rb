@@ -1,18 +1,19 @@
 require "spec_helper"
 
 describe UserMailer do
-  # describe "activation_needed_email" do
-  #   let(:mail) { UserMailer.activation_needed_email }
+  describe "activation_email" do
+    let(:user) { FactoryGirl.create(:pending_user) }
+    let(:mail) { UserMailer.activation_email(user.id) }
 
-  #   it "renders the headers" do
-  #     mail.subject.should eq("Activation needed email")
-  #     mail.to.should eq(["to@example.org"])
-  #     mail.from.should eq(["from@example.com"])
-  #   end
 
-  #   it "renders the body" do
-  #     mail.body.encoded.should match("Hi")
-  #   end
-  # end
+    it "renders the headers" do
+      expect(mail.subject).to eq 'Activate your account on Meppit'
+      expect(mail.to).to eq [user.email]
+      expect(mail.from[0]).to match 'no-reply@it3s.mailgun.org'
+    end
+
+    it { expect(mail.body.encoded).to match user.name }
+    it { expect(mail.body.encoded).to match user.activation_token }
+  end
 
 end

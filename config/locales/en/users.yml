@@ -7,7 +7,7 @@ en:
 
     mail:
       welcome:
-        subject: 'Welcome to Meppit'
+        subject: 'Activate your account on Meppit'
 
     created:
       title: "Your account has been created!"
