@@ -28,7 +28,7 @@ describe User do
 
   describe "send activation email" do
     it "enqueues to sidekiq" do
-      expect { UserMailer.delay.activation_needed_email(user.id)}.to change(Sidekiq::Extensions::DelayedMailer.jobs, :size).by(1)
+      expect { UserMailer.delay.activation_email(user.id)}.to change(Sidekiq::Extensions::DelayedMailer.jobs, :size).by(1)
     end
   end
 

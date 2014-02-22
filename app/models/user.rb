@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates :license_aggrement, :acceptance   => true, :on => :create
 
   def send_activation_email
-    UserMailer.delay.activation_needed_email(id)
+    UserMailer.delay.activation_email(id)
   end
 
 end

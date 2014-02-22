@@ -1,6 +1,6 @@
 class UserMailer < BaseMailer
 
-  def activation_needed_email(user_id)
+  def activation_email(user_id)
     @user = User.find user_id
     @activation_url  = activate_user_url @user.activation_token
 
