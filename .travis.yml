@@ -2,6 +2,10 @@ language: ruby
 
 rvm: 2.0.0
 
+branches:
+  only:
+    - master
+
 postgres:
   adapter: postgresql
   database: test
