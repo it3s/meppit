@@ -21,7 +21,8 @@ App.components.remote_form = (container) ->
 
       catch
         _this.container.find('.error.all').remove()
-        _this.container.prepend("<p class='error all'>#{ err }</p>")
+        submit_container = _this.container.find('input[type=submit]').closest('p')
+        submit_container.before("<p class='error all'>#{ err }</p>")
 
     on_success: (_this, el, response) ->
       window.location.href = response.redirect if response.redirect
