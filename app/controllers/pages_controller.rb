@@ -8,7 +8,7 @@ class PagesController < ApplicationController
   private
 
   def news
-    # mocked news
+    # MOCKED
     [
       OpenStruct.new({
         title: 'Por favor, onde é o Serviço de Acesso à Informação?',

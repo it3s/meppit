@@ -1,6 +1,7 @@
 module PagesHelper
 
   def use_cases
+    # MOCKED
     [
       {
         :href  => '#use_cases#diagnostico_de_territorio',
@@ -36,6 +37,7 @@ module PagesHelper
   end
 
   def projects_slides
+    # MOCKED
     [
       {
         :name         => 'aldeias-infantis',
