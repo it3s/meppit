@@ -1,5 +1,7 @@
 Maps rebuild
 
+[![Build Status](https://travis-ci.org/it3s/meppit.png)](https://travis-ci.org/it3s/meppit)
+
 * Ruby version: 2.0.0
 
 ### System dependencies:
