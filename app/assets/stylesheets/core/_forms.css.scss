@@ -52,8 +52,6 @@ form {
   .error {
     color: $dark-red;
     text-shadow: 1px 1px $white;
-
-    &.all { text-align: center; }
   }
 
   .field_with_errors {

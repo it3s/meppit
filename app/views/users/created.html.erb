@@ -1,9 +1,17 @@
-<section id="user-created"
+<div id="user-created"
          data-components="modal"
          data-modal="<%= {:autoload => true, :prevent_close => true }.to_json %>" >
 
   <header>
-    <h1>USER CREATED</h1>
+    <h1><%= t 'users.signup' %></h1>
   </header>
 
-</section>
+  <section>
+    <%= image_tag 'imgs/spock-email.png', :alt => 'e-mail', :class => 'spock-email' %>
+    <div class="text">
+      <h2><%= t 'users.created.title' %></h2>
+      <p><%= t 'users.created.text' %></p>
+    </div>
+  </section>
+
+</div>

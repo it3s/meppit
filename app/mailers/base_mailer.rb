@@ -1,15 +1,17 @@
 class BaseMailer < ActionMailer::Base
   layout 'mail'
-  default from: 'MootiroMaps <no-reply@it3s.mailgun.org>'
+  default from: 'Meppit <no-reply@it3s.mailgun.org>'
 
   def self.delay
     # specify sidekiq queue for our delayed mails
-    super(:queue => 'mailer')
+    sidekiq_delay(:queue => 'mailer')
   end
 
-  protected
+  def self.email_with_name(user)
+    "#{user.name} <#{user.email}>"
+  end
 
   def email_with_name(user)
-    "#{user.name} <#{user.email}>"
+    self.class.email_with_name(user)
   end
 end

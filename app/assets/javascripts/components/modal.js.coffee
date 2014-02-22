@@ -6,6 +6,7 @@ App.components.modal = (container) ->
 
     defaults: {
       fadeDuration: 150,
+      zIndex: 200,
     }
 
     prevent_close: {

@@ -1,9 +1,14 @@
 en:
   users:
+    signup: 'Registration'
+
     form:
-      signup_title: 'Registration'
       has_account: 'Already have an account? Sign in.'
 
     mail:
       welcome:
-        subject: 'Welcome to Meppit'
+        subject: 'Activate your account on Meppit'
+
+    created:
+      title: "Your account has been created!"
+      text: "But before start using, you need to confirm your e-mail. Go check your inbox!"

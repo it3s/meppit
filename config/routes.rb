@@ -7,8 +7,14 @@ Meppit::Application.routes.draw do
   get  "logout" => "sessions#destroy", :as => "logout"
   post "login"  => "sessions#create",  :as => "login"
 
-  resources :users, :only => [:new, :create]
-  get "users/created" => "users#created", :as => "created_user"
+  resources :users, :only => [:new, :create] do
+    member do
+      get :activate
+    end
+    collection do
+      get :created
+    end
+  end
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

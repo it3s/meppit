@@ -26,9 +26,9 @@ describe User do
     it { expect(User.authenticate(user.email, 'wrong password')).to be_nil }
   end
 
-  describe "send welcome email" do
+  describe "send activation email" do
     it "enqueues to sidekiq" do
-      expect { UserMailer.delay.welcome(user.id)}.to change(Sidekiq::Extensions::DelayedMailer.jobs, :size).by(1)
+      expect { UserMailer.delay.activation_email(user.id)}.to change(Sidekiq::Extensions::DelayedMailer.jobs, :size).by(1)
     end
   end
 
