@@ -7,14 +7,24 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      @user.send_welcome_email
-      render :json => { :redirect => created_user_path }
+      @user.send_activation_email
+      render :json => { :redirect => created_users_path }
     else
       render :json => { :errors => @user.errors.messages.to_json }, :status => :unprocessable_entity
     end
   end
 
   def created
+  end
+
+  def activate
+    if (@user = User.load_from_activation_token(params[:id]))
+      @user.activate!
+      # redirect_to(login_path, :notice => 'User was successfully activated.')
+      redirect_to root_url
+    else
+      not_authenticated
+    end
   end
 
   private

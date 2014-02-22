@@ -16,3 +16,4 @@ en:
     create:
       invalid: "E-mail or Password invalid"
       blank: "Fields can't be blank"
+      pending: "Activation pending"

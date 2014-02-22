@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
   validates :password,          :presence     => true, :on => :create
   validates :license_aggrement, :acceptance   => true, :on => :create
 
-  def send_welcome_email
-    UserMailer.delay.welcome(id)
+  def send_activation_email
+    UserMailer.delay.activation_needed_email(id)
   end
 
 end

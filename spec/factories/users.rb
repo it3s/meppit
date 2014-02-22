@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :user do
     name "John"
-    email  "john@doe.com"
-    password 'abcde'
-    # admin false
+    sequence(:email)   { |n| "john#{n}@doe.com" }
+    password "abcde"
+    after(:create) { |obj| obj.activate! }
   end
 
   # factory :admin, class: User do
