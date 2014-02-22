@@ -13,9 +13,4 @@ FactoryGirl.define do
     activation_token "blablabla"
     activation_state "pending"
   end
-
-  # factory :admin, class: User do
-  #   name "Admin"
-  #   admin true
-  # end
 end
