@@ -19,3 +19,5 @@ before_script:
 
 script:
   - bundle exec rake
+  - bundle exec konacha:run
+
