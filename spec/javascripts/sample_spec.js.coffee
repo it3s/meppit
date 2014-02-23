@@ -1,7 +1,7 @@
 #= require spec_helper
 
-describe 'truth', ->
-  it '', ->
+describe 'sample', ->
+  it 'truth', ->
     expect(true).to.equal(true)
 
   it 'defines jquery', ->

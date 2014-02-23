@@ -1,5 +1,7 @@
 #= require application
 
+#= require_tree ./templates
+
 # set the Mocha test interface
 # see http://visionmedia.github.com/mocha/#interfaces
 mocha.ui('bdd');

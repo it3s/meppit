@@ -46,4 +46,5 @@ group :test do
   gem 'factory_girl_rails'          # mock objects
   gem 'capybara'
   gem 'poltergeist'
+  gem 'ejs'
 end
