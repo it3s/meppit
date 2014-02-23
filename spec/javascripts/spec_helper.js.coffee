@@ -1,19 +1,16 @@
+#=require support/load_env
+
 #= require application
+
+#= require support/sinon
+#= require support/sinon-chai
 
 #= require_tree ./templates
 
-# set the Mocha test interface
-# see http://visionmedia.github.com/mocha/#interfaces
-mocha.ui('bdd');
 
-# ignore the following globals during leak detection
-# mocha.globals(['YUI']);
+mocha.ui('bdd')                      # set the Mocha test interface
+# mocha.globals(['YUI']);            # ignore the following globals during leak detection
+# mocha.ignoreLeaks();               # or, ignore all leaks
+# mocha.timeout(5);                  # set slow test timeout in ms
 
-# or, ignore all leaks
-# mocha.ignoreLeaks();
-
-# set slow test timeout in ms
-# mocha.timeout(5);
-
-# Show stack trace on failing assertion.
-chai.Assertion.includeStack = true;
+chai.Assertion.includeStack = true;  # Show stack trace on failing assertion.
