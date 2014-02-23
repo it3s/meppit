@@ -17,5 +17,9 @@ Maps rebuild
 * `bundle`
 * create and configure your database.yml and secrets.yml (see .yml.sample files)
 * `rake db:create db:migrate`
-* `rspec` # run tests
+
+* `rspec` or `rake spec` # run ruby tests
+* `rake konacha:run` # run js tests on the terminal
+* `rake konacha:serve` # run js tests on the browser
+
 * `foreman start`
