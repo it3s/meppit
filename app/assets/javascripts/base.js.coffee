@@ -22,7 +22,7 @@ setupContainer = (container) ->
     component.init()
 
     # save instance for later use
-    components._instances["#{name}::#{container.attr('id') || _randomId()}"] = component
+    components._instances["#{name}:#{container.attr('id') || _randomId()}"] = component
     console.log("component:start => #{name}")
 
 

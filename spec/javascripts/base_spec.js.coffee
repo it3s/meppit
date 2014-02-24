@@ -1,5 +1,4 @@
 #= require spec_helper
-
 #= require helpers/test_components
 
 describe 'Base', ->
@@ -50,7 +49,7 @@ describe 'Base', ->
       container = $(JST['templates/test_component']())
       _base.setupContainer(container)
 
-      component = App.components._instances['testComponent::test']
+      component = App.components._instances['testComponent:test']
       expect(component.init).to.be.called
       expect(container.find('h1').html()).to.be.equal 'Hello'
 
@@ -59,8 +58,8 @@ describe 'Base', ->
 
       _base.setupContainer(container)
 
-      component1 = App.components._instances['testComponent::multi']
-      component2 = App.components._instances['otherComponent::multi']
+      component1 = App.components._instances['testComponent:multi']
+      component2 = App.components._instances['otherComponent:multi']
       expect(component1.init).to.be.called
       expect(component2.init).to.be.called
 
@@ -71,8 +70,8 @@ describe 'Base', ->
       it 'start all components on the body', ->
         _base.startComponents()
 
-        component1 = App.components._instances['testComponent::test']
-        component2 = App.components._instances['otherComponent::other']
+        component1 = App.components._instances['testComponent:test']
+        component2 = App.components._instances['otherComponent:other']
         expect(component1.init).to.be.called
         expect(component2.init).to.be.called
 
