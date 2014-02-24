@@ -1,6 +1,6 @@
 #= require spec_helper
 
-#= require helpers/test_component
+#= require helpers/test_components
 
 describe 'Base', ->
   _base = __testing__.base
