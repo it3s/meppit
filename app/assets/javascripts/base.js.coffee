@@ -6,21 +6,25 @@ mediator =
 
 components = {}
 
-setup_container = (container) ->
+setupContainer = (container) ->
   container = $(container)
   names = container.data('components').split /\s+/
   _.each names, (name) =>
     components[name]?(container).init()
     console.log("component:start => #{name}")
 
-start_components = (evt, root=document) ->
+startComponents = (evt, root=document) ->
   $(root).find('[data-components]').each (i, container) =>
-    setup_container(container)
+    setupContainer(container)
 
-mediator.subscribe 'components:start', start_components
+mediator.subscribe 'components:start', startComponents
 
 # App
 window.App =
   mediator: mediator
   utils: {}
   components: components
+
+window.__testing__?.base =
+  startComponents: startComponents
+  setupContainer : setupContainer

@@ -10,8 +10,6 @@ App.components.flexslider = (container) ->
     start: ->
       @container.flexslider
         animation: 'slide'
-      console.log('components: started flexslider');
-
 
     pause: ->
        @container.flexslider 'pause'
