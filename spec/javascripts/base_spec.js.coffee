@@ -1,5 +1,7 @@
 #= require spec_helper
 
+#= require helpers/test_component
+
 describe 'Base', ->
   _base = __testing__.base
 
@@ -34,7 +36,6 @@ describe 'Base', ->
       expect(App.mediator.obj.unbind).to.be.calledWith('test-event', cb)
 
   describe 'pub/sub', ->
-
     it 'listen properly to events', ->
       cb = sinon.spy (evt, data) -> "received #{data}"
 
@@ -44,3 +45,46 @@ describe 'Base', ->
       expect(cb).to.be.called
       expect(cb).to.have.returned 'received ok'
 
+  describe 'setupContainer', ->
+    it 'initializes component', ->
+      container = $(JST['templates/test_component']())
+      _base.setupContainer(container)
+
+      component = App.components._instances['testComponent::test']
+      expect(component.init).to.be.called
+      expect(container.find('h1').html()).to.be.equal 'Hello'
+
+    it 'instantiates multi components', ->
+      container = $(JST['templates/multi_component']())
+
+      _base.setupContainer(container)
+
+      component1 = App.components._instances['testComponent::multi']
+      component2 = App.components._instances['otherComponent::multi']
+      expect(component1.init).to.be.called
+      expect(component2.init).to.be.called
+
+  describe 'startComponents', ->
+      beforeEach ->
+        $('body').html(JST['templates/start_components']())
+
+      it 'start all components on the body', ->
+        _base.startComponents()
+
+        component1 = App.components._instances['testComponent::test']
+        component2 = App.components._instances['otherComponent::other']
+        expect(component1.init).to.be.called
+        expect(component2.init).to.be.called
+
+
+      it 'listens to components:start event and receive a different root', ->
+        sinon.spy(App.components, 'testComponent')
+        sinon.spy(App.components, 'otherComponent')
+
+        App.mediator.publish 'components:start', $('#root')
+
+        expect(App.components.testComponent).to.not.be.called
+        expect(App.components.otherComponent).to.be.called
+
+        App.components.testComponent.restore()
+        App.components.otherComponent.restore()
