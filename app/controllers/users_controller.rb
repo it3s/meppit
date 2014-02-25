@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       @user.send_activation_email
       render :json => { :redirect => created_users_path }
     else
-      render :json => { :errors => @user.errors.messages.to_json }, :status => :unprocessable_entity
+      render :json => { :errors => @user.errors.messages }, :status => :unprocessable_entity
     end
   end
 

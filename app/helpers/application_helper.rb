@@ -26,7 +26,7 @@ module ApplicationHelper
   end
 
   def remote_form_for(record, options={}, &block)
-    options.deep_merge!(:remote => true, :html => {'data-components' => 'remote_form'})
+    options.deep_merge!(:remote => true, :html => {'data-components' => 'remoteForm'})
     simple_form_for(record, options, &block)
   end
 end

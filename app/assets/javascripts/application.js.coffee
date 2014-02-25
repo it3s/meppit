@@ -7,5 +7,12 @@
 #= require components/modal
 #= require components/remote_form
 
-$ ->
+onReady = ->
   App.mediator.publish('components:start')
+
+$(document).ready onReady
+
+
+# add private properties to be tested
+window.__testing__?.application =
+  onReady: onReady

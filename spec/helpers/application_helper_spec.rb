@@ -49,7 +49,7 @@ describe ApplicationHelper do
     let(:user) { FactoryGirl.build(:user) }
 
     context "without options" do
-      let(:args) { {:remote => true, :html => {'data-components' => 'remote_form'}} }
+      let(:args) { {:remote => true, :html => {'data-components' => 'remoteForm'}} }
       let(:form) { "" }
       it "class simple_form_for with remote options" do
         helper.should receive(:simple_form_for).with(user, args)
@@ -58,7 +58,7 @@ describe ApplicationHelper do
     end
 
     context "with extra options" do
-      let(:args) { {:remote => true, :other => :bla, :html => {'data-components' => 'remote_form', :class => 'my-class'}} }
+      let(:args) { {:remote => true, :other => :bla, :html => {'data-components' => 'remoteForm', :class => 'my-class'}} }
       let(:form) { "" }
       it "class simple_form_for with remote options" do
         helper.should receive(:simple_form_for).with(user, args)
