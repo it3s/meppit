@@ -1,4 +1,5 @@
-#=require support/load_env
+#= require support/load_env
+#= require helpers/spy
 
 #= require application
 

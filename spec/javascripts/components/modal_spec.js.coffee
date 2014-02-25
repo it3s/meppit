@@ -7,15 +7,10 @@ describe 'modal', ->
   it 'defines modal component', ->
     expect(App.components.modal).to.not.be.undefined
 
-
   it 'initializes component', ->
-    sinon.spy(App.components, 'modal')
-    App.mediator.publish 'components:start', @container
-
-    expect(App.components.modal).to.be.called
-
-    App.components.modal.restore()
-
+    spy App.components, 'modal', =>
+      App.mediator.publish 'components:start', @container
+      expect(App.components.modal).to.be.called
 
   describe 'component', ->
     beforeEach ->
@@ -37,12 +32,10 @@ describe 'modal', ->
       }
 
     it 'calls start', ->
-      sinon.spy @component, 'start'
+      spy @component, 'start', =>
 
-      @component.init()
-      expect(@component.start).to.be.called
-
-      @component.start.restore()
+        @component.init()
+        expect(@component.start).to.be.called
 
     it 'retrieves json data', ->
       @component.init()
@@ -58,25 +51,20 @@ describe 'modal', ->
 
       it 'opens the target as a modal with defaults', ->
         @component.init()
-        sinon.spy @component.target, 'modal'
 
-        @component.open(@component)
-        expect(@component.target.modal).to.be.calledWith @component.defaults
+        spy @component.target, 'modal', =>
+          @component.open(@component)
+          expect(@component.target.modal).to.be.calledWith @component.defaults
 
-        @component.target.modal.restore()
 
       it 'bind on click starts', ->
-        sinon.spy @component.container, 'on'
-        sinon.spy @component, 'start'
+        spy @component.container, 'on', =>
+          spy @component, 'start', =>
+            @component.init()
+            expect(@component.container.on).to.be.calledWith('click')
 
-        @component.init()
-        expect(@component.container.on).to.be.calledWith('click')
-
-        @component.container.trigger('click')
-        expect(@component.start).to.be.called
-
-        @component.container.on.restore()
-        @component.start.restore()
+            @component.container.trigger('click')
+            expect(@component.start).to.be.called
 
     describe 'remote modal', ->
       beforeEach ->
@@ -92,17 +80,14 @@ describe 'modal', ->
         expect(@component.target).to.be.deep.equal @component.container
 
       it 'bind startComponents on ajax complete', ->
-        sinon.spy @component.container, 'on'
-        sinon.spy @component, 'startComponents'
+        spy @component.container, 'on', =>
+          spy @component, 'startComponents', =>
+            @component.init()
+            expect(@component.container.on).to.be.calledWith 'modal:ajax:complete'
 
-        @component.init()
-        expect(@component.container.on).to.be.calledWith 'modal:ajax:complete'
+            @component.container.trigger 'modal:ajax:complete'
+            expect(@component.startComponents).to.be.called
 
-        @component.container.trigger 'modal:ajax:complete'
-        expect(@component.startComponents).to.be.called
-
-        @component.container.on.restore()
-        @component.startComponents.restore()
 
       it 'start components with loaded DOM as root', (done) ->
         sinon.spy App.mediator, 'publish'
@@ -133,21 +118,16 @@ describe 'modal', ->
 
       it 'opens the target as a modal with prevent_close options', ->
         @component.init()
-        sinon.spy @component.target, 'modal'
-        expectedOptions = _.extend({}, @component.defaults, @component.preventClose)
+        spy @component.target, 'modal', =>
+          expectedOptions = _.extend({}, @component.defaults, @component.preventClose)
 
-        @component.open(@component)
-        expect(@component.target.modal).to.be.calledWith expectedOptions
-
-        @component.target.modal.restore()
+          @component.open(@component)
+          expect(@component.target.modal).to.be.calledWith expectedOptions
 
       it 'opens on start', ->
-        sinon.spy @component, 'open'
-
-        @component.init()
-        expect(@component.open).to.be.called
-
-        @component.open.restore()
+        spy @component, 'open', =>
+          @component.init()
+          expect(@component.open).to.be.called
 
 
 

@@ -77,13 +77,9 @@ describe 'Base', ->
 
 
       it 'listens to components:start event and receive a different root', ->
-        sinon.spy(App.components, 'testComponent')
-        sinon.spy(App.components, 'otherComponent')
+        spy App.components, 'testComponent', =>
+          spy App.components, 'otherComponent', =>
+            App.mediator.publish 'components:start', $('#root')
 
-        App.mediator.publish 'components:start', $('#root')
-
-        expect(App.components.testComponent).to.not.be.called
-        expect(App.components.otherComponent).to.be.called
-
-        App.components.testComponent.restore()
-        App.components.otherComponent.restore()
+            expect(App.components.testComponent).to.not.be.called
+            expect(App.components.otherComponent).to.be.called

@@ -1,17 +1,17 @@
-App.components.remote_form = (container) ->
+App.components.remoteForm = (container) ->
   {
     container: container,
 
     init: ->
-      @bind_events()
+      @bindEvents()
 
-    clean_errors: ->
+    cleanErrors: ->
       @container.find('.error').remove()
       @container.find('.field_with_errors').removeClass('field_with_errors')
 
-    on_error: (_this, el, response) ->
+    onError: (_this, el, response) ->
       err = JSON.parse(response.responseText)?.errors || 'Error'
-      _this.clean_errors()
+      _this.cleanErrors()
       try
         err = JSON.parse err
         _.each err, (value, key) ->
@@ -21,16 +21,16 @@ App.components.remote_form = (container) ->
 
       catch
         _this.container.find('.error.all').remove()
-        submit_container = _this.container.find('input[type=submit]').closest('p')
-        submit_container.before("<p class='error all'>#{ err }</p>")
+        submitContainer = _this.container.find('input[type=submit]').closest('p')
+        submitContainer.before("<p class='error all'>#{ err }</p>")
 
-    on_success: (_this, el, response) ->
+    onSuccess: (_this, el, response) ->
       window.location.href = response.redirect if response.redirect
 
-    bind_events: ->
+    bindEvents: ->
       @container.on 'ajax:error', (el, response) =>
-        @on_error this, el, response
+        @onError this, el, response
 
       @container.on 'ajax:success', (el, response) =>
-        @on_success this, el, response
+        @onSuccess this, el, response
   }
