@@ -36,3 +36,45 @@ describe 'remoteForm', ->
       it 'removes field_with_errors class from fields', ->
         @component.cleanErrors()
         expect(@component.container.find('.field_with_errors').length).to.be.equal 0
+
+    describe 'onError', ->
+      it 'adds a general .error.all message when passes string', ->
+        @component.onError(@component, null, {responseText: '{"errors": "__err__"}'})
+        errorDiv = @component.container.find('.error.all')
+        expect(errorDiv.length).to.be.equal 1
+        expect(errorDiv.text()).to.be.equal '__err__'
+        expect(errorDiv.next().find('input').is('[type=submit]')).to.be.true
+
+      it 'adds each error to the corresponding field', ->
+        @component.onError(@component, null, {responseText: '{"errors": {"name": "__err__"}}'})
+        errorDiv = @component.container.find('.error')
+        expect(errorDiv.length).to.be.equal 1
+
+        nameField = @component.container.find('.field.test_name')
+        expect(nameField.is('.field_with_errors')).to.be.true
+        expect(nameField.find('.error').text()).to.be.equal '__err__'
+
+        otherField = @component.container.find('.field.test_other')
+        expect(otherField.is('.field_with_errors')).to.be.false
+        expect(otherField.find('.error').length).to.be.equal 0
+
+    describe 'bindEvents', ->
+      it 'bind onError to ajax:error event', ->
+        spy @component.container, 'on', =>
+          @component.bindEvents()
+          expect(@component.container.on).to.be.calledWith 'ajax:error'
+
+          spy @component, 'onError', =>
+            @component.container.trigger 'ajax:error', {responseText: '{"errors": {"name": "__err__"}}'}
+            expect(@component.onError).to.be.called
+
+      it 'bind onSuccess to ajax:success event', ->
+        spy @component.container, 'on', =>
+          @component.bindEvents()
+          expect(@component.container.on).to.be.calledWith 'ajax:success'
+
+          spy @component, 'onSuccess', =>
+            @component.container.trigger 'ajax:success', {responseText: ''}
+            expect(@component.onSuccess).to.be.called
+
+
