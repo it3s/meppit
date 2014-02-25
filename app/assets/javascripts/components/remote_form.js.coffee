@@ -12,15 +12,13 @@ App.components.remoteForm = (container) ->
     onError: (_this, el, response) ->
       err = JSON.parse(response.responseText)?.errors || 'Error'
       _this.cleanErrors()
-      try
-        err = JSON.parse err
+      if _.isObject err
         _.each err, (value, key) ->
           field = _this.container.find("[name*='[#{key}]']").closest('.field')
           field.addClass('field_with_errors')
           field.append("<div class='error'>#{value}</div>")
 
-      catch
-        _this.container.find('.error.all').remove()
+      else
         submitContainer = _this.container.find('input[type=submit]').closest('p')
         submitContainer.before("<p class='error all'>#{ err }</p>")
 
