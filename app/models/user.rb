@@ -5,8 +5,10 @@ class User < ActiveRecord::Base
 
   validates :email, :name,      :presence     => true
   validates :email,             :uniqueness   => true
+  validates :email,             :format       => {:with => /.+@.+\..+/i}
   validates :password,          :confirmation => true
   validates :password,          :presence     => true, :on => :create
+  validates :password,          :length       => {:minimum => 6}, :on => :create
   validates :license_aggrement, :acceptance   => true, :on => :create
 
   def send_activation_email

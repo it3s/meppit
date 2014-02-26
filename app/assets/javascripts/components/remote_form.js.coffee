@@ -16,7 +16,7 @@ App.components.remoteForm = (container) ->
         _.each err, (value, key) ->
           field = _this.container.find("[name*='[#{key}]']").closest('.field')
           field.addClass('field_with_errors')
-          field.append("<div class='error'>#{value}</div>")
+          field.append("<div class='error'>#{value[0]}</div>")
 
       else
         submitContainer = _this.container.find('input[type=submit]').closest('p')
