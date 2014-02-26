@@ -38,13 +38,13 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.0'       # BDD
   gem 'pry'                         # better shell sessions and debug tool
   gem 'pry-rails'                   # use pry as rails console
-  gem 'konacha'
+  gem 'konacha'                     # js tests with mocha + chai
 end
 
 group :test do
   gem 'shoulda-matchers'            # extra matchers for rspec
   gem 'factory_girl_rails'          # mock objects
-  gem 'capybara'
-  gem 'poltergeist'
-  gem 'ejs'
+  gem 'capybara'                    # acceptance tests
+  gem 'poltergeist'                 # phantomjs driver
+  gem 'ejs'                         # js templating for js test fixtures
 end

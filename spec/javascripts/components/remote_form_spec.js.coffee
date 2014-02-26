@@ -46,7 +46,7 @@ describe 'remoteForm', ->
         expect(errorDiv.next().find('input').is('[type=submit]')).to.be.true
 
       it 'adds each error to the corresponding field', ->
-        @component.onError(@component, null, {responseText: '{"errors": {"name": "__err__"}}'})
+        @component.onError(@component, null, {responseText: '{"errors": {"name": ["__err__"]}}'})
         errorDiv = @component.container.find('.error')
         expect(errorDiv.length).to.be.equal 1
 
