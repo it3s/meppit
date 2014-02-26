@@ -12,3 +12,7 @@ en:
     created:
       title: "Your account has been created!"
       text: "But before start using, you need to confirm your e-mail. Go check your inbox!"
+
+    flash:
+      activated: 'User was successfully activated. Please log in.'
+      activation_error: '<strong>Invalid token!</strong> You already have clicked on this link? Try generating another token by going to the login box and clicking on "forgot your password".'
