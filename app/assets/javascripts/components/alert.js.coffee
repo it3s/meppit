@@ -1,18 +1,18 @@
-#= require jquery.flexslider
-
 App.components.alert = (container) ->
   {
-    container: container,
+    container: container
+    fadeTime: 200
 
     init: ->
+      @closeButton = @container.find('.close')
       @bindEvents()
 
-    onClose: (_this) ->
+    close: (_this) ->
       alertsContainer = _this.container.closest('.alerts')
-      _this.container.fadeOut 200, ->
-        this.remove()
+      _this.container.fadeOut _this.fadeTime, ->
+        _this.container.remove()
         alertsContainer.remove() if alertsContainer.find('.alert').length is 0
 
     bindEvents: ->
-      @container.find('.close').on 'click', => @onClose(this)
+      @closeButton.on 'click', => @close(this)
   }

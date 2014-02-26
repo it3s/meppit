@@ -23,7 +23,7 @@ setupContainer = (container) ->
 
     # save instance for later use
     components._instances["#{name}:#{container.attr('id') || _randomId()}"] = component
-    console.log("component:start => #{name}")
+    # console.log("component:start => #{name}")
 
 
 # setup all components for a DOM root
