@@ -27,8 +27,8 @@ describe UsersController do
     context "valid request" do
       let(:params) do
         {
-          :user => user_attrs.merge(password: '123',
-              password_confirmation: '123', license_aggrement: '1')
+          :user => user_attrs.merge(password: '123456',
+              password_confirmation: '123456', license_aggrement: '1')
         }
       end
 
@@ -41,7 +41,7 @@ describe UsersController do
     end
 
     context "invalid request" do
-      let(:params) { {:user => user_attrs.merge(password: '123', password_confirmation: '321')} }
+      let(:params) { {:user => user_attrs.merge(password: '123456', password_confirmation: '321654')} }
 
       it "return json with errors and status=:unprocessable_entity " do
         post :create, params

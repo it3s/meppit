@@ -11,6 +11,22 @@ describe User do
   it { expect(subject).to validate_confirmation_of :password }
   it { expect(subject).to validate_acceptance_of :license_aggrement }
 
+  it 'validates format of email' do
+    user.email = 'invalidmail'
+    expect(user.valid?).to be_false
+    expect(user.errors[:email].first).to eq 'invalid e-mail address'
+
+    user.email = 'valid@email.com'
+    expect(user.valid?).to be_true
+  end
+
+  it 'validates length of password'  do
+    user = FactoryGirl.build(:user)
+    user.password = '123'
+    expect(user.valid?).to be_false
+    expect(user.errors[:password].first).to eq 'is too short (minimum is 6 characters)'
+  end
+
   describe "encryption matches legacy DB" do
     let(:salt) { 'batata-frita' }
 

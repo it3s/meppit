@@ -5,6 +5,8 @@ describe SessionsController do
   describe "POST create" do
     before { post :create, params }
 
+    let(:passwd) { '123456' }
+
     context "invalid data" do
       shared_examples_for "return json with :unprocessable_entity" do
         it { expect(response.status).to eq 422 }
@@ -18,16 +20,16 @@ describe SessionsController do
       end
 
       describe "user pending" do
-        let!(:user) { FactoryGirl.create(:pending_user, :password => '123') }
-        let(:params) { {:email => user.email, :password => '123'} }
+        let!(:user) { FactoryGirl.create(:pending_user, :password => passwd) }
+        let(:params) { {:email => user.email, :password => passwd} }
 
         it { expect(response.body).to match({:errors => 'Activation pending'}.to_json) }
         it_behaves_like "return json with :unprocessable_entity"
       end
 
       describe "imvalid email or password" do
-        let!(:user) { FactoryGirl.create(:user, :password => '123') }
-        let(:params) { {:email => user.email, :password => '321'} }
+        let!(:user) { FactoryGirl.create(:user, :password => passwd) }
+        let(:params) { {:email => user.email, :password => '321654'} }
 
         it { expect(response.body).to match({:errors => 'E-mail or Password invalid'}.to_json) }
         it_behaves_like "return json with :unprocessable_entity"
@@ -35,8 +37,8 @@ describe SessionsController do
     end
 
     context "valid data" do
-      let!(:user) { FactoryGirl.create(:user, :password => '123') }
-      let(:params) { {:email => user.email, :password => '123'} }
+      let!(:user) { FactoryGirl.create(:user, :password => passwd) }
+      let(:params) { {:email => user.email, :password => passwd} }
 
       it { expect(response.body).to match({:redirect => root_path}.to_json) }
       it { expect(response.status).to eq 200 }
