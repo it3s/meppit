@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to root_url
+    redirect_to root_url, :notice => t('sessions.flash.logout')
   end
 
   private
