@@ -20,9 +20,9 @@ class UsersController < ApplicationController
   def activate
     if (@user = User.load_from_activation_token(params[:id]))
       @user.activate!
-      # redirect_to(login_path, :notice => 'User was successfully activated.')
-      redirect_to root_path
+      redirect_to root_path, :notice => t('users.flash.activated')
     else
+      flash[:error] = t('users.flash.activation_error')
       not_authenticated
     end
   end

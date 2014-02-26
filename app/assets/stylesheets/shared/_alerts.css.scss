@@ -1,0 +1,38 @@
+.alerts {
+  display: block;
+  position: fixed;
+  top: 10%;
+  right: 0;
+  max-width: 350px;
+  z-index: 201;
+
+  .alert {
+    position: relative;
+    background-color: $meppit-light-blue;
+    border-radius: 4px;
+    border: solid 1px darken($meppit-light-blue, 20%);
+    margin: 20px;
+    padding: 20px;
+    @include meppit-box-shadow;
+
+    .close {
+      position: absolute;
+      top: -12.5px;
+      right: -12.5px;
+      display: block;
+      width: 30px;
+      height: 30px;
+      text-indent: -9999px;
+      @include sprite-image($icons-map, close);
+
+      &:hover { cursor: pointer; }
+    }
+  }
+
+  .alert-error {
+    background-color: lighten($soft-red, 20%);
+    border: solid 1px $soft-red;
+    color: $ultra-dark-grey;
+  }
+
+}

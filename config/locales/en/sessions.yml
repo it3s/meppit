@@ -5,7 +5,7 @@ en:
     login_facebook: 'Log in with Facebook'
     login_twitter: 'Log in with Twitter'
 
-    forms:
+    form:
       login:
         email: 'E-mail'
         password: 'Password'
@@ -17,3 +17,6 @@ en:
       invalid: "E-mail or Password invalid"
       blank: "Fields can't be blank"
       pending: "Activation pending"
+
+    flash:
+      logout: 'You have been logged out'
