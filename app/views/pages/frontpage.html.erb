@@ -12,15 +12,15 @@
   </section>
 
   <section class="call-for-action">
-    <%# if current_user %>
-      <h2><%= t 'frontpage.call.participate' %>, Anderson?
+    <% if logged_in? %>
+      <h2><%= t 'frontpage.call.participate' %>, <%= current_user.name %>?
         <a href="#map-panel-add"><%= t 'frontpage.call.edit' %></a>
       </h2>
-    <%# else %>
-      <!-- <h2><%= t 'frontpage.call.anyone' %> -->
-      <!--   <a class="big button" href="#"><%= t 'frontpage.call.create_account' %></a> -->
-      <!-- </h2> -->
-    <%# end %>
+    <% else %>
+      <h2><%= t 'frontpage.call.anyone' %>
+        <a class="big button" href="#"><%= t 'frontpage.call.create_account' %></a>
+      </h2>
+    <% end %>
   </section>
 
   <section class="what-is-it-for">
