@@ -1,6 +1,6 @@
 require "spec_helper"
 
-feature "frontpage", :js => true do
+feature "frontpage"  do
   background { visit root_path }
 
   scenario { expect(page.status_code).to eq 200 }
@@ -12,7 +12,7 @@ feature "frontpage", :js => true do
   scenario { expect(page).to have_selector '.flexslider[data-components=flexslider]' }
 end
 
-feature 'Sign in' do # , :js => true do
+feature 'Sign in' do
   background { visit root_path }
   given(:user) { FactoryGirl.create(:user) }
   given(:password) { FactoryGirl.build(:user).password }
