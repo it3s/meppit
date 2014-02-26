@@ -15,7 +15,7 @@ before_script:
   - "psql -c 'create database test;' -U postgres"
   - "cp config/database.yml.sample config/database.yml"
   - "cp config/secrets.yml.sample config/secrets.yml"
-  - "rake db:create db:migrate"
+  - "rake db:create db:migrate db:test:prepare"
 
 script:
   - bundle exec rake
