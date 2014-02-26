@@ -6,6 +6,7 @@
 
 #= require components/modal
 #= require components/remote_form
+#= require components/alert
 
 onReady = ->
   App.mediator.publish('components:start')

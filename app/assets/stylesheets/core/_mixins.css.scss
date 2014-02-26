@@ -11,3 +11,7 @@
   background-color: $meppit-light-blue;
   border-radius: 8px;
 }
+
+@mixin meppit-box-shadow() {
+  box-shadow: 1px 1px 3px 1px $medium-grey;
+}

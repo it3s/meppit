@@ -2,6 +2,8 @@
 
 class PagesController < ApplicationController
   def frontpage
+    flash[:notice] = 'Hi big damm ass notice flash, alkjslkjad aljskda lajsd alsmasldkm almsd'
+    flash[:error] = 'Hi error flash'
     @news = news
   end
 

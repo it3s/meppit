@@ -9,7 +9,7 @@ $menu-projects-bg: #f26700;
   position: relative;
   z-index: 11;
 
-  box-shadow: 1px 1px 3px 1px $medium-grey;
+  @include meppit-box-shadow;
   @include box-sizing(border-box);
 
   a {
