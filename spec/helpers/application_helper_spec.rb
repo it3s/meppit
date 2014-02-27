@@ -2,6 +2,19 @@ require 'spec_helper'
 
 describe ApplicationHelper do
 
+  describe "#I18n_language_names" do
+    it 'has names for all availables locales' do
+      I18n.available_locales.each do |locale|
+        name = helper.I18n_language_names[locale]
+        expect(name).to_not be_nil
+        expect(name).to be_a_kind_of String
+      end
+    end
+
+    it { expect(helper.I18n_language_names[:en]).to eq 'English' }
+    it { expect(helper.I18n_language_names[:'pt-BR']).to eq 'Português' }
+  end
+
   describe "#javascript_exists?" do
     it { expect(helper.javascript_exists?('application')).to be_true }
     it { expect(helper.javascript_exists?('inexistent')).to be_false}

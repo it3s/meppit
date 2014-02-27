@@ -21,6 +21,7 @@ gem 'oily_png'                      # faster png sprite generation for compass
 gem 'sorcery'                       # authentication
 gem 'simple_form'                   # improved forms builder
 gem 'sidekiq'                       # background jobs
+gem 'http_accept_language'          # get locale from http headers
 
 group :doc do
   gem 'sdoc', require: false

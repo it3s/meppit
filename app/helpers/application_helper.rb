@@ -1,5 +1,12 @@
 module ApplicationHelper
 
+  def I18n_language_names
+    {
+      :en      => 'English',
+      :'pt-BR' => 'Português'
+    }
+  end
+
   def javascript_exists?(script)
     script = "#{Rails.root}/app/assets/javascripts/#{script}.js"
     extensions = %w(.coffee .erb .coffee.erb) + [""]
