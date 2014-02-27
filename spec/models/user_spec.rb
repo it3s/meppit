@@ -10,6 +10,7 @@ describe User do
   it { expect(subject).to validate_presence_of :password  }
   it { expect(subject).to validate_confirmation_of :password }
   it { expect(subject).to validate_acceptance_of :license_aggrement }
+  it { expect(subject).to have_db_column :language }
 
   it 'validates format of email' do
     user.email = 'invalidmail'
