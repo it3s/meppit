@@ -1,0 +1,22 @@
+pt-BR:
+  sessions:
+    login: 'Entrar'
+    login_google: 'Entre com Google'
+    login_facebook: 'Entre com Facebook'
+    login_twitter: 'Entre com Twitter'
+
+    form:
+      login:
+        email: 'E-mail'
+        password: 'Senha'
+        create_account: 'Ainda não possui uma conta?'
+        forgot_password: 'Esqueceu sua senha?'
+        submit: 'Entrar'
+
+    create:
+      invalid: "E-mail ou Senha inválidos"
+      blank: "Os campos não podem ficar vazios"
+      pending: "Ativação pendente"
+
+    flash:
+      logout: 'Você foi deslogado'

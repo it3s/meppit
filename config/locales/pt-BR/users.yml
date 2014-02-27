@@ -1,0 +1,18 @@
+pt-BR:
+  users:
+    signup: 'Registro'
+
+    form:
+      has_account: 'Já possui uma conta? Entre.'
+
+    mail:
+      welcome:
+        subject: 'Ative sua conta no Meppit'
+
+    created:
+      title: "Sua conta foi criada!"
+      text: "Mas antes de começar a usar, confirme seu e-mail. Vá checar sua caixa de entrada!"
+
+    flash:
+      activated: 'Usuário foi corretamente ativado. Por favor, entre.'
+      activation_error: '<strong>Token inválido!</strong> Você já clicou nesse link? Tente gerar outro token, indo para a janela de login e clicando em "esqueceu a sua senha?".'
