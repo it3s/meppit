@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  def I18n_language_names
+  def i18n_language_names
     {
       :en      => 'English',
       :'pt-BR' => 'Português'

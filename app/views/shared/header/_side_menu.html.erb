@@ -17,10 +17,13 @@
     </li>
     <% end %>
     <li class="dropdown_menu">
-      <a>English &#x25be;</a>
+      <a href="#"><%= i18n_language_names[I18n.locale] %> &#x25be;</a>
       <ul>
-        <li class="language selected"><a href="#set_lang">English</a></li>
-        <li class="language"><a href="#set_lang">Português</a></li>
+        <% I18n.available_locales.each do |code| %>
+          <li class="language <% if code == I18n.locale %>selected<% end %>">
+            <%= link_to i18n_language_names[code], language_path(code) %>
+          </li>
+        <% end %>
       </ul>
     </li>
   </ul>
