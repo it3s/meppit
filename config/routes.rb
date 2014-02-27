@@ -4,8 +4,10 @@ Meppit::Application.routes.draw do
 
   root 'pages#frontpage'
 
-  get  "logout" => "sessions#destroy", :as => "logout"
-  post "login"  => "sessions#create",  :as => "login"
+  get  "language/:code" => "application#language", :as => 'language'
+
+  get  "logout"   => "sessions#destroy", :as => "logout"
+  post "login"    => "sessions#create",  :as => "login"
 
   resources :users, :only => [:new, :create] do
     member do
@@ -17,7 +19,7 @@ Meppit::Application.routes.draw do
   end
 
   if Rails.env.development?
-    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+    mount LetterOpenerWeb::Engine, :at => "/letter_opener"
   end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

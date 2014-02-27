@@ -122,6 +122,8 @@ $menu-projects-bg: #f26700;
         li {
           padding: 0 10px;
           &:hover { background: $meppit-light-blue; }
+
+          &.language.selected { font-weight: bold;}
         }
       }
     }

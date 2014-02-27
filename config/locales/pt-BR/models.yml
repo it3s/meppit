@@ -1,0 +1,31 @@
+pt-BR:
+  activerecord:
+    errors:
+      messages:
+        blank: "não pode ficar vazio"
+        accepted: 'deve ser aceito'
+        taken: 'já foi registrado'
+        confirmation: "não coincide com %{attribute}"
+        inclusion: "não esta incluido na lista"
+        exclusion: "é reservado"
+        invalid: "é inválido"
+        empty: "não pode ser vazio"
+        too_long: "é muito longo (máximo é %{count} caracteres)"
+        too_short: "é muito curto (mínimo é %{count} caracteres)"
+        wrong_length: "é do tamanho errado (deve ser %{count} caracteres)"
+        not_a_number: "não é um número"
+        not_an_integer: "deve ser um inteiro"
+        greater_than: "deve ser maior que %{count}"
+        greater_than_or_equal_to: "deve ser maior ou igual a %{count}"
+        equal_to: "deve ser igual a %{count}"
+        less_than: "deve ser menor que %{count}"
+        less_than_or_equal_to: "deve ser menor ou igual a %{count}"
+        other_than: "deve outro além de %{count}"
+
+      models:
+        user:
+          attributes:
+            email:
+              invalid: 'endereço de e-mail inválido'
+            password_confirmation:
+              confirmation: 'senhas não coincidem'

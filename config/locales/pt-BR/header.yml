@@ -1,0 +1,17 @@
+pt-BR:
+  header:
+    search:
+      placeholder: 'Procure por lugares, usuários e conteúdos'
+
+    menu:
+      map: 'Mapa'
+      objects: 'Objetos'
+      projects: 'Projetos'
+
+    sub_menu:
+      about: 'Sobe'
+      help: 'Ajuda'
+      profile: 'Perfil'
+      settings: 'Configurações'
+      logout: 'Sair'
+      login: 'Entrar'

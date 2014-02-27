@@ -1,0 +1,33 @@
+pt-BR:
+  frontpage:
+    title: 'mapeamento colaborativo da sua região.'
+
+    call:
+      participate: 'Quer participar'
+      edit: 'Edite o mapa.'
+      anyone: 'Qualquer um pode ajudar!'
+      create_account: 'Crie sua conta'
+
+    what:
+      what_is_it_for: 'Para que serve?'
+      diagnosis: 'Diagnóstico comunitário'
+      diagnosis_explanation: "Mapeie os recursos e necessidade de uma região. Crie indicadores e analise seus diagnósticos para conhecer as verdadeiras demandas daquela comunidade."
+      network: 'Mapeamento de rede'
+      network_explanation: "Mapeie organizações que trabalham pela mesma causa. Encontre novos participantes para sua rede. Compartilhe conhecimento e ajude a adicionar visibilidade a suas iniciativas"
+      evaluation: 'Avaliação de projetos'
+      evaluation_explanation: "Registre indicadores sobre a execução de um projeto. Avalie e gere relatórios. Compartilhe metodologias e resultados."
+      journalism: 'Jornalismo de dados'
+      journalism_explanation: "Construa mapas usando dados públicos. Use-os em suas notícias e mobilize para mudanças."
+      guide: 'Guia do bairro'
+      guide_explanation: "Mapeie serviços que existem na sua vizinhança. Ajude outros moradores a conhecerem melhor o território e a utilizarem os recursos locais."
+
+    projects:
+      title: 'Projetos que usam o Meppit'
+
+    news:
+      blog_title: 'blog do IT3S'
+      blog_visit: 'visite o blog'
+
+      updates_title: 'Últimas atualizações'
+      updates_all: 'ver todas'
+
