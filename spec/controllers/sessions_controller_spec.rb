@@ -41,7 +41,7 @@ describe SessionsController do
       let(:params) { {:email => user.email, :password => passwd} }
 
       it { expect(response.body).to match({:redirect => root_path}.to_json) }
-      it { expect(response.status).to eq 200 }
+      it { expect(response).to be_success }
       it { expect(response.header['Content-Type']).to match 'application/json' }
     end
   end

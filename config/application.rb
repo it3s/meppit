@@ -15,5 +15,8 @@ module Meppit
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**/*.{rb,yml}').to_s]
     # config.i18n.default_locale = :'pt-BR'
     I18n.enforce_available_locales = false  # stop annoying messages
+
+    # load secrets file
+    config.SECRETS = YAML.load_file("#{Rails.root.to_s}/config/secrets.yml")[Rails.env].with_indifferent_access
   end
 end
