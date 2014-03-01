@@ -8,4 +8,7 @@ class UserMailer < BaseMailer
          :subject => t('users.mail.welcome.subject')
   end
 
+  def reset_password_email(user)
+
+  end
 end
