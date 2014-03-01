@@ -3,7 +3,7 @@ require 'spec_helper'
 # These specs test mostly if we pass correctly the expected calls to the
 # underlying sorcery engine (which is already properly tested, thats why all
 # the stubs and expect/receive's )
-describe OauthsController do
+describe AuthenticationsController do
   describe "#oauth" do
     let(:params) { {:provider => :facebook} }
     it 'call login_at for the provide' do

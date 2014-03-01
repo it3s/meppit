@@ -6,9 +6,9 @@ Meppit::Application.routes.draw do
   get  "logout"   => "sessions#destroy", :as => "logout"
   post "login"    => "sessions#create",  :as => "login"
 
-  post "oauth/:provider/callback"  => "oauths#callback"
-  get  "oauth/:provider/callback"  => "oauths#callback" # for use with Github
-  get  "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
+  post "oauth/:provider/callback"  => "authentications#callback"
+  get  "oauth/:provider/callback"  => "authentications#callback"
+  get  "oauth/:provider" => "authentications#oauth", :as => :auth_at_provider
 
   resources :users, :only => [:new, :create] do
     member     { get :activate }
