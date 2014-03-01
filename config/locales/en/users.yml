@@ -16,3 +16,8 @@ en:
     flash:
       activated: 'User was successfully activated. Please log in.'
       activation_error: '<strong>Invalid token!</strong> You already have clicked on this link? Try generating another token by going to the login box and clicking on "forgot your password".'
+
+    oauth:
+      logged: 'Logged in from %{provider}'
+      failed: 'Failed to login from %{provider}'
+

@@ -2,7 +2,7 @@
 # The default is nothing which will include only core features (password encryption, login/logout).
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external
-Rails.application.config.sorcery.submodules = [:user_activation]
+Rails.application.config.sorcery.submodules = [:user_activation, :external]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -70,7 +70,7 @@ Rails.application.config.sorcery.configure do |config|
   # What providers are supported by this app, i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid] .
   # Default: `[]`
   #
-  # config.external_providers =
+  config.external_providers = [:facebook, :google]
 
 
   # You can change it by your local ca_file. i.e. '/etc/pki/tls/certs/ca-bundle.crt'
@@ -108,23 +108,25 @@ Rails.application.config.sorcery.configure do |config|
   # config.twitter.secret = ""
   # config.twitter.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=twitter"
   # config.twitter.user_info_mapping = {:email => "screen_name"}
-  #
-  # config.facebook.key = ""
-  # config.facebook.secret = ""
-  # config.facebook.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=facebook"
-  # config.facebook.user_info_mapping = {:email => "name"}
-  # config.facebook.access_permissions = ["email", "publish_stream"]
-  #
+
+  callback_host = Rails.application.config.SECRETS[:oauth_callback_host]
+
+  config.facebook.key = Rails.application.config.SECRETS[:facebook_key]
+  config.facebook.secret = Rails.application.config.SECRETS[:facebook_secret]
+  config.facebook.callback_url = "#{callback_host}/oauth/facebook/callback"
+  config.facebook.user_info_mapping = {:email => "email", :name => "name"}
+  config.facebook.access_permissions = ["email"]
+
   # config.github.key = ""
   # config.github.secret = ""
   # config.github.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=github"
   # config.github.user_info_mapping = {:email => "name"}
-  #
-  # config.google.key = ""
-  # config.google.secret = ""
-  # config.google.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=google"
-  # config.google.user_info_mapping = {:email => "email", :username => "name"}
-  #
+
+  config.google.key = Rails.application.config.SECRETS[:google_key]
+  config.google.secret = Rails.application.config.SECRETS[:google_sercret]
+  config.google.callback_url = "#{callback_host}/oauth/google/callback"
+  config.google.user_info_mapping = {:email => "email", :name => "name"}
+
   # config.vk.key = ""
   # config.vk.secret = ""
   # config.vk.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=vk"
@@ -410,7 +412,7 @@ Rails.application.config.sorcery.configure do |config|
     # Class which holds the various external provider data for this user.
     # Default: `nil`
     #
-    # user.authentications_class =
+    user.authentications_class = Authentication
 
 
     # User's identifier in authentications class.

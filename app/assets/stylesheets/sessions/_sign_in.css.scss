@@ -46,6 +46,7 @@ $signin_box_width: 560px;
 
 #external_providers {
   width: $signin_box_width * 0.4;
+  margin-top: 25px;
 
   li {
     margin: 15px 0;
@@ -68,7 +69,7 @@ $signin_box_width: 560px;
 
     .image.login-google   { @include sprite-image($logos-map, login-google); }
     .image.login-facebook { @include sprite-image($logos-map, login-facebook); }
-    .image.login-twitter  { @include sprite-image($logos-map, login-twitter); }
+    // .image.login-twitter  { @include sprite-image($logos-map, login-twitter); }
 
     button.google {
       background: $google_red;
@@ -78,10 +79,10 @@ $signin_box_width: 560px;
       background: $facebook_blue;
       &:hover { background: lighten($facebook_blue, 20%%); }
     }
-    button.twitter {
-      background: $twitter_blue;
-      &:hover { background: lighten($twitter_blue, 20%%); }
-    }
+    // button.twitter {
+    //   background: $twitter_blue;
+    //   &:hover { background: lighten($twitter_blue, 20%%); }
+    // }
   }
 
 }
