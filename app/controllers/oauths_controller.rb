@@ -6,21 +6,8 @@ class OauthsController < ApplicationController
   end
 
   def callback
-    provider = auth_params[:provider]
-    if @user = login_from(provider)
-      redirect_to root_path, :notice => t('users.oauth.logged', :provider => provider.titleize)
-    else
-      begin
-        @user = create_from(provider)
-        @user.activate!
-
-        reset_session # protect from session fixation attack
-        auto_login(@user)
-        redirect_to root_path, :notice => t('users.oauth.logged', :provider => provider.titleize)
-      rescue
-        redirect_to root_path, :alert => t('users.oauth.failed', :provider => provider.titleize)
-      end
-    end
+    add_provider unless @user = login_from(provider)
+    redirect_to root_path, :notice => t('users.oauth.logged', :provider => provider.titleize)
   end
 
   private
@@ -28,4 +15,28 @@ class OauthsController < ApplicationController
   def auth_params
     params.permit(:code, :provider)
   end
+
+  def provider
+    auth_params[:provider]
+  end
+
+  def add_provider
+    add_provider_to_existent_user || create_user_from_provider
+
+    reset_session # protect from session fixation attack
+    auto_login(@user)
+  end
+
+  def add_provider_to_existent_user
+    if @user = User.find_by(:email => @user_hash[:user_info]['email'])
+      @current_user = @user
+      add_provider_to_user(provider)
+     end
+  end
+
+  def create_user_from_provider
+    @user = create_from(provider)
+    @user.activate!
+  end
+
 end
