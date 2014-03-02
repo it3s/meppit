@@ -17,7 +17,7 @@ Meppit::Application.routes.draw do
 
       get  :forgot_password
       post :reset_password
-      get  :edit_password
+      get  "edit_password/:id" => "users#edit_password", :as => :edit_password
       post :update_password
     end
   end
