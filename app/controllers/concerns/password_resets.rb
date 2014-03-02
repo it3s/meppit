@@ -1,4 +1,5 @@
 module PasswordResets
+  # TODO: TEST-ME
   extend ActiveSupport::Concern
 
   included do

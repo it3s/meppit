@@ -20,3 +20,11 @@ pt-BR:
     oauth:
       logged: 'Login feito com %{provider}'
       failed: 'Falhou ao fazer login com %{provider}'
+
+    forgot_password:
+      title: 'Requisitar alteração da senha'
+      email_sent: 'Instruções foram enviadas para seu e-mail'
+      mail_subjet: 'Você requisitou uma alteração de senha'
+      edit_title: 'Escolha uma nova senha'
+      updated: 'A senha foi alterada com sucesso'
+
