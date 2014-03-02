@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  include PasswordResets
+
   def new
     @user = User.new
     render :layout => nil if request.xhr?

@@ -21,3 +21,10 @@ en:
       logged: 'Logged in from %{provider}'
       failed: 'Failed to login from %{provider}'
 
+    forgot_password:
+      title: 'Request password reset'
+      email_sent: 'Instructions have been sent to your email'
+      mail_subjet: 'You requested a password reset'
+      edit_title: 'Choose a new password'
+      updated: 'Password was successfully updated'
+

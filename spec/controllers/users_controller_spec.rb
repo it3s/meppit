@@ -75,4 +75,61 @@ describe UsersController do
       end
     end
   end
+
+  describe "PasswordResets" do
+    let!(:user) { FactoryGirl.create(:user, :reset_password_token => 'abcdef', :reset_password_token_expires_at => Time.now + 2.days) }
+    let(:params) { {:token => 'abcdef'} }
+
+    describe "#forgot_password" do
+      before { get :forgot_password }
+      it { expect(response).to render_template :layout => nil }
+    end
+
+    describe "#reset_password" do
+      before { params.merge! :email => user.email }
+
+      it "find user and send email" do
+        User.any_instance.should_receive :deliver_reset_password_instructions!
+        post :reset_password, params
+        expect(controller.instance_variable_get :@user).to eq user
+        expect(response).to redirect_to root_path
+        expect(controller.flash[:notice]).to eq controller.t('users.forgot_password.email_sent')
+      end
+    end
+
+    describe "#edit_password" do
+      before { get :edit_password, params }
+
+      it "sets user and token" do
+        expect(controller.instance_variable_get :@token).to eq params[:token]
+        expect(controller.instance_variable_get :@user).to eq user
+      end
+
+      it { expect(response).to render_template :edit_password }
+    end
+
+    describe "#update_password" do
+      context "valid params" do
+        before { params.merge! :user => {:password => '123456', :password_confirmation => '123456', :email => user.email} }
+        it 'changes password and redirect to root' do
+          expect(controller.login user.email, '123456').to be_nil
+          post :update_password, params
+          expect(controller.login user.email, '123456').to eq user
+          expect(response.body).to match({:redirect => root_path}.to_json)
+          expect(controller.flash[:notice]).to eq controller.t('users.forgot_password.updated')
+        end
+      end
+
+      context "invalid params" do
+        let(:errors_json) { {:errors => {:password_confirmation => ["doesn't match Password"]}}.to_json }
+        before { params.merge! :user => {:password => '123456', :password_confirmation => '654321', :email => user.email} }
+        it 'return errors' do
+          post :update_password, params
+          expect(controller.login user.email, '123456').to be_nil
+          expect(response.body).to eq errors_json
+          expect(response.status).to eq 422
+        end
+      end
+    end
+  end
 end
