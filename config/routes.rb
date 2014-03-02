@@ -12,7 +12,14 @@ Meppit::Application.routes.draw do
 
   resources :users, :only => [:new, :create] do
     member     { get :activate }
-    collection { get :created  }
+    collection do
+      get :created
+
+      get  :forgot_password
+      post :reset_password
+      get  :edit_password
+      post :update_password
+    end
   end
 
   if Rails.env.development?
