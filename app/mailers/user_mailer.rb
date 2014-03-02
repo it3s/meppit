@@ -8,10 +8,9 @@ class UserMailer < BaseMailer
   end
 
   def reset_password_email(user_id, lang=nil)
-    # TODO: TEST-ME
     set_user_and_locale user_id, lang
     @url  = edit_password_users_url(@user.reset_password_token)
-    mail :to      => @user.email,
+    mail :to      => email_with_name(@user),
          :subject => t('user.forgot_password.mail_subject')
   end
 
