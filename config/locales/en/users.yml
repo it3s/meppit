@@ -5,10 +5,6 @@ en:
     form:
       has_account: 'Already have an account? Sign in.'
 
-    mail:
-      welcome:
-        subject: 'Activate your account on Meppit'
-
     created:
       title: "Your account has been created!"
       text: "But before start using, you need to confirm your e-mail. Go check your inbox!"
@@ -24,7 +20,6 @@ en:
     forgot_password:
       title: 'Request password reset'
       email_sent: 'Instructions have been sent to your email'
-      mail_subjet: 'You requested a password reset'
       edit_title: 'Choose a new password'
       updated: 'Password was successfully updated'
 

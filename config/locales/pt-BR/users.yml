@@ -5,10 +5,6 @@ pt-BR:
     form:
       has_account: 'Já possui uma conta? Entre.'
 
-    mail:
-      welcome:
-        subject: 'Ative sua conta no Meppit'
-
     created:
       title: "Sua conta foi criada!"
       text: "Mas antes de começar a usar, confirme seu e-mail. Vá checar sua caixa de entrada!"
@@ -24,7 +20,6 @@ pt-BR:
     forgot_password:
       title: 'Requisitar alteração da senha'
       email_sent: 'Instruções foram enviadas para seu e-mail'
-      mail_subjet: 'Você requisitou uma alteração de senha'
       edit_title: 'Escolha uma nova senha'
       updated: 'A senha foi alterada com sucesso'
 

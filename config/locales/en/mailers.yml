@@ -1,0 +1,7 @@
+en:
+  user_mailer:
+    activation_email:
+      subject: 'Activate your account on Meppit'
+
+    reset_password_email:
+      subject: 'You requested a password reset'

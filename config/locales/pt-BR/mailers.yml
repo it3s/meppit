@@ -1,0 +1,7 @@
+pt-BR:
+  user_mailer:
+    activation_email:
+      subject: 'Ative sua conta no Meppit'
+
+    reset_password_email:
+      subject: 'Você requisitou uma alteração de senha'
