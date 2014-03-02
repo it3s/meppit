@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
     UserMailer.delay.activation_email(id, I18n.locale)
   end
 
+  def send_reset_password_email!
+    # override sorcery reset password to user sidekiq
+    UserMailer.delay.reset_password_email(id, I18n.locale)
+  end
 end
