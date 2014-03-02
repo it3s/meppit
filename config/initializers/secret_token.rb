@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Meppit::Application.config.secret_key_base = 'b432d273e469915427c0d3188f90c0a674d2dae2cebc9b537c003a9453cb8c6207423d648c7d4c480f1bcab835a17eb5b9d750b54c6f183ad5ad5e4f1743b18e'
+Meppit::Application.config.secret_key_base = Rails.application.config.SECRETS[:secret_token]
