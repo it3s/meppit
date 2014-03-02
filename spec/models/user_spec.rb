@@ -49,4 +49,9 @@ describe User do
     end
   end
 
+  describe "send reset password email" do
+    it "enqueues to sidekiq" do
+      expect { UserMailer.delay.reset_password_email(user.id)}.to change(Sidekiq::Extensions::DelayedMailer.jobs, :size).by(1)
+    end
+  end
 end
