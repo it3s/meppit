@@ -3,11 +3,11 @@
   width: 35px;
 
   li {
-    padding: 4px;
+    padding: 6px;
     border-radius: 5px;
     margin-bottom: 10px;
 
-    &:hover { padding: 2px; border: solid 2px darken($meppit-blue, 20%); }
+    &:hover { padding: 4px; border: solid 2px darken($meppit-blue, 20%); }
   }
 
   .edit     { @include sprite-image($icons-map, tool-edit); }
