@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   include PasswordResets
 
+  before_action :require_login, :only => [:show]
+
   def new
     @user = User.new
     render :layout => nil if request.xhr?
@@ -27,6 +29,10 @@ class UsersController < ApplicationController
       flash[:error] = t('users.flash.activation_error')
       not_authenticated
     end
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
   private

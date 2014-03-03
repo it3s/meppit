@@ -100,3 +100,12 @@ $signin_box_width: 560px;
     &:hover { background: lighten($meppit-green, 3%); }
   }
 }
+
+#session-new {
+  width: 300px;
+  margin: 0 auto;
+  padding-left: 5px;
+
+  h1 { text-align: center; }
+  input[type=submit] { width: 103%;}
+}

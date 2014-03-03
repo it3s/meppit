@@ -8,6 +8,7 @@ $menu-projects-bg: #f26700;
   background: $meppit-light-blue;
   position: relative;
   z-index: 11;
+  margin-bottom: 50px;
 
   @include meppit-box-shadow;
   @include box-sizing(border-box);

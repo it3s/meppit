@@ -4,9 +4,9 @@
     <li><a id="help_button"><%= t('header.sub_menu.help') %></a></li>
     <% if logged_in? %>
     <li id="user_menu" class="dropdown_menu">
-      <a><%= current_user.name %> &#x25be;</a>
+      <a href="<%= user_path(current_user) %>"><%= current_user.name %> &#x25be;</a>
       <ul>
-        <li><a href="#" ><%= t('header.sub_menu.profile')  %></a></li>
+        <li><a href="<%= user_path(current_user) %>" ><%= t('header.sub_menu.profile')  %></a></li>
         <li><a href="#" ><%= t('header.sub_menu.settings') %></a></li>
         <li><a href="<%= logout_url %>" ><%= t('header.sub_menu.logout')   %></a></li>
       </ul>
