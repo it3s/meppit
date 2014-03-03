@@ -1,0 +1,28 @@
+#toolbar {
+  @include box-sizing(border-box);
+  width: 35px;
+
+  li {
+    padding: 4px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+    &:hover { padding: 2px; border: solid 2px darken($meppit-blue, 20%); }
+  }
+
+  .edit     { @include sprite-image($icons-map, tool-edit); }
+  .star     { @include sprite-image($icons-map, tool-star); }
+  .comment  { @include sprite-image($icons-map, tool-comment); }
+  .history  { @include sprite-image($icons-map, tool-history); }
+  .flag     { @include sprite-image($icons-map, tool-flag); }
+  .delete   { @include sprite-image($icons-map, tool-delete); }
+  .google   { @include sprite-image($icons-map, tool-google); }
+  .facebook { @include sprite-image($icons-map, tool-facebook); }
+  .twitter  { @include sprite-image($icons-map, tool-twitter); }
+
+  .icon {
+    display: block;
+    margin: 0 auto;
+  }
+
+}

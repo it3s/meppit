@@ -11,7 +11,7 @@ Meppit::Application.routes.draw do
   get  "oauth/:provider/callback"  => "authentications#callback"
   get  "oauth/:provider" => "authentications#oauth", :as => :auth_at_provider
 
-  resources :users, :only => [:new, :create, :show] do
+  resources :users do
     member     { get :activate }
     collection do
       get :created
