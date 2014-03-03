@@ -1,1 +1,31 @@
-<%= render 'shared/toolbar', :object => @user, :only => [:edit] %>
+<%= render 'shared/toolbar', :object => @user %>
+
+<div id="user-profile" >
+  <div class="left-pane">
+    <div class="user-picture">
+      <%= image_tag "imgs/profile-placeholder.png", :alt => 'user picture' %>
+    </div>
+
+    <div class="user-location">
+      <%= image_tag "imgs/map-placeholder.png", :alt => 'user location' %>
+    </div>
+
+    <div class="user-projects">
+      <h2>Projects</h2>
+      <ul>
+        <li class="user-projects-item">
+          <%= image_tag "imgs/aldeias-infantis.png" %>
+          <span><a href="#" >Aldeias Infantis</a></span>
+        </li>
+        <li class="user-projects-item">
+          <%= image_tag "imgs/heliopolis-verde.png" %>
+          <span><a href="#">Verdejando heliopolis</a></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="central-pane">
+    <h1 class="user-name"><%= @user.name %></h1>
+  </div>
+</div>

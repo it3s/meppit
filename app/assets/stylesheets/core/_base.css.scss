@@ -88,3 +88,11 @@ h3 {
 .modal.current {
   background-color: $meppit-light-blue;
 }
+
+.left-pane {
+  @include inline-pane(25%);
+}
+
+.central-pane {
+  @include inline-pane(65%);
+}

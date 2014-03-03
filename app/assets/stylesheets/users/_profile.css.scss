@@ -1,0 +1,24 @@
+#user-profile {
+
+  // left pane
+  .user-picture img{
+    width: 100%;
+    max-height: 200px;
+    margin-bottom: 20px;
+  }
+
+  .user-location img{
+    width: 100%;
+    max-height: 200px;
+    margin-bottom: 20px;
+  }
+
+  .user-projects {
+    h2 { margin: 20px 0;}
+    .user-projects-item img  { @include inline-pane(30%); margin-left: 0; }
+    .user-projects-item span { @include inline-pane(60%); padding-top: 20px;}
+  }
+
+  // Central pane
+  .user-name { margin: 0;}
+}

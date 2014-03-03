@@ -1,6 +1,7 @@
 #toolbar {
   @include box-sizing(border-box);
   width: 35px;
+  float: left;
 
   li {
     padding: 6px;
