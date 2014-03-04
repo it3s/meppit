@@ -27,5 +27,53 @@
 
   <div class="central-pane">
     <h1 class="user-name"><%= @user.name %></h1>
+
+    <div class="contacts">
+      <ul>
+        <li class="contact-item">
+          <span class="image phone"></span>
+          <span class="text">(11) 987654321</span>
+        </li>
+
+        <li class="contact-item">
+          <span class="image address"></span>
+          <span class="text">Av Paulista, 7000, São Paulo, SP</span>
+        </li>
+
+        <li class="contact-item">
+          <span class="image site"></span>
+          <span class="text">www.meppit.com</span>
+        </li>
+
+        <li class="contact-item">
+          <span class="image email"></span>
+          <span class="text">contato@meppit.com</span>
+        </li>
+
+        <li class="contact-item">
+          <span class="image twitter"></span>
+          <span class="text">@meppit</span>
+        </li>
+
+        <li class="contact-item">
+          <span class="image facebook"></span>
+          <span class="text">www.facebook.com/meppit</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="user-about">
+      <h2>About me</h2>
+
+      <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies
+      </p>
+    </div>
+
+    <div class="user-contributions">
+      <h2>Last Contributions</h2>
+      <%= render 'updates/last_updates' %>
+    </div>
+
   </div>
 </div>

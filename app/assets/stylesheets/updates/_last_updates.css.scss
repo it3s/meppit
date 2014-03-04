@@ -1,0 +1,39 @@
+.last-updates {
+  margin: 20px 0 40px;
+
+  li {
+    :hover { background: $meppit-light-blue; }
+    a {
+      display: block;
+      padding: 5px;
+      text-decoration: none;
+      color: $text-color;
+      margin-bottom: 10px;
+    }
+  }
+  .update-item .image {
+    margin-right: 10px;
+    vertical-align: bottom;
+  }
+  .see-on-map { float: right; margin-top: 5px;}
+
+  .update-info{
+    padding-left: 30px;
+    color: lighten($text-color, 20%);
+  }
+  .image.community        { @include sprite-image($icons-map, community); }
+  .image.importsheet      { @include sprite-image($icons-map, importsheet); }
+  .image.investment       { @include sprite-image($icons-map, investment); }
+  .image.need             { @include sprite-image($icons-map, need); }
+  .image.organization     { @include sprite-image($icons-map, organization); }
+  .image.project          { @include sprite-image($icons-map, project); }
+  .image.resource         { @include sprite-image($icons-map, resource); }
+  .image.added            { @include sprite-image($icons-map, added); }
+  .image.added-to-project { @include sprite-image($icons-map, added-to-project); }
+  .image.deleted          { @include sprite-image($icons-map, deleted); }
+  .image.discussed        { @include sprite-image($icons-map, discussed); }
+  .image.edited           { @include sprite-image($icons-map, edited); }
+  .image.inserted         { @include sprite-image($icons-map, inserted); }
+
+  .image.see-on-map       { @include sprite-image($icons-map, see-on-map); }
+}

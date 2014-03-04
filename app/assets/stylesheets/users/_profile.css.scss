@@ -1,5 +1,7 @@
 #user-profile {
 
+  h2 { margin: 20px 0; }
+
   // left pane
   .user-picture img{
     width: 100%;
@@ -14,11 +16,20 @@
   }
 
   .user-projects {
-    h2 { margin: 20px 0;}
     .user-projects-item img  { @include inline-pane(30%); margin-left: 0; }
     .user-projects-item span { @include inline-pane(60%); padding-top: 20px;}
   }
 
   // Central pane
-  .user-name { margin: 0;}
+  .user-name { margin: 0 0 30px;}
+
+  .user-contributions {
+    margin-top: 20px;
+    border: solid 1px $meppit-blue;
+    border-radius: 8px;
+    padding: 10px 5px;
+
+
+    h2 { margin-top: 0; }
+  }
 }
