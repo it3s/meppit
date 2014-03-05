@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140301184828) do
+ActiveRecord::Schema.define(version: 20140305181758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "authentications", force: true do |t|
     t.integer  "user_id",    null: false
@@ -37,6 +38,8 @@ ActiveRecord::Schema.define(version: 20140301184828) do
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
+    t.text     "about_me"
+    t.hstore   "contacts"
   end
 
   add_index "users", ["activation_token"], name: "index_users_on_activation_token", using: :btree
