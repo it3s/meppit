@@ -40,15 +40,15 @@ module ApplicationHelper
 
   def tools_list(obj, only=:all)
     tools = {
-      :edit     => OpenStruct.new(:name => :edit,     :url => url_for([:edit, obj])),
-      :star     => OpenStruct.new(:name => :star,     :url => ""),
-      :comment  => OpenStruct.new(:name => :comment,  :url => ""),
-      :history  => OpenStruct.new(:name => :history,  :url => ""),
-      :flag     => OpenStruct.new(:name => :flag,     :url => ""),
-      :delete   => OpenStruct.new(:name => :delete,   :url => ""),
-      :google   => OpenStruct.new(:name => :google,   :url => ""),
-      :facebook => OpenStruct.new(:name => :facebook, :url => ""),
-      :twitter  => OpenStruct.new(:name => :twitter,  :url => ""),
+      :edit     => {:icon => :pencil,        :url => url_for([:edit, obj])},
+      :star     => {:icon => :star,          :url => ""},
+      :comment  => {:icon => :comment,       :url => ""},
+      :history  => {:icon => :'clock-o',     :url => ""},
+      :flag     => {:icon => :flag,          :url => ""},
+      :delete   => {:icon => :'trash-o',     :url => ""},
+      :google   => {:icon => :'google-plus', :url => ""},
+      :facebook => {:icon => :facebook,      :url => ""},
+      :twitter  => {:icon => :twitter,       :url => ""},
     }
     only == :all ? tools.values() : only.map {|name| tools[name] }
   end

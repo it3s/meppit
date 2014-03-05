@@ -11,23 +11,7 @@
     display:inline-block;
     margin: 0 4px 10px;
     vertical-align: top;
-    // padding-top: 3px;
     word-wrap: break-word;
   }
 
-  .image {
-    margin-left: 5px;
-    vertical-align: top;
-  }
-
-  .image.phone       { @include sprite-image($icons-map, phone); }
-  .image.address     { @include sprite-image($icons-map, address); }
-  .image.city        { @include sprite-image($icons-map, city); }
-  .image.compl       { @include sprite-image($icons-map, compl); }
-  .image.email       { @include sprite-image($icons-map, email); }
-  .image.facebook    { @include sprite-image($icons-map, facebook); }
-  .image.other       { @include sprite-image($icons-map, other); }
-  .image.postal_code { @include sprite-image($icons-map, postal_code); }
-  .image.site        { @include sprite-image($icons-map, site); }
-  .image.twitter     { @include sprite-image($icons-map, twitter); }
 }
