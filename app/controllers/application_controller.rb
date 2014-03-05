@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
     redirect_to :back
   end
 
+  def not_authenticated
+    redirect_to login_path
+  end
+
   private
 
   def set_locale

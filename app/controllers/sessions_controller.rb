@@ -1,9 +1,13 @@
 class SessionsController < ApplicationController
 
+  def new
+  end
+
   def create
     user = login(params[:email], params[:password])
     if user
-      render :json => { :redirect => root_path }
+      render :json => { :redirect => session[:return_to_url] || root_path }
+      session[:return_to_url] = nil
     else
       render :json => { :errors => error_message }, :status => :unprocessable_entity
     end
@@ -19,7 +23,7 @@ class SessionsController < ApplicationController
   def error_message
     if params[:email].blank? || params[:password].blank?
       t('sessions.create.blank')
-    elsif (user = User.find_by(email: params[:email])) && user.activation_state == 'pending'
+    elsif (user = User.find_by(:email => params[:email])) && user.activation_state == 'pending'
       t('sessions.create.pending')
     else
       t('sessions.create.invalid')

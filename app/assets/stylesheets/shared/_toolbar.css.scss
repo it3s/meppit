@@ -1,0 +1,18 @@
+#toolbar {
+  @include box-sizing(border-box);
+  width: 35px;
+  float: left;
+
+  li {
+    padding: 6px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+    &:hover, &.active {
+      background-color: $meppit-dark-blue;
+      a { color: $white;}
+    }
+
+    a { color: $text-color; }
+  }
+}

@@ -1,0 +1,47 @@
+<%= render 'shared/toolbar', :object => @user %>
+
+<div id="user-profile" >
+  <div class="left-pane">
+    <div class="user-picture">
+      <%= image_tag "imgs/profile-placeholder.png", :alt => 'user picture' %>
+    </div>
+
+    <div class="user-location">
+      <%= image_tag "imgs/map-placeholder.png", :alt => 'user location' %>
+    </div>
+
+    <div class="user-projects">
+      <h2>Projects</h2>
+      <ul>
+        <li class="user-projects-item">
+          <%= image_tag "imgs/aldeias-infantis.png" %>
+          <span><a href="#" >Aldeias Infantis</a></span>
+        </li>
+        <li class="user-projects-item">
+          <%= image_tag "imgs/heliopolis-verde.png" %>
+          <span><a href="#">Verdejando heliopolis</a></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="central-pane">
+    <h1 class="user-name"><%= @user.name %></h1>
+
+    <%= render 'shared/contacts' %>
+
+    <div class="user-about">
+      <h2>About me</h2>
+
+      <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies
+      </p>
+    </div>
+
+    <div class="user-contributions">
+      <h2>Last Contributions</h2>
+      <%= render 'updates/last_updates' %>
+    </div>
+
+  </div>
+</div>

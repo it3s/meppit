@@ -4,13 +4,14 @@ Meppit::Application.routes.draw do
   get  "language/:code" => "application#language", :as => 'language'
 
   get  "logout"   => "sessions#destroy", :as => "logout"
-  post "login"    => "sessions#create",  :as => "login"
+  get  "login"    => "sessions#new",     :as => "login"
+  post "login"    => "sessions#create",  :as => "do_login"
 
   post "oauth/:provider/callback"  => "authentications#callback"
   get  "oauth/:provider/callback"  => "authentications#callback"
   get  "oauth/:provider" => "authentications#oauth", :as => :auth_at_provider
 
-  resources :users, :only => [:new, :create] do
+  resources :users do
     member     { get :activate }
     collection do
       get :created

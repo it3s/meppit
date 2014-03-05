@@ -1,0 +1,5 @@
+<ul id="toolbar" >
+  <% tools_list(object, local_assigns[:only] || :all).each do |tool| %>
+    <li><a href="<%= tool[:url] %>"><%= icon tool[:icon], '', :class => "fa-lg fa-fw" %></a></li>
+  <% end %>
+</ul>

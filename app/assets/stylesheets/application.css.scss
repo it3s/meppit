@@ -2,6 +2,7 @@
 @import "compass/reset";
 @import "bourbon";
 @import "compass/utilities/sprites";
+@import "font-awesome";
 
 // settings, mixins and core style
 @import "settings";
@@ -19,11 +20,16 @@
 @import "shared/header";
 @import "shared/footer";
 @import "shared/alerts";
+@import "shared/toolbar";
+@import "shared/contacts";
 
 @import "sessions/sign_in";
 
 @import "users/sign_up";
 @import "users/password_reset";
+@import "users/profile";
 
 @import "pages/frontpage";
+
+@import "updates/last_updates";
 

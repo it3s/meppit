@@ -36,4 +36,20 @@ module ApplicationHelper
     options.deep_merge!(:remote => true, :html => {'data-components' => 'remoteForm'})
     simple_form_for(record, options, &block)
   end
+
+
+  def tools_list(obj, only=:all)
+    tools = {
+      :edit     => {:icon => :pencil,        :url => url_for([:edit, obj])},
+      :star     => {:icon => :star,          :url => ""},
+      :comment  => {:icon => :comment,       :url => ""},
+      :history  => {:icon => :'clock-o',     :url => ""},
+      :flag     => {:icon => :flag,          :url => ""},
+      :delete   => {:icon => :'trash-o',     :url => ""},
+      :google   => {:icon => :'google-plus', :url => ""},
+      :facebook => {:icon => :facebook,      :url => ""},
+      :twitter  => {:icon => :twitter,       :url => ""},
+    }
+    only == :all ? tools.values() : only.map {|name| tools[name] }
+  end
 end

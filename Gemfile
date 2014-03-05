@@ -15,6 +15,7 @@ gem 'sass-rails', '~> 4.0.0'        # scss support
 gem 'bourbon'                       # sass mixins and utilities
 gem 'compass-rails'                 # sass mixins and sprites generation
 gem 'oily_png'                      # faster png sprite generation for compass
+gem 'font-awesome-sass'             # font with svg icons
 
 # gem 'turbolinks'                  # speed page loading
 
@@ -24,7 +25,7 @@ gem 'sidekiq'                       # background jobs
 gem 'http_accept_language'          # get locale from http headers
 
 group :doc do
-  gem 'sdoc', require: false
+  gem 'sdoc', :require => false
 end
 
 group :development do

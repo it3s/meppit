@@ -15,3 +15,10 @@
 @mixin meppit-box-shadow() {
   box-shadow: 1px 1px 3px 1px $medium-grey;
 }
+
+@mixin inline-pane($size) {
+  display: inline-block;
+  margin-left: 20px;
+  width: $size;
+  vertical-align: top;
+}
