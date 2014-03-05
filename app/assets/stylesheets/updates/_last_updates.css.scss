@@ -1,4 +1,4 @@
-.last-updates {
+.updates {
   margin: 20px 0 40px;
 
   li {
@@ -15,7 +15,10 @@
     margin-right: 10px;
     vertical-align: bottom;
   }
-  .see-on-map { float: right; margin-top: 5px;}
+  .see-on-map {
+    float: right;
+    margin-top: 5px;
+  }
 
   .update-info{
     padding-left: 30px;
@@ -34,6 +37,4 @@
   .image.discussed        { @include sprite-image($icons-map, discussed); }
   .image.edited           { @include sprite-image($icons-map, edited); }
   .image.inserted         { @include sprite-image($icons-map, inserted); }
-
-  .image.see-on-map       { @include sprite-image($icons-map, see-on-map); }
 }
