@@ -32,4 +32,8 @@
 
     h2 { margin-top: 0; }
   }
+
+  &.edit {
+    .field label { display: none;}
+  }
 }

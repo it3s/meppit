@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   include PasswordResets
 
-  before_action :require_login, :only => [:show]
+  before_action :require_login,   :only => [:show, :edit]
+  before_action :find_user,       :only => [:show, :edit]
+  before_action :is_current_user, :only => [:edit]
 
   def new
     @user = User.new
@@ -32,7 +34,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def edit
@@ -43,5 +44,13 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password,
       :password_confirmation, :license_aggrement)
+  end
+
+  def find_user
+    @user = User.find(params[:id])
+  end
+
+  def is_current_user
+    redirect_to(root_path, :notice => "no access") if @user != current_user
   end
 end
