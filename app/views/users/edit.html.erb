@@ -2,6 +2,12 @@
 
 <div id="user-profile" class="edit" >
   <%= remote_form_for @user do |f| %>
+
+  <div class="form-actions">
+    <%= submit_tag 'Save changes', :class => "edit-save" %>
+    <%= link_to 'Cancelar', url_for(@user) %>
+  </div>
+
   <div class="left-pane">
     <div class="user-picture">
       <%= image_tag "imgs/profile-placeholder.png", :alt => 'user picture' %>

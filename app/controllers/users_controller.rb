@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   include PasswordResets
 
-  before_action :require_login,   :only => [:show, :edit]
-  before_action :find_user,       :only => [:show, :edit]
-  before_action :is_current_user, :only => [:edit]
+  before_action :require_login,   :only => [:show, :edit, :update]
+  before_action :find_user,       :only => [:show, :edit, :update]
+  before_action :is_current_user, :only => [:edit, :update]
 
   def new
     @user = User.new
@@ -37,6 +37,16 @@ class UsersController < ApplicationController
   end
 
   def edit
+  end
+
+  def update
+    @user.assign_attributes(user_params)
+    if @user.valid? && @user.save
+      flash[:notice] = "Profile successfuly updated"
+      render :json => {:redirect => user_path(@user)}
+    else
+      render :json => {:errors => @user.errors.messages}, :status => :unprocessable_entity
+    end
   end
 
   private
