@@ -41,6 +41,7 @@ class UsersController < ApplicationController
 
   def update
     @user.assign_attributes(user_params)
+    binding.pry
     if @user.valid? && @user.save
       flash[:notice] = "Profile successfuly updated"
       render :json => {:redirect => user_path(@user)}
@@ -53,7 +54,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password,
-      :password_confirmation, :license_aggrement)
+      :password_confirmation, :license_aggrement).tap do |whitelisted|
+      whitelisted[:contacts] = params[:user][:contacts].delete_if { |key, value| value.blank? }
+    end
   end
 
   def find_user
