@@ -20,6 +20,11 @@ describe ApplicationHelper do
     it { expect(helper.javascript_exists?('inexistent')).to be_false}
   end
 
+  describe "#with_http" do
+    it { expect(helper.with_http "http://www.meppit.com").to eq "http://www.meppit.com"}
+    it { expect(helper.with_http "www.meppit.com").to eq "http://www.meppit.com"}
+  end
+
   describe "#hash_to_attributes" do
     it "return empty string for empty hash" do
       expect(helper.hash_to_attributes({})).to eq ''
@@ -78,6 +83,12 @@ describe ApplicationHelper do
         helper.remote_form_for user, :other => :bla, :html => {:class => 'my-class'} { }
       end
     end
+  end
+
+  describe "#tools_list" do
+    let(:obj) { FactoryGirl.create :user }
+    it { expect(helper.tools_list(obj).size).to eq 9 }
+    it { expect(helper.tools_list(obj, only=[:edit, :star]).size).to eq 2 }
   end
 
 end
