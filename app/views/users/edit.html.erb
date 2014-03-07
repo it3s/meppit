@@ -17,7 +17,7 @@
       <%= image_tag "imgs/map-placeholder.png", :alt => 'user location' %>
     </div>
 
-    <div class="user-projects">
+    <div class="user-projects" data-components="overlay">
       <h2>Projects</h2>
       <ul>
         <li class="user-projects-item">
@@ -25,7 +25,6 @@
           <span><a href="#" >Aldeias Infantis</a></span>
         </li>
         <li class="user-projects-item">
-          <div class="overlay"></div>
           <%= image_tag "imgs/heliopolis-verde.png" %>
           <span><a href="#">Verdejando heliopolis</a></span>
         </li>
@@ -43,8 +42,7 @@
       <%= f.input :about_me, :as => :text, :input_html => {:class => 'tinymce', 'data-components' => 'editor'} %>
     </div>
 
-    <div class="user-contributions">
-      <div class="overlay"></div>
+    <div class="user-contributions" data-components="overlay">
       <h2>Last Contributions</h2>
       <%= render 'updates/last_updates' %>
     </div>

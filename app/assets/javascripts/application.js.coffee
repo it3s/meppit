@@ -8,6 +8,7 @@
 #= require components/remote_form
 #= require components/alert
 #= require components/editor
+#= require components/overlay
 
 onReady = ->
   App.mediator.publish('components:start')
