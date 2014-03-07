@@ -16,6 +16,7 @@
   }
 
   .user-projects {
+    position: relative;
     .user-projects-item img  { @include inline-pane(30%); margin-left: 0; }
     .user-projects-item span { @include inline-pane(60%); padding-top: 20px;}
   }
@@ -33,7 +34,7 @@
     border: solid 1px $meppit-blue;
     border-radius: 8px;
     padding: 10px 5px;
-
+    position: relative;
 
     h2 { margin-top: 0; }
   }
