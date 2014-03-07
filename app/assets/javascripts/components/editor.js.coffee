@@ -13,5 +13,6 @@ App.components.editor = (container) ->
         theme: 'modern'
         menubar: false
         statusbar: false
+        height: 200
         language: @getLocale()
   }
