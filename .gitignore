@@ -30,3 +30,6 @@
 
 # secrets
 /config/secrets.yml
+
+# code coverage
+/coverage

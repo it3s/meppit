@@ -197,6 +197,10 @@ GEM
     simple_form (3.0.1)
       actionpack (>= 4.0.0, < 4.1)
       activemodel (>= 4.0.0, < 4.1)
+    simplecov (0.7.1)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.7.1)
+    simplecov-html (0.7.1)
     slop (3.4.7)
     sorcery (0.8.5)
       bcrypt-ruby (>= 3.0)
@@ -266,6 +270,7 @@ DEPENDENCIES
   shoulda-matchers
   sidekiq
   simple_form
+  simplecov (~> 0.7.1)
   sorcery
   tinymce-rails
   tinymce-rails-langs
