@@ -1,6 +1,13 @@
 <%= render 'shared/toolbar', :object => @user %>
 
-<div id="user-profile" >
+<div id="user-profile" class="edit" >
+  <%= remote_form_for @user do |f| %>
+
+  <div class="form-actions">
+    <%= submit_tag t('save_changes'), :class => "edit-save" %>
+    <%= link_to t('cancel'), url_for(@user) %>
+  </div>
+
   <div class="left-pane">
     <div class="user-picture">
       <%= image_tag "imgs/profile-placeholder.png", :alt => 'user picture' %>
@@ -10,8 +17,8 @@
       <%= image_tag "imgs/map-placeholder.png", :alt => 'user location' %>
     </div>
 
-    <div class="user-projects">
-      <h2><%= t 'users.profile.projects' %></h2>
+    <div class="user-projects" data-components="overlay">
+      <h2><%= t('users.profile.projects') %></h2>
       <ul>
         <li class="user-projects-item">
           <%= image_tag "imgs/aldeias-infantis.png" %>
@@ -26,24 +33,20 @@
   </div>
 
   <div class="central-pane">
-    <h1 class="user-name"><%= @user.name %></h1>
+    <h1 class="user-name"><%= f.input :name %></h1>
 
-    <%= render 'shared/contacts', :object => @user %>
+    <%= render 'shared/contacts_form', :object => @user %>
 
     <div class="user-about">
-      <h2><%= t 'users.profile.about_me.title' %></h2>
-      <div class="user-about-text">
-        <% if @user.about_me.blank? %>
-          <%= t 'users.profile.about_me.empty', :name => @user.name.split.first %>
-        <% else %>
-          <%= raw @user.about_me %> </div>
-        <% end %>
+      <h2><%= t('users.profile.about_me.title') %></h2>
+      <%= f.input :about_me, :as => :text, :input_html => {:class => 'tinymce', 'data-components' => 'editor'} %>
     </div>
 
-    <div class="user-contributions">
-      <h2><%= t 'users.profile.last_contributions' %></h2>
+    <div class="user-contributions" data-components="overlay">
+      <h2><%= t('users.profile.last_contributions') %></h2>
       <%= render 'updates/last_updates' %>
     </div>
 
   </div>
+  <% end %>
 </div>

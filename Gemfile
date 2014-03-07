@@ -16,6 +16,8 @@ gem 'bourbon'                       # sass mixins and utilities
 gem 'compass-rails'                 # sass mixins and sprites generation
 gem 'oily_png'                      # faster png sprite generation for compass
 gem 'font-awesome-sass'             # font with svg icons
+gem 'tinymce-rails'                 # tinymce wysiwyg editor
+gem 'tinymce-rails-langs'           # tinymce language pack
 
 # gem 'turbolinks'                  # speed page loading
 
@@ -50,4 +52,5 @@ group :test do
   gem 'poltergeist'                 # phantomjs driver
   gem 'ejs'                         # js templating for js test fixtures
   gem 'database_cleaner'            # improved database cleaning for tests
+  gem 'simplecov', '~> 0.7.1', require: false   # coverage report
 end

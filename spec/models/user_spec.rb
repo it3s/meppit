@@ -11,6 +11,8 @@ describe User do
   it { expect(subject).to validate_confirmation_of :password }
   it { expect(subject).to validate_acceptance_of :license_aggrement }
   it { expect(subject).to have_db_column :language }
+  it { expect(subject).to have_db_column :about_me }
+  it { expect(subject).to have_db_column :contacts }
 
   it 'validates format of email' do
     user.email = 'invalidmail'
@@ -26,6 +28,13 @@ describe User do
     user.password = '123'
     expect(user.valid?).to be_false
     expect(user.errors[:password].first).to eq 'is too short (minimum is 6 characters)'
+  end
+
+  it 'contacts is a hstore and accepts data in hash format' do
+    user = FactoryGirl.build(:user)
+    user.contacts = {'test' => 'ok', 'address' => 'av paulista, 800, SP'}
+    expect(user.save).to be_true
+    expect(User.find_by(:id => user.id).contacts).to eq({'test' => 'ok', 'address' => 'av paulista, 800, SP'})
   end
 
   describe "encryption matches legacy DB" do

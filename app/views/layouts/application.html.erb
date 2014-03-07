@@ -10,7 +10,7 @@
 
   <%= yield :head %>
 </head>
-<body>
+<body data-locale="<%= I18n.locale %>">
   <%= render 'shared/header' %>
 
   <%= render 'shared/alerts' %>

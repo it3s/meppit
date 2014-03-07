@@ -1,54 +1,17 @@
 <div class="contacts">
   <ul>
-    <li class="contact-item">
-    <%= icon 'phone', '', :class => 'fa-lg fa-fw' %>
-      <span class="text">(11) 987654321</span>
-    </li>
-
-    <li class="contact-item">
-      <%= icon 'home', '', :class => 'fa-lg fa-fw' %>
-      <span class="text">Av Paulista, 7000, São Paulo, SP</span>
-    </li>
-
-    <li class="contact-item">
-      <%= icon 'road', '', :class => 'fa-lg fa-fw' %>
-      <span class="text">São Paulo</span>
-    </li>
-
-    <li class="contact-item">
-      <%= icon 'paperclip', '', :class => 'fa-lg fa-fw' %>
-      <span class="text">apt 800</span>
-    </li>
-
-    <li class="contact-item">
-      <%= icon 'laptop', '', :class => 'fa-lg fa-fw' %>
-      <span class="text">www.meppit.com</span>
-    </li>
-
-    <li class="contact-item">
-      <%= icon 'envelope', '', :class => 'fa-lg fa-fw' %>
-      <span class="text">contato@meppit.com</span>
-    </li>
-
-    <li class="contact-item">
-      <%= icon 'twitter', '', :class => 'fa-lg fa-fw' %>
-      <span class="text">@meppit</span>
-    </li>
-
-    <li class="contact-item">
-      <%= icon 'facebook', '', :class => 'fa-lg fa-fw' %>
-      <span class="text">www.facebook.com/meppit</span>
-    </li>
-
-    <li class="contact-item">
-      <%= icon 'compass', '', :class => 'fa-lg fa-fw' %>
-      <span class="text">other contact info</span>
-    </li>
-
-    <li class="contact-item">
-      <%= icon 'envelope-o', '', :class => 'fa-lg fa-fw' %>
-      <span class="text">09090-900</span>
-    </li>
+    <% contacts_list_for(object).each do |contact| %>
+      <li class="contact-item" title='<%= t("contacts.#{contact[:key]}") %>'>
+        <%= icon contact[:icon], '', :class => 'fa-lg fa-fw' %>
+        <span class="text">
+          <% if contact[:key].to_sym == :site %>
+            <a href="<%= with_http contact[:value] %>"> <%= contact[:value] %> </a>
+          <% else %>
+            <%= contact[:value] %>
+          <% end %>
+        </span>
+      </li>
+    <% end %>
   </ul>
 </div>
 

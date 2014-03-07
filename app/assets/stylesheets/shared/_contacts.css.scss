@@ -4,14 +4,23 @@
   .contact-item {
     display: inline-block;
     width: 32.8%;
+    margin-bottom: 10px;
+
+    input {
+      width: 90%;
+      margin: 5px;
+    }
   }
 
   .text  {
     width: 81%;
     display:inline-block;
-    margin: 0 4px 10px;
+    margin: 0 4px;
     vertical-align: top;
     word-wrap: break-word;
+    font-size: 0.9em;
+    a { color: $text-color; }
   }
 
 }
+.edit .contact-item i {margin-left: 5px;}

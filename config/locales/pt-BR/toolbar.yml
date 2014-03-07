@@ -1,0 +1,11 @@
+pt-BR:
+  toolbar:
+    edit: "Editar"
+    star: "Curtir e seguir este conteúdo"
+    comment: "Comentar"
+    history: "Ver histórico de mudanças"
+    flag: "Reportar conteúdo impróprio"
+    delete: 'Requisitar deleção'
+    google: '+1 no Google+'
+    facebook: 'Curtir no Facebook'
+    twitter: 'Tweetar sobre este conteúdo'

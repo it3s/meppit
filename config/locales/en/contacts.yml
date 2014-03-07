@@ -1,0 +1,12 @@
+en:
+  contacts:
+    phone: 'Phone'
+    email: 'E-mail'
+    address: 'Address'
+    city: 'City'
+    compl: 'Complement'
+    site: 'Web site'
+    other: 'Others'
+    postal_code: 'Postal Code'
+    twitter: 'Twitter'
+    facebook: 'Facebook'

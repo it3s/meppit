@@ -20,6 +20,11 @@ describe ApplicationHelper do
     it { expect(helper.javascript_exists?('inexistent')).to be_false}
   end
 
+  describe "#with_http" do
+    it { expect(helper.with_http "http://www.meppit.com").to eq "http://www.meppit.com"}
+    it { expect(helper.with_http "www.meppit.com").to eq "http://www.meppit.com"}
+  end
+
   describe "#hash_to_attributes" do
     it "return empty string for empty hash" do
       expect(helper.hash_to_attributes({})).to eq ''
@@ -76,6 +81,36 @@ describe ApplicationHelper do
       it "class simple_form_for with remote options" do
         helper.should receive(:simple_form_for).with(user, args)
         helper.remote_form_for user, :other => :bla, :html => {:class => 'my-class'} { }
+      end
+    end
+  end
+
+  describe "#tools_list" do
+    let(:obj) { FactoryGirl.create :user }
+    it { expect(helper.tools_list(obj).size).to eq 9 }
+    it { expect(helper.tools_list(obj, only=[:edit, :star]).size).to eq 2 }
+  end
+
+
+  describe "Corcerns::ContactsHelper" do
+    let(:user) { FactoryGirl.create :user, :contacts => {'address' => 'rua Bla', 'phone' => '12345'} }
+
+    describe "#contacts_list_for" do
+      it 'selects only the icons forms existing contact keys' do
+        expect(helper.contacts_list_for user).to eq([
+          {:key => 'phone',   :icon => :phone, :value => "12345"},
+          {:key => 'address', :icon => :home,  :value => "rua Bla"},
+        ])
+      end
+    end
+
+    describe "#contacts_fields_for" do
+      it "builds fields for all contacts" do
+        expect(helper.contacts_fields_for(user).size).to eq 10
+      end
+
+      it "each contact field has key, icon, value and name" do
+        expect(helper.contacts_fields_for(user).first.keys).to eq [:key, :icon, :value, :name]
       end
     end
   end

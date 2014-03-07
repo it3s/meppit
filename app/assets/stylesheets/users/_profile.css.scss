@@ -23,13 +23,21 @@
   // Central pane
   .user-name { margin: 0 0 30px;}
 
+  .user-about-text {
+    border-left: solid 2px $meppit-blue;
+    padding-left: 20px;
+  }
+
   .user-contributions {
     margin-top: 20px;
     border: solid 1px $meppit-blue;
     border-radius: 8px;
     padding: 10px 5px;
 
-
     h2 { margin-top: 0; }
+  }
+
+  &.edit {
+    .field label { display: none;}
   }
 }

@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   include PasswordResets
 
-  before_action :require_login, :only => [:show]
+  before_action :require_login,   :only => [:edit, :update]
+  before_action :find_user,       :only => [:show, :edit, :update]
+  before_action :is_current_user, :only => [:edit, :update]
 
   def new
     @user = User.new
@@ -32,16 +34,39 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def edit
   end
 
+  def update
+    @user.assign_attributes(user_params)
+    if @user.valid? && @user.save
+      flash[:notice] = t('users.flash.updated')
+      render :json => {:redirect => user_path(@user)}
+    else
+      render :json => {:errors => @user.errors.messages}, :status => :unprocessable_entity
+    end
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password,
-      :password_confirmation, :license_aggrement)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation,
+                                 :license_aggrement, :about_me).tap do |whitelisted|
+      whitelisted[:contacts] = cleaned_contacts if params[:user][:contacts]
+    end
+  end
+
+  def cleaned_contacts
+    params[:user][:contacts].delete_if { |key, value| value.blank? }
+  end
+
+  def find_user
+    @user = User.find(params[:id])
+  end
+
+  def is_current_user
+    redirect_to(root_path, :notice => t('access_denied')) if @user != current_user
   end
 end

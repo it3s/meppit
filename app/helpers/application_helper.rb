@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include Concerns::ContactsHelper
 
   def i18n_language_names
     {
@@ -13,6 +14,10 @@ module ApplicationHelper
     extensions.inject(false) do |truth, extension|
       truth || File.exists?("#{script}#{extension}")
     end
+  end
+
+  def with_http(url)
+    url.starts_with?('http://') ? url : "http://#{url}"
   end
 
   def hash_to_attributes(hash)
@@ -40,15 +45,15 @@ module ApplicationHelper
 
   def tools_list(obj, only=:all)
     tools = {
-      :edit     => {:icon => :pencil,        :url => url_for([:edit, obj])},
-      :star     => {:icon => :star,          :url => ""},
-      :comment  => {:icon => :comment,       :url => ""},
-      :history  => {:icon => :'clock-o',     :url => ""},
-      :flag     => {:icon => :flag,          :url => ""},
-      :delete   => {:icon => :'trash-o',     :url => ""},
-      :google   => {:icon => :'google-plus', :url => ""},
-      :facebook => {:icon => :facebook,      :url => ""},
-      :twitter  => {:icon => :twitter,       :url => ""},
+      :edit     => {:icon => :pencil,        :title => t('toolbar.edit'),     :url => url_for([:edit, obj])},
+      :star     => {:icon => :star,          :title => t('toolbar.star'),     :url => ""},
+      :comment  => {:icon => :comment,       :title => t('toolbar.comment'),  :url => ""},
+      :history  => {:icon => :'clock-o',     :title => t('toolbar.history'),  :url => ""},
+      :flag     => {:icon => :flag,          :title => t('toolbar.flag'),     :url => ""},
+      :delete   => {:icon => :'trash-o',     :title => t('toolbar.delete'),   :url => ""},
+      :google   => {:icon => :'google-plus', :title => t('toolbar.google'),   :url => ""},
+      :facebook => {:icon => :facebook,      :title => t('toolbar.facebook'), :url => ""},
+      :twitter  => {:icon => :twitter,       :title => t('toolbar.twitter'),  :url => ""},
     }
     only == :all ? tools.values() : only.map {|name| tools[name] }
   end

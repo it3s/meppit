@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include Contacts
+
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
   end

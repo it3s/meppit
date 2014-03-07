@@ -1,3 +1,6 @@
 en:
   or: 'or'
   submit: 'submit'
+  access_denied: 'access denied'
+  save_changes: 'Save Changes'
+  cancel: 'Cancel'

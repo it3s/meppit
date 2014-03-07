@@ -27,7 +27,7 @@ describe SessionsController do
         it_behaves_like "return json with :unprocessable_entity"
       end
 
-      describe "imvalid email or password" do
+      describe "invalid email or password" do
         let!(:user) { FactoryGirl.create(:user, :password => passwd) }
         let(:params) { {:email => user.email, :password => '321654'} }
 

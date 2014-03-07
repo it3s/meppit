@@ -12,6 +12,7 @@ pt-BR:
     flash:
       activated: 'Usuário foi corretamente ativado. Por favor, entre.'
       activation_error: '<strong>Token inválido!</strong> Você já clicou nesse link? Tente gerar outro token, indo para a janela de login e clicando em "esqueceu a sua senha?".'
+      updated: 'Perfil atualizado com sucesso'
 
     oauth:
       logged: 'Login feito com %{provider}'
@@ -23,3 +24,9 @@ pt-BR:
       edit_title: 'Escolha uma nova senha'
       updated: 'A senha foi alterada com sucesso'
 
+    profile:
+      projects: 'Projetos'
+      about_me:
+        title: 'Sobre mim'
+        empty: "%{name} não escreveu nada ainda."
+      last_contributions: 'Últimas Contribuições'
