@@ -24,4 +24,10 @@ en:
       edit_title: 'Choose a new password'
       updated: 'Password was successfully updated'
 
+    profile:
+      projects: 'Projects'
+      about_me:
+        title: 'About me'
+        empty: "%{name} hasn't written anything yet."
+      last_contributions: 'Last Contributions'
 

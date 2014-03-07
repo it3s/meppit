@@ -4,8 +4,8 @@
   <%= remote_form_for @user do |f| %>
 
   <div class="form-actions">
-    <%= submit_tag 'Save changes', :class => "edit-save" %>
-    <%= link_to 'Cancelar', url_for(@user) %>
+    <%= submit_tag t('save_changes'), :class => "edit-save" %>
+    <%= link_to t('cancel'), url_for(@user) %>
   </div>
 
   <div class="left-pane">
@@ -18,7 +18,7 @@
     </div>
 
     <div class="user-projects" data-components="overlay">
-      <h2>Projects</h2>
+      <h2><%= t('users.profile.projects') %></h2>
       <ul>
         <li class="user-projects-item">
           <%= image_tag "imgs/aldeias-infantis.png" %>
@@ -38,12 +38,12 @@
     <%= render 'shared/contacts_form', :object => @user %>
 
     <div class="user-about">
-      <h2>About me</h2>
+      <h2><%= t('users.profile.about_me.title') %></h2>
       <%= f.input :about_me, :as => :text, :input_html => {:class => 'tinymce', 'data-components' => 'editor'} %>
     </div>
 
     <div class="user-contributions" data-components="overlay">
-      <h2>Last Contributions</h2>
+      <h2><%= t('users.profile.last_contributions') %></h2>
       <%= render 'updates/last_updates' %>
     </div>
 

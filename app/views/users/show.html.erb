@@ -11,7 +11,7 @@
     </div>
 
     <div class="user-projects">
-      <h2>Projects</h2>
+      <h2><%= t 'users.profile.projects' %></h2>
       <ul>
         <li class="user-projects-item">
           <%= image_tag "imgs/aldeias-infantis.png" %>
@@ -31,17 +31,17 @@
     <%= render 'shared/contacts', :object => @user %>
 
     <div class="user-about">
-      <h2>About me</h2>
+      <h2><%= t 'users.profile.about_me.title' %></h2>
       <div class="user-about-text">
         <% if @user.about_me.blank? %>
-          <%= @user.name %> has not written about itself yet.
+          <%= t 'users.profile.about_me.empty', :name => @user.name.split.first %>
         <% else %>
           <%= raw @user.about_me %> </div>
         <% end %>
     </div>
 
     <div class="user-contributions">
-      <h2>Last Contributions</h2>
+      <h2><%= t 'users.profile.last_contributions' %></h2>
       <%= render 'updates/last_updates' %>
     </div>
 

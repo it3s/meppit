@@ -24,3 +24,9 @@ pt-BR:
       edit_title: 'Escolha uma nova senha'
       updated: 'A senha foi alterada com sucesso'
 
+    profile:
+      projects: 'Projetos'
+      about_me:
+        title: 'Sobre mim'
+        empty: "%{name} não escreveu nada ainda."
+      last_contributions: 'Últimas Contribuições'

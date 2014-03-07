@@ -1,0 +1,12 @@
+pt-BR:
+  contacts:
+    phone: 'Telefone'
+    email: 'E-mail'
+    address: 'Endereço'
+    city: 'Cidade'
+    compl: 'Complemento'
+    site: 'Web site'
+    other: 'Outros'
+    postal_code: 'CEP'
+    twitter: 'Twitter'
+    facebook: 'Facebook'

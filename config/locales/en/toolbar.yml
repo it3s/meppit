@@ -1,0 +1,11 @@
+en:
+  toolbar:
+    edit: "Edit"
+    star: "Like and follow this content"
+    comment: "Comment"
+    history: "See changes history"
+    flag: "Flag inappropraite content"
+    delete: 'Request deletion'
+    google: '+1 on Google+'
+    facebook: 'Like on facebook'
+    twitter: 'Tweet about this content'

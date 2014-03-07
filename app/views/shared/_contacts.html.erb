@@ -1,7 +1,7 @@
 <div class="contacts">
   <ul>
     <% contacts_list_for(object).each do |contact| %>
-      <li class="contact-item">
+      <li class="contact-item" title='<%= t("contacts.#{contact[:key]}") %>'>
         <%= icon contact[:icon], '', :class => 'fa-lg fa-fw' %>
         <span class="text">
           <% if contact[:key].to_sym == :site %>
