@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   include PasswordResets
 
-  before_action :require_login,   :only => [:show, :edit, :update]
+  before_action :require_login,   :only => [:edit, :update]
   before_action :find_user,       :only => [:show, :edit, :update]
   before_action :is_current_user, :only => [:edit, :update]
 
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation,
                                  :license_aggrement, :about_me).tap do |whitelisted|
-      whitelisted[:contacts] = cleaned_contacts
+      whitelisted[:contacts] = cleaned_contacts if params[:user][:contacts]
     end
   end
 
@@ -67,6 +67,6 @@ class UsersController < ApplicationController
   end
 
   def is_current_user
-    redirect_to(root_path, :notice => 'access_denied') if @user != current_user
+    redirect_to(root_path, :notice => t('access_denied')) if @user != current_user
   end
 end

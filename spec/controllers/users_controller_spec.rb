@@ -27,8 +27,8 @@ describe UsersController do
     context "valid request" do
       let(:params) do
         {
-          :user => user_attrs.merge(password: '123456',
-              password_confirmation: '123456', license_aggrement: '1')
+          :user => user_attrs.merge(:password => '123456',
+              :password_confirmation => '123456', :license_aggrement => '1')
         }
       end
 
@@ -36,12 +36,12 @@ describe UsersController do
         User.any_instance.should_receive :send_activation_email
         expect { post :create, params }.to change { User.count }.by(1)
         expect(response.header['Content-Type']).to match 'application/json'
-        expect(response.body).to match({redirect: created_users_path}.to_json)
+        expect(response.body).to match({:redirect => created_users_path}.to_json)
       end
     end
 
     context "invalid request" do
-      let(:params) { {:user => user_attrs.merge(password: '123456', password_confirmation: '321654')} }
+      let(:params) { {:user => user_attrs.merge(:password => '123456', :password_confirmation => '321654')} }
 
       it "return json with errors and status=:unprocessable_entity " do
         post :create, params
@@ -132,4 +132,109 @@ describe UsersController do
       end
     end
   end
+
+  describe "GET show" do
+    let(:user) { FactoryGirl.create :user }
+    it 'calls find_user filter' do
+      controller.should_receive :find_user
+      get :show, {:id => user.id}
+    end
+
+    it 'sets user and render template' do
+      get :show, {:id => user.id}
+      expect(assigns :user).to eq user
+      expect(response).to render_template :show
+    end
+  end
+
+  describe "GET edit" do
+    let(:user) { FactoryGirl.create :user }
+
+    context "not logged in" do
+      before { logout_user }
+      it "require_login" do
+        controller.should_receive :require_login
+        get :edit, {:id => user.id}
+        expect(controller).to_not render_template :edit
+      end
+    end
+
+    context "logged in" do
+      before { login_user user }
+
+      it 'calls find_user filter' do
+        controller.should_receive :find_user
+        get :edit, {:id => user.id}
+      end
+
+      it 'sets user and render template' do
+        get :edit, {:id => user.id}
+        expect(assigns :user).to eq user
+        expect(response).to render_template :edit
+      end
+
+      it 'denies access to other users' do
+        another_user = FactoryGirl.create :user
+        get :edit, {:id => another_user.id}
+        expect(response).to redirect_to root_path
+        expect(controller.flash[:notice]).to eq controller.t('access_denied')
+      end
+    end
+  end
+
+  describe "POST update" do
+    let(:user) { FactoryGirl.create :user }
+    let(:user_params) { {:contacts => {:address => "rua Bla", :phone => "12345"},
+                         :about_me => "<h2>Test</h2> <p>save html text</p>",
+                         :name => user.name} }
+
+    context "not logged in" do
+      before { logout_user }
+      it "require_login" do
+        controller.should_receive :require_login
+        post :update, {:id => user.id}
+        expect(controller.status).to eq 302
+      end
+    end
+
+    context "logged in" do
+      before { login_user user }
+
+      it 'calls find_user filter' do
+        controller.should_receive :find_user
+        post :update, {:id => user.id}
+      end
+
+      it 'cleans contacts field' do
+        user_params.merge! :site => "", :twitter => ""
+        post :update, {:id => user.id, :user => user_params}
+        expect(controller.send(:user_params)[:contacts].keys).to eq ['address', 'phone']
+      end
+
+      it 'saves user and return redirect' do
+        post :update, {:id => user.id, :user => user_params}
+        expect(assigns :user).to eq user
+        expect(response.body).to match({:redirect => user_path(user)}.to_json)
+        user.reload
+        expect(user.contacts).to eq({'address' => 'rua Bla', 'phone' => '12345'})
+        expect(user.about_me).to eq "<h2>Test</h2> <p>save html text</p>"
+      end
+
+      it 'validates model and returns errors' do
+        post :update, {:id => user.id, :user => user_params.merge!(:name => "")}
+        expect(assigns :user).to eq user
+        expect(response.body).to eq({:errors => {:name => ["can't be blank"]}}.to_json)
+        user.reload
+      end
+
+
+      it 'denies access to other users' do
+        another_user = FactoryGirl.create :user
+        post :update, {:id => another_user.id}
+        expect(response).to redirect_to root_path
+        expect(controller.flash[:notice]).to eq controller.t('access_denied')
+      end
+    end
+  end
+
 end
