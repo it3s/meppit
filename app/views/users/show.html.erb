@@ -28,7 +28,7 @@
   <div class="central-pane">
     <h1 class="user-name"><%= @user.name %></h1>
 
-    <%= render 'shared/contacts' %>
+    <%= render 'shared/contacts', :object => @user %>
 
     <div class="user-about">
       <h2>About me</h2>

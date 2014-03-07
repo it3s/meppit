@@ -41,9 +41,8 @@ class UsersController < ApplicationController
 
   def update
     @user.assign_attributes(user_params)
-    binding.pry
     if @user.valid? && @user.save
-      flash[:notice] = "Profile successfuly updated"
+      flash[:notice] = t('users.flash.updated')
       render :json => {:redirect => user_path(@user)}
     else
       render :json => {:errors => @user.errors.messages}, :status => :unprocessable_entity
@@ -53,10 +52,14 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password,
-      :password_confirmation, :license_aggrement).tap do |whitelisted|
-      whitelisted[:contacts] = params[:user][:contacts].delete_if { |key, value| value.blank? }
+    params.require(:user).permit(:name, :email, :password, :password_confirmation,
+                                 :license_aggrement).tap do |whitelisted|
+      whitelisted[:contacts] = cleaned_contacts
     end
+  end
+
+  def cleaned_contacts
+    params[:user][:contacts].delete_if { |key, value| value.blank? }
   end
 
   def find_user
@@ -64,6 +67,6 @@ class UsersController < ApplicationController
   end
 
   def is_current_user
-    redirect_to(root_path, :notice => "no access") if @user != current_user
+    redirect_to(root_path, :notice => 'access_denied') if @user != current_user
   end
 end

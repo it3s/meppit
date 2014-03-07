@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include Concerns::ContactsHelper
 
   def i18n_language_names
     {
@@ -13,6 +14,10 @@ module ApplicationHelper
     extensions.inject(false) do |truth, extension|
       truth || File.exists?("#{script}#{extension}")
     end
+  end
+
+  def with_http(url)
+    url.starts_with?('http://') ? url : "http://#{url}"
   end
 
   def hash_to_attributes(hash)

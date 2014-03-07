@@ -1,64 +1,12 @@
 <div class="contacts">
   <ul>
-    <li class="contact-item">
-      <%= icon 'phone', '', :class => 'fa-lg fa-fw' %>
-      <span class="type">Phone</span>
-      <%= text_field_tag :phone, '', :name => "user[contacts][phone]" %>
-    </li>
-
-    <li class="contact-item">
-      <%= icon 'home', '', :class => 'fa-lg fa-fw' %>
-      <span class="type">Address</span>
-      <%= text_field_tag :address, '', :name => "user[contacts][address]" %>
-    </li>
-
-    <li class="contact-item">
-      <%= icon 'road', '', :class => 'fa-lg fa-fw' %>
-      <span class="type">City</span>
-      <%= text_field_tag :city, '', :name => "user[contacts][city]" %>
-    </li>
-
-    <li class="contact-item">
-      <%= icon 'paperclip', '', :class => 'fa-lg fa-fw' %>
-      <span class="type">Complement</span>
-      <%= text_field_tag :compl, '', :name => "user[contacts][compl]" %>
-    </li>
-
-    <li class="contact-item">
-      <%= icon 'laptop', '', :class => 'fa-lg fa-fw' %>
-      <span class="type">Site</span>
-      <%= text_field_tag :site, '', :name => "user[contacts][site]" %>
-    </li>
-
-    <li class="contact-item">
-      <%= icon 'envelope', '', :class => 'fa-lg fa-fw' %>
-      <span class="type">E-mail</span>
-      <%= text_field_tag :email, '', :name => "user[contacts][email]" %>
-    </li>
-
-    <li class="contact-item">
-      <%= icon 'twitter', '', :class => 'fa-lg fa-fw' %>
-      <span class="type">Twitter</span>
-      <%= text_field_tag :twitter, '', :name => "user[contacts][twitter]" %>
-    </li>
-
-    <li class="contact-item">
-      <%= icon 'facebook', '', :class => 'fa-lg fa-fw' %>
-      <span class="type">Facebook</span>
-      <%= text_field_tag :facebook, '', :name => "user[contacts][facebook]" %>
-    </li>
-
-    <li class="contact-item">
-      <%= icon 'compass', '', :class => 'fa-lg fa-fw' %>
-      <span class="type">Other contact info</span>
-      <%= text_field_tag :other, '', :name => "user[contacts][other]" %>
-    </li>
-
-    <li class="contact-item">
-      <%= icon 'envelope-o', '', :class => 'fa-lg fa-fw' %>
-      <span class="type">Postal code</span>
-      <%= text_field_tag :postal_code, '', :name => "user[contacts][postal_code]" %>
-    </li>
+    <% contacts_fields_for(object).each do |contact| %>
+      <li class="contact-item">
+        <%= icon contact[:icon], '', :class => 'fa-lg fa-fw' %>
+        <span class="type"><%= t("contacts.#{contact[:key]}") %></span>
+        <%= text_field_tag contact[:key], contact[:value], :name => contact[:name] %>
+      </li>
+    <% end %>
   </ul>
 </div>
 

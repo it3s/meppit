@@ -12,6 +12,7 @@ en:
     flash:
       activated: 'User was successfully activated. Please log in.'
       activation_error: '<strong>Invalid token!</strong> You already have clicked on this link? Try generating another token by going to the login box and clicking on "forgot your password".'
+      updated: 'Profile successfully updated'
 
     oauth:
       logged: 'Logged in from %{provider}'
@@ -22,4 +23,5 @@ en:
       email_sent: 'Instructions have been sent to your email'
       edit_title: 'Choose a new password'
       updated: 'Password was successfully updated'
+
 
