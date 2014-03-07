@@ -1,6 +1,5 @@
 module Concerns
   module ContactsHelper
-
     extend ActiveSupport::Concern
 
     included do

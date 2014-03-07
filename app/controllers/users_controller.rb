@@ -53,7 +53,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation,
-                                 :license_aggrement).tap do |whitelisted|
+                                 :license_aggrement, :about_me).tap do |whitelisted|
       whitelisted[:contacts] = cleaned_contacts
     end
   end

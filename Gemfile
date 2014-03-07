@@ -16,6 +16,8 @@ gem 'bourbon'                       # sass mixins and utilities
 gem 'compass-rails'                 # sass mixins and sprites generation
 gem 'oily_png'                      # faster png sprite generation for compass
 gem 'font-awesome-sass'             # font with svg icons
+gem 'tinymce-rails'                 # tinymce wysiwyg editor
+gem 'tinymce-rails-langs'           # tinymce language pack
 
 # gem 'turbolinks'                  # speed page loading
 
