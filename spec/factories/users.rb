@@ -3,6 +3,7 @@ FactoryGirl.define do
     name "John"
     sequence(:email)   { |n| "john#{n}@doe.com" }
     password "abcdef"
+    language "en"
     after(:create) { |obj| obj.activate! }
   end
 
@@ -10,6 +11,7 @@ FactoryGirl.define do
     name "John"
     sequence(:email)   { |n| "john#{n}@doe.com" }
     password "abcdef"
+    language "en"
     activation_token "blablablablabla"
     activation_state "pending"
   end

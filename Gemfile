@@ -53,4 +53,5 @@ group :test do
   gem 'ejs'                         # js templating for js test fixtures
   gem 'database_cleaner'            # improved database cleaning for tests
   gem 'simplecov', '~> 0.7.1', require: false   # coverage report
+  gem 'coveralls', require: false   # use coveralls with travisCI
 end

@@ -3,6 +3,9 @@ unless ENV["NOCOVERAGE"]
   SimpleCov.start 'rails' do
     coverage_dir 'coverage/ruby'
   end
+
+  require 'coveralls'
+  Coveralls.wear!
 end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
