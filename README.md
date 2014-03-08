@@ -2,6 +2,7 @@ Maps rebuild
 
 [![Build Status](https://travis-ci.org/it3s/meppit.png?branch=master)](https://travis-ci.org/it3s/meppit)
 [![Code Climate](https://codeclimate.com/github/it3s/meppit.png)](https://codeclimate.com/github/it3s/meppit)
+[![Coverage Status](https://coveralls.io/repos/it3s/meppit/badge.png)](https://coveralls.io/r/it3s/meppit)
 
 * Ruby version: 2.0.0
 
