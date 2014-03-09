@@ -11,6 +11,7 @@ Maps rebuild
 * postgresql (with postgresql-contrib for hstore)
 * redis
 * you need to have a execjs runtime (i.e. Nodejs, rhyno, therubyracer)
+* imagemagick
 
 ### Setup:
 

@@ -18,6 +18,9 @@ gem 'oily_png'                      # faster png sprite generation for compass
 gem 'font-awesome-sass'             # font with svg icons
 gem 'tinymce-rails'                 # tinymce wysiwyg editor
 gem 'tinymce-rails-langs'           # tinymce language pack
+gem 'carrierwave'                   # file uploads abstraction
+gem 'carrierwave_backgrounder'      # delegate uploads to background jobs
+gem 'mini_magick'                   # image processing for uploaders
 
 # gem 'turbolinks'                  # speed page loading
 
