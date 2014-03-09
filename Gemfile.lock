@@ -195,6 +195,7 @@ GEM
     redis (3.0.7)
     redis-namespace (1.4.1)
       redis (~> 3.0.4)
+    remotipart (1.2.1)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rspec-core (2.14.7)
@@ -304,6 +305,7 @@ DEPENDENCIES
   pry-rails
   puma
   rails (= 4.0.2)
+  remotipart
   rspec-rails (~> 2.0)
   sass-rails (~> 4.0.0)
   sdoc

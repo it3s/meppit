@@ -10,7 +10,8 @@
 
   <div class="left-pane">
     <div class="user-picture">
-      <%= image_tag "imgs/profile-placeholder.png", :alt => 'user picture' %>
+      <%= image_tag @user.avatar.thumb.url, :alt => 'user picture' %>
+      <%= f.input :avatar, :as => :file %>
     </div>
 
     <div class="user-location">

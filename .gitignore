@@ -33,3 +33,6 @@
 
 # code coverage
 /coverage
+
+# uploads
+/public/uploads

@@ -21,7 +21,8 @@ gem 'tinymce-rails-langs'           # tinymce language pack
 gem 'carrierwave'                   # file uploads abstraction
 gem 'carrierwave_backgrounder'      # delegate uploads to background jobs
 gem 'mini_magick'                   # image processing for uploaders
-gem "fog"                           # upload images to amazon S3
+gem 'fog'                           # upload images to amazon S3
+gem 'remotipart'                    # enable ajax file uploads on remote forms
 
 # gem 'turbolinks'                  # speed page loading
 
