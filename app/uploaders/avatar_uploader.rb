@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class AvatarUploader < CarrierWave::Uploader::Base
+  include ::CarrierWave::Backgrounder::Delay
   include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
@@ -46,6 +47,10 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename
   #   "something.jpg" if original_filename
+  # end
+
+  #  def default_url
+  #   ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
   # end
 
 end

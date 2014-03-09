@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   end
 
   mount_uploader :avatar, AvatarUploader
+  process_in_background :avatar
 
   has_many :authentications, :dependent => :destroy
   accepts_nested_attributes_for :authentications
