@@ -18,11 +18,7 @@ gem 'oily_png'                      # faster png sprite generation for compass
 gem 'font-awesome-sass'             # font with svg icons
 gem 'tinymce-rails'                 # tinymce wysiwyg editor
 gem 'tinymce-rails-langs'           # tinymce language pack
-gem 'carrierwave'                   # file uploads abstraction
-gem 'carrierwave_backgrounder'      # delegate uploads to background jobs
-gem 'mini_magick'                   # image processing for uploaders
-gem 'fog'                           # upload images to amazon S3
-gem 'remotipart'                    # enable ajax file uploads on remote forms
+gem "jquery-fileupload-rails"       # jquery-fielupload plugin
 
 # gem 'turbolinks'                  # speed page loading
 
@@ -30,6 +26,11 @@ gem 'sorcery'                       # authentication
 gem 'simple_form'                   # improved forms builder
 gem 'sidekiq'                       # background jobs
 gem 'http_accept_language'          # get locale from http headers
+gem 'carrierwave'                   # file uploads abstraction
+gem 'carrierwave_backgrounder'      # delegate uploads to background jobs
+gem 'mini_magick'                   # image processing for uploaders
+gem 'fog'                           # upload images to amazon S3
+gem 'remotipart'                    # enable ajax file uploads on remote forms
 
 group :doc do
   gem 'sdoc', :require => false
