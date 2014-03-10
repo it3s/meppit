@@ -21,7 +21,6 @@ Maps rebuild
 * `rake db:create db:migrate`
 
 * `rspec` or `rake spec` # run ruby tests
-* `rake konacha:run` # run js tests on the terminal
-* `rake konacha:serve` # run js tests on the browser
+* `rake konacha:serve` # run js tests on the browser (port 3500)
 
 * `foreman start`
