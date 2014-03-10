@@ -9,7 +9,7 @@
   </div>
 
   <div class="left-pane">
-    <div class="user-picture">
+    <div class="user-avatar">
       <%= image_tag @user.avatar.thumb.url, :alt => 'user picture' %>
       <%= f.input :avatar, :as => :file, :input_html => {'data-components' => 'uploader'} %>
     </div>
