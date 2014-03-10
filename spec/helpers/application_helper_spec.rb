@@ -15,6 +15,14 @@ describe ApplicationHelper do
     it { expect(helper.i18n_language_names[:'pt-BR']).to eq 'Português' }
   end
 
+  describe "#current_translations" do
+    it 'retrieves the translations hash for the locale' do
+      translations = helper.current_translations
+      expect(translations).to be_a_kind_of Hash
+      expect(translations).to eq I18n.backend.send(:translations)[:en].with_indifferent_access
+    end
+  end
+
   describe "#javascript_exists?" do
     it { expect(helper.javascript_exists?('application')).to be_true }
     it { expect(helper.javascript_exists?('inexistent')).to be_false}
@@ -67,7 +75,7 @@ describe ApplicationHelper do
     let(:user) { FactoryGirl.build(:user) }
 
     context "without options" do
-      let(:args) { {:remote => true, :html => {'data-components' => 'remoteForm'}} }
+      let(:args) { {:remote => true, :html => {'data-components' => 'remoteForm', 'multipart' => true}} }
       let(:form) { "" }
       it "class simple_form_for with remote options" do
         helper.should receive(:simple_form_for).with(user, args)
@@ -76,7 +84,7 @@ describe ApplicationHelper do
     end
 
     context "with extra options" do
-      let(:args) { {:remote => true, :other => :bla, :html => {'data-components' => 'remoteForm', :class => 'my-class'}} }
+      let(:args) { {:remote => true, :other => :bla, :html => {'data-components' => 'remoteForm', 'multipart' => true, :class => 'my-class'}} }
       let(:form) { "" }
       it "class simple_form_for with remote options" do
         helper.should receive(:simple_form_for).with(user, args)

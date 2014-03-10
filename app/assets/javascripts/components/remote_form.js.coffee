@@ -10,7 +10,7 @@ App.components.remoteForm = (container) ->
       @container.find('.field_with_errors').removeClass('field_with_errors')
 
     onError: (_this, el, response) ->
-      err = JSON.parse(response.responseText)?.errors || 'Error'
+      err = response.errors || 'Error'
       _this.cleanErrors()
       if _.isObject err
         _.each err, (value, key) ->
@@ -26,9 +26,7 @@ App.components.remoteForm = (container) ->
       window.location.href = response.redirect if response.redirect
 
     bindEvents: ->
-      @container.on 'ajax:error', (el, response) =>
-        @onError this, el, response
-
-      @container.on 'ajax:success', (el, response) =>
-        @onSuccess this, el, response
+      @container.on 'ajax:complete', (el, response) =>
+        callback = if parseInt(response.status, 10) is 200 then @onSuccess else @onError
+        callback this, el, JSON.parse(response.responseText)
   }

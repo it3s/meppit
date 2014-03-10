@@ -3,16 +3,16 @@
   h2 { margin: 20px 0; }
 
   // left pane
-  .user-picture img{
+  .user-avatar img{
     width: 100%;
     max-height: 200px;
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
   }
 
   .user-location img{
     width: 100%;
     max-height: 200px;
-    margin-bottom: 20px;
+    margin: 20px 0;
   }
 
   .user-projects {

@@ -11,6 +11,7 @@ Maps rebuild
 * postgresql (with postgresql-contrib for hstore)
 * redis
 * you need to have a execjs runtime (i.e. Nodejs, rhyno, therubyracer)
+* imagemagick
 
 ### Setup:
 
@@ -20,7 +21,6 @@ Maps rebuild
 * `rake db:create db:migrate`
 
 * `rspec` or `rake spec` # run ruby tests
-* `rake konacha:run` # run js tests on the terminal
-* `rake konacha:serve` # run js tests on the browser
+* `rake konacha:serve` # run js tests on the browser (port 3500)
 
 * `foreman start`

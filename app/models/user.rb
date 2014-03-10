@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
     config.authentications_class = Authentication
   end
 
+  mount_uploader :avatar, AvatarUploader
+  process_in_background :avatar
+
   has_many :authentications, :dependent => :destroy
   accepts_nested_attributes_for :authentications
 

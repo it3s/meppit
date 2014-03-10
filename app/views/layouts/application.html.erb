@@ -23,6 +23,10 @@
 
   <%= render 'sessions/sign_in' %>
 
+  <script type="text/javascript">
+    window.I18n = <%= current_translations[:js].to_json.html_safe %>
+  </script>
+
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag params[:controller]  if javascript_exists?(params[:controller]) %>
 </body>

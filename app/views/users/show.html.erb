@@ -2,8 +2,8 @@
 
 <div id="user-profile" >
   <div class="left-pane">
-    <div class="user-picture">
-      <%= image_tag "imgs/profile-placeholder.png", :alt => 'user picture' %>
+    <div class="user-avatar">
+      <%= image_tag @user.avatar.thumb.url, :alt => 'user picture' %>
     </div>
 
     <div class="user-location">

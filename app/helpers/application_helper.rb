@@ -8,6 +8,11 @@ module ApplicationHelper
     }
   end
 
+  def current_translations
+    @translations ||= I18n.backend.send(:translations)
+    @translations[I18n.locale].with_indifferent_access
+  end
+
   def javascript_exists?(script)
     script = "#{Rails.root}/app/assets/javascripts/#{script}.js"
     extensions = %w(.coffee .erb .coffee.erb) + [""]
@@ -38,7 +43,7 @@ module ApplicationHelper
   end
 
   def remote_form_for(record, options={}, &block)
-    options.deep_merge!(:remote => true, :html => {'data-components' => 'remoteForm'})
+    options.deep_merge!(:remote => true, :html => {'data-components' => 'remoteForm', 'multipart' => true})
     simple_form_for(record, options, &block)
   end
 

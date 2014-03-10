@@ -1,6 +1,7 @@
+#= require underscore
 #= require jquery
 #= require jquery_ujs
-#= require underscore
+#= require jquery.remotipart
 
 #= require base
 
