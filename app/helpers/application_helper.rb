@@ -8,6 +8,11 @@ module ApplicationHelper
     }
   end
 
+  def current_translations
+    @translations ||= I18n.backend.send(:translations)
+    @translations[I18n.locale].with_indifferent_access
+  end
+
   def javascript_exists?(script)
     script = "#{Rails.root}/app/assets/javascripts/#{script}.js"
     extensions = %w(.coffee .erb .coffee.erb) + [""]

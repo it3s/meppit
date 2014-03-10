@@ -10,8 +10,8 @@ App.components.uploader = (container) ->
     addUploaderHtml: ->
       uploaderContainer = $("""
         <div class="uploader">
-          <div class="upload-success">File Uploaded. Refresh or Save</div>
-          <span class="upload-button">Select File</span>
+          <div class="upload-success">#{I18n.uploader.uploaded}</div>
+          <span class="upload-button">#{I18n.uploader.select_image}</span>
         </div>
       """)
       @container.closest('.field').after uploaderContainer
@@ -27,7 +27,7 @@ App.components.uploader = (container) ->
       , 200)
 
     onAdd: (_this, data) ->
-      _this.button.text 'Uploading ...'
+      _this.button.text I18n.uploader.uploading
       _this.button.append "<i class=\"fa fa-spinner fa-spin\"></i>"
       data.submit()
 
