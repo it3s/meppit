@@ -13,6 +13,7 @@ describe User do
   it { expect(subject).to have_db_column :language }
   it { expect(subject).to have_db_column :about_me }
   it { expect(subject).to have_db_column :contacts }
+  it { expect(subject).to have_db_column :avatar }
 
   it 'validates format of email' do
     user.email = 'invalidmail'
@@ -62,5 +63,9 @@ describe User do
     it "enqueues to sidekiq" do
       expect { UserMailer.delay.reset_password_email(user.id)}.to change(Sidekiq::Extensions::DelayedMailer.jobs, :size).by(1)
     end
+  end
+
+  describe "avatar" do
+    it { expect(user.avatar).to be_a_kind_of AvatarUploader }
   end
 end
