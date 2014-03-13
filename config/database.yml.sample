@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: adaptativa-elearning_development
+  database: meppit_development
   pool: 5
   username: postgres
   password:
@@ -9,7 +9,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: adaptativa-elearning_test
+  database: meppit_test
   pool: 5
   username: postgres
   password:
@@ -17,7 +17,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: adaptativa-elearning_production
+  database: meppit_production
   pool: 5
   username: postgres
   password:
@@ -25,7 +25,7 @@ production:
 staging:
   adapter: postgresql
   encoding: unicode
-  database: adaptativa-elearning_staging
+  database: meppit_staging
   pool: 5
   username: postgres
   password:
