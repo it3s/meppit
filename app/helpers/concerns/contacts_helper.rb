@@ -18,16 +18,18 @@ module Concerns
     end
 
     def contacts_list_for(object)
+      return [] if object.contacts.nil?
       CONTACTS_ICONS.select{|key, val| object.contacts.keys.include? key }.map{ |key, icon| {
         :key => key, :icon => icon, :value => object.contacts[key]
       }}
     end
 
     def contacts_fields_for(object)
+      contacts = object.contacts || {}
       CONTACTS_ICONS.map{ |key, icon| {
         :key   => key,
         :icon  => icon,
-        :value => object.contacts[key],
+        :value => contacts[key],
         :name  => "#{object.class.name.downcase}[contacts][#{key}]",
       }}
     end

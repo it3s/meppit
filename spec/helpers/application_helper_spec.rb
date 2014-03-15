@@ -104,6 +104,11 @@ describe ApplicationHelper do
     let(:user) { FactoryGirl.create :user, :contacts => {'address' => 'rua Bla', 'phone' => '12345'} }
 
     describe "#contacts_list_for" do
+      it 'returns an empty list for nil contacts' do
+        user.contacts = nil
+        expect(helper.contacts_list_for user).to eq []
+      end
+
       it 'selects only the icons forms existing contact keys' do
         expect(helper.contacts_list_for user).to eq([
           {:key => 'phone',   :icon => :phone, :value => "12345"},
@@ -114,6 +119,11 @@ describe ApplicationHelper do
 
     describe "#contacts_fields_for" do
       it "builds fields for all contacts" do
+        expect(helper.contacts_fields_for(user).size).to eq 10
+      end
+
+      it "build fields even if contacts is nil" do
+        user.contacts = nil
         expect(helper.contacts_fields_for(user).size).to eq 10
       end
 
