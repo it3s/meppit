@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe ApplicationController do
   describe '#set_locale' do
+    after(:each) do
+      I18n.locale = I18n.default_locale
+    end
+
     it 'gets from user.language' do
       controller.stub_chain(:current_user, :language).and_return :de
       expect(controller.send :set_locale).to eq :de
