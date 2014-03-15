@@ -14,10 +14,11 @@ module Concerns
         :facebook    => :facebook,
         :other       => :compass,
         :postal_code => :'envelope-o'
-      }.with_indifferent_access
+      }.with_indifferent_access unless const_defined?(:CONTACTS_ICONS)  # Removes the annoying warning message
     end
 
     def contacts_list_for(object)
+      return [] if not object.contacts
       CONTACTS_ICONS.select{|key, val| object.contacts.keys.include? key }.map{ |key, icon| {
         :key => key, :icon => icon, :value => object.contacts[key]
       }}
