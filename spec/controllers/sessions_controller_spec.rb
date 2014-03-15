@@ -15,7 +15,7 @@ describe SessionsController do
 
       describe "no data" do
         let(:params) { {} }
-        it { expect(response.body).to match({:errors => 'Fields can\'t be blank' }.to_json) }
+        it { expect(response.body).to match({:errors => controller.t('sessions.create.blank')}.to_json) }
         it_behaves_like "return json with :unprocessable_entity"
       end
 
@@ -23,7 +23,7 @@ describe SessionsController do
         let!(:user) { FactoryGirl.create(:pending_user, :password => passwd) }
         let(:params) { {:email => user.email, :password => passwd} }
 
-        it { expect(response.body).to match({:errors => 'Activation pending'}.to_json) }
+        it { expect(response.body).to match({:errors => controller.t('sessions.create.pending')}.to_json) }
         it_behaves_like "return json with :unprocessable_entity"
       end
 
@@ -31,7 +31,7 @@ describe SessionsController do
         let!(:user) { FactoryGirl.create(:user, :password => passwd) }
         let(:params) { {:email => user.email, :password => '321654'} }
 
-        it { expect(response.body).to match({:errors => 'E-mail or Password invalid'}.to_json) }
+        it { expect(response.body).to match({:errors => controller.t('sessions.create.invalid')}.to_json) }
         it_behaves_like "return json with :unprocessable_entity"
       end
     end

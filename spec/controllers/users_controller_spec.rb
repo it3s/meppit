@@ -121,7 +121,7 @@ describe UsersController do
       end
 
       context "invalid params" do
-        let(:errors_json) { {:errors => {:password_confirmation => ["doesn't match Password"]}}.to_json }
+        let(:errors_json) { {:errors => {:password_confirmation => [controller.t('activerecord.errors.messages.confirmation', {:attribute => 'Password'})]}}.to_json }
         before { params.merge! :user => {:password => '123456', :password_confirmation => '654321', :email => user.email} }
         it 'return errors' do
           post :update_password, params
@@ -223,7 +223,7 @@ describe UsersController do
       it 'validates model and returns errors' do
         post :update, {:id => user.id, :user => user_params.merge!(:name => "")}
         expect(assigns :user).to eq user
-        expect(response.body).to eq({:errors => {:name => ["can't be blank"]}}.to_json)
+        expect(response.body).to eq({:errors => {:name => [controller.t('activerecord.errors.messages.blank')]}}.to_json)
         user.reload
       end
 
