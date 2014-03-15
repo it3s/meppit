@@ -20,7 +20,7 @@ describe AvatarUploader do
     @uploader.remove!
   end
 
-  it { expect(subject.extension_white_list).to eq ['jpg', 'jpeg', 'gif', 'png'] }
+  it { expect(subject.extension_white_list).to eq ['jpg', 'jpeg', 'png'] }
   it { expect(subject.default_url).to eq '/assets/imgs/avatar-placeholder.png' }
 
   context 'the thumb version' do

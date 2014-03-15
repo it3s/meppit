@@ -29,3 +29,12 @@ pt-BR:
               invalid: 'endereço de e-mail inválido'
             password_confirmation:
               confirmation: 'senhas não coincidem'
+
+  errors:
+    messages:
+      # Carrierwave messages
+      carrierwave_processing_error: "Não foi possível redimensionar a imagem."
+      carrierwave_integrity_error: "Não é uma imagem."
+      carrierwave_download_error: "Não foi possível baixar a imagem."
+      extension_white_list_error: "Você não pode subir arquivos %{extension}. Tipos permitidos: %{allowed_types}"
+      extension_black_list_error: "Você não pode subir arquivos %{extension}. Tipos proibidos: %{prohibited_types}"
