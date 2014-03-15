@@ -49,6 +49,7 @@ group :development, :test do
   gem 'pry'                         # better shell sessions and debug tool
   gem 'pry-rails'                   # use pry as rails console
   gem 'konacha'                     # js tests with mocha + chai
+  gem 'guard-rspec', require: false # launch specs when files are modified
 end
 
 group :test do
