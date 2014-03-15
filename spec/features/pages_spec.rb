@@ -19,11 +19,11 @@ feature 'Sign in' do
 
   shared_examples_for 'login' do |expected_response|
     scenario 'log in and expect json response'do
-      click_link 'Login'
+      click_link I18n.t('header.sub_menu.login')
       within '#login-form' do
-        fill_in 'E-mail', :with => user.email
-        fill_in 'Password', :with => password
-        click_button "Log In"
+        fill_in I18n.t('sessions.form.login.email'), :with => user.email
+        fill_in I18n.t('sessions.form.login.password'), :with => password
+        click_button I18n.t('sessions.form.login.submit')
       end
       expect(page).to have_content(expected_response)
     end
@@ -35,20 +35,20 @@ feature 'Sign in' do
   end
 
   context 'blank fields' do
-    given(:expected_response) { {:errors => "Fields can't be blank"}.to_json }
+    given(:expected_response) { {:errors => I18n.t('sessions.create.blank')}.to_json }
     given(:password) { '' }
     it_behaves_like 'login'
   end
 
   context 'wrong credentials' do
-    given(:expected_response) { {:errors => "E-mail or Password invalid"}.to_json }
+    given(:expected_response) { {:errors => I18n.t('sessions.create.invalid')}.to_json }
     given(:password) { 'wrong-pass' }
     it_behaves_like 'login'
   end
 
   context 'pending user' do
     given(:user) { FactoryGirl.create(:pending_user) }
-    given(:expected_response) { {:errors => "Activation pending"}.to_json }
+    given(:expected_response) { {:errors => I18n.t('sessions.create.pending')}.to_json }
     it_behaves_like 'login'
   end
 end

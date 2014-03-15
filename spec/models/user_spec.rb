@@ -18,7 +18,7 @@ describe User do
   it 'validates format of email' do
     user.email = 'invalidmail'
     expect(user.valid?).to be_false
-    expect(user.errors[:email].first).to eq 'invalid e-mail address'
+    expect(user.errors[:email].first).to eq I18n.t('activerecord.errors.models.user.attributes.email.invalid')
 
     user.email = 'valid@email.com'
     expect(user.valid?).to be_true
@@ -28,7 +28,7 @@ describe User do
     user = FactoryGirl.build(:user)
     user.password = '123'
     expect(user.valid?).to be_false
-    expect(user.errors[:password].first).to eq 'is too short (minimum is 6 characters)'
+    expect(user.errors[:password].first).to eq I18n.t('activerecord.errors.messages.too_short', {:count => 6})
   end
 
   it 'contacts is a hstore and accepts data in hash format' do
