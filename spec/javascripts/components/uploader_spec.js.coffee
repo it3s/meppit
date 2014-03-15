@@ -21,6 +21,9 @@ describe 'uploader', ->
       @component.hideInput()
       expect($('.field').css 'display').to.be.eq 'none'
 
+    it 'gets the field name', ->
+      expect(@component.fieldName()).to.be.eq 'avatar'
+
     it 'adds the necessary markup', ->
       expect(@component.message).to.be.undefined
       expect(@component.button).to.be.undefined
@@ -51,4 +54,16 @@ describe 'uploader', ->
     it 'starts plugin on init', ->
       spy @component, 'startPlugin', =>
         @component.init()
+        expect(@component.startPlugin).to.be.called
+
+    it 'adds error message when fail', ->
+      @component.init()
+      _data = {jqXHR: {responseJSON:{ errors: {avatar: ['Upload error']}}}}
+
+      spy @component, 'startPlugin', =>
+        @component.onFail(@component, _data)
+        errEl = @component.uploaderContainer.find('.error')
+
+        expect(errEl.length).to.be.eq 1
+        expect(errEl.text()).to.be.eq 'Upload error'
         expect(@component.startPlugin).to.be.called
