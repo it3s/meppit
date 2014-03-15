@@ -1,0 +1,32 @@
+# config/i18n-tasks.yml
+# i18n data storage
+data:
+  read: 
+    - 'config/locales/%{locale}.yml'
+    - 'config/locales/%{locale}/*.yml'
+
+# i18n usage search in source
+search:
+  # search these directories (relative to your Rails.root directory, default: 'app/')
+  paths:
+    - 'app/'
+    - 'vendor/'
+    - 'spec/'
+
+# do not report these keys as unused
+ignore_unused:
+  - activerecord.*
+  - simple_form.*
+
+# do not report these keys when they have the same value as the base locale version
+ignore_eq_base:
+  all:
+    - simple_form.required.mark 
+    - contacts.facebook
+    - contacts.twitter 
+
+  pt-BR:
+    - contacts.email
+    - contacts.site
+    - sessions.form.login.email 
+    - simple_form.labels.defaults.email

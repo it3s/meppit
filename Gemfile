@@ -60,4 +60,5 @@ group :test do
   gem 'database_cleaner'            # improved database cleaning for tests
   gem 'simplecov', '~> 0.7.1', require: false   # coverage report
   gem 'coveralls', require: false   # use coveralls with travisCI
+  gem 'i18n-tasks', '~> 0.3.9'      # check for translations
 end
