@@ -50,6 +50,7 @@ group :development, :test do
   gem 'pry-rails'                   # use pry as rails console
   gem 'konacha'                     # js tests with mocha + chai
   gem 'guard-rspec', require: false # launch specs when files are modified
+  gem 'i18n-tasks', '~> 0.3.9'      # check for translations
 end
 
 group :test do
@@ -61,5 +62,4 @@ group :test do
   gem 'database_cleaner'            # improved database cleaning for tests
   gem 'simplecov', '~> 0.7.1', require: false   # coverage report
   gem 'coveralls', require: false   # use coveralls with travisCI
-  gem 'i18n-tasks', '~> 0.3.9'      # check for translations
 end
