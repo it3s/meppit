@@ -46,7 +46,7 @@ App.components.uploader = (container) ->
       _this.button.find('i').remove()
       _this.button.text I18n.uploader.select_image
       _this.button.after "<span class='error'>#{err_msg}</span>"
-      _this.startPlugin() # restartPlugin (kludge for retrying uploads)
+      _this.startPlugin() # restart plugin (kludge for retrying uploads)
 
     startPlugin: ->
       @container.fileupload
