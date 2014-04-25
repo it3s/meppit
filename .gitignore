@@ -36,3 +36,6 @@
 
 # uploads
 /public/uploads
+
+# vagrant
+.vagrant
