@@ -1,4 +1,4 @@
-module GeoJson
+module Geojson
   module_function
 
   # encode a geometry field to GeoJSON
@@ -9,9 +9,12 @@ module GeoJson
     RGeo::GeoJSON.encode rgeo_factory.feature(field)
   end
 
-  # convert a GeoJSON string or hash to a RGeo geometry object
-  def to_geometry(geojson)
+  # convert a GeoJSON string or hash to a RGeo geometry object (or WKT string)
+  def parse(geojson, opts={})
     geojson_hash = geojson.is_a?(Hash) ? geojson : JSON.parse(geojson)
-    RGeo::GeoJSON.decode(geojson_hash).geometry
+    decoded_geojson = RGeo::GeoJSON.decode(geojson_hash)
+    opts.fetch(:to, :geometry) == :wkt ? decoded_geojson.geometry.as_text : decoded_geojson.geometry
   end
 end
+
+GeoJSON = Geojson
