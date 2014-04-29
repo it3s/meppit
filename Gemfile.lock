@@ -19,6 +19,8 @@ GEM
       activesupport (= 4.0.2)
       arel (~> 4.0.0)
     activerecord-deprecated_finders (1.0.3)
+    activerecord-postgis-adapter (0.6.5)
+      rgeo-activerecord (~> 0.5.0)
     activesupport (4.0.2)
       i18n (~> 0.6, >= 0.6.4)
       minitest (~> 4.2)
@@ -239,6 +241,11 @@ GEM
     remotipart (1.2.1)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rgeo (0.3.20)
+    rgeo-activerecord (0.5.0)
+      activerecord (>= 3.0.3)
+      arel (>= 2.0.6)
+      rgeo (>= 0.3.20)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -324,6 +331,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-postgis-adapter
   better_errors
   binding_of_caller (= 0.7.1)
   bourbon

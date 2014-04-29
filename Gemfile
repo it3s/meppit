@@ -6,6 +6,7 @@ gem 'rails', '4.0.2'
 gem 'puma'                          # faster app server
 gem 'foreman'                       # process supervision
 gem 'pg'                            # postgresql
+gem 'activerecord-postgis-adapter'  # postgis
 
 gem 'coffee-rails', '~> 4.0.0'      # coffeescript
 gem 'uglifier', '>= 1.3.0'          # minify

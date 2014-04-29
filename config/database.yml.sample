@@ -1,5 +1,7 @@
 development:
-  adapter: postgresql
+  adapter: postgis
+  schema_search_path: '"$user",public,postgis'
+  postgis_extension: true
   encoding: unicode
   database: meppit_development
   pool: 5
@@ -7,7 +9,9 @@ development:
   password:
 
 test:
-  adapter: postgresql
+  adapter: postgis
+  schema_search_path: '"$user",public,postgis'
+  postgis_extension: true
   encoding: unicode
   database: meppit_test
   pool: 5
@@ -15,7 +19,9 @@ test:
   password:
 
 production:
-  adapter: postgresql
+  adapter: postgis
+  schema_search_path: '"$user",public,postgis'
+  postgis_extension: true
   encoding: unicode
   database: meppit_production
   pool: 5
@@ -23,7 +29,9 @@ production:
   password:
 
 staging:
-  adapter: postgresql
+  adapter: postgis
+  schema_search_path: '"$user",public,postgis'
+  postgis_extension: true
   encoding: unicode
   database: meppit_staging
   pool: 5
