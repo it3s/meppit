@@ -12,6 +12,7 @@ module Meppit
     # Set Time.zone default and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Brasilia'
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**/*.{rb,yml}').to_s]
     # config.i18n.default_locale = :'pt-BR'
