@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/it3s/meppit-map-rails.git
+  revision: efcf7e32fa2e2a990b3705826eba5e94dca60961
+  specs:
+    meppit-map-rails (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -358,6 +364,7 @@ DEPENDENCIES
   konacha
   letter_opener
   letter_opener_web
+  meppit-map-rails!
   mini_magick
   oily_png
   pg
