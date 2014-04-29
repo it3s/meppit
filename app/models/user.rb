@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   include Contacts
 
+  self.rgeo_factory_generator = RGeo::Geos.factory_generator(:srid => 4326)
+
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
   end
@@ -28,5 +30,12 @@ class User < ActiveRecord::Base
   def send_reset_password_email!
     # override sorcery reset password to user sidekiq
     UserMailer.delay.reset_password_email(id, I18n.locale)
+  end
+
+  def location_geojson
+    # TODO abstract to concern
+    factory = RGeo::GeoJSON::EntityFactory.instance
+    feature = factory.feature location, nil, attributes
+    RGeo::GeoJSON.encode feature
   end
 end

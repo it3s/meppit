@@ -6,6 +6,8 @@ gem 'rails', '4.0.2'
 gem 'puma'                          # faster app server
 gem 'foreman'                       # process supervision
 gem 'pg'                            # postgresql
+gem 'rgeo'                          # geometry abstraction
+gem 'rgeo-geojson'                  # geojson encode/decode
 gem 'activerecord-postgis-adapter'  # postgis
 
 gem 'coffee-rails', '~> 4.0.0'      # coffeescript

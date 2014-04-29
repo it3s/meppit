@@ -246,6 +246,8 @@ GEM
       activerecord (>= 3.0.3)
       arel (>= 2.0.6)
       rgeo (>= 0.3.20)
+    rgeo-geojson (0.2.3)
+      rgeo (>= 0.3.7)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -365,6 +367,8 @@ DEPENDENCIES
   puma
   rails (= 4.0.2)
   remotipart
+  rgeo
+  rgeo-geojson
   rspec-rails (~> 2.0)
   sass-rails (~> 4.0.0)
   sdoc
