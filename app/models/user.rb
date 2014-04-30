@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   include Contacts
-
-  # self.rgeo_factory_generator = RGeo::Geos.factory_generator(:srid => 4326)
+  include Geometry
 
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
@@ -12,6 +11,8 @@ class User < ActiveRecord::Base
 
   has_many :authentications, :dependent => :destroy
   accepts_nested_attributes_for :authentications
+
+  geojson_field :location
 
   attr_reader :license_aggrement
 
