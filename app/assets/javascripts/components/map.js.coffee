@@ -5,6 +5,7 @@ App.components.map = (container) ->
     container: container
 
     init: ->
+      L.Icon.Default.imagePath = '/assets'  # FIXME: should not be done here.
       @geojson = @container.data('geojson')
       @startMap()
 
@@ -14,6 +15,6 @@ App.components.map = (container) ->
         element: el,
         enableGeoJsonTile: false
 
-      @map.load(@geoJson)
+      @map.load(@geojson)
 
   }

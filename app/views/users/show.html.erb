@@ -7,10 +7,10 @@
     </div>
 
     <div class="user-location">
-        <% if @user.location %>
+      <% if @user.location %>
         <div class="map" data-components="map" data-geojson='<%= raw @user.location_geojson %>'></div>
       <% else %>
-        <%= image_tag "imgs/map-placeholder.png", :alt => 'user location' %>
+        <%= image_tag "imgs/map-placeholder.png", :alt => 'user location', :class => 'placeholder' %>
       <% end %>
     </div>
 
