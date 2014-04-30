@@ -45,10 +45,10 @@ then
   fi
 
   # Setup
-  bundle
-  sudo -u vagrant rake db:create db:migrate
-  sudo -u vagrant rake db:create db:migrate RAILS_ENV=test
-  sudo -u vagrant rspec
+  sudo -u vagrant bundle
+  sudo -u vagrant bundle exec rake db:create db:migrate
+  sudo -u vagrant bundle exec rake db:create db:migrate RAILS_ENV=test
+  sudo -u vagrant bundle exec rspec
 
   touch ~/runonce
 fi
