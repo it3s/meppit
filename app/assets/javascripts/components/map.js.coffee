@@ -6,12 +6,10 @@ App.components.map = (container) ->
 
     init: ->
       @geojson = @container.data('geojson')
-      console.log @geojson
       @startMap()
 
     startMap: ->
       el = @container[0]
-      console.log el
       @map = new Meppit.Map
         element: el,
         enableGeoJsonTile: false
