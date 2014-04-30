@@ -10,6 +10,7 @@
 #= require components/alert
 #= require components/editor
 #= require components/overlay
+#= require components/map
 
 onReady = ->
   App.mediator.publish('components:start')
