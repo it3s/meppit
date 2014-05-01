@@ -32,4 +32,8 @@ class User < ActiveRecord::Base
     # override sorcery reset password to user sidekiq
     UserMailer.delay.reset_password_email(id, I18n.locale)
   end
+
+  def geojson_properties
+    {:name => name, :id => id}
+  end
 end

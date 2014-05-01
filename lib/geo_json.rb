@@ -2,11 +2,11 @@ module GeoJSON
   module_function
 
   # encode a geometry field to GeoJSON
-  def encode(field)
+  def encode(field, id=nil, properties={})
     return nil if field.nil?
 
     rgeo_factory = RGeo::GeoJSON::EntityFactory.instance
-    feature = rgeo_factory.feature field
+    feature = rgeo_factory.feature field, id, properties
     RGeo::GeoJSON.encode rgeo_factory.feature_collection([feature])
   end
 
