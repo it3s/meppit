@@ -61,7 +61,7 @@ describe 'uploader', ->
       _data = {jqXHR: {responseJSON:{ errors: {avatar: ['Upload error']}}}}
 
       spy @component, 'startPlugin', =>
-        @component.onFail(@component, _data)
+        @component.onFail({}, _data)
         errEl = @component.uploaderContainer.find('.error')
 
         expect(errEl.length).to.be.eq 1

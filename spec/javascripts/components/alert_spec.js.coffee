@@ -37,8 +37,9 @@ describe 'alert', ->
     it 'on close fade out and removes the alert', (done)->
       sinon.spy @component.container, 'fadeOut'
 
+      @component.fadeTime = 0
       @component.init()
-      @component.close(@component)
+      @component.close()
       expect(@component.container.fadeOut).to.be.called
 
       @component.container.fadeOut.restore()
@@ -47,5 +48,5 @@ describe 'alert', ->
         expect( $('.alerts').length ).to.be.equal 0
         done()
 
-      , @component.fadeTime)
+      , @component.fadeTime + 20)
 

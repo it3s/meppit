@@ -39,14 +39,14 @@ describe 'remoteForm', ->
 
     describe 'onError', ->
       it 'adds a general .error.all message when passes string', ->
-        @component.onError(@component, null, {errors: "__err__"})
+        @component.onError(null, {errors: "__err__"})
         errorDiv = @component.container.find('.error.all')
         expect(errorDiv.length).to.be.equal 1
         expect(errorDiv.text()).to.be.equal '__err__'
         expect(errorDiv.next().find('input').is('[type=submit]')).to.be.true
 
       it 'adds each error to the corresponding field', ->
-        @component.onError(@component, null, errors: {"name": ["__err__"]})
+        @component.onError(null, errors: {"name": ["__err__"]})
         errorDiv = @component.container.find('.error')
         expect(errorDiv.length).to.be.equal 1
 
