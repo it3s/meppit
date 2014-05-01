@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   include Contacts
+  include Geometry
 
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
@@ -10,6 +11,8 @@ class User < ActiveRecord::Base
 
   has_many :authentications, :dependent => :destroy
   accepts_nested_attributes_for :authentications
+
+  geojson_field :location
 
   attr_reader :license_aggrement
 
@@ -28,5 +31,9 @@ class User < ActiveRecord::Base
   def send_reset_password_email!
     # override sorcery reset password to user sidekiq
     UserMailer.delay.reset_password_email(id, I18n.locale)
+  end
+
+  def geojson_properties
+    {:name => name, :id => id}
   end
 end

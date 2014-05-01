@@ -7,7 +7,13 @@
     </div>
 
     <div class="user-location">
-      <%= image_tag "imgs/map-placeholder.png", :alt => 'user location' %>
+      <% if @user.location %>
+        <div class="map" data-components="map" data-geojson='<%= raw @user.location_geojson %>'></div>
+      <% else %>
+        <div data-components='overlay' data-overlay='<%= {style: "dark", message: t("users.profile.location.empty")}.to_json %>'>
+        <%= image_tag "imgs/map-placeholder.png", :alt => 'user location', :class => 'placeholder' %>
+      </div>
+      <% end %>
     </div>
 
     <div class="user-projects">
