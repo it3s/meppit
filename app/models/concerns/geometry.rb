@@ -1,13 +1,14 @@
 module Geometry
   extend ActiveSupport::Concern
 
-  included do |base|
-    base.rgeo_factory_generator = RGeo::Geos.factory_generator(:srid => 4326)
-  end
-
   module ClassMethods
+    def geofactory
+      RGeo::Geographic.spherical_factory :srid => 4326
+    end
+
     def geojson_field(*fields)
       fields.each do |field|
+        set_rgeo_factory_for_column field, geofactory.projection_factory
         define_method "#{field}_geojson" do
           ::GeoJSON::encode(send field).to_json
         end

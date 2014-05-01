@@ -16,5 +16,6 @@ App.components.map = (container) ->
         enableGeoJsonTile: false
 
       @map.load(@geojson)
+      @map.panTo(@geojson.features[0])
 
   }
