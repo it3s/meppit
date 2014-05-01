@@ -30,3 +30,5 @@ pt-BR:
         title: 'Sobre mim'
         empty: "%{name} não escreveu nada ainda."
       last_contributions: 'Últimas Contribuições'
+      location:
+        empty: 'Localização não fornecida'
