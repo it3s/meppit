@@ -25,26 +25,26 @@ App.components.modal = (container) ->
     referedElement: ->
       $("#{ @container.attr('href') }")
 
-    open: (_this) ->
-      opts = _.clone(_this.defaults)
-      opts = _.extend(opts, _this.preventClose) if _this.data.prevent_close
-      _this.target.modal(opts)
+    open: () ->
+      opts = _.clone(@defaults)
+      opts = _.extend(opts, @preventClose) if @data.prevent_close
+      @target.modal(opts)
       false
 
-    startComponents: (time=0) ->
+    startComponents: () ->
       setTimeout( ->
         currentModal = $('.modal.current')
         App.mediator.publish('components:start', currentModal)
-      , time)
+      , @defaults.fadeDuration)
 
     start: ->
       if @data.autoload
         @open(this)
       else
-        @container.on 'click', => @open(this)
+        @container.on 'click', @open.bind(this)
 
       if @data.remote
         # trigger components:start for ajax loaded elements
-        @container.on 'modal:ajax:complete', => @startComponents(@defaults.fadeDuration)
+        @container.on 'modal:ajax:complete', @startComponents.bind(this)
 
   }

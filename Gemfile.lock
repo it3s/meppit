@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/it3s/meppit-map-rails.git
-  revision: efcf7e32fa2e2a990b3705826eba5e94dca60961
+  revision: 1e77a02c611ebd3cc60cfdd093b81dd710cd2f5a
   specs:
-    meppit-map-rails (0.0.1)
+    meppit-map-rails (0.1.0)
 
 GEM
   remote: https://rubygems.org/

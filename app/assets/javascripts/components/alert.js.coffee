@@ -7,12 +7,12 @@ App.components.alert = (container) ->
       @closeButton = @container.find('.close')
       @bindEvents()
 
-    close: (_this) ->
-      alertsContainer = _this.container.closest('.alerts')
-      _this.container.fadeOut _this.fadeTime, ->
-        _this.container.remove()
+    close: () ->
+      alertsContainer = @container.closest('.alerts')
+      $.when(@container.fadeOut @fadeTime).then =>
+        @container.remove()
         alertsContainer.remove() if alertsContainer.find('.alert').length is 0
 
     bindEvents: ->
-      @closeButton.on 'click', => @close(this)
+      @closeButton.on 'click', @close.bind(this)
   }

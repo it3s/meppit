@@ -27,35 +27,35 @@ App.components.uploader = (container) ->
     bindEvents: ->
       @button.on 'click', (evt) => @container.trigger 'click'
 
-    onDone: (_this) ->
-      setTimeout( ->
-        _this.button.fadeOut -> _this.message.fadeIn()
+    onDone: () ->
+      setTimeout( =>
+        @button.fadeOut => @message.fadeIn()
       , 200)
 
-    onAdd: (_this, data) ->
-      _this.uploaderContainer.find('.error').remove()
-      _this.button.text I18n.uploader.uploading
-      _this.button.append "<i class=\"fa fa-spinner fa-spin\"></i>"
+    onAdd: (evt, data) ->
+      @uploaderContainer.find('.error').remove()
+      @button.text I18n.uploader.uploading
+      @button.append "<i class=\"fa fa-spinner fa-spin\"></i>"
       data.submit()
 
-    onFail: (_this, data) ->
+    onFail: (evt, data) ->
       # get the corresponding error message for the container
       errors = data.jqXHR.responseJSON.errors
-      err_msg = ( errors[_this.fieldName()] || ['Error'] )[0]
+      err_msg = ( errors[@fieldName()] || ['Error'] )[0]
 
-      _this.button.find('i').remove()
-      _this.button.text I18n.uploader.select_image
-      _this.button.after "<span class='error'>#{err_msg}</span>"
-      _this.startPlugin() # restart plugin (kludge for retrying uploads)
+      @button.find('i').remove()
+      @button.text I18n.uploader.select_image
+      @button.after "<span class='error'>#{err_msg}</span>"
+      @startPlugin() # restart plugin (kludge for retrying uploads)
 
     startPlugin: ->
       @container.fileupload
         url:      @url
         type:     'PATCH'
         dataType: 'json'
-        add:      (evt, data) => @onAdd(this, data)
-        done:     (evt, data) => @onDone(this)
-        fail:     (evt, data) => @onFail(this, data)
+        add:      @onAdd.bind(this)
+        done:     @onDone.bind(this)
+        fail:     @onFail.bind(this)
 
     init: ->
       @url = @container.closest('form').attr('action')

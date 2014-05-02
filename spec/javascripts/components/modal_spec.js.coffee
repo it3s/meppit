@@ -53,7 +53,7 @@ describe 'modal', ->
         @component.init()
 
         spy @component.target, 'modal', =>
-          @component.open(@component)
+          @component.open()
           expect(@component.target.modal).to.be.calledWith @component.defaults
 
 
@@ -101,7 +101,7 @@ describe 'modal', ->
 
           App.mediator.publish.restore()
           done()
-        , @component.fadeDuration)
+        , @component.defaults.fadeDuration)
 
     describe 'autoload with prevent close', ->
       beforeEach ->
@@ -121,7 +121,7 @@ describe 'modal', ->
         spy @component.target, 'modal', =>
           expectedOptions = _.extend({}, @component.defaults, @component.preventClose)
 
-          @component.open(@component)
+          @component.open()
           expect(@component.target.modal).to.be.calledWith expectedOptions
 
       it 'opens on start', ->
