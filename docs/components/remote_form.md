@@ -24,6 +24,14 @@ send and validate forms remotely (xhr)
 <% end %>
 ```
 
+Or for model bundled forms
+
+```
+<%= remote_form_for @obj, options do |f|
+  ...
+<% end %>
+```
+
 ### Controller
 
 - Success: return an redirect url (if you want to be redirected)
