@@ -28,4 +28,10 @@ class ApplicationController < ActionController::Base
   def extract_from_header
     http_accept_language.compatible_language_from(I18n.available_locales)
   end
+
+  def to_bool(string)
+    return true if string == true || string =~ (/(true|t|yes|y|1)$/i)
+    return false if string == false || string.nil? || string =~ (/(false|f|no|n|0)$/i)
+    raise ArgumentError.new("invalid value for Boolean: \"#{string}\"")
+  end
 end

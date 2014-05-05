@@ -6,7 +6,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def callback
-    add_provider unless @user = login_from(provider)
+    add_provider unless @user = login_from(provider, true)
     redirect_to root_path, :notice => t('users.oauth.logged', :provider => provider.titleize)
   end
 
@@ -24,7 +24,7 @@ class AuthenticationsController < ApplicationController
     add_provider_to_existent_user || create_user_from_provider
 
     reset_session # protect from session fixation attack
-    auto_login(@user)
+    auto_login(@user, true)
   end
 
   def add_provider_to_existent_user

@@ -9,6 +9,7 @@ en:
       login:
         email: 'E-mail'
         password: 'Password'
+        remember_me: 'Remember me'
         create_account: 'Do not have an account yet?'
         forgot_password: 'Forgot your password?'
         submit: 'Log In'

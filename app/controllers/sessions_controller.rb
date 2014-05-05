@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = login(params[:email], params[:password])
+    user = login(params[:email], params[:password], to_bool(params[:remember_me]))
     if user
       render :json => { :redirect => session[:return_to_url] || root_path }
       session[:return_to_url] = nil

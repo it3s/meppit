@@ -10,6 +10,10 @@
     <%= label_tag :password, t('sessions.form.login.password') %>
     <%= password_field_tag :password %>
   </p>
+  <p>
+    <%= check_box_tag :remember_me, true, true %>
+    <%= label_tag :remember_me, t('sessions.form.login.remember_me') %>
+  </p>
 
   <div class="action-links">
     <%= link_to_modal t('sessions.form.login.forgot_password'), forgot_password_users_path, :remote => true %>

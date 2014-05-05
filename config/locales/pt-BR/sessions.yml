@@ -9,6 +9,7 @@ pt-BR:
       login:
         email: 'E-mail'
         password: 'Senha'
+        remember_me: 'Manter logado'
         create_account: 'Ainda não possui uma conta?'
         forgot_password: 'Esqueceu sua senha?'
         submit: 'Entrar'
