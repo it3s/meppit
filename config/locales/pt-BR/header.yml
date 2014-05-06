@@ -4,9 +4,8 @@ pt-BR:
       placeholder: 'Procure por lugares, usuários e conteúdos'
 
     menu:
-      map: 'Mapa'
-      objects: 'Objetos'
-      projects: 'Projetos'
+      maps: 'Mapas'
+      data: 'Dados'
 
     sub_menu:
       about: 'Sobe'

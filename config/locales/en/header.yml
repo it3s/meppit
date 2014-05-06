@@ -4,9 +4,8 @@ en:
       placeholder: 'Search for places, users or contents...'
 
     menu:
-      map: 'Map'
-      objects: 'Objects'
-      projects: 'Projects'
+      maps: 'Maps'
+      data: 'Data'
 
     sub_menu:
       about: 'About'
