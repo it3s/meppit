@@ -9,6 +9,12 @@
   @include meppit-box-shadow;
   @include box-sizing(border-box);
 
+  .header-wrapper {
+    width: 960px;
+    margin: 0 auto;
+    height: 100%;
+  }
+
   a {
     color: $text-color;
     &:hover { text-decoration: none; }
@@ -18,10 +24,20 @@
   #side_menu { float: right }
 
   #logo {
-    margin: 0 35px;
+    margin: 0 25px;
     padding-top: 10px;
 
+    a { display: block; }
+
     .image { @include sprite-image($logos-map, logo); }
+
+    .brand {
+      font-weight: bold;
+      font-size: 1.1em;
+      display: inline-block;
+      vertical-align: top;
+      margin-top: 4px;
+    }
   }
 
   #menu, #side_menu {
@@ -60,7 +76,7 @@
     }
   }
 
-  #menu > ul > li { min-width: 120px; }
+  #menu > ul > li { min-width: 100px; }
 
   #side_menu > ul > li {
     min-width: 60px;
