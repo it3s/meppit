@@ -1,4 +1,6 @@
 <div id="language-menu" >
-  ing <br/> pt
+  <% I18n.available_locales.each do |lang| %>
+    <%= link_to i18n_language_names[lang], language_path(:code => lang), class: "locale-item #{ 'active' if I18n.locale == lang }" %>
+  <% end %>
 </div>
 

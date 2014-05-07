@@ -1,11 +1,11 @@
-<%= link_to_tooltip icon('cog'), '#settings-tooltip-container' %>
+<%= link_to_tooltip icon('cog'), '#settings-tooltip-tpl' %>
 
-<div id="settings-tooltip-container" >
+<script type="text/template" id="settings-tooltip-tpl" >
   <div class="settings-tooltip">
     <%= link_to_modal t('header.settings_menu.language'), "#language-menu", :html => {:class => 'settings-item'} %>
     <a class="settings-item" href="#">
       <%= t('header.settings_menu.help') %>
     </a>
   </div>
-</div>
+</script>
 

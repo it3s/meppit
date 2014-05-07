@@ -4,8 +4,7 @@ App.components.tooltip = (container) ->
   container: container
 
   init: () ->
-    @data = @container.data('tooltip')
-    content = $(@data.target)
+    content = $(@container.data('tooltip').template).html()
     @startPlugin(content)
 
   onShow: ->
@@ -20,7 +19,7 @@ App.components.tooltip = (container) ->
 
     @container.qtip
       show: 'mousedown'
-      content: content.html()
+      content: content
       style:
         classes: 'tooltip qtip-light qtip-shadow qtip-rounded'
       hide:

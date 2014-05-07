@@ -138,4 +138,22 @@
 
 #language-menu {
   @include modal;
+  min-height: 100px;
+
+  .locale-item {
+    display: block;
+    padding: 20px;
+    margin-bottom: 10px;
+    color: $text-color;
+
+    &:hover{
+      background: $meppit-dark-blue;
+      color: $white;
+      text-decoration: none;
+    }
+    &.active {
+      border: solid 1px $meppit-dark-blue;
+      border-radius: 5px;
+    }
+  }
 }
