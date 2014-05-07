@@ -12,8 +12,10 @@
     </div>
   <% end %>
   <div id="menu-settings" class="menu-item" title="<%= t 'header.sub_menu.settings_menu'%>">
-    <a href="#">
-      <%= icon "cog" %>
-    </a>
+    <%= link_to_tooltip '#', icon('cog') do %>
+      <div class="settings-tooltip" >
+        tooltip content
+      </div>
+    <% end %>
   </div>
 </div>
