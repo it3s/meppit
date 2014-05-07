@@ -80,7 +80,8 @@
 
     #menu-settings {
       min-width: 40px;
-      &:hover {
+      &:hover, .active {
+        color: $white;
         background: $meppit-dark-blue;
       }
       i { margin-left: 6px; }
