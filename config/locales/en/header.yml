@@ -8,10 +8,11 @@ en:
       data: 'Data'
 
     side_menu:
-      logout: 'Logout'
       login: 'Login'
       settings_menu: 'Settings menu'
 
     settings_menu:
+      settings: 'Settings'
       language: 'Language'
       help: 'Help'
+      logout: 'Logout'

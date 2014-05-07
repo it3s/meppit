@@ -2,10 +2,12 @@
 
 <script type="text/template" id="settings-tooltip-tpl" >
   <div class="settings-tooltip">
-    <%= link_to_modal t('header.settings_menu.language'), "#language-menu", :html => {:class => 'settings-item'} %>
+    <%= link_to(icon('cogs', t('header.settings_menu.settings')), '#', class: 'settings-item') if current_user %>
+    <%= link_to_modal icon('flag-o', t('header.settings_menu.language')), "#language-menu", :html => {:class => 'settings-item'} %>
     <a class="settings-item" href="#">
-      <%= t('header.settings_menu.help') %>
+      <%= icon 'question', t('header.settings_menu.help') %>
     </a>
+    <%= link_to(icon('sign-out', t('header.settings_menu.logout')), logout_path, class: 'settings-item') if current_user %>
   </div>
 </script>
 
