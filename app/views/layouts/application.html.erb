@@ -22,6 +22,7 @@
   <%= render 'shared/footer' %>
 
   <%= render 'sessions/sign_in' %>
+  <%= render 'sessions/language_menu' %>
 
   <script type="text/javascript">
     window.I18n = <%= current_translations[:js].to_json.html_safe %>

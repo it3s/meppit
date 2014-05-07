@@ -115,6 +115,9 @@
   }
 }
 
+#settings-tooltip-container {
+  display: none;
+}
 .settings-tooltip {
   font-size: $base-font-size;
 
@@ -131,4 +134,8 @@
       border-radius: 5px;
     }
   }
+}
+
+#language-menu {
+  @include modal;
 }

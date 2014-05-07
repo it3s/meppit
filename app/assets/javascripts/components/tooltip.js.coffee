@@ -5,10 +5,12 @@ App.components.tooltip = (container) ->
 
   init: () ->
     @data = @container.data('tooltip')
-    @startPlugin(@data.content)
+    content = $(@data.target)
+    @startPlugin(content)
 
   onShow: ->
     @container.addClass 'active'
+    App.mediator.publish 'components:start', $('.qtip-content')
 
   onHide: ->
     @container.removeClass 'active'
@@ -18,7 +20,7 @@ App.components.tooltip = (container) ->
 
     @container.qtip
       show: 'mousedown'
-      content: content
+      content: content.html()
       style:
         classes: 'tooltip qtip-light qtip-shadow qtip-rounded'
       hide:

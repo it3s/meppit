@@ -43,8 +43,8 @@ module ApplicationHelper
     "<a href=\"#{url}\" #{html_attrs} data-components=\"modal\" data-modal='#{ modal_attrs }'>#{body}</a>".html_safe
   end
 
-  def link_to_tooltip(href, body, &block)
-    "<a href=\"#{href}\" data-components=\"tooltip\" data-tooltip='#{ {:content => capture(&block).html_safe}.to_json }'>#{body}</a>".html_safe
+  def link_to_tooltip(body, href)
+    "<a href=\"#\" data-components=\"tooltip\" data-tooltip='#{ {target: href}.to_json }'>#{body}</a>".html_safe
   end
 
   def remote_form_for(record, options={}, &block)

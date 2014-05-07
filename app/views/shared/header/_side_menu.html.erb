@@ -12,8 +12,6 @@
     </div>
   <% end %>
   <div id="menu-settings" class="menu-item" title="<%= t 'header.side_menu.settings_menu'%>">
-    <%= link_to_tooltip '#', icon('cog') do %>
-      <%= render 'shared/settings_tooltip' %>
-    <% end %>
+    <%= render 'shared/header/settings_tooltip' %>
   </div>
 </div>
