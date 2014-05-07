@@ -7,7 +7,7 @@ feature "frontpage"  do
   scenario { expect(page).to have_selector '#header' }
   scenario { expect(page).to have_selector '.footer' }
 
-  scenario { expect(page).to have_selector '#login_button' }
+  scenario { expect(page).to have_selector '.login-button' }
   scenario { expect(page).to have_selector '.video' }
   scenario { expect(page).to have_selector '.flexslider[data-components=flexslider]' }
 end
@@ -19,7 +19,7 @@ feature 'Sign in' do
 
   shared_examples_for 'login' do |expected_response|
     scenario 'log in and expect json response'do
-      click_link I18n.t('header.sub_menu.login')
+      click_link I18n.t('header.side_menu.login')
       within '#login-form' do
         fill_in I18n.t('sessions.form.login.email'), :with => user.email
         fill_in I18n.t('sessions.form.login.password'), :with => password
