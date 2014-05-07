@@ -8,9 +8,6 @@ en:
       data: 'Data'
 
     sub_menu:
-      about: 'About'
-      help: 'Help'
-      profile: 'Profile'
-      settings: 'Settings'
       logout: 'Logout'
       login: 'Login'
+      settings_menu: 'Settings menu'

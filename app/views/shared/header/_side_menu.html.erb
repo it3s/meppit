@@ -1,30 +1,19 @@
 <nav id="side_menu">
   <ul>
-    <li><a href="#"><%= t('header.sub_menu.about') %></a></li>
-    <li><a id="help_button"><%= t('header.sub_menu.help') %></a></li>
     <% if logged_in? %>
-    <li id="user_menu" class="dropdown_menu">
-      <a href="<%= user_path(current_user) %>"><%= current_user.name %> &#x25be;</a>
-      <ul>
-        <li><a href="<%= user_path(current_user) %>" ><%= t('header.sub_menu.profile')  %></a></li>
-        <li><a href="#" ><%= t('header.sub_menu.settings') %></a></li>
-        <li><a href="<%= logout_url %>" ><%= t('header.sub_menu.logout')   %></a></li>
-      </ul>
+    <li class="user_menu" class="dropdown_menu">
+      <a href="<%= user_path(current_user) %>">
+        <%= image_tag current_user.avatar.thumb , class: "user-image"%>
+        <span class="user-name"><%= current_user.name %></span>
+      </a>
     </li>
     <% else %>
-    <li id="login_button">
+    <li class="login_button">
       <%= link_to_modal t('header.sub_menu.login'), '#sign-in' %>
     </li>
-    <% end %>
-    <li class="dropdown_menu">
-      <a href="#"><%= i18n_language_names[I18n.locale] %> &#x25be;</a>
-      <ul>
-        <% I18n.available_locales.each do |code| %>
-          <li class="language <% if code == I18n.locale %>selected<% end %>">
-            <%= link_to i18n_language_names[code], language_path(code) %>
-          </li>
-        <% end %>
-      </ul>
-    </li>
+  <% end %>
+  <li id="menu-settings" title="<%= t 'header.sub_menu.settings_menu'%>">
+    <%= icon "cog" %>
+  </li>
   </ul>
 </nav>

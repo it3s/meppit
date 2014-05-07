@@ -8,9 +8,6 @@ pt-BR:
       data: 'Dados'
 
     sub_menu:
-      about: 'Sobe'
-      help: 'Ajuda'
-      profile: 'Perfil'
-      settings: 'Configurações'
       logout: 'Sair'
       login: 'Entrar'
+      settings_menu: 'Menu de configurações'
