@@ -1,19 +1,19 @@
-<nav id="side_menu">
-  <ul>
-    <% if logged_in? %>
-    <li class="user_menu" class="dropdown_menu">
+<div id="side-menu">
+  <% if logged_in? %>
+    <div class="menu-item user-info">
       <a href="<%= user_path(current_user) %>">
         <%= image_tag current_user.avatar.thumb , class: "user-image"%>
         <span class="user-name"><%= current_user.name %></span>
       </a>
-    </li>
-    <% else %>
-    <li class="login_button">
-      <%= link_to_modal t('header.sub_menu.login'), '#sign-in' %>
-    </li>
+    </div>
+  <% else %>
+    <div class="menu-item login-button">
+      <%= link_to_modal icon('sign-in', t('header.sub_menu.login')), '#sign-in' %>
+    </div>
   <% end %>
-  <li id="menu-settings" title="<%= t 'header.sub_menu.settings_menu'%>">
-    <%= icon "cog" %>
-  </li>
-  </ul>
-</nav>
+  <div id="menu-settings" class="menu-item" title="<%= t 'header.sub_menu.settings_menu'%>">
+    <a href="#">
+      <%= icon "cog" %>
+    </a>
+  </div>
+</div>

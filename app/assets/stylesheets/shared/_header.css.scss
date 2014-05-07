@@ -21,7 +21,7 @@
   }
 
   #logo, #menu, #search-bar { float: left }
-  #side_menu { float: right }
+  #side-menu { float: right }
 
   #logo {
     margin: 0 25px;
@@ -40,55 +40,35 @@
     }
   }
 
-  #menu, #side_menu {
+  #menu, #side-menu, .menu-item { height: 100%; min-width: 100px; }
+
+  #menu .menu-item, #side-menu .menu-item {
     cursor: pointer;
+    display: inline-block;
+    text-align: center;
 
-    &, ul, li, a { height: 100%;}
-
-    > ul {
-
-      > li {
-        display: inline-block;
-        text-align: center;
-
-        &:hover { background: $meppit-blue; }
-
-        a {
-          padding: 14px 5px 6px;
-          display: block;
-          i { margin-right: 5px; }
-        }
-      }
+    a {
+      display: block;
+      height: 30px;
+      padding-top: 14px;
     }
-  }
+    i { margin-right: 5px; }
 
-  #menu .maps {
     &:hover, &.active {
+      a { color: $white; }
+    }
+
+    &.maps:hover, &.maps.active {
       background-color: $meppit-maps-color;
-      a { color: $white; }
     }
-  }
-
-  #menu .data {
-    &:hover, &.active {
+    &.data:hover, &.data.active {
       background-color: $meppit-data-color;
-      a { color: $white; }
     }
+
   }
 
-  #menu > ul > li { min-width: 100px; }
-
-  #side_menu {
-    & > ul > li { min-width: 60px; }
-    .user-image {
-      max-width: 40px;
-      max-height: 30px;
-      border-radius: 3px;
-      margin-top: -6px;
-    }
-    .user-name {}
-
-    .login_button {
+  #side-menu {
+    .login-button {
       background: $meppit-green;
       color: #009640;
 
@@ -99,56 +79,16 @@
     }
 
     #menu-settings {
-      position: relative;
-      top: -14px;
-
-      i {
-        position: relative;
-        top: 12px;
+      min-width: 40px;
+      &:hover {
+        background: $meppit-dark-blue;
       }
+      i { margin-left: 6px; }
     }
   }
 
-  // #side_menu > ul > li {
-  //   min-width: 60px;
-  //   // a { height: 25px; }
-  // }
-
-  // #side_menu {
-  //   ul { margin-right: 20px; }
-
-
-  //   #user_menu img { max-width: 40px; max-height: 30px; }
-
-  //   li.dropdown_menu {
-  //     min-width: 100px;
-  //     position: relative;
-
-  //     &:hover > ul { display: block; }
-
-  //     ul {
-  //       box-shadow: 0px -5px 0px 0px $meppit-blue, 1px 1px 3px 1px $medium-grey;
-  //       display: none;
-  //       position: absolute;
-  //       background-color: inherit;
-  //       left: 0;
-  //       top: 100%;
-  //       width: 100%;
-  //       z-index: 100;
-  //       text-align: left;
-
-  //       li {
-  //         padding: 0 10px;
-  //         &:hover { background: $meppit-light-blue; }
-
-  //         &.language.selected { font-weight: bold;}
-  //       }
-  //     }
-  //   }
-  // }
-
   #search-bar {
-    width: 22%;
+    width: 40%;
     margin-left: 3%;
     padding-top: 8px;
     position: relative;
@@ -168,10 +108,7 @@
         box-shadow: inset 0px 1px 3px 0px $soft-grey;
         border: 1px solid $medium-grey;
 
-        @include placeholder {
-          font-size: 0.8em;
-          text-align: center;
-        }
+        @include placeholder { font-size: 0.8em; }
       }
     }
   }
