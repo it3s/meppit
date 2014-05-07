@@ -11,6 +11,7 @@
 #= require components/editor
 #= require components/overlay
 #= require components/map
+#= require components/tooltip
 
 onReady = ->
   App.mediator.publish('components:start')
