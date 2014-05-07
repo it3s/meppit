@@ -5,11 +5,17 @@ App.components.tooltip = (container) ->
 
   init: () ->
     @data = @container.data('tooltip')
-    @startPlugin()
+    @startPlugin(@data.content)
 
-  startPlugin: ->
-    content = @data.content
-    container = @container
+  onShow: ->
+    @container.addClass 'active'
+
+  onHide: ->
+    @container.removeClass 'active'
+
+  startPlugin: (content) ->
+    _this = this
+
     @container.qtip
       show: 'mousedown'
       content: content
@@ -22,8 +28,6 @@ App.components.tooltip = (container) ->
         adjust:
           x: -50, y: 5
       events:
-        show: (event, api) ->
-          console.log this
-          container.addClass 'active'
-        hide: (event, api) ->
-          container.removeClass 'active'
+        show: _this.onShow.bind(_this)
+        hide: _this.onHide.bind(_this)
+

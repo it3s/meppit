@@ -7,7 +7,11 @@ pt-BR:
       maps: 'Mapas'
       data: 'Dados'
 
-    sub_menu:
+    side_menu:
       logout: 'Sair'
       login: 'Entrar'
       settings_menu: 'Menu de configurações'
+
+    settings_menu:
+      language: 'Língua'
+      help: 'Ajuda'

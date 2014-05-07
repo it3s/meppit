@@ -115,3 +115,20 @@
   }
 }
 
+.settings-tooltip {
+  font-size: $base-font-size;
+
+  .settings-item {
+    display: block;
+    padding: 10px;
+    margin: 0;
+    color: $text-color;
+
+    &:hover {
+      background-color: $meppit-dark-blue;
+      color: $white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+  }
+}

@@ -8,14 +8,12 @@
     </div>
   <% else %>
     <div class="menu-item login-button">
-      <%= link_to_modal icon('sign-in', t('header.sub_menu.login')), '#sign-in' %>
+      <%= link_to_modal icon('sign-in', t('header.side_menu.login')), '#sign-in' %>
     </div>
   <% end %>
-  <div id="menu-settings" class="menu-item" title="<%= t 'header.sub_menu.settings_menu'%>">
+  <div id="menu-settings" class="menu-item" title="<%= t 'header.side_menu.settings_menu'%>">
     <%= link_to_tooltip '#', icon('cog') do %>
-      <div class="settings-tooltip" >
-        tooltip content
-      </div>
+      <%= render 'shared/settings_tooltip' %>
     <% end %>
   </div>
 </div>

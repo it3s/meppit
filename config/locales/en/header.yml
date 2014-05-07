@@ -7,7 +7,11 @@ en:
       maps: 'Maps'
       data: 'Data'
 
-    sub_menu:
+    side_menu:
       logout: 'Logout'
       login: 'Login'
       settings_menu: 'Settings menu'
+
+    settings_menu:
+      language: 'Language'
+      help: 'Help'

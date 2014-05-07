@@ -99,7 +99,7 @@ h3 {
   @include modal;
   @include meppit-box-shadow;
   min-width: 100px;
-  min-height: 100px;
+  min-height: 60px;
   border: solid 1px #a0a0a0;
 
   .qtip-tip {
