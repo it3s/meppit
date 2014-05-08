@@ -40,7 +40,7 @@
     }
   }
 
-  #menu, #side-menu, .menu-item { height: 100%; min-width: 100px; }
+  #menu, #side-menu, .menu-item { height: 100%; }
 
   #menu .menu-item, #side-menu .menu-item {
     cursor: pointer;
@@ -67,6 +67,9 @@
 
   }
 
+  #menu      .menu-item { min-width: 100px; }
+  #side-menu .menu-item { min-width: 40px; }
+
   #side-menu {
     .login-button {
       background: $meppit-green;
@@ -79,12 +82,18 @@
     }
 
     #menu-settings {
-      min-width: 40px;
       &:hover, .active {
         color: $white;
         background: $meppit-dark-blue;
       }
       i { margin-left: 6px; }
+    }
+
+    .notifications {
+      a {
+        color: lighten($text-color, 30%);
+        &:hover { color: $text-color; }
+      }
     }
 
     .user-info {
@@ -109,7 +118,7 @@
   }
 
   #search-bar {
-    width: 35%;
+    width: 30%;
     margin-left: 3%;
     padding-top: 8px;
     position: relative;
