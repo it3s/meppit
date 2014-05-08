@@ -59,11 +59,9 @@ module ApplicationHelper
       :star     => {:icon => :star,          :title => t('toolbar.star'),     :url => ""},
       :comment  => {:icon => :comment,       :title => t('toolbar.comment'),  :url => ""},
       :history  => {:icon => :'clock-o',     :title => t('toolbar.history'),  :url => ""},
+      :settings => {:icon => :'cog',         :title => t('toolbar.settings'), :url => ""},
       :flag     => {:icon => :flag,          :title => t('toolbar.flag'),     :url => ""},
       :delete   => {:icon => :'trash-o',     :title => t('toolbar.delete'),   :url => ""},
-      :google   => {:icon => :'google-plus', :title => t('toolbar.google'),   :url => ""},
-      :facebook => {:icon => :facebook,      :title => t('toolbar.facebook'), :url => ""},
-      :twitter  => {:icon => :twitter,       :title => t('toolbar.twitter'),  :url => ""},
     }
     only == :all ? tools.values() : only.map {|name| tools[name] }
   end
