@@ -15,40 +15,24 @@
       </div>
       <% end %>
     </div>
-
-    <div class="user-projects">
-      <h2><%= t 'users.profile.projects' %></h2>
-      <ul>
-        <li class="user-projects-item">
-          <%= image_tag "imgs/aldeias-infantis.png" %>
-          <span><a href="#" >Aldeias Infantis</a></span>
-        </li>
-        <li class="user-projects-item">
-          <%= image_tag "imgs/heliopolis-verde.png" %>
-          <span><a href="#">Verdejando heliopolis</a></span>
-        </li>
-      </ul>
-    </div>
   </div>
 
   <div class="central-pane">
-    <h1 class="user-name"><%= @user.name %></h1>
+    <div class="user-main-info">
+      <h1 class="user-name"><%= @user.name %></h1>
 
-    <%= render 'shared/contacts', :object => @user %>
-
-    <div class="user-about">
-      <h2><%= t 'users.profile.about_me.title' %></h2>
-      <div class="user-about-text">
-        <% if @user.about_me.blank? %>
-          <%= t 'users.profile.about_me.empty', :name => @user.name.split.first %>
-        <% else %>
-          <%= raw @user.about_me %> </div>
-        <% end %>
+      <div class="user-about">
+        <h2><%= t 'users.profile.about_me.title' %></h2>
+        <div class="user-about-text">
+          <% if @user.about_me.blank? %>
+            <%= t 'users.profile.about_me.empty', :name => @user.name.split.first %>
+          <% else %>
+            <%= raw @user.about_me %> </div>
+          <% end %>
+      </div>
     </div>
-
-    <div class="user-contributions">
-      <h2><%= t 'users.profile.last_contributions' %></h2>
-      <%= render 'updates/last_updates' %>
+    <div class="user-extra-info" >
+      <%= render 'shared/contacts', :object => @user %>
     </div>
 
   </div>

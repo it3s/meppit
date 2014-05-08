@@ -18,26 +18,20 @@
     .placeholder  { max-height: 200px; width: 240px; }
   }
 
-  .user-projects {
-    .user-projects-item img  { @include inline-pane(30%); margin-left: 0; }
-    .user-projects-item span { @include inline-pane(60%); padding-top: 20px;}
-  }
-
   // Central pane
+  .user-main-info {
+    float: left;
+    width: 68%;
+  }
+  .user-extra-info {
+    float: right;
+    width: 30%;
+  }
   .user-name { margin: 0 0 30px;}
 
   .user-about-text {
     border-left: solid 2px $meppit-blue;
     padding-left: 20px;
-  }
-
-  .user-contributions {
-    margin-top: 20px;
-    border: solid 1px $meppit-blue;
-    border-radius: 8px;
-    padding: 10px 5px;
-
-    h2 { margin-top: 0; }
   }
 
   &.edit {

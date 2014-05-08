@@ -25,11 +25,9 @@ en:
       updated: 'Password was successfully updated'
 
     profile:
-      projects: 'Projects'
       about_me:
         title: 'About me'
         empty: "%{name} hasn't written anything yet."
-      last_contributions: 'Last Contributions'
       location:
         empty: 'Location not provided yet'
 
