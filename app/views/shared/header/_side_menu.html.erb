@@ -1,30 +1,21 @@
-<nav id="side_menu">
-  <ul>
-    <li><a href="#"><%= t('header.sub_menu.about') %></a></li>
-    <li><a id="help_button"><%= t('header.sub_menu.help') %></a></li>
-    <% if logged_in? %>
-    <li id="user_menu" class="dropdown_menu">
-      <a href="<%= user_path(current_user) %>"><%= current_user.name %> &#x25be;</a>
-      <ul>
-        <li><a href="<%= user_path(current_user) %>" ><%= t('header.sub_menu.profile')  %></a></li>
-        <li><a href="#" ><%= t('header.sub_menu.settings') %></a></li>
-        <li><a href="<%= logout_url %>" ><%= t('header.sub_menu.logout')   %></a></li>
-      </ul>
-    </li>
-    <% else %>
-    <li id="login_button">
-      <%= link_to_modal t('header.sub_menu.login'), '#sign-in' %>
-    </li>
-    <% end %>
-    <li class="dropdown_menu">
-      <a href="#"><%= i18n_language_names[I18n.locale] %> &#x25be;</a>
-      <ul>
-        <% I18n.available_locales.each do |code| %>
-          <li class="language <% if code == I18n.locale %>selected<% end %>">
-            <%= link_to i18n_language_names[code], language_path(code) %>
-          </li>
+<div id="side-menu">
+  <% if logged_in? %>
+    <div class="menu-item user-info">
+      <a href="<%= user_path(current_user) %>">
+        <% if current_user.avatar? %>
+          <%= image_tag current_user.avatar.thumb , class: "user-image"%>
+        <% else %>
+          <%= icon 'user' %>
         <% end %>
-      </ul>
-    </li>
-  </ul>
-</nav>
+        <span class="user-name"><%= current_user.name %></span>
+      </a>
+    </div>
+  <% else %>
+    <div class="menu-item login-button">
+      <%= link_to_modal icon('sign-in', t('header.side_menu.login')), '#sign-in' %>
+    </div>
+  <% end %>
+  <div id="menu-settings" class="menu-item" title="<%= t 'header.side_menu.settings_menu'%>">
+    <%= render 'shared/header/settings_tooltip' %>
+  </div>
+</div>

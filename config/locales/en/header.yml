@@ -4,14 +4,15 @@ en:
       placeholder: 'Search for places, users or contents...'
 
     menu:
-      map: 'Map'
-      objects: 'Objects'
-      projects: 'Projects'
+      maps: 'Maps'
+      data: 'Data'
 
-    sub_menu:
-      about: 'About'
-      help: 'Help'
-      profile: 'Profile'
-      settings: 'Settings'
-      logout: 'Logout'
+    side_menu:
       login: 'Login'
+      settings_menu: 'Settings menu'
+
+    settings_menu:
+      settings: 'Settings'
+      language: 'Language'
+      help: 'Help'
+      logout: 'Logout'

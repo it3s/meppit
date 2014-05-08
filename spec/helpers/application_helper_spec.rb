@@ -71,6 +71,13 @@ describe ApplicationHelper do
 
   end
 
+  describe "#link_to_tooltip" do
+    let(:anchor) { '<a href="#" data-components="tooltip" data-tooltip=\'{"template":"#tpl"}\'>Open</a>' }
+    it "renders tooltip component" do
+      expect(helper.link_to_tooltip 'Open', '#tpl').to eq anchor
+    end
+  end
+
   describe "#remote_form_for" do
     let(:user) { FactoryGirl.build(:user) }
 

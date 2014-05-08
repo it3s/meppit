@@ -94,3 +94,16 @@ h3 {
     .overlay-message { color: #fff; }
   }
 }
+
+.qtip.tooltip {
+  @include modal;
+  @include meppit-box-shadow;
+  min-width: 100px;
+  min-height: 60px;
+  border: solid 1px #a0a0a0;
+  z-index: 190 !important;
+
+  .qtip-tip {
+    left: 80% !important;
+  }
+}

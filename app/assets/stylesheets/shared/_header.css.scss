@@ -1,7 +1,3 @@
-$menu-map-bg: #ff3d2e;
-$menu-objects-bg: #951b81;
-$menu-projects-bg: #f26700;
-
 .header {
   width: 100%;
   height: 45px;
@@ -13,88 +9,66 @@ $menu-projects-bg: #f26700;
   @include meppit-box-shadow;
   @include box-sizing(border-box);
 
+  .header-wrapper {
+    width: 960px;
+    margin: 0 auto;
+    height: 100%;
+  }
+
   a {
     color: $text-color;
     &:hover { text-decoration: none; }
   }
 
   #logo, #menu, #search-bar { float: left }
-  #side_menu { float: right }
+  #side-menu { float: right }
 
   #logo {
-    margin: 0 35px;
+    margin: 0 25px;
     padding-top: 10px;
 
+    a { display: block; }
+
     .image { @include sprite-image($logos-map, logo); }
+
+    .brand {
+      font-weight: bold;
+      font-size: 1.1em;
+      display: inline-block;
+      vertical-align: top;
+      margin-top: 4px;
+    }
   }
 
-  #menu, #side_menu {
+  #menu, #side-menu, .menu-item { height: 100%; min-width: 100px; }
+
+  #menu .menu-item, #side-menu .menu-item {
     cursor: pointer;
-
-    > ul {
-
-      > li {
-        display: inline-block;
-        text-align: center;
-
-        &:hover { background: $meppit-blue; }
-
-        &.active a { color: $white; }
-
-        a {
-          padding: 14px 5px 6px;
-          display: block;
-        }
-      }
-    }
-  }
-
-  .menu-icon {
     display: inline-block;
-    vertical-align: -63%;
-    margin-right: 0.2em;
-    width: 25px;
-    height: 25px;
-  }
+    text-align: center;
 
-  .map {
-    .menu-icon { @include menu-sprite(map); }
-    &:hover .menu-icon { @include menu-sprite(map-hover); }
-    &.active {
-      background-color: $menu-map-bg;
-      .menu-icon { @include menu-sprite(map-active); }
+    a {
+      display: block;
+      height: 30px;
+      padding-top: 14px;
     }
-  }
+    i { margin-right: 5px; }
 
-  .objects {
-    .menu-icon { @include menu-sprite(objects); }
-    &:hover .menu-icon { @include menu-sprite(objects-hover); }
-    &.active {
-      background-color: $menu-objects-bg;
-      .menu-icon { @include menu-sprite(objects-active); }
+    &:hover, &.active {
+      a { color: $white; }
     }
-  }
 
-  .projects {
-    .menu-icon { @include menu-sprite(projects); }
-    &:hover .menu-icon { @include menu-sprite(projects-hover); }
-    &.active {
-      background-color: $menu-projects-bg;
-      .menu-icon { @include menu-sprite(projects-active); }
+    &.maps:hover, &.maps.active {
+      background-color: $meppit-maps-color;
     }
+    &.data:hover, &.data.active {
+      background-color: $meppit-data-color;
+    }
+
   }
 
-  #menu > ul > li { min-width: 120px; }
-
-  #side_menu > ul > li {
-    min-width: 60px;
-    a { height: 25px; }
-  }
-
-  #side_menu {
-    ul { margin-right: 20px; }
-
-    #login_button {
+  #side-menu {
+    .login-button {
       background: $meppit-green;
       color: #009640;
 
@@ -103,35 +77,39 @@ $menu-projects-bg: #f26700;
         color: #000;
       }
     }
-    li.dropdown_menu {
-      min-width: 100px;
-      position: relative;
 
-      &:hover > ul { display: block; }
+    #menu-settings {
+      min-width: 40px;
+      &:hover, .active {
+        color: $white;
+        background: $meppit-dark-blue;
+      }
+      i { margin-left: 6px; }
+    }
 
-      ul {
-        box-shadow: 0px -5px 0px 0px $meppit-blue, 1px 1px 3px 1px $medium-grey;
-        display: none;
-        position: absolute;
-        background-color: inherit;
-        left: 0;
-        top: 100%;
-        width: 100%;
-        z-index: 100;
-        text-align: left;
-
-        li {
-          padding: 0 10px;
-          &:hover { background: $meppit-light-blue; }
-
-          &.language.selected { font-weight: bold;}
-        }
+    .user-info {
+      padding: 0 10px;
+      &:hover {
+        color: $white;
+        background: $meppit-dark-blue;
+      }
+      .user-image {
+        max-width: 30px;
+        max-height: 30px;
+        float: left;
+        margin-right: 10px;
+        margin-top: -5px;
+        border-radius: 4px;
+      }
+      .user-name {
+        vertical-align: top;
+        display: inline-block;
       }
     }
   }
 
   #search-bar {
-    width: 22%;
+    width: 35%;
     margin-left: 3%;
     padding-top: 8px;
     position: relative;
@@ -151,11 +129,56 @@ $menu-projects-bg: #f26700;
         box-shadow: inset 0px 1px 3px 0px $soft-grey;
         border: 1px solid $medium-grey;
 
-        @include placeholder {
-          font-size: 0.8em;
-          text-align: center;
-        }
+        @include placeholder { font-size: 0.8em; }
       }
+    }
+  }
+}
+
+#settings-tooltip-container {
+  display: none;
+}
+.settings-tooltip {
+  font-size: $base-font-size;
+
+  .settings-item {
+    display: block;
+    padding: 10px;
+    margin: 0;
+    color: $text-color;
+
+    &:hover {
+      background-color: $meppit-dark-blue;
+      color: $white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    i {
+      min-width: 15px;
+      margin-right: 5px;
+    }
+  }
+}
+
+#language-menu {
+  @include modal;
+  min-height: 100px;
+
+  .locale-item {
+    display: block;
+    padding: 20px;
+    margin-bottom: 10px;
+    color: $text-color;
+
+    &:hover{
+      background: $meppit-dark-blue;
+      color: $white;
+      text-decoration: none;
+    }
+    &.active {
+      border: solid 1px $meppit-dark-blue;
+      border-radius: 5px;
     }
   }
 }

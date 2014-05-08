@@ -4,14 +4,15 @@ pt-BR:
       placeholder: 'Procure por lugares, usuários e conteúdos'
 
     menu:
-      map: 'Mapa'
-      objects: 'Objetos'
-      projects: 'Projetos'
+      maps: 'Mapas'
+      data: 'Dados'
 
-    sub_menu:
-      about: 'Sobe'
-      help: 'Ajuda'
-      profile: 'Perfil'
-      settings: 'Configurações'
-      logout: 'Sair'
+    side_menu:
       login: 'Entrar'
+      settings_menu: 'Menu de configurações'
+
+    settings_menu:
+      settings: 'Configurações'
+      language: 'Língua'
+      help: 'Ajuda'
+      logout: 'Sair'
