@@ -26,7 +26,6 @@ en:
 
     profile:
       about_me:
-        title: 'About me'
         empty: "%{name} hasn't written anything yet."
       location:
         empty: 'Location not provided yet'

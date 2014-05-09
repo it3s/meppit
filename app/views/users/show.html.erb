@@ -18,22 +18,22 @@
   </div>
 
   <div class="central-pane">
-    <div class="user-main-info">
-      <h1 class="user-name"><%= @user.name %></h1>
+    <h1 class="user-name"><%= @user.name %></h1>
 
+    <div class="user-main-info">
       <div class="user-about">
-        <h2><%= t 'users.profile.about_me.title' %></h2>
         <div class="user-about-text">
           <% if @user.about_me.blank? %>
             <%= t 'users.profile.about_me.empty', :name => @user.name.split.first %>
           <% else %>
-            <%= raw @user.about_me %> </div>
+            <%= raw @user.about_me %>
           <% end %>
+        </div>
       </div>
     </div>
+
     <div class="user-extra-info" >
       <%= render 'shared/contacts', :object => @user %>
     </div>
-
   </div>
 </div>

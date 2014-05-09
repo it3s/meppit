@@ -21,11 +21,10 @@
   </div>
 
   <div class="central-pane">
-    <div class="user-main-info">
-      <h1 class="user-name"><%= f.input :name %></h1>
+    <h1 class="user-name"><%= f.input :name %></h1>
 
+    <div class="user-main-info">
       <div class="user-about">
-        <h2><%= t('users.profile.about_me.title') %></h2>
         <%= f.input :about_me, :as => :text, :input_html => {:class => 'tinymce', 'data-components' => 'editor'} %>
       </div>
     </div>

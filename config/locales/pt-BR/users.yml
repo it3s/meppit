@@ -26,7 +26,6 @@ pt-BR:
 
     profile:
       about_me:
-        title: 'Sobre mim'
         empty: "%{name} não escreveu nada ainda."
       location:
         empty: 'Localização não fornecida'

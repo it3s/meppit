@@ -18,5 +18,5 @@ App.components.alert = (container) ->
       @closeButton.on 'click', @close.bind(this)
       setTimeout( =>
         @close() unless @closed
-      , 2000)
+      , 4000)
   }
