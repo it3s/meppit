@@ -28,5 +28,13 @@
 
   &.edit {
     .field label { display: none;}
+
+    .mce-ico {
+      width: 14px;
+      height: 14px;
+    }
+    .mce-btn button {
+      padding: 3px 6px;
+    }
   }
 }
