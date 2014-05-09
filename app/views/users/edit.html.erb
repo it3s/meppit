@@ -1,4 +1,4 @@
-<%= render 'shared/toolbar', :object => @user %>
+<%= render 'shared/toolbar', :object => @user, :only => user_tools(@user)%>
 
 <div id="user-profile" class="edit" >
   <%= remote_form_for @user do |f| %>
