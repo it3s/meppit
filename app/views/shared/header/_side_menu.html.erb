@@ -1,14 +1,10 @@
 <div id="side-menu">
   <% if logged_in? %>
+    <div class="menu-item notifications">
+      <%= link_to icon('bell'), '#' %>
+    </div>
     <div class="menu-item user-info">
-      <a href="<%= user_path(current_user) %>">
-        <% if current_user.avatar? %>
-          <%= image_tag current_user.avatar.thumb , class: "user-image"%>
-        <% else %>
-          <%= icon 'user' %>
-        <% end %>
-        <span class="user-name"><%= current_user.name %></span>
-      </a>
+      <%= render 'shared/header/user_info' %>
     </div>
   <% else %>
     <div class="menu-item login-button">

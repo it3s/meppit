@@ -1,4 +1,4 @@
-<%= render 'shared/toolbar', :object => @user %>
+<%= render 'shared/toolbar', :object => @user, :only => user_tools(@user)%>
 
 <div id="user-profile" class="edit" >
   <%= remote_form_for @user do |f| %>
@@ -18,37 +18,20 @@
       <!-- TODO: add map editor -->
       <%= image_tag "imgs/map-placeholder.png", :alt => 'user location' %>
     </div>
-
-    <div class="user-projects" data-components="overlay">
-      <h2><%= t('users.profile.projects') %></h2>
-      <ul>
-        <li class="user-projects-item">
-          <%= image_tag "imgs/aldeias-infantis.png" %>
-          <span><a href="#" >Aldeias Infantis</a></span>
-        </li>
-        <li class="user-projects-item">
-          <%= image_tag "imgs/heliopolis-verde.png" %>
-          <span><a href="#">Verdejando heliopolis</a></span>
-        </li>
-      </ul>
-    </div>
   </div>
 
   <div class="central-pane">
     <h1 class="user-name"><%= f.input :name %></h1>
 
-    <%= render 'shared/contacts_form', :object => @user %>
-
-    <div class="user-about">
-      <h2><%= t('users.profile.about_me.title') %></h2>
-      <%= f.input :about_me, :as => :text, :input_html => {:class => 'tinymce', 'data-components' => 'editor'} %>
+    <div class="user-main-info">
+      <div class="user-about">
+        <%= f.input :about_me, :as => :text, :input_html => {:class => 'tinymce', 'data-components' => 'editor'} %>
+      </div>
     </div>
 
-    <div class="user-contributions" data-components="overlay">
-      <h2><%= t('users.profile.last_contributions') %></h2>
-      <%= render 'updates/last_updates' %>
+    <div class="user-extra-info">
+      <%= render 'shared/contacts_form', :object => @user %>
     </div>
-
   </div>
   <% end %>
 </div>

@@ -8,7 +8,7 @@ App.components.editor = (container) ->
       theme: 'modern'
       menubar: false
       statusbar: false
-      height: 200
+      height: 350
 
     getLocale: ->
       $('body').data('locale').replace('-', '_')
