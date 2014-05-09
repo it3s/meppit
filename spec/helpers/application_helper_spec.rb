@@ -102,7 +102,7 @@ describe ApplicationHelper do
 
   describe "#tools_list" do
     let(:obj) { FactoryGirl.create :user }
-    it { expect(helper.tools_list(obj).size).to eq 9 }
+    it { expect(helper.tools_list(obj).size).to eq 7 }
     it { expect(helper.tools_list(obj, only=[:edit, :star]).size).to eq 2 }
   end
 
