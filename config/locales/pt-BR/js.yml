@@ -4,3 +4,5 @@ pt-BR:
       select_image: 'Selecione a Imagem'
       uploading: 'carregando... '
       uploaded: 'Arquivo carregado. Atualize ou salve'
+    modal:
+      close: 'Fechar'
