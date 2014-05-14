@@ -20,10 +20,10 @@
     &:hover { text-decoration: none; }
   }
 
-  #logo, #menu, #search-bar { float: left }
-  #side-menu { float: right }
+  .logo, .menu, .search-bar { float: left }
+  .side-menu { float: right }
 
-  #logo {
+  .logo {
     margin: 0 25px;
     padding-top: 10px;
 
@@ -40,9 +40,9 @@
     }
   }
 
-  #menu, #side-menu, .menu-item { height: 100%; }
+  .menu, .side-menu, .menu-item { height: 100%; }
 
-  #menu .menu-item, #side-menu .menu-item {
+  .menu .menu-item, .side-menu .menu-item {
     cursor: pointer;
     display: inline-block;
     text-align: center;
@@ -67,11 +67,11 @@
 
   }
 
-  #menu      .menu-item { min-width: 100px; }
-  #side-menu .menu-item { min-width: 40px; }
+  .menu      .menu-item { min-width: 100px; }
+  .side-menu .menu-item { min-width: 40px; }
 
-  #side-menu {
-    .login-button {
+  .side-menu {
+    .login {
       width: 100px;
       background: $meppit-green;
       color: #009640;
@@ -82,7 +82,7 @@
       }
     }
 
-    #menu-settings {
+    .settings {
       &:hover, .active {
         color: $white;
         background: $meppit-dark-blue;
@@ -118,7 +118,7 @@
     }
   }
 
-  #search-bar {
+  .search-bar {
     width: 30%;
     margin-left: 3%;
     padding-top: 8px;
@@ -145,9 +145,6 @@
   }
 }
 
-#settings-tooltip-container {
-  display: none;
-}
 .settings-tooltip {
   font-size: $base-font-size;
 
@@ -171,7 +168,7 @@
   }
 }
 
-#language-menu {
+.language-selector {
   @include modal;
   min-height: 100px;
 

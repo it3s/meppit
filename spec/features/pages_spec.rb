@@ -7,7 +7,7 @@ feature "frontpage"  do
   scenario { expect(page).to have_selector '#header' }
   scenario { expect(page).to have_selector '.footer' }
 
-  scenario { expect(page).to have_selector '.login-button' }
+  scenario { expect(page).to have_selector '.login' }
   scenario { expect(page).to have_selector '.video' }
   scenario { expect(page).to have_selector '.flexslider[data-components=flexslider]' }
 end

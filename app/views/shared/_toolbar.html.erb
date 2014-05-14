@@ -1,4 +1,4 @@
-<ul id="toolbar" >
+<ul class="toolbar" >
   <% tools_list(object, local_assigns[:only] || :all).each do |tool| %>
     <li class="<%= 'active' if request.path == tool[:url] %>" title="<%= tool[:title] %>">
       <a href="<%= tool[:url] %>">
