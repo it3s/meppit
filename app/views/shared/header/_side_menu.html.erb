@@ -2,16 +2,11 @@
   <% if logged_in? %>
     <div class="menu-item notifications">
       <%= link_to icon('bell'), '#' %>
-    </div>
-    <div class="menu-item user-info">
+    </div><div class="menu-item user-info">
       <%= render 'shared/header/user_info' %>
-    </div>
-  <% else %>
-    <div class="menu-item login">
+    </div><% else %><div class="menu-item login">
       <%= link_to_modal icon('sign-in', t('header.side_menu.login')), '#sign-in' %>
-    </div>
-  <% end %>
-  <div id="menu-settings" class="menu-item settings" title="<%= t 'header.side_menu.settings_menu'%>">
+    </div><% end %><div id="menu-settings" class="menu-item settings" title="<%= t 'header.side_menu.settings_menu'%>">
     <%= render 'shared/header/settings_tooltip' %>
   </div>
 </div>

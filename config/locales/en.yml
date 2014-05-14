@@ -3,4 +3,5 @@ en:
   submit: 'submit'
   access_denied: 'access denied'
   save_changes: 'Save Changes'
+  save: 'Save'
   cancel: 'Cancel'

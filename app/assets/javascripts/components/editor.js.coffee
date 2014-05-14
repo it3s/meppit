@@ -17,6 +17,7 @@ App.components.editor = (container) ->
       _.extend {}, @defaults, {
         selector: "textarea##{@container.attr('id')}"
         language: @getLocale()
+        height: @container.attr('data-height') or @defaults.height
       }
 
     init: ->

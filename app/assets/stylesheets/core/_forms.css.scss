@@ -16,10 +16,12 @@ form {
     }
   }
 
+  input[type=button],
   input[type=submit] {
+    width: auto;
     border: 0;
     border-radius: 5px;
-    padding: 5px;
+    padding: 10px 20px;
     font-weight: bold;
     color: $white;
     @include linear-gradient($meppit-green, darken($meppit-green, 15%));
@@ -59,6 +61,7 @@ form {
       max-width: 200px;
       margin-left: 20px;
       margin-right: 10px;
+      padding: 10px;
 
       @include linear-gradient($meppit-dark-blue, darken($meppit-dark-blue, 15%));
       &:hover { background: lighten($meppit-dark-blue, 3%); }

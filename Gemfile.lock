@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/it3s/meppit-map-rails.git
-  revision: 1e77a02c611ebd3cc60cfdd093b81dd710cd2f5a
+  revision: 86cf8aad311ea9156ceba7afe32b07f8bdc34e7e
   specs:
-    meppit-map-rails (0.1.0)
+    meppit-map-rails (0.1.1)
 
 GEM
   remote: https://rubygems.org/
@@ -189,6 +189,9 @@ GEM
     multi_json (1.9.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    neat (1.5.0)
+      bourbon (>= 2.1)
+      sass (>= 3.2)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.8.0)
@@ -366,6 +369,7 @@ DEPENDENCIES
   letter_opener_web
   meppit-map-rails!
   mini_magick
+  neat
   oily_png
   pg
   poltergeist

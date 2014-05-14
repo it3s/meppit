@@ -1,10 +1,10 @@
-<%= link_to_tooltip icon('cog'), '#settings-tooltip-tpl' %>
+<%= link_to_tooltip icon('bars'), '#settings-tooltip-tpl' %>
 
 <script type="text/template" id="settings-tooltip-tpl" >
   <div class="settings-tooltip">
 
     <% if current_user %>
-      <%= link_to icon('cogs', t('header.settings_menu.settings')), '#', class: 'settings-item' %>
+      <%= link_to icon('cog', t('header.settings_menu.settings')), '#', class: 'settings-item' %>
     <% end %>
 
     <%= link_to_modal icon('flag-o', t('header.settings_menu.language')), "#language-selector", :html => {:class => 'settings-item'} %>

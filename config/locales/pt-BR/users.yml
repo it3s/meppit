@@ -29,3 +29,4 @@ pt-BR:
         empty: "%{name} não escreveu nada ainda."
       location:
         empty: 'Localização não fornecida'
+      joined: "Membro desde %{date}"

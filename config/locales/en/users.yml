@@ -29,4 +29,4 @@ en:
         empty: "%{name} hasn't written anything yet."
       location:
         empty: 'Location not provided yet'
-
+      joined: "Joined on %{date}"

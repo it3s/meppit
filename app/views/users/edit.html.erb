@@ -3,35 +3,39 @@
 <div class="page user-profile edit" >
   <%= remote_form_for @user do |f| %>
 
-  <div class="form-actions">
-    <%= submit_tag t('save_changes'), :class => "edit-save" %>
-    <%= link_to t('cancel'), url_for(@user) %>
-  </div>
-
-  <div class="left-pane">
+  <div class="side-pane">
     <div class="avatar">
       <%= image_tag @user.avatar.thumb.url, :alt => 'user picture' %>
       <%= f.input :avatar, :as => :file, :input_html => {'data-components' => 'uploader'} %>
     </div>
 
-    <div class="location">
-      <!-- TODO: add map editor -->
-      <%= image_tag "imgs/map-placeholder.png", :alt => 'user location' %>
-    </div>
+    <div class="extra-info">
+      <%= render 'shared/contacts_form', :object => @user %>
+   </div>
   </div>
 
   <div class="central-pane">
     <h1 class="name"><%= f.input :name %></h1>
+    <div class="form-actions">
+      <%= submit_tag t('save'), :class => "edit-save" %>
+      <%= link_to t('cancel'), url_for(@user) %>
+    </div>
+
+    <div class="location">
+      <div class="map" data-components="map" data-editor="true" data-geojson='<%= raw @user.location_geojson %>'></div>
+    </div>
 
     <div class="main-info">
       <div class="about">
-        <%= f.input :about_me, :as => :text, :input_html => {:class => 'tinymce', 'data-components' => 'editor'} %>
+        <%= f.input :about_me, :as => :text, :input_html => {:class => 'tinymce', 'data-components' => 'editor', 'data-height' => 200 } %>
       </div>
     </div>
 
-    <div class="extra-info">
-      <%= render 'shared/contacts_form', :object => @user %>
+    <div class="form-actions">
+      <%= submit_tag t('save'), :class => "edit-save" %>
+      <%= link_to t('cancel'), url_for(@user) %>
     </div>
   </div>
+
   <% end %>
 </div>

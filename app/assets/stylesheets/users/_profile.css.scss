@@ -1,33 +1,78 @@
 .page.user-profile {
 
   // left pane
-  .avatar img{
-    width: 100%;
-    max-height: 200px;
+  .avatar {
+    margin: 0 0 10px 0;
+
+    img {
+      width: 220px;
+      height: 220px;
+      border-radius: 5px;
+    }
+
+    .upload-button {
+      width: 220px;
+    }
   }
 
-  .location {
-
-    width: 100%;
-    margin: 20px 0;
-
-    .map { height: 250px; }
-    .placeholder  { max-height: 200px; width: 240px; }
+  .extra-info {
+    input[type=text] {
+      width: 195px;
+      margin: -5px -1px;
+    }
   }
 
   // Central pane
+  .location {
+    clear: both;
+    width: 100%;
+    margin: 10px 0;
+    border: 1px solid transparent;
+
+    .map { height: 165px; }
+    .placeholder  { max-height: 50px; width: 100%; }
+  }
+
+  h1.name {
+    margin: 0;
+    input[type=text] { margin: -5px 0 20px -5px; }
+  }
+  .joined {
+    color: $secondary-content-color;
+    font-size: $secondary-content-font-size;
+  }
+
   .main-info {
-    float: left;
-    width: 68%;
+    margin: 0 0 20px;
   }
-  .extra-info {
-    float: right;
-    width: 30%;
-  }
-  .name { margin: 0 0 30px;}
 
   &.edit {
-    .field label { display: none;}
+    .field {
+      padding: 0;
+      label { display: none; }
+    }
+
+    h1.name {
+      width: 75%;
+      float: left;
+    }
+
+    .form-actions {
+      width: 25%;
+      float: right;
+      margin: -4px 0 0;
+    }
+
+    .location {
+      border: 1px solid $grey;
+      margin: 0 0 15px;
+    }
+
+    input[type=text] {
+      font: inherit;
+      color: inherit;
+      letter-spacing: inherit;
+    }
 
     .mce-ico {
       width: 14px;

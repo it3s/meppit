@@ -1,15 +1,16 @@
 .header {
-  width: 100%;
-  height: 45px;
-  background: $meppit-light-blue;
-  position: relative;
-  z-index: 11;
-  margin-bottom: 50px;
-
-  @include meppit-box-shadow;
   @include box-sizing(border-box);
 
+  width: 100%;
+  height: $main-menu-height;
+  background: $meppit-light-blue;
+  border-bottom: $meppit-blue 1px solid;
+  position: relative;
+  z-index: 11;
+  margin-bottom: 20px;
+
   .header-wrapper {
+    @include outer-container();
     width: 960px;
     margin: 0 auto;
     height: 100%;
@@ -20,11 +21,14 @@
     &:hover { text-decoration: none; }
   }
 
-  .logo, .menu, .search-bar { float: left }
-  .side-menu { float: right }
+  .main-menu  { @include span-columns(4); }
+  .search-bar { @include span-columns(6); }
+  .side-menu  { @include span-columns(2); }
+
+  .logo, .menu { float: left }
 
   .logo {
-    margin: 0 25px;
+    margin: 0 20px;
     padding-top: 10px;
 
     a { display: block; }
@@ -40,19 +44,21 @@
     }
   }
 
-  .menu, .side-menu, .menu-item { height: 100%; }
+  .main-menu, .menu, .side-menu, .menu-item { height: 100%; }
 
-  .menu .menu-item, .side-menu .menu-item {
+  .menu-item {
     cursor: pointer;
     display: inline-block;
     text-align: center;
 
     a {
       display: block;
-      height: 30px;
-      padding-top: 14px;
+      height: $main-menu-height;
     }
-    i { margin-right: 5px; }
+    i {
+      margin-right: 2px;
+      font-size: 1.3333em;
+    }
 
     &:hover, &.active {
       a { color: $white; }
@@ -67,12 +73,18 @@
 
   }
 
-  .menu      .menu-item { min-width: 100px; }
-  .side-menu .menu-item { min-width: 40px; }
+  .menu .menu-item > a {
+    padding: 14px 5px;
+    min-width: 85px;
+    text-align: center
+  }
+  .side-menu .menu-item > a { padding: 13px 8px; }
 
   .side-menu {
+    text-align: right;
+
     .login {
-      width: 100px;
+      width: 95px;
       background: $meppit-green;
       color: #009640;
 
@@ -98,18 +110,17 @@
     }
 
     .user-info {
-      padding: 0 10px;
+      vertical-align: top;
+
       &:hover {
         color: $white;
         background: $meppit-dark-blue;
       }
-      .user-image {
-        max-width: 30px;
-        max-height: 30px;
-        float: left;
-        margin-right: 10px;
-        margin-top: -5px;
-        border-radius: 4px;
+      .avatar {
+        width: 30px;
+        height: 30px;
+        margin: -5px 0 0 0;
+        border-radius: 15px;
       }
       .user-name {
         vertical-align: top;
@@ -119,13 +130,10 @@
   }
 
   .search-bar {
-    width: 30%;
-    margin-left: 3%;
     padding-top: 8px;
-    position: relative;
 
     form {
-      width: 85%;
+      width: 100%;
       padding: 0;
       margin: 0;
       display: inline-block;
@@ -133,8 +141,9 @@
       input[type="search"] {
         width: 100%;
         height: 28px;
-        border-radius: 14px;
+        border-radius: 0px;
         background: $white image-url('icons/glass.png') no-repeat 98% center;
+        @include box-sizing(border-box);
         padding: 0 1.2em 0 1em;
         box-shadow: inset 0px 1px 3px 0px $soft-grey;
         border: 1px solid $medium-grey;

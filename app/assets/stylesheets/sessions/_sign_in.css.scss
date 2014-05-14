@@ -34,7 +34,7 @@ $signin_box_width: 560px;
   .vertical_line {
     position: absolute;
     left: 50%;
-    height: $separator_height * 0.35;
+    height: $separator_height * 0.40;
     border-left: 1px solid #333;
     width: 1px;
   }
@@ -92,7 +92,6 @@ $signin_box_width: 560px;
   input[type=submit] {
     border: 0;
     border-radius: 5px;
-    padding: 5px;
     font-weight: bold;
     color: $white;
     @include linear-gradient($meppit-green, darken($meppit-green, 15%));

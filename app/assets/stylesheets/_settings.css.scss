@@ -1,4 +1,13 @@
 $canvas-width: 960px;
+$main-menu-height: 45px;
+$footer-height: 210px;
+
+// Grid settings
+$max-width: $canvas-width;
+$page-columns: 11;
+
+// Semantic colors
+$secondary-content-color: #999;
 
 // Unsemantic colors
 $ultra-dark-grey: #333333;
@@ -67,6 +76,7 @@ $text-link-visited-color: #004047;
 $main-font: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
 $highlight-font: Cambria, Georgia, serif;
 $base-font-size: 14px;
+$secondary-content-font-size: 0.85em;
 
 
 // Tags: 12px Consolas, monaco, monospace; regular
