@@ -1,8 +1,8 @@
 <% unless flash.empty? %>
   <div class="alerts">
     <% flash.each do |name, msg| %>
-      <div class="alert alert-<%= name %>" data-components="alert">
-        <a class="close">&#215;</a>
+      <div class="alert alert-<%= name %>" data-components="alert" role="alert">
+        <a class="close" aria-label="t('js.modal.close')">&#215;</a>
         <%= raw msg %>
       </div>
     <% end %>

@@ -1,11 +1,11 @@
-<section id="sign-in">
+<section id="sign-in" class="sign-in">
 
   <header>
     <h1><%=  t 'sessions.login' %></h1>
   </header>
 
   <div>
-    <ul id="external_providers">
+    <ul class="external_providers">
       <%= render 'sessions/external_login', :provider => :google %>
       <%= render 'sessions/external_login', :provider => :facebook %>
     </ul>

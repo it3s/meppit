@@ -52,28 +52,17 @@ h3 {
 }
 
 .wrapper {
-  @include clearfix;
-  position: relative;
-  width: $canvas-width;
-  margin: 0 auto;
-  min-height: 420px;
+  @include outer-container;
 }
 
 .button {
   @include button;
 }
 
-.modal.current {
-  background-color: $meppit-light-blue;
-}
+.blocker { z-index: 1000 !important; }
+.modal.current { z-index: 1001 !important;}
+.modal { @include box-sizing(content-box); }
 
-.left-pane {
-  @include inline-pane(25%);
-}
-
-.central-pane {
-  @include inline-pane(65%);
-}
 
 .overlay {
   position: absolute;

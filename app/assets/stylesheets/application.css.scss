@@ -1,7 +1,8 @@
 // reset and base libs
 @import "compass/reset";
-@import "bourbon";
 @import "compass/utilities/sprites";
+@import "bourbon";
+@import "neat";
 @import "font-awesome";
 
 // settings, mixins and core style
@@ -19,6 +20,7 @@
 @import "meppit-map";
 
 // app common
+@import "shared/page";
 @import "shared/header";
 @import "shared/footer";
 @import "shared/alerts";

@@ -1,0 +1,16 @@
+.page {
+  @include span-columns($page-columns);
+
+  .side-pane {
+    @include span-columns(3 of $page-columns);
+  }
+
+  .central-pane {
+    @include span-columns($page-columns - 3 of $page-columns);
+  }
+
+  h1.name {
+    font-size: 1.6em;
+    letter-spacing: -0.02em;
+  }
+}

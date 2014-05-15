@@ -1,18 +1,23 @@
-#toolbar {
-  @include box-sizing(border-box);
-  width: 35px;
-  float: left;
+.toolbar {
+  @include span-columns(1);
+  // FIXME: Use the correct url
+  background: url('imgs/toolbar-bg.png') no-repeat right top;
+  min-height: 430px;
 
-  li {
-    padding: 6px;
+  a {
+    display: block;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    padding: 7px 0;
     border-radius: 5px;
-    margin-bottom: 10px;
+    margin: 15px 10px;
 
     &:hover, &.active {
       background-color: $meppit-dark-blue;
-      a { color: $white;}
+      color: $white;
     }
 
-    a { color: $text-color; }
+    color: $text-color;
   }
 }

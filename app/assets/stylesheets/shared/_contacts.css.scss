@@ -1,5 +1,6 @@
 .contacts {
   .contact-item {
+    font-size: 0.9em;
     margin-bottom: 15px;
 
     input {
@@ -15,9 +16,7 @@
     margin: 0 4px;
     vertical-align: top;
     word-wrap: break-word;
-    font-size: 0.9em;
     a { color: $text-color; }
   }
 
 }
-.edit .contact-item i {margin-left: 5px;}

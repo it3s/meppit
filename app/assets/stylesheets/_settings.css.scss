@@ -1,4 +1,13 @@
 $canvas-width: 960px;
+$main-menu-height: 45px;
+$footer-height: 210px;
+
+// Grid settings
+$max-width: $canvas-width;
+$page-columns: 11;
+
+// Semantic colors
+$secondary-content-color: #999;
 
 // Unsemantic colors
 $ultra-dark-grey: #333333;
@@ -64,10 +73,11 @@ $text-link-hover-color-bg: #B1DDE8;
 $text-link-visited-color: #004047;
 
 // Typography
-$main-font: Calibri, "Trebuchet MS", Verdana, sans-serif;
+$main-font: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
 $highlight-font: Cambria, Georgia, serif;
 $base-font-size: 14px;
+$secondary-content-font-size: 0.85em;
 
 
-// Tags: 12px Consolas, Courier, monospace; regular
+// Tags: 12px Consolas, monaco, monospace; regular
 // #505050 underline

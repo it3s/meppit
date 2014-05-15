@@ -16,6 +16,7 @@ gem 'jquery-rails'                  # jquery
 gem 'underscore-rails'              # underscore
 gem 'sass-rails', '~> 4.0.0'        # scss support
 gem 'bourbon'                       # sass mixins and utilities
+gem 'neat'                          # semantic grid system
 gem 'compass-rails'                 # sass mixins and sprites generation
 gem 'oily_png'                      # faster png sprite generation for compass
 gem 'font-awesome-sass'             # font with svg icons

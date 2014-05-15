@@ -1,6 +1,6 @@
 $signin_box_width: 560px;
 
-#sign-in {
+.sign-in {
   @include modal;
   width: $signin_box_width;
 
@@ -11,14 +11,14 @@ $signin_box_width: 560px;
     font-size: 20px;
   }
 
-  #external_providers, form {
+  .external_providers, form {
     padding: 10px;
     float: left;
   }
 
 }
 
-#separator {
+.separator {
   $separator_height: 130px;
   width: $signin_box_width * 0.10;
   height: $separator_height;
@@ -29,13 +29,12 @@ $signin_box_width: 560px;
   margin-top: 22px;
   float: left;
 
-
   position: relative;
 
   .vertical_line {
     position: absolute;
     left: 50%;
-    height: $separator_height * 0.35;
+    height: $separator_height * 0.40;
     border-left: 1px solid #333;
     width: 1px;
   }
@@ -44,7 +43,7 @@ $signin_box_width: 560px;
 }
 
 
-#external_providers {
+.external_providers {
   width: $signin_box_width * 0.4;
   margin-top: 25px;
 
@@ -87,13 +86,12 @@ $signin_box_width: 560px;
 
 }
 
-#login-form {
+.login-form {
   width: $signin_box_width * 0.5;
 
   input[type=submit] {
     border: 0;
     border-radius: 5px;
-    padding: 5px;
     font-weight: bold;
     color: $white;
     @include linear-gradient($meppit-green, darken($meppit-green, 15%));
@@ -101,7 +99,7 @@ $signin_box_width: 560px;
   }
 }
 
-#session-new {
+.session-new {
   @include modal;
   width: 350px;
   form { margin: 0 auto; }

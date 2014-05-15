@@ -4,3 +4,5 @@ en:
       select_image: 'Select Image'
       uploading: 'uploading... '
       uploaded: 'File Uploaded. Refresh or Save'
+    modal:
+      close: 'Close'

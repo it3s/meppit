@@ -1,6 +1,8 @@
 pt-BR:
   js:
     uploader:
-      select_image: 'Selecione a Imagem'
+      select_image: 'Selecionar imagem'
       uploading: 'carregando... '
       uploaded: 'Arquivo carregado. Atualize ou salve'
+    modal:
+      close: 'Fechar'

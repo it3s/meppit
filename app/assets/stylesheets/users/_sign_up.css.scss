@@ -1,4 +1,4 @@
-#sign-up {
+.sign-up {
   @include modal;
   display: block;
 
@@ -20,7 +20,7 @@
   }
 }
 
-#user-created {
+.user-created {
   @include modal;
 
   width: 500px;

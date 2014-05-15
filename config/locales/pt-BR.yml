@@ -3,4 +3,5 @@ pt-BR:
   submit: 'enviar'
   access_denied: 'acesso negado'
   save_changes: 'Salvar Alterações'
+  save: 'Salvar'
   cancel: 'Cancelar'
