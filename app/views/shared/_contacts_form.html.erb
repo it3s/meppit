@@ -3,7 +3,7 @@
     <% contacts_fields_for(object).each do |contact| %>
       <li class="contact-item" title='<%= t("contacts.#{contact[:key]}") %>'>
         <%= icon contact[:icon], '', :class => 'fa-lg fa-fw' %>
-        <%= text_field_tag contact[:key], contact[:value], :name => contact[:name] %>
+        <%= text_field_tag contact[:key], contact[:value], :name => contact[:name], :placeholder => t("contacts.#{contact[:key]}") %>
       </li>
     <% end %>
   </ul>
