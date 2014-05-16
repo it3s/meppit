@@ -60,8 +60,14 @@ h3 {
 }
 
 .blocker { z-index: 1000 !important; }
-.modal.current { z-index: 1001 !important;}
-.modal { @include box-sizing(content-box); }
+.modal {
+  @include box-sizing(content-box);
+
+  &.current  {
+    z-index: 1001 !important;
+    background: $meppit-light-blue;
+  }
+}
 
 
 .overlay {
