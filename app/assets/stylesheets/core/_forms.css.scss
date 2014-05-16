@@ -59,9 +59,8 @@ form {
     .edit-save {
       display: inline-block;
       max-width: 200px;
-      margin-left: 20px;
       margin-right: 10px;
-      padding: 10px;
+      padding: 5px 25px;
 
       @include linear-gradient($meppit-dark-blue, darken($meppit-dark-blue, 15%));
       &:hover { background: lighten($meppit-dark-blue, 3%); }

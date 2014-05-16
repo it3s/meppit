@@ -120,6 +120,9 @@
         width: 30px;
         height: 30px;
         border-radius: 15px;
+        margin-top: -25%;
+
+        &.placeholder { margin-top: 0;}
       }
       .user-name {
         vertical-align: top;
