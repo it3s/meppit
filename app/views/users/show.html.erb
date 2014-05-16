@@ -20,7 +20,7 @@
         <div class="map" data-components="map" data-geojson='<%= raw @user.location_geojson %>'></div>
       <% else %>
         <div data-components='overlay' data-overlay='<%= {style: "dark", message: t("users.profile.location.empty")}.to_json %>'>
-        <%= image_tag "imgs/map-placeholder.png", :alt => 'user location', :class => 'placeholder' %>
+        <%= image_tag "imgs/map-placeholder-wide.png", :alt => 'user location', :class => 'placeholder' %>
       </div>
       <% end %>
     </div>
