@@ -8,7 +8,6 @@
 #= require components/modal
 #= require components/remote_form
 #= require components/alert
-#= require components/editor
 #= require components/overlay
 #= require components/map
 #= require components/tooltip
