@@ -1,0 +1,15 @@
+.tags {
+  $tag-color: darken($meppit-dark-blue, 20%);
+
+  margin-top: 20px;
+
+  .tag {
+    display: inline-block;
+    color: $tag-color;
+    border: solid 1px $tag-color;
+    border-radius: 4px;
+    background-color: $meppit-light-blue;
+    padding: 5px 10px;
+    margin: 0 5px 5px 0;
+  }
+}
