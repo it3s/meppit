@@ -4,4 +4,13 @@ App.components.tags = (container) ->
     container: container
 
     init: ->
-      console.log @container.data('tags')
+      tags = @container.data('tags')
+      @input = @container.find("#tags-input")
+      @setValue(tags) if tags.length > 0
+      @startPlugin()
+
+    setValue: (tags)->
+      @input.val tags.join(',')
+
+    startPlugin: ->
+      @input.tagsInput()

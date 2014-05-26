@@ -16,7 +16,7 @@
 
     <div class="extra-info">
       <%= render 'shared/contacts/edit', :object => @user %>
-      <%= render 'shared/tags/edit', :tags => @user.interests %>
+      <%= render 'shared/tags/edit', :name => :interests, :tags => @user.interests %>
    </div>
   </div>
 
