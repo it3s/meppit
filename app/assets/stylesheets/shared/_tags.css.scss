@@ -16,12 +16,12 @@
   }
 
   .tagsinput {
-    width: 100% !important;
     border: none;
 
     input {
       border: 1px solid $grey;
       padding: 4px;
+      width: 100% !important;
     }
   }
 }

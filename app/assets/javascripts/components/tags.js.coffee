@@ -12,4 +12,8 @@ App.components.tags = (container) ->
       @container.val tags.join(',')
 
     startPlugin: ->
-      @container.tagsInput()
+      @container.tagsInput
+        # 'autocomplete_url':'%(url)s',
+        defaultText     : I18n.tags.placeholder
+        width           : '100%'
+        placeholderColor: '#999'
