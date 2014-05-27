@@ -3,7 +3,7 @@
 
   margin-top: 20px;
 
-  .tag {
+  .tag, .tagsinput .tag {
     display: inline-block;
     color: $tag-color;
     border: solid 1px $tag-color;
@@ -11,5 +11,18 @@
     background-color: $meppit-light-blue;
     padding: 5px 10px;
     margin: 0 5px 5px 0;
+
+    a { color: $tag-color; }
+  }
+
+  .tagsinput {
+    width: 100% !important;
+    border: none;
+
+    input {
+      border: 1px solid $grey;
+      padding: 4px;
+    }
   }
 }
+

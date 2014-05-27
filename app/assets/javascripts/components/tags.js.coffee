@@ -5,12 +5,11 @@ App.components.tags = (container) ->
 
     init: ->
       tags = @container.data('tags')
-      @input = @container.find("#tags-input")
-      @setValue(tags) if tags.length > 0
+      @loadValues(tags)
       @startPlugin()
 
-    setValue: (tags)->
-      @input.val tags.join(',')
+    loadValues: (tags) ->
+      @container.val tags.join(',')
 
     startPlugin: ->
-      @input.tagsInput()
+      @container.tagsInput()
