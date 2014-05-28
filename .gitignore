@@ -45,3 +45,6 @@
 
 # todolist
 TODO
+
+# elasticsearch
+/vendor/elasticsearch
