@@ -4,6 +4,7 @@ FactoryGirl.define do
     sequence(:email)   { |n| "john#{n}@doe.com" }
     password "abcdef"
     language "en"
+    interests ["dev", "ruby", "rails"]
     after(:create) { |obj| obj.activate! }
   end
 
@@ -12,6 +13,7 @@ FactoryGirl.define do
     sequence(:email)   { |n| "john#{n}@doe.com" }
     password "abcdef"
     language "en"
+    interests ["dev", "ruby", "rails"]
     activation_token "blablablablabla"
     activation_state "pending"
   end

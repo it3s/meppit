@@ -54,8 +54,8 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation,
                                  :license_aggrement, :about_me, :avatar).tap do |whitelisted|
-      whitelisted[:contacts]  = params[:user].fetch(:contacts, {}).delete_if { |key, value| value.blank? }
-      whitelisted[:interests] = params[:user].fetch(:interests, '').split(',')
+      whitelisted[:contacts]  = (params[:user][:contacts]  || {}).delete_if { |key, value| value.blank? }
+      whitelisted[:interests] = (params[:user][:interests] || '').split(',')
     end
   end
 
