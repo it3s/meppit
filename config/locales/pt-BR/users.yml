@@ -30,3 +30,6 @@ pt-BR:
       location:
         empty: 'Localização não fornecida'
       joined: "Membro desde %{date}"
+      contributions: "Contribuições"
+      activity: "Atividade"
+      following: "Seguindo"
