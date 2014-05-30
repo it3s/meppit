@@ -6,7 +6,11 @@ class Tag < ActiveRecord::Base
 
   before_save :downcase
 
-  pg_search_scope :search, against: :tag, using: [:tsearch, :trigram, :dmetaphone]
+  pg_search_scope :search, against: :tag, using: {
+      tsearch:    {},
+      trigram:    {threshold: 0.2},
+      dmetaphone: {},
+  }
 
   def downcase
     tag.downcase!
