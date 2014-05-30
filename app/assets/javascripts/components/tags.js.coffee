@@ -11,9 +11,15 @@ App.components.tags = (container) ->
     loadValues: (tags) ->
       @container.val tags.join(',')
 
+    defaulOptions:
+      defaultText     : I18n.tags.placeholder
+      width           : '100%'
+      placeholderColor: '#999'
+
+    getOptions: (autocomplete)->
+      extraOptions = if autocomplete then {autocomplete_url: autocomplete} else {}
+      _.extend {}, @defaultOptions, extraOptions
+
     startPlugin: ->
-      @container.tagsInput
-        # 'autocomplete_url':'%(url)s',
-        defaultText     : I18n.tags.placeholder
-        width           : '100%'
-        placeholderColor: '#999'
+      opts = @getOptions @container.data('autocomplete')
+      @container.tagsInput opts

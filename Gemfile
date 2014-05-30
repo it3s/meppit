@@ -24,6 +24,7 @@ gem 'font-awesome-sass'             # font with svg icons
 gem 'tinymce-rails'                 # tinymce wysiwyg editor
 gem 'tinymce-rails-langs'           # tinymce language pack
 gem "jquery-fileupload-rails"       # jquery-fielupload plugin
+gem 'jquery-ui-rails'               # jqueryUI
 gem 'meppit-map-rails', :github => 'it3s/meppit-map-rails'  # our beloved map
 
 # gem 'turbolinks'                  # speed page loading
