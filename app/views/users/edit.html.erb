@@ -17,7 +17,7 @@
     <div class="extra-info">
       <%= render 'shared/contacts/edit', :object => @user %>
       <div class="tags">
-        <%= f.input :interests, :input_html => {'data-components' => 'tags', 'data-tags' => @user.interests.to_json, 'data-autocomplete' => tag_search_path } %>
+        <%= tags_input f, :interests, @user.interests %>
       </div>
    </div>
   </div>
