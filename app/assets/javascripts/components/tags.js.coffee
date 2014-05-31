@@ -11,15 +11,20 @@ App.components.tags = (container) ->
     loadValues: (tags) ->
       @container.val tags.join(',')
 
-    defaulOptions:
-      defaultText     : I18n.tags.placeholder
-      width           : '100%'
-      placeholderColor: '#999'
+    replaceTag: (tag, new_tag) ->
+      @container.removeTag(tag)
+      @container.addTag(new_tag) unless @container.tagExist(new_tag)
 
-    getOptions: (autocomplete)->
-      extraOptions = if autocomplete then {autocomplete_url: autocomplete} else {}
-      _.extend {}, @defaultOptions, extraOptions
+    onAdd: (tag) ->
+      lowercased = tag.toLowerCase()
+      @replaceTag(tag, lowercased) unless tag is lowercased
 
     startPlugin: ->
-      opts = @getOptions @container.data('autocomplete')
-      @container.tagsInput opts
+      _this = this
+      @container.tagsInput
+        defaultText     : I18n.tags.placeholder
+        width           : '100%'
+        placeholderColor: '#999'
+        autocomplete_url: _this.container.data('autocomplete')
+        onAddTag        : _this.onAdd.bind(_this)
+
