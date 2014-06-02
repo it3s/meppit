@@ -22,7 +22,7 @@ describe UsersController do
   end
 
   describe "POST create" do
-    let(:user_attrs) { FactoryGirl.build(:user).attributes }
+    let(:user_attrs) { FactoryGirl.build(:user).attributes.merge :interests => "dev,ruby,rails" }
 
     context "valid request" do
       let(:params) do
