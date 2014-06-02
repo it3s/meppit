@@ -15,7 +15,10 @@
     </div>
 
     <div class="extra-info">
-      <%= render 'shared/contacts_form', :object => @user %>
+      <%= render 'shared/contacts/edit', :object => @user %>
+      <div class="tags">
+        <%= tags_input f, :interests, @user.interests %>
+      </div>
    </div>
   </div>
 

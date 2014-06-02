@@ -2,16 +2,11 @@
 #= require jquery
 #= require jquery_ujs
 #= require jquery.remotipart
+#= require jquery.ui.autocomplete
 
 #= require base
 
-#= require components/modal
-#= require components/remote_form
-#= require components/alert
-#= require components/editor
-#= require components/overlay
-#= require components/map
-#= require components/tooltip
+#= require_tree ./components
 
 onReady = ->
   App.mediator.publish('components:start')

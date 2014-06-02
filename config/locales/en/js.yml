@@ -6,3 +6,5 @@ en:
       uploaded: 'File Uploaded. Refresh or Save'
     modal:
       close: 'Close'
+    tags:
+      placeholder: 'Add tag'

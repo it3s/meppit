@@ -1,15 +1,17 @@
 Meppit::Application.routes.draw do
-  root 'pages#frontpage'
+  root "pages#frontpage"
 
-  get  "language/:code" => "application#language", :as => 'language'
+  get  "language/:code" => "application#language", :as => :language
 
-  get  "logout"   => "sessions#destroy", :as => "logout"
-  get  "login"    => "sessions#new",     :as => "login"
-  post "login"    => "sessions#create",  :as => "do_login"
+  get  "logout"   => "sessions#destroy", :as => :logout
+  get  "login"    => "sessions#new",     :as => :login
+  post "login"    => "sessions#create",  :as => :do_login
 
   post "oauth/:provider/callback"  => "authentications#callback"
   get  "oauth/:provider/callback"  => "authentications#callback"
   get  "oauth/:provider" => "authentications#oauth", :as => :auth_at_provider
+
+  get "tags/search" => "tags#search", :as => :tag_search
 
   resources :users do
     member     { get :activate }

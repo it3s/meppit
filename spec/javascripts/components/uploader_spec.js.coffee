@@ -1,5 +1,4 @@
 #= require spec_helper
-#= require components/uploader
 
 describe 'uploader', ->
   beforeEach ->

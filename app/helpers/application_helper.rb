@@ -52,6 +52,10 @@ module ApplicationHelper
     simple_form_for(record, options, &block)
   end
 
+  def tags_input(f, name, tags)
+    f.input name, :input_html => {'data-components' => 'tags', 'data-tags' => tags.to_json, 'data-autocomplete' => tag_search_path }
+  end
+
 
   def tools_list(obj, only=:all)
     tools = {

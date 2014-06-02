@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   include Contacts
   include Geometry
+  include Taggable
 
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
@@ -13,6 +14,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :authentications
 
   geojson_field :location
+  searchable_tags :interests
 
   attr_reader :license_aggrement
 

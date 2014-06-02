@@ -6,3 +6,5 @@ pt-BR:
       uploaded: 'Arquivo carregado. Atualize ou salve'
     modal:
       close: 'Fechar'
+    tags:
+      placeholder: 'Adicionar palavra-chave'

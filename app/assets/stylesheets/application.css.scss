@@ -17,6 +17,8 @@
 @import "jquery.modal";
 @import "flexslider";
 @import "jquery.qtip";
+@import "jquery.tagsinput";
+@import "jquery.ui.autocomplete-scss";
 @import "meppit-map";
 
 // app common
@@ -27,6 +29,7 @@
 @import "shared/toolbar";
 @import "shared/contacts";
 @import "shared/uploader";
+@import "shared/tags";
 
 @import "sessions/sign_in";
 

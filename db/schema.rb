@@ -11,12 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140503030605) do
+ActiveRecord::Schema.define(version: 20140530003142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
   enable_extension "hstore"
+  enable_extension "pg_trgm"
+  enable_extension "fuzzystrmatch"
 
   create_table "authentications", force: true do |t|
     t.integer  "user_id",    null: false
@@ -26,9 +28,23 @@ ActiveRecord::Schema.define(version: 20140503030605) do
     t.datetime "updated_at"
   end
 
+  create_table "pg_search_documents", force: true do |t|
+    t.text     "content"
+    t.integer  "searchable_id"
+    t.string   "searchable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", force: true do |t|
+    t.string   "tag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
-    t.string   "name",                                                                     null: false
-    t.string   "email",                                                                    null: false
+    t.string   "name",                                                                                  null: false
+    t.string   "email",                                                                                 null: false
     t.string   "crypted_password"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -45,10 +61,12 @@ ActiveRecord::Schema.define(version: 20140503030605) do
     t.spatial  "location",                        limit: {:srid=>4326, :type=>"geometry"}
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
+    t.string   "interests",                                                                default: [],              array: true
   end
 
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["interests"], :name => "index_users_on_interests"
   add_index "users", ["location"], :name => "index_users_on_location", :spatial => true
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token"

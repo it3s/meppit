@@ -9,6 +9,7 @@ gem 'pg'                            # postgresql
 gem 'rgeo'                          # geometry abstraction
 gem 'rgeo-geojson'                  # geojson encode/decode
 gem 'activerecord-postgis-adapter'  # postgis
+gem 'pg_search'                     # postgres fulltext search
 
 gem 'coffee-rails', '~> 4.0.0'      # coffeescript
 gem 'uglifier', '>= 1.3.0'          # minify
@@ -23,6 +24,7 @@ gem 'font-awesome-sass'             # font with svg icons
 gem 'tinymce-rails'                 # tinymce wysiwyg editor
 gem 'tinymce-rails-langs'           # tinymce language pack
 gem "jquery-fileupload-rails"       # jquery-fielupload plugin
+gem 'jquery-ui-rails'               # jqueryUI
 gem 'meppit-map-rails', :github => 'it3s/meppit-map-rails'  # our beloved map
 
 # gem 'turbolinks'                  # speed page loading
