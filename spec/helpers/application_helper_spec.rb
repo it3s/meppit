@@ -100,6 +100,21 @@ describe ApplicationHelper do
     end
   end
 
+  describe "#tags_input" do
+    let(:obj) { FactoryGirl.create :user, :interests => ['aa', 'bb'] }
+    let(:input) { '<input class="string optional" data-autocomplete="/tags/search" data-components="tags" data-tags=\'["aa","bb"]\' id="user_interests" name="user[interests]" type="text" value=\'["aa","bb"]\' />' }
+
+    it "render tags inputs" do
+      helper.simple_form_for(obj) do |f|
+        generated = helper.tags_input(f, :interests, ['aa', 'bb'])
+        expect(generated.include? 'data-components="tags"').to be_true
+        expect(generated.include? 'data-tags="[&quot;aa&quot;,&quot;bb&quot;]"').to be_true
+        expect(generated.include? 'name="user[interests]"').to be_true
+        expect(generated.include? "data-autocomplete=\"#{helper.tag_search_path}\"").to be_true
+      end
+    end
+  end
+
   describe "#tools_list" do
     let(:obj) { FactoryGirl.create :user }
     it { expect(helper.tools_list(obj).size).to eq 7 }
