@@ -9,7 +9,6 @@ class Tag < ActiveRecord::Base
   pg_search_scope :search, against: :tag, using: {
       tsearch:    {},
       trigram:    {threshold: 0.2},
-      dmetaphone: {},
   }
 
   def downcase
