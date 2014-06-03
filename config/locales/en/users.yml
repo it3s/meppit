@@ -30,3 +30,6 @@ en:
       location:
         empty: 'Location not provided yet'
       joined: "Joined on %{date}"
+      contributions: "Contributions"
+      activity: "Activity"
+      following: "Following"

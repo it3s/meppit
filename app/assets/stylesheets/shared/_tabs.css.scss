@@ -1,0 +1,33 @@
+.ui-tabs {
+  border: none;
+  font: inherit;
+  padding: 0;
+
+  .ui-tabs-nav {
+    background: #fff;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid gray;
+    padding: 0;
+
+    .ui-tabs-anchor {
+      padding: 12px 20px 8px;
+      outline: 0;
+    }
+
+    .ui-state-default {
+      border-color: #fff;
+      background: inherit;
+    }
+
+    .ui-state-active {
+      border: 1px solid gray;
+      border-bottom-width: 0;
+    }
+  }
+
+  .ui-tabs-panel {
+    padding: 15px 10px;
+  }
+
+}
