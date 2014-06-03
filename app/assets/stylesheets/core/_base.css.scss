@@ -4,6 +4,7 @@ body {
   font: $base-font-size $main-font;
   -webkit-font-smoothing: subpixel-antialiased;
   color: $text-color;
+  background-color: $main-color-bg;
 }
 
 a {
@@ -59,12 +60,12 @@ h3 {
   @include button;
 }
 
-.blocker { z-index: 1000 !important; }
+.blocker { z-index: 10000 !important; }
 .modal {
   @include box-sizing(content-box);
 
   &.current  {
-    z-index: 1001 !important;
+    z-index: 10001 !important;
     background: $meppit-light-blue;
   }
 }

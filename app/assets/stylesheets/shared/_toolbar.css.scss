@@ -1,8 +1,15 @@
 .toolbar {
   @include span-columns(1);
-  // FIXME: Use the correct url
-  background: url('imgs/toolbar-bg.png') no-repeat right top;
-  min-height: 430px;
+
+  .toolbar-buttons {
+    background: url('imgs/toolbar-bg.png') no-repeat right top;
+    min-height: 430px;
+    float: left;
+  }
+
+  li {
+    margin: 15px 10px;
+  }
 
   a {
     display: block;
@@ -11,7 +18,6 @@
     text-align: center;
     padding: 7px 0;
     border-radius: 5px;
-    margin: 15px 10px;
 
     &:hover, &.active {
       background-color: $meppit-dark-blue;

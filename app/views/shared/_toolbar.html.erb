@@ -1,9 +1,11 @@
-<ul class="toolbar" role="toolbar">
-  <% tools_list(object, local_assigns[:only] || :all).each do |tool| %>
-    <li title="<%= tool[:title] %>">
-      <a class="<%= 'active' if request.path == tool[:url] %>" href="<%= tool[:url] %>" role="button">
-        <%= icon tool[:icon], '', :class => "fa-lg fa-fw" %>
-      </a>
-    </li>
-  <% end %>
-</ul>
+<div class="toolbar">
+  <ul class="toolbar-buttons" role="toolbar" data-components="stick">
+    <% tools_list(object, local_assigns[:only] || :all).each do |tool| %>
+      <li title="<%= tool[:title] %>">
+        <a class="<%= 'active' if request.path == tool[:url] %>" href="<%= tool[:url] %>" role="button">
+          <%= icon tool[:icon], '', :class => "fa-lg fa-fw" %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</div>
