@@ -76,4 +76,38 @@ describe ApplicationController do
     end
   end
 
+  describe '#to_bool' do
+    it 'gets true from string' do
+      expect(controller.send :to_bool, 'true').to be true
+      expect(controller.send :to_bool, 't').to be true
+      expect(controller.send :to_bool, 'yes').to be true
+      expect(controller.send :to_bool, 'y').to be true
+      expect(controller.send :to_bool, '1').to be true
+    end
+
+    it 'gets false from string' do
+      expect(controller.send :to_bool, 'false').to be false
+      expect(controller.send :to_bool, 'f').to be false
+      expect(controller.send :to_bool, 'no').to be false
+      expect(controller.send :to_bool, 'n').to be false
+      expect(controller.send :to_bool, '0').to be false
+    end
+
+    it 'gets true from true' do
+      expect(controller.send :to_bool, true).to be true
+    end
+
+    it 'gets false from false' do
+      expect(controller.send :to_bool, false).to be false
+    end
+
+    it 'gets false from nil' do
+      expect(controller.send :to_bool, nil).to be false
+    end
+
+    it 'raises exception from invalid string' do
+      expect {controller.send :to_bool, 'spam'}.to raise_error(ArgumentError)
+    end
+  end
+
 end
