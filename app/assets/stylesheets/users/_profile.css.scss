@@ -25,13 +25,18 @@
   }
 
   // Central pane
+  .main-title {
+    float:left;
+    max-width: 435px;
+  }
+
   .location {
     clear: both;
     width: 100%;
     margin: 10px 0;
     border: 1px solid transparent;
 
-    .map { height: 165px; }
+    .map { height: 180px; }
     .placeholder  { max-height: 50px; width: 100%; }
     .overlay-message { margin-top: 20px; }
   }

@@ -1,0 +1,9 @@
+<ul class="counters">
+  <% counters_list(object, local_assigns[:only] || :all).each do |counter| %>
+    <li class="counter <%= counter[:class] %>">
+      <a href="<%= counter[:url] %>">
+        <%= icon counter[:icon] %><span class="counter-value"><%= raw t(counter[:string], :count => "<em>#{object.send counter[:method]}</em>" ) %></span>
+      </a>
+    </li>
+  <% end %>
+</ul>
