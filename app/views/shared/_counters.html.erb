@@ -1,0 +1,30 @@
+<ul class="counters">
+  <% if object.respond_to? :data_count %>
+    <li class="counter data-counter">
+      <a href="#">
+        <%= icon 'map-marker' %> <span class="counter-value"><%= raw t('counters.data', :count => "<em>#{object.data_count}</em>" ) %></span>
+      </a>
+    </li>
+  <% end %>
+  <% if object.respond_to? :maps_count %>
+    <li class="counter maps-counter">
+      <a href="#">
+        <%= icon :globe %> <span class="counter-value"><%= raw t('counters.maps', :count => "<em>#{object.maps_count}</em>" ) %></span>
+      </a>
+    </li>
+  <% end %>
+  <% if object.respond_to? :followers_count %>
+    <li class="counter followers-counter">
+    <a href="#">
+        <%= icon :star %> <span class="counter-value"><%= raw t('counters.followers', :count => "<em>#{object.followers_count}</em>" ) %></span>
+      </a>
+    </li>
+  <% end %>
+  <% if object.respond_to? :contributors_count %>
+    <li class="counter contributors-counter">
+    <a href="#">
+        <%= icon :users %> <span class="counter-value"><%= raw t('counters.contributors', :count => "<em>#{object.contributors_count}</em>" ) %></span>
+      </a>
+    </li>
+  <% end %>
+</ul>

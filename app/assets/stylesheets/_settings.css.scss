@@ -6,9 +6,6 @@ $footer-height: 210px;
 $max-width: $canvas-width;
 $page-columns: 11;
 
-// Semantic colors
-$secondary-content-color: #999;
-
 // Unsemantic colors
 $ultra-dark-grey: #333333;
 $dark-grey: #626262;
@@ -53,16 +50,21 @@ $meppit-blue: #b1dde8;
 $meppit-dark-blue: #62bbd1;
 $meppit-green: #8EC89A;
 
+$facebook_blue: #3c5a98;
+$google_red: #d84a38;
+$twitter_blue: #46c8f5;
+
+// Semantic colors
+$main-color-bg: $white;
+
+$secondary-content-color: #999;
+
 $meppit-maps-color: #f26700;
 // $meppit-maps-color: #951b81;
 $meppit-data-color: darken($meppit-dark-blue, 20%);
 
 $button-color: #3EBAC2;
 $button-light-color: #4092A9;
-
-$facebook_blue: #3c5a98;
-$google_red: #d84a38;
-$twitter_blue: #46c8f5;
 
 $text-color: $dark-grey;
 $link-color: #009CB4;
@@ -72,7 +74,6 @@ $text-link-hover-color-fg: #14636E;
 $text-link-hover-color-bg: #B1DDE8;
 $text-link-visited-color: #004047;
 
-$main-color-bg: $white;
 $stick-color-bg: $white;
 $stick-color-shadow: $meppit-blue;
 

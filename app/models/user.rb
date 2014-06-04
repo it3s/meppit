@@ -38,4 +38,14 @@ class User < ActiveRecord::Base
   def geojson_properties
     {:name => name, :id => id}
   end
+
+  def followers_count
+    # TODO
+    0
+  end
+
+  def maps_count
+    # TODO
+    0
+  end
 end

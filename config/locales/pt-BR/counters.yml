@@ -1,0 +1,6 @@
+pt-BR:
+  counters:
+    maps: '%{count} mapas'
+    data: '%{count} objetos'
+    contributors: '%{count} colaboradores'
+    followers: '%{count} seguidores'
