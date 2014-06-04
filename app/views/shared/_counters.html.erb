@@ -1,30 +1,18 @@
 <ul class="counters">
-  <% if object.respond_to? :data_count %>
-    <li class="counter data-counter">
-      <a href="#">
-        <%= icon 'map-marker' %> <span class="counter-value"><%= raw t('counters.data', :count => "<em>#{object.data_count}</em>" ) %></span>
-      </a>
-    </li>
-  <% end %>
-  <% if object.respond_to? :maps_count %>
-    <li class="counter maps-counter">
-      <a href="#">
-        <%= icon :globe %> <span class="counter-value"><%= raw t('counters.maps', :count => "<em>#{object.maps_count}</em>" ) %></span>
-      </a>
-    </li>
-  <% end %>
-  <% if object.respond_to? :followers_count %>
-    <li class="counter followers-counter">
-    <a href="#">
-        <%= icon :star %> <span class="counter-value"><%= raw t('counters.followers', :count => "<em>#{object.followers_count}</em>" ) %></span>
-      </a>
-    </li>
-  <% end %>
-  <% if object.respond_to? :contributors_count %>
-    <li class="counter contributors-counter">
-    <a href="#">
-        <%= icon :users %> <span class="counter-value"><%= raw t('counters.contributors', :count => "<em>#{object.contributors_count}</em>" ) %></span>
-      </a>
-    </li>
-  <% end %>
+  <%
+  [
+    { :icon => 'map-marker', :string => 'counters.data',         :method => :data_count,         :class => 'data-counter',         :url => '#' },
+    { :icon => 'globe',      :string => 'counters.maps',         :method => :maps_count,         :class => 'maps-counter',         :url => '#' },
+    { :icon => 'star' ,      :string => 'counters.followers',    :method => :followers_count,    :class => 'followers-counter',    :url => '#' },
+    { :icon => 'users' ,     :string => 'counters.contributors', :method => :contributors_count, :class => 'contributors-counter', :url => '#' },
+  ].each do |counter|
+    if object.respond_to? counter[:method] %>
+      <li class="counter <%= counter[:class] %>">
+        <a href="<%= counter[:url] %>">
+          <%= icon counter[:icon] %><span class="counter-value"><%= raw t(counter[:string], :count => "<em>#{object.send counter[:method]}</em>" ) %></span>
+        </a>
+      </li>
+    <%
+    end
+  end %>
 </ul>
