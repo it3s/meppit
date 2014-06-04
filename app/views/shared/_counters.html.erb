@@ -1,18 +1,9 @@
 <ul class="counters">
-  <%
-  [
-    { :icon => 'map-marker', :string => 'counters.data',         :method => :data_count,         :class => 'data-counter',         :url => '#' },
-    { :icon => 'globe',      :string => 'counters.maps',         :method => :maps_count,         :class => 'maps-counter',         :url => '#' },
-    { :icon => 'star' ,      :string => 'counters.followers',    :method => :followers_count,    :class => 'followers-counter',    :url => '#' },
-    { :icon => 'users' ,     :string => 'counters.contributors', :method => :contributors_count, :class => 'contributors-counter', :url => '#' },
-  ].each do |counter|
-    if object.respond_to? counter[:method] %>
-      <li class="counter <%= counter[:class] %>">
-        <a href="<%= counter[:url] %>">
-          <%= icon counter[:icon] %><span class="counter-value"><%= raw t(counter[:string], :count => "<em>#{object.send counter[:method]}</em>" ) %></span>
-        </a>
-      </li>
-    <%
-    end
-  end %>
+  <% counters_list(object, local_assigns[:only] || :all).each do |counter| %>
+    <li class="counter <%= counter[:class] %>">
+      <a href="<%= counter[:url] %>">
+        <%= icon counter[:icon] %><span class="counter-value"><%= raw t(counter[:string], :count => "<em>#{object.send counter[:method]}</em>" ) %></span>
+      </a>
+    </li>
+  <% end %>
 </ul>
