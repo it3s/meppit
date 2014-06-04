@@ -71,10 +71,10 @@ module ApplicationHelper
 
   def counters_list(obj, only=:all)
     counters = {
-      :data         => { :icon => :'map-marker', :string => 'counters.data',         :method => :data_count,         :url => "" },
-      :maps         => { :icon => :globe,        :string => 'counters.maps',         :method => :maps_count,         :url => "" },
-      :followers    => { :icon => :star,         :string => 'counters.followers',    :method => :followers_count,    :url => "" },
-      :contributors => { :icon => :users,        :string => 'counters.contributors', :method => :contributors_count, :url => "" },
+      :data         => { :icon => :'map-marker', :string => 'counters.data',         :method => :data_count,         :class => "data-counter",         :url => "" },
+      :maps         => { :icon => :globe,        :string => 'counters.maps',         :method => :maps_count,         :class => "maps-counter",         :url => "" },
+      :followers    => { :icon => :star,         :string => 'counters.followers',    :method => :followers_count,    :class => "followers-counter",    :url => "" },
+      :contributors => { :icon => :users,        :string => 'counters.contributors', :method => :contributors_count, :class => "contributors-counter", :url => "" },
     }
     available_counters = counters.select {|key, counter| obj.respond_to? counter[:method] }
     only == :all ? available_counters.values() : only.map {|name| available_counters[name] }
