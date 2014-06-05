@@ -1,13 +1,13 @@
 .list-item {
   clear: both;
-  padding: 10px 0;
+  padding: 15px 0;
   border-bottom: 1px solid $list-item-separator-color;
 
   .item-avatar {
     display: block;
     float: left;
     margin: 0 10px 0 0;
-    background: red; //FIXME
+    background: $soft-grey;
     width: 32px;
     height: 32px;
     border-radius: 5px;
@@ -19,16 +19,25 @@
     .item-title {
       font-family: inherit;
       font-size: 1.15em;
+
     }
 
-    .item-excerpt {
-      color: $text-color;
-    }
+    .item-excerpt { color: $text-color; }
+
+    a { color: $text-link-color; }
+
+  }
+
+  &.map {
+    .item-avatar { background: $meppit-maps-color; }
+    .item a { color: $meppit-maps-color; }
+  }
+  &.data {
+    .item-avatar { background: $meppit-data-color; }
+    .item a { color: $meppit-data-color;  }
   }
 
   .item-controls {
-    .counters {
-      margin: 10px 0;
-    }
+    .counters { margin: 8px 0;  }
   }
 }
