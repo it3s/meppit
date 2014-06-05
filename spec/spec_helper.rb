@@ -1,11 +1,15 @@
 unless ENV["NOCOVERAGE"]
   require 'simplecov'
+  require 'coveralls'
+
+  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+    SimpleCov::Formatter::HTMLFormatter,
+    Coveralls::SimpleCov::Formatter
+  ]
+
   SimpleCov.start 'rails' do
     coverage_dir 'coverage/ruby'
   end
-
-  require 'coveralls'
-  Coveralls.wear!
 end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
