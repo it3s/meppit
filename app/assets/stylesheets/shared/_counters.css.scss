@@ -25,22 +25,41 @@
       display: inline-block;
       margin: 0 5px 0 0;
       vertical-align: middle;
-      font-size: 1.7em;
+      font-size: 1.8em;
     }
 
     .counter-value {
       display: inline-block;
       vertical-align: middle;
       text-align: center;
-      font-size: 0.8em;
+      font-size: 0.9em;
       line-height: 1em;
 
       em {
         display: block;
         color: $text-color;
         font-weight: bold;
-        font-size: 1.2em;
+        font-size: 1.3em;
       }
     }
+
+    &.small {
+      margin: 0 0 0 5px;
+      font-size: 0.9em;
+
+      a {
+        padding: 5px;
+      }
+
+      i {
+        font-size: 1em;
+      }
+
+      .counter-value {
+        min-width: 1.5em;
+        text-align: inherit;
+      }
+    }
+
   }
 }

@@ -79,4 +79,14 @@ module ApplicationHelper
     available_counters = counters.select {|key, counter| obj.respond_to? counter[:method] }
     only == :all ? available_counters.values() : only.map {|name| available_counters[name] }
   end
+
+  def contributions_list(obj)
+    #TODO: get real objects
+    require 'ostruct'
+    [
+      OpenStruct.new(:title => "Fake item", :excerpt => "Lorem ipsum", :maps_count => 5, :followers_count => 23),
+      OpenStruct.new(:title => "Another fake item", :excerpt => "Lorem ipsum", :data_count => 43, :followers_count => 133, :contributors_count => 21 ),
+      OpenStruct.new(:title => "More fakes", :excerpt => "Lorem ipsum", :maps_count => 0, :followers_count => 0, :contributors_count => 1)
+    ]
+  end
 end

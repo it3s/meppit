@@ -1,0 +1,14 @@
+<li class="list-item">
+  <div class="wrapper">
+    <div class="item-avatar"></div>
+    <div class="item">
+      <h2 class="item-title"><%= item.title %></h2>
+      <p class="item-excerpt"><%= item.excerpt %></p>
+    </div>
+    <div class="item-controls">
+      <% if local_assigns[:control] == :counters %>
+        <%= render 'shared/counters', :object => item, :user => @user, :small => true %>
+      <% end %>
+    </div>
+  </div>
+</li>

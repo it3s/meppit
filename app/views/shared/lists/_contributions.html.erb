@@ -1,0 +1,5 @@
+<ul class="list contributions-list">
+  <% contributions_list(object).each do |item| %>
+    <%= render 'shared/lists/item_small', :item => item, :user => @user, :control => :counters %>
+  <% end %>
+</ul>
