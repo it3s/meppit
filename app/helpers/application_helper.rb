@@ -56,7 +56,6 @@ module ApplicationHelper
     f.input name, :input_html => {'data-components' => 'tags', 'data-tags' => tags.to_json, 'data-autocomplete' => tag_search_path }
   end
 
-
   def tools_list(obj, only=:all)
     tools = {
       :edit     => {:icon => :pencil,        :title => t('toolbar.edit'),     :url => url_for([:edit, obj])},
@@ -68,5 +67,16 @@ module ApplicationHelper
       :delete   => {:icon => :'trash-o',     :title => t('toolbar.delete'),   :url => ""},
     }
     only == :all ? tools.values() : only.map {|name| tools[name] }
+  end
+
+  def counters_list(obj, only=:all)
+    counters = {
+      :data         => { :icon => :'map-marker', :string => 'counters.data',         :method => :data_count,         :class => "data-counter",         :url => "" },
+      :maps         => { :icon => :globe,        :string => 'counters.maps',         :method => :maps_count,         :class => "maps-counter",         :url => "" },
+      :followers    => { :icon => :star,         :string => 'counters.followers',    :method => :followers_count,    :class => "followers-counter",    :url => "" },
+      :contributors => { :icon => :users,        :string => 'counters.contributors', :method => :contributors_count, :class => "contributors-counter", :url => "" },
+    }
+    available_counters = counters.select {|key, counter| obj.respond_to? counter[:method] }
+    only == :all ? available_counters.values() : only.map {|name| available_counters[name] }
   end
 end

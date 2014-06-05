@@ -55,17 +55,23 @@ describe User do
 
   describe "send activation email" do
     it "enqueues to sidekiq" do
-      expect { UserMailer.delay.activation_email(user.id)}.to change(Sidekiq::Extensions::DelayedMailer.jobs, :size).by(1)
+      expect { user.send_activation_email}.to change(Sidekiq::Extensions::DelayedMailer.jobs, :size).by(1)
     end
   end
 
   describe "send reset password email" do
     it "enqueues to sidekiq" do
-      expect { UserMailer.delay.reset_password_email(user.id)}.to change(Sidekiq::Extensions::DelayedMailer.jobs, :size).by(1)
+      expect { user.send_reset_password_email!}.to change(Sidekiq::Extensions::DelayedMailer.jobs, :size).by(1)
     end
   end
 
   describe "avatar" do
     it { expect(user.avatar).to be_a_kind_of AvatarUploader }
+  end
+
+  describe "geojson properties" do
+    it "should have id" do
+      expect(user.geojson_properties).to have_key(:id)
+    end
   end
 end

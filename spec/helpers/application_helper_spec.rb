@@ -121,6 +121,12 @@ describe ApplicationHelper do
     it { expect(helper.tools_list(obj, only=[:edit, :star]).size).to eq 2 }
   end
 
+  describe "#counters_list" do
+    let(:obj) { FactoryGirl.create :user }
+    it { expect(helper.counters_list(obj).size).to eq 2 }
+    it { expect(helper.counters_list(obj, only=[:map]).size).to eq 1 }
+  end
+
 
   describe "Corcerns::ContactsHelper" do
     let(:user) { FactoryGirl.create :user, :contacts => {'address' => 'rua Bla', 'phone' => '12345'} }
