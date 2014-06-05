@@ -1,10 +1,11 @@
+<% size = local_assigns[:size] || :medium %>
 <ul class="counters">
   <% counters_list(object, local_assigns[:only] || :all).each do |counter| %>
     <% count = object.send counter[:method] || 0 %>
-    <li class="counter <%= counter[:class] %> <%= local_assigns[:small] ? 'small' : '' %>">
+    <li class="counter <%= counter[:class] %> <%= size %>">
       <a href="<%= counter[:url] %>" title="<%= t(counter[:string], :count => count) %>">
         <%= icon counter[:icon] %><span class="counter-value">
-          <% if local_assigns[:small] %>
+          <% if not size == :big %>
             <%= count %>
           <% else %>
             <%= raw t(counter[:string], :count => "<em>#{count}</em>" ) %>
