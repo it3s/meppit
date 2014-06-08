@@ -5,3 +5,6 @@ pt-BR:
       relations: "Relations"
       media: "Media"
       talk: "Talk"
+
+    description:
+      empty: "Nenhuma descrição fornecida ainda para %{name}"

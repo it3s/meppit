@@ -13,9 +13,13 @@
   .location {
     @include map-view;
   }
-  
+
   .data-tabs {
     margin-top: 30px;
+
+    .tab-content {
+      @include inline-pane(65%);
+    }
   }
 
   .extra-info {

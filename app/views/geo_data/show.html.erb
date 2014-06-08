@@ -27,23 +27,31 @@
         <li><a href="#media"><%= icon "picture-o", t('geo_data.tabs.media') %></a></li>
         <li><a href="#talk"><%= icon "comments", t('geo_data.tabs.talk') %></a></li>
       </ul>
-      <div id="content">
-        Content Placeholder
+
+      <div class="extra-info" >
+        <%= render 'shared/contacts/view', :object => @data %>
+        <%= render 'shared/tags', :tags => @data.tags %>
       </div>
-      <div id="relations">
+
+      <div class="tab-content" id="content">
+        <div class="description">
+          <% if @data.description.blank? %>
+            <%= t 'geo_data.description.empty', :name => @user.name %>
+          <% else %>
+            <%= raw @data.description %>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-content" id="relations">
         Relations Placeholder
       </div>
-      <div id="media">
+      <div class="tab-content" id="media">
         Media Placeholder
       </div>
-      <div id="talk">
+      <div class="tab-content" id="talk">
         Talk Placeholder
       </div>
     </div>
 
-    <div class="extra-info" >
-      <%= render 'shared/contacts/view', :object => @data %>
-      <%= render 'shared/tags', :tags => @data.tags %>
-    </div>
   </section>
 </div>
