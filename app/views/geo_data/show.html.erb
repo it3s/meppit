@@ -19,6 +19,31 @@
   </section>
 
   <section class="main-info">
-    tabs and etc
+
+    <div class="data-tabs" data-components="tabs">
+      <ul>
+        <li><a href="#content"><%= icon "file-text", t('geo_data.tabs.content') %></a></li>
+        <li><a href="#relations"><%= icon "link", t('geo_data.tabs.relations') %></a></li>
+        <li><a href="#media"><%= icon "picture-o", t('geo_data.tabs.media') %></a></li>
+        <li><a href="#talk"><%= icon "comments", t('geo_data.tabs.talk') %></a></li>
+      </ul>
+      <div id="content">
+        Content Placeholder
+      </div>
+      <div id="relations">
+        Relations Placeholder
+      </div>
+      <div id="media">
+        Media Placeholder
+      </div>
+      <div id="talk">
+        Talk Placeholder
+      </div>
+    </div>
+
+    <div class="extra-info" >
+      <%= render 'shared/contacts/view', :object => @data %>
+      <%= render 'shared/tags', :tags => @data.tags %>
+    </div>
   </section>
 </div>

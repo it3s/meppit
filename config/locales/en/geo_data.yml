@@ -1,0 +1,7 @@
+en:
+  geo_data:
+    tabs:
+      content: "Content"
+      relations: "Relations"
+      media: "Media"
+      talk: "Talk"

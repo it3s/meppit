@@ -9,14 +9,17 @@
       margin: 0.67em 0;
     }
   }
-  .location {
-    clear: both;
-    width: 100%;
-    margin: 10px 0;
-    border: 1px solid transparent;
 
-    .map { height: 180px; }
-    .placeholder  { max-height: 50px; width: 100%; }
-    .overlay-message { margin-top: 20px; }
+  .location {
+    @include map-view;
+  }
+  
+  .data-tabs {
+    margin-top: 30px;
+  }
+
+  .extra-info {
+    float: right;
+    width: 30%;
   }
 }
