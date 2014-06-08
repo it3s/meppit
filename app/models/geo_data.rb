@@ -11,4 +11,19 @@ class GeoData < ActiveRecord::Base
   def geojson_properties
     {name: name, id: id, description: description}
   end
+
+  def maps_count
+    #TODO refactor to concern
+    0
+  end
+
+  def followers_count
+    #TODO refactor to concern
+    0
+  end
+
+  def contributors_count
+    #TODO refactor to concern
+    0
+  end
 end

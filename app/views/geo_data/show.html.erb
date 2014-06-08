@@ -1,5 +1,24 @@
 <%= render 'shared/toolbar', :object => @data, :only => data_tools(@data) %>
 
 <div class="page data-view" >
-  <h1><%= @data.name %></h1>
+  <header>
+    <div class="title">
+      <h1 class="name"><%= @data.name %></h1>
+      <%= render 'shared/counters', :object => @data %>
+    </div>
+  </header>
+
+  <section class="location">
+    <% if @data.location %>
+      <div class="map" data-components="map" data-geojson='<%= raw @data.location_geojson %>'></div>
+    <% else %>
+      <div data-components='overlay' data-overlay='<%= {style: "dark", message: t("users.profile.location.empty")}.to_json %>'>
+        <%= image_tag "imgs/map-placeholder-wide.png", :alt => 'data location', :class => 'placeholder' %>
+      </div>
+    <% end %>
+  </section>
+
+  <section class="main-info">
+    tabs and etc
+  </section>
 </div>
