@@ -40,12 +40,12 @@ class User < ActiveRecord::Base
   end
 
   def followers_count
-    # TODO
+    #TODO refactor to concern
     0
   end
 
   def maps_count
-    # TODO
+    #TODO refactor to concern
     0
   end
 end

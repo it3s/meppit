@@ -8,7 +8,7 @@
     <div class="title">
       <div>
         <h1 class="name"><%= @data.name %></h1>
-        <%= render 'shared/counters', :object => @data %>
+        <%= render 'shared/counters', :object => @data, :size => :big %>
       </div>
       <div class="last-update"><%= t 'geo_data.last_updated', date: time_ago_in_words(@data.updated_at) %></div>
     </div>

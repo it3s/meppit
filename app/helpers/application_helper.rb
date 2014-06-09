@@ -84,13 +84,24 @@ module ApplicationHelper
     #TODO: get real objects
     require 'ostruct'
     [
-      OpenStruct.new(:title => "Fake item", :type => :user, :description => "Lorem ipsum", :maps_count => 5, :followers_count => 23),
-      OpenStruct.new(:title => "Another fake item", :type => :map, :description => "Lorem ipsum", :data_count => 43, :followers_count => 133, :contributors_count => 21 ),
-      OpenStruct.new(:title => "More fakes", :type => :data, :description => "Lorem ipsum", :maps_count => 0, :followers_count => 0, :contributors_count => 1),
-      OpenStruct.new(:title => "More fakes", :type => :data, :description => "Lorem ipsum", :maps_count => 0, :followers_count => 0, :contributors_count => 1),
-      OpenStruct.new(:title => "More fakes", :type => :data, :description => "Lorem ipsum", :maps_count => 0, :followers_count => 0, :contributors_count => 1),
-      OpenStruct.new(:title => "Another fake item", :type => :map, :description => "Lorem ipsum", :data_count => 43, :followers_count => 133, :contributors_count => 21 ),
-      OpenStruct.new(:title => "More fakes", :type => :data, :description => "Lorem ipsum", :maps_count => 0, :followers_count => 0, :contributors_count => 1)
+      GeoData.find(1),
+      GeoData.find(1),
+      User.find(2),
+      GeoData.find(1),
+      GeoData.find(1),
+      GeoData.find(1)
     ]
+  end
+
+  def object_type(obj)
+    if obj.kind_of? User
+      :user
+    elsif obj.kind_of? GeoData
+      :data
+    #elsif obj.kind_of? Map
+      #:map
+    else
+      :unknown
+    end
   end
 end
