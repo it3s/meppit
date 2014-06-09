@@ -31,14 +31,7 @@
   }
 
   .location {
-    clear: both;
-    width: 100%;
-    margin: 10px 0;
-    border: 1px solid transparent;
-
-    .map { height: 180px; }
-    .placeholder  { max-height: 50px; width: 100%; }
-    .overlay-message { margin-top: 20px; }
+    @include map-view;
   }
 
   h1.name {

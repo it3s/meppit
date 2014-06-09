@@ -3,7 +3,8 @@
     <a href="#">
       <%= icon "globe", t('header.menu.maps') %>
     </a>
-  </div><div class="menu-item data">
+  </div>
+  <div class="menu-item data <%= 'active' if params[:controller] == 'geo_data' %>">
     <a href="#">
       <%= icon "map-marker", t('header.menu.data') %>
     </a>

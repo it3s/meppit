@@ -3,7 +3,7 @@
 <div class="page user-profile edit" >
   <%= remote_form_for @user do |f| %>
 
-    <div class="form-actions" data-components="stick" data-stick='{ "get_width_from": ".user-profile.page" }'>
+  <div class="form-actions" data-components="stick" data-stick='{ "get_width_from": ".user-profile.page" }'>
     <%= submit_tag t('save'), :class => "edit-save" %>
     <%= link_to t('cancel'), url_for(@user) %>
   </div>

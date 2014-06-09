@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def create
     user = login(params[:email], params[:password], to_bool(params[:remember_me]))
     if user
-      render :json => { :redirect => session[:return_to_url] || root_path }
+      render :json => { :redirect => session[:return_to_url] || request.env['HTTP_REFERER'] || root_path }
       session[:return_to_url] = nil
     else
       render :json => { :errors => error_message }, :status => :unprocessable_entity
