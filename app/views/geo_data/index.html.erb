@@ -1,0 +1,10 @@
+<div class="page full data-list">
+  <div data-components="list">
+    <h1><%= raw t('geo_data.list.title', :count => "<em>#{local_assigns[:count]}</em>") %></h1>
+    <ul class="list data-list">
+      <% @data.each do |item| %>
+        <%= render 'shared/lists/item_big', :object => item, :checkbox => true, :control => :counters %>
+      <% end %>
+    </ul>
+  </div>
+</div>

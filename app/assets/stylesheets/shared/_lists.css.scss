@@ -3,6 +3,12 @@
   padding: 15px 0;
   border-bottom: 1px solid $list-item-separator-color;
 
+  &:hover { background: $dark-white; }
+
+  a, a:hover { text-decoration: none; }
+
+  .item-checkbox { float: left; }
+
   .item-avatar {
     display: block;
     float: left;
@@ -30,6 +36,8 @@
   }
 
   &.big {
+    .item-checkbox { margin: 22px 15px; }
+
     .item-avatar, img {
       font-size: 54px;
       width: 64px;

@@ -1,29 +1,38 @@
-<li class="list-item big <%= item[:type] %>">
+<% type = object_type object %>
+<li class="list-item big <%= type %>">
   <div class="wrapper">
-    <a href="<%= item[:url] %>" title="<%= item[:title] %>">
+    <% if local_assigns[:checkbox] %>
+      <div class="item-checkbox">
+        <input type="checkbox" value="<%= object[:id] %>">
+      </div>
+    <% end %>
+    <a href="<%= url_for object %>" title="<%= object[:name] %>">
       <div class="item-avatar">
-        <% if item[:avatar] %>
-          <%= image_tag item[:avatar].thumb.url %>
+        <% if object[:avatar] %>
+          <%= image_tag object[:avatar].thumb.url %>
         <% else %>
-          <% if item[:type] == :map %>
+          <% if type == :map %>
             <%= icon :globe %>
-          <% elsif item[:type] == :data %>
+          <% elsif type == :data %>
             <%= icon :'map-marker' %>
-          <% elsif item[:type] == :user %>
+          <% elsif type == :user %>
             <%= icon :user %>
           <% else %>
             <%= icon :question %>
           <% end %>
         <% end %>
       </div>
-      <div class="item">
-        <h2 class="item-title"><%= truncate item[:title], length: 85 %></h2>
-        <p class="item-excerpt"><%= truncate item[:description], length: 300  %></p>
-      </div>
     </a>
+    <div class="item">
+      <a href="<%= url_for object %>" title="<%= object[:name] %>">
+        <h2 class="item-title"><%= truncate object[:name], length: 85 %></h2>
+        <p class="item-excerpt"><%= truncate(object[:description] || object[:about_me], length: 300)  %></p>
+      </a>
+      <%= render 'shared/tags', :tags => object.tags %>
+    </div>
     <div class="item-controls">
       <% if local_assigns[:control] == :counters %>
-        <%= render 'shared/counters', :object => item, :size => :medium %>
+        <%= render 'shared/counters', :object => object, :size => :medium %>
       <% end %>
     </div>
   </div>

@@ -16,5 +16,8 @@ pt-BR:
 
     add_to_map: "Adicone a um Mapa"
 
+    list:
+      title: '%{count} objetos'
+
     flash:
       updated: 'Dados atualizados com sucesso'

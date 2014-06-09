@@ -16,5 +16,8 @@ en:
 
     add_to_map: "Add to a Map"
 
+    list:
+      title: '%{count} objects'
+
     flash:
       updated: 'Data successfully updated'

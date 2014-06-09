@@ -1,7 +1,7 @@
 <% type = object_type object %>
 <li class="list-item small <%= type %>">
   <div class="wrapper">
-    <a href="<%= object[:url] %>" title="<%= object[:title] %>">
+    <a href="<%= url_for object %>" title="<%= object[:name] %>">
       <div class="item-avatar">
         <% if object[:avatar] %>
           <%= image_tag object[:avatar].thumb.url %>
@@ -18,7 +18,7 @@
         <% end %>
       </div>
       <div class="item">
-        <h2 class="item-title"><%= truncate object[:title], length: 55 %></h2>
+        <h2 class="item-title"><%= truncate object[:name], length: 55 %></h2>
         <p class="item-excerpt"><%= truncate(object[:description] || object[:about_me], length: 130)  %></p>
       </div>
     </a>
