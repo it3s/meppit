@@ -52,4 +52,34 @@
     float: right;
     width: 30%;
   }
+
+  &.edit {
+    .field {
+      padding: 0;
+      label { display: none; }
+    }
+
+    h1.name input[type=text] {
+      margin: 0 0 20px;
+    }
+
+    .location {
+      border: 1px solid $grey;
+      margin: 0 0 15px;
+    }
+
+    input[type=text] {
+      font: inherit;
+      color: inherit;
+      letter-spacing: inherit;
+    }
+
+    .mce-ico {
+      width: 14px;
+      height: 14px;
+    }
+    .mce-btn button {
+      padding: 3px 6px;
+    }
+  }
 }

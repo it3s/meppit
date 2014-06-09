@@ -1,0 +1,62 @@
+<%= render 'shared/toolbar', :object => @data, :only => data_tools(@data) %>
+
+<div class="page data-view edit" >
+  <%= remote_form_for @data do |f| %>
+
+  <div class="form-actions" data-components="stick" data-stick='{ "get_width_from": ".data-view.page" }'>
+    <%= submit_tag t('save'), :class => "edit-save" %>
+    <%= link_to t('cancel'), url_for(@data) %>
+  </div>
+
+  <header>
+    <div class="data-logo">
+      <%= icon "map-marker" %>
+    </div>
+    <div class="title">
+      <div>
+        <h1 class="name"><%= f.input :name %></h1>
+      </div>
+    </div>
+  </header>
+
+  <section class="location">
+      <div class="map" data-components="map" data-editor="true" data-geojson='<%= raw @data.location_geojson %>'></div>
+  </section>
+
+  <section class="main-info">
+
+    <div class="data-tabs" data-components="tabs">
+      <ul>
+        <li><a href="#content"><%= icon "file-text", t('geo_data.tabs.content') %></a></li>
+        <li><a href="#relations"><%= icon "link", t('geo_data.tabs.relations') %></a></li>
+        <li><a href="#media"><%= icon "picture-o", t('geo_data.tabs.media') %></a></li>
+        <li><a href="#talk"><%= icon "comments", t('geo_data.tabs.talk') %></a></li>
+      </ul>
+
+      <div class="extra-info" >
+        <%= render 'shared/contacts/edit', :object => @data %>
+        <div class="tags">
+          <%= tags_input f, :tags, @data.tags %>
+        </div>
+      </div>
+
+      <div class="tab-content" id="content">
+        <div class="description">
+          <%= f.input :description, :as => :text, :input_html => {:class => 'tinymce', 'data-components' => 'editor', 'data-height' => 200 } %>
+        </div>
+      </div>
+      <div class="tab-content" id="relations">
+        Relations Placeholder
+      </div>
+      <div class="tab-content" id="media">
+        Media Placeholder
+      </div>
+      <div class="tab-content" id="talk">
+        Talk Placeholder
+      </div>
+    </div>
+
+  </section>
+
+  <% end %>
+</div>
