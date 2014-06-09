@@ -1,6 +1,6 @@
 <%= render 'shared/toolbar', :object => @user, :only => user_tools(@user)%>
 
-<div class="page user-profile edit" >
+<div class="site-page user-profile edit" >
   <%= remote_form_for @user do |f| %>
 
   <div class="form-actions" data-components="stick" data-stick='{ "get_width_from": ".user-profile.page" }'>

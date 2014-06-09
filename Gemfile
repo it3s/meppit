@@ -38,6 +38,7 @@ gem 'carrierwave_backgrounder'      # delegate uploads to background jobs
 gem 'mini_magick'                   # image processing for uploaders
 gem 'fog'                           # upload images to amazon S3
 gem 'remotipart'                    # enable ajax file uploads on remote forms
+gem 'kaminari'                      # paginator
 
 group :doc do
   gem 'sdoc', :require => false

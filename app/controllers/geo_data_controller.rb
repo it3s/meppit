@@ -4,7 +4,7 @@ class GeoDataController < ApplicationController
   before_action :find_data,     :only => [:show, :edit, :update]
 
   def index
-    @data = GeoData.all
+    @list = GeoData.page(params[:page]).per(params[:per])
   end
 
   def show
