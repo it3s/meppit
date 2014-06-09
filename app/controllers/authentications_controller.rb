@@ -7,7 +7,7 @@ class AuthenticationsController < ApplicationController
 
   def callback
     add_provider unless @user = login_from(provider, true)
-    redirect_to root_path, :notice => t('users.oauth.logged', :provider => provider.titleize)
+    redirect_to request.env['HTTP_REFERER'] || root_path, :notice => t('users.oauth.logged', :provider => provider.titleize)
   end
 
   private

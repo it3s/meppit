@@ -1,0 +1,66 @@
+<%= render 'shared/toolbar', :object => @data, :only => data_tools(@data) %>
+
+<div class="page data-view" >
+  <header>
+    <div class="data-logo">
+      <%= icon "map-marker" %>
+    </div>
+    <div class="title">
+      <div>
+        <h1 class="name"><%= @data.name %></h1>
+        <%= render 'shared/counters', :object => @data %>
+      </div>
+      <div class="last-update"><%= t 'geo_data.last_updated', date: time_ago_in_words(@data.updated_at) %></div>
+    </div>
+  </header>
+
+  <section class="location">
+    <% if @data.location %>
+      <div class="map" data-components="map" data-geojson='<%= raw @data.location_geojson %>'></div>
+    <% else %>
+      <div data-components='overlay' data-overlay='<%= {style: "dark", message: t("geo_data.location.empty")}.to_json %>'>
+        <%= image_tag "imgs/map-placeholder-wide.png", :alt => 'data location', :class => 'placeholder' %>
+      </div>
+    <% end %>
+  </section>
+
+  <button class="download"><%= icon "download" %></button>
+  <button class="add-to-map"><%= icon "globe", t("geo_data.add_to_map") %></button>
+
+  <section class="main-info">
+
+    <div class="data-tabs" data-components="tabs">
+      <ul>
+        <li><a href="#content"><%= icon "file-text", t('geo_data.tabs.content') %></a></li>
+        <li><a href="#relations"><%= icon "link", t('geo_data.tabs.relations') %></a></li>
+        <li><a href="#media"><%= icon "picture-o", t('geo_data.tabs.media') %></a></li>
+        <li><a href="#talk"><%= icon "comments", t('geo_data.tabs.talk') %></a></li>
+      </ul>
+
+      <div class="extra-info" >
+        <%= render 'shared/contacts/view', :object => @data %>
+        <%= render 'shared/tags', :tags => @data.tags %>
+      </div>
+
+      <div class="tab-content" id="content">
+        <div class="description">
+          <% if @data.description.blank? %>
+            <%= t 'geo_data.description.empty', :name => @user.name %>
+          <% else %>
+            <%= raw @data.description %>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-content" id="relations">
+        Relations Placeholder
+      </div>
+      <div class="tab-content" id="media">
+        Media Placeholder
+      </div>
+      <div class="tab-content" id="talk">
+        Talk Placeholder
+      </div>
+    </div>
+
+  </section>
+</div>

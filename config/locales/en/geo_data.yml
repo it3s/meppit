@@ -1,0 +1,20 @@
+en:
+  geo_data:
+    tabs:
+      content: "Content"
+      relations: "Relations"
+      media: "Media"
+      talk: "Talk"
+
+    description:
+      empty: "No description provided yet for %{name}"
+
+    location:
+      empty: 'Location not provided yet'
+
+    last_updated: 'Last updated %{date}'
+
+    add_to_map: "Add to a Map"
+
+    flash:
+      updated: 'Data successfully updated'

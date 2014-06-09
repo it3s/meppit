@@ -11,7 +11,7 @@ Meppit::Application.routes.draw do
   get  "oauth/:provider/callback"  => "authentications#callback"
   get  "oauth/:provider" => "authentications#oauth", :as => :auth_at_provider
 
-  get "tags/search" => "tags#search", :as => :tag_search
+  get  "tags/search" => "tags#search", :as => :tag_search
 
   resources :users do
     member     { get :activate }
@@ -24,6 +24,8 @@ Meppit::Application.routes.draw do
       post :update_password
     end
   end
+
+  resources :geo_data, :only => [:show, :edit, :update]
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, :at => "/letter_opener"
