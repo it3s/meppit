@@ -2,9 +2,15 @@
 
 <div class="page data-view" >
   <header>
+    <div class="data-logo">
+      <%= icon "map-marker" %>
+    </div>
     <div class="title">
-      <h1 class="name"><%= @data.name %></h1>
-      <%= render 'shared/counters', :object => @data %>
+      <div>
+        <h1 class="name"><%= @data.name %></h1>
+        <%= render 'shared/counters', :object => @data %>
+      </div>
+      <div class="last-update"><%= t 'geo_data.last_updated', date: time_ago_in_words(@data.updated_at) %></div>
     </div>
   </header>
 
@@ -12,11 +18,14 @@
     <% if @data.location %>
       <div class="map" data-components="map" data-geojson='<%= raw @data.location_geojson %>'></div>
     <% else %>
-      <div data-components='overlay' data-overlay='<%= {style: "dark", message: t("users.profile.location.empty")}.to_json %>'>
+      <div data-components='overlay' data-overlay='<%= {style: "dark", message: t("geo_data.location.empty")}.to_json %>'>
         <%= image_tag "imgs/map-placeholder-wide.png", :alt => 'data location', :class => 'placeholder' %>
       </div>
     <% end %>
   </section>
+
+  <button class="download"><%= icon "download" %></button>
+  <button class="add-to-map"><%= icon "globe", "Add to a map" %></button>
 
   <section class="main-info">
 

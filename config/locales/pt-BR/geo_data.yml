@@ -7,4 +7,9 @@ pt-BR:
       talk: "Talk"
 
     description:
-      empty: "Nenhuma descrição fornecida ainda para %{name}"
+      empty: "Nenhuma descrição fornecida para %{name}"
+
+    location:
+      empty: 'Localização não fornecida'
+
+    last_updated: 'Última atualização %{date}'

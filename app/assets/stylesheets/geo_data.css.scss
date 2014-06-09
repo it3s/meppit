@@ -1,21 +1,46 @@
 .page.data-view {
+  .data-logo {
+    width: 50px;
+    height:50px;
+    font-size: 40px;
+    color: $white;
+    text-align: center;
+    background-color: $soft-grey;
+    border-radius: 5px;
+    float: left;
+    margin-right: 20px;
+  }
   .title {
     h1 {
-      @include inline-pane(62%);
-      margin-left: 0;
+      @include inline-pane(52%);
+      margin: 0;
     }
     .counters {
-      @include inline-pane(35%);
-      margin: 0.67em 0;
+      @include inline-pane(38%);
+      margin: 0;
     }
+  }
+
+  .last-update {
+    color: $secondary-content-color;
+    font-size: $secondary-content-font-size;
   }
 
   .location {
     @include map-view;
   }
 
+  .add-to-map {
+    @include action-button($dark-orange, $medium-orange, $white);
+    float: right;
+  }
+  .download {
+    @include action-button($grey, $ultra-soft-grey, $grey);
+    float: right;
+  }
+
   .data-tabs {
-    margin-top: 30px;
+    margin-top: 48px;
 
     .tab-content {
       @include inline-pane(65%);
@@ -23,6 +48,7 @@
   }
 
   .extra-info {
+    margin-top: 20px;
     float: right;
     width: 30%;
   }
