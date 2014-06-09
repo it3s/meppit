@@ -14,5 +14,7 @@ en:
 
     last_updated: 'Last updated %{date}'
 
+    add_to_map: "Add to a Map"
+
     flash:
       updated: 'Data successfully updated'

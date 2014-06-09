@@ -31,7 +31,7 @@
   }
 
   .add-to-map {
-    @include action-button($dark-orange, $medium-orange, $white);
+    @include action-button($dark-orange, $meppit-maps-color, $white);
     float: right;
   }
   .download {
