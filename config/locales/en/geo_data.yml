@@ -13,3 +13,6 @@ en:
       empty: 'Location not provided yet'
 
     last_updated: 'Last updated %{date}'
+
+    flash:
+      updated: 'Data successfully updated'

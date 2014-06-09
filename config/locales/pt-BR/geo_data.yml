@@ -13,3 +13,6 @@ pt-BR:
       empty: 'Localização não fornecida'
 
     last_updated: 'Última atualização %{date}'
+
+    flash:
+      updated: 'Dados atualizados com sucesso'
