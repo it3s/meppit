@@ -18,9 +18,9 @@ describe GeoData do
   end
 
   describe "geojson properties" do
-    it "should have id" do
-      expect(user.geojson_properties).to have_key(:id)
-      expect(user.geojson_properties).to have_key(:name)
-    end
+    let(:data) { FactoryGirl.create(:geo_data) }
+
+    it { expect(data.geojson_properties).to have_key(:id) }
+    it { expect(data.geojson_properties).to have_key(:name) }
   end
 end
