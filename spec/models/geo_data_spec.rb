@@ -16,4 +16,11 @@ describe GeoData do
     expect(data.save).to be_true
     expect(GeoData.find_by(:id => data.id).contacts).to eq({'test' => 'ok', 'address' => 'av paulista, 800, SP'})
   end
+
+  describe "geojson properties" do
+    it "should have id" do
+      expect(user.geojson_properties).to have_key(:id)
+      expect(user.geojson_properties).to have_key(:name)
+    end
+  end
 end
