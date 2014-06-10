@@ -51,7 +51,7 @@ class UsersController < ApplicationController
 
   def contributions
     respond_to do |format|
-      format.html { render "users/show" }
+      format.html { render :layout => !request.xhr? }
       format.js
     end
   end

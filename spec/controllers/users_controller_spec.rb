@@ -243,7 +243,7 @@ describe UsersController do
     context "regular request" do
       it 'renders show' do
         get :contributions, {id: user.id}
-        expect(response).to render_template :show
+        expect(response).to render_template :contributions
       end
     end
 

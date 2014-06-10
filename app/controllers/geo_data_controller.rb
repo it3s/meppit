@@ -5,6 +5,10 @@ class GeoDataController < ApplicationController
 
   def index
     @list = GeoData.page(params[:page]).per(params[:per])
+    respond_to do |format|
+      format.html { render :layout => !request.xhr? }
+      format.js
+    end
   end
 
   def show

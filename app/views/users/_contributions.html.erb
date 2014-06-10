@@ -1,4 +1,4 @@
-<% list = contributions_list(object) %>
+<% list = contributions_list @user %>
 <div id="contributions-pagination"><%= paginate list, :remote => true, :params => paginate_params %></div>
 <ul id="contributions-list" class="list contributions-list">
   <% list.each do |item| %>

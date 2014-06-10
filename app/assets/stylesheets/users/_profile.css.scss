@@ -47,9 +47,9 @@
     margin: 0 0 20px;
   }
 
-  #contributions, #activity, #following {
+  .involvement > div {
     overflow-y: scroll;
-    height: 405px;
+    height: 400px;
   }
 
   &.edit {

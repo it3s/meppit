@@ -1,5 +1,3 @@
-#= require meppit-map
-
 App.components.list = (container) ->
   {
     container: container
@@ -10,6 +8,7 @@ App.components.list = (container) ->
       nextSelector: "nav.pagination a[rel=next]"
       itemSelector: ".list .list-item"
       prefill: on
+      dataType: "html"
 
     init: ->
       @handleOptions()
