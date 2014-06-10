@@ -6,6 +6,9 @@ pt-BR:
   save: 'Salvar'
   cancel: 'Cancelar'
 
+  flash:
+    updated: "Atualizado com sucesso"
+
   # formatos de data e hora
   date:
     formats:

@@ -5,3 +5,6 @@ en:
   save_changes: 'Save Changes'
   save: 'Save'
   cancel: 'Cancel'
+
+  flash:
+    updated: 'Updated successfully'
