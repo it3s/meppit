@@ -82,7 +82,6 @@ module ApplicationHelper
 
   def contributions_list(obj)
     #TODO: get real objects
-    require 'ostruct'
     list = [
       GeoData.find(1),
       GeoData.find(1),

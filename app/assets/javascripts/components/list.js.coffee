@@ -3,6 +3,8 @@
 App.components.list = (container) ->
   {
     container: container
+    list: container.find("ul.list")
+
     infiniteScrollDefaults:
       navSelector: "nav.pagination"
       nextSelector: "nav.pagination a[rel=next]"
@@ -11,15 +13,14 @@ App.components.list = (container) ->
 
     init: ->
       @handleOptions()
-      @startInfiniteScroll()
+      @startInfiniteScroll(@infiniteScrollOptions)
 
     handleOptions: ->
       data = @container.data('list') ? {}
-      @infiniteScrollOptions = data.scroll ? {}
+      @infiniteScrollOptions = _.defaults(data.scroll ? {}, @infiniteScrollDefaults)
+      if @infiniteScrollOptions['behavior'] is 'local'
+        @infiniteScrollOptions.binder ?= container
 
-    startInfiniteScroll: ->
-      @infiniteScrollOptions.binder ?= container if @infiniteScrollOptions['behavior'] is 'local'
-      @container.find("ul.list").infinitescroll _.defaults(
-          @infiniteScrollOptions, @infiniteScrollDefaults)
-
+    startInfiniteScroll: (opts) ->
+      @list.infinitescroll opts
   }

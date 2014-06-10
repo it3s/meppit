@@ -127,6 +127,13 @@ describe ApplicationHelper do
     it { expect(helper.counters_list(obj, only=[:map]).size).to eq 1 }
   end
 
+  describe "#object_type" do
+    let(:user) { FactoryGirl.create :user }
+    let(:geo_data) { FactoryGirl.create :geo_data }
+    it { expect(helper.object_type user).to eq :user }
+    it { expect(helper.object_type geo_data).to eq :data }
+    it { expect(helper.object_type nil).to eq :unknown }
+  end
 
   describe "Corcerns::ContactsHelper" do
     let(:user) { FactoryGirl.create :user, :contacts => {'address' => 'rua Bla', 'phone' => '12345'} }
