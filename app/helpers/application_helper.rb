@@ -89,6 +89,12 @@ module ApplicationHelper
       User.find(2),
       GeoData.find(1),
       GeoData.find(1),
+      User.find(2),
+      GeoData.find(1),
+      GeoData.find(1),
+      User.find(2),
+      GeoData.find(1),
+      GeoData.find(1),
       GeoData.find(1)
     ]
     Kaminari.paginate_array(list).page(params[:page]).per(5)

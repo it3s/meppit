@@ -47,6 +47,11 @@
     margin: 0 0 20px;
   }
 
+  #contributions, #activity, #following {
+    overflow-y: scroll;
+    height: 405px;
+  }
+
   &.edit {
     .field {
       padding: 0;
