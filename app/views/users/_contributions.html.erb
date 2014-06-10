@@ -2,6 +2,6 @@
 <div id="contributions-pagination"><%= paginate list, :remote => true, :params => paginate_params %></div>
 <ul id="contributions-list" class="list contributions-list">
   <% list.each do |item| %>
-    <%= render 'shared/lists/item_small', :object => item, :control => :counters %>
+    <%= render 'shared/lists/item', :object => item, :size => :small, :control => :counters %>
   <% end %>
 </ul>

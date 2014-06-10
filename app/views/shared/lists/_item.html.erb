@@ -1,5 +1,6 @@
 <% type = object_type object %>
-<li class="list-item big <%= type %>">
+<% size = local_assigns[:size] || :big %>
+<li class="list-item <%= type %> <%= size %>">
   <div class="wrapper">
     <% if local_assigns[:checkbox] %>
       <div class="item-checkbox">
@@ -25,14 +26,16 @@
     </a>
     <div class="item">
       <a href="<%= url_for object %>" title="<%= object[:name] %>">
-        <h2 class="item-title"><%= truncate object[:name], length: 85 %></h2>
-        <p class="item-excerpt"><%= truncate(object[:description] || object[:about_me], length: 300)  %></p>
+        <h2 class="item-title"><%= truncate object[:name], length: (size == :small ? 55 : 85) %></h2>
+        <p class="item-excerpt"><%= truncate(object[:description] || object[:about_me], length: (size == :small ? 130 : 300))  %></p>
       </a>
-      <%= render 'shared/tags', :tags => object.tags %>
+      <% if size == :big and object.respond_to? :tags %>
+        <%= render 'shared/tags', :tags => object[:tags] %>
+      <% end %>
     </div>
     <div class="item-controls">
       <% if local_assigns[:control] == :counters %>
-        <%= render 'shared/counters', :object => object, :size => :medium %>
+        <%= render 'shared/counters', :object => object, :size => (size == :small ? :small : :medium) %>
       <% end %>
     </div>
   </div>
