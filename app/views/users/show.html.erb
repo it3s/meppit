@@ -48,7 +48,7 @@
         <li><a href="#following"><%= icon "star", t('users.profile.following') %></a></li>
       </ul>
       <div id="contributions">
-        <%= render 'shared/lists/contributions', :object => @user %>
+        <%= render 'shared/lists/contributions', :object => @user, :paginate_params => {:controller => 'users', :action => 'contributions'} %>
       </div>
       <div id="activity">
         Activity Placeholder

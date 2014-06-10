@@ -83,7 +83,7 @@ module ApplicationHelper
   def contributions_list(obj)
     #TODO: get real objects
     require 'ostruct'
-    [
+    list = [
       GeoData.find(1),
       GeoData.find(1),
       User.find(2),
@@ -91,6 +91,7 @@ module ApplicationHelper
       GeoData.find(1),
       GeoData.find(1)
     ]
+    Kaminari.paginate_array(list).page(params[:page]).per(5)
   end
 
   def object_type(obj)

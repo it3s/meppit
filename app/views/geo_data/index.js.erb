@@ -1,0 +1,2 @@
+$('#geodata-list').html('<%= escape_javascript render(@list, :checkbox => true) %>');
+$('#geodata-pagination').html('<%= escape_javascript(paginate(@list, :remote => true).to_s) %>');

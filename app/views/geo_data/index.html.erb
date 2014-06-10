@@ -1,11 +1,9 @@
 <div class="site-page full data-list">
   <div data-components="list">
-    <h1><%= raw t('geo_data.list.title', :count => "<em>#{@list.total_count}</em>") %></h1>
-    <%= paginate @list %>
-    <ul class="list data-list">
-      <% @list.each do |item| %>
-        <%= render 'shared/lists/item_big', :object => item, :checkbox => true, :control => :counters %>
-      <% end %>
+    <h1 class="title"><%= raw t('geo_data.list.title', :count => "<em>#{@list.total_count}</em>") %></h1>
+    <div id="geodata-pagination"><%= paginate @list, :remote => true %></div>
+    <ul id="geodata-list" class="list data-list">
+      <%= render @list, :checkbox => true %>
     </ul>
   </div>
 </div>

@@ -14,7 +14,11 @@ Meppit::Application.routes.draw do
   get  "tags/search" => "tags#search", :as => :tag_search
 
   resources :users do
-    member     { get :activate }
+    member     do
+      get :activate
+      get :contributions
+    end
+
     collection do
       get :created
 

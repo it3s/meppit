@@ -1,0 +1,1 @@
+$('#contributions').html('<%= escape_javascript render('shared/lists/contributions', :object => @user, :paginate_params => {:controller => 'users', :action => 'contributions'}) %>');
