@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
   include Contacts
+  include Contributor
   include Geometry
   include Taggable
+  include Followable
 
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
@@ -37,11 +39,6 @@ class User < ActiveRecord::Base
 
   def geojson_properties
     {:name => name, :id => id}
-  end
-
-  def followers_count
-    #TODO refactor to concern
-    0
   end
 
   def maps_count
