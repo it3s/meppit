@@ -39,6 +39,17 @@ ActiveRecord::Schema.define(version: 20140615012832) do
   add_index "followings", ["followable_type", "followable_id"], :name => "index_followings_on_followable_type_and_followable_id"
   add_index "followings", ["follower_id"], :name => "index_followings_on_follower_id"
 
+  create_table "contributings", force: true do |t|
+    t.integer  "contributor_id"
+    t.integer  "contributable_id"
+    t.string   "contributable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contributings", ["contributable_id", "contributable_type"], :name => "index_contributings_on_contributable_id_and_contributable_type"
+  add_index "contributings", ["contributor_id"], :name => "index_contributings_on_contributor_id"
+
   create_table "geo_data", force: true do |t|
     t.string   "name",                                                              null: false
     t.text     "description"

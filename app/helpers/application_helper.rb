@@ -57,22 +57,7 @@ module ApplicationHelper
   end
 
   def contributions_list(obj)
-    #TODO: get real objects
-    list = [
-      GeoData.find(1),
-      GeoData.find(1),
-      User.find(2),
-      GeoData.find(1),
-      User.find(2),
-      GeoData.find(1),
-      GeoData.find(1),
-      GeoData.find(1),
-      GeoData.find(1),
-      GeoData.find(1),
-      User.find(2),
-      GeoData.find(1)
-    ]
-    Kaminari.paginate_array(list).page(params[:page]).per(5)
+    Kaminari.paginate_array(obj.contributed_objects).page(params[:page]).per(5)
   end
 
   def object_type(obj)

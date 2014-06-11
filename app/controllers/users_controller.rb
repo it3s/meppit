@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  include Contributions
+  include ContributorController
   include PasswordResets
 
   before_action :require_login,   :only => [:edit, :update]

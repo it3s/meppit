@@ -1,7 +1,10 @@
 class GeoDataController < ApplicationController
+  include ContributableController
 
   before_action :require_login, :only => [:edit, :update]
   before_action :find_data,     :only => [:show, :edit, :update]
+
+  track_contributions
 
   def index
     @list = GeoData.page(params[:page]).per(params[:per])
