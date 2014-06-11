@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   include PasswordResets
 
   before_action :require_login,   :only => [:edit, :update]
-  before_action :find_user,       :only => [:show, :edit, :update]
+  before_action :find_user,       :only => [:show, :edit, :update, :contributions]
   before_action :is_current_user, :only => [:edit, :update]
 
   def new
@@ -46,6 +46,13 @@ class UsersController < ApplicationController
       render :json => {:redirect => user_path(@user)}
     else
       render :json => {:errors => @user.errors.messages}, :status => :unprocessable_entity
+    end
+  end
+
+  def contributions
+    respond_to do |format|
+      format.html { render :layout => !request.xhr? }
+      format.js
     end
   end
 

@@ -1,6 +1,23 @@
 require 'spec_helper'
 
 describe GeoDataController do
+  describe "GET index" do
+    context "regular request" do
+      it 'renders geo_data list' do
+        get :index
+        expect(response).to render_template :index
+      end
+    end
+    context "xhr" do
+      before { controller.request.stub(:xhr?).and_return(true) }
+
+      it 'renders geo_data list without layout' do
+        get :index
+        expect(response).to render_template(:layout => nil)
+      end
+    end
+  end
+
   describe "GET show" do
     let(:data) { FactoryGirl.create :geo_data }
     it 'calls find_data filter' do

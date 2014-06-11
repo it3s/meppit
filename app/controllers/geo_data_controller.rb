@@ -3,6 +3,14 @@ class GeoDataController < ApplicationController
   before_action :require_login, :only => [:edit, :update]
   before_action :find_data,     :only => [:show, :edit, :update]
 
+  def index
+    @list = GeoData.page(params[:page]).per(params[:per])
+    respond_to do |format|
+      format.html { render :layout => !request.xhr? }
+      format.js
+    end
+  end
+
   def show
   end
 

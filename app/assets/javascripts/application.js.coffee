@@ -3,6 +3,7 @@
 #= require jquery_ujs
 #= require jquery.remotipart
 #= require jquery.ui.autocomplete
+#= require jquery.infinitescroll
 
 #= require base
 

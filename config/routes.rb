@@ -14,7 +14,11 @@ Meppit::Application.routes.draw do
   get  "tags/search" => "tags#search", :as => :tag_search
 
   resources :users do
-    member     { get :activate }
+    member     do
+      get :activate
+      get :contributions
+    end
+
     collection do
       get :created
 
@@ -25,7 +29,7 @@ Meppit::Application.routes.draw do
     end
   end
 
-  resources :geo_data, :only => [:show, :edit, :update]
+  resources :geo_data, :only => [:index, :show, :edit, :update]
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, :at => "/letter_opener"

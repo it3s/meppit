@@ -1,6 +1,6 @@
 <%= render 'shared/toolbar', :object => @user, :only => user_tools(@user)%>
 
-<div class="page user-profile" >
+<div class="site-page user-profile" >
   <div class="side-pane">
     <div class="avatar">
       <%= image_tag @user.avatar.thumb.url, :alt => 'user picture' %>
@@ -13,11 +13,13 @@
   </div>
 
   <div class="central-pane">
-    <div class="main-title">
-      <h1 class="name"><%= @user.name %></h1>
-      <div class="joined"><%= t 'users.profile.joined', date: @user.created_at.to_s(:month_and_year) %></div>
+    <div class="wrapper">
+      <div class="main-title">
+        <h1 class="name"><%= @user.name %></h1>
+        <div class="joined"><%= t 'users.profile.joined', date: @user.created_at.to_s(:month_and_year) %></div>
+      </div>
+      <%= render 'shared/counters', :object => @user, :size => :big %>
     </div>
-    <%= render 'shared/counters', :object => @user, :user => @user %>
 
     <div class="location">
       <% if @user.location %>
@@ -47,8 +49,8 @@
         <li><a href="#activity"><%= icon "clock-o", t('users.profile.activity') %></a></li>
         <li><a href="#following"><%= icon "star", t('users.profile.following') %></a></li>
       </ul>
-      <div id="contributions">
-        Contributions Placeholder
+      <div id="contributions" data-components="list" data-list='{"scroll": {"behavior": "local"}}'>
+        <%= render 'users/contributions', :paginate_params => {:controller => 'users', :action => 'contributions'} %>
       </div>
       <div id="activity">
         Activity Placeholder
