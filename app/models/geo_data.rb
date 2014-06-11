@@ -3,6 +3,9 @@ class GeoData < ActiveRecord::Base
   include Geometry
   include Taggable
 
+  has_many :followings, :as => :followable
+  has_many :followers, :through => :followings
+
   geojson_field :location
   searchable_tags :tags
 

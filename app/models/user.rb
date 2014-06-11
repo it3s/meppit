@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   process_in_background :avatar
 
   has_many :authentications, :dependent => :destroy
+  has_many :followings, :foreign_key => :follower_id
+
   accepts_nested_attributes_for :authentications
 
   geojson_field :location
@@ -25,6 +27,14 @@ class User < ActiveRecord::Base
   validates :password,          :presence     => true, :on => :create
   validates :password,          :length       => {:minimum => 6}, :on => :create
   validates :license_aggrement, :acceptance   => true, :on => :create
+
+  def followed_objects
+    followings.map(&:followable)
+  end
+
+  def followers
+    followings.where(followable_type: 'User').map(&:followable)
+  end
 
   def send_activation_email
     UserMailer.delay.activation_email(id, I18n.locale)
