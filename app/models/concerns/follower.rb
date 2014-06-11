@@ -8,9 +8,5 @@ module Follower
     def followed_objects
       followings.map(&:followable)
     end
-
-    def followers
-      Following.where(followable_type: 'User', followable_id: id).map(&:follower)
-    end
   end
 end
