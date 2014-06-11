@@ -1,4 +1,4 @@
-.page.user-profile {
+.site-page.user-profile {
 
   // left pane
   .avatar {
@@ -27,7 +27,7 @@
   // Central pane
   .main-title {
     float:left;
-    max-width: 435px;
+    max-width: 425px;
   }
 
   .location {
@@ -45,6 +45,11 @@
 
   .main-info {
     margin: 0 0 20px;
+  }
+
+  .involvement > div {
+    overflow-y: auto;
+    height: 400px;
   }
 
   &.edit {

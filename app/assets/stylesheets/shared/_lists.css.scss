@@ -1,0 +1,81 @@
+nav.pagination { display: none; }  // We are using infinite scroll
+
+.list-item {
+  clear: both;
+  padding: 15px 0;
+  border-bottom: 1px solid $list-item-separator-color;
+
+  &:hover { background: $dark-white; }
+
+  a, a:hover { text-decoration: none; }
+
+  .item-checkbox { float: left; }
+
+  .item-avatar {
+    display: block;
+    float: left;
+    margin: 0 10px 0 0;
+    background: $soft-grey;
+    color: #fff;
+    text-align: center;
+
+    i { margin: 2px 0; }
+  }
+
+  &.small {
+    .item-avatar, img {
+      font-size: 30px;
+      width: 32px;
+      height: 32px;
+      border-radius: 5px;
+    }
+
+    .item {
+      width: 400px;
+    }
+
+    .item-excerpt { font-size: 0.95em; }
+  }
+
+  &.big {
+    .item-checkbox { margin: 22px 15px; }
+
+    .item-avatar, img {
+      font-size: 54px;
+      width: 64px;
+      height: 64px;
+      border-radius: 7px;
+    }
+
+    .item {
+      min-height: 64px;
+      width: 620px;
+    }
+  }
+
+  .item {
+    float: left;
+
+    .item-title {
+      font-family: inherit;
+      font-size: 1.15em;
+      color: $text-link-color;
+      margin: 0 0 2px;
+    }
+
+    .item-excerpt { color: $text-color; }
+  }
+
+  &.map {
+    .item-avatar { background: $meppit-maps-color; }
+    .item .item-title { color: $meppit-maps-color; }
+  }
+  &.data {
+    .item-avatar { background: $meppit-data-color; }
+    .item .item-title { color: $meppit-data-color; }
+  }
+
+  .item-controls {
+    .counters { margin: 8px 0;  }
+  }
+}

@@ -1,4 +1,4 @@
-.page {
+.site-page {
   @include span-columns($page-columns);
 
   .side-pane {
@@ -13,4 +13,20 @@
     font-size: 1.6em;
     letter-spacing: -0.02em;
   }
+  &.full {
+  @include span-columns(12);
+
+  .side-pane {
+    @include span-columns(3 of 12);
+  }
+
+  .central-pane {
+    @include span-columns(9 of 12);
+  }
+
+  h1.name {
+    font-size: 1.6em;
+    letter-spacing: -0.02em;
+  }
+}
 }

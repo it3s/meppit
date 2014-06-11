@@ -79,4 +79,35 @@ module ApplicationHelper
     available_counters = counters.select {|key, counter| obj.respond_to? counter[:method] }
     only == :all ? available_counters.values() : only.map {|name| available_counters[name] }
   end
+
+  def contributions_list(obj)
+    #TODO: get real objects
+    list = [
+      GeoData.find(1),
+      GeoData.find(1),
+      User.find(2),
+      GeoData.find(1),
+      User.find(2),
+      GeoData.find(1),
+      GeoData.find(1),
+      GeoData.find(1),
+      GeoData.find(1),
+      GeoData.find(1),
+      User.find(2),
+      GeoData.find(1)
+    ]
+    Kaminari.paginate_array(list).page(params[:page]).per(5)
+  end
+
+  def object_type(obj)
+    if obj.kind_of? User
+      :user
+    elsif obj.kind_of? GeoData
+      :data
+    #elsif obj.kind_of? Map
+      #:map
+    else
+      :unknown
+    end
+  end
 end
