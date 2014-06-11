@@ -41,9 +41,4 @@ class User < ActiveRecord::Base
   def geojson_properties
     {:name => name, :id => id}
   end
-
-  def maps_count
-    #TODO refactor to concern
-    0
-  end
 end
