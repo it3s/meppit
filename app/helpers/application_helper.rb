@@ -1,18 +1,6 @@
 module ApplicationHelper
   include Concerns::ContactsHelper
-
-  def i18n_language_names
-    {
-      :en      => 'English',
-      :'pt-BR' => 'Português'
-    }
-  end
-
-  def current_translations
-    I18n.backend.send(:init_translations) unless I18n.backend.initialized?
-    @translations ||= I18n.backend.send(:translations)
-    (@translations[I18n.locale] || {}).with_indifferent_access
-  end
+  include Concerns::I18nHelper
 
   def javascript_exists?(script)
     script = "#{Rails.root}/app/assets/javascripts/#{script}.js"
