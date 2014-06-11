@@ -1,7 +1,7 @@
-module Contributable
+module Contributor
   extend ActiveSupport::Concern
 
-  def contributors_count
+  def contributions_count
     #TODO return a real value
     0
   end

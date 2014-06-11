@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   include Contacts
+  include Contributor
   include Geometry
   include Taggable
   include Followable

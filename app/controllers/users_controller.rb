@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include Contributions
   include PasswordResets
 
   before_action :require_login,   :only => [:edit, :update]
@@ -46,13 +47,6 @@ class UsersController < ApplicationController
       render :json => {:redirect => user_path(@user)}
     else
       render :json => {:errors => @user.errors.messages}, :status => :unprocessable_entity
-    end
-  end
-
-  def contributions
-    respond_to do |format|
-      format.html { render :layout => !request.xhr? }
-      format.js
     end
   end
 
