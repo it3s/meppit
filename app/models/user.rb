@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
   include Contacts
+  include Contributor
   include Geometry
   include Taggable
   include Follower
+  include Followable
 
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
@@ -27,7 +29,6 @@ class User < ActiveRecord::Base
   validates :password,          :length       => {:minimum => 6}, :on => :create
   validates :license_aggrement, :acceptance   => true, :on => :create
 
-
   def send_activation_email
     UserMailer.delay.activation_email(id, I18n.locale)
   end
@@ -39,11 +40,6 @@ class User < ActiveRecord::Base
 
   def geojson_properties
     {:name => name, :id => id}
-  end
-
-  def followers_count
-    #TODO refactor to concern
-    0
   end
 
   def maps_count

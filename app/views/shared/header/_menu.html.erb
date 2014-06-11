@@ -5,7 +5,7 @@
     </a>
   </div>
   <div class="menu-item data <%= 'active' if params[:controller] == 'geo_data' %>">
-    <a href="<%= url_for :controller => 'geo_data'  %>">
+    <a href="<%= geo_data_path  %>">
       <%= icon "map-marker", t('header.menu.data') %>
     </a>
   </div>

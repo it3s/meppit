@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include Contributions
   include PasswordResets
 
   before_action :require_login,   :only => [:edit, :update]
@@ -41,13 +42,6 @@ class UsersController < ApplicationController
 
   def update
     update_object @user, user_params
-  end
-
-  def contributions
-    respond_to do |format|
-      format.html { render :layout => !request.xhr? }
-      format.js
-    end
   end
 
   private

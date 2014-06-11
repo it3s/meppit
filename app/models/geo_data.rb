@@ -2,6 +2,8 @@ class GeoData < ActiveRecord::Base
   include Contacts
   include Geometry
   include Taggable
+  include Followable
+  include Contributable
 
   has_many :followings, :as => :followable
   has_many :followers, :through => :followings
@@ -16,16 +18,6 @@ class GeoData < ActiveRecord::Base
   end
 
   def maps_count
-    #TODO refactor to concern
-    0
-  end
-
-  def followers_count
-    #TODO refactor to concern
-    0
-  end
-
-  def contributors_count
     #TODO refactor to concern
     0
   end
