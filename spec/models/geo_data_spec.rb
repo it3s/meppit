@@ -23,4 +23,28 @@ describe GeoData do
     it { expect(data.geojson_properties).to have_key(:id) }
     it { expect(data.geojson_properties).to have_key(:name) }
   end
+
+  describe "contributors" do
+    let(:user) { FactoryGirl.create :user, name: 'Bob' }
+    let(:data) { FactoryGirl.create :geo_data }
+
+    before { Contributing.delete_all }
+
+    describe "data with no contributors" do
+      it { expect(data.contributors_count).to be 0 }
+      it { expect(data.contributors.empty?).to be true }
+    end
+
+    describe "data with contributors" do
+
+      describe "one user contributed to data" do
+        before { Contributing.create contributor: user, contributable: data }
+
+        it { expect(data.contributors_count).to be 1 }
+        it { expect(data.contributors.empty?).to be false }
+        it { expect(data.contributors.size).to be 1 }
+        it { expect(data.contributors[0].name).to eq 'Bob' }
+      end
+    end
+  end
 end
