@@ -1,7 +1,6 @@
 module Followable
   extend ActiveSupport::Concern
 
-
   included do
     def followers
       _followers.map(&:follower)

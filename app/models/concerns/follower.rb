@@ -1,4 +1,3 @@
-
 module Follower
   extend ActiveSupport::Concern
 

@@ -33,6 +33,7 @@ describe Following do
 
   describe "validations" do
     context "#missing_fields? => true" do
+
       it "validates presence of followable" do
         f = Following.new(follower: user)
         expect(f.save).to be_false
@@ -46,12 +47,14 @@ describe Following do
       end
     end
 
-    it "validates unique following for same object" do
-        Following.create(follower: user, followable: geo_data)
-        expect(Following.count).to eq 1
-        f = Following.new(follower: user, followable: geo_data)
-        expect(f.save).to be_false
-        expect(f.errors.messages[:follower].first).to eq  I18n.t('activerecord.errors.messages.taken')
+    context "#missing_fields? => true" do
+      it "validates unique following for same object" do
+          Following.create(follower: user, followable: geo_data)
+          expect(Following.count).to eq 1
+          f = Following.new(follower: user, followable: geo_data)
+          expect(f.save).to be_false
+          expect(f.errors.messages[:follower].first).to eq  I18n.t('activerecord.errors.messages.taken')
+      end
     end
   end
 end
