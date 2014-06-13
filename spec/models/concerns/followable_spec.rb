@@ -5,19 +5,19 @@ describe Followable do
   let(:geo_data) { FactoryGirl.create :geo_data }
   let(:other_user) { FactoryGirl.create :user, name: 'John Doe' }
 
-  describe "_followers" do
+  describe "_followings" do
     context "without followers" do
-      it { expect { geo_data.send(:_followers)}.to_not raise_error }
-      it { expect(geo_data.send(:_followers)).to eq [] }
+      it { expect { geo_data.send(:_followings)}.to_not raise_error }
+      it { expect(geo_data.send(:_followings)).to eq [] }
     end
 
     context "with followers" do
       before { user.followings.create followable: geo_data }
 
-      it { expect { geo_data.send(:_followers)}.to_not raise_error }
-      it { expect(geo_data.send(:_followers).count).to eq 1 }
-      it { expect(geo_data.send(:_followers).first).to be_a_kind_of Following }
-      it { expect(geo_data.send(:_followers).first.follower).to eq user }
+      it { expect { geo_data.send(:_followings)}.to_not raise_error }
+      it { expect(geo_data.send(:_followings).count).to eq 1 }
+      it { expect(geo_data.send(:_followings).first).to be_a_kind_of Following }
+      it { expect(geo_data.send(:_followings).first.follower).to eq user }
     end
   end
 
@@ -46,6 +46,20 @@ describe Followable do
       it { expect(geo_data.followers.count).to eq 1 }
       it { expect(geo_data.followers.first).to be_a_kind_of User }
       it { expect(geo_data.followers.first).to eq user }
+    end
+  end
+
+  describe "destroy followings for the object when its destroyed" do
+    before do
+      user.followings.create followable: geo_data
+      user.followings.create followable: other_user
+    end
+
+    it "destroy followings for the followable" do
+      expect(user.followings.count).to eq 2
+      geo_data.destroy
+      expect(user.followings.count).to eq 1
+      expect(user.followings.where(followable_type: 'GeoData').count).to eq 0
     end
   end
 end

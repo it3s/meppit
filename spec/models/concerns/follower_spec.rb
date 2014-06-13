@@ -26,4 +26,15 @@ describe Follower do
     it { expect(user.followed_objects.first).to be_a_kind_of GeoData }
     it { expect(user.followed_objects.first).to eq geo_data }
   end
+
+  describe "destroy followings when follower is destroyed" do
+    let(:geo_data) { FactoryGirl.create :geo_data }
+    before { user.followings.create followable: geo_data }
+
+    it "destroy associated followers" do
+      expect(Following.where(follower_id: user.id).count).to eq 1
+      user.destroy
+      expect(Following.where(follower_id: user.id).count).to eq 0
+    end
+  end
 end
