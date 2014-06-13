@@ -1,10 +1,10 @@
 <section>
   <br>
   <h2><%= icon "users", 'Contributors' %></h2>
-  <div id="contributors" data-components="list">
+  <div id="contributors" class="list-container" data-components="list">
     <div id="contributors-pagination"><%= paginate @list, :remote => true, :params => { :local => true } %></div>
     <ul id="contributors-list" class="list contributors-list">
-      <%= render @list %>
+      <%= render @list, :size => :small %>
     </ul>
   </div>
 </section>
