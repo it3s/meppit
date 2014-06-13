@@ -1,0 +1,37 @@
+<% @page_class_name ||= "data-view" %>
+<% content_for :object_toolbar do %>
+  <%= render 'shared/toolbar', :object => @data, :only => data_tools(@data) %>
+<% end %>
+<% content_for :object_header do %>
+  <% if content_for? :geo_data_header %>
+    <%= yield :geo_data_header %>
+  <% else %>
+    <div class="data-logo">
+      <%= icon "map-marker" %>
+    </div>
+    <div class="title">
+      <div>
+        <h1 class="name"><%= @data.name %></h1>
+        <%= render 'shared/counters', :object => @data, :size => :big %>
+      </div>
+      <div class="last-update"><%= t 'geo_data.last_updated', date: time_ago_in_words(@data.updated_at) %></div>
+    </div>
+  <% end %>
+<% end %>
+<% content_for :object_content do %>
+   <% if content_for? :geo_data_location %>
+     <% yield :geo_data_location %>
+   <% else %>
+    <section class="location">
+      <% if @data.location %>
+        <div class="map" data-components="map" data-geojson='<%= raw @data.location_geojson %>'></div>
+      <% else %>
+        <div data-components='overlay' data-overlay='<%= {style: "dark", message: t("geo_data.location.empty")}.to_json %>'>
+          <%= image_tag "imgs/map-placeholder-wide.png", :alt => 'data location', :class => 'placeholder' %>
+        </div>
+      <% end %>
+    </section>
+   <% end %>
+   <%= content_for?(:geo_data_content) ? yield(:geo_data_content) : yield %>
+<% end %>
+<%= render template: "layouts/object" %>

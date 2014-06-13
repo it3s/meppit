@@ -1,64 +1,38 @@
-<%= render 'shared/toolbar', :object => @user, :only => user_tools(@user)%>
-
-<div class="site-page user-profile" >
-  <div class="side-pane">
-    <div class="avatar">
-      <%= image_tag @user.avatar.thumb.url, :alt => 'user picture' %>
-    </div>
-
-    <div class="extra-info" >
-      <%= render 'shared/contacts/view', :object => @user %>
-      <%= render 'shared/tags', :tags => @user.interests %>
-    </div>
+<div class="location">
+  <% if @user.location %>
+    <div class="map" data-components="map" data-geojson='<%= raw @user.location_geojson %>'></div>
+  <% else %>
+    <div data-components='overlay' data-overlay='<%= {style: "dark", message: t("users.profile.location.empty")}.to_json %>'>
+    <%= image_tag "imgs/map-placeholder-wide.png", :alt => 'user location', :class => 'placeholder' %>
   </div>
+  <% end %>
+</div>
 
-  <div class="central-pane">
-    <div class="wrapper">
-      <div class="main-title">
-        <h1 class="name"><%= @user.name %></h1>
-        <div class="joined"><%= t 'users.profile.joined', date: @user.created_at.to_s(:month_and_year) %></div>
-      </div>
-      <%= render 'shared/counters', :object => @user, :size => :big %>
-    </div>
-
-    <div class="location">
-      <% if @user.location %>
-        <div class="map" data-components="map" data-geojson='<%= raw @user.location_geojson %>'></div>
+<div class="main-info">
+  <div class="about">
+    <div class="about-text">
+      <% if @user.about_me.blank? %>
+        <%= t 'users.profile.about_me.empty', :name => @user.name.split.first %>
       <% else %>
-        <div data-components='overlay' data-overlay='<%= {style: "dark", message: t("users.profile.location.empty")}.to_json %>'>
-        <%= image_tag "imgs/map-placeholder-wide.png", :alt => 'user location', :class => 'placeholder' %>
-      </div>
+        <%= raw @user.about_me %>
       <% end %>
     </div>
+  </div>
+</div>
 
-    <div class="main-info">
-      <div class="about">
-        <div class="about-text">
-          <% if @user.about_me.blank? %>
-            <%= t 'users.profile.about_me.empty', :name => @user.name.split.first %>
-          <% else %>
-            <%= raw @user.about_me %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-
-    <div class="involvement" data-components="tabs">
-      <ul>
-        <li><a href="#contributions"><%= icon "edit", t('users.profile.contributions') %></a></li>
-        <li><a href="#activity"><%= icon "clock-o", t('users.profile.activity') %></a></li>
-        <li><a href="#following"><%= icon "star", t('users.profile.following') %></a></li>
-      </ul>
-      <div id="contributions" data-components="list" data-list='{"scroll": {"behavior": "local"}}'>
-        <%= render 'users/contributions', :paginate_params => {:controller => 'users', :action => 'contributions'} %>
-      </div>
-      <div id="activity">
-        Activity Placeholder
-      </div>
-      <div id="following">
-        Following Placeholder
-      </div>
-    </div>
-
+<div class="involvement" data-components="tabs">
+  <ul>
+    <li><a href="#contributions"><%= icon "edit", t('users.profile.contributions') %></a></li>
+    <li><a href="#activity"><%= icon "clock-o", t('users.profile.activity') %></a></li>
+    <li><a href="#following"><%= icon "star", t('users.profile.following') %></a></li>
+  </ul>
+  <div id="contributions" data-components="list" data-list='{"scroll": {"behavior": "local"}}'>
+    <%= render 'users/contributions', :paginate_params => {:controller => 'users', :action => 'contributions'} %>
+  </div>
+  <div id="activity">
+    Activity Placeholder
+  </div>
+  <div id="following">
+    Following Placeholder
   </div>
 </div>

@@ -1,9 +1,9 @@
-<%= render 'shared/toolbar', :object => @data, :only => data_tools(@data) %>
+<% @page_class_name = "data-view edit" %>
+<% content_for :geo_data_header do %><div></div><% end %>
 
-<div class="site-page data-view edit" >
   <%= remote_form_for @data do |f| %>
 
-  <div class="form-actions" data-components="stick" data-stick='{ "get_width_from": ".data-view.page" }'>
+  <div class="form-actions" data-components="stick" data-stick='{ "get_width_from": ".data-view.site-page" }'>
     <%= submit_tag t('save'), :class => "edit-save" %>
     <%= link_to t('cancel'), url_for(@data) %>
   </div>

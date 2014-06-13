@@ -10,7 +10,7 @@
     <a href="<%= url_for object %>" title="<%= object[:name] %>">
       <div class="item-avatar">
         <% if object[:avatar] %>
-          <%= image_tag object[:avatar].thumb.url %>
+          <%= image_tag object.avatar.thumb.url %>
         <% else %>
           <% if type == :map %>
             <%= icon :globe %>

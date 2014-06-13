@@ -47,12 +47,19 @@ module ApplicationHelper
 
   def counters_list(obj, only=:all)
     counters = {
-      :data         => { :icon => :'map-marker', :string => 'counters.data',         :method => :data_count,         :class => "data-counter",         :url => "" },
-      :maps         => { :icon => :globe,        :string => 'counters.maps',         :method => :maps_count,         :class => "maps-counter",         :url => "" },
-      :followers    => { :icon => :star,         :string => 'counters.followers',    :method => :followers_count,    :class => "followers-counter",    :url => "" },
-      :contributors => { :icon => :users,        :string => 'counters.contributors', :method => :contributors_count, :class => "contributors-counter", :url => "" },
+      :data         => { :icon => :'map-marker', :string => 'counters.data',         :method => :data_count,         :class => "data-counter",         :url => [obj, :data] },
+      :maps         => { :icon => :globe,        :string => 'counters.maps',         :method => :maps_count,         :class => "maps-counter",         :url => [obj, :maps] },
+      :followers    => { :icon => :star,         :string => 'counters.followers',    :method => :followers_count,    :class => "followers-counter",    :url => [obj, :followers] },
+      :contributors => { :icon => :users,        :string => 'counters.contributors', :method => :contributors_count, :class => "contributors-counter", :url => [obj, :contributors] },
     }
     available_counters = counters.select {|key, counter| obj.respond_to? counter[:method] }
+    available_counters.each do |i, counter|
+      begin
+        counter[:url] = url_for(counter[:url])
+      rescue Exception
+        counter[:url] = "#"
+      end
+    end
     only == :all ? available_counters.values() : only.map {|name| available_counters[name] }
   end
 

@@ -2,18 +2,11 @@ module Contributable
   extend ActiveSupport::Concern
 
   included do
-    def contributors
-      _contributors.map(&:contributor)
-    end
+    has_many :contributings, :foreign_key => :contributable_id
+    has_many :contributors, :through => :contributings
 
     def contributors_count
-      _contributors.count
-    end
-
-    private
-
-    def _contributors
-      Contributing.where(contributable_type: self.class.name, contributable_id: id)
+      contributors.size
     end
   end
 end

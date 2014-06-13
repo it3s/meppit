@@ -29,7 +29,11 @@ Meppit::Application.routes.draw do
     end
   end
 
-  resources :geo_data, :only => [:index, :show, :edit, :update]
+  concern :contributable do
+    resources :contributors, :only => [:index]
+  end
+
+  resources :geo_data, :only => [:index, :show, :edit, :update], :concerns => [:contributable]
 
   resource :following, :only => [:create, :destroy]
 
