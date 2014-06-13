@@ -117,6 +117,7 @@ describe ApplicationHelper do
 
   describe "#tools_list" do
     let(:obj) { FactoryGirl.create :user }
+    before { helper.stub(:current_user).and_return obj }
     it { expect(helper.tools_list(obj).size).to eq 7 }
     it { expect(helper.tools_list(obj, only=[:edit, :star]).size).to eq 2 }
   end
