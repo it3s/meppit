@@ -3,9 +3,21 @@ module Concerns
     extend ActiveSupport::Concern
 
     def tools_list(obj, only=:all)
+      edit_url = url_for([:edit, obj])
       tools = {
-        edit:     {icon: :pencil,    title: t('toolbar.edit'),     url: url_for([:edit, obj])},
-        star:     {icon: :star,      title: t('toolbar.star'),     url: "#", component: _follow_component(obj)},
+        edit: {
+          icon:   :pencil,
+          title:   t('toolbar.edit'),
+          url:     edit_url,
+          active?: request.path == edit_url,
+        },
+        star:     {
+          icon:      :star,
+          title:     t('toolbar.star'),
+          url:       "#",
+          active?:   current_user && current_user.follow?(obj),
+          component: _follow_component(obj)
+        },
         comment:  {icon: :comment,   title: t('toolbar.comment'),  url: ""},
         history:  {icon: :'clock-o', title: t('toolbar.history'),  url: ""},
         settings: {icon: :'cog',     title: t('toolbar.settings'), url: ""},

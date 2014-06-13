@@ -2,7 +2,7 @@
   <ul class="toolbar-buttons" role="toolbar" data-components="stick">
     <% tools_list(object, local_assigns[:only] || :all).each do |tool| %>
       <li title="<%= tool[:title] %>">
-        <a class="<%= 'active' if request.path == tool[:url] %>" href="<%= tool[:url] %>"
+        <a class="<%= 'active' if tool[:active?] %>" href="<%= tool[:url] %>"
           <% if tool[:component] %>
             data-components="<%= tool[:component][:type] %>" <%= tool[:component][:opts] %>
           <% end %>

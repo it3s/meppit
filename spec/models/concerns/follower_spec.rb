@@ -37,4 +37,18 @@ describe Follower do
       expect(Following.where(follower_id: user.id).count).to eq 0
     end
   end
+
+  describe "#follow?" do
+    let(:geo_data) { FactoryGirl.create :geo_data }
+
+    context "user is no following content" do
+      it { expect(user.follow? geo_data).to be_false }
+    end
+
+    context "user is following content" do
+      before { user.followings.create followable: geo_data }
+      it { expect(user.follow? geo_data).to be_true }
+    end
+
+  end
 end

@@ -7,5 +7,9 @@ module Follower
     def followed_objects
       followings.map(&:followable)
     end
+
+    def follow?(obj)
+      followings.where(followable: obj).exists?
+    end
   end
 end
