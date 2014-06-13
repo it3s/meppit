@@ -4,7 +4,7 @@ class GeoDataController < ApplicationController
   layout :geo_data_layout
 
   before_action :require_login, :only => [:edit, :update]
-  before_action :find_data,     :only => [:show, :edit, :update]
+  before_action :find_object,     :only => [:show, :edit, :update]
 
   track_contributions
 
@@ -35,8 +35,8 @@ class GeoDataController < ApplicationController
     end
   end
 
-  def find_data
-    @data = GeoData.find params[:id]
+  def find_object
+    @object = GeoData.find params[:id]
   end
 
   def geo_data_layout

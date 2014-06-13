@@ -4,7 +4,7 @@
       <%= icon "globe", t('header.menu.maps') %>
     </a>
   </div>
-  <div class="menu-item data <%= 'active' if params[:controller] == 'geo_data' %>">
+  <div class="menu-item data <%= 'active' if params[:controller] == 'geo_data' or @object.kind_of? GeoData %>">
     <a href="<%= geo_data_path  %>">
       <%= icon "map-marker", t('header.menu.data') %>
     </a>

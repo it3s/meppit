@@ -2,6 +2,7 @@ module ApplicationHelper
   include Concerns::ContactsHelper
   include Concerns::I18nHelper
   include Concerns::ToolbarHelper
+  include Concerns::CountersHelper
 
   def javascript_exists?(script)
     script = "#{Rails.root}/app/assets/javascripts/#{script}.js"
@@ -43,24 +44,6 @@ module ApplicationHelper
 
   def tags_input(f, name, tags)
     f.input name, :input_html => {'data-components' => 'tags', 'data-tags' => tags.to_json, 'data-autocomplete' => tag_search_path }
-  end
-
-  def counters_list(obj, only=:all)
-    counters = {
-      :data         => { :icon => :'map-marker', :string => 'counters.data',         :method => :data_count,         :class => "data-counter",         :url => [obj, :data] },
-      :maps         => { :icon => :globe,        :string => 'counters.maps',         :method => :maps_count,         :class => "maps-counter",         :url => [obj, :maps] },
-      :followers    => { :icon => :star,         :string => 'counters.followers',    :method => :followers_count,    :class => "followers-counter",    :url => [obj, :followers] },
-      :contributors => { :icon => :users,        :string => 'counters.contributors', :method => :contributors_count, :class => "contributors-counter", :url => [obj, :contributors] },
-    }
-    available_counters = counters.select {|key, counter| obj.respond_to? counter[:method] }
-    available_counters.each do |i, counter|
-      begin
-        counter[:url] = url_for(counter[:url])
-      rescue Exception
-        counter[:url] = "#"
-      end
-    end
-    only == :all ? available_counters.values() : only.map {|name| available_counters[name] }
   end
 
   def contributions_list(obj)
