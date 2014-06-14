@@ -50,7 +50,6 @@ module Concerns
         :opts => "data-follow=#{ {
           :url             => following_path,
           :data            => {
-            :follower_id     => current_user.id,
             :followable_id   => obj.id,
             :followable_type => obj.class.name
           }
