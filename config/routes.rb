@@ -21,7 +21,7 @@ Meppit::Application.routes.draw do
     get "contributions" => "contributings#contributions"
   end
 
-  resources :users, :concerns => [:contributor] do
+  resources :users, except: [:destroy, :index], :concerns => [:contributor] do
     member     do
       get :activate
     end
