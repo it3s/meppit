@@ -46,10 +46,6 @@ module ApplicationHelper
     f.input name, :input_html => {'data-components' => 'tags', 'data-tags' => tags.to_json, 'data-autocomplete' => tag_search_path }
   end
 
-  def contributions_list(obj)
-    obj.contributions.page(params[:page]).per(params[:per])
-  end
-
   def object_type(obj)
     if obj.kind_of? User
       :user
