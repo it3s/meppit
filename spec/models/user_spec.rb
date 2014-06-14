@@ -82,7 +82,7 @@ describe User do
 
     describe "user with no contributions" do
       it { expect(user.contributions_count).to be 0 }
-      it { expect(user.contributed_objects.empty?).to be true }
+      it { expect(user.contributions.empty?).to be true }
     end
 
     describe "user with contributions" do
@@ -92,9 +92,9 @@ describe User do
         let(:contributable) { geo_data }
         it { expect(user.contributions_count).to be 1 }
         it { expect(user.maps_count).to be 0 }
-        it { expect(user.contributed_objects.empty?).to be false }
-        it { expect(user.contributed_objects.size).to be 1 }
-        it { expect(user.contributed_objects[0].name).to eq 'Test object' }
+        it { expect(user.contributions.empty?).to be false }
+        it { expect(user.contributions.size).to be 1 }
+        it { expect(user.contributions[0].name).to eq 'Test object' }
       end
     end
   end

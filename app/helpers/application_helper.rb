@@ -47,7 +47,7 @@ module ApplicationHelper
   end
 
   def contributions_list(obj)
-    Kaminari.paginate_array(obj.contributed_objects).page(params[:page]).per(5)
+    obj.contributions.page(params[:page]).per(params[:per])
   end
 
   def object_type(obj)

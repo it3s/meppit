@@ -1,15 +1,13 @@
 class GeoDataController < ApplicationController
   include ContributableController
 
-  layout :geo_data_layout
-
   before_action :require_login, :only => [:edit, :update]
-  before_action :find_object,     :only => [:show, :edit, :update]
+  before_action :find_geo_data, :only => [:show, :edit, :update]
 
   track_contributions
 
   def index
-    @list = GeoData.page(params[:page]).per(params[:per])
+    @geo_data_collection = GeoData.page(params[:page]).per(params[:per])
     respond_to do |format|
       format.html { render :layout => (request.xhr? ? false : "application") }
       format.js
@@ -35,11 +33,7 @@ class GeoDataController < ApplicationController
     end
   end
 
-  def find_object
-    @object = GeoData.find params[:id]
-  end
-
-  def geo_data_layout
-    !request.xhr? ? nil : false
+  def find_geo_data
+    @geo_data = GeoData.find params[:id]
   end
 end

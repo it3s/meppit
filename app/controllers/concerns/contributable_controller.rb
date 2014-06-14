@@ -5,9 +5,16 @@ module ContributableController
     private
 
     def save_contribution
-      contrib = Contributing.where(contributable_type: @object.class.name, contributable_id: @object.id, contributor_id: current_user.id).first_or_create
-      contrib.save
+      obj = _get_object
+      #TODO: log the error if obj is nil
+      obj.add_contributor current_user unless obj.nil?
     end
+  end
+
+  def _get_object
+    # Get the property that contains the object using controller name
+    instance_variable_get("@#{params[:controller]}") ||
+    instance_variable_get("@#{params[:controller].singularize}")
   end
 
   module ClassMethods

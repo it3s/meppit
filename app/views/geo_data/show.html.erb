@@ -12,16 +12,16 @@
     </ul>
 
     <div class="extra-info" >
-      <%= render 'shared/contacts/view', :object => @object %>
-      <%= render 'shared/tags', :tags => @object.tags %>
+      <%= render 'shared/contacts/view', :object => @geo_data %>
+      <%= render 'shared/tags', :tags => @geo_data.tags %>
     </div>
 
     <div class="tab-content" id="content">
       <div class="description">
-        <% if @object.description.blank? %>
+        <% if @geo_data.description.blank? %>
           <%= t 'geo_data.description.empty', :name => @user.name %>
         <% else %>
-          <%= raw @object.description %>
+          <%= raw @geo_data.description %>
         <% end %>
       </div>
     </div>

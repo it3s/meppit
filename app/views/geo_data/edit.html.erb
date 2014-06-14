@@ -2,11 +2,11 @@
 <% content_for :geo_data_header do %><div></div><% end %>
 <% content_for :geo_data_location do %><div></div><% end %>
 
-  <%= remote_form_for @object do |f| %>
+  <%= remote_form_for @geo_data do |f| %>
 
   <div class="form-actions" data-components="stick" data-stick='{ "get_width_from": ".data-view.site-page" }'>
     <%= submit_tag t('save'), :class => "edit-save" %>
-    <%= link_to t('cancel'), url_for(@object) %>
+    <%= link_to t('cancel'), url_for(@geo_data) %>
   </div>
 
   <header>
@@ -21,7 +21,7 @@
   </header>
 
   <section class="location">
-      <div class="map" data-components="map" data-editor="true" data-geojson='<%= raw @object.location_geojson %>'></div>
+      <div class="map" data-components="map" data-editor="true" data-geojson='<%= raw @geo_data.location_geojson %>'></div>
   </section>
 
   <section class="main-info">
@@ -35,9 +35,9 @@
       </ul>
 
       <div class="extra-info" >
-        <%= render 'shared/contacts/edit', :object => @object %>
+        <%= render 'shared/contacts/edit', :object => @geo_data %>
         <div class="tags">
-          <%= tags_input f, :tags, @object.tags %>
+          <%= tags_input f, :tags, @geo_data.tags %>
         </div>
       </div>
 
