@@ -61,6 +61,9 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  # Opt-in spec type inference
+  config.infer_spec_type_from_file_location!
 end
 
 # add factory girl

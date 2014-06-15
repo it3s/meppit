@@ -24,8 +24,8 @@ describe ApplicationHelper do
   end
 
   describe "#javascript_exists?" do
-    it { expect(helper.javascript_exists?('application')).to be_true }
-    it { expect(helper.javascript_exists?('inexistent')).to be_false}
+    it { expect(helper.javascript_exists?('application')).to be true }
+    it { expect(helper.javascript_exists?('inexistent')).to be false}
   end
 
   describe "#with_http" do
@@ -107,10 +107,10 @@ describe ApplicationHelper do
     it "render tags inputs" do
       helper.simple_form_for(obj) do |f|
         generated = helper.tags_input(f, :interests, ['aa', 'bb'])
-        expect(generated.include? 'data-components="tags"').to be_true
-        expect(generated.include? 'data-tags="[&quot;aa&quot;,&quot;bb&quot;]"').to be_true
-        expect(generated.include? 'name="user[interests]"').to be_true
-        expect(generated.include? "data-autocomplete=\"#{helper.tag_search_path}\"").to be_true
+        expect(generated.include? 'data-components="tags"').to be true
+        expect(generated.include? 'data-tags="[&quot;aa&quot;,&quot;bb&quot;]"').to be true
+        expect(generated.include? 'name="user[interests]"').to be true
+        expect(generated.include? "data-autocomplete=\"#{helper.tag_search_path}\"").to be true
       end
     end
   end
