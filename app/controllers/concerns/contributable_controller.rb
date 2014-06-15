@@ -11,7 +11,7 @@ module ContributableController
     end
   end
 
-  def _find_contributable 
+  def _find_contributable
     # Get the property that contains the object using controller name
     instance_variable_get("@#{params[:controller]}") ||
     instance_variable_get("@#{params[:controller].singularize}")
