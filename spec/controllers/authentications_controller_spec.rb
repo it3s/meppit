@@ -49,7 +49,7 @@ describe AuthenticationsController do
       expect(controller).to receive :add_provider_to_existent_user
       expect(controller).to_not receive(:create_user_from_provider)
       controller.send :add_provider
-      expect(controller.logged_in?).to be_true
+      expect(controller.logged_in?).to be true
     end
 
     it "if user dont exist create from provider" do
@@ -58,7 +58,7 @@ describe AuthenticationsController do
 
       expect(controller).to receive(:create_user_from_provider)
       controller.send :add_provider
-      expect(controller.logged_in?).to be_true
+      expect(controller.logged_in?).to be true
     end
   end
 

@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby "2.0.0"                        # ruby version (used by heroku and rvm)
 
-gem 'rails', '4.0.2'
+gem 'rails', '~> 4.1.1'
 gem 'puma'                          # faster app server
 gem 'foreman'                       # process supervision
 gem 'pg'                            # postgresql
@@ -15,7 +15,7 @@ gem 'coffee-rails', '~> 4.0.0'      # coffeescript
 gem 'uglifier', '>= 1.3.0'          # minify
 gem 'jquery-rails'                  # jquery
 gem 'underscore-rails'              # underscore
-gem 'sass-rails', '~> 4.0.0'        # scss support
+gem 'sass-rails', '4.0.2'           # scss support
 gem 'bourbon'                       # sass mixins and utilities
 gem 'neat'                          # semantic grid system
 gem 'compass-rails'                 # sass mixins and sprites generation
@@ -46,7 +46,7 @@ end
 
 group :development do
   gem 'better_errors'               # better error page, and shell session when crash
-  gem 'binding_of_caller', '0.7.1'  # used by better_errors
+  gem 'binding_of_caller'           # used by better_errors
   gem 'clean_logger'                # silence assets logging
   gem 'letter_opener'               # preview email in the browser
   gem 'letter_opener_web'           # web ui for letter_opener
@@ -59,7 +59,7 @@ group :development, :test do
   gem 'pry-rails'                   # use pry as rails console
   gem 'konacha'                     # js tests with mocha + chai
   gem 'guard-rspec', require: false # launch specs when files are modified
-  gem 'i18n-tasks', '~> 0.3.9'      # check for translations
+  gem 'i18n-tasks'                  # check for translations
 end
 
 group :test do

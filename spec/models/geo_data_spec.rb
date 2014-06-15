@@ -13,7 +13,7 @@ describe GeoData do
   it 'contacts is a hstore and accepts data in hash format' do
     data = FactoryGirl.build(:geo_data)
     data.contacts = {'test' => 'ok', 'address' => 'av paulista, 800, SP'}
-    expect(data.save).to be_true
+    expect(data.save).to be true
     expect(GeoData.find_by(:id => data.id).contacts).to eq({'test' => 'ok', 'address' => 'av paulista, 800, SP'})
   end
 

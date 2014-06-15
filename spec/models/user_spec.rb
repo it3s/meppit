@@ -17,24 +17,24 @@ describe User do
 
   it 'validates format of email' do
     user.email = 'invalidmail'
-    expect(user.valid?).to be_false
+    expect(user.valid?).to be false
     expect(user.errors[:email].first).to eq I18n.t('activerecord.errors.models.user.attributes.email.invalid')
 
     user.email = 'valid@email.com'
-    expect(user.valid?).to be_true
+    expect(user.valid?).to be true
   end
 
   it 'validates length of password'  do
     user = FactoryGirl.build(:user)
     user.password = '123'
-    expect(user.valid?).to be_false
+    expect(user.valid?).to be false
     expect(user.errors[:password].first).to eq I18n.t('activerecord.errors.messages.too_short', {:count => 6})
   end
 
   it 'contacts is a hstore and accepts data in hash format' do
     user = FactoryGirl.build(:user)
     user.contacts = {'test' => 'ok', 'address' => 'av paulista, 800, SP'}
-    expect(user.save).to be_true
+    expect(user.save).to be true
     expect(User.find_by(:id => user.id).contacts).to eq({'test' => 'ok', 'address' => 'av paulista, 800, SP'})
   end
 
