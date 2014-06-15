@@ -35,14 +35,14 @@ describe Contributing do
     context "#missing_fields? => true" do
       it "validates presence of contributable" do
         c = Contributing.new(contributor: user)
-        expect(c.save).to be_false
-        expect(c.errors.messages[:contributable].size > 0).to be_true
+        expect(c.save).to be false
+        expect(c.errors.messages[:contributable].size > 0).to be true
       end
 
       it "validates presence of contributor" do
         c = Contributing.new(contributable: geo_data)
-        expect(c.save).to be_false
-        expect(c.errors.messages[:contributor].size > 0).to be_true
+        expect(c.save).to be false
+        expect(c.errors.messages[:contributor].size > 0).to be true
       end
     end
 
@@ -50,7 +50,7 @@ describe Contributing do
         Contributing.create(contributor: user, contributable: geo_data)
         expect(Contributing.count).to eq 1
         c = Contributing.new(contributor: user, contributable: geo_data)
-        expect(c.save).to be_false
+        expect(c.save).to be false
         expect(c.errors.messages[:contributor].first).to eq I18n.t('activerecord.errors.messages.taken')
     end
   end

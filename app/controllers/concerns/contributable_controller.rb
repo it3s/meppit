@@ -4,14 +4,14 @@ module ContributableController
   included do
     private
 
-    def save_contribution
-      obj = _get_object
+    def _save_contribution
+      contributable = _find_contributable
       #TODO: log the error if obj is nil
-      obj.add_contributor current_user unless obj.nil?
+      contributable.add_contributor current_user unless contributable.nil?
     end
   end
 
-  def _get_object
+  def _find_contributable 
     # Get the property that contains the object using controller name
     instance_variable_get("@#{params[:controller]}") ||
     instance_variable_get("@#{params[:controller].singularize}")
@@ -19,7 +19,7 @@ module ContributableController
 
   module ClassMethods
     def track_contributions
-      after_action :save_contribution, :only => [:update]
+      after_action :_save_contribution, :only => [:update]
     end
   end
 end
