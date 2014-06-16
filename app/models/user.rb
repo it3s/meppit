@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   include Contributor
   include Geometry
   include Taggable
+  include Follower
   include Followable
 
   authenticates_with_sorcery! do |config|

@@ -41,13 +41,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.assign_attributes(user_params)
-    if @user.valid? && @user.save
-      flash[:notice] = t('users.flash.updated')
-      render :json => {:redirect => user_path(@user)}
-    else
-      render :json => {:errors => @user.errors.messages}, :status => :unprocessable_entity
-    end
+    update_object @user, user_params
   end
 
   private

@@ -19,5 +19,3 @@ en:
     list:
       title: '%{count} objects'
 
-    flash:
-      updated: 'Data successfully updated'

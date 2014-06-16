@@ -18,15 +18,8 @@ class GeoDataController < ApplicationController
   end
 
   def update
-    @data.assign_attributes(data_params)
-    if @data.valid? && @data.save
-      flash[:notice] = t('geo_data.flash.updated')
-      render :json => {:redirect => geo_datum_path(@data)}
-    else
-      render :json => {:errors => @data.errors.messages}, :status => :unprocessable_entity
-    end
+    update_object @data, data_params
   end
-
 
   private
 

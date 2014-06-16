@@ -1,6 +1,7 @@
 module ApplicationHelper
   include Concerns::ContactsHelper
   include Concerns::I18nHelper
+  include Concerns::ToolbarHelper
 
   def javascript_exists?(script)
     script = "#{Rails.root}/app/assets/javascripts/#{script}.js"
@@ -42,19 +43,6 @@ module ApplicationHelper
 
   def tags_input(f, name, tags)
     f.input name, :input_html => {'data-components' => 'tags', 'data-tags' => tags.to_json, 'data-autocomplete' => tag_search_path }
-  end
-
-  def tools_list(obj, only=:all)
-    tools = {
-      :edit     => {:icon => :pencil,        :title => t('toolbar.edit'),     :url => url_for([:edit, obj])},
-      :star     => {:icon => :star,          :title => t('toolbar.star'),     :url => ""},
-      :comment  => {:icon => :comment,       :title => t('toolbar.comment'),  :url => ""},
-      :history  => {:icon => :'clock-o',     :title => t('toolbar.history'),  :url => ""},
-      :settings => {:icon => :'cog',         :title => t('toolbar.settings'), :url => ""},
-      :flag     => {:icon => :flag,          :title => t('toolbar.flag'),     :url => ""},
-      :delete   => {:icon => :'trash-o',     :title => t('toolbar.delete'),   :url => ""},
-    }
-    only == :all ? tools.values() : only.map {|name| tools[name] }
   end
 
   def counters_list(obj, only=:all)

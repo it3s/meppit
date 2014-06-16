@@ -19,5 +19,3 @@ pt-BR:
     list:
       title: '%{count} objetos'
 
-    flash:
-      updated: 'Dados atualizados com sucesso'

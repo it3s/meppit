@@ -34,4 +34,15 @@ class ApplicationController < ActionController::Base
     return false if string == false || string.nil? || string =~ (/(false|f|no|n|0)$/i)
     raise ArgumentError.new("invalid value for Boolean: \"#{string}\"")
   end
+
+  def update_object(obj, params_hash)
+    obj.assign_attributes(params_hash)
+    if obj.valid? && obj.save
+      after_update() if self.class.method_defined? :after_update
+      flash[:notice] = t('flash.updated')
+      render :json => {:redirect => polymorphic_path([obj])}
+    else
+      render :json => {:errors => obj.errors.messages}, :status => :unprocessable_entity
+    end
+  end
 end
