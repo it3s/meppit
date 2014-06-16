@@ -1,6 +1,6 @@
 development:
   adapter: postgis
-  schema_search_path: '"$user",public,postgis'
+  schema_search_path: '"$user",public'
   postgis_extension: true
   encoding: unicode
   database: meppit_development
@@ -10,7 +10,7 @@ development:
 
 test:
   adapter: postgis
-  schema_search_path: '"$user",public,postgis'
+  schema_search_path: '"$user",public'
   postgis_extension: true
   encoding: unicode
   database: meppit_test
@@ -20,7 +20,7 @@ test:
 
 production:
   adapter: postgis
-  schema_search_path: '"$user",public,postgis'
+  schema_search_path: '"$user",public'
   postgis_extension: true
   encoding: unicode
   database: meppit_production
@@ -30,7 +30,7 @@ production:
 
 staging:
   adapter: postgis
-  schema_search_path: '"$user",public,postgis'
+  schema_search_path: '"$user",public'
   postgis_extension: true
   encoding: unicode
   database: meppit_staging

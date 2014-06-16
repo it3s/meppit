@@ -41,7 +41,7 @@ describe GeoDataController do
       it "require_login" do
         controller.should_receive :require_login
         get :edit, {:id => data.id}
-        expect(controller.logged_in?).to be_false
+        expect(controller.logged_in?).to be false
       end
     end
 
