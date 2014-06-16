@@ -36,14 +36,14 @@ describe Following do
 
       it "validates presence of followable" do
         f = Following.new(follower: user)
-        expect(f.save).to be_false
-        expect(f.errors.messages[:followable].size > 0).to be_true
+        expect(f.save).to be false
+        expect(f.errors.messages[:followable].size > 0).to be true
       end
 
       it "validates presence of follower" do
         f = Following.new(followable: other_user)
-        expect(f.save).to be_false
-        expect(f.errors.messages[:follower].size > 0).to be_true
+        expect(f.save).to be false
+        expect(f.errors.messages[:follower].size > 0).to be true
       end
     end
 
@@ -52,7 +52,7 @@ describe Following do
           Following.create(follower: user, followable: geo_data)
           expect(Following.count).to eq 1
           f = Following.new(follower: user, followable: geo_data)
-          expect(f.save).to be_false
+          expect(f.save).to be false
           expect(f.errors.messages[:follower].first).to eq  I18n.t('activerecord.errors.messages.taken')
       end
     end

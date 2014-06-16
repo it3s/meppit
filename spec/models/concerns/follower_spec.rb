@@ -42,12 +42,12 @@ describe Follower do
     let(:geo_data) { FactoryGirl.create :geo_data }
 
     context "user is no following content" do
-      it { expect(user.follow? geo_data).to be_false }
+      it { expect(user.follow? geo_data).to be false }
     end
 
     context "user is following content" do
       before { user.followings.create followable: geo_data }
-      it { expect(user.follow? geo_data).to be_true }
+      it { expect(user.follow? geo_data).to be true }
     end
 
   end
