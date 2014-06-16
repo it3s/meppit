@@ -1,4 +1,7 @@
 class FollowingsController < ApplicationController
+  layout :followings_layout
+
+  before_action :require_login
   before_action :require_login, :find_followable
 
   def create
@@ -7,6 +10,14 @@ class FollowingsController < ApplicationController
 
   def destroy
     follow_button_json_response @followable.remove_follower(current_user)
+  end
+
+  def followers
+    @followers = paginated @followable.followers
+  end
+
+  def following
+    @following = paginated @followable.followed_objects
   end
 
   private
@@ -21,5 +32,14 @@ class FollowingsController < ApplicationController
     else
       render json: {ok: false}, status: :unprocessable_entity
     end
+  end
+
+  def paginated collection
+    collection = Kaminari.paginate_array collection if collection.kind_of? Array
+    collection.page(params[:page]).per(params[:per])
+  end
+
+  def followings_layout
+    unless request.xhr? then @followable.class.name.pluralize.underscore else false end
   end
 end

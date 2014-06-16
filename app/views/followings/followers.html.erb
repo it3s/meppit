@@ -1,0 +1,8 @@
+<br>
+<h2><%= icon "star", 'Followers' %></h2>
+<div id="followers" class="list-container" data-components="list">
+  <div id="followers-pagination"><%= paginate @followers, :remote => true %></div>
+  <ul id="followers-list" class="list contributions-list">
+    <%= render @followers, :size => :small, :control => :counters %>
+  </ul>
+</div>
