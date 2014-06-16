@@ -15,10 +15,10 @@ ActiveRecord::Schema.define(version: 20140615012832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "postgis"
   enable_extension "hstore"
   enable_extension "pg_trgm"
   enable_extension "fuzzystrmatch"
+  enable_extension "postgis"
 
   create_table "authentications", force: true do |t|
     t.integer  "user_id",    null: false
@@ -27,17 +27,6 @@ ActiveRecord::Schema.define(version: 20140615012832) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "followings", force: true do |t|
-    t.integer  "follower_id"
-    t.integer  "followable_id"
-    t.string   "followable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "followings", ["followable_type", "followable_id"], :name => "index_followings_on_followable_type_and_followable_id"
-  add_index "followings", ["follower_id"], :name => "index_followings_on_follower_id"
 
   create_table "contributings", force: true do |t|
     t.integer  "contributor_id"
@@ -49,6 +38,17 @@ ActiveRecord::Schema.define(version: 20140615012832) do
 
   add_index "contributings", ["contributable_id", "contributable_type"], :name => "index_contributings_on_contributable_id_and_contributable_type"
   add_index "contributings", ["contributor_id"], :name => "index_contributings_on_contributor_id"
+
+  create_table "followings", force: true do |t|
+    t.integer  "follower_id"
+    t.integer  "followable_id"
+    t.string   "followable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "followings", ["followable_type", "followable_id"], :name => "index_followings_on_followable_type_and_followable_id"
+  add_index "followings", ["follower_id"], :name => "index_followings_on_follower_id"
 
   create_table "geo_data", force: true do |t|
     t.string   "name",                                                              null: false
@@ -93,10 +93,10 @@ ActiveRecord::Schema.define(version: 20140615012832) do
     t.text     "about_me"
     t.hstore   "contacts"
     t.string   "avatar"
+    t.spatial  "location",                        limit: {:srid=>4326, :type=>"geometry"}
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.string   "interests",                                                                default: [],              array: true
-    t.spatial  "location",                        limit: {:srid=>4326, :type=>"geometry"}
   end
 
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"

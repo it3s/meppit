@@ -21,7 +21,7 @@ class GeoDataController < ApplicationController
   end
 
   def update
-    update_object @data, data_params
+    update_object @geo_data, data_params
   end
 
   private
