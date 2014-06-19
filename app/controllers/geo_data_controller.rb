@@ -4,8 +4,6 @@ class GeoDataController < ApplicationController
   before_action :require_login, :only => [:edit, :update]
   before_action :find_geo_data, :only => [:show, :edit, :update]
 
-  track_contributions
-
   def index
     @geo_data_collection = GeoData.page(params[:page]).per(params[:per])
     respond_to do |format|
@@ -22,6 +20,10 @@ class GeoDataController < ApplicationController
 
   def update
     update_object @geo_data, data_params
+  end
+
+  def after_update
+    save_contribution @geo_data, current_user
   end
 
   private

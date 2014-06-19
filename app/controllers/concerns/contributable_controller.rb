@@ -4,10 +4,11 @@ module ContributableController
   included do
     private
 
-    def _save_contribution
-      contributable = _find_contributable
+    def save_contribution contributable = nil, contributor = nil
+      contributable ||= _find_contributable
+      contributor ||= current_user
       #TODO: log the error if obj is nil
-      contributable.add_contributor current_user unless contributable.nil?
+      contributable.add_contributor contributor unless contributable.nil? or contributor.nil?
     end
   end
 
@@ -19,7 +20,7 @@ module ContributableController
 
   module ClassMethods
     def track_contributions
-      after_action :_save_contribution, :only => [:update]
+      after_action :save_contribution, :only => [:update]
     end
   end
 end
