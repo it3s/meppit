@@ -2,8 +2,10 @@ module Contributable
   extend ActiveSupport::Concern
 
   included do
-    has_many :contributings, :foreign_key => :contributable_id
-    has_many :contributors, :through => :contributings
+
+    def contributors
+      User.joins(:contributings).where(contributings: {contributable_type: self.class.name, contributable_id: self.id})
+    end
 
     def contributors_count
       contributors.size

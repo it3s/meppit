@@ -32,7 +32,7 @@ describe Contributable do
       expect(data.contributors_count).to be 0
       expect(data.contributors.empty?).to be true
       expect(data.add_contributor(user)).to be true
-      expect(data.contributors(true).size).to be 1
+      expect(data.contributors.size).to be 1
       expect(data.contributors_count).to be 1
       expect(data.contributors[0].name).to eq 'Bob'
     end
