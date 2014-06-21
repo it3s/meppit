@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
-  include Contributions
   include PasswordResets
 
   before_action :require_login,   :only => [:edit, :update]
-  before_action :find_user,       :only => [:show, :edit, :update, :contributions]
+  before_action :find_user,       :only => [:show, :edit, :update]
   before_action :is_current_user, :only => [:edit, :update]
 
   def new
@@ -35,9 +34,11 @@ class UsersController < ApplicationController
   end
 
   def show
+    @contributions = @user.contributions.page(params[:contributions_page]) if @user.respond_to? 'contributions'
   end
 
   def edit
+    render :layout => "application"
   end
 
   def update

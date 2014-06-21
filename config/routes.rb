@@ -13,10 +13,17 @@ Meppit::Application.routes.draw do
 
   get  "tags/search" => "tags#search", :as => :tag_search
 
-  resources :users do
-    member do
+  concern :contributable do
+    get "contributors" => "contributings#contributors"
+  end
+
+  concern :contributor do
+    get "contributions" => "contributings#contributions"
+  end
+
+  resources :users, except: [:destroy, :index], :concerns => [:contributor] do
+    member     do
       get :activate
-      get :contributions
     end
 
     collection do
@@ -29,7 +36,7 @@ Meppit::Application.routes.draw do
     end
   end
 
-  resources :geo_data, :only => [:index, :show, :edit, :update]
+  resources :geo_data, :only => [:index, :show, :edit, :update], :concerns => [:contributable]
 
   resource :following, :only => [:create, :destroy]
 

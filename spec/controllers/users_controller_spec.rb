@@ -236,25 +236,4 @@ describe UsersController do
       end
     end
   end
-
-  describe "GET contributions" do
-    let(:user) { FactoryGirl.create :user }
-
-    context "regular request" do
-      it 'renders show' do
-        get :contributions, {id: user.id}
-        expect(response).to render_template :contributions
-      end
-    end
-
-    context "xhr" do
-      before { controller.request.stub(:xhr?).and_return(true) }
-
-      it 'renders contributions without layout' do
-        get :contributions, {id: user.id}
-        expect(response).to render_template(:layout => nil)
-      end
-    end
-  end
-
 end

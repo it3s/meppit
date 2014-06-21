@@ -79,3 +79,20 @@ nav.pagination { display: none; }  // We are using infinite scroll
     .counters { margin: 8px 0;  }
   }
 }
+
+.modal {
+   .list-container {
+     height: 400px;
+     overflow-y: auto;
+   }
+
+   .list-item {
+
+      .item {
+        min-height: 0;
+        width: 200px;
+      }
+
+      .item-excerpt { display: none; }
+   }
+}

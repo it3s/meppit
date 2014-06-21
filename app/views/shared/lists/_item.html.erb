@@ -10,7 +10,7 @@
     <a href="<%= url_for object %>" title="<%= object[:name] %>">
       <div class="item-avatar">
         <% if object[:avatar] %>
-          <%= image_tag object[:avatar].thumb.url %>
+          <%= image_tag object.avatar.thumb.url %>
         <% else %>
           <% if type == :map %>
             <%= icon :globe %>
@@ -26,8 +26,8 @@
     </a>
     <div class="item">
       <a href="<%= url_for object %>" title="<%= object[:name] %>">
-        <h2 class="item-title"><%= truncate object[:name], length: (size == :small ? 55 : 85) %></h2>
-        <p class="item-excerpt"><%= truncate(object[:description] || object[:about_me], length: (size == :small ? 130 : 300))  %></p>
+        <h2 class="item-title"><%= truncate strip_tags(object[:name]), length: (size == :small ? 55 : 85) %></h2>
+        <p class="item-excerpt"><%= truncate(strip_tags(object[:description] || object[:about_me]), length: (size == :small ? 130 : 300))  %></p>
       </a>
       <% if size == :big and object.respond_to? :tags %>
         <%= render 'shared/tags', :tags => object[:tags] %>

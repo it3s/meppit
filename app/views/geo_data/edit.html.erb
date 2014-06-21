@@ -1,11 +1,12 @@
-<%= render 'shared/toolbar', :object => @data, :only => data_tools(@data) %>
+<% @page_class_name = "data-view edit" %>
+<% content_for :geo_data_header do %><div></div><% end %>
+<% content_for :geo_data_location do %><div></div><% end %>
 
-<div class="site-page data-view edit" >
-  <%= remote_form_for @data do |f| %>
+  <%= remote_form_for @geo_data do |f| %>
 
-  <div class="form-actions" data-components="stick" data-stick='{ "get_width_from": ".data-view.page" }'>
+  <div class="form-actions" data-components="stick" data-stick='{ "get_width_from": ".data-view.site-page" }'>
     <%= submit_tag t('save'), :class => "edit-save" %>
-    <%= link_to t('cancel'), url_for(@data) %>
+    <%= link_to t('cancel'), url_for(@geo_data) %>
   </div>
 
   <header>
@@ -20,7 +21,7 @@
   </header>
 
   <section class="location">
-      <div class="map" data-components="map" data-editor="true" data-geojson='<%= raw @data.location_geojson %>'></div>
+      <div class="map" data-components="map" data-editor="true" data-geojson='<%= raw @geo_data.location_geojson %>'></div>
   </section>
 
   <section class="main-info">
@@ -34,9 +35,9 @@
       </ul>
 
       <div class="extra-info" >
-        <%= render 'shared/contacts/edit', :object => @data %>
+        <%= render 'shared/contacts/edit', :object => @geo_data %>
         <div class="tags">
-          <%= tags_input f, :tags, @data.tags %>
+          <%= tags_input f, :tags, @geo_data.tags %>
         </div>
       </div>
 

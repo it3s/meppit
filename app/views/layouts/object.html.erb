@@ -1,0 +1,10 @@
+<% content_for :content do %>
+  <%= yield :object_toolbar %>
+  <div class="site-page <%= @page_class_name %>" >
+    <header class="wrapper">
+      <%= yield :object_header %>
+    </header>
+    <%= content_for?(:object_content) ? yield(:object_content) : yield %>
+  </div>
+<% end %>
+<%= render template: "layouts/application" %>

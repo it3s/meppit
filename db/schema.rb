@@ -15,10 +15,10 @@ ActiveRecord::Schema.define(version: 20140615012832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "postgis"
   enable_extension "hstore"
   enable_extension "pg_trgm"
   enable_extension "fuzzystrmatch"
+  enable_extension "postgis"
 
   create_table "authentications", force: true do |t|
     t.integer  "user_id",    null: false
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(version: 20140615012832) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "contributings", force: true do |t|
+    t.integer  "contributor_id"
+    t.integer  "contributable_id"
+    t.string   "contributable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contributings", ["contributable_id", "contributable_type"], :name => "index_contributings_on_contributable_id_and_contributable_type"
+  add_index "contributings", ["contributor_id"], :name => "index_contributings_on_contributor_id"
 
   create_table "followings", force: true do |t|
     t.integer  "follower_id"

@@ -8,5 +8,5 @@
     <h1><%=  t 'users.signup' %></h1>
   </header>
 
-  <%= render 'users/signup_form' %>
+  <%= render 'users/signup_form', :locals => { :user => @user } %>
 </section>

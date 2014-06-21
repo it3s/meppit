@@ -16,9 +16,9 @@
 
   <div id="main-content">
     <div class="wrapper">
-      <%= yield %>
+      <%= content_for?(:content) ? yield(:content) : yield %>
     </div>
-    <div id="main-content-footer">
+    <div id="main-content-footer"></div>
   </div>
 
   <%= render 'shared/footer' %>
