@@ -5,17 +5,21 @@ module Followable
     after_destroy :clean_followings_for_destroyed_followable!
 
     def followers
-      _followings.map(&:follower)
+      User.joins(:followings).where(followings: _followable_params)
     end
 
     def followers_count
-      _followings.count
+      followers.count
     end
 
     private
 
+    def _followable_params
+      {followable_type: self.class.name, followable_id: self.id}
+    end
+
     def _followings
-      Following.where(followable_type: self.class.name, followable_id: id)
+      Following.where(_followable_params)
     end
 
     def clean_followings_for_destroyed_followable!
