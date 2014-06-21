@@ -22,6 +22,8 @@ class GeoDataController < ApplicationController
     update_object @geo_data, data_params
   end
 
+  protected
+
   def after_update
     save_contribution @geo_data, current_user
   end

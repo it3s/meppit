@@ -6,9 +6,8 @@ describe ContributableController do
   controller (FoosController) do
     include ContributableController
 
-    track_contributions
-
     def update
+      save_contribution @anonymous, current_user
       render :text => "update"
     end
 

@@ -1,22 +1,23 @@
 class UsersController < ApplicationController
   include PasswordResets
 
-  before_action :require_login,   :only => [:edit, :update]
-  before_action :find_user,       :only => [:show, :edit, :update]
-  before_action :is_current_user, :only => [:edit, :update]
+  before_action :require_login,      only: [:edit, :update]
+  before_action :find_user,          only: [:show, :edit, :update]
+  before_action :is_current_user,    only: [:edit, :update]
+  before_action :contributions_list, only: [:show]
 
   def new
     @user = User.new
-    render :layout => nil if request.xhr?
+    render layout: nil if request.xhr?
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
       @user.send_activation_email
-      render :json => { :redirect => created_users_path }
+      render json: { redirect: created_users_path }
     else
-      render :json => { :errors => @user.errors.messages }, :status => :unprocessable_entity
+      render json: { errors: @user.errors.messages }, status: :unprocessable_entity
     end
   end
 
@@ -26,7 +27,7 @@ class UsersController < ApplicationController
   def activate
     if (@user = User.load_from_activation_token(params[:id]))
       @user.activate!
-      redirect_to root_path, :notice => t('users.flash.activated')
+      redirect_to root_path, notice: t('users.flash.activated')
     else
       flash[:error] = t('users.flash.activation_error')
       not_authenticated
@@ -34,11 +35,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @contributions = @user.contributions.page(params[:contributions_page]) if @user.respond_to? 'contributions'
   end
 
   def edit
-    render :layout => "application"
+    render layout: "application"
   end
 
   def update
@@ -60,6 +60,10 @@ class UsersController < ApplicationController
   end
 
   def is_current_user
-    redirect_to(root_path, :notice => t('access_denied')) if @user != current_user
+    redirect_to(root_path, notice: t('access_denied')) if @user != current_user
+  end
+
+  def contributions_list
+    @contributions ||= @user.try(:contributions).try(:page, params[:contributions_page])
   end
 end
