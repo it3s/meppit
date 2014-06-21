@@ -37,4 +37,19 @@ describe Contributable do
       expect(data.contributors[0].name).to eq 'Bob'
     end
   end
+
+  describe "destroy contributings for the object when its destroyed" do
+    let(:other_data) { FactoryGirl.create :geo_data, name: 'other' }
+
+    before do
+      user.contributings.create contributable: data
+      user.contributings.create contributable: other_data
+    end
+
+    it "destroy contributings for the contributable" do
+      expect(user.contributings.count).to eq 2
+      data.destroy
+      expect(user.contributings.count).to eq 1
+    end
+  end
 end

@@ -26,4 +26,15 @@ describe Contributor do
       end
     end
   end
+
+  describe "destroy contributings when contributor is destroyed" do
+    let(:geo_data) { FactoryGirl.create :geo_data }
+    before { user.contributings.create contributable: geo_data }
+
+    it "destroy associated contributor" do
+      expect(Contributing.where(contributor_id: user.id).count).to eq 1
+      user.destroy
+      expect(Contributing.where(contributor_id: user.id).count).to eq 0
+    end
+  end
 end

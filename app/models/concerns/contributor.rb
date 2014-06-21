@@ -2,7 +2,7 @@ module Contributor
   extend ActiveSupport::Concern
 
   included do
-    has_many :contributings, :foreign_key => :contributor_id
+    has_many :contributings, :foreign_key => :contributor_id, :dependent => :destroy
 
     def contributions(opts={}, order='updated_at DESC')
       Kaminari.paginate_array(contributings.order(order).where(opts).map(&:contributable))
@@ -10,11 +10,10 @@ module Contributor
 
     def contributions_count
       contributions.count
-   end
+    end
 
     def maps_count
       contributions({contributable_type: "Map"}).size
     end
-
   end
 end

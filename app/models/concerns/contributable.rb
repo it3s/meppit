@@ -2,6 +2,7 @@ module Contributable
   extend ActiveSupport::Concern
 
   included do
+    after_destroy :clean_contributings_for_destroyed_contributable!
 
     def contributors
       User.joins(:contributings).where(contributings: _contributable_params)
@@ -20,6 +21,10 @@ module Contributable
 
     def _contributable_params
       {contributable_type: self.class.name, contributable_id: self.id}
+    end
+
+    def clean_contributings_for_destroyed_contributable!
+      Contributing.where(_contributable_params).destroy_all
     end
   end
 end
