@@ -5,12 +5,12 @@ describe ContributingsController do
     let(:geo_data) { FactoryGirl.create :geo_data }
     context "regular request" do
       it 'defines @geo_data' do
-        get :contributors, :geo_datum_id => geo_data.id
+        get :contributors, :geo_data_id => geo_data.id
         expect(assigns :geo_data).to eq geo_data
       end
 
       it 'renders geo_data contributors list using geo_data layout' do
-        get :contributors, :geo_datum_id => geo_data.id
+        get :contributors, :geo_data_id => geo_data.id
         expect(response).to render_template :geo_data
       end
     end
@@ -18,7 +18,7 @@ describe ContributingsController do
       before { controller.request.stub(:xhr?).and_return(true) }
 
       it 'renders contributors list without layout' do
-        get :contributors, :geo_datum_id => geo_data.id
+        get :contributors, :geo_data_id => geo_data.id
         expect(response).to render_template(:layout => nil)
       end
     end

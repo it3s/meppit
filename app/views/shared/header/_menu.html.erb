@@ -4,8 +4,8 @@
       <%= icon "globe", t('header.menu.maps') %>
     </a>
   </div>
-  <div class="menu-item data <%= 'active' if params[:controller] == 'geo_data' or not params[:geo_datum_id].nil? %>">
-    <a href="<%= geo_data_path  %>">
+  <div class="menu-item data <%= 'active' if params[:controller] == 'geo_data' || params[:geo_data_id] %>">
+    <a href="<%= geo_data_index_path  %>">
       <%= icon "map-marker", t('header.menu.data') %>
     </a>
   </div>

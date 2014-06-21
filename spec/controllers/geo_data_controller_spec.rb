@@ -72,7 +72,7 @@ describe GeoDataController do
     it 'saves geo_data and return redirect' do
       post :update, {:id => geo_data.id, :geo_data => data_params}
       expect(assigns :geo_data).to eq geo_data
-      expect(response.body).to match({:redirect => geo_datum_path(geo_data)}.to_json)
+      expect(response.body).to match({:redirect => geo_data_path(geo_data)}.to_json)
       geo_data.reload
       expect(geo_data.description).to eq "<h2>Test</h2> <p>save html text</p>"
     end

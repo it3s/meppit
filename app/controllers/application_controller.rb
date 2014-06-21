@@ -47,28 +47,16 @@ class ApplicationController < ActionController::Base
   end
 
   def find_polymorphic_object
-    obj = nil
-    params.each do |name, value|
-      if name =~ /(.+)_id$/
-        begin
-          _class = $1.classify.constantize
-        rescue NameError
-          # Try pluralized version because we have a model in plural: "geo_data"
-          _class = $1.classify.pluralize.constantize
-        end
-        obj = _class.find(value)
-        # Set the variable name following our adopted standard
-        instance_variable_set "@#{_class.name.underscore}", obj
-      end
-    end
-    obj
+    resource, id = request.path.split('/')[1..2]
+    _model = resource.classify.constantize
+    instance_variable_set "@#{_model.name.underscore}", _model.find(id)  # set var and return the obj
   end
 
-  def paginate collection
+  def paginate(collection)
     collection.page(params[:page]).per(params[:per])
   end
 
-  def polymorphic_layout obj
+  def polymorphic_layout(obj)
     unless request.xhr? then obj.class.name.pluralize.underscore else false end
   end
 end
