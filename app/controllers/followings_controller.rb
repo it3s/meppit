@@ -13,11 +13,11 @@ class FollowingsController < ApplicationController
   end
 
   def followers
-    @followers = paginated @followable.followers
+    @followers = paginate @followable.followers
   end
 
   def following
-    @following = paginated @followable.followed_objects
+    @following = paginate @followable.followed_objects
   end
 
   private
@@ -40,6 +40,6 @@ class FollowingsController < ApplicationController
   end
 
   def followings_layout
-    unless request.xhr? then @followable.class.name.pluralize.underscore else false end
+    polymorphic_layout @followable
   end
 end

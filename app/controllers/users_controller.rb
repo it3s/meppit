@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   before_action :find_user,          only: [:show, :edit, :update]
   before_action :is_current_user,    only: [:edit, :update]
   before_action :contributions_list, only: [:show]
+  before_action :following_list,     only: [:show]
 
   def new
     @user = User.new
@@ -63,6 +64,10 @@ class UsersController < ApplicationController
   end
 
   def contributions_list
-    @contributions ||= @user.try(:contributions).try(:page, params[:contributions_page])
+    @contributions ||= paginate @user.try(:contributions), params[:contributions_page]
+  end
+
+  def following_list
+    @following ||= paginate @user.try(:followed_objects), params[:following_page]
   end
 end
