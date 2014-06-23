@@ -58,4 +58,70 @@ describe FollowingsController do
       expect(user.reload.followings.count).to eq 0
     end
   end
+
+  describe "GET followers from geo_data" do
+    context "regular request" do
+      it 'defines @geo_data' do
+        get :followers, :geo_datum_id => geo_data.id
+        expect(assigns :geo_data).to eq geo_data
+      end
+
+      it 'renders geo_data followers list using geo_data layout' do
+        get :followers, :geo_datum_id => geo_data.id
+        expect(response).to render_template :geo_data
+      end
+    end
+    context "xhr" do
+      before { controller.request.stub(:xhr?).and_return(true) }
+
+      it 'renders followers list without layout' do
+        get :followers, :geo_datum_id => geo_data.id
+        expect(response).to render_template(:layout => nil)
+      end
+    end
+  end
+
+  describe "GET followers from user" do
+    context "regular request" do
+      it 'defines @user' do
+        get :followers, :user_id => user.id
+        expect(assigns :user).to eq user
+      end
+
+      it 'renders user followers list using users layout' do
+        get :followers, :user_id => user.id
+        expect(response).to render_template :users
+      end
+    end
+    context "xhr" do
+      before { controller.request.stub(:xhr?).and_return(true) }
+
+      it 'renders followers list without layout' do
+        get :followers, :user_id => user.id
+        expect(response).to render_template(:layout => nil)
+      end
+    end
+  end
+
+  describe "GET following" do
+    context "regular request" do
+      it 'defines @user' do
+        get :following, :user_id => user.id
+        expect(assigns :user).to eq user
+      end
+
+      it 'renders following list using users layout' do
+        get :following, :user_id => user.id
+        expect(response).to render_template :users
+      end
+    end
+    context "xhr" do
+      before { controller.request.stub(:xhr?).and_return(true) }
+
+      it 'renders contributions list without layout' do
+        get :following, :user_id => user.id
+        expect(response).to render_template(:layout => nil)
+      end
+    end
+  end
 end
