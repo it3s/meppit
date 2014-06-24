@@ -5,6 +5,15 @@ mediator =
   subscribe: (channel, fn) -> @obj.bind(channel, fn)
   unsubscribe: (channel, fn) -> @obj.unbind(channel, fn)
 
+# "async" functions. Returns a deferred object.
+asyncFn = (fn) ->
+  deferred = $.Deferred()
+  setTimeout( ->
+    args = fn()
+    deferred.resolve(args)
+  , 0)
+  deferred
+
 # components namespaces
 components = { _instances: {} }
 
@@ -12,6 +21,9 @@ components = { _instances: {} }
 _randomId = ->
   Math.random().toString(36).substring(7)
 
+# component id
+_compId = (name, container) ->
+  "#{name}:#{container.attr('id') || _randomId()}"
 
 # Initialize a component and add the instance to the container data
 setupContainer = (container) ->
@@ -19,11 +31,8 @@ setupContainer = (container) ->
   names = container.data('components').split /\s+/
   _.each names, (name) =>
     component = components[name]?(container)
-    component.init()
-
-    # save instance for later use
-    components._instances["#{name}:#{container.attr('id') || _randomId()}"] = component
-    # console.log("component:start => #{name}")
+    asyncFn ->  component.init()
+    .then   ->  components._instances[_compId(name, container)] = component
 
 
 # setup all components for a DOM root

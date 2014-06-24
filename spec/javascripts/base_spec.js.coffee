@@ -45,35 +45,43 @@ describe 'Base', ->
       expect(cb).to.have.returned 'received ok'
 
   describe 'setupContainer', ->
-    it 'initializes component', ->
+    it 'initializes component', (done) ->
       container = $(JST['templates/test_component']())
       _base.setupContainer(container)
 
-      component = App.components._instances['testComponent:test']
-      expect(component.init).to.be.called
-      expect(container.find('h1').html()).to.be.equal 'Hello'
+      setTimeout( ->
+        component = App.components._instances['testComponent:test']
+        expect(component.init).to.be.called
+        expect(container.find('h1').html()).to.be.equal 'Hello'
+        done()
+      , 10)
 
-    it 'instantiates multi components', ->
+    it 'instantiates multi components', (done) ->
       container = $(JST['templates/multi_component']())
-
       _base.setupContainer(container)
 
-      component1 = App.components._instances['testComponent:multi']
-      component2 = App.components._instances['otherComponent:multi']
-      expect(component1.init).to.be.called
-      expect(component2.init).to.be.called
+      setTimeout( ->
+        component1 = App.components._instances['testComponent:multi']
+        component2 = App.components._instances['otherComponent:multi']
+        expect(component1.init).to.be.called
+        expect(component2.init).to.be.called
+        done()
+      , 20)
 
   describe 'startComponents', ->
       beforeEach ->
         $('body').html(JST['templates/start_components']())
 
-      it 'start all components on the body', ->
+      it 'start all components on the body', (done) ->
         _base.startComponents()
 
-        component1 = App.components._instances['testComponent:test']
-        component2 = App.components._instances['otherComponent:other']
-        expect(component1.init).to.be.called
-        expect(component2.init).to.be.called
+        setTimeout( ->
+          component1 = App.components._instances['testComponent:test']
+          component2 = App.components._instances['otherComponent:other']
+          expect(component1.init).to.be.called
+          expect(component2.init).to.be.called
+          done()
+        , 20)
 
 
       it 'listens to components:start event and receive a different root', ->
