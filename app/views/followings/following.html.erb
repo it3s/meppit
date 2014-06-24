@@ -5,7 +5,7 @@
     <div id="following-pagination"><%= paginate @following, :remote => true %></div>
     <ul id="following-list" class="list following-list">
       <% unless @following.empty? %>
-        <%= render @following, :size => :small, :control => :counters %>
+        <%= render @following, :size => :small, :control => :follow_button %>
       <% else %>
         <p><%= t 'followings.empty.following', {name: @followable.try(:name)} %></p>
       <% end %>

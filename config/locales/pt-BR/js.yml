@@ -8,3 +8,7 @@ pt-BR:
       close: 'Fechar'
     tags:
       placeholder: 'Adicionar palavra-chave'
+    followings:
+      following: 'Seguindo'
+      follow: 'Seguir'
+      unfollow: 'Deixar de seguir'

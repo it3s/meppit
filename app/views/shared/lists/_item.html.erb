@@ -1,6 +1,4 @@
-<% type = object_type object %>
-<% size = local_assigns[:size] || :big %>
-<li class="list-item <%= type %> <%= size %>">
+<li class="list-item <%= object_type object %> <%= size %>">
   <div class="wrapper">
     <% if local_assigns[:checkbox] %>
       <div class="item-checkbox">
@@ -9,19 +7,7 @@
     <% end %>
     <a href="<%= url_for object %>" title="<%= object[:name] %>">
       <div class="item-avatar">
-        <% if object[:avatar] %>
-          <%= image_tag object.avatar.thumb.url %>
-        <% else %>
-          <% if type == :map %>
-            <%= icon :globe %>
-          <% elsif type == :data %>
-            <%= icon :'map-marker' %>
-          <% elsif type == :user %>
-            <%= icon :user %>
-          <% else %>
-            <%= icon :question %>
-          <% end %>
-        <% end %>
+        <%= list_item_avatar_for object %>
       </div>
     </a>
     <div class="item">
@@ -34,11 +20,7 @@
       <% end %>
     </div>
     <div class="item-controls">
-      <% if local_assigns[:control] == :counters %>
-        <%= render 'shared/counters',
-          presenter: CountersPresenter.new(object: object, ctx: self, size: (size == :small ? :small : :medium))
-        %>
-      <% end %>
+      <%= list_item_controls_for object, self, local_assigns[:control], local_assigns[:size] %>
     </div>
   </div>
 </li>

@@ -1,0 +1,23 @@
+.button {
+
+  &.follow {
+    color: $dark-grey;
+    background: $ultra-soft-grey;
+
+    text-align: center;
+    margin: 5px;
+    padding: 5px 10px;
+
+    .label {
+      display: block;
+      min-width: 4.5em;
+    }
+
+    &.active {
+      color: $white;
+      background: $ocean-blue;
+      &:hover { background: $dark-red; }  // turns to 'Unfollow' button
+    }
+  }
+
+}

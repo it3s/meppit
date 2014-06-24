@@ -22,7 +22,7 @@ Meppit::Application.routes.draw do
   end
 
   concern :followable do
-    resource :following, only: [:create, :destroy]
+    resource :follow, controller: :followings, only: [:create, :destroy]
     get "followers" => "followings#followers"
    end
 

@@ -2,11 +2,13 @@ App.components.follow = (container) ->
   container: container
 
   init: ->
-    @url = @container.data('follow').url
+    @data = @container.data('follow') || {}
+    @url = @data.url || @container.attr('href')
+    @toggleActive @data.following
     @addListeners()
 
   isActive: ->
-    @container.is('.active')
+    @data.following
 
   method: ->
     if @isActive() then "delete" else "post"
@@ -14,11 +16,25 @@ App.components.follow = (container) ->
   requestData: ->
     _.extend {}, {"_method": @method()}
 
-  toggleActive: ->
-    if @isActive()
-      @container.removeClass 'active'
-    else
+  toggleActive: (following) ->
+    @data.following = following
+    if following
       @container.addClass 'active'
+    else
+      @container.removeClass 'active'
+    @resetLabel()
+
+  toggleLabel: ->
+    if @data.following
+      @container.find('> .label').text(I18n.followings.unfollow)
+    else
+      @container.find('> .label').text(I18n.followings.follow)
+
+  resetLabel: ->
+    if @data.following
+      @container.find('> .label').text(I18n.followings.following)
+    else
+      @container.find('> .label').text(I18n.followings.follow)
 
   doRequest: ->
     _this = this
@@ -27,8 +43,10 @@ App.components.follow = (container) ->
       url:      _this.url
       dataType: "json"
       data:     _this.requestData()
-      success:  _this.toggleActive.bind(_this)
+      success:  (data) -> _this.toggleActive(data.following)
+    false
 
   addListeners: ->
     @container.on 'click', @doRequest.bind(this)
-
+    @container.on 'mouseover', @toggleLabel.bind(this)
+    @container.on 'mouseout', @resetLabel.bind(this)

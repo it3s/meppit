@@ -5,7 +5,8 @@ describe FollowingsController do
   let(:geo_data) { FactoryGirl.create :geo_data }
 
   let(:params) { {geo_data_id: geo_data.id} }
-  let(:ok_response) { {ok: true}.to_json }
+  let(:following_response) { {ok: true, following: true}.to_json }
+  let(:not_following_response) { {ok: true, following: false}.to_json }
   let(:not_ok_response) { {ok: false}.to_json }
 
   before { login_user user }
@@ -15,7 +16,7 @@ describe FollowingsController do
       expect(user.followings.count).to eq 0
       post :create, params
       expect(response.header['Content-Type']).to match 'application/json'
-      expect(response.body).to match ok_response
+      expect(response.body).to match following_response
       expect(user.reload.followings.count).to eq 1
     end
 
@@ -23,7 +24,7 @@ describe FollowingsController do
       expect(user.followings.count).to eq 0
 
       post :create, params
-      expect(response.body).to match ok_response
+      expect(response.body).to match following_response
       expect(user.reload.followings.count).to eq 1
 
       post :create, params
@@ -46,11 +47,11 @@ describe FollowingsController do
       delete :destroy, params
 
       expect(response.header['Content-Type']).to match 'application/json'
-      expect(response.body).to match ok_response
+      expect(response.body).to match not_following_response
       expect(user.reload.followings.count).to eq 0
     end
 
-    it "Do notthing if there is no matching following" do
+    it "Do nothing if there is no matching following" do
       delete :destroy, params
 
       expect(response.body).to match not_ok_response
@@ -62,12 +63,12 @@ describe FollowingsController do
   describe "GET followers from geo_data" do
     context "regular request" do
       it 'defines @geo_data' do
-        get :followers, :geo_datum_id => geo_data.id
+        get :followers, :geo_data_id => geo_data.id
         expect(assigns :geo_data).to eq geo_data
       end
 
       it 'renders geo_data followers list using geo_data layout' do
-        get :followers, :geo_datum_id => geo_data.id
+        get :followers, :geo_data_id => geo_data.id
         expect(response).to render_template :geo_data
       end
     end
@@ -75,7 +76,7 @@ describe FollowingsController do
       before { controller.request.stub(:xhr?).and_return(true) }
 
       it 'renders followers list without layout' do
-        get :followers, :geo_datum_id => geo_data.id
+        get :followers, :geo_data_id => geo_data.id
         expect(response).to render_template(:layout => nil)
       end
     end

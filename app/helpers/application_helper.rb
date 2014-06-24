@@ -2,6 +2,7 @@ module ApplicationHelper
   include Concerns::ContactsHelper
   include Concerns::I18nHelper
   include Concerns::ComponentsHelper
+  include Concerns::ListsHelper
 
   def javascript_exists?(script)
     script = "#{Rails.root}/app/assets/javascripts/#{script}.js"
@@ -37,4 +38,10 @@ module ApplicationHelper
     params[:action] == 'edit'
   end
 
+  def follow_options_for(obj)
+    {
+      following: current_user && current_user.follow?(obj),
+      url: url_for([obj, :follow])
+    }.to_json
+  end
 end
