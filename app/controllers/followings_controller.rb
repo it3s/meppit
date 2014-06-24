@@ -28,7 +28,7 @@ class FollowingsController < ApplicationController
 
   def follow_button_json_response(action_result)
     if action_result
-      render json: {ok: true, following: current_user.follow?(@followable)}
+      render json: {ok: true, following: current_user.follow?(@followable), count: @followable.followers_count}
     else
       render json: {ok: false}, status: :unprocessable_entity
     end

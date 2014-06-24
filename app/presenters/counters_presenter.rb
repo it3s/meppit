@@ -62,7 +62,8 @@ class CountersPresenter
       string: 'counters.followers',
       method: :followers_count,
       class:  "followers-counter",
-      url:    counter_url([object, :followers])
+      url:    counter_url([object, :followers]),
+      component: _followers_component(obj)
     }
   end
 
@@ -73,6 +74,14 @@ class CountersPresenter
       method: :contributors_count,
       class:  "contributors-counter",
       url:    counter_url([object, :contributors])
+    }
+  end
+
+  def _followers_component(obj)
+    opts_json = {type: 'followers', id: identifier_for(obj)}.to_json
+    {
+      :type => "counter",
+      :opts => "data-counter=#{ opts_json } "
     }
   end
 end

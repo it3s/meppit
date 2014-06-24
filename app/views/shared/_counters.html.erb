@@ -1,8 +1,18 @@
 <ul class="counters">
   <% presenter.counters.each do |counter| %>
-    <li class="counter <%= counter.class %> <%= presenter.size %>">
+    <li class="counter <%= counter.class %> <%= presenter.size %>"
+      <% if counter[:component] %>
+        data-components="<%= counter.component.type %>" <%= counter.component.opts %>
+      <% end %>
+  >
       <a href="<%= counter.url %>" title="<%= t(counter.string, :count => counter.count) %>" data-components="modal" data-modal='{ "remote": true }'>
-        <%= icon counter.icon %><span class="counter-value"><%= raw counter.value %></span>
+        <%= icon counter.icon %><span class="counter-value">
+          <% if not presenter.size == :big %>
+            <span class="counter-label"><%= raw counter.value %></span>
+          <% else %>
+            <%= raw t(counter[:string], :count => "<em class=\"counter-label\">#{counter.value}</em>" ) %>
+          <% end %>
+        </span>
       </a>
     </li>
   <% end %>

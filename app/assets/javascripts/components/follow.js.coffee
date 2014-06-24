@@ -4,6 +4,7 @@ App.components.follow = (container) ->
   init: ->
     @data = @container.data('follow') || {}
     @url = @data.url || @container.attr('href')
+    @id = @data.id || @url
     @toggleActive @data.following
     @addListeners()
 
@@ -43,10 +44,14 @@ App.components.follow = (container) ->
       url:      _this.url
       dataType: "json"
       data:     _this.requestData()
-      success:  (data) -> _this.toggleActive(data.following)
+      success:  (data) ->
+        App.mediator.publish("following:changed", _.extend(data, {id: _this.id}))
     false
 
   addListeners: ->
+    _this = this
     @container.on 'click', @doRequest.bind(this)
     @container.on 'mouseover', @toggleLabel.bind(this)
     @container.on 'mouseout', @resetLabel.bind(this)
+    App.mediator.subscribe "following:changed", (evt, data) ->
+      _this.toggleActive(data.following) if data.id == _this.id

@@ -5,8 +5,8 @@ describe FollowingsController do
   let(:geo_data) { FactoryGirl.create :geo_data }
 
   let(:params) { {geo_data_id: geo_data.id} }
-  let(:following_response) { {ok: true, following: true}.to_json }
-  let(:not_following_response) { {ok: true, following: false}.to_json }
+  let(:following_response) { {ok: true, following: true, count: 1}.to_json }
+  let(:not_following_response) { {ok: true, following: false, count: 0}.to_json }
   let(:not_ok_response) { {ok: false}.to_json }
 
   before { login_user user }
