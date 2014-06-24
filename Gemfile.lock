@@ -52,6 +52,9 @@ GEM
       sass (~> 3.2)
       thor
     builder (3.2.2)
+    bullet (4.10.0)
+      activesupport
+      uniform_notifier (~> 1.6.0)
     capybara (2.3.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -359,6 +362,7 @@ GEM
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     underscore-rails (1.6.0)
+    uniform_notifier (1.6.2)
     websocket-driver (0.3.3)
     xpath (2.0.0)
       nokogiri (~> 1.3)
@@ -371,6 +375,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bourbon
+  bullet
   capybara
   carrierwave
   carrierwave_backgrounder
