@@ -4,8 +4,8 @@ module Follower
   included do
     has_many :followings, :foreign_key => :follower_id, :dependent => :destroy
 
-    def followed_objects
-      followings.map(&:followable)
+    def following(opts={}, order='updated_at DESC')
+      followings.order(order).where(opts).includes(:followable).map(&:followable)
     end
 
     def follow(obj)

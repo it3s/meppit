@@ -13,11 +13,11 @@ class FollowingsController < ApplicationController
   end
 
   def followers
-    @followers = paginate @followable.followers
+    @followers ||= paginate @followable.followers
   end
 
   def following
-    @following = paginate @followable.followed_objects
+    @following ||= paginate @followable.following
   end
 
   private

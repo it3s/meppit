@@ -68,6 +68,6 @@ class UsersController < ApplicationController
   end
 
   def following_list
-    @following ||= paginate @user.try(:followed_objects), params[:following_page]
+    @following ||= paginate @user.try(:following), params[:following_page]
   end
 end

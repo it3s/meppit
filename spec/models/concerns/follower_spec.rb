@@ -17,14 +17,14 @@ describe Follower do
     end
   end
 
-  describe "#followed_objects" do
+  describe "#following" do
     let(:geo_data) { FactoryGirl.create :geo_data }
     before { user.followings.create followable: geo_data }
 
-    it { expect {user.followed_objects}.to_not raise_error }
-    it { expect(user.followed_objects.count).to be 1 }
-    it { expect(user.followed_objects.first).to be_a_kind_of GeoData }
-    it { expect(user.followed_objects.first).to eq geo_data }
+    it { expect {user.following}.to_not raise_error }
+    it { expect(user.following.count).to be 1 }
+    it { expect(user.following.first).to be_a_kind_of GeoData }
+    it { expect(user.following.first).to eq geo_data }
   end
 
   describe "destroy followings when follower is destroyed" do
