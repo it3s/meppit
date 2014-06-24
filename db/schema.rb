@@ -15,10 +15,10 @@ ActiveRecord::Schema.define(version: 20140615012832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "postgis"
   enable_extension "hstore"
   enable_extension "pg_trgm"
   enable_extension "fuzzystrmatch"
-  enable_extension "postgis"
 
   create_table "authentications", force: true do |t|
     t.integer  "user_id",    null: false

@@ -45,15 +45,10 @@ module Concerns
     end
 
     def _follow_component(obj)
+      opts_json = {:url => url_for([obj, :following])}.to_json
       {
         :type => "follow",
-        :opts => "data-follow=#{ {
-          :url             => following_path,
-          :data            => {
-            :followable_id   => obj.id,
-            :followable_type => obj.class.name
-          }
-        }.to_json } "
+        :opts => "data-follow=#{ opts_json } "
       }
     end
   end

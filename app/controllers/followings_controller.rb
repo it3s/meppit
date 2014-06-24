@@ -1,20 +1,19 @@
 class FollowingsController < ApplicationController
-  before_action :require_login
+  before_action :require_login, :find_followable
 
   def create
-    Following.create following_params
+    @followable.add_follower current_user
     render json: {ok: true}
   end
 
   def destroy
-    following = Following.find_by(following_params)
-    following.destroy if following
+    @followable.remove_follower current_user
     render json: {ok: true}
   end
 
   private
 
-  def following_params
-    {followable_type: params[:followable_type], followable_id: params[:followable_id], follower: current_user}
+  def find_followable
+    @followable = find_polymorphic_object
   end
 end

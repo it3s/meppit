@@ -1,17 +1,17 @@
 Meppit::Application.routes.draw do
   root "pages#frontpage"
 
-  get  "language/:code" => "application#language", :as => :language
+  get  "language/:code" => "application#language", as: :language
 
-  get  "logout"   => "sessions#destroy", :as => :logout
-  get  "login"    => "sessions#new",     :as => :login
-  post "login"    => "sessions#create",  :as => :do_login
+  get  "logout"   => "sessions#destroy", as: :logout
+  get  "login"    => "sessions#new",     as: :login
+  post "login"    => "sessions#create",  as: :do_login
 
   post "oauth/:provider/callback"  => "authentications#callback"
   get  "oauth/:provider/callback"  => "authentications#callback"
-  get  "oauth/:provider" => "authentications#oauth", :as => :auth_at_provider
+  get  "oauth/:provider" => "authentications#oauth", as: :auth_at_provider
 
-  get  "tags/search" => "tags#search", :as => :tag_search
+  get  "tags/search" => "tags#search", as: :tag_search
 
   concern :contributable do
     get "contributors" => "contributings#contributors"
@@ -21,8 +21,13 @@ Meppit::Application.routes.draw do
     get "contributions" => "contributings#contributions"
   end
 
-  resources :users, except: [:destroy, :index], :concerns => [:contributor] do
-    member     do
+  concern :followable do
+    resource :following, only: [:create, :destroy]
+  end
+
+  resources :users, except: [:destroy, :index],
+                    concerns: [:contributor, :followable] do
+    member do
       get :activate
     end
 
@@ -31,16 +36,15 @@ Meppit::Application.routes.draw do
 
       get  :forgot_password
       post :reset_password
-      get  "edit_password/:token" => "users#edit_password", :as => :edit_password
+      get  "edit_password/:token" => "users#edit_password", as: :edit_password
       post :update_password
     end
   end
 
-  resources :geo_data, :only => [:index, :show, :edit, :update], :concerns => [:contributable]
-
-  resource :following, :only => [:create, :destroy]
+  resources :geo_data, only: [:index, :show, :edit, :update],
+                       concerns: [:contributable, :followable]
 
   if Rails.env.development?
-    mount LetterOpenerWeb::Engine, :at => "/letter_opener"
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 end

@@ -51,6 +51,7 @@ group :development do
   gem 'letter_opener'               # preview email in the browser
   gem 'letter_opener_web'           # web ui for letter_opener
   gem 'seedbank'                    # better fixture loading
+  gem 'bullet'                      # find n+1 queries and unused eager loading
 end
 
 group :development, :test do
