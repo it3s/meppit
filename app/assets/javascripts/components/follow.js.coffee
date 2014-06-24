@@ -2,8 +2,7 @@ App.components.follow = (container) ->
   container: container
 
   init: ->
-    @data = @container.data 'follow'
-    @url = @data.url
+    @url = @container.data('follow').url
     @addListeners()
 
   isActive: ->
@@ -13,7 +12,7 @@ App.components.follow = (container) ->
     if @isActive() then "delete" else "post"
 
   requestData: ->
-    _.extend({}, {"_method": @method()}, @data.data)
+    _.extend {}, {"_method": @method()}
 
   toggleActive: ->
     if @isActive()

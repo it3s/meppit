@@ -4,7 +4,7 @@ describe FollowingsController do
   let(:user) { FactoryGirl.create :user }
   let(:geo_data) { FactoryGirl.create :geo_data }
 
-  let(:params) { {followable_id: geo_data.id, followable_type: 'GeoData'} }
+  let(:params) { {geo_data_id: geo_data.id} }
   let(:ok_response) { {ok: true}.to_json }
 
   before { login_user user }

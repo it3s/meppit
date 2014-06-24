@@ -33,6 +33,31 @@ describe Followable do
     end
   end
 
+  describe "#add_follower" do
+    before { Following.delete_all }
+
+    it "adds user as follower" do
+      expect(geo_data.followers_count).to be 0
+      expect(geo_data.add_follower(user)).to be true
+      expect(geo_data.followers_count).to be 1
+      expect(geo_data.followers.first).to eq user
+    end
+  end
+
+  describe "#remove_follower" do
+    before do
+      Following.create followable: geo_data, follower: user
+      Following.create followable: geo_data, follower: other_user
+    end
+
+    it "adds user as follower" do
+      expect(geo_data.followers_count).to be 2
+      expect(geo_data.remove_follower(user)).to_not be nil
+      expect(geo_data.followers_count).to be 1
+      expect(geo_data.followers.first.id).to be other_user.id
+    end
+  end
+
   describe "destroy followings for the object when its destroyed" do
     before do
       user.followings.create followable: geo_data
