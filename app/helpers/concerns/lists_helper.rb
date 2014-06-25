@@ -5,7 +5,7 @@ module Concerns
     def list_item_controls_for(obj, ctx, type, size)
       size ||= :big
       if type == :follow_button
-        return render 'shared/follow_button', object: obj
+        return render 'shared/follow_button', object: obj unless obj == current_user
       else
         return render 'shared/counters',
           presenter: CountersPresenter.new(object: obj, ctx: ctx, size: (size == :small ? :small : :medium))
