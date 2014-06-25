@@ -13,19 +13,19 @@ module Followable
     end
 
     def add_follower(follower)
-      follow = Following.where(_followable_params.merge follower_id: follower.id).first_or_create
+      follow = Following.where(_followable_params.merge follower: follower).first_or_create
       follow.save
     end
 
     def remove_follower(follower)
-      follow = Following.find_by(_followable_params.merge follower_id: follower.id)
+      follow = Following.find_by(_followable_params.merge follower: follower)
       follow.destroy if follow
     end
 
     private
 
     def _followable_params
-      {followable_type: self.class.name, followable_id: self.id}
+      {followable: self}
     end
 
     def clean_followings_for_destroyed_followable!

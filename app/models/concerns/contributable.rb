@@ -13,14 +13,14 @@ module Contributable
     end
 
     def add_contributor(contributor)
-      contrib = Contributing.where(_contributable_params.merge contributor_id: contributor.id).first_or_create
+      contrib = Contributing.where(_contributable_params.merge contributor: contributor).first_or_create
       contrib.save
     end
 
     private
 
     def _contributable_params
-      {contributable_type: self.class.name, contributable_id: self.id}
+      {contributable: self}
     end
 
     def clean_contributings_for_destroyed_contributable!

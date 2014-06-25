@@ -9,11 +9,12 @@ module Follower
     end
 
     def follow(obj)
-      Following.create :followable_type => obj.class.name, :followable_id => obj.id, :follower => self
+      follow = Following.where(followable: obj, follower: self).first_or_create
+      follow.save
     end
 
     def unfollow(obj)
-      following = Following.find_by(:followable_type => obj.class.name, :followable_id => obj.id, :follower => self)
+      following = Following.find_by(followable: obj, follower: self)
       following.destroy if following
     end
 

@@ -34,11 +34,6 @@ class FollowingsController < ApplicationController
     end
   end
 
-  def paginated collection
-    collection = Kaminari.paginate_array collection if collection.kind_of? Array
-    collection.page(params[:page]).per(params[:per])
-  end
-
   def followings_layout
     polymorphic_layout @followable
   end
