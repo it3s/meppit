@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140615012832) do
+ActiveRecord::Schema.define(version: 20140626161048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "postgis"
   enable_extension "hstore"
   enable_extension "pg_trgm"
   enable_extension "fuzzystrmatch"
+  enable_extension "postgis"
 
   create_table "authentications", force: true do |t|
     t.integer  "user_id",    null: false
@@ -62,6 +62,19 @@ ActiveRecord::Schema.define(version: 20140615012832) do
 
   add_index "geo_data", ["location"], :name => "index_geo_data_on_location", :spatial => true
   add_index "geo_data", ["tags"], :name => "index_geo_data_on_tags"
+
+  create_table "maps", force: true do |t|
+    t.string   "name",                                                              null: false
+    t.text     "description"
+    t.hstore   "contacts"
+    t.string   "tags",                                                 default: [],              array: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.spatial  "location",    limit: {:srid=>4326, :type=>"geometry"}
+  end
+
+  add_index "maps", ["location"], :name => "index_maps_on_location", :spatial => true
+  add_index "maps", ["tags"], :name => "index_maps_on_tags"
 
   create_table "pg_search_documents", force: true do |t|
     t.text     "content"
