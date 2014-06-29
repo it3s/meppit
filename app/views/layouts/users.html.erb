@@ -1,6 +1,6 @@
 <% content_for :content do %>
   <%= render 'shared/toolbar', :object => @user, :only => user_tools(@user) %>
-  <div class="site-page <%= @page_class_name || 'user-profile'  %>" >
+  <div class="site-page <%= "#{params[:controller]} #{params[:action]}"  %>" >
     <% if content_for? :user_side_pane %>
       <%= yield :user_side_pane %>
     <% else %>

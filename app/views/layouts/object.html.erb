@@ -1,6 +1,6 @@
 <% content_for :content do %>
   <%= yield :object_toolbar %>
-  <div class="site-page <%= @page_class_name %>" >
+  <div class="site-page <%= "#{ params[:controller] } #{ params[:action] }" %>" >
     <header class="wrapper">
       <%= yield :object_header %>
     </header>
