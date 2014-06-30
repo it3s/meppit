@@ -1,9 +1,13 @@
 <header class="wrapper">
   <div class="main-title">
-    <h1 class="name"><%= user.name %></h1>
-    <div class="joined">
-      <%= t 'users.profile.joined', date: user.created_at.to_s(:month_and_year) %>
-    </div>
+    <% if edit_mode? %>
+      <h1 class="name"><%= f.input :name %></h1>
+
+    <% else %>
+      <h1 class="name"><%= user.name %></h1>
+      <div class="joined"><%= t 'users.profile.joined', date: user.created_at.to_s(:month_and_year) %></div>
+
+    <% end %>
   </div>
-  <%= render 'shared/counters', :object => user, :size => :big %>
+  <%= render('shared/counters', object: user, size: :big) unless edit_mode? %>
 </header>

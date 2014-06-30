@@ -2,7 +2,7 @@
   <div class="about">
     <div class="about-text">
       <% unless user.about_me? %>
-        <%= t 'users.profile.about_me.empty', :name => user.name.split.first %>
+        <%= t 'users.profile.about_me.empty', name: user.name.split.first %>
       <% else %>
         <%= raw user.about_me %>
       <% end %>
@@ -18,9 +18,12 @@
   </ul>
 
   <div id="contributions" data-components="list" data-list='{"scroll": {"behavior": "local"}}'>
-    <div id="contributions-pagination"><%= paginate contributions, :remote => true, :params => {:controller => 'contributings', :action => 'contributions', :user_id => user.id} %></div>
+    <div id="contributions-pagination">
+      <%= paginate contributions, remote: true,
+        params: {controller: 'contributings', action: 'contributions', user_id: user.id} %>
+    </div>
     <ul id="contributions-list" class="list contributions-list">
-      <%= render contributions, :size => :small, :control => :counters %>
+      <%= render contributions, size: :small, control: :counters %>
     </ul>
   </div>
 
