@@ -56,5 +56,17 @@ describe Following do
           expect(f.errors.messages[:follower].first).to eq  I18n.t('activerecord.errors.messages.taken')
       end
     end
+
+    describe "#user_cant_follow_himself" do
+      let(:following) { Following.new follower: user, followable: user }
+
+      it { expect(following.save).to be false }
+
+      it "sets an error message" do
+        following.save
+        expect(following.errors.size > 0).to be true
+        expect(following.errors.messages[:followable].first).to eq I18n.t('errors.messages.follow_himself')
+      end
+    end
   end
 end
