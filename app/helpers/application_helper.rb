@@ -34,4 +34,8 @@ module ApplicationHelper
     obj_ref = "#{ controller_name.singularize }_id".to_sym  # "maps" => "map_id"
     params[:controller] == controller_name || params[obj_ref]
   end
+
+  def edit_mode?
+    params[:action] == 'edit'
+  end
 end
