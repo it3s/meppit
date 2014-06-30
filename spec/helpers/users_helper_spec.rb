@@ -5,7 +5,7 @@ describe UsersHelper do
 
   context "user on his own page" do
     before {  helper.stub(:current_user).and_return(user) }
-    it { expect(helper.user_tools user).to eq [:edit, :settings, :star, :flag] }
+    it { expect(helper.user_tools user).to eq [:edit, :settings] }
   end
 
   context "user on anothers page" do

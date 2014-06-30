@@ -6,6 +6,7 @@ describe FollowingsController do
 
   let(:params) { {geo_data_id: geo_data.id} }
   let(:ok_response) { {ok: true}.to_json }
+  let(:not_ok_response) { {ok: false}.to_json }
 
   before { login_user user }
 
@@ -20,10 +21,20 @@ describe FollowingsController do
 
     it "Do not creates duplicated following" do
       expect(user.followings.count).to eq 0
+
+      post :create, params
+      expect(response.body).to match ok_response
+      expect(user.reload.followings.count).to eq 1
+
       post :create, params
       expect(user.reload.followings.count).to eq 1
-      post :create, params
-      expect(user.reload.followings.count).to eq 1
+    end
+
+    it "Do not follow itself" do
+      post :create, {user_id: user.id}
+
+      expect(response.status).to eq 422
+      expect(response.body).to match not_ok_response
     end
   end
 
@@ -42,7 +53,8 @@ describe FollowingsController do
     it "Do notthing if there is no matching following" do
       delete :destroy, params
 
-      expect(response.body).to match ok_response
+      expect(response.body).to match not_ok_response
+      expect(response.status).to eq 422
       expect(user.reload.followings.count).to eq 0
     end
   end
