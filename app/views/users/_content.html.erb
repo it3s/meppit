@@ -1,0 +1,34 @@
+<div class="main-info">
+  <div class="about">
+    <div class="about-text">
+      <% unless user.about_me? %>
+        <%= t 'users.profile.about_me.empty', :name => user.name.split.first %>
+      <% else %>
+        <%= raw user.about_me %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="involvement" data-components="tabs">
+  <ul>
+    <li><a href="#contributions"><%= icon "edit", t('users.profile.contributions') %></a></li>
+    <li><a href="#activity"><%= icon "clock-o", t('users.profile.activity') %></a></li>
+    <li><a href="#following"><%= icon "star", t('users.profile.following') %></a></li>
+  </ul>
+
+  <div id="contributions" data-components="list" data-list='{"scroll": {"behavior": "local"}}'>
+    <div id="contributions-pagination"><%= paginate contributions, :remote => true, :params => {:controller => 'contributings', :action => 'contributions', :user_id => user.id} %></div>
+    <ul id="contributions-list" class="list contributions-list">
+      <%= render contributions, :size => :small, :control => :counters %>
+    </ul>
+  </div>
+
+  <div id="activity">
+    Activity Placeholder
+  </div>
+
+  <div id="following">
+    Following Placeholder
+  </div>
+</div>
