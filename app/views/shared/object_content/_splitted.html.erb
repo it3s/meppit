@@ -1,10 +1,10 @@
 <div class="side-pane">
-  <%= render local_assigns[:side_pane] || "#{controller_ref}/side_pane", f: local_assigns[:f], name => object %>
+  <%= render local_assigns[:side_pane] || "#{parent_crl_name}/side_pane", f: local_assigns[:f], name => object %>
 </div>
 
 <div class="central-pane">
-  <%= render local_assigns[:header] || "#{controller_ref}/header",  f: local_assigns[:f], name => object %>
+  <%= render local_assigns[:header] || "#{parent_crl_name}/header",  f: local_assigns[:f], name => object %>
   <%= render('shared/location',  f: local_assigns[:f], object: object) unless local_assigns[:with_location?] == false %>
 
-  <%= render local_assigns[:content] || "#{controller_ref}/content",  f: local_assigns[:f], name => object, contributions: @contributions %>
+  <%= render local_assigns[:content] || "#{parent_crl_name}/content",  f: local_assigns[:f], name => object, contributions: @contributions %>
 </div>

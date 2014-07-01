@@ -1,6 +1,6 @@
-<%= render 'shared/toolbar', object: object, only: send(:"#{controller_ref.singularize}_tools", object) %>
+<%= render 'shared/toolbar', object: object, only: send(:"#{object_ref}_tools", object) %>
 
-<div class="site-page <%= "#{ controller_ref } #{ params[:action] }" %>" >
+<div class="site-page <%= "#{ parent_ctrl_name } #{ params[:action] }" %>" >
   <% if edit_mode? %>
 
     <%= remote_form_for object do |f| %>
