@@ -1,6 +1,5 @@
 module GeoDataHelper
-
-  def tools(data=nil)
+  def geo_data_tools(data=nil)
     (current_user ? [:edit] : []) + [:star, :history, :flag, :delete]
   end
 end

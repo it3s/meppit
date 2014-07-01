@@ -1,5 +1,3 @@
-<%= render 'shared/objects/splitted_edit', object: @user, name: :user,
-  side_partial:    'users/side_pane',
-  header_partial:  'users/header',
-  content_partial: 'users/content_edit'
+<%= render 'shared/object', object: @user, name: :user,
+  content: 'users/content_edit'
 %>

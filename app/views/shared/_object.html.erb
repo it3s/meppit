@@ -1,0 +1,16 @@
+<%= render 'shared/toolbar', object: object, only: send(:"#{controller_ref.singularize}_tools", object) %>
+
+<div class="site-page <%= "#{ controller_ref } #{ params[:action] }" %>" >
+  <% if edit_mode? %>
+
+    <%= remote_form_for object do |f| %>
+      <%= render 'shared/form_actions', object: object %>
+      <%= render object_content_partial, local_assigns.merge(f: f) %>
+    <% end %>
+
+  <% else %>
+
+    <%= render object_content_partial, local_assigns %>
+
+  <% end %>
+</div>

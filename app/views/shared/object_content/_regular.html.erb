@@ -1,0 +1,4 @@
+<%= render local_assigns[:header] || "#{controller_ref}/header",  f: local_assigns[:f], name => object %>
+<%= render('shared/location',  f: local_assigns[:f], object: object) unless local_assigns[:with_location?] == false %>
+
+<%= render local_assigns[:content] || "#{controller_ref}/content",  f: local_assigns[:f], name => object, contributions: @contributions %>

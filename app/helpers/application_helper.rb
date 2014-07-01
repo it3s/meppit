@@ -38,4 +38,13 @@ module ApplicationHelper
   def edit_mode?
     params[:action] == 'edit'
   end
+
+  def controller_ref
+    try(:polymorphic?) ? request.path.split('/')[1] : params[:controller]
+  end
+
+  def object_content_partial
+    layout = (controller_ref == 'users') ? 'splitted' : 'regular'
+    "shared/object_content/#{layout}"
+  end
 end
