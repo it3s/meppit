@@ -1,0 +1,14 @@
+<section>
+  <br>
+  <h2><%= icon "edit", t('contributings.contributions') %></h2>
+  <div id="contributions" data-components="list">
+    <div id="contributions-pagination"><%= paginate @contributions, :remote => true %></div>
+    <ul id="contributions-list" class="list contributions-list">
+        <% unless @contributions.empty? %>
+          <%= render @contributions, :size => :small, :control => :counters %>
+        <% else %>
+          <p><%= t 'contributings.empty.contributions' %></p>
+        <% end %>
+    </ul>
+  </div>
+</section>

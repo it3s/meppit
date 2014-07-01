@@ -1,14 +1,4 @@
-<section>
-  <br>
-  <h2><%= icon "users", t('contributings.contributors') %></h2>
-  <div id="contributors" class="list-container" data-components="list">
-    <div id="contributors-pagination"><%= paginate @contributors, :remote => true  %></div>
-    <ul id="contributors-list" class="list contributors-list">
-      <% unless @contributors.empty? %>
-        <%= render @contributors, :size => :small, :control => :counters %>
-      <% else %>
-        <p><%= t 'contributings.empty.contributors' %></p>
-      <% end %>
-    </ul>
-  </div>
-</section>
+<%= render 'shared/object', object: @contributable,
+  with_location: false,
+  content: 'contributings/contributors'
+%>
