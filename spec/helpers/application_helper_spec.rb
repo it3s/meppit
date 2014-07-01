@@ -42,6 +42,26 @@ describe ApplicationHelper do
     end
   end
 
+  describe "#edit_mode?" do
+    it "pending"
+  end
+
+  describe "#polymorphic?" do
+    it "pending"
+  end
+
+  describe "#parent_ctrl_name" do
+    it "pending"
+  end
+
+  describe "#object_ref" do
+    it "pending"
+  end
+
+  describe "#object_content_partial" do
+    it "pending"
+  end
+
   describe "Concerns::I18nHelper" do
     describe "#i18n_language_names" do
       it 'has names for all availables locales' do

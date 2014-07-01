@@ -11,7 +11,8 @@ describe ContributingsController do
 
       it 'renders geo_data contributors list using geo_data layout' do
         get :contributors, :geo_data_id => geo_data.id
-        expect(response).to render_template :geo_data
+        expect(controller.view_context.parent_ctrl_name).to eq 'geo_data'
+        expect(controller.view_context.object_ref).to eq :geo_data
       end
     end
     context "xhr" do
@@ -34,7 +35,9 @@ describe ContributingsController do
 
       it 'renders contributions list using users layout' do
         get :contributions, :user_id => user.id
-        expect(response).to render_template :users
+        expect(controller.view_context.parent_ctrl_name).to eq 'users'
+        expect(controller.view_context.object_ref).to eq :user
+
       end
     end
     context "xhr" do

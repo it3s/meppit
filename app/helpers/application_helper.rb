@@ -31,12 +31,17 @@ module ApplicationHelper
   end
 
   def menu_active?(controller_name)
-    _obj_ref = object_ref(controller_name)  # "maps" => "map_id"
+    _obj_ref = :"#{object_ref(controller_name)}_id"  # "maps" => "map_id"
     parent_ctrl_name == controller_name || params[_obj_ref]
   end
 
   def edit_mode?
     params[:action] == 'edit'
+  end
+
+  def polymorphic?
+    polymorphic_ctrls = ['contributings', 'followings']
+    polymorphic_ctrls.include? params[:controller]
   end
 
   def parent_ctrl_name

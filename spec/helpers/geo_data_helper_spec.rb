@@ -6,11 +6,11 @@ describe GeoDataHelper do
 
   context "user logged" do
     before {  helper.stub(:current_user).and_return(user) }
-    it { expect(helper.data_tools).to eq [:edit, :star, :history, :flag, :delete] }
+    it { expect(helper.geo_data_tools).to eq [:edit, :star, :history, :flag, :delete] }
   end
 
   context "user not logged" do
     before {  helper.stub(:current_user).and_return(nil) }
-    it { expect(helper.data_tools).to eq [:star, :history, :flag, :delete] }
+    it { expect(helper.geo_data_tools).to eq [:star, :history, :flag, :delete] }
   end
 end
