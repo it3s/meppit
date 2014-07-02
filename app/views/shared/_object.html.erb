@@ -1,4 +1,4 @@
-<%= render 'shared/toolbar', object: object, only: send(:"#{object_ref}_tools", object) %>
+<%= render 'shared/toolbar', presenter: ToolbarPresenter.new(object: object, ctx: self) %>
 
 <div class="site-page <%= "#{ parent_ctrl_name } #{ params[:action] }" %>" >
   <% if edit_mode? %>
