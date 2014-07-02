@@ -1,0 +1,85 @@
+require 'spec_helper'
+
+
+describe ToolbarPresenter do
+  let(:user) { FactoryGirl.build :user }
+  let(:geo_data) { FactoryGirl.build :geo_data }
+
+  let(:logged_in)  { mock_context(:in) }
+  let(:logged_out) { mock_context(:out) }
+
+  def mock_context(type=:in)
+    _user = (type == :in) ? user : nil
+    double('Context', current_user: _user, t: '', url_for: '', request: double(path: ''))
+  end
+
+  def tp(obj, ctx=nil)
+    ctx ||= logged_in
+    ToolbarPresenter.new object: obj, ctx: ctx
+  end
+
+  describe "#type" do
+    it { expect( tp(user).type ).to eq 'user' }
+    it { expect( tp(geo_data).type ).to eq 'geo_data' }
+  end
+
+  describe "#all_tools" do
+    let (:presenter) { tp user }
+    it { expect(presenter.all_tools).to be_a_kind_of Array }
+    it { expect(presenter.all_tools.size).to eq 7 }
+    it { expect(presenter.all_tools.first).to be_a_kind_of Symbol }
+  end
+
+  describe "#select_tools" do
+    context "user" do
+      context "same user logged" do
+        let (:presenter) { tp user, logged_in }
+        it { expect(presenter.select_tools).to eq [:edit, :settings] }
+      end
+
+      context "different user logged" do
+        let (:presenter) { tp user, logged_out }
+        it { expect(presenter.select_tools).to eq [:star, :flag] }
+      end
+    end
+
+    context "geo_data" do
+      context "logged in" do
+        let(:presenter) { tp geo_data, logged_in }
+        it { expect(presenter.select_tools).to eq [:edit, :star, :history, :flag, :delete] }
+      end
+
+      context "logged out" do
+        let(:presenter) { tp geo_data, logged_out }
+        it { expect(presenter.select_tools).to eq [:star, :history, :flag, :delete] }
+      end
+    end
+
+    context "any other" do
+      let(:presenter) { tp double, logged_in }
+      it { expect(presenter.select_tools).to eq presenter.all_tools }
+    end
+  end
+
+  describe "#tools" do
+    let (:presenter) { tp user, logged_in }
+
+    it "returns a list of OpenStructs" do
+      expect(presenter.tools).to be_a_kind_of Array
+      expect(presenter.tools.first).to be_a_kind_of OpenStruct
+    end
+  end
+
+  describe "tools options" do
+    let(:presenter) { tp double, logged_in }
+
+    it "has icon, title and url options for all tools" do
+      presenter.tools.each { |tool|
+        expect(tool.icon ).to be_a_kind_of Symbol
+        expect(tool.title).to be_a_kind_of String
+        expect(tool.url  ).to be_a_kind_of String
+      }
+    end
+  end
+
+end

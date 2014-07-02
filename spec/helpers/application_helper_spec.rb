@@ -42,26 +42,6 @@ describe ApplicationHelper do
     end
   end
 
-  describe "#edit_mode?" do
-    it "pending"
-  end
-
-  describe "#polymorphic?" do
-    it "pending"
-  end
-
-  describe "#parent_ctrl_name" do
-    it "pending"
-  end
-
-  describe "#object_ref" do
-    it "pending"
-  end
-
-  describe "#object_content_partial" do
-    it "pending"
-  end
-
   describe "Concerns::I18nHelper" do
     describe "#i18n_language_names" do
       it 'has names for all availables locales' do
@@ -82,15 +62,6 @@ describe ApplicationHelper do
         expect(translations).to be_a_kind_of Hash
         expect(translations).to eq I18n.backend.send(:translations)[:en].with_indifferent_access
       end
-    end
-  end
-
-  describe "Concerns::ToolbarHelper" do
-    describe "#tools_list" do
-      let(:obj) { FactoryGirl.create :user }
-      before { helper.stub(:current_user).and_return obj }
-      it { expect(helper.tools_list(obj).size).to eq 7 }
-      it { expect(helper.tools_list(obj, only=[:edit, :star]).size).to eq 2 }
     end
   end
 

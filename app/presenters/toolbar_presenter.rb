@@ -1,5 +1,5 @@
 class ToolbarPresenter < Presenter
-  required_keys :object, :ctx
+  required_keys :object, :ctx  # ctx is the view context
 
   def type
     object.class.name.underscore

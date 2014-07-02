@@ -35,23 +35,28 @@ module ApplicationHelper
   end
 
   def edit_mode?
+    # TODO test-me!
     params[:action] == 'edit'
   end
 
   def polymorphic?
+    # TODO test-me!
     polymorphic_ctrls = ['contributings', 'followings']
     polymorphic_ctrls.include? params[:controller]
   end
 
   def parent_ctrl_name
+    # TODO test-me!
     try(:polymorphic?) ? request.path.split('/')[1] : params[:controller]
   end
 
   def object_ref(ctrl_name=nil)
+    # TODO test-me!
     (ctrl_name || parent_ctrl_name).singularize.to_sym
   end
 
   def object_content_partial
+    # TODO test-me!
     layout = (parent_ctrl_name == 'users') ? 'splitted' : 'regular'
     "shared/object_content/#{layout}"
   end
