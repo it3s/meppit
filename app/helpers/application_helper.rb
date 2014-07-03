@@ -35,7 +35,6 @@ module ApplicationHelper
   end
 
   def edit_mode?
-    # TODO test-me!
     params[:action] == 'edit'
   end
 

@@ -42,6 +42,17 @@ describe ApplicationHelper do
     end
   end
 
+  describe "#edit_mode?" do
+    it "returns true if action is edit" do
+      helper.stub(:params).and_return(action: 'edit')
+      expect(helper.edit_mode?).to be true
+    end
+    it "returns false if any other action than edit" do
+      helper.stub(:params).and_return(action: 'show')
+      expect(helper.edit_mode?).to be false
+    end
+  end
+
   describe "Concerns::I18nHelper" do
     describe "#i18n_language_names" do
       it 'has names for all availables locales' do
