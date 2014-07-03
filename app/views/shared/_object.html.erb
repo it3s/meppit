@@ -1,16 +1,16 @@
-<%= render 'shared/toolbar', presenter: ToolbarPresenter.new(object: object, ctx: self) %>
+<%= render 'shared/toolbar', presenter: ToolbarPresenter.new(object: presenter.object, ctx: self) %>
 
-<div class="site-page <%= "#{ parent_ctrl_name } #{ params[:action] }" %>" >
+<div class="site-page <%= "#{ presenter.controller_ref } #{ params[:action] }" %>" >
   <% if edit_mode? %>
 
-    <%= remote_form_for object do |f| %>
-      <%= render 'shared/form_actions', object: object %>
-      <%= render object_content_partial, local_assigns.merge(f: f) %>
+    <%= remote_form_for presenter.object do |f| %>
+      <%= render 'shared/form_actions', object: presenter.object %>
+      <%= render presenter.layout_partial, f: f, presenter: presenter %>
     <% end %>
 
   <% else %>
 
-    <%= render object_content_partial, local_assigns %>
+    <%= render presenter.layout_partial, presenter: presenter %>
 
   <% end %>
 </div>

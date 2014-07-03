@@ -1,1 +1,1 @@
-<%= render 'shared/object', object: @geo_data %>
+<%= render 'shared/object', presenter: ObjectPresenter.new(object: @geo_data, ctx: self) %>

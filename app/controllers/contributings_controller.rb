@@ -4,10 +4,12 @@ class ContributingsController < ApplicationController
 
   def contributors
     @contributors = paginate @contributable.contributors
+    render layout: nil if request.xhr?
   end
 
   def contributions
     @contributions = paginate @contributable.contributions
+    render layout: nil if request.xhr?
   end
 
   private

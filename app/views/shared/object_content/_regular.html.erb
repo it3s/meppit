@@ -1,4 +1,6 @@
-<%= render local_assigns[:header] || "#{parent_ctrl_name}/header",  f: local_assigns[:f], object_ref => object %>
-<%= render('shared/location',  f: local_assigns[:f], object: object) unless local_assigns[:with_location] == false %>
 
-<%= render local_assigns[:content] || "#{parent_ctrl_name}/content",  f: local_assigns[:f], object_ref => object, contributions: @contributions %>
+<%= render presenter.header_partial, presenter.object_params(f: local_assigns[:f]) %>
+
+<%= render('shared/location',  f: local_assigns[:f], object: presenter.object) unless presenter.hide_location? %>
+
+<%= render presenter.content_partial,  presenter.object_params(f: local_assigns[:f]) %>

@@ -1,4 +1,12 @@
-<%= render 'shared/object', object: @contributable,
-  with_location: false,
-  content: 'contributings/contributors'
-%>
+<% if request.xhr? %>
+
+  <%= render 'contributings/contributors' %>
+
+<% else %>
+
+  <%= render 'shared/object',
+    presenter: ObjectPresenter.new(object: @contributable, ctx: self,
+      show_location: false, content: 'contributings/contributors')
+  %>
+
+<% end %>
