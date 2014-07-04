@@ -1,8 +1,16 @@
+# Used with the "shared/toolbar" partial. Ex:
+#
+#  <%= render 'shared/toolbar', presenter: ToolbarPresenter.new(object: @user, ctx: self) %>
+#
+#  === Context
+#  The `ctx` is the context for the view. It must be given on initialize.
+#
 class ToolbarPresenter
   include Presenter
 
   required_keys :object, :ctx  # ctx is the view context
 
+  # User => 'user', GeoData => 'geo_data'
   def type
     object.class.name.underscore
   end
@@ -11,6 +19,7 @@ class ToolbarPresenter
     [:edit, :star, :comment, :history, :settings, :flag, :delete]
   end
 
+  # Select which tools will be displayed given the current object
   def select_tools
     case type
     when 'user'
@@ -22,18 +31,22 @@ class ToolbarPresenter
     end
   end
 
+  # Build a list of OpenStruct with the options for each of the selected tools
   def tools
     select_tools.map { |tool_name| OpenStruct.new(options_for tool_name) }
   end
 
+  # get a options hash for a tool whith `name`
   def options_for(name)
     send :"_#{name}_tool"
   end
 
+  # i18n proxy
   def t(*args)
     ctx.t(args)
   end
 
+  # current user proxy
   def current_user
     ctx.current_user
   end
