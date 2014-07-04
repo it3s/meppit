@@ -1,30 +1,16 @@
 # Used with the "shared/object" partial
 #
-# == Context:
-#
-#   You must always pass the view context, to do so only pass the `self`
-#   reference on your template.
-#   Example:
-#
-#     <%= render 'shared/object', ObjectPresenter.new(object: @user, ctx: self) %>
-#
-# == Styling
-#
-#   The `.site-page` wrapper will always have two css classes, one after the
-#   object controller and other for the action, e. g., if `object` is a `Map`
-#   instance, and the action is `edit` => `div.site-page.maps.edit`
-#
 # == Rendering partials:
 #
 #   Tries to get a variable with same name of the partial, if you dont pass any
 #   it will use the following convention: <controller_ref>/<partial>
 #   Example:
 #
-#     ObjectPresenter.new object: @map, ctx: context
+#     ObjectPresenter.new object: @map
 #     >>>  header_partial => "maps/header"
 #     >>>  content_partial => "maps/content"
 #
-#     ObjectPresenter.new object: @map, ctx: context, content: "specific_partial"
+#     ObjectPresenter.new object: @map, content: "specific_partial"
 #     >>>  header_partial => "maps/header"
 #     >>>  content_partial => "specific_partial"
 #
@@ -39,8 +25,16 @@
 #   By default always show the location. If you want to hide, pass the argument:
 #   `show_location: false`.
 #
-class ObjectPresenter < Presenter
-  required_keys :object, :ctx  # ctx is the view context
+# == Styling
+#
+#   The `.site-page` wrapper will always have two css classes, one after the
+#   object controller and other for the action, e. g., if `object` is a `Map`
+#   instance, and the action is `edit` => `div.site-page.maps.edit`
+#
+class ObjectPresenter
+  include Presenter
+
+  required_keys :object
 
   # Reference for the models which use a splitted layout
   @@splited_objects = [:user]

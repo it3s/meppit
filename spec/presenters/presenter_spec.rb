@@ -1,9 +1,11 @@
 require 'spec_helper'
 
-class DummyPresenter < Presenter
+class DummyPresenter
+  include Presenter
 end
 
-class RequiredKeysPresenter < Presenter
+class RequiredKeysPresenter
+  include Presenter
   required_keys :object, :ctx
 
   def say

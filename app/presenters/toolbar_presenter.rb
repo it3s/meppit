@@ -1,4 +1,6 @@
-class ToolbarPresenter < Presenter
+class ToolbarPresenter
+  include Presenter
+
   required_keys :object, :ctx  # ctx is the view context
 
   def type
