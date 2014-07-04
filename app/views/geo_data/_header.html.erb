@@ -1,0 +1,20 @@
+<header class="wrapper">
+  <div class="data-logo"><%= icon "map-marker" %></div>
+  <div class="title">
+  <% if edit_mode? %>
+
+    <div><h1 class="name"><%= f.input :name %></h1></div>
+
+  <% else %>
+
+    <div>
+      <h1 class="name"><%= geo_data.name %></h1>
+      <%= render 'shared/counters', :object => geo_data, :size => :big %>
+    </div>
+    <div class="last-update">
+      <%= t 'geo_data.last_updated', date: time_ago_in_words(geo_data.updated_at) %>
+    </div>
+
+  <% end %>
+  </div>
+</header>

@@ -6,5 +6,7 @@ en:
   save: 'Save'
   cancel: 'Cancel'
 
+  empty_location: 'Loocation not provided yet'
+
   flash:
     updated: 'Updated successfully'

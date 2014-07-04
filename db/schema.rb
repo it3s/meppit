@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140615012832) do
+ActiveRecord::Schema.define(version: 20140626161048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,17 @@ ActiveRecord::Schema.define(version: 20140615012832) do
   add_index "geo_data", ["location"], :name => "index_geo_data_on_location", :spatial => true
   add_index "geo_data", ["tags"], :name => "index_geo_data_on_tags"
 
+  create_table "maps", force: true do |t|
+    t.string   "name",                     null: false
+    t.text     "description"
+    t.hstore   "contacts"
+    t.string   "tags",        default: [],              array: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "maps", ["tags"], :name => "index_maps_on_tags"
+
   create_table "pg_search_documents", force: true do |t|
     t.text     "content"
     t.integer  "searchable_id"
@@ -93,10 +104,10 @@ ActiveRecord::Schema.define(version: 20140615012832) do
     t.text     "about_me"
     t.hstore   "contacts"
     t.string   "avatar"
-    t.spatial  "location",                        limit: {:srid=>4326, :type=>"geometry"}
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.string   "interests",                                                                default: [],              array: true
+    t.spatial  "location",                        limit: {:srid=>4326, :type=>"geometry"}
   end
 
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"

@@ -1,0 +1,12 @@
+<div class="side-pane">
+  <%= render presenter.side_pane_partial, presenter.object_params(f: local_assigns[:f]) %>
+</div>
+
+<div class="central-pane">
+  <%= render presenter.header_partial, presenter.object_params(f: local_assigns[:f]) %>
+
+  <%= render('shared/location',  f: local_assigns[:f], object: presenter.object) unless presenter.hide_location? %>
+
+  <%= render presenter.content_partial,  presenter.object_params(f: local_assigns[:f]) %>
+</div>
+

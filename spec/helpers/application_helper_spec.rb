@@ -42,6 +42,17 @@ describe ApplicationHelper do
     end
   end
 
+  describe "#edit_mode?" do
+    it "returns true if action is edit" do
+      helper.stub(:params).and_return(action: 'edit')
+      expect(helper.edit_mode?).to be true
+    end
+    it "returns false if any other action than edit" do
+      helper.stub(:params).and_return(action: 'show')
+      expect(helper.edit_mode?).to be false
+    end
+  end
+
   describe "Concerns::I18nHelper" do
     describe "#i18n_language_names" do
       it 'has names for all availables locales' do
@@ -62,15 +73,6 @@ describe ApplicationHelper do
         expect(translations).to be_a_kind_of Hash
         expect(translations).to eq I18n.backend.send(:translations)[:en].with_indifferent_access
       end
-    end
-  end
-
-  describe "Concerns::ToolbarHelper" do
-    describe "#tools_list" do
-      let(:obj) { FactoryGirl.create :user }
-      before { helper.stub(:current_user).and_return obj }
-      it { expect(helper.tools_list(obj).size).to eq 7 }
-      it { expect(helper.tools_list(obj, only=[:edit, :star]).size).to eq 2 }
     end
   end
 

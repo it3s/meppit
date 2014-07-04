@@ -9,9 +9,6 @@ en:
     description:
       empty: "No description provided yet for %{name}"
 
-    location:
-      empty: 'Location not provided yet'
-
     last_updated: 'Last updated %{date}'
 
     add_to_map: "Add to a Map"

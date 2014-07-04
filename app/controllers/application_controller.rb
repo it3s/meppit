@@ -55,8 +55,4 @@ class ApplicationController < ActionController::Base
   def paginate(collection)
     collection.page(params[:page]).per(params[:per])
   end
-
-  def polymorphic_layout(obj)
-    unless request.xhr? then obj.class.name.pluralize.underscore else false end
-  end
 end

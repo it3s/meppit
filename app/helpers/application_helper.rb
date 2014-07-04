@@ -1,7 +1,6 @@
 module ApplicationHelper
   include Concerns::ContactsHelper
   include Concerns::I18nHelper
-  include Concerns::ToolbarHelper
   include Concerns::CountersHelper
   include Concerns::ComponentsHelper
 
@@ -31,7 +30,12 @@ module ApplicationHelper
   end
 
   def menu_active?(controller_name)
-    obj_ref = "#{ controller_name.singularize }_id".to_sym  # "maps" => "map_id"
-    params[:controller] == controller_name || params[obj_ref]
+    _obj_ref = "#{controller_name.singularize}_id".to_sym  # "maps" => "map_id"
+    params[:controller] == controller_name || params[_obj_ref]
   end
+
+  def edit_mode?
+    params[:action] == 'edit'
+  end
+
 end
