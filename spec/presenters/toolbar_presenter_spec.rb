@@ -4,6 +4,7 @@ require 'spec_helper'
 describe ToolbarPresenter do
   let(:user) { FactoryGirl.build :user }
   let(:geo_data) { FactoryGirl.build :geo_data }
+  let(:map) { FactoryGirl.build :map }
 
   let(:logged_in)  { mock_context(:in) }
   let(:logged_out) { mock_context(:out) }
@@ -51,6 +52,18 @@ describe ToolbarPresenter do
 
       context "logged out" do
         let(:presenter) { tp geo_data, logged_out }
+        it { expect(presenter.select_tools).to eq [:star, :history, :flag, :delete] }
+      end
+    end
+
+    context "map" do
+      context "logged in" do
+        let(:presenter) { tp map, logged_in }
+        it { expect(presenter.select_tools).to eq [:edit, :star, :history, :flag, :delete] }
+      end
+
+      context "logged out" do
+        let(:presenter) { tp map, logged_out }
         it { expect(presenter.select_tools).to eq [:star, :history, :flag, :delete] }
       end
     end
