@@ -26,6 +26,8 @@ class ToolbarPresenter
       current_user == object ? [:edit, :settings] : [:star, :flag]
     when 'geo_data'
       (current_user ? [:edit] : []) + [:star, :history, :flag, :delete]
+    when 'map'
+      (current_user ? [:edit] : []) + [:star, :history, :flag, :delete]
     else
       all_tools
     end

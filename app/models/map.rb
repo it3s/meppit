@@ -15,4 +15,9 @@ class Map < ActiveRecord::Base
     #TODO refactor to concern
     0
   end
+
+  def location
+    # TODO: get aggregated location from associated geo_data
+    nil
+  end
 end

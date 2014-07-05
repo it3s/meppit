@@ -1,0 +1,11 @@
+pt-BR:
+  maps:
+    tabs:
+      content: "Conteúdo"
+      data: "Dados"
+      talk: "Conversa"
+
+    description:
+      empty: "Nenhuma descrição fornecida para %{name}"
+
+    last_updated: 'Última atualização %{date}'

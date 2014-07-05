@@ -1,6 +1,6 @@
 class MapsController < ApplicationController
   before_action :require_login, only: [:edit, :update]
-  before_action :find_geo_data, only: [:show, :edit, :update]
+  before_action :find_map, only: [:show, :edit, :update]
 
   # def index
   #   @map_collection = Map.page(params[:page]).per(params[:per])

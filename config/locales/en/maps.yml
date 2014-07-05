@@ -1,0 +1,11 @@
+en:
+  maps:
+    tabs:
+      content: "Content"
+      data: "Data"
+      talk: "Talk"
+
+    description:
+      empty: "No description provided yet for %{name}"
+
+    last_updated: 'Last updated %{date}'
