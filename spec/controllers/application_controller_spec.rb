@@ -110,4 +110,12 @@ describe ApplicationController do
     end
   end
 
+  describe "#cleaned_contacts" do
+    pending
+  end
+
+  describe "#cleaned_tags" do
+    pending
+  end
+
 end

@@ -32,8 +32,8 @@ class GeoDataController < ApplicationController
 
   def data_params
     params.require(:geo_data).permit(:name, :description).tap do |whitelisted|
-      whitelisted[:contacts]  = ((params[:geodata] || {})[:contacts]  || {}).delete_if { |key, value| value.blank? }
-      whitelisted[:tags] = (params[:geo_data][:tags] || '').split(',')
+      whitelisted[:contacts]  = cleaned_contacts params[:geodata]
+      whitelisted[:tags] = cleaned_tags params[:geo_data]
     end
   end
 

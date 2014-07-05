@@ -55,4 +55,13 @@ class ApplicationController < ActionController::Base
   def paginate(collection)
     collection.page(params[:page]).per(params[:per])
   end
+
+  def cleaned_contacts(_params)
+    _params ||= {}
+    (_params[:contacts]  || {}).delete_if { |key, value| value.blank? }
+  end
+
+  def cleaned_tags(_params, field_name=:tags)
+    (_params[field_name] || '').split(',')
+  end
 end
