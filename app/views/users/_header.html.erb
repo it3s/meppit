@@ -9,5 +9,5 @@
 
     <% end %>
   </div>
-  <%= render('shared/counters', object: user, size: :big) unless edit_mode? %>
+  <%= render('shared/counters', presenter: CountersPresenter.new(object: user, ctx: self, size: :big)) unless edit_mode? %>
 </header>

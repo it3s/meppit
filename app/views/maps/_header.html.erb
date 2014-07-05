@@ -9,7 +9,7 @@
 
     <div>
       <h1 class="name"><%= map.name %></h1>
-      <%#= render 'shared/counters', :object => map, :size => :big %>
+      <%= render 'shared/counters', presenter: CountersPresenter.new(object: map, ctx: self, size: :big) %>
     </div>
     <div class="last-update">
       <%= t 'map.last_updated', date: time_ago_in_words(map.updated_at) %>

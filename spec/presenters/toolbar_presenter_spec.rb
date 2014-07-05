@@ -24,11 +24,11 @@ describe ToolbarPresenter do
     it { expect( tp(geo_data).type ).to eq 'geo_data' }
   end
 
-  describe "#all_tools" do
+  describe "#available_tools" do
     let (:presenter) { tp user }
-    it { expect(presenter.all_tools).to be_a_kind_of Array }
-    it { expect(presenter.all_tools.size).to eq 7 }
-    it { expect(presenter.all_tools.first).to be_a_kind_of Symbol }
+    it { expect(presenter.available_tools).to be_a_kind_of Array }
+    it { expect(presenter.available_tools.size).to eq 7 }
+    it { expect(presenter.available_tools.first).to be_a_kind_of Symbol }
   end
 
   describe "#select_tools" do
@@ -70,7 +70,7 @@ describe ToolbarPresenter do
 
     context "any other" do
       let(:presenter) { tp double, logged_in }
-      it { expect(presenter.select_tools).to eq presenter.all_tools }
+      it { expect(presenter.select_tools).to eq presenter.available_tools }
     end
   end
 

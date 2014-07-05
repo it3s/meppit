@@ -1,7 +1,6 @@
 module ApplicationHelper
   include Concerns::ContactsHelper
   include Concerns::I18nHelper
-  include Concerns::CountersHelper
   include Concerns::ComponentsHelper
 
   def javascript_exists?(script)

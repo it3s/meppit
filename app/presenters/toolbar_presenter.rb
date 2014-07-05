@@ -15,7 +15,7 @@ class ToolbarPresenter
     object.class.name.underscore
   end
 
-  def all_tools
+  def available_tools
     [:edit, :star, :comment, :history, :settings, :flag, :delete]
   end
 
@@ -29,7 +29,7 @@ class ToolbarPresenter
     when 'map'
       (current_user ? [:edit] : []) + [:star, :history, :flag, :delete]
     else
-      all_tools
+      available_tools
     end
   end
 

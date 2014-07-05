@@ -76,14 +76,6 @@ describe ApplicationHelper do
     end
   end
 
-  describe "Concerns::CountersHelper" do
-    describe "#counters_list" do
-      let(:obj) { FactoryGirl.create :user }
-      it { expect(helper.counters_list(obj).size).to eq 2 }
-      it { expect(helper.counters_list(obj, only=[:maps]).size).to eq 1 }
-    end
-  end
-
   describe "Concerns::ContactsHelper" do
     let(:user) { FactoryGirl.create :user, :contacts => {'address' => 'rua Bla', 'phone' => '12345'} }
 
