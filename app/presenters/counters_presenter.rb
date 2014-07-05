@@ -10,8 +10,8 @@ class CountersPresenter
   end
 
   def counters
-    select_counters.map { |counter_name|
-      counter_options(counter_name)
+    select_counters.map { |name|
+      OpenStruct.new(counter_options name)
     }.select { |counter|
       object.respond_to? counter[:method]
     }
