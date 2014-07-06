@@ -8,4 +8,6 @@ en:
     description:
       empty: "No description provided yet for %{name}"
 
+    add_data: "Add data"
+
     last_updated: 'Last updated %{date}'

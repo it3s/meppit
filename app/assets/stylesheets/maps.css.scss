@@ -30,6 +30,15 @@
     @include map-view;
   }
 
+  .add-data {
+    @include action-button($meppit-dark-blue, $meppit-data-color, $white);
+    float: right;
+  }
+  .download {
+    @include action-button($grey, $ultra-soft-grey, $grey);
+    float: right;
+  }
+
   .map-tabs {
     margin-top: 48px;
 

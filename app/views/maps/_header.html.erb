@@ -12,7 +12,7 @@
       <%= render 'shared/counters', presenter: CountersPresenter.new(object: map, ctx: self, size: :big) %>
     </div>
     <div class="last-update">
-      <%= t 'map.last_updated', date: time_ago_in_words(map.updated_at) %>
+      <%= t 'maps.last_updated', date: time_ago_in_words(map.updated_at) %>
     </div>
 
   <% end %>

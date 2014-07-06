@@ -3,14 +3,12 @@ class CountersPresenter
 
   required_keys :object, :ctx
 
-  @@available_counters = [:data, :maps, :followers, :contributors]
-
-  def select_counters
-    @@available_counters
+  def available_counters
+    [:data, :maps, :followers, :contributors]
   end
 
   def counters
-    select_counters.map { |name|
+    available_counters.map { |name|
       OpenStruct.new(counter_options name)
     }.select { |counter|
       object.respond_to? counter[:method]
@@ -41,18 +39,42 @@ class CountersPresenter
   end
 
   def _data_counter
-    {icon: :'map-marker', string: 'counters.data', method: :data_count, class: "data-counter", url: counter_url([object, :data])}
+    {
+      icon:   :'map-marker',
+      string: 'counters.data',
+      method: :data_count,
+      class:  "data-counter",
+      url:    counter_url([object, :data])
+    }
   end
 
   def _maps_counter
-    {icon: :globe, string: 'counters.maps', method: :maps_count, class: "maps-counter", url: counter_url([object, :maps])}
+    {
+      icon:   :globe,
+      string: 'counters.maps',
+      method: :maps_count,
+      class:  "maps-counter",
+      url:    counter_url([object, :maps])
+    }
   end
 
   def _followers_counter
-    {icon: :star, string: 'counters.followers', method: :followers_count, class: "followers-counter", url: counter_url([object, :followers])}
+    {
+      icon:   :star,
+      string: 'counters.followers',
+      method: :followers_count,
+      class:  "followers-counter",
+      url:    counter_url([object, :followers])
+    }
   end
 
   def _contributors_counter
-    {icon: :users, string: 'counters.contributors', method: :contributors_count, class: "contributors-counter", url: counter_url([object, :contributors])}
+    {
+      icon:   :users,
+      string: 'counters.contributors',
+      method: :contributors_count,
+      class:  "contributors-counter",
+      url:    counter_url([object, :contributors])
+    }
   end
 end
