@@ -23,7 +23,16 @@ class Map < ActiveRecord::Base
   end
 
   def location
-    # TODO: get aggregated location from associated geo_data
-    nil
+    return nil if data_count.zero?
+
+    ::GeoJSON.encode_feature_collection geo_data_features
+  end
+
+  def geo_data_features
+    geo_data.all.map { |data| ::GeoJSON::feature_from_model data  }
+  end
+
+  def location_geojson
+    location ? location.to_json : nil
   end
 end

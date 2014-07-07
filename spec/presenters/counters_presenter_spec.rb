@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe CountersPresenter do
   let(:object) { double(data_count: 1, followers_count: 2) }
-  let(:presenter) { CountersPresenter.new object: object, ctx: double}
+  let(:presenter) { CountersPresenter.new object: object, ctx: double }
 
   describe "#counters" do
     it "selects only the ones which object has the corresponding count method" do
@@ -46,18 +46,6 @@ describe CountersPresenter do
 
         it { expect(opts[:value]).to eq opts[:count] }
       end
-    end
-  end
-
-  describe "#size" do
-    context "default" do
-      let(:presenter) { CountersPresenter.new object: object, ctx: double}
-      it { expect(presenter.size).to eq :medium }
-    end
-
-    context "with param" do
-      let(:presenter) { CountersPresenter.new object: object, ctx: double, size: :big}
-      it { expect(presenter.size).to eq :big }
     end
   end
 
