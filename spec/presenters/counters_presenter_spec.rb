@@ -51,6 +51,7 @@ describe CountersPresenter do
 
   describe "#size" do
     context "default" do
+      let(:presenter) { CountersPresenter.new object: object, ctx: double}
       it { expect(presenter.size).to eq :medium }
     end
 
