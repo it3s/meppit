@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707001440) do
+ActiveRecord::Schema.define(version: 20140707145330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,16 @@ ActiveRecord::Schema.define(version: 20140707001440) do
 
   add_index "geo_data", ["location"], :name => "index_geo_data_on_location", :spatial => true
   add_index "geo_data", ["tags"], :name => "index_geo_data_on_tags"
+
+  create_table "mappings", force: true do |t|
+    t.integer  "geo_data_id", null: false
+    t.integer  "map_id",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "mappings", ["geo_data_id"], :name => "index_mappings_on_geo_data_id"
+  add_index "mappings", ["map_id"], :name => "index_mappings_on_map_id"
 
   create_table "maps", force: true do |t|
     t.string   "name",                          null: false

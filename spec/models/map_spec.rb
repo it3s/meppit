@@ -18,4 +18,14 @@ describe Map do
     expect(Map.find_by(:id => map.id).contacts).to eq({'test' => 'ok', 'address' => 'av paulista, 800, SP'})
   end
 
+  describe "mappings" do
+    let(:map) { FactoryGirl.create :map }
+    let(:geo_data) { FactoryGirl.create :geo_data }
+
+    before { map.mappings.create geo_data: geo_data }
+
+    it { expect(map.data_count).to eq 1 }
+    it { expect(map.geo_data.first).to eq geo_data }
+  end
+
 end

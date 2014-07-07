@@ -7,6 +7,9 @@ class Map < ActiveRecord::Base
   has_many :followings, :as => :followable
   has_many :followers, :through => :followings
 
+  has_many :mappings
+  has_many :geo_data, through: :mappings
+
   belongs_to :administrator, class_name: 'User'
 
   searchable_tags :tags
@@ -16,7 +19,7 @@ class Map < ActiveRecord::Base
 
   def data_count
     #TODO refactor to concern
-    0
+    geo_data.count
   end
 
   def location
