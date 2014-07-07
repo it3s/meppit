@@ -1,0 +1,9 @@
+<div class="administrator">
+  <h2><%= t 'maps.administrator' %></h2>
+  <div class="admin-wrapper">
+    <%= image_tag user.avatar.thumb , class: "avatar", title: user.name %>
+    <a href="<%= user_path(user) %>">
+      <span><%= user.name %></span>
+    </a>
+  </div>
+</div>

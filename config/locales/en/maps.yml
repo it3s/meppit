@@ -11,3 +11,5 @@ en:
     add_data: "Add data"
 
     last_updated: 'Last updated %{date}'
+
+    administrator: 'Administrator'

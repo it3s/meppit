@@ -11,3 +11,5 @@ pt-BR:
     add_data: "Adicionar dados"
 
     last_updated: 'Última atualização %{date}'
+
+    administrator: 'Administrador'

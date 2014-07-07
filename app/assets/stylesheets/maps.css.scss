@@ -51,6 +51,28 @@
     margin-top: 20px;
     float: right;
     width: 30%;
+
+    .administrator{
+      margin-bottom: 10px;
+
+      h2 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      a {
+        color: $link-color;
+        text-decoration: none;
+      }
+      .avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 15px;
+        top: 10px;
+        position: relative;
+        margin-right: 5px;
+      }
+    }
   }
 
   &.edit {

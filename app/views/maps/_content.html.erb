@@ -11,8 +11,9 @@
     </ul>
 
     <div class="extra-info" >
-      <%= render 'shared/contacts/view', :object => map %>
-      <%= render 'shared/tags', :tags => map.tags %>
+      <%= render 'users/administrator', user: map.administrator %>
+      <%= render 'shared/contacts/view', object: map %>
+      <%= render 'shared/tags', tags: map.tags %>
     </div>
 
     <div class="tab-content" id="content">
