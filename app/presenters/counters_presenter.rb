@@ -3,12 +3,10 @@ class CountersPresenter
 
   required_keys :object, :ctx
 
-  def available_counters
-    [:data, :maps, :followers, :contributors]
-  end
+  AVAILABLE_COUNTERS = [:data, :maps, :followers, :contributors]
 
   def counters
-    available_counters.map { |name|
+    AVAILABLE_COUNTERS.map { |name|
       OpenStruct.new(counter_options name)
     }.select { |counter|
       object.respond_to? counter[:method]
