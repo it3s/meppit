@@ -2,13 +2,13 @@ class MapsController < ApplicationController
   before_action :require_login, only: [:edit, :update]
   before_action :find_map, only: [:show, :edit, :update]
 
-  # def index
-  #   @map_collection = Map.page(params[:page]).per(params[:per])
-  #   respond_to do |format|
-  #     format.html
-  #     format.js
-  #   end
-  # end
+  def index
+    @maps_collection = Map.page(params[:page]).per(params[:per])
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
 
   def show
   end

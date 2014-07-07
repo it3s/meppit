@@ -21,8 +21,8 @@ module ApplicationHelper
       :user
     elsif obj.kind_of? GeoData
       :data
-    #elsif obj.kind_of? Map
-      #:map
+    elsif obj.kind_of? Map
+      :map
     else
       :unknown
     end

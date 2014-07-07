@@ -5,6 +5,9 @@ en:
       data: "Data"
       talk: "Talk"
 
+    list:
+      title: '%{count} maps'
+
     description:
       empty: "No description provided yet for %{name}"
 

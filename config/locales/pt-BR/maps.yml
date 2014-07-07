@@ -5,6 +5,11 @@ pt-BR:
       data: "Dados"
       talk: "Conversa"
 
+    list:
+      title: '%{count} mapas'
+
+
+
     description:
       empty: "Nenhuma descrição fornecida para %{name}"
 
