@@ -34,7 +34,7 @@
         <% unless @geo_data_collection.empty? %>
           <%= render @geo_data_collection, :size => :small %>
         <% else %>
-          <p><%= t 'contributings.empty.contributions' %></p>
+          <p><%= t 'maps.data.empty', name: map.name %></p>
         <% end %>
       </ul>
     </div>

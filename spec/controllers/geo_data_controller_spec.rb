@@ -85,4 +85,21 @@ describe GeoDataController do
     end
   end
 
+  describe "GET maps from geo_data" do
+    let!(:geo_data) { FactoryGirl.create :geo_data }
+    context "regular request" do
+      it 'renders maps list with layout' do
+        get :maps, :id => geo_data.id
+        expect(response).to render_template :application
+      end
+    end
+    context "xhr" do
+      before { controller.request.stub(:xhr?).and_return(true) }
+
+      it 'renders maps list without layout' do
+        get :maps, :id => geo_data.id
+        expect(response).to render_template(:layout => nil)
+      end
+    end
+  end
 end
