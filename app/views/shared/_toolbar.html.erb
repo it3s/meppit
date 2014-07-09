@@ -1,13 +1,13 @@
 <div class="toolbar">
   <ul class="toolbar-buttons" role="toolbar" data-components="stick">
-    <% tools_list(object, local_assigns[:only] || :all).each do |tool| %>
-      <li title="<%= tool[:title] %>">
-        <a class="<%= 'active' if tool[:active?] %>" href="<%= tool[:url] %>"
-          <% if tool[:component] %>
-            data-components="<%= tool[:component][:type] %>" <%= tool[:component][:opts] %>
+    <% presenter.tools.each do |tool| %>
+      <li title="<%= tool.title.first %>">
+        <a class="<%= 'active' if tool.active? %>" href="<%= tool.url %>"
+          <% if tool.component %>
+            data-components="<%= tool.component[:type] %>" <%= tool.component[:opts] %>
           <% end %>
          role="button">
-          <%= icon tool[:icon], '', :class => "fa-lg fa-fw" %>
+          <%= icon tool.icon, '', :class => "fa-lg fa-fw" %>
         </a>
       </li>
     <% end %>

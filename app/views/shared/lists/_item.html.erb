@@ -35,7 +35,9 @@
     </div>
     <div class="item-controls">
       <% if local_assigns[:control] == :counters %>
-        <%= render 'shared/counters', :object => object, :size => (size == :small ? :small : :medium) %>
+        <%= render 'shared/counters',
+          presenter: CountersPresenter.new(object: object, ctx: self, size: (size == :small ? :small : :medium))
+        %>
       <% end %>
     </div>
   </div>

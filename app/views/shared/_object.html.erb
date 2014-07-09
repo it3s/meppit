@@ -1,0 +1,16 @@
+<%= render 'shared/toolbar', presenter: ToolbarPresenter.new(object: presenter.object, ctx: self) %>
+
+<div class="site-page objects <%= "#{ presenter.controller_ref } #{ params[:action] }" %>" >
+  <% if edit_mode? %>
+
+    <%= remote_form_for presenter.object do |f| %>
+      <%= render 'shared/form_actions', object: presenter.object %>
+      <%= render presenter.layout_partial, f: f, presenter: presenter %>
+    <% end %>
+
+  <% else %>
+
+    <%= render presenter.layout_partial, presenter: presenter %>
+
+  <% end %>
+</div>

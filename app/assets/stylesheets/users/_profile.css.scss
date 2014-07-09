@@ -1,4 +1,4 @@
-.site-page.user-profile {
+.site-page.users {
 
   // left pane
   .avatar {
@@ -27,7 +27,7 @@
   // Central pane
   .main-title {
     float:left;
-    max-width: 425px;
+    width: 425px;
   }
 
   .location {
@@ -58,8 +58,10 @@
       label { display: none; }
     }
 
-    h1.name input[type=text] {
-      margin: 0 0 20px;
+    .main-title {
+      width: 100%;
+
+      h1.name input[type=text] { margin: 0 0 20px; }
     }
 
     .location {

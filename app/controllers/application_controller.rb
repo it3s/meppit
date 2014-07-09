@@ -56,7 +56,12 @@ class ApplicationController < ActionController::Base
     collection.page(params[:page]).per(params[:per])
   end
 
-  def polymorphic_layout(obj)
-    unless request.xhr? then obj.class.name.pluralize.underscore else false end
+  def cleaned_contacts(_params)
+    _params ||= {}
+    (_params[:contacts]  || {}).delete_if { |key, value| value.blank? }
+  end
+
+  def cleaned_tags(_params, field_name=:tags)
+    (_params[field_name] || '').split(',')
   end
 end

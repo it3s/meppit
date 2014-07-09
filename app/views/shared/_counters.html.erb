@@ -1,16 +1,8 @@
-<% size = local_assigns[:size] || :medium %>
 <ul class="counters">
-  <% counters_list(object, local_assigns[:only] || :all).each do |counter| %>
-    <% count = object.send counter[:method] || 0 %>
-    <li class="counter <%= counter[:class] %> <%= size %>">
-      <a href="<%= counter[:url] %>" title="<%= t(counter[:string], :count => count) %>" data-components="modal" data-modal='{ "remote": true }'>
-        <%= icon counter[:icon] %><span class="counter-value">
-          <% if not size == :big %>
-            <%= count %>
-          <% else %>
-            <%= raw t(counter[:string], :count => "<em>#{count}</em>" ) %>
-          <% end %>
-        </span>
+  <% presenter.counters.each do |counter| %>
+    <li class="counter <%= counter.class %> <%= presenter.size %>">
+      <a href="<%= counter.url %>" title="<%= t(counter.string, :count => counter.count) %>" data-components="modal" data-modal='{ "remote": true }'>
+        <%= icon counter.icon %><span class="counter-value"><%= raw counter.value %></span>
       </a>
     </li>
   <% end %>

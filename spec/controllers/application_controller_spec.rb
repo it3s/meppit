@@ -110,4 +110,30 @@ describe ApplicationController do
     end
   end
 
+  describe "#cleaned_contacts" do
+    context 'nil' do
+      let(:params) { {contacts: nil} }
+      it { expect(controller.send :cleaned_contacts, params).to eq({}) }
+    end
+    context 'valid hash' do
+      let(:params) { {contacts: {address: 'Foo', phone: '12345', compl: ''}} }
+      it { expect(controller.send :cleaned_contacts, params).to eq({address: 'Foo', phone: '12345'}) }
+    end
+  end
+
+  describe "#cleaned_tags" do
+    context 'default field name' do
+      let(:params) { {tags: "foo,bar,baz"} }
+      it { expect(controller.send :cleaned_tags, params).to eq ["foo", "bar", "baz"]}
+    end
+    context 'other field name' do
+      let(:params) { {interests: "foo,bar,baz"} }
+      it { expect(controller.send :cleaned_tags, params, :interests).to eq ["foo", "bar", "baz"]}
+    end
+    context 'nil' do
+      let(:params) { {tags: nil} }
+      it { expect(controller.send :cleaned_tags, params).to eq []}
+    end
+  end
+
 end

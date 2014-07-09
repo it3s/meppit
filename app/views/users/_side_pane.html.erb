@@ -1,0 +1,18 @@
+<div class="avatar">
+  <%= image_tag user.avatar.thumb.url, :alt => 'user picture' %>
+  <%= f.input(:avatar, :as => :file, :input_html => {'data-components' => 'uploader'}) if edit_mode? %>
+</div>
+
+<div class="extra-info">
+  <% if edit_mode? %>
+
+    <%= render 'shared/contacts/edit', :object => user %>
+    <div class="tags"><%= tags_input f, :interests, user.interests %></div>
+
+  <% else %>
+
+    <%= render 'shared/contacts/view', object: user %>
+    <%= render 'shared/tags', tags: user.interests %>
+
+  <% end %>
+</div>

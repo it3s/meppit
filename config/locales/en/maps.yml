@@ -1,0 +1,18 @@
+en:
+  maps:
+    tabs:
+      content: "Content"
+      data: "Data"
+      talk: "Talk"
+
+    list:
+      title: '%{count} maps'
+
+    description:
+      empty: "No description provided yet for %{name}"
+
+    add_data: "Add data"
+
+    last_updated: 'Last updated %{date}'
+
+    administrator: 'Administrator'

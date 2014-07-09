@@ -8,6 +8,9 @@ class GeoData < ActiveRecord::Base
   has_many :followings, :as => :followable
   has_many :followers, :through => :followings
 
+  has_many :mappings
+  has_many :maps, through: :mappings
+
   geojson_field :location
   searchable_tags :tags
 
@@ -19,6 +22,6 @@ class GeoData < ActiveRecord::Base
 
   def maps_count
     #TODO refactor to concern
-    0
+    maps.count
   end
 end

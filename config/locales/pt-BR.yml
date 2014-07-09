@@ -6,6 +6,8 @@ pt-BR:
   save: 'Salvar'
   cancel: 'Cancelar'
 
+  empty_location: 'Localização não fornecida'
+
   flash:
     updated: "Atualizado com sucesso"
 

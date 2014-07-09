@@ -1,0 +1,36 @@
+<button class="download"><%= icon "download" %></button>
+<button class="add-data"><%= icon "map-marker", t("maps.add_data") %></button>
+
+<section class="main-info">
+
+  <div class="map-tabs" data-components="tabs">
+    <ul>
+      <li><a href="#content"><%= icon "file-text", t('maps.tabs.content') %></a></li>
+      <li><a href="#data"><%= icon "map-marker", t('maps.tabs.data') %></a></li>
+      <li><a href="#talk"><%= icon "comments", t('maps.tabs.talk') %></a></li>
+    </ul>
+
+    <div class="extra-info" >
+      <%= render 'users/administrator', user: map.administrator %>
+      <%= render 'shared/contacts/view', object: map %>
+      <%= render 'shared/tags', tags: map.tags %>
+    </div>
+
+    <div class="tab-content" id="content">
+      <div class="description">
+        <% if map.description.blank? %>
+          <%= t 'maps.description.empty', name: map.name %>
+        <% else %>
+          <%= raw map.description %>
+        <% end %>
+      </div>
+    </div>
+    <div class="tab-content" id="data">
+      Data Placeholder
+    </div>
+    <div class="tab-content" id="talk">
+      Talk Placeholder
+    </div>
+  </div>
+
+</section>

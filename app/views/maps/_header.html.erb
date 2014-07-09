@@ -1,0 +1,20 @@
+<header class="wrapper">
+  <div class="map-logo"><%= icon "globe" %></div>
+  <div class="title">
+  <% if edit_mode? %>
+
+    <div><h1 class="name"><%= f.input :name %></h1></div>
+
+  <% else %>
+
+    <div>
+      <h1 class="name"><%= map.name %></h1>
+      <%= render 'shared/counters', presenter: CountersPresenter.new(object: map, ctx: self, size: :big) %>
+    </div>
+    <div class="last-update">
+      <%= t 'maps.last_updated', date: time_ago_in_words(map.updated_at) %>
+    </div>
+
+  <% end %>
+  </div>
+</header>

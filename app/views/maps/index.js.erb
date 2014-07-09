@@ -1,0 +1,2 @@
+$('#map-list').html('<%= escape_javascript render(@list, :checkbox => true) %>');
+$('#map-pagination').html('<%= escape_javascript(paginate(@list, :remote => true).to_s) %>');

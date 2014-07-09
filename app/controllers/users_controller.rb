@@ -38,7 +38,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    render layout: "application"
   end
 
   def update
@@ -50,8 +49,8 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation,
                                  :license_aggrement, :about_me, :avatar).tap do |whitelisted|
-      whitelisted[:contacts]  = (params[:user][:contacts]  || {}).delete_if { |key, value| value.blank? }
-      whitelisted[:interests] = (params[:user][:interests] || '').split(',')
+      whitelisted[:contacts]  = cleaned_contacts params[:user]
+      whitelisted[:interests] = cleaned_tags params[:user], :interests
     end
   end
 

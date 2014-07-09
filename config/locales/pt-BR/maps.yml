@@ -1,0 +1,20 @@
+pt-BR:
+  maps:
+    tabs:
+      content: "Conteúdo"
+      data: "Dados"
+      talk: "Conversa"
+
+    list:
+      title: '%{count} mapas'
+
+
+
+    description:
+      empty: "Nenhuma descrição fornecida para %{name}"
+
+    add_data: "Adicionar dados"
+
+    last_updated: 'Última atualização %{date}'
+
+    administrator: 'Administrador'

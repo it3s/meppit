@@ -30,7 +30,7 @@ module Concerns
         :key   => key,
         :icon  => icon,
         :value => contacts[key],
-        :name  => "#{object.class.name.downcase}[contacts][#{key}]",
+        :name  => "#{object.class.name.underscore}[contacts][#{key}]",
       }}
     end
   end

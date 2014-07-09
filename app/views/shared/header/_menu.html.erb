@@ -1,6 +1,6 @@
 <div class="menu">
-  <div class="menu-item maps">
-    <a href="#">
+  <div class="menu-item maps <%= 'active' if menu_active?('maps') %>">
+    <a href="<%= maps_path %>">
       <%= icon "globe", t('header.menu.maps') %>
     </a>
   </div>

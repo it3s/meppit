@@ -1,8 +1,6 @@
 module ApplicationHelper
   include Concerns::ContactsHelper
   include Concerns::I18nHelper
-  include Concerns::ToolbarHelper
-  include Concerns::CountersHelper
   include Concerns::ComponentsHelper
 
   def javascript_exists?(script)
@@ -23,15 +21,20 @@ module ApplicationHelper
       :user
     elsif obj.kind_of? GeoData
       :data
-    #elsif obj.kind_of? Map
-      #:map
+    elsif obj.kind_of? Map
+      :map
     else
       :unknown
     end
   end
 
   def menu_active?(controller_name)
-    obj_ref = "#{ controller_name.singularize }_id".to_sym  # "maps" => "map_id"
-    params[:controller] == controller_name || params[obj_ref]
+    _obj_ref = "#{controller_name.singularize}_id".to_sym  # "maps" => "map_id"
+    params[:controller] == controller_name || params[_obj_ref]
   end
+
+  def edit_mode?
+    params[:action] == 'edit'
+  end
+
 end

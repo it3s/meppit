@@ -9,9 +9,6 @@ pt-BR:
     description:
       empty: "Nenhuma descrição fornecida para %{name}"
 
-    location:
-      empty: 'Localização não fornecida'
-
     last_updated: 'Última atualização %{date}'
 
     add_to_map: "Adicone a um Mapa"
