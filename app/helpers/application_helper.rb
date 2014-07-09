@@ -2,7 +2,6 @@ module ApplicationHelper
   include Concerns::ContactsHelper
   include Concerns::I18nHelper
   include Concerns::ComponentsHelper
-  include Concerns::ListsHelper
 
   def javascript_exists?(script)
     script = "#{Rails.root}/app/assets/javascripts/#{script}.js"

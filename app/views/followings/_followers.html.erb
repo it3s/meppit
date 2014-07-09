@@ -5,7 +5,7 @@
     <div id="followers-pagination"><%= paginate @followers, :remote => true %></div>
     <ul id="followers-list" class="list contributions-list">
       <% unless @followers.empty? %>
-        <%= render @followers, :size => :small, :control => :counters %>
+        <%= render @followers, :size => :small %>
       <% else %>
         <p><%= t 'followings.empty.followers', {name: @followable.try(:name)} %></p>
       <% end %>

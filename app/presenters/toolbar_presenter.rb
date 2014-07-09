@@ -43,15 +43,6 @@ class ToolbarPresenter
     send :"_#{name}_tool"
   end
 
-  # get button url
-  def button_url(params)
-    begin
-      ctx.url_for(params)
-    rescue Exception
-      "#"
-    end
-  end
-
   # i18n proxy
   def t(*args)
     ctx.t(args)
@@ -65,7 +56,7 @@ class ToolbarPresenter
   private
 
   def _edit_tool
-    edit_url = button_url([:edit, object])
+    edit_url = ctx.url_for([:edit, object])
     { icon: :pencil, title: t('toolbar.edit'), url: edit_url,
       active?: ctx.request.path == edit_url }
   end

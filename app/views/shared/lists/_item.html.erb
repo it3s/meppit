@@ -1,27 +1,24 @@
-<% size = local_assigns[:size] || :big %>
-<li class="list-item <%= object_type object %> <%= size %>">
+<li class="list-item <%= presenter.class_name %>">
   <div class="wrapper">
-    <% if local_assigns[:checkbox] %>
+    <% if presenter.checkbox? %>
       <div class="item-checkbox">
-        <input type="checkbox" value="<%= object[:id] %>">
+        <input type="checkbox" value="<%= presenter.id %>">
       </div>
     <% end %>
-    <a href="<%= url_for object %>" title="<%= object[:name] %>">
+    <a href="<%= presenter.url %>" title="<%= presenter.name %>">
       <div class="item-avatar">
-        <%= list_item_avatar_for object %>
+        <%= presenter.avatar %>
       </div>
     </a>
     <div class="item">
-      <a href="<%= url_for object %>" title="<%= object[:name] %>">
-        <h2 class="item-title"><%= truncate strip_tags(object[:name]), length: (size == :small ? 55 : 85) %></h2>
-        <p class="item-excerpt"><%= truncate(strip_tags(object[:description] || object[:about_me]), length: (size == :small ? 130 : 300))  %></p>
+      <a href="<%= presenter.url %>" title="<%= presenter.name %>">
+        <h2 class="item-title"><%= presenter.title %></h2>
+        <p class="item-excerpt"><%= presenter.description %></p>
       </a>
-      <% if size == :big and object.respond_to? :tags %>
-        <%= render 'shared/tags', :tags => object[:tags] %>
-      <% end %>
+      <%= presenter.tags %>
     </div>
     <div class="item-controls">
-      <%= list_item_controls_for object, self, local_assigns[:control], local_assigns[:size] %>
+      <%= presenter.controls %>
     </div>
   </div>
 </li>

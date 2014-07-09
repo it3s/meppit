@@ -15,8 +15,10 @@ describe ApplicationHelper do
   describe "#object_type" do
     let(:user) { FactoryGirl.create :user }
     let(:geo_data) { FactoryGirl.create :geo_data }
+    let(:map) { FactoryGirl.create :map }
     it { expect(helper.object_type user).to eq :user }
     it { expect(helper.object_type geo_data).to eq :data }
+    it { expect(helper.object_type map).to eq :map }
     it { expect(helper.object_type nil).to eq :unknown }
   end
 
@@ -50,6 +52,26 @@ describe ApplicationHelper do
     it "returns false if any other action than edit" do
       helper.stub(:params).and_return(action: 'show')
       expect(helper.edit_mode?).to be false
+    end
+  end
+
+  describe "#identifier_for" do
+    let(:user) { FactoryGirl.create :user, id: 42 }
+    let(:geo_data) { FactoryGirl.create :geo_data, id: 42 }
+    let(:map) { FactoryGirl.create :map, id: 42 }
+
+    it "returns different values for different objects with the same id" do
+      user_identifier = helper.identifier_for user
+      geo_data_identifier = helper.identifier_for geo_data
+      map_identifier = helper.identifier_for map
+      expect(user_identifier).to_not eq geo_data_identifier
+      expect(user_identifier).to_not eq map_identifier
+      expect(map_identifier).to_not eq geo_data_identifier
+    end
+
+    it "returns the same value if called twice" do
+      user_identifier = helper.identifier_for user
+      expect(user_identifier).to eq helper.identifier_for(user)
     end
   end
 

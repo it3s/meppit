@@ -13,10 +13,12 @@ class FollowingsController < ApplicationController
 
   def followers
     @followers ||= paginate @followable.followers
+    render layout: nil if request.xhr?
   end
 
   def following
     @following ||= paginate @followable.following
+    render layout: nil if request.xhr?
   end
 
   private

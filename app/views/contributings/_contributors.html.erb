@@ -5,7 +5,7 @@
     <div id="contributors-pagination"><%= paginate @contributors, :remote => true  %></div>
     <ul id="contributors-list" class="list contributors-list">
       <% unless @contributors.empty? %>
-        <%= render @contributors, :size => :small, :control => :counters %>
+        <%= render @contributors, :size => :small %>
       <% else %>
         <p><%= t 'contributings.empty.contributors' %></p>
       <% end %>
