@@ -18,7 +18,6 @@ class Map < ActiveRecord::Base
   validates :administrator, presence: true
 
   def data_count
-    #TODO refactor to concern
     geo_data.count
   end
 
