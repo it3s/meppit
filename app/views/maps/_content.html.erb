@@ -25,8 +25,18 @@
         <% end %>
       </div>
     </div>
-    <div class="tab-content" id="data">
-      Data Placeholder
+    <div class="tab-content" id="data" data-components="list" data-list='{"scroll": {"behavior": "local"}}'>
+      <div id="geo_data_collection-pagination">
+        <%= paginate @geo_data_collection, remote: true,
+          params: {controller: 'maps', action: 'geo_data', user_id: map.id} %>
+      </div>
+      <ul id="geo_data-list" class="list geo_data-list">
+        <% unless @geo_data_collection.empty? %>
+          <%= render @geo_data_collection, :size => :small %>
+        <% else %>
+          <p><%= t 'contributings.empty.contributions' %></p>
+        <% end %>
+      </ul>
     </div>
     <div class="tab-content" id="talk">
       Talk Placeholder

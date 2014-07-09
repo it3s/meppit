@@ -12,6 +12,9 @@ en:
     last_updated: 'Last updated %{date}'
 
     add_to_map: "Add to a Map"
+    maps:
+      title: "Maps"
+      empty: "%{name} isn't in a map yet."
 
     list:
       title: '%{count} objects'

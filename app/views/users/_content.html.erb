@@ -24,7 +24,7 @@
     </div>
     <ul id="contributions-list" class="list contributions-list">
       <% unless @contributions.empty? %>
-        <%= render @contributions, :size => :small, :control => :counters %>
+        <%= render @contributions, :size => :small %>
       <% else %>
         <p><%= t 'contributings.empty.contributions' %></p>
       <% end %>
@@ -36,7 +36,8 @@
   </div>
 
   <div id="following" data-components="list" data-list='{"scroll": {"behavior": "local"}}'>
-    <div id="following-pagination"><%= paginate @following, :remote => true, :params => {:controller => 'followings', :action => 'following', :user_id => @user.id} %></div>
+    <div id="following-pagination"><%= paginate @following, :remote => true,
+      :params => {:controller => 'followings', :action => 'following', :user_id => @user.id} %></div>
     <ul id="following-list" class="list following-list">
       <% unless @following.empty? %>
         <%= render @following, :size => :small, :control_type => :follow_button %>

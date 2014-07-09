@@ -21,6 +21,11 @@ class Map < ActiveRecord::Base
     geo_data.count
   end
 
+  def add_geo_data(object)
+    mapping = Mapping.where(map: self, geo_data: object).first_or_create
+    mapping.save
+  end
+
   def location
     return nil if data_count.zero?
 

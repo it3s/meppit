@@ -12,6 +12,9 @@ en:
       empty: "No description provided yet for %{name}"
 
     add_data: "Add data"
+    data:
+      title: "Data"
+      empty: "%{name} has no data yet."
 
     last_updated: 'Last updated %{date}'
 

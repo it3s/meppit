@@ -42,7 +42,7 @@ class CountersPresenter
       string: 'counters.data',
       method: :data_count,
       class:  "data-counter",
-      url:    counter_url([object, :data])
+      url:    counter_url([:geo_data, object])
     }
   end
 
@@ -52,7 +52,7 @@ class CountersPresenter
       string: 'counters.maps',
       method: :maps_count,
       class:  "maps-counter",
-      url:    counter_url([object, :maps])
+      url:    counter_url([:maps, object])
     }
   end
 

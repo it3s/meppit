@@ -46,11 +46,19 @@ Meppit::Application.routes.draw do
     end
   end
 
-  resources :geo_data, only: [:index, :show, :edit, :update],
-                       concerns: [:contributable, :followable]
+  resources :geo_data, only: [:index, :show, :edit, :update, :maps],
+                       concerns: [:contributable, :followable] do
+    member do
+     get 'maps'
+    end
+  end
 
-  resources :maps, only: [:index, :show, :edit, :update],
-                   concerns: [:contributable, :followable]
+  resources :maps, only: [:index, :show, :edit, :update, :geo_data],
+                   concerns: [:contributable, :followable] do
+    member do
+     get 'geo_data'
+    end
+  end
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
