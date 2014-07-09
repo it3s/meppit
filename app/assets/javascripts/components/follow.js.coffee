@@ -18,6 +18,7 @@ App.components.follow = (container) ->
     _.extend {}, {"_method": @method()}
 
   toggleActive: (following) ->
+    following ?= not @data.following
     @data.following = following
     if following
       @container.addClass 'active'
@@ -27,15 +28,15 @@ App.components.follow = (container) ->
 
   toggleLabel: ->
     if @data.following
-      @container.find('> .label').text(I18n.followings.unfollow)
+      @container.find('> .label').text(I18n?.followings.unfollow)
     else
-      @container.find('> .label').text(I18n.followings.follow)
+      @container.find('> .label').text(I18n?.followings.follow)
 
   resetLabel: ->
     if @data.following
-      @container.find('> .label').text(I18n.followings.following)
+      @container.find('> .label').text(I18n?.followings.following)
     else
-      @container.find('> .label').text(I18n.followings.follow)
+      @container.find('> .label').text(I18n?.followings.follow)
 
   doRequest: ->
     _this = this
