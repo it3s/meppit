@@ -1,14 +1,12 @@
-<section>
-  <br>
-  <h2><%= icon "star", t('followings.following') %></h2>
-  <div id="following" class="list-container" data-components="list">
-    <div id="following-pagination"><%= paginate @following, :remote => true %></div>
-    <ul id="following-list" class="list following-list">
-      <% unless @following.empty? %>
-        <%= render @following, :size => :small, :control => :follow_button %>
-      <% else %>
-        <p><%= t 'followings.empty.following', {name: @followable.try(:name)} %></p>
-      <% end %>
-    </ul>
-  </div>
-</section>
+<% if request.xhr? %>
+
+  <%= render 'followings/following' %>
+
+<% else %>
+
+  <%= render 'shared/object',
+    presenter: ObjectPresenter.new(object: @followable, ctx: self,
+      show_location: false, content: 'followings/following')
+  %>
+
+<% end %>

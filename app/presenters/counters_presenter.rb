@@ -18,7 +18,7 @@ class CountersPresenter
     _count = object.try(opts[:method]) || 0
     opts.merge({
       count: _count,
-      value: (size == :big) ? ctx.t(opts[:string], count: "<em>#{_count}</em>") : _count
+      value: (size == :big) ? ctx.t(opts[:string], count: "<em class=\"counter-label\">#{_count}</em>") : "<span class=\"counter-label\">#{_count}</span>"
     })
   end
 
@@ -63,7 +63,7 @@ class CountersPresenter
       method: :followers_count,
       class:  "followers-counter",
       url:    counter_url([object, :followers]),
-      component: _followers_component(obj)
+      component: _followers_component
     }
   end
 
@@ -77,8 +77,8 @@ class CountersPresenter
     }
   end
 
-  def _followers_component(obj)
-    opts_json = {type: 'followers', id: identifier_for(obj)}.to_json
+  def _followers_component
+    opts_json = {type: 'followers', id: ctx.identifier_for(object)}.to_json
     {
       :type => "counter",
       :opts => "data-counter=#{ opts_json } "

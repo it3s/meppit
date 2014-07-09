@@ -11,7 +11,7 @@ describe ToolbarPresenter do
 
   def mock_context(type=:in)
     _user = (type == :in) ? user : nil
-    double('Context', current_user: _user, t: '', url_for: '', request: double(path: ''))
+    double('Context', current_user: _user, t: '', url_for: '', request: double('request', path: ''), follow_options_for: '{}')
   end
 
   def tp(obj, ctx=nil)
@@ -69,7 +69,7 @@ describe ToolbarPresenter do
     end
 
     context "any other" do
-      let(:presenter) { tp double, logged_in }
+      let(:presenter) { tp double('object'), logged_in }
       it { expect(presenter.select_tools).to eq presenter.available_tools }
     end
   end
@@ -84,7 +84,7 @@ describe ToolbarPresenter do
   end
 
   describe "tools options" do
-    let(:presenter) { tp double, logged_in }
+    let(:presenter) { tp double('object'), logged_in }
 
     it "has icon, title and url options for all tools" do
       presenter.tools.each { |tool|

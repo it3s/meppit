@@ -8,6 +8,10 @@ describe ContributingsController do
         get :contributors, :geo_data_id => geo_data.id
         expect(assigns :geo_data).to eq geo_data
       end
+      it 'renders contributors list with layout' do
+        get :contributors, :geo_data_id => geo_data.id
+        expect(response).to render_template :application
+      end
     end
     context "xhr" do
       before { controller.request.stub(:xhr?).and_return(true) }
@@ -25,6 +29,10 @@ describe ContributingsController do
       it 'defines @user' do
         get :contributions, :user_id => user.id
         expect(assigns :user).to eq user
+      end
+      it 'renders contributions list with layout' do
+        get :contributions, :user_id => user.id
+        expect(response).to render_template :application
       end
     end
     context "xhr" do

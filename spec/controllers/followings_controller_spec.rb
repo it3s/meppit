@@ -67,9 +67,9 @@ describe FollowingsController do
         expect(assigns :geo_data).to eq geo_data
       end
 
-      it 'renders geo_data followers list using geo_data layout' do
+      it 'renders geo_data followers list with layout' do
         get :followers, :geo_data_id => geo_data.id
-        expect(response).to render_template :geo_data
+        expect(response).to render_template :application
       end
     end
     context "xhr" do
@@ -89,9 +89,9 @@ describe FollowingsController do
         expect(assigns :user).to eq user
       end
 
-      it 'renders user followers list using users layout' do
+      it 'renders user followers list with layout' do
         get :followers, :user_id => user.id
-        expect(response).to render_template :users
+        expect(response).to render_template :application
       end
     end
     context "xhr" do
@@ -111,9 +111,9 @@ describe FollowingsController do
         expect(assigns :user).to eq user
       end
 
-      it 'renders following list using users layout' do
+      it 'renders following list with layout' do
         get :following, :user_id => user.id
-        expect(response).to render_template :users
+        expect(response).to render_template :application
       end
     end
     context "xhr" do

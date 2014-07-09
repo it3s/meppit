@@ -1,5 +1,4 @@
 class FollowingsController < ApplicationController
-  layout :followings_layout
 
   before_action :require_login, except: [:followers, :following]
   before_action :find_followable
@@ -32,9 +31,5 @@ class FollowingsController < ApplicationController
     else
       render json: {ok: false}, status: :unprocessable_entity
     end
-  end
-
-  def followings_layout
-    polymorphic_layout @followable
   end
 end
