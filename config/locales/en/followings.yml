@@ -1,0 +1,8 @@
+en:
+  followings:
+    followers: 'Follower'
+    following: 'Following'
+    empty:
+      followers: '%{name} has no followers.'
+      following: "%{name} isn't following anything yet."
+

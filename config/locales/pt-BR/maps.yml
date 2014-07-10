@@ -8,12 +8,13 @@ pt-BR:
     list:
       title: '%{count} mapas'
 
-
-
     description:
       empty: "Nenhuma descrição fornecida para %{name}"
 
     add_data: "Adicionar dados"
+    data:
+      title: "Dados"
+      empty: "%{name} não possui dados ainda."
 
     last_updated: 'Última atualização %{date}'
 

@@ -2,7 +2,7 @@ class GeoDataController < ApplicationController
   include ContributableController
 
   before_action :require_login, only: [:edit, :update]
-  before_action :find_geo_data, only: [:show, :edit, :update]
+  before_action :find_geo_data, only: [:show, :edit, :update, :maps]
 
   def index
     @geo_data_collection = GeoData.page(params[:page]).per(params[:per])
@@ -20,6 +20,11 @@ class GeoDataController < ApplicationController
 
   def update
     update_object @geo_data, data_params
+  end
+
+  def maps
+    @maps = paginate @geo_data.maps
+    render layout: nil if request.xhr?
   end
 
   protected

@@ -23,7 +23,11 @@
         params: {controller: 'contributings', action: 'contributions', user_id: user.id} %>
     </div>
     <ul id="contributions-list" class="list contributions-list">
-      <%= render @contributions, size: :small, control: :counters %>
+      <% unless @contributions.empty? %>
+        <%= render @contributions, :size => :small %>
+      <% else %>
+        <p><%= t 'contributings.empty.contributions' %></p>
+      <% end %>
     </ul>
   </div>
 
@@ -31,7 +35,15 @@
     Activity Placeholder
   </div>
 
-  <div id="following">
-    Following Placeholder
+  <div id="following" data-components="list" data-list='{"scroll": {"behavior": "local"}}'>
+    <div id="following-pagination"><%= paginate @following, :remote => true,
+      :params => {:controller => 'followings', :action => 'following', :user_id => @user.id} %></div>
+    <ul id="following-list" class="list following-list">
+      <% unless @following.empty? %>
+        <%= render @following, :size => :small, :control_type => :follow_button %>
+      <% else %>
+        <p><%= t 'followings.empty.following', {name: @user.name} %></p>
+      <% end %>
+    </ul>
   </div>
 </div>

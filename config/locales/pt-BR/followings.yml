@@ -1,0 +1,8 @@
+pt-BR:
+  followings:
+    followers: 'Seguidores'
+    following: 'Seguindo'
+    empty:
+      followers: '%{name} não possui seguidores.'
+      following: '%{name} ainda não está seguindo nada.'
+

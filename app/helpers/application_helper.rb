@@ -37,4 +37,15 @@ module ApplicationHelper
     params[:action] == 'edit'
   end
 
+  def identifier_for(obj)
+    "#{object_type(obj)}##{obj.id}"
+  end
+
+  def follow_options_for(obj)
+    {
+      following: current_user && current_user.follow?(obj),
+      url: url_for([obj, :follow]),
+      id: identifier_for(obj)
+    }.to_json
+  end
 end
