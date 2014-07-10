@@ -19,14 +19,20 @@ Meppit::Application.routes.draw do
 
   concern :contributor do
     get "contributions" => "contributings#contributions"
+    get "maps" => "contributings#maps"
   end
 
   concern :followable do
-    resource :following, only: [:create, :destroy]
+    resource :follow, controller: :followings, only: [:create, :destroy]
+    get "followers" => "followings#followers"
+  end
+
+  concern :follower do
+    get "following" => "followings#following"
   end
 
   resources :users, except: [:destroy, :index],
-                    concerns: [:contributor, :followable] do
+                    concerns: [:contributor, :followable, :follower] do
     member do
       get :activate
     end
@@ -41,11 +47,19 @@ Meppit::Application.routes.draw do
     end
   end
 
-  resources :geo_data, only: [:index, :show, :edit, :update],
-                       concerns: [:contributable, :followable]
+  resources :geo_data, only: [:index, :show, :edit, :update, :maps],
+                       concerns: [:contributable, :followable] do
+    member do
+      get 'maps'
+    end
+  end
 
-  resources :maps, only: [:index, :show, :edit, :update],
-                   concerns: [:contributable, :followable]
+  resources :maps, only: [:index, :show, :edit, :update, :geo_data],
+                   concerns: [:contributable, :followable] do
+    member do
+      get 'geo_data'
+    end
+  end
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

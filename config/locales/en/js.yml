@@ -8,3 +8,7 @@ en:
       close: 'Close'
     tags:
       placeholder: 'Add tag'
+    followings:
+      following: 'Following'
+      follow: 'Follow'
+      unfollow: 'Unfollow'

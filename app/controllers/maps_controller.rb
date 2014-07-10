@@ -1,6 +1,7 @@
 class MapsController < ApplicationController
   before_action :require_login, only: [:edit, :update]
-  before_action :find_map,      only: [:show, :edit, :update]
+  before_action :find_map,      only: [:show, :edit, :update, :geo_data]
+  before_action :geo_data_list, only: [:show]
 
   def index
     @maps_collection = Map.page(params[:page]).per(params[:per])
@@ -20,6 +21,11 @@ class MapsController < ApplicationController
     update_object @map, map_params
   end
 
+  def geo_data
+    @geo_data_collection = paginate @map.geo_data
+    render layout: nil if request.xhr?
+  end
+
   private
 
   def map_params
@@ -27,6 +33,10 @@ class MapsController < ApplicationController
       whitelisted[:contacts]  = cleaned_contacts params[:map]
       whitelisted[:tags] = cleaned_tags params[:map]
     end
+  end
+
+  def geo_data_list
+    @geo_data_collection ||= paginate @map.try(:geo_data), params[:data_page]
   end
 
   def find_map

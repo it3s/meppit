@@ -1,1 +1,1 @@
-<%= render 'shared/lists/item', :object => geo_data, :size => local_assigns[:size], :checkbox => local_assigns[:checkbox], :control => :counters %>
+<%= render 'shared/lists/item', presenter: ListItemPresenter.new(object: geo_data, ctx: self, size: local_assigns[:size], checkbox: local_assigns[:checkbox], control_type: local_assigns[:control_type]) %>

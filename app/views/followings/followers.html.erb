@@ -1,0 +1,12 @@
+<% if request.xhr? %>
+
+  <%= render 'followings/followers' %>
+
+<% else %>
+
+  <%= render 'shared/object',
+    presenter: ObjectPresenter.new(object: @followable, ctx: self,
+      show_location: false, content: 'followings/followers')
+  %>
+
+<% end %>

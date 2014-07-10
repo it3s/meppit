@@ -88,7 +88,7 @@ class ToolbarPresenter
   end
 
   def _follow_component
-    opts_json = {:url => ctx.url_for([object, :following])}.to_json
+    opts_json = ctx.follow_options_for object
     {
       :type => "follow",
       :opts => "data-follow=#{ opts_json } "

@@ -53,8 +53,11 @@ class ApplicationController < ActionController::Base
     instance_variable_set "@#{_model.name.underscore}", _model.find(id)  # set var and return the obj
   end
 
-  def paginate(collection)
-    collection.page(params[:page]).per(params[:per])
+  def paginate(collection, page = nil, per = nil)
+    page ||= params[:page]
+    per  ||= params[:per]
+    collection = Kaminari.paginate_array collection if collection.kind_of? Array
+    collection.try(:page, page).try(:per, per)
   end
 
   def cleaned_contacts(_params)

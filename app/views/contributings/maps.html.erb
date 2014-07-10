@@ -1,0 +1,12 @@
+<% if request.xhr? %>
+
+  <%= render 'contributings/maps' %>
+
+<% else %>
+
+  <%= render 'shared/object',
+    presenter: ObjectPresenter.new(object: @user, ctx: self,
+      show_location: false, content: 'contributings/maps')
+  %>
+
+<% end %>

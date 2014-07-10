@@ -17,7 +17,7 @@ describe 'follow', ->
 
     context 'active', ->
       beforeEach ->
-        @container.addClass('active')
+        @component.toggleActive(true)
 
       it '#isActive returns true', ->
         expect(@component.isActive()).to.be.true
@@ -32,7 +32,7 @@ describe 'follow', ->
 
     context 'inactive', ->
       beforeEach ->
-        @container.removeClass('active')
+        @component.toggleActive(false)
 
       it '#isActive returns false', ->
         expect(@component.isActive()).to.be.false

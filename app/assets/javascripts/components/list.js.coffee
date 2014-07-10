@@ -4,22 +4,27 @@ App.components.list = (container) ->
     list: container.find("ul.list")
 
     infiniteScrollDefaults:
-      navSelector: "nav.pagination"
-      nextSelector: "nav.pagination a[rel=next]"
+      navSelector: container.find("nav.pagination")
+      nextSelector: container.find("nav.pagination a[rel=next]")
       itemSelector: ".list .list-item"
       prefill: on
       dataType: "html"
 
     init: ->
-      @handleOptions()
-      @startInfiniteScroll(@infiniteScrollOptions)
+      options = @handleOptions()
+      @startInfiniteScroll(options)
 
     handleOptions: ->
       data = @container.data('list') ? {}
-      @infiniteScrollOptions = _.defaults(data.scroll ? {}, @infiniteScrollDefaults)
-      if @infiniteScrollOptions['behavior'] is 'local'
-        @infiniteScrollOptions.binder ?= container
+      options = _.defaults(data.scroll ? {}, @infiniteScrollDefaults)
+      if options['behavior'] is 'local'
+        options.binder ?= container
+      options
+
+    startComponents: (container) ->
+      App.mediator.publish('components:start', $(container))
 
     startInfiniteScroll: (opts) ->
-      @list.infinitescroll opts
+      _this = this
+      @list.infinitescroll opts, () -> _this.startComponents.bind(_this)(this)
   }

@@ -1,0 +1,12 @@
+<% if request.xhr? %>
+
+  <%= render 'maps/geo_data' %>
+
+<% else %>
+
+  <%= render 'shared/object',
+    presenter: ObjectPresenter.new(object: @map, ctx: self,
+      show_location: false, content: 'maps/geo_data')
+  %>
+
+<% end %>

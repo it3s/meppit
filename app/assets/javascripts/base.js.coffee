@@ -33,12 +33,19 @@ setupContainer = (container) ->
     component = components[name]?(container)
     asyncFn ->  component.init()
     .then   ->  components._instances[_compId(name, container)] = component
+  container.data('components-started', true)
+
+
+# check if the components are already started
+containerStarted = (container) ->
+  container = $(container) unless container.jquery
+  container.data('components-started') || false
 
 
 # setup all components for a DOM root
 startComponents = (evt, root=document) ->
   $(root).find('[data-components]').each (i, container) =>
-    setupContainer(container)
+    setupContainer(container) unless containerStarted(container)
 
 
 mediator.subscribe 'components:start', startComponents
