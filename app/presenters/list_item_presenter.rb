@@ -46,7 +46,8 @@ class ListItemPresenter
   end
 
   def controls
-    if control_type_ == :follow_button
+    case control_type_
+    when :follow_button
       return ctx.render 'shared/follow_button', object: object unless object == ctx.current_user
     else
       return ctx.render 'shared/counters',
@@ -58,12 +59,12 @@ class ListItemPresenter
     if object.try(:avatar)
       ctx.image_tag object.avatar.thumb.url
     else
-      type = ctx.object_type object
-      if type == :map
+      case ctx.object_type object
+      when :map
         ctx.icon :globe
-      elsif type == :data
+      when :data
         ctx.icon :'map-marker'
-      elsif type == :user
+      when :user
         ctx.icon :user
       else
        ctx.icon :question
