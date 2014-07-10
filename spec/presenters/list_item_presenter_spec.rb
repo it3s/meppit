@@ -102,7 +102,7 @@ describe ListItemPresenter do
     end
   end
 
-  describe "small item" do
+  context "size is small" do
     let(:presenter) { ListItemPresenter.new object: object, ctx: double('ctx'), size: :small }
     it "displays no tags" do
       expect(presenter.tags).to eq nil
@@ -127,7 +127,7 @@ describe ListItemPresenter do
     end
   end
 
-  describe "medium item" do
+  context "size is medium" do
     let(:presenter) { ListItemPresenter.new object: object, ctx: double('ctx'), size: :medium }
     it "displays no tags" do
       expect(presenter.tags).to eq nil
@@ -146,7 +146,7 @@ describe ListItemPresenter do
     end
   end
 
-  describe "big item" do
+  context "size is big" do
     let(:presenter) { ListItemPresenter.new object: object, ctx: double('ctx'), size: :big }
     it "displays tags" do
       allow(presenter.ctx).to receive(:render).and_return('rendered')

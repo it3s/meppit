@@ -44,4 +44,22 @@ describe ContributingsController do
       end
     end
   end
+
+  describe "GET maps" do
+    let!(:user) { FactoryGirl.create :user }
+    context "regular request" do
+      it 'renders maps list with layout' do
+        get :maps, :user_id => user.id
+        expect(response).to render_template :application
+      end
+    end
+    context "xhr" do
+      before { controller.request.stub(:xhr?).and_return(true) }
+
+      it 'renders maps list without layout' do
+        get :maps, :user_id => user.id
+        expect(response).to render_template(:layout => nil)
+      end
+    end
+  end
 end

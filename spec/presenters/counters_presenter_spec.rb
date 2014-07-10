@@ -2,7 +2,29 @@ require 'spec_helper'
 
 describe CountersPresenter do
   let(:object) { double('object', data_count: 1, followers_count: 2) }
-  let(:presenter) { CountersPresenter.new object: object, ctx: double('ctx') }
+  let(:presenter) { CountersPresenter.new object: object, ctx: double('ctx', url_for: 'url') }
+
+  describe "#size_" do
+    it "default size is medium" do
+      expect(presenter.size_).to eq :medium
+    end
+
+    context "size is big" do
+      let(:presenter) { CountersPresenter.new object: object, ctx: double('ctx'), size: :big }
+      it "gets the defined value" do
+        expect(presenter.size_).to eq :big
+      end
+    end
+  end
+
+  describe "#counter_url" do
+    let(:presenter) { CountersPresenter.new object: object, ctx: double('ctx') }
+    it "tries reversed params if fails" do
+      expect(presenter.ctx).to receive(:url_for).with([1, 2]).and_raise Exception
+      expect(presenter.ctx).to receive(:url_for).with([2, 1]).and_return "url"
+      expect(presenter.send(:counter_url, [1, 2])).to eq "url"
+    end
+  end
 
   describe "#counters" do
     it "selects only the ones which object has the corresponding count method" do
@@ -36,7 +58,7 @@ describe CountersPresenter do
 
     describe "value" do
       context "size is :big" do
-        let(:presenter) { CountersPresenter.new object: object, ctx: double('ctx'), size: :big}
+        let(:presenter) { CountersPresenter.new object: object, ctx: double('ctx', url_for: 'url'), size: :big}
 
         it "calls i18n method" do
           expect(presenter.ctx).to receive(:t).with('counters.data', count: "<em class=\"counter-label\">1</em>")
