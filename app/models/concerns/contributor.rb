@@ -12,8 +12,12 @@ module Contributor
       contributions.count
     end
 
+    def maps
+      contributions({contributable_type: "Map"})
+    end
+
     def maps_count
-      contributions({contributable_type: "Map"}).size
+      maps.size
     end
   end
 end

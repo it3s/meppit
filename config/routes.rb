@@ -19,6 +19,7 @@ Meppit::Application.routes.draw do
 
   concern :contributor do
     get "contributions" => "contributings#contributions"
+    get "maps" => "contributings#maps"
   end
 
   concern :followable do
@@ -49,14 +50,14 @@ Meppit::Application.routes.draw do
   resources :geo_data, only: [:index, :show, :edit, :update, :maps],
                        concerns: [:contributable, :followable] do
     member do
-     get 'maps'
+      get 'maps'
     end
   end
 
   resources :maps, only: [:index, :show, :edit, :update, :geo_data],
                    concerns: [:contributable, :followable] do
     member do
-     get 'geo_data'
+      get 'geo_data'
     end
   end
 

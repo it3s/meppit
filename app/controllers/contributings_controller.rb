@@ -1,6 +1,6 @@
 class ContributingsController < ApplicationController
 
-  before_action :find_contributable, :only => [:contributors, :contributions]
+  before_action :find_contributable, :only => [:contributors, :contributions, :maps]
 
   def contributors
     @contributors = paginate @contributable.contributors
@@ -9,6 +9,11 @@ class ContributingsController < ApplicationController
 
   def contributions
     @contributions = paginate @contributable.contributions
+    render layout: nil if request.xhr?
+  end
+
+  def maps
+    @maps = paginate @contributable.maps
     render layout: nil if request.xhr?
   end
 

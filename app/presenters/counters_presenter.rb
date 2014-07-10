@@ -15,9 +15,11 @@ class CountersPresenter
 
   def counter_options(name)
     opts = send(:"_#{name}_counter")
+    return unless object.respond_to? opts[:method]
     _count = object.try(opts[:method]) || 0
     opts.merge({
       count: _count,
+      url: counter_url(opts[:url_params]),
       value: (size == :big) ? ctx.t(opts[:string], count: "<em class=\"counter-label\">#{_count}</em>") : "<span class=\"counter-label\">#{_count}</span>"
     })
   end
@@ -32,7 +34,7 @@ class CountersPresenter
     begin
       ctx.url_for(params)
     rescue Exception
-      "#"
+      ctx.url_for(params.reverse)
     end
   end
 
@@ -42,7 +44,7 @@ class CountersPresenter
       string: 'counters.data',
       method: :data_count,
       class:  "data-counter",
-      url:    counter_url([:geo_data, object])
+      url_params: [:geo_data, object]
     }
   end
 
@@ -52,7 +54,7 @@ class CountersPresenter
       string: 'counters.maps',
       method: :maps_count,
       class:  "maps-counter",
-      url:    counter_url([:maps, object])
+      url_params: [:maps, object]
     }
   end
 
@@ -62,7 +64,7 @@ class CountersPresenter
       string: 'counters.followers',
       method: :followers_count,
       class:  "followers-counter",
-      url:    counter_url([object, :followers]),
+      url_params: [object, :followers],
       component: _followers_component
     }
   end
@@ -73,7 +75,7 @@ class CountersPresenter
       string: 'counters.contributors',
       method: :contributors_count,
       class:  "contributors-counter",
-      url:    counter_url([object, :contributors])
+      url_params: [object, :contributors]
     }
   end
 

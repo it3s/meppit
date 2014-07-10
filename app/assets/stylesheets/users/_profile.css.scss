@@ -17,6 +17,7 @@
 
   .extra-info {
     margin-top: 30px;
+    width: auto !important;  // Fix a conflict (FIXME: should not be done this way)
 
     input[type=text] {
       width: 195px;
