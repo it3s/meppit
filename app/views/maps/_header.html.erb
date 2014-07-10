@@ -11,9 +11,9 @@
       <h1 class="name"><%= map.name %></h1>
       <%= render 'shared/counters', presenter: CountersPresenter.new(object: map, ctx: self, size: :big) %>
     </div>
-    <div class="last-update">
+    <time class="last-update" datetime="<%= map.updated_at.to_datetime.rfc3339 %>">
       <%= t 'maps.last_updated', date: time_ago_in_words(map.updated_at) %>
-    </div>
+    </time>
 
   <% end %>
   </div>
