@@ -109,6 +109,7 @@ GEM
       thread_safe
     ejs (1.1.1)
     erubis (2.7.0)
+    event_bus (1.0.0)
     excon (0.37.0)
     execjs (2.2.0)
     factory_girl (4.4.0)
@@ -385,6 +386,7 @@ DEPENDENCIES
   coveralls
   database_cleaner
   ejs
+  event_bus
   factory_girl_rails
   fog
   font-awesome-sass

@@ -39,6 +39,7 @@ gem 'mini_magick'                   # image processing for uploaders
 gem 'fog'                           # upload images to amazon S3
 gem 'remotipart'                    # enable ajax file uploads on remote forms
 gem 'kaminari'                      # paginator
+gem 'event_bus'                     # event bus for decoupling logic between models
 
 group :doc do
   gem 'sdoc', :require => false

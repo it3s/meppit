@@ -38,7 +38,8 @@ class ApplicationController < ActionController::Base
   def update_object(obj, params_hash)
     obj.assign_attributes(params_hash)
     if obj.valid? && obj.save
-      after_update() if self.class.method_defined? :after_update
+      obj_name = obj.class.name.underscore
+      EventBus.publish "#{obj_name}_updated", obj_name.to_sym => obj, current_user: current_user
       flash[:notice] = t('flash.updated')
       render :json => {:redirect => polymorphic_path([obj])}
     else

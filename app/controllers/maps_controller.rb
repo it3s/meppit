@@ -1,6 +1,4 @@
 class MapsController < ApplicationController
-  include ContributableController
-
   before_action :require_login, only: [:edit, :update]
   before_action :find_map,      only: [:show, :edit, :update]
 
@@ -20,12 +18,6 @@ class MapsController < ApplicationController
 
   def update
     update_object @map, map_params
-  end
-
-  protected
-
-  def after_update
-    save_contribution @map, current_user
   end
 
   private

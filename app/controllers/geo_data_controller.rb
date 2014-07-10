@@ -1,6 +1,4 @@
 class GeoDataController < ApplicationController
-  include ContributableController
-
   before_action :require_login, only: [:edit, :update]
   before_action :find_geo_data, only: [:show, :edit, :update]
 
@@ -22,12 +20,6 @@ class GeoDataController < ApplicationController
     update_object @geo_data, data_params
   end
 
-  protected
-
-  def after_update
-    save_contribution @geo_data, current_user
-  end
-
   private
 
   def data_params
@@ -40,5 +32,4 @@ class GeoDataController < ApplicationController
   def find_geo_data
     @geo_data = GeoData.find params[:id]
   end
-
 end
