@@ -6,9 +6,10 @@ $signin_box_width: 560px;
 
   * { @include box-sizing(border-box); }
 
-  h1 {
+  h2 {
     text-align: center;
     font-size: 20px;
+    margin: 0.67em 0;
   }
 
   .external_providers, form {
@@ -50,7 +51,8 @@ $signin_box_width: 560px;
   li {
     margin: 15px 0;
 
-    button {
+    .button {
+      text-align: center;
       width: 100%;
       padding: 7px 6px 2px;
       border: 0;
@@ -70,15 +72,15 @@ $signin_box_width: 560px;
     .image.login-facebook { @include sprite-image($logos-map, login-facebook); }
     // .image.login-twitter  { @include sprite-image($logos-map, login-twitter); }
 
-    button.google {
+    .button.google {
       background: $google_red;
       &:hover { background: lighten($google_red, 20%%); }
     }
-    button.facebook {
+    .button.facebook {
       background: $facebook_blue;
       &:hover { background: lighten($facebook_blue, 20%%); }
     }
-    // button.twitter {
+    // .button.twitter {
     //   background: $twitter_blue;
     //   &:hover { background: lighten($twitter_blue, 20%%); }
     // }
