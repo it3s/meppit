@@ -34,6 +34,9 @@
     @include action-button($dark-orange, $meppit-maps-color, $white);
     float: right;
   }
+  .add-to-map-form {
+    @include modal;
+  }
   .download {
     @include action-button($grey, $ultra-soft-grey, $grey);
     float: right;

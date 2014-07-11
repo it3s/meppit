@@ -1,5 +1,7 @@
-<button class="download"><%= icon "download" %></button>
-<button class="add-to-map"><%= icon "globe", t("geo_data.add_to_map") %></button>
+<%= link_to_modal icon("download"), "#", html: {class: "download"} %>
+<%= link_to_modal icon("globe", t("geo_data.add_to_map")), "#add-to-map-form", html: {class: "add-to-map"} %>
+
+<%= render "geo_data/add_to_map_form" %>
 
 <section class="main-info">
 
