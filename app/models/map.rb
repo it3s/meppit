@@ -28,7 +28,7 @@ class Map < ActiveRecord::Base
   end
 
   def geo_data_features
-    geo_data.all.map { |data| ::GeoJSON::feature_from_model data  }
+    geo_data.all.map { |data| ::GeoJSON::feature_from_model data if data.location  }
   end
 
   def location_geojson
