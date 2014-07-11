@@ -1,9 +1,9 @@
 <li class="<%= provider %>">
 
 <a href="<%= auth_at_provider_path(:provider => provider) %>">
-    <button class="<%= provider %>">
+    <div class="button <%= provider %>">
       <span class="login-<%= provider %> image"></span>
       <%= t "sessions.login_#{ provider }" %>
-    </button>
+    </div>
   </a>
 </li>

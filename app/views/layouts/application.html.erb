@@ -6,6 +6,9 @@
 
   <%= csrf_meta_tags %>
 
+  <!--[if lt IE 9]>
+    <%= javascript_include_tag "html5shiv" %>
+  <![endif]-->
   <%= javascript_include_tag "head" %>
 
   <%= yield :head %>
@@ -23,7 +26,7 @@
 
   <%= render 'shared/footer' %>
 
-  <%= render 'sessions/sign_in' %>
+  <%= render 'sessions/sign_in' unless logged_in? %>
   <%= render 'sessions/language_selector' %>
 
   <script type="text/javascript">

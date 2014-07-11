@@ -5,7 +5,9 @@
 
     <% else %>
       <h1 class="name"><%= user.name %></h1>
-      <div class="joined"><%= t 'users.profile.joined', date: user.created_at.to_s(:month_and_year) %></div>
+      <time class="joined" datetime="<%= user.created_at.to_datetime.rfc3339 %>">
+        <%= t 'users.profile.joined', date: user.created_at.to_s(:month_and_year) %>
+      </time>
 
     <% end %>
   </div>

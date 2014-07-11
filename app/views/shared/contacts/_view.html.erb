@@ -1,4 +1,4 @@
-<div class="contacts">
+<address class="contacts">
   <ul>
     <% contacts_list_for(object).each do |contact| %>
       <li class="contact-item" title='<%= t("contacts.#{contact[:key]}") %>'>
@@ -13,5 +13,5 @@
       </li>
     <% end %>
   </ul>
-</div>
+</address>
 
