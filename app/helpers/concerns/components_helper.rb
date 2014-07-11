@@ -31,5 +31,9 @@ module Concerns
     def tags_input(f, name, tags)
       f.input name, :input_html => {'data-components' => 'tags', 'data-tags' => tags.to_json, 'data-autocomplete' => tag_search_path }
     end
+
+    def autocomplete_field_tag(name, url)
+      render('shared/components/autocomplete', name: name, url: url).html_safe
+    end
   end
 end

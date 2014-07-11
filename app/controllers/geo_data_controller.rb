@@ -1,6 +1,6 @@
 class GeoDataController < ApplicationController
-  before_action :require_login, only: [:edit, :update]
-  before_action :find_geo_data, only: [:show, :edit, :update, :maps]
+  before_action :require_login, only:   [:edit, :update, :add_to_map]
+  before_action :find_geo_data, except: [:index]
 
   def index
     @geo_data_collection = GeoData.page(params[:page]).per(params[:per])
@@ -23,6 +23,11 @@ class GeoDataController < ApplicationController
   def maps
     @maps = paginate @geo_data.maps
     render layout: nil if request.xhr?
+  end
+
+  def add_to_map
+    puts "\n\n#{params}\n"
+    render json: {}
   end
 
   private
