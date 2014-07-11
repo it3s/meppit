@@ -26,9 +26,7 @@
 
   <%= render 'shared/footer' %>
 
-  <% unless logged_in? %>
-    <%= render 'sessions/sign_in' %>
-  <% end %>
+  <%= render 'sessions/sign_in' unless logged_in? %>
   <%= render 'sessions/language_selector' %>
 
   <script type="text/javascript">
