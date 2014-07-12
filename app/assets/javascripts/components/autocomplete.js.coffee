@@ -11,15 +11,13 @@ App.components.autocomplete = (container) ->
 
     onSelect: (event, ui) ->
       value = ui.item?.id || ""
-      console.log value
       @autocompleteTarget().val(value)
 
     startPlugin: ->
       _this = this
-      @container.autocomplete({
+      @container.autocomplete
         minLength: 2
         source:    _this.data.url
         select:    _this.onSelect.bind(_this)
-      })
 
   }

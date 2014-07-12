@@ -1,8 +1,8 @@
-<div id="add-to-map-modal" class="add-to-map-modal">
+<div id="add-to-map-modal" class="add-to-map-modal" data-components="addToMapFlow">
   <header><h2>Add to a map</h2></header>
   <section>
     <div class="explanation">Select the map in which you want to insert this content</div>
-    <%= form_tag add_to_map_geo_data_path(@geo_data), method: :post, remote: true, "data-components" => "remoteForm" do %>
+    <%= form_tag add_to_map_geo_data_path(@geo_data), method: :post, id: "add-to-map-form", remote: true, "data-components" => "remoteForm" do %>
       <p>
         <%= autocomplete_field_tag :map, search_by_name_maps_path %>
       </p>
