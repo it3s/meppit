@@ -60,6 +60,10 @@ Meppit::Application.routes.draw do
     member do
       get 'geo_data'
     end
+
+    collection do
+      get :search_by_name
+    end
   end
 
   if Rails.env.development?

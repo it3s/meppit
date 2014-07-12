@@ -4,7 +4,7 @@
     <div class="explanation">Select the map in which you want to insert this content</div>
     <%= form_tag add_to_map_geo_data_path(@geo_data), method: :post, remote: true, "data-components" => "remoteForm" do %>
       <p>
-        <%= autocomplete_field_tag :map, "#" %>
+        <%= autocomplete_field_tag :map, search_by_name_maps_path %>
       </p>
 
       <p class="btns">

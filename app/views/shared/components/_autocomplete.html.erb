@@ -1,2 +1,2 @@
-<%= hidden_field_tag name , id: "#{name}-autocomplete" %>
-<%= text_field_tag "#{name}_autocomplete", "", placeholder: "search by map name", "data-components" => "autocomplete", "data-autocomplete" => {name: name, url: url}.to_json %>
+<%= hidden_field_tag name , "", id: "#{name}-autocomplete" %>
+<%= text_field_tag "#{name}_autocomplete", "", placeholder: "search by map name", "data-components" => "autocomplete", "data-component-options" => {name: name, url: url}.to_json %>
