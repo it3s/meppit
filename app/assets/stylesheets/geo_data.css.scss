@@ -31,14 +31,38 @@
   }
 
   .add-to-map {
-    @include action-button($dark-orange, $meppit-maps-color, $white);
+    @include button($meppit-maps-color, $dark-orange, $white, $border: $meppit-maps-color);
     float: right;
   }
   .add-to-map-modal {
     @include modal;
+    min-height: 150px;
+
+    header {
+      margin-bottom: 20px;
+      h2 {text-align: center}
+    }
+
+    .explanation { margin: 0 0 5px 5px; }
+
+    .btns {
+      margin-top: 10px;
+
+      .cancel-btn {
+        @include button;
+        float: right;
+      }
+      .submit-btn {
+        @include green-button;
+        float: right;
+        margin-left: 5px;
+      }
+    }
   }
+
   .download {
-    @include action-button($grey, $ultra-soft-grey, $grey);
+    @include button;
+    margin-left: 10px;
     float: right;
   }
 

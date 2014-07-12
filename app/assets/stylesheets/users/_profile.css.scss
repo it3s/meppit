@@ -11,6 +11,7 @@
     }
 
     .upload-button {
+      @include blue-button;
       width: 220px;
     }
   }

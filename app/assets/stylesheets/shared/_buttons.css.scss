@@ -1,12 +1,9 @@
 .button {
 
   &.follow {
-    color: $dark-grey;
-    background: $ultra-soft-grey;
-
-    text-align: center;
+    @include button;
+    width: 90px;
     margin: 5px;
-    padding: 5px 10px;
 
     .label {
       display: block;
@@ -14,9 +11,8 @@
     }
 
     &.active {
-      color: $white;
-      background: $ocean-blue;
-      &:hover { background: $dark-red; }  // turns to 'Unfollow' button
+      @include button($ocean-blue, $dark-red, $white, $border: $ocean-blue);
+      &:hover { background: $dark-red; border-color: $dark-red; }  // turns to 'Unfollow' button
     }
   }
 

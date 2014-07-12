@@ -31,11 +31,12 @@
   }
 
   .add-data {
-    @include action-button($meppit-dark-blue, $meppit-data-color, $white);
+    @include button($meppit-data-color, $meppit-dark-blue, $white, $border: $meppit-data-color);
     float: right;
   }
   .download {
-    @include action-button($grey, $ultra-soft-grey, $grey);
+    @include button;
+    margin-left: 10px;
     float: right;
   }
 

@@ -23,19 +23,19 @@
   vertical-align: top;
 }
 
-@mixin button() {
+@mixin button($bg: $ultra-soft-grey, $bg-hover: $grey , $fg: $text-color, $fg-hover: $white, $border: $grey) {
   cursor: pointer;
   display: inline-block;
-  color: $white;
-  background-color: $button-color;
-  border: 1px solid $ocean-blue;
+  color: $fg;
+  background-color: $bg;
+  border: 1px solid $border;
   border-radius: 4px;
-  padding: 5px 8px;
+  padding: 8px 14px;
 
-  @include linear-gradient(to top, $button-light-color 0%, $button-color 100%);
+  @include linear-gradient($bg, darken($bg, 10%));
 
   text-decoration: none;
-  &:hover { text-decoration: none; }
+  font-weight: bold;
 
   &.big {
     vertical-align: bottom;
@@ -44,9 +44,18 @@
   }
 
   &:active, &:hover {
-    background: darken($button-color, 10%);
-    color: darken($white, 10%);
+    text-decoration: none;
+    background: $bg-hover;
+    color: $fg-hover;
   }
+}
+
+@mixin green-button {
+  @include button($meppit-dark-green, $meppit-green, $white, $border: $meppit-dark-green);
+}
+
+@mixin blue-button($border: $meppit-dark-blue) {
+  @include button($meppit-dark-blue, lighten($meppit-dark-blue, 10%), $white, $border: $border);
 }
 
 @mixin map-view() {
@@ -58,20 +67,4 @@
   .map { height: 180px; }
   .placeholder  { max-height: 50px; width: 100%; }
   .overlay-message { margin-top: 20px; }
-}
-
-@mixin action-button($dark, $light, $text) {
-  border: solid 1px $dark;
-  border-radius: 4px;
-  background-color: $light;
-  color: $text;
-  padding: 10px;
-  display: inline-block;
-  cursor: pointer;
-  margin-left: 10px;
-
-  &:hover {
-    background-color: $dark;
-    color: $white;
-  }
 }
