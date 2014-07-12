@@ -19,3 +19,5 @@ en:
     list:
       title: '%{count} objects'
 
+    added_to_map: 'Added content to <strong>%{map}</strong>'
+

@@ -54,11 +54,17 @@ startComponents = (evt, root=document) ->
 
 mediator.subscribe 'components:start', startComponents
 
+flashMessage = (msg)->
+  flashMsg = $(msg)
+  $('body').append(flashMsg)
+  mediator.publish 'components:start', flashMsg
+
 # setup global App namesmpace
 window.App =
-  mediator: mediator
-  utils: {}
-  components: components
+  mediator    : mediator
+  utils       : {}
+  components  : components
+  flashMessage: flashMessage
 
 
 # setup testing ns

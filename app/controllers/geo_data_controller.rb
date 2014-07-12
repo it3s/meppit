@@ -27,7 +27,8 @@ class GeoDataController < ApplicationController
 
   def add_to_map
     puts "\n\n#{params}\n"
-    render json: {}
+    msg = flash_xhr t('geo_data.added_to_map', map: 'MapName')
+    render json: {flash: msg}
   end
 
   private

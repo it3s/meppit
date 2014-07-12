@@ -19,3 +19,5 @@ pt-BR:
     list:
       title: '%{count} objetos'
 
+    added_to_map: 'Conteúdo adicionado a <strong>%{map}</strong>'
+

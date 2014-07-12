@@ -68,4 +68,9 @@ class ApplicationController < ActionController::Base
   def cleaned_tags(_params, field_name=:tags)
     (_params[field_name] || '').split(',')
   end
+
+  def flash_xhr(msg)
+    flash.now[:notice] = msg
+    render_to_string(partial: 'shared/alerts')
+  end
 end
