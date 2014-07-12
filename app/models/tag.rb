@@ -7,7 +7,7 @@ class Tag < ActiveRecord::Base
   before_save :downcase
 
   pg_search_scope :search, against: :tag, using: {
-      tsearch:    {},
+      tsearch:    {prefix: true},
       trigram:    {threshold: 0.2},
   }
 

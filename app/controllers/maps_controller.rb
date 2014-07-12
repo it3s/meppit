@@ -27,9 +27,8 @@ class MapsController < ApplicationController
   end
 
   def search_by_name
-    # TODO implement-me
-    puts "\n\n#{params}\n"
-    render json: (1..10).map {|i| {value: "bla #{i}", id: i} }
+    search_result = Map.search_by_name params[:term]
+    render json: search_result.map { |map| {value: map.name, id: map.id} }
   end
 
   private

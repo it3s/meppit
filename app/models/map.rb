@@ -1,8 +1,10 @@
 class Map < ActiveRecord::Base
+  include PgSearch
   include Contacts
   include Taggable
   include Followable
   include Contributable
+
 
   has_many :followings, :as => :followable
   has_many :followers, :through => :followings
@@ -16,6 +18,11 @@ class Map < ActiveRecord::Base
 
   validates :name, presence: true
   validates :administrator, presence: true
+
+  pg_search_scope :search_by_name, against: :name, using: {
+    tsearch: {prefix: true},
+    trigram: {threshold: 0.2},
+  }
 
   def data_count
     geo_data.count
