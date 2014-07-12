@@ -1,5 +1,5 @@
 <%= link_to_modal icon("download"), "#", html: {class: "download"} %>
-<%= link_to_modal icon("globe", t("geo_data.add_to_map")), "#add-to-map-modal", html: {class: "add-to-map"} %>
+<%= link_to_modal icon("globe", t("geo_data.add_to_map")), "#add-to-map-modal", login_required: true, html: {class: "add-to-map"} %>
 
 <%= render "geo_data/add_to_map_modal" %>
 

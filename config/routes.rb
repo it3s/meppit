@@ -3,9 +3,10 @@ Meppit::Application.routes.draw do
 
   get  "language/:code" => "application#language", as: :language
 
-  get  "logout"   => "sessions#destroy", as: :logout
-  get  "login"    => "sessions#new",     as: :login
-  post "login"    => "sessions#create",  as: :do_login
+  get  "logout" => "sessions#destroy", as: :logout
+  get  "login"  => "sessions#new",     as: :login
+  post "login"  => "sessions#create",  as: :do_login
+  get  "sessions/logged_in" => "sessions#logged_in", as: :logged_in
 
   post "oauth/:provider/callback"  => "authentications#callback"
   get  "oauth/:provider/callback"  => "authentications#callback"
