@@ -3,3 +3,5 @@ pt-BR:
 
     autocomplete:
       map: 'procure um mapa pelo nome'
+      geo_data: 'procure um dado pelo nome'
+

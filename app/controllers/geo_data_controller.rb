@@ -35,6 +35,11 @@ class GeoDataController < ApplicationController
     end
   end
 
+  def search_by_name
+    # TODO implement-me
+    render json: []
+  end
+
   private
 
   def data_params

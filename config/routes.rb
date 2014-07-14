@@ -54,12 +54,17 @@ Meppit::Application.routes.draw do
       get  'maps'
       post 'add_to_map'
     end
+
+    collection do
+      get :search_by_name
+    end
   end
 
   resources :maps, only: [:index, :show, :edit, :update, :geo_data],
                    concerns: [:contributable, :followable] do
     member do
-      get 'geo_data'
+      get  'geo_data'
+      post 'add_data'
     end
 
     collection do

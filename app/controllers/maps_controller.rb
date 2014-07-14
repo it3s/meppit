@@ -26,6 +26,11 @@ class MapsController < ApplicationController
     render layout: nil if request.xhr?
   end
 
+  def add_data
+    # TODO implement-me
+    render json: {}
+  end
+
   def search_by_name
     search_result = Map.search_by_name params[:term]
     render json: search_result.map { |map| {value: map.name, id: map.id} }
