@@ -15,17 +15,13 @@ module ApplicationHelper
     url.starts_with?('http://') ? url : "http://#{url}"
   end
 
+  def available_types
+    @_available_types ||= [:user, :geo_data, :map]
+  end
+
   def object_type(obj)
-    # TODO refactor this
-    if obj.kind_of? User
-      :user
-    elsif obj.kind_of? GeoData
-      :data
-    elsif obj.kind_of? Map
-      :map
-    else
-      :unknown
-    end
+    _type = obj.class.name.underscore.to_sym
+    available_types.include?(_type) ? _type : :unknown
   end
 
   def menu_active?(controller_name)

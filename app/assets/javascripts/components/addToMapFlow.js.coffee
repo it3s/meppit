@@ -5,6 +5,7 @@ App.components.addToMapFlow = (container) ->
     formId: 'remoteForm:add-to-map-form'
 
     init: ->
+      @identifier = @container.data('identifier')
       @addListeners()
 
     addListeners: ->
@@ -21,6 +22,7 @@ App.components.addToMapFlow = (container) ->
 
     onSuccess: (el, response) ->
       @closeModal()
+      App.mediator.publish("mapping:changed", {id: @identifier, count: response.count})
       App.flashMessage(response.flash)
 
     listen: ->

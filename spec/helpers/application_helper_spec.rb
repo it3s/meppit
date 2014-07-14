@@ -17,7 +17,7 @@ describe ApplicationHelper do
     let(:geo_data) { FactoryGirl.create :geo_data }
     let(:map) { FactoryGirl.create :map }
     it { expect(helper.object_type user).to eq :user }
-    it { expect(helper.object_type geo_data).to eq :data }
+    it { expect(helper.object_type geo_data).to eq :geo_data }
     it { expect(helper.object_type map).to eq :map }
     it { expect(helper.object_type nil).to eq :unknown }
   end

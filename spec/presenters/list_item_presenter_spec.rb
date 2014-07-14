@@ -58,7 +58,7 @@ describe ListItemPresenter do
         expect(presenter.ctx).to receive(:object_type).with(object).and_return :map
         expect(presenter.ctx).to receive(:icon).with(:globe).and_return 'globe icon'
         expect(presenter.avatar).to eq 'globe icon'
-        expect(presenter.ctx).to receive(:object_type).with(object).and_return :data
+        expect(presenter.ctx).to receive(:object_type).with(object).and_return :geo_data
         expect(presenter.ctx).to receive(:icon).with(:'map-marker').and_return 'marker icon'
         expect(presenter.avatar).to eq 'marker icon'
         expect(presenter.ctx).to receive(:object_type).with(object).and_return :user

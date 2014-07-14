@@ -40,9 +40,9 @@ class CountersPresenter
 
   def _data_counter
     {
-      icon:   :'map-marker',
-      string: 'counters.data',
-      method: :data_count,
+      icon:       :'map-marker',
+      string:     'counters.data',
+      method:     :data_count,
       classname:  "data-counter",
       url_params: [:geo_data, object]
     }
@@ -50,37 +50,38 @@ class CountersPresenter
 
   def _maps_counter
     {
-      icon:   :globe,
-      string: 'counters.maps',
-      method: :maps_count,
+      icon:       :globe,
+      string:     'counters.maps',
+      method:     :maps_count,
       classname:  "maps-counter",
-      url_params: [:maps, object]
+      url_params: [:maps, object],
+      component:  _component_for('maps')
     }
   end
 
   def _followers_counter
     {
-      icon:   :star,
-      string: 'counters.followers',
-      method: :followers_count,
+      icon:       :star,
+      string:     'counters.followers',
+      method:     :followers_count,
       classname:  "followers-counter",
       url_params: [object, :followers],
-      component: _followers_component
+      component:  _component_for('followers')
     }
   end
 
   def _contributors_counter
     {
-      icon:   :users,
-      string: 'counters.contributors',
-      method: :contributors_count,
+      icon:       :users,
+      string:     'counters.contributors',
+      method:     :contributors_count,
       classname:  "contributors-counter",
       url_params: [object, :contributors]
     }
   end
 
-  def _followers_component
-    opts_json = {type: 'followers', id: ctx.identifier_for(object)}.to_json
+  def _component_for(type)
+    opts_json = {type: type, id: ctx.identifier_for(object)}.to_json
     {
       :type => "counter",
       :opts => "data-counter=#{ opts_json } "

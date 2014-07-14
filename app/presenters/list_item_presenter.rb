@@ -62,7 +62,7 @@ class ListItemPresenter
       case ctx.object_type object
       when :map
         ctx.icon :globe
-      when :data
+      when :geo_data
         ctx.icon :'map-marker'
       when :user
         ctx.icon :user
