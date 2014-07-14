@@ -1,0 +1,5 @@
+pt-BR:
+  components:
+
+    autocomplete:
+      map: 'procure um mapa pelo nome'

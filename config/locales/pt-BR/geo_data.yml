@@ -11,7 +11,6 @@ pt-BR:
 
     last_updated: 'Última atualização %{date}'
 
-    add_to_map: "Adicone a um Mapa"
     maps:
       title: "Mapas"
       empty: "%{name} não está em nenhum mapa ainda."
@@ -19,5 +18,7 @@ pt-BR:
     list:
       title: '%{count} objetos'
 
-    added_to_map: 'Conteúdo adicionado a <strong>%{map}</strong>'
-
+    add_to_map:
+      title: "Adicione a um Mapa"
+      added: "Conteúdo adicionado a <strong>%{map}</strong>"
+      explanation: "Selecione o mapa em que você deseja inserir esse conteúdo"

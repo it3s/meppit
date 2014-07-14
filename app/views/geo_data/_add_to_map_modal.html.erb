@@ -1,15 +1,15 @@
 <div id="add-to-map-modal" class="add-to-map-modal" data-components="addToMapFlow">
-  <header><h2>Add to a map</h2></header>
+  <header><h2><%= t 'geo_data.add_to_map.title' %></h2></header>
   <section>
-    <div class="explanation">Select the map in which you want to insert this content</div>
+    <div class="explanation"><%=  t 'geo_data.add_to_map.explanation' %></div>
     <%= form_tag add_to_map_geo_data_path(@geo_data), method: :post, id: "add-to-map-form", remote: true, "data-components" => "remoteForm" do %>
       <p>
         <%= autocomplete_field_tag :map, search_by_name_maps_path %>
       </p>
 
       <p class="btns">
-        <%= submit_tag 'add', class: "submit-btn" %>
-        <button class="cancel-btn">cancel</button>
+        <%= submit_tag t('save'), class: "submit-btn" %>
+        <button class="cancel-btn"><%= t('cancel') %></button>
       </p>
     <% end %>
   </section>

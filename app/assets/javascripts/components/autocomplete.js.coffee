@@ -7,7 +7,7 @@ App.components.autocomplete = (container) ->
       @startPlugin()
 
     autocompleteTarget: ->
-      $("##{@container.name}_autocomplete");
+      $("##{@data.name}-autocomplete");
 
     onSelect: (event, ui) ->
       value = ui.item?.id || ""
