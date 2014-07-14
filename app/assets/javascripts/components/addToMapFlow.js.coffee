@@ -25,12 +25,15 @@ App.components.addToMapFlow = (container) ->
       App.mediator.publish("mapping:changed", {id: @identifier, count: response.count})
       App.flashMessage(response.flash)
 
+    onError: (el, response) ->
+      @closeModal()
+      App.flashMessage(response.flash)
+
     listen: ->
       _this = this
       @form = App.components._instances[@formId]
-      cancelButton = @container.find(".cancel-btn")
 
-      cancelButton.on 'click', @closeModal.bind(_this)
       @form.onSuccess = @onSuccess.bind(_this)
+      @form.onError = @onError.bind(_this)
 
   }

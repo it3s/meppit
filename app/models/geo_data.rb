@@ -21,7 +21,10 @@ class GeoData < ActiveRecord::Base
   end
 
   def maps_count
-    #TODO refactor to concern
     maps.count
+  end
+
+  def add_to_map(map)
+    mappings.create map: map
   end
 end

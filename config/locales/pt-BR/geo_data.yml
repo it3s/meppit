@@ -21,4 +21,7 @@ pt-BR:
     add_to_map:
       title: "Adicione a um Mapa"
       added: "Conteúdo adicionado a <strong>%{map}</strong>"
+      exists: "Conteúdo já existe em <strong>%{map}</strong>"
       explanation: "Selecione o mapa em que você deseja inserir esse conteúdo"
+      invalid: "Mapa Inválido"
+

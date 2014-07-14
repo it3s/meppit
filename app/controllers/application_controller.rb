@@ -1,14 +1,14 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery :with => :exception
+  protect_from_forgery with: :exception
 
-  before_action :set_locale, :except => :language
+  before_action :set_locale, except: :language
 
   def language
     code = params[:code]
     if I18n.available_locales.include? code.to_sym
-      current_user.update(:language => code) if current_user
+      current_user.update(language: code) if current_user
       session[:language] = code
     end
     redirect_to :back
@@ -41,9 +41,9 @@ class ApplicationController < ActionController::Base
       obj_name = obj.class.name.underscore
       EventBus.publish "#{obj_name}_updated", obj_name.to_sym => obj, current_user: current_user
       flash[:notice] = t('flash.updated')
-      render :json => {:redirect => polymorphic_path([obj])}
+      render json: {redirect: polymorphic_path([obj])}
     else
-      render :json => {:errors => obj.errors.messages}, :status => :unprocessable_entity
+      render json: {errors: obj.errors.messages}, status: :unprocessable_entity
     end
   end
 

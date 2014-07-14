@@ -26,10 +26,13 @@ class GeoDataController < ApplicationController
   end
 
   def add_to_map
-    # TODO implement-me
-    puts "\n\nID: #{params[:map]}\n\n"
-    msg = flash_xhr t('geo_data.add_to_map.added', map: 'MapName')
-    render json: {flash: msg, count: Random.rand(10)}
+    if map = Map.find_by(id: params[:map])
+      _mapping, msg = create_mapping map
+      render json: {flash: flash_xhr(msg), count: @geo_data.maps_count}
+    else
+      msg = t('geo_data.add_to_map.invalid')
+      render json: {flash: flash_xhr(msg)}, status: :unprocessable_entity
+    end
   end
 
   private
@@ -43,5 +46,11 @@ class GeoDataController < ApplicationController
 
   def find_geo_data
     @geo_data = GeoData.find params[:id]
+  end
+
+  def create_mapping(map)
+    mapping = @geo_data.add_to_map map
+    msg_type = mapping.id ? 'added' : 'exists'
+    [mapping, t("geo_data.add_to_map.#{msg_type}", map: map.name)]
   end
 end
