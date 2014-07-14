@@ -5,8 +5,8 @@ class GeoData < ActiveRecord::Base
   include Followable
   include Contributable
 
-  has_many :followings, :as => :followable
-  has_many :followers, :through => :followings
+  has_many :followings, as: :followable
+  has_many :followers, through: :followings
 
   has_many :mappings
   has_many :maps, through: :mappings
