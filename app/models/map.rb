@@ -41,4 +41,9 @@ class Map < ActiveRecord::Base
   def location_geojson
     location ? location.to_json : nil
   end
+
+  def add_data(geo_data)
+    mappings.create geo_data: geo_data
+  end
+
 end

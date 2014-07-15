@@ -1,4 +1,5 @@
 class GeoData < ActiveRecord::Base
+  include PgSearch
   include Contacts
   include Geometry
   include Taggable
@@ -15,6 +16,11 @@ class GeoData < ActiveRecord::Base
   searchable_tags :tags
 
   validates :name, presence: true
+
+  pg_search_scope :search_by_name, against: :name, using: {
+    tsearch: {prefix: true},
+    trigram: {threshold: 0.2},
+  }
 
   def geojson_properties
     {name: name, id: id, description: description}

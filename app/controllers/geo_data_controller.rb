@@ -1,6 +1,6 @@
 class GeoDataController < ApplicationController
   before_action :require_login, only:   [:edit, :update, :add_to_map]
-  before_action :find_geo_data, except: [:index]
+  before_action :find_geo_data, except: [:index, :search_by_name]
 
   def index
     @geo_data_collection = GeoData.page(params[:page]).per(params[:per])
@@ -36,8 +36,8 @@ class GeoDataController < ApplicationController
   end
 
   def search_by_name
-    # TODO implement-me
-    render json: []
+    search_result = GeoData.search_by_name params[:term]
+    render json: search_result.map { |geo_data| {value: geo_data.name, id: geo_data.id} }
   end
 
   private

@@ -1,4 +1,4 @@
-App.components.addToMapFlow = (container) ->
+App.components.addToMapManager = (container) ->
   {
     container: container
 

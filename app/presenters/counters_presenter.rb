@@ -44,7 +44,8 @@ class CountersPresenter
       string:     'counters.data',
       method:     :data_count,
       classname:  "data-counter",
-      url_params: [:geo_data, object]
+      url_params: [:geo_data, object],
+      component:  _component_for('geo_data')
     }
   end
 

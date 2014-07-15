@@ -15,10 +15,11 @@ App.components.counter = (container) ->
     {
       'followers': 'following:changed'
       'maps'     : 'mapping:changed'
+      'geo_data' : 'mapping:changed'
     }[@type]
 
   addListeners: ->
     _this = this
-
+    console.log @type
     App.mediator.subscribe @eventName(), (evt, data) ->
       _this.updateLabel(data.count) if data.id == _this.id
