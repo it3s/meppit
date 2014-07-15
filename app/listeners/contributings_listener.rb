@@ -12,7 +12,7 @@ class ContributingsListener
 
   def save_contribution(contributable, contributor)
     if contributable.nil? || contributor.nil?
-      logger.error "Error trying to save contribution: contributable=#{contributable} contributor=#{contributor}"
+      Rails.logger.error "Error trying to save contribution: contributable=#{contributable} contributor=#{contributor}"
     else
       contributable.add_contributor contributor
     end
