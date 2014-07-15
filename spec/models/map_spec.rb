@@ -100,5 +100,34 @@ describe Map do
 
       it { expect(map.location_geojson).to eq geojson.to_json }
     end
+
+    describe "#add_data" do
+      before { map.mappings.destroy_all }
+
+      it "adds a new geo_data mapping" do
+        mapping = map.add_data data1
+        expect(mapping.id).to_not be nil
+        expect(map.mappings.count).to eq 1
+        expect(map.geo_data.first).to eq data1
+      end
+
+      it "does not add duplicated mapping" do
+        map.add_data data1
+        mapping = map.add_data data1
+        expect(mapping.id).to be nil
+        expect(map.mappings.count).to eq 1
+      end
+    end
+  end
+
+  describe ".search_by_name" do
+    before do
+      ['Open Data Orgs', 'ONGS', 'Data Centers', 'bla', 'ble'].each { |n| FactoryGirl.create :map, name: n }
+    end
+
+    it { expect(Map.search_by_name('op'  ).map(&:name)).to eq ['Open Data Orgs'] }
+    it { expect(Map.search_by_name('on'  ).map(&:name)).to eq ['ONGS'] }
+    it { expect(Map.search_by_name('data').map(&:name)).to eq ['Open Data Orgs', 'Data Centers'] }
+    it { expect(Map.search_by_name('bl'  ).map(&:name)).to eq ['bla', 'ble'] }
   end
 end

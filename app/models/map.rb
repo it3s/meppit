@@ -1,9 +1,9 @@
 class Map < ActiveRecord::Base
-  include PgSearch
   include Contacts
   include Taggable
   include Followable
   include Contributable
+  include Searchable
 
 
   has_many :followings, :as => :followable
@@ -15,14 +15,11 @@ class Map < ActiveRecord::Base
   belongs_to :administrator, class_name: 'User'
 
   searchable_tags :tags
+  search_field :name
 
   validates :name, presence: true
   validates :administrator, presence: true
 
-  pg_search_scope :search_by_name, against: :name, using: {
-    tsearch: {prefix: true},
-    trigram: {threshold: 0.2},
-  }
 
   def data_count
     geo_data.count
