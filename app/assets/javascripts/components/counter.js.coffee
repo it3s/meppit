@@ -20,6 +20,5 @@ App.components.counter = (container) ->
 
   addListeners: ->
     _this = this
-    console.log @type
     App.mediator.subscribe @eventName(), (evt, data) ->
       _this.updateLabel(data.count) if data.id == _this.id
