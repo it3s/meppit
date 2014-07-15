@@ -48,6 +48,12 @@ describe GeoData do
         expect(geo_data.mappings.count).to eq 1
       end
     end
+
+    it "destroys associated mappings when deleted" do
+      expect(Mapping.where(geo_data: geo_data).count).to eq 1
+      geo_data.destroy
+      expect(Mapping.where(geo_data: geo_data).count).to eq 0
+    end
   end
 
   describe ".search_by_name" do
