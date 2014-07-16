@@ -2,6 +2,9 @@ module Followable
   extend ActiveSupport::Concern
 
   included do
+    has_many :followings, :as => :followable
+    has_many :followers, :through => :followings
+
     after_destroy :clean_followings_for_destroyed_followable!
 
     def followers

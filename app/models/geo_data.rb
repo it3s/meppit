@@ -7,12 +7,10 @@ class GeoData < ActiveRecord::Base
   include Mappable
   include Searchable
 
-  has_many :followings, as: :followable
-  has_many :followers, through: :followings
-
   geojson_field :location
   searchable_tags :tags
   search_field :name
+  has_maps
 
   validates :name, presence: true
 

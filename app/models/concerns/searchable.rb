@@ -4,11 +4,6 @@ module Searchable
   included do
     include PgSearch
 
-    pg_search_scope :search_by_name, against: :name, using: {
-      tsearch: {prefix: true},
-      trigram: {threshold: 0.2},
-    }
-
   end
 
   module ClassMethods

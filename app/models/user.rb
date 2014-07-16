@@ -1,20 +1,14 @@
 class User < ActiveRecord::Base
+  include Authenticable
   include Contacts
   include Contributor
   include Geometry
   include Taggable
-  include Follower
   include Followable
-
-  authenticates_with_sorcery! do |config|
-    config.authentications_class = Authentication
-  end
+  include Follower
 
   mount_uploader :avatar, AvatarUploader
   process_in_background :avatar
-
-  has_many :authentications, dependent: :destroy
-  accepts_nested_attributes_for :authentications
 
   geojson_field :location
   searchable_tags :interests
