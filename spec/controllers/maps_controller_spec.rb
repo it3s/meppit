@@ -78,6 +78,11 @@ describe MapsController do
       expect(map.reload.description).to eq "<h2>Test</h2> <p>save html text</p>"
     end
 
+    it "publishes map_updated to EventBus" do
+      expect(EventBus).to receive(:publish).with("map_updated", anything)
+      post :update, {:id => map.id, :map => map_params}
+    end
+
     it 'validates model and returns errors' do
       post :update, {:id => map.id, :map => map_params.merge!(:name => "")}
       expect(assigns :map).to eq map

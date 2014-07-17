@@ -74,6 +74,11 @@ describe GeoDataController do
       expect(geo_data.reload.description).to eq "<h2>Test</h2> <p>save html text</p>"
     end
 
+    it "publishes geo_data_updated to EventBus" do
+      expect(EventBus).to receive(:publish).with("geo_data_updated", anything)
+      post :update, {:id => geo_data.id, :geo_data => data_params}
+    end
+
     it 'validates model and returns errors' do
       post :update, {:id => geo_data.id, :geo_data => data_params.merge!(:name => "")}
       expect(assigns :geo_data).to eq geo_data
