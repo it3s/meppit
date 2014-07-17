@@ -28,7 +28,7 @@ describe GeoDataController do
       get :show, {:id => geo_data.id}
     end
 
-    it 'sets user and render template' do
+    it 'sets geo_data and render template' do
       get :show, {:id => geo_data.id}
       expect(assigns :geo_data).to eq geo_data
       expect(response).to render_template :show
@@ -62,8 +62,6 @@ describe GeoDataController do
   end
 
   describe "POST update" do
-    let!(:geo_data) { FactoryGirl.create :geo_data }
-    let!(:user) { FactoryGirl.create :user }
     let(:data_params) { {:description => "<h2>Test</h2> <p>save html text</p>",
                          :name => geo_data.name} }
 
@@ -73,15 +71,13 @@ describe GeoDataController do
       post :update, {:id => geo_data.id, :geo_data => data_params}
       expect(assigns :geo_data).to eq geo_data
       expect(response.body).to match({:redirect => geo_data_path(geo_data)}.to_json)
-      geo_data.reload
-      expect(geo_data.description).to eq "<h2>Test</h2> <p>save html text</p>"
+      expect(geo_data.reload.description).to eq "<h2>Test</h2> <p>save html text</p>"
     end
 
     it 'validates model and returns errors' do
       post :update, {:id => geo_data.id, :geo_data => data_params.merge!(:name => "")}
       expect(assigns :geo_data).to eq geo_data
       expect(response.body).to eq({:errors => {:name => [controller.t('activerecord.errors.messages.blank')]}}.to_json)
-      geo_data.reload
     end
   end
 
