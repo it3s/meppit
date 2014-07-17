@@ -214,6 +214,25 @@ describe ApplicationHelper do
         end
       end
     end
+
+    describe "#autocomplete_field_tag" do
+      let(:rendered) { <<-HTML
+<input id="map-autocomplete" name="map" type="hidden" value="" />
+<input data-component-options="{&quot;name&quot;:&quot;map&quot;,&quot;url&quot;:&quot;/fake-url&quot;}" data-components="autocomplete" id="map_autocomplete" name="map_autocomplete" placeholder="search by map name" type="text" value="" />
+HTML
+      }
+
+      it "calls render on the autocomplete partial" do
+        expect(helper).to receive(:render
+          ).with("shared/components/autocomplete", name: "test", url: "/fake-url"
+          ).and_return("")
+        helper.autocomplete_field_tag("test", "/fake-url")
+      end
+
+      it "generates component's markup" do
+        expect(helper.autocomplete_field_tag "map", "/fake-url" ).to eq rendered
+      end
+    end
   end
 
 end

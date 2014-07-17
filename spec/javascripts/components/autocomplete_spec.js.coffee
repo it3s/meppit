@@ -18,7 +18,7 @@ describe 'autocomplete', ->
     describe "init", ->
       it "sets data", ->
         @component.init()
-        expect(@component.data).to.be.deep.equal {"name":"test","url":"[\"bla\",\"ble\"]"}
+        expect(@component.data).to.be.deep.equal {"name":"test","url":"/"}
 
       it "start plugin", ->
         spy @component, 'startPlugin', =>
