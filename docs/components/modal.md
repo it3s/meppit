@@ -68,9 +68,10 @@ end
 
 other options are passed to modal via `data-modal`:
 
-:prevent_close => default false  # prevent modal from being closed
-:auto_load => default false      # auto open modal
-:remote => default false         # loads modal content via ajax
+:prevent_close => default false   # prevent modal from being closed
+:auto_load => default false       # auto open modal
+:remote => default false          # loads modal content via ajax
+:login_required => default false  # requires user to be logged in
 ```
 
 OBS: when the modal content is loaded remotely, it starts all components inside the modal.
