@@ -1,15 +1,12 @@
 class Tag < ActiveRecord::Base
   # used for indexing and search of tag-like array fields
-  include PgSearch
+  include Searchable
 
   validates :tag, uniqueness: true
 
   before_save :downcase
 
-  pg_search_scope :search, against: :tag, using: {
-      tsearch:    {},
-      trigram:    {threshold: 0.2},
-  }
+  search_field :tag
 
   def downcase
     tag.downcase!
@@ -17,5 +14,9 @@ class Tag < ActiveRecord::Base
 
   def self.build(tag)
     self.new tag: tag.downcase
+  end
+
+  def self.search(term)
+    search_by_tag term
   end
 end

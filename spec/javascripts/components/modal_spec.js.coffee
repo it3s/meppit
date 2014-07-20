@@ -66,6 +66,18 @@ describe 'modal', ->
             @component.container.trigger('click')
             expect(@component.start).to.be.called
 
+      it 'does not open if login_required and user not loggedIn', ->
+        @component.init()
+        @component.data.login_required = true
+        @component.container.data("loggedIn", false)
+
+        expect(@component.shouldOpen()).to.be.false
+
+        spy @component.target, "modal", =>
+          @component.open()
+          expect(@component.target.modal).to.not.be.called
+
+
     describe 'remote modal', ->
       beforeEach ->
         @container = $ JST['templates/modal_remote']()

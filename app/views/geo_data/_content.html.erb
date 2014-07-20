@@ -1,5 +1,7 @@
-<button class="download"><%= icon "download" %></button>
-<button class="add-to-map"><%= icon "globe", t("geo_data.add_to_map") %></button>
+<%= link_to_modal icon("download"), "#", html: {class: "download"} %>
+<%= link_to_modal icon("globe", t("geo_data.add_to_map.title")), "#add-to-map-modal", login_required: true, html: {class: "add-to-map"} %>
+
+<%= render "geo_data/add_to_map_modal", geo_data: geo_data %>
 
 <section class="main-info">
 
@@ -12,14 +14,14 @@
     </ul>
 
     <div class="extra-info" >
-      <%= render 'shared/contacts/view', :object => geo_data %>
-      <%= render 'shared/tags', :tags => geo_data.tags %>
+      <%= render 'shared/contacts/view', object: geo_data %>
+      <%= render 'shared/tags', tags: geo_data.tags %>
     </div>
 
     <div class="tab-content" id="content">
       <div class="description">
         <% if geo_data.description.blank? %>
-          <%= t 'geo_data.description.empty', :name => geo_data.name %>
+          <%= t 'geo_data.description.empty', name: geo_data.name %>
         <% else %>
           <%= raw geo_data.description %>
         <% end %>

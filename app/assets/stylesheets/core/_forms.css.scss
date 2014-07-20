@@ -18,14 +18,8 @@ form {
 
   input[type=button],
   input[type=submit] {
+    @include green-button;
     width: auto;
-    border: 0;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-weight: bold;
-    color: $white;
-    @include linear-gradient($meppit-green, darken($meppit-green, 15%));
-    &:hover { background: lighten($meppit-green, 3%); }
   }
 
   input[type="radio"],
@@ -57,13 +51,10 @@ form {
     padding: 15px 0;
 
     .edit-save {
-      display: inline-block;
+      @include blue-button($border: darken($meppit-dark-blue, 20%));
       max-width: 200px;
       margin-right: 10px;
       padding: 5px 25px;
-
-      @include linear-gradient($meppit-dark-blue, darken($meppit-dark-blue, 15%));
-      &:hover { background: lighten($meppit-dark-blue, 3%); }
     }
   }
 

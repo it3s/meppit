@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe CountersPresenter do
   let(:object) { double('object', data_count: 1, followers_count: 2) }
-  let(:presenter) { CountersPresenter.new object: object, ctx: double('ctx', url_for: 'url') }
+  let(:presenter) { CountersPresenter.new object: object, ctx: double('ctx', url_for: 'url', identifier_for: 'id#num') }
 
   describe "#size_" do
     it "default size is medium" do
@@ -58,7 +58,7 @@ describe CountersPresenter do
 
     describe "value" do
       context "size is :big" do
-        let(:presenter) { CountersPresenter.new object: object, ctx: double('ctx', url_for: 'url'), size: :big}
+        let(:presenter) { CountersPresenter.new object: object, ctx: double('ctx', url_for: 'url', identifier_for: 'id#num'), size: :big}
 
         it "calls i18n method" do
           expect(presenter.ctx).to receive(:t).with('counters.data', count: "<em class=\"counter-label\">1</em>")

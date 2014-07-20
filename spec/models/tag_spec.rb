@@ -28,7 +28,7 @@ describe Tag do
       ['ruby', 'rugby', 'ruby on rails', 'bla', 'rails'].each { |tg| Tag.create tag: tg }
     end
 
-    it { expect(Tag.search('ru'  ).map(&:tag)).to eq ['ruby', 'rugby'] }
+    it { expect(Tag.search('ru'  ).map(&:tag)).to eq ['ruby', 'rugby', 'ruby on rails'] }
     it { expect(Tag.search('ruby').map(&:tag)).to eq ['ruby', 'ruby on rails', 'rugby'] }
     it { expect(Tag.search('rubi').map(&:tag)).to eq ['ruby', 'rugby', 'ruby on rails'] }
   end

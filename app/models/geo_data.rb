@@ -4,24 +4,17 @@ class GeoData < ActiveRecord::Base
   include Taggable
   include Followable
   include Contributable
-
-  has_many :followings, :as => :followable
-  has_many :followers, :through => :followings
-
-  has_many :mappings
-  has_many :maps, through: :mappings
+  include Mappable
+  include Searchable
 
   geojson_field :location
   searchable_tags :tags
+  search_field :name
+  has_maps
 
   validates :name, presence: true
 
   def geojson_properties
     {name: name, id: id, description: description}
-  end
-
-  def maps_count
-    #TODO refactor to concern
-    maps.count
   end
 end

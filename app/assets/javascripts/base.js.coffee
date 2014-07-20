@@ -25,6 +25,12 @@ _randomId = ->
 _compId = (name, container) ->
   "#{name}:#{container.attr('id') || _randomId()}"
 
+onComponentStarted = (name, container, component) ->
+  _id = _compId(name, container)
+  components._instances[_id] = component
+  container.data('components-started', true)
+  mediator.publish 'component:started', _id
+
 # Initialize a component and add the instance to the container data
 setupContainer = (container) ->
   container = $(container) unless container.jquery
@@ -32,9 +38,7 @@ setupContainer = (container) ->
   _.each names, (name) =>
     component = components[name]?(container)
     asyncFn ->  component.init()
-    .then   ->  components._instances[_compId(name, container)] = component
-  container.data('components-started', true)
-
+    .then   ->  onComponentStarted(name, container, component)
 
 # check if the components are already started
 containerStarted = (container) ->
@@ -50,11 +54,17 @@ startComponents = (evt, root=document) ->
 
 mediator.subscribe 'components:start', startComponents
 
+flashMessage = (msg)->
+  flashMsg = $(msg)
+  $('body').append(flashMsg)
+  mediator.publish 'components:start', flashMsg
+
 # setup global App namesmpace
 window.App =
-  mediator: mediator
-  utils: {}
-  components: components
+  mediator    : mediator
+  utils       : {}
+  components  : components
+  flashMessage: flashMessage
 
 
 # setup testing ns

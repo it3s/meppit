@@ -103,3 +103,7 @@ h3 {
     left: 80% !important;
   }
 }
+
+.ui-autocomplete.ui-menu { // fix for autocomplete menu on modals
+  z-index: 10005 !important;
+}

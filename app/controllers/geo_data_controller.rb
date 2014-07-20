@@ -1,8 +1,6 @@
 class GeoDataController < ApplicationController
-  include ContributableController
-
-  before_action :require_login, only: [:edit, :update]
-  before_action :find_geo_data, only: [:show, :edit, :update, :maps]
+  before_action :require_login, only:   [:edit, :update, :add_to_map]
+  before_action :find_geo_data, except: [:index, :search_by_name]
 
   def index
     @geo_data_collection = GeoData.page(params[:page]).per(params[:per])
@@ -27,10 +25,19 @@ class GeoDataController < ApplicationController
     render layout: nil if request.xhr?
   end
 
-  protected
+  def add_to_map
+    if map = Map.find_by(id: params[:map])
+      _mapping, msg = create_mapping map
+      render json: {flash: flash_xhr(msg), count: @geo_data.maps_count}
+    else
+      msg = t('geo_data.add_to_map.invalid')
+      render json: {flash: flash_xhr(msg)}, status: :unprocessable_entity
+    end
+  end
 
-  def after_update
-    save_contribution @geo_data, current_user
+  def search_by_name
+    search_result = GeoData.search_by_name params[:term]
+    render json: search_result.map { |geo_data| {value: geo_data.name, id: geo_data.id} }
   end
 
   private
@@ -46,4 +53,9 @@ class GeoDataController < ApplicationController
     @geo_data = GeoData.find params[:id]
   end
 
+  def create_mapping(map)
+    mapping = @geo_data.add_to_map map
+    msg_type = mapping.id ? 'added' : 'exists'
+    [mapping, t("geo_data.add_to_map.#{msg_type}", map: map.name)]
+  end
 end

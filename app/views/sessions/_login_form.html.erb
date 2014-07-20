@@ -1,8 +1,8 @@
-<%= form_tag do_login_url, :method => :post,
-                        :id => 'login-form',
-                        :class => 'login-form',
-                        :remote => true,
-                        'data-components' => 'remoteForm' do %>
+<%= form_tag do_login_url, method: :post,
+                           id: 'login-form',
+                           class: 'login-form',
+                           remote: true,
+                           'data-components' => 'remoteForm' do %>
   <p>
     <%= label_tag :email, t('sessions.form.login.email') %>
     <%= email_field_tag :email %>

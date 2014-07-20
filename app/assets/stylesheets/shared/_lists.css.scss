@@ -70,7 +70,7 @@ nav.pagination { display: none; }  // We are using infinite scroll
     .item-avatar { background: $meppit-maps-color; }
     .item .item-title { color: $meppit-maps-color; }
   }
-  &.data {
+  &.geo_data {
     .item-avatar { background: $meppit-data-color; }
     .item .item-title { color: $meppit-data-color; }
   }

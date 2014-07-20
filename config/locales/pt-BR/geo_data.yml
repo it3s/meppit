@@ -11,11 +11,17 @@ pt-BR:
 
     last_updated: 'Última atualização %{date}'
 
-    add_to_map: "Adicone a um Mapa"
     maps:
       title: "Mapas"
       empty: "%{name} não está em nenhum mapa ainda."
 
     list:
       title: '%{count} objetos'
+
+    add_to_map:
+      title: "Adicione a um Mapa"
+      added: "Conteúdo adicionado a <strong>%{map}</strong>"
+      exists: "Conteúdo já existe em <strong>%{map}</strong>"
+      explanation: "Selecione o mapa em que você deseja inserir esse conteúdo"
+      invalid: "Mapa Inválido"
 

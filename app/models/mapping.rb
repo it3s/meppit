@@ -4,4 +4,6 @@ class Mapping < ActiveRecord::Base
 
   validates :map, presence: true
   validates :geo_data, presence: true
+
+  validates :geo_data, uniqueness: {scope: :map}
 end

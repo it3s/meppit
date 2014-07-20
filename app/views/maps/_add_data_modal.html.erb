@@ -1,0 +1,15 @@
+<div id="add-data-modal" class="add-data-modal" data-components="addDataManager" data-identifier="<%= identifier_for(map) %>">
+  <header><h2><%= t 'maps.add_data.title' %></h2></header>
+  <section>
+    <div class="explanation"><%=  t 'maps.add_data.explanation' %></div>
+    <%= form_tag add_data_map_path(map), method: :post, id: "add-data-form", remote: true, "data-components" => "remoteForm" do %>
+      <p>
+        <%= autocomplete_field_tag :geo_data, search_by_name_geo_data_index_path %>
+      </p>
+
+      <p class="btns">
+        <%= submit_tag t('save'), class: "submit-btn" %>
+      </p>
+    <% end %>
+  </section>
+</div>

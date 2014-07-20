@@ -8,7 +8,7 @@
     </li>
   <% else %>
     <li class="menu-item login">
-      <%= link_to_modal icon('sign-in', t('header.side_menu.login')), '#sign-in' %>
+      <%= link_to_modal icon('sign-in', t('header.side_menu.login')), '#sign-in', html: {id: "sign-in-modal"} %>
     </li>
   <% end %>
   <li id="menu-settings" class="menu-item settings" title="<%= t 'header.side_menu.settings_menu'%>">

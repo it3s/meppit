@@ -17,7 +17,7 @@ describe ApplicationHelper do
     let(:geo_data) { FactoryGirl.create :geo_data }
     let(:map) { FactoryGirl.create :map }
     it { expect(helper.object_type user).to eq :user }
-    it { expect(helper.object_type geo_data).to eq :data }
+    it { expect(helper.object_type geo_data).to eq :geo_data }
     it { expect(helper.object_type map).to eq :map }
     it { expect(helper.object_type nil).to eq :unknown }
   end
@@ -212,6 +212,25 @@ describe ApplicationHelper do
           expect(generated.include? 'name="user[interests]"').to be true
           expect(generated.include? "data-autocomplete=\"#{helper.tag_search_path}\"").to be true
         end
+      end
+    end
+
+    describe "#autocomplete_field_tag" do
+      let(:rendered) { <<-HTML
+<input id="map-autocomplete" name="map" type="hidden" value="" />
+<input data-component-options="{&quot;name&quot;:&quot;map&quot;,&quot;url&quot;:&quot;/fake-url&quot;}" data-components="autocomplete" id="map_autocomplete" name="map_autocomplete" placeholder="search by map name" type="text" value="" />
+HTML
+      }
+
+      it "calls render on the autocomplete partial" do
+        expect(helper).to receive(:render
+          ).with("shared/components/autocomplete", name: "test", url: "/fake-url"
+          ).and_return("")
+        helper.autocomplete_field_tag("test", "/fake-url")
+      end
+
+      it "generates component's markup" do
+        expect(helper.autocomplete_field_tag "map", "/fake-url" ).to eq rendered
       end
     end
   end

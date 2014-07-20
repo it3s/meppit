@@ -3,9 +3,10 @@ Meppit::Application.routes.draw do
 
   get  "language/:code" => "application#language", as: :language
 
-  get  "logout"   => "sessions#destroy", as: :logout
-  get  "login"    => "sessions#new",     as: :login
-  post "login"    => "sessions#create",  as: :do_login
+  get  "logout" => "sessions#destroy", as: :logout
+  get  "login"  => "sessions#new",     as: :login
+  post "login"  => "sessions#create",  as: :do_login
+  get  "sessions/logged_in" => "sessions#logged_in", as: :logged_in
 
   post "oauth/:provider/callback"  => "authentications#callback"
   get  "oauth/:provider/callback"  => "authentications#callback"
@@ -50,14 +51,24 @@ Meppit::Application.routes.draw do
   resources :geo_data, only: [:index, :show, :edit, :update, :maps],
                        concerns: [:contributable, :followable] do
     member do
-      get 'maps'
+      get  'maps'
+      post 'add_to_map'
+    end
+
+    collection do
+      get :search_by_name
     end
   end
 
   resources :maps, only: [:index, :show, :edit, :update, :geo_data],
                    concerns: [:contributable, :followable] do
     member do
-      get 'geo_data'
+      get  'geo_data'
+      post 'add_data'
+    end
+
+    collection do
+      get :search_by_name
     end
   end
 

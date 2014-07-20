@@ -116,10 +116,10 @@ ActiveRecord::Schema.define(version: 20140707145330) do
     t.text     "about_me"
     t.hstore   "contacts"
     t.string   "avatar"
+    t.spatial  "location",                        limit: {:srid=>4326, :type=>"geometry"}
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.string   "interests",                                                                default: [],              array: true
-    t.spatial  "location",                        limit: {:srid=>4326, :type=>"geometry"}
   end
 
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"

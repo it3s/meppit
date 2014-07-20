@@ -11,11 +11,18 @@ en:
 
     last_updated: 'Last updated %{date}'
 
-    add_to_map: "Add to a Map"
     maps:
       title: "Maps"
       empty: "%{name} isn't in a map yet."
 
     list:
       title: '%{count} objects'
+
+    add_to_map:
+      title: "Add to a Map"
+      added: "Added content to <strong>%{map}</strong>"
+      exists: "Content already on <strong>%{map}</strong>"
+      explanation: "Select the map in which you want to insert this content"
+      invalid: "Invalid Map"
+
 

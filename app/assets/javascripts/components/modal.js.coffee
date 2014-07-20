@@ -25,10 +25,17 @@ App.components.modal = (container) ->
     referedElement: ->
       $("#{ @container.attr('href') }")
 
+    loggedIn: ->
+      @container.data('loggedIn')
+
+    shouldOpen: ->
+      (!@data.login_required) || (@data.login_required && @loggedIn())
+
     open: () ->
-      opts = _.clone(@defaults)
-      opts = _.extend(opts, @preventClose) if @data.prevent_close
-      @target.modal(opts)
+      if @shouldOpen()
+        opts = _.clone(@defaults)
+        opts = _.extend(opts, @preventClose) if @data.prevent_close
+        @target.modal(opts)
       false
 
     startComponents: () ->

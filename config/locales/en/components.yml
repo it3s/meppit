@@ -1,0 +1,7 @@
+en:
+  components:
+
+    autocomplete:
+      map: 'search by map name'
+      geo_data: 'search by data name'
+      test: 'test'

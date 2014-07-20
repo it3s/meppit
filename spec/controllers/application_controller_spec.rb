@@ -110,6 +110,19 @@ describe ApplicationController do
     end
   end
 
+  describe "#update_object" do
+    let(:geo_data) { FactoryGirl.create :geo_data }
+    let(:user) { FactoryGirl.create :user }
+
+    before { controller.stub(:current_user).and_return user }
+
+    it "expects to send updated event to EventBus" do
+      expect(EventBus).to receive(:publish).with("geo_data_updated", geo_data: geo_data, current_user: user)
+      expect(controller).to receive(:render).with(json: {redirect: controller.geo_data_path(geo_data)})
+      controller.send :update_object, geo_data, {name: 'new name'}
+    end
+  end
+
   describe "#cleaned_contacts" do
     context 'nil' do
       let(:params) { {contacts: nil} }
@@ -118,6 +131,15 @@ describe ApplicationController do
     context 'valid hash' do
       let(:params) { {contacts: {address: 'Foo', phone: '12345', compl: ''}} }
       it { expect(controller.send :cleaned_contacts, params).to eq({address: 'Foo', phone: '12345'}) }
+    end
+  end
+
+  describe "#find_polymorphic_object" do
+    let(:map) { FactoryGirl.create :map }
+    it "gets the object from the referer" do
+      controller.stub_chain(:request, :path).and_return "/maps/#{map.id}/contributors"
+      expect(controller.send :find_polymorphic_object).to eq map
+      expect(controller.instance_variable_get "@map").to eq map
     end
   end
 
@@ -133,6 +155,13 @@ describe ApplicationController do
     context 'nil' do
       let(:params) { {tags: nil} }
       it { expect(controller.send :cleaned_tags, params).to eq []}
+    end
+  end
+
+  describe "#flash_xhr" do
+    it "renders alerts partial" do
+      expect(controller).to receive(:render_to_string).with(partial: 'shared/alerts')
+      controller.send :flash_xhr, "message"
     end
   end
 
