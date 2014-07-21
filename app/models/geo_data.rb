@@ -9,7 +9,7 @@ class GeoData < ActiveRecord::Base
 
   geojson_field :location
   searchable_tags :tags
-  search_field :name
+  search_fields scoped: :name
   has_maps
 
   validates :name, presence: true

@@ -6,7 +6,7 @@ class Tag < ActiveRecord::Base
 
   before_save :downcase
 
-  search_field :tag
+  search_fields scoped: :tag
 
   def downcase
     tag.downcase!
