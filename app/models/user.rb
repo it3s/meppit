@@ -6,12 +6,14 @@ class User < ActiveRecord::Base
   include Taggable
   include Followable
   include Follower
+  include Searchable
 
   mount_uploader :avatar, AvatarUploader
   process_in_background :avatar
 
   geojson_field :location
   searchable_tags :interests
+  search_fields multi: [:name, :about_me]
 
   attr_reader :license_aggrement
 
