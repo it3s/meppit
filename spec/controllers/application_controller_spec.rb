@@ -28,6 +28,16 @@ describe ApplicationController do
     end
   end
 
+  describe "#search" do
+    let!(:map) { FactoryGirl.create :map, name: "Open Data Organizations"}
+
+    before { post :search, {term: "open"}}
+
+    it { expect(response).to render_template 'shared/search_results' }
+    it { expect(assigns[:results]).to be_a_kind_of Array }
+    it { expect(assigns[:results].first).to eq map }
+  end
+
   describe "#language" do
     before { controller.request.env['HTTP_REFERER'] = "http://test.host/" }
 
