@@ -8,5 +8,9 @@ en:
 
   empty_location: 'Loocation not provided yet'
 
+  search:
+    empty: "No results found!"
+    title: "Search Results"
+
   flash:
     updated: 'Updated successfully'

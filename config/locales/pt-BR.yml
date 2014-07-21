@@ -8,6 +8,10 @@ pt-BR:
 
   empty_location: 'Localização não fornecida'
 
+  search:
+    empty: "Nenhum resultado encontrado!"
+    title: "Resultados da Busca"
+
   flash:
     updated: "Atualizado com sucesso"
 
