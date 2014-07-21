@@ -3,26 +3,44 @@ App.components.search = (container) ->
     container: container
 
     init: ->
-      console.log 'initializing search'
       @form = @container.find('form')
       @input = @container.find('input#search')
       @bindEvents()
 
+    showResults: (content) ->
+      @input.qtip
+        content: content
+        style:
+          classes: 'search-tooltip tooltip qtip-light qtip-shadow qtip-rounded'
+        hide:
+          event: 'unfocus'
+        position:
+          my: 'top center'
+          adjust:
+            x: -235, y: 5
+      @input.qtip("show")
+      App.mediator.publish "components:start", $("#search-results")
+
+    onSuccess: (data) ->
+      @showResults data
+
     doSearch: ->
+      _this = this
       @timeout_fn = null
       search_term = @input.val()
+      url = @form.attr('action')
 
       return if search_term?.length is 0
 
-      console.log 'performing search for ', @input.val()
-      # # Komoo Search
-      # $.ajax
-      #     type: 'POST'
-      #     url: dutils.urls.resolve('komoo_search')
-      #     data: {term: search_term, 'csrfmiddlewaretoken': csrftoken}
-      #     dataType: 'json'
-      #     success: (data) ->
-      #         showResults data.result, search_term
+      # hide and destroy tooltip with older results
+      @input.qtip("hide").qtip("destroy")
+
+      $.ajax
+        type: 'POST'
+        url: url
+        data: {term: search_term}
+        success: _this.onSuccess.bind(_this)
+
 
     onSubmit: (evt) ->
       evt.preventDefault()
@@ -39,6 +57,6 @@ App.components.search = (container) ->
       @timeout_fn = null
       @form.submit @onSubmit.bind(this)
       @form.bind 'keyup', @onEntry.bind(this)
-
+      @input.bind 'mouseover', (evt) -> evt.preventDefault()
 
   }

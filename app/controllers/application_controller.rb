@@ -14,6 +14,11 @@ class ApplicationController < ActionController::Base
     redirect_to :back
   end
 
+  def search
+    @results = paginate PgSearch.multisearch(params[:term]).limit(20).map { |d| d.searchable }
+    render partial: 'shared/search', layout: nil
+  end
+
   def not_authenticated
     redirect_to login_path
   end

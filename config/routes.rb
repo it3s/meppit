@@ -12,7 +12,8 @@ Meppit::Application.routes.draw do
   get  "oauth/:provider/callback"  => "authentications#callback"
   get  "oauth/:provider" => "authentications#oauth", as: :auth_at_provider
 
-  get  "tags/search" => "tags#search", as: :tag_search
+  post "search"      => "application#search", as: :search
+  get  "tags/search" => "tags#search",        as: :tag_search
 
   concern :contributable do
     get "contributors" => "contributings#contributors"

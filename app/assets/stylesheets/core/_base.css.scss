@@ -102,6 +102,13 @@ h3 {
   .qtip-tip {
     left: 80% !important;
   }
+  &.search-tooltip {
+    min-width: 600px;
+
+    .qtip-tip {
+      left: 50% !important;
+    }
+  }
 }
 
 .ui-autocomplete.ui-menu { // fix for autocomplete menu on modals
