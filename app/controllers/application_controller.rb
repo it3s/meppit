@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
 
   def search
     @results = paginate PgSearch.multisearch(params[:term]).limit(20).map { |d| d.searchable }
-    render partial: 'shared/search_results', layout: nil
+    render 'shared/search_results', layout: nil
   end
 
   def not_authenticated
