@@ -8,7 +8,7 @@ Maps rebuild
 
 ### System dependencies:
 
-* postgresql (with postgis2.x and postgresql-contrib for hstore)
+* postgresql 9.3 (with postgis2.x and postgresql-contrib for hstore)
 * redis
 * you need to have a execjs runtime (i.e. Nodejs, rhyno, therubyracer)
 * imagemagick
