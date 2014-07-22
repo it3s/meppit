@@ -1,8 +1,9 @@
-<div class="search-bar" role="search">
-  <form action=".">
+<div class="search-bar" role="search" data-components="search">
+  <%= form_tag search_path, method: :post do %>
     <input id="search"
            type="search"
+           name="term"
            placeholder="<%= t('header.search.placeholder') %>"
            autocomplete="off" />
-  </form>
+  <% end %>
 </div>

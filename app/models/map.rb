@@ -9,7 +9,7 @@ class Map < ActiveRecord::Base
   belongs_to :administrator, class_name: 'User'
 
   searchable_tags :tags
-  search_field :name
+  search_fields scoped: :name, multi: [:name, :description]
   has_geo_data
 
   validates :name, presence: true
