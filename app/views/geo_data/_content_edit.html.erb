@@ -19,6 +19,7 @@
       <div class="description">
         <%= f.input :description, :as => :text, :input_html => {:class => 'tinymce', 'data-components' => 'editor', 'data-height' => 200 } %>
       </div>
+      <%= render 'shared/additional_info/edit', f: f %>
     </div>
     <div class="tab-content" id="relations">
       Relations Placeholder

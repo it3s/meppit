@@ -1,16 +1,21 @@
 en:
-  or: 'or'
-  submit: 'submit'
-  access_denied: 'access denied'
-  save_changes: 'Save Changes'
-  save: 'Save'
-  cancel: 'Cancel'
+  or: "or"
+  submit: "submit"
+  access_denied: "access denied"
+  save_changes: "Save Changes"
+  save: "Save"
+  cancel: "Cancel"
 
-  empty_location: 'Loocation not provided yet'
+  empty_location: "Loocation not provided yet"
 
   search:
     empty: "No results found!"
     title: "Search Results"
 
   flash:
-    updated: 'Updated successfully'
+    updated: "Updated successfully"
+
+  additional_info:
+    title: "Additional Info"
+    explanation: "enter data in yaml format."
+    help: "click here for help."

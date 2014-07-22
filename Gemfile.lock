@@ -268,6 +268,7 @@ GEM
     rb-fsevent (0.9.4)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
+    rdiscount (2.1.7.1)
     rdoc (4.1.1)
       json (~> 1.4)
     redis (3.0.7)
@@ -412,6 +413,7 @@ DEPENDENCIES
   pry-rails
   puma
   rails (~> 4.1.1)
+  rdiscount
   remotipart
   rgeo
   rgeo-geojson

@@ -1,0 +1,10 @@
+<div class="additional-info">
+  <div>
+    <h2><%= t 'additional_info.title' %></h2>
+    <span class="explanation">
+      (<%= t 'additional_info.explanation' %> <%= link_to_modal t('additional_info.help'), '#yaml-help' %>)
+    </span>
+    <%= render 'shared/additional_info/yaml_help' %>
+  </div>
+  <%= f.input :additional_info, :as => :text %>
+</div>

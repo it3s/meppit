@@ -1,0 +1,23 @@
+.site-page {
+
+  .additional-info {
+    margin-top: 20px;
+
+    h2 {
+      font-size: 1.1em;
+      margin-bottom: 5px;
+      display: inline-block;
+    }
+    span {
+      display: inline-block;
+    }
+
+    textarea {
+      width: 100%;
+      height: 150px;
+    }
+  }
+  #yaml-help {
+    @include modal;
+  }
+}
