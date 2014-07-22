@@ -19,5 +19,25 @@
   }
   #yaml-help {
     @include modal;
+
+    font-size: 0.9em;
+
+    pre {
+      border: solid 1px $soft-grey;
+      border-radius: 4px;
+      background-color: $transparent-grey;
+      margin: 5px 0;
+      padding: 5px;
+      font-size: 0.8em;
+    }
+    code {
+      background-color: $transparent-grey;
+      border-radius: 4px;
+    }
+
+    ul {
+      list-style: disc;
+      padding-left: 30px;
+    }
   }
 }
