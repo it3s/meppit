@@ -46,6 +46,7 @@ class GeoDataController < ApplicationController
     params.require(:geo_data).permit(:name, :description).tap do |whitelisted|
       whitelisted[:contacts]  = cleaned_contacts params[:geo_data]
       whitelisted[:tags] = cleaned_tags params[:geo_data]
+      whitelisted[:additional_info] = SafeYAML.load(params[:geo_data][:additional_info], safe: true)
     end
   end
 

@@ -33,6 +33,6 @@ For simple values (not lists or nested key/words), you can use:
 
   - strings (text between quotes. Ex: "like this")
   - numbers
-  - dates (YYYY-MM-DD HH:MM:SS.MS +-Z) .Ex: `2002-12-14`, `2001-12-15 2:59:43.10` and `2001-12-14 21:59:43.10 -5`
+  - dates (YYYY-MM-DD) .Ex: `2002-12-14`
 
 You can see further information on this link: [YAML](https://en.wikipedia.org/wiki/YAML)

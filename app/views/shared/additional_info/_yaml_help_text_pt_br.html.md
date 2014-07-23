@@ -33,6 +33,6 @@ Para valores simples (que não sejam listas ou chaves/valor aninhados), você po
 
   - strings (texto entre aspas. Ex: "como este")
   - números
-  - datas (AAAA-MM-DD HH:MM:SS.MS +-Z).Ex: `2002-12-14`, `2001-12-15 2:59:43.10` e `2001-12-14 21:59:43.10 -5`
+  - datas (AAAA-MM-DD).Ex: `2002-12-14`
 
 Você pode ver maiores informações neste link: [YAML](https://en.wikipedia.org/wiki/YAML)
