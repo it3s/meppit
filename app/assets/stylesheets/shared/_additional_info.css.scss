@@ -40,18 +40,55 @@
       padding-left: 30px;
     }
   }
-  .yaml-data {
-    .yaml-item {
-      margin-bottom: 3px;
-      display: inline-block;
-      width: 49%;
+
+  .json-table {
+    .jh-root, .jh-type-object, .jh-type-array, .jh-key, .jh-value, .jh-root tr{
+      -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+      -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+      box-sizing: border-box;         /* Opera/IE 8+ */
     }
 
-    .yaml-key {
+    .jh-key, .jh-value{
+      margin: 0;
+      padding: 0.4em;
+    }
+
+    th.jh-key{ text-align: left; }
+
+    .jh-type-object > tr, .jh-type-array > tr{
+      border-bottom: 1px solid $ultra-soft-grey;
+    }
+
+    .jh-key{
+      border-right: 1px solid $ultra-soft-grey;
+      width: 35%;
+    }
+
+    .jh-empty{
+     font-style: italic;
+     // color: #999;
+     font-size: small;
+    }
+
+    .jh-type-object, .jh-type-array{
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .jh-object-key {
       vertical-align: top;
-      min-width: 100px;
-      font-weight: bold;
       color: $dark-grey;
+      font-weight: bold;
+    }
+
+    .jh-array-key { display: none; }
+
+    .jh-type-string{ font-style: italic; }
+
+    .jh-type-object > tr:hover, .jh-type-array > tr:hover{
+      background-color: lighten($meppit-light-blue, 5%);
+      border-bottom: solid 1px $meppit-dark-blue !important;
+      > .jh-key { border-right: solid 1px $meppit-dark-blue; }
     }
   }
 }

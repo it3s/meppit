@@ -36,5 +36,20 @@ module Concerns
     def autocomplete_field_tag(name, url)
       render('shared/components/autocomplete', name: name, url: url).html_safe
     end
+
+    def additional_info_json(object)
+      _hash_with_humanized_keys(object.additional_info).to_json
+    end
+
+    private
+
+    def _hash_with_humanized_keys(hash)
+      Hash[hash.map {|k,v| [k.humanize, _nested_hash_value(v)] }]
+    end
+
+    def _nested_hash_value(val)
+      (val.is_a? Hash) ? _hash_with_humanized_keys(val) : val
+    end
+
   end
 end

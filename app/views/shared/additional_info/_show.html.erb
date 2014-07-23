@@ -2,13 +2,8 @@
   <% unless object.additional_info.nil? or object.additional_info.empty? %>
   <div>
     <h2><%= t 'additional_info.title' %></h2>
-    <div class='yaml-data'>
-      <% object.additional_info.each do |key, value| %>
-        <div class="yaml-item">
-          <span class="yaml-key"><%= key.humanize %>:</span>
-          <span class="yaml-value"><%= value %></span>
-        </div>
-      <% end %>
+    <div id='additional-info-data' class="json-table"
+      data-components="jsonTable" data-component-jsontable='<%= additional_info_json object %>'>
     </div>
   </div>
   <% end %>
