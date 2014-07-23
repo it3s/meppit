@@ -37,6 +37,11 @@ module Concerns
       render('shared/components/autocomplete', name: name, url: url).html_safe
     end
 
+    def additional_info_value(f)
+      dict = f.object.additional_info
+      (dict && !dict.empty?) ? dict.to_yaml.gsub("---\n", "") : ""
+    end
+
     def additional_info_json(object)
       _hash_with_humanized_keys(object.additional_info).to_json
     end

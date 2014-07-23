@@ -18,7 +18,7 @@ outra_lista: ["foo", "bar", "baz"]
 ```
 
 Perceba a identação acima. Para qualquer dado aninhado, use identação (espaçamento das linhas).
-Também sempre prefira usar espaços (não use tab), 2 espaços é o recomendado
+Também sempre prefira usar espaços (não use tab), 4 espaços é o recomendado
 
 ```
 algum_dado:

@@ -19,3 +19,4 @@ en:
     title: "Additional Info"
     explanation: "enter data in yaml format."
     help: "click here for help."
+    invalid: "Invalid format"

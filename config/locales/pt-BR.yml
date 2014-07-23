@@ -19,7 +19,7 @@ pt-BR:
     title: 'Informações Adicionais'
     explanation: "entre dados no formato yaml."
     help: "clique aqui para obter ajuda."
-
+    invalid: "formato inválido"
 
   # formatos de data e hora
   date:

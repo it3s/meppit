@@ -18,7 +18,7 @@ other_list: ["foo", "bar", "baz"]
 ```
 
 Notice the identation above. For any nested data, use identation.
-Also prefer using spaces for identing (do not use tabs), 2 spaces is recommended
+Also prefer using spaces for identing (do not use tabs), 4 spaces is recommended
 
 ```
 some_data:

@@ -6,5 +6,5 @@
     </span>
     <%= render 'shared/additional_info/yaml_help' %>
   </div>
-  <%= f.input :additional_info, as: :text, input_html: { value: f.object.additional_info.to_yaml.gsub("---\n", "")} %>
+  <%= f.input :additional_info, as: :text, input_html: { value: additional_info_value(f)} %>
 </div>
