@@ -40,4 +40,18 @@
       padding-left: 30px;
     }
   }
+  .yaml-data {
+    .yaml-item {
+      margin-bottom: 3px;
+      display: inline-block;
+      width: 49%;
+    }
+
+    .yaml-key {
+      vertical-align: top;
+      min-width: 100px;
+      font-weight: bold;
+      color: $dark-grey;
+    }
+  }
 }
