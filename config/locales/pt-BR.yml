@@ -15,6 +15,12 @@ pt-BR:
   flash:
     updated: "Atualizado com sucesso"
 
+  additional_info:
+    title: 'Informações Adicionais'
+    explanation: "entre dados no formato yaml."
+    help: "clique aqui para obter ajuda."
+    invalid: "formato inválido"
+
   # formatos de data e hora
   date:
     formats:

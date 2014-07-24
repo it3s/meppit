@@ -18,10 +18,10 @@ pt-BR:
     list:
       title: '%{count} objetos'
 
-    add_to_map:
+    add_map:
       title: "Adicione a um Mapa"
-      added: "Conteúdo adicionado a <strong>%{map}</strong>"
-      exists: "Conteúdo já existe em <strong>%{map}</strong>"
+      added: "Conteúdo adicionado a <strong>%{target}</strong>"
+      exists: "Conteúdo já existe em <strong>%{target}</strong>"
       explanation: "Selecione o mapa em que você deseja inserir esse conteúdo"
       invalid: "Mapa Inválido"
 

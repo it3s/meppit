@@ -1,4 +1,4 @@
-App.components.addToMapManager = (container) ->
+App.components.addMapManager = (container) ->
   {
     container: container
 

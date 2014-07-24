@@ -1,7 +1,7 @@
 <%= link_to_modal icon("download"), "#", html: {class: "download"} %>
-<%= link_to_modal icon("map-marker", t("maps.add_data.title")), "#add-data-modal", login_required: true, html: {class: "add-data"} %>
+<%= link_to_modal icon("map-marker", t("maps.add_geo_data.title")), "#add-data-modal", login_required: true, html: {class: "add-data"} %>
 
-<%= render "maps/add_data_modal", map: map %>
+<%= render "maps/add_geo_data_modal", map: map %>
 
 
 <section class="main-info">
@@ -27,6 +27,7 @@
           <%= raw map.description %>
         <% end %>
       </div>
+      <%= render 'shared/additional_info/show', object: map %>
     </div>
     <div class="tab-content" id="data" data-components="list" data-list='{"scroll": {"behavior": "local"}}'>
       <div id="geo_data_collection-pagination">

@@ -6,6 +6,7 @@ describe Map do
   it { expect(subject).to have_db_column :tags }
   it { expect(subject).to have_db_column :contacts }
   it { expect(subject).to have_db_column :administrator_id }
+  it { expect(subject).to have_db_column :additional_info }
   it { expect(subject).to validate_presence_of :name }
   it { expect(subject).to validate_presence_of :administrator }
   it { expect(subject).to have_db_index(:tags) }
@@ -24,7 +25,7 @@ describe Map do
 
     before { map.mappings.create geo_data: geo_data }
 
-    it { expect(map.data_count).to eq 1 }
+    it { expect(map.geo_data_count).to eq 1 }
     it { expect(map.geo_data.first).to eq geo_data }
   end
 
@@ -68,8 +69,8 @@ describe Map do
       map.mappings.create(geo_data: data2)
     }
 
-    describe "#data_count" do
-      it { expect(map.data_count).to eq 2 }
+    describe "#geo_data_count" do
+      it { expect(map.geo_data_count).to eq 2 }
     end
 
     describe "#geo_data_features" do
@@ -79,8 +80,8 @@ describe Map do
     end
 
     describe "#location" do
-      it "returns nil if data_count is zero" do
-        allow(map).to receive(:data_count).and_return 0
+      it "returns nil if geo_data_count is zero" do
+        allow(map).to receive(:geo_data_count).and_return 0
         expect(map.location).to be nil
       end
 
@@ -101,19 +102,19 @@ describe Map do
       it { expect(map.location_geojson).to eq geojson.to_json }
     end
 
-    describe "#add_data" do
+    describe "#add_geo_data" do
       before { map.mappings.destroy_all }
 
       it "adds a new geo_data mapping" do
-        mapping = map.add_data data1
+        mapping = map.add_geo_data data1
         expect(mapping.id).to_not be nil
         expect(map.mappings.count).to eq 1
         expect(map.geo_data.first).to eq data1
       end
 
       it "does not add duplicated mapping" do
-        map.add_data data1
-        mapping = map.add_data data1
+        map.add_geo_data data1
+        mapping = map.add_geo_data data1
         expect(mapping.id).to be nil
         expect(map.mappings.count).to eq 1
       end

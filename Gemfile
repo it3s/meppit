@@ -40,6 +40,8 @@ gem 'fog'                           # upload images to amazon S3
 gem 'remotipart'                    # enable ajax file uploads on remote forms
 gem 'kaminari'                      # paginator
 gem 'event_bus'                     # event bus for decoupling logic between models
+gem 'rdiscount'                     # render markdown
+gem 'safe_yaml'
 
 group :doc do
   gem 'sdoc', :require => false

@@ -1,6 +1,6 @@
 en:
   counters:
     maps: '%{count} maps'
-    data: '%{count} objects'
+    geo_data: '%{count} objects'
     contributors: '%{count} contributors'
     followers: '%{count} followers'

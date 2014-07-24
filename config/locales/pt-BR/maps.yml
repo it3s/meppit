@@ -19,10 +19,10 @@ pt-BR:
 
     administrator: 'Administrador'
 
-    add_data:
+    add_geo_data:
       title: "Adicionar dado"
-      added: "<strong>%{data}</strong> foi adicionado a este mapa"
-      exists: "<strong>%{data}</strong> já está neste mapa"
+      added: "<strong>%{target}</strong> foi adicionado a este mapa"
+      exists: "<strong>%{target}</strong> já está neste mapa"
       explanation: "Selecione o conteúdo que você deseja inserir neste mapa"
       invalid: "Dado Inválido"
 

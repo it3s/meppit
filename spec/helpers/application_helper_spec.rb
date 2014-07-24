@@ -233,6 +233,45 @@ HTML
         expect(helper.autocomplete_field_tag "map", "/fake-url" ).to eq rendered
       end
     end
+
+    describe "#additional_info_value" do
+      context "nil" do
+        let(:f) { double(object: double(additional_info: nil)) }
+        it { expect(helper.additional_info_value(f)).to eq "" }
+      end
+      context "empty hash" do
+        let(:f) { double(object: double(additional_info: {})) }
+        it { expect(helper.additional_info_value(f)).to eq "" }
+      end
+      context "hash" do
+        let(:f) { double(object: double(additional_info: {"foo" => "bar"})) }
+        it { expect(helper.additional_info_value(f)).to eq "foo: bar\n" }
+      end
+    end
+
+    describe "#additional_info_json" do
+      context "empty hash" do
+        let(:obj) { double(additional_info: {}) }
+        it { expect(helper.additional_info_json(obj)).to eq "{}" }
+      end
+      context "nested hash" do
+        let(:obj) { double(additional_info: {"foo" => "bar", "bar" => {"number" => 42}}) }
+        it { expect(helper.additional_info_json(obj)).to eq('{"Foo":"bar","Bar":{"Number":42}}') }
+      end
+    end
+
+    describe "#_hash_with_humanized_keys" do
+      let(:hash) { {"some_string" => "bla"} }
+      it { expect(helper.send :_hash_with_humanized_keys, hash).to eq({"Some string" => "bla"}) }
+    end
+
+    describe "#_nested_hash_value" do
+      it { expect(helper.send :_nested_hash_value, 42).to eq 42 }
+      it "calls _hash_with_humanized_keys when value is Hash" do
+        expect(helper).to receive(:_hash_with_humanized_keys).with({foo: 42})
+        helper.send :_nested_hash_value, {foo: 42}
+      end
+    end
   end
 
 end

@@ -86,92 +86,113 @@ describe ApplicationController do
     end
   end
 
-  describe '#to_bool' do
-    it 'gets true from string' do
-      expect(controller.send :to_bool, 'true').to be true
-      expect(controller.send :to_bool, 't').to be true
-      expect(controller.send :to_bool, 'yes').to be true
-      expect(controller.send :to_bool, 'y').to be true
-      expect(controller.send :to_bool, '1').to be true
+  describe "Utils" do
+    describe '#to_bool' do
+      it 'gets true from string' do
+        expect(controller.send :to_bool, 'true').to be true
+        expect(controller.send :to_bool, 't').to be true
+        expect(controller.send :to_bool, 'yes').to be true
+        expect(controller.send :to_bool, 'y').to be true
+        expect(controller.send :to_bool, '1').to be true
+      end
+
+      it 'gets false from string' do
+        expect(controller.send :to_bool, 'false').to be false
+        expect(controller.send :to_bool, 'f').to be false
+        expect(controller.send :to_bool, 'no').to be false
+        expect(controller.send :to_bool, 'n').to be false
+        expect(controller.send :to_bool, '0').to be false
+      end
+
+      it 'gets true from true' do
+        expect(controller.send :to_bool, true).to be true
+      end
+
+      it 'gets false from false' do
+        expect(controller.send :to_bool, false).to be false
+      end
+
+      it 'gets false from nil' do
+        expect(controller.send :to_bool, nil).to be false
+      end
+
+      it 'raises exception from invalid string' do
+        expect {controller.send :to_bool, 'spam'}.to raise_error(ArgumentError)
+      end
     end
 
-    it 'gets false from string' do
-      expect(controller.send :to_bool, 'false').to be false
-      expect(controller.send :to_bool, 'f').to be false
-      expect(controller.send :to_bool, 'no').to be false
-      expect(controller.send :to_bool, 'n').to be false
-      expect(controller.send :to_bool, '0').to be false
+    describe "#update_object" do
+      let(:geo_data) { FactoryGirl.create :geo_data }
+      let(:user) { FactoryGirl.create :user }
+
+      before { controller.stub(:current_user).and_return user }
+
+      it "expects to send updated event to EventBus" do
+        expect(EventBus).to receive(:publish).with("geo_data_updated", geo_data: geo_data, current_user: user)
+        expect(controller).to receive(:render).with(json: {redirect: controller.geo_data_path(geo_data)})
+        controller.send :update_object, geo_data, {name: 'new name'}
+      end
     end
 
-    it 'gets true from true' do
-      expect(controller.send :to_bool, true).to be true
+    describe "#cleaned_contacts" do
+      context 'nil' do
+        let(:params) { {contacts: nil} }
+        it { expect(controller.send :cleaned_contacts, params).to eq({}) }
+      end
+      context 'valid hash' do
+        let(:params) { {contacts: {address: 'Foo', phone: '12345', compl: ''}} }
+        it { expect(controller.send :cleaned_contacts, params).to eq({address: 'Foo', phone: '12345'}) }
+      end
     end
 
-    it 'gets false from false' do
-      expect(controller.send :to_bool, false).to be false
+    describe "#cleaned_additional_info" do
+      context "nil" do
+        let(:params) { {additional_info: nil} }
+        it { expect(controller.send :cleaned_additional_info, params).to eq nil}
+      end
+      context "empty string" do
+        let(:params) { {additional_info: ""} }
+        it { expect(controller.send :cleaned_additional_info, params).to eq nil}
+      end
+      context "valid yaml" do
+        let(:params) { {additional_info: "foo: bar\nbar: baz\n"} }
+        it { expect(controller.send :cleaned_additional_info, params).to eq({"foo" => "bar", "bar" => "baz"})}
+      end
+      context "return unparsed value if invalid yaml" do
+        let(:params) { {additional_info: "invalid"} }
+        it { expect(controller.send :cleaned_additional_info, params).to eq "invalid" }
+      end
     end
 
-    it 'gets false from nil' do
-      expect(controller.send :to_bool, nil).to be false
+    describe "#find_polymorphic_object" do
+      let(:map) { FactoryGirl.create :map }
+      it "gets the object from the referer" do
+        controller.stub_chain(:request, :path).and_return "/maps/#{map.id}/contributors"
+        expect(controller.send :find_polymorphic_object).to eq map
+        expect(controller.instance_variable_get "@map").to eq map
+      end
     end
 
-    it 'raises exception from invalid string' do
-      expect {controller.send :to_bool, 'spam'}.to raise_error(ArgumentError)
+    describe "#cleaned_tags" do
+      context 'default field name' do
+        let(:params) { {tags: "foo,bar,baz"} }
+        it { expect(controller.send :cleaned_tags, params).to eq ["foo", "bar", "baz"]}
+      end
+      context 'other field name' do
+        let(:params) { {interests: "foo,bar,baz"} }
+        it { expect(controller.send :cleaned_tags, params, :interests).to eq ["foo", "bar", "baz"]}
+      end
+      context 'nil' do
+        let(:params) { {tags: nil} }
+        it { expect(controller.send :cleaned_tags, params).to eq []}
+      end
     end
-  end
 
-  describe "#update_object" do
-    let(:geo_data) { FactoryGirl.create :geo_data }
-    let(:user) { FactoryGirl.create :user }
-
-    before { controller.stub(:current_user).and_return user }
-
-    it "expects to send updated event to EventBus" do
-      expect(EventBus).to receive(:publish).with("geo_data_updated", geo_data: geo_data, current_user: user)
-      expect(controller).to receive(:render).with(json: {redirect: controller.geo_data_path(geo_data)})
-      controller.send :update_object, geo_data, {name: 'new name'}
-    end
-  end
-
-  describe "#cleaned_contacts" do
-    context 'nil' do
-      let(:params) { {contacts: nil} }
-      it { expect(controller.send :cleaned_contacts, params).to eq({}) }
-    end
-    context 'valid hash' do
-      let(:params) { {contacts: {address: 'Foo', phone: '12345', compl: ''}} }
-      it { expect(controller.send :cleaned_contacts, params).to eq({address: 'Foo', phone: '12345'}) }
-    end
-  end
-
-  describe "#find_polymorphic_object" do
-    let(:map) { FactoryGirl.create :map }
-    it "gets the object from the referer" do
-      controller.stub_chain(:request, :path).and_return "/maps/#{map.id}/contributors"
-      expect(controller.send :find_polymorphic_object).to eq map
-      expect(controller.instance_variable_get "@map").to eq map
-    end
-  end
-
-  describe "#cleaned_tags" do
-    context 'default field name' do
-      let(:params) { {tags: "foo,bar,baz"} }
-      it { expect(controller.send :cleaned_tags, params).to eq ["foo", "bar", "baz"]}
-    end
-    context 'other field name' do
-      let(:params) { {interests: "foo,bar,baz"} }
-      it { expect(controller.send :cleaned_tags, params, :interests).to eq ["foo", "bar", "baz"]}
-    end
-    context 'nil' do
-      let(:params) { {tags: nil} }
-      it { expect(controller.send :cleaned_tags, params).to eq []}
-    end
-  end
-
-  describe "#flash_xhr" do
-    it "renders alerts partial" do
-      expect(controller).to receive(:render_to_string).with(partial: 'shared/alerts')
-      controller.send :flash_xhr, "message"
+    describe "#flash_xhr" do
+      it "renders alerts partial" do
+        expect(controller).to receive(:render_to_string).with(partial: 'shared/alerts')
+        controller.send :flash_xhr, "message"
+      end
     end
   end
 

@@ -1,4 +1,4 @@
-App.components.addDataManager = (container) ->
+App.components.addGeoDataManager = (container) ->
   {
     container: container
 

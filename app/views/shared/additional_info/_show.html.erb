@@ -1,0 +1,10 @@
+<div class="additional-info">
+  <% unless object.additional_info.nil? or object.additional_info.empty? %>
+  <div>
+    <h2><%= t 'additional_info.title' %></h2>
+    <div id='additional-info-data' class="json-table"
+      data-components="jsonTable" data-component-jsontable='<%= additional_info_json object %>'>
+    </div>
+  </div>
+  <% end %>
+</div>

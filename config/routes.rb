@@ -53,7 +53,7 @@ Meppit::Application.routes.draw do
                        concerns: [:contributable, :followable] do
     member do
       get  'maps'
-      post 'add_to_map'
+      post 'add_map'
     end
 
     collection do
@@ -65,7 +65,7 @@ Meppit::Application.routes.draw do
                    concerns: [:contributable, :followable] do
     member do
       get  'geo_data'
-      post 'add_data'
+      post 'add_geo_data'
     end
 
     collection do

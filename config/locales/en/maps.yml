@@ -19,9 +19,9 @@ en:
 
     administrator: 'Administrator'
 
-    add_data:
+    add_geo_data:
       title: "Add data"
-      added: "Added <strong>%{data}</strong> to this map"
-      exists: "<strong>%{data}</strong> already on this map"
+      added: "Added <strong>%{target}</strong> to this map"
+      exists: "<strong>%{target}</strong> already on this map"
       explanation: "Select the content you want to insert in this map"
       invalid: "Invalid Data"

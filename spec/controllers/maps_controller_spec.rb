@@ -27,8 +27,8 @@ describe MapsController do
   end
 
   describe "GET show" do
-    it 'calls find_map filter' do
-      controller.should_receive :find_map
+    it 'calls find_object filter' do
+      controller.should_receive :find_object
       get :show, {:id => map.id}
     end
 
@@ -52,8 +52,8 @@ describe MapsController do
     context "logged in" do
       before { login_user user }
 
-      it 'calls find_map filter' do
-        controller.should_receive :find_map
+      it 'calls find_object filter' do
+        controller.should_receive :find_object
         get :edit, {:id => map.id}
       end
 
@@ -87,6 +87,25 @@ describe MapsController do
       post :update, {:id => map.id, :map => map_params.merge!(:name => "")}
       expect(assigns :map).to eq map
       expect(response.body).to eq({:errors => {:name => [controller.t('activerecord.errors.messages.blank')]}}.to_json)
+    end
+
+    describe "validates additional_info yaml format" do
+      context "valid for empty" do
+        let(:yaml) { "" }
+        before { post :update, {id: map.id, map: map_params.merge(additional_info: yaml)} }
+        it { expect(response.status).to eq 200 }
+      end
+      context "valid for hash" do
+        let(:yaml) { "foo: bar\n" }
+        before { post :update, {id: map.id, map: map_params.merge(additional_info: yaml)} }
+        it { expect(response.status).to eq 200 }
+      end
+      context "invalid for others" do
+        let(:yaml) { "invalid string" }
+        before { post :update, {id: map.id, map: map_params.merge(additional_info: yaml)} }
+        it { expect(response.status).to eq 422 }
+        it { expect(response.body).to eq({errors: {additional_info: [I18n.t('additional_info.invalid')]}}.to_json) }
+      end
     end
   end
 
@@ -124,18 +143,18 @@ describe MapsController do
     end
   end
 
-  describe "POST add_data" do
+  describe "POST add_geo_data" do
     before { login_user user }
 
     context "success" do
-      before { post :add_data, {id: map.id, geo_data: geo_data.id} }
+      before { post :add_geo_data, {id: map.id, geo_data: geo_data.id} }
       it { expect(response.body).to eq({flash: "", count: 1}.to_json) }
     end
 
     context "failure" do
       it "returns invalid message" do
-        expect(controller).to receive(:flash_xhr).with I18n.t('maps.add_data.invalid')
-        post :add_data, {id: map.id, geo_data: nil}
+        expect(controller).to receive(:flash_xhr).with I18n.t('maps.add_geo_data.invalid')
+        post :add_geo_data, {id: map.id, geo_data: nil}
         expect(response.status).to eq 422
       end
     end
@@ -144,17 +163,17 @@ describe MapsController do
   describe "create_mapping" do
     before { controller.instance_variable_set "@map", map }
 
-    it "calls add_data on map" do
-      expect(map).to receive(:add_data).with(geo_data).and_return(double(id: nil))
+    it "calls add_geo_data on map" do
+      expect(map).to receive(:add_geo_data).with(geo_data).and_return(double(id: nil))
       controller.send :create_mapping, geo_data
     end
     it "returns added message when create mapping" do
-      allow(map).to receive(:add_data).with(geo_data).and_return(double(id: 1))
-      expect(controller.send(:create_mapping, geo_data)[1]).to eq I18n.t('maps.add_data.added', data: geo_data.name)
+      allow(map).to receive(:add_geo_data).with(geo_data).and_return(double(id: 1))
+      expect(controller.send(:create_mapping, geo_data)[1]).to eq I18n.t('maps.add_geo_data.added', target: geo_data.name)
     end
     it "returns exists message when create mapping" do
-      allow(map).to receive(:add_data).with(geo_data).and_return(double(id: nil))
-      expect(controller.send(:create_mapping, geo_data)[1]).to eq I18n.t('maps.add_data.exists', data: geo_data.name)
+      allow(map).to receive(:add_geo_data).with(geo_data).and_return(double(id: nil))
+      expect(controller.send(:create_mapping, geo_data)[1]).to eq I18n.t('maps.add_geo_data.exists', target: geo_data.name)
     end
   end
 
