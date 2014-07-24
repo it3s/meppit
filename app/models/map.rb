@@ -11,6 +11,7 @@ class Map < ActiveRecord::Base
   searchable_tags :tags
   search_fields scoped: :name, multi: [:name, :description]
   has_geo_data
+  has_paper_trail
 
   validates :name, presence: true
   validates :administrator, presence: true
