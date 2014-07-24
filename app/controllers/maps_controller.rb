@@ -1,5 +1,4 @@
-class MapsController < ApplicationController
-  include ObjectController
+class MapsController < ObjectsController
   before_action :require_login, only: [:edit, :update, :add_geo_data]
   before_action :geo_data_list, only: [:show]
 

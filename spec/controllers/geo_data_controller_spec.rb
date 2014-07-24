@@ -84,6 +84,25 @@ describe GeoDataController do
       expect(assigns :geo_data).to eq geo_data
       expect(response.body).to eq({:errors => {:name => [controller.t('activerecord.errors.messages.blank')]}}.to_json)
     end
+
+    describe "validates additional_info yaml format" do
+      context "valid for empty" do
+        let(:yaml) { "" }
+        before { post :update, {id: geo_data.id, geo_data: data_params.merge(additional_info: yaml)} }
+        it { expect(response.status).to eq 200 }
+      end
+      context "valid for hash" do
+        let(:yaml) { "foo: bar\n" }
+        before { post :update, {id: geo_data.id, geo_data: data_params.merge(additional_info: yaml)} }
+        it { expect(response.status).to eq 200 }
+      end
+      context "invalid for others" do
+        let(:yaml) { "invalid string" }
+        before { post :update, {id: geo_data.id, geo_data: data_params.merge(additional_info: yaml)} }
+        it { expect(response.status).to eq 422 }
+        it { expect(response.body).to eq({errors: {additional_info: [I18n.t('additional_info.invalid')]}}.to_json) }
+      end
+    end
   end
 
   describe "GET maps from geo_data" do

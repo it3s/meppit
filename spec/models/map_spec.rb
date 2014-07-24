@@ -6,6 +6,7 @@ describe Map do
   it { expect(subject).to have_db_column :tags }
   it { expect(subject).to have_db_column :contacts }
   it { expect(subject).to have_db_column :administrator_id }
+  it { expect(subject).to have_db_column :additional_info }
   it { expect(subject).to validate_presence_of :name }
   it { expect(subject).to validate_presence_of :administrator }
   it { expect(subject).to have_db_index(:tags) }
