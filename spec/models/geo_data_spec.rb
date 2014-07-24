@@ -33,17 +33,17 @@ describe GeoData do
     it { expect(geo_data.maps_count).to eq 1 }
     it { expect(geo_data.maps.first).to eq map }
 
-    describe "#add_to_map" do
+    describe "#add_map" do
       before { geo_data.mappings.destroy_all }
       it "creates new mapping" do
-        mapping = geo_data.add_to_map map
+        mapping = geo_data.add_map map
         expect(mapping.id).to_not be nil
         expect(geo_data.mappings.count).to eq 1
         expect(geo_data.maps.first).to eq map
       end
       it "does not duplicate a mapping" do
-        geo_data.add_to_map map
-        mapping = geo_data.add_to_map map
+        geo_data.add_map map
+        mapping = geo_data.add_map map
         expect(mapping.id).to be nil
         expect(geo_data.mappings.count).to eq 1
       end

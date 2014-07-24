@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe CountersPresenter do
-  let(:object) { double('object', data_count: 1, followers_count: 2) }
+  let(:object) { double('object', geo_data_count: 1, followers_count: 2) }
   let(:presenter) { CountersPresenter.new object: object, ctx: double('ctx', url_for: 'url', identifier_for: 'id#num') }
 
   describe "#size_" do
@@ -41,14 +41,14 @@ describe CountersPresenter do
 
   describe "#counter_options" do
     it "calls corresponding counter options method" do
-      _orig = presenter.send :_data_counter
-      expect(presenter).to receive(:_data_counter).and_return(_orig)
-      presenter.counter_options :data
+      _orig = presenter.send :_geo_data_counter
+      expect(presenter).to receive(:_geo_data_counter).and_return(_orig)
+      presenter.counter_options :geo_data
     end
 
     it "get count if object has method" do
-      expect(presenter.object.try :data_count).to eq 1
-      expect(presenter.counter_options(:data)[:count]).to eq 1
+      expect(presenter.object.try :geo_data_count).to eq 1
+      expect(presenter.counter_options(:geo_data)[:count]).to eq 1
     end
 
     it "count defaults to 0" do
@@ -61,12 +61,12 @@ describe CountersPresenter do
         let(:presenter) { CountersPresenter.new object: object, ctx: double('ctx', url_for: 'url', identifier_for: 'id#num'), size: :big}
 
         it "calls i18n method" do
-          expect(presenter.ctx).to receive(:t).with('counters.data', count: "<em class=\"counter-label\">1</em>")
-          opts = presenter.counter_options :data
+          expect(presenter.ctx).to receive(:t).with('counters.geo_data', count: "<em class=\"counter-label\">1</em>")
+          opts = presenter.counter_options :geo_data
         end
       end
       context "another size" do
-        let(:opts) { presenter.counter_options :data }
+        let(:opts) { presenter.counter_options :geo_data }
 
         it { expect(opts[:value]).to eq "<span class=\"counter-label\">#{opts[:count]}</span>" }
       end

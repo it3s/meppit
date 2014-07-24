@@ -18,10 +18,10 @@ en:
     list:
       title: '%{count} objects'
 
-    add_to_map:
+    add_map:
       title: "Add to a Map"
-      added: "Added content to <strong>%{map}</strong>"
-      exists: "Content already on <strong>%{map}</strong>"
+      added: "Added content to <strong>%{target}</strong>"
+      exists: "Content already on <strong>%{target}</strong>"
       explanation: "Select the map in which you want to insert this content"
       invalid: "Invalid Map"
 

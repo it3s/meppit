@@ -1,7 +1,7 @@
 <%= link_to_modal icon("download"), "#", html: {class: "download"} %>
-<%= link_to_modal icon("globe", t("geo_data.add_to_map.title")), "#add-to-map-modal", login_required: true, html: {class: "add-to-map"} %>
+<%= link_to_modal icon("globe", t("geo_data.add_map.title")), "#add-to-map-modal", login_required: true, html: {class: "add-to-map"} %>
 
-<%= render "geo_data/add_to_map_modal", geo_data: geo_data %>
+<%= render "geo_data/add_map_modal", geo_data: geo_data %>
 
 <section class="main-info">
 

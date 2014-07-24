@@ -3,7 +3,7 @@ class CountersPresenter
 
   required_keys :object, :ctx
 
-  AVAILABLE_COUNTERS = [:data, :maps, :followers, :contributors]
+  AVAILABLE_COUNTERS = [:geo_data, :maps, :followers, :contributors]
 
   def counters
     AVAILABLE_COUNTERS.map { |name|
@@ -38,12 +38,12 @@ class CountersPresenter
     end
   end
 
-  def _data_counter
+  def _geo_data_counter
     {
       icon:       :'map-marker',
-      string:     'counters.data',
-      method:     :data_count,
-      classname:  "data-counter",
+      string:     'counters.geo_data',
+      method:     :geo_data_count,
+      classname:  "geo_data-counter",
       url_params: [:geo_data, object],
       component:  _component_for('geo_data')
     }

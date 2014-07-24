@@ -16,7 +16,7 @@ class Map < ActiveRecord::Base
   validates :administrator, presence: true
 
   def location
-    return nil if data_count.zero?
+    return nil if geo_data_count.zero?
 
     ::GeoJSON.encode_feature_collection geo_data_features
   end
