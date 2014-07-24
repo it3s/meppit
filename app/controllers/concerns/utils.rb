@@ -53,6 +53,5 @@ module Utils
     flash.now[:notice] = msg
     render_to_string(partial: 'shared/alerts')
   end
-
 end
 

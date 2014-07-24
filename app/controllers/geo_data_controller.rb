@@ -1,6 +1,7 @@
 class GeoDataController < ApplicationController
   before_action :require_login, only:   [:edit, :update, :add_to_map]
   before_action :find_geo_data, except: [:index, :search_by_name]
+  before_action :validate_additional_info, only: [:update]
 
   def index
     @geo_data_collection = GeoData.page(params[:page]).per(params[:per])
@@ -58,5 +59,12 @@ class GeoDataController < ApplicationController
     mapping = @geo_data.add_to_map map
     msg_type = mapping.id ? 'added' : 'exists'
     [mapping, t("geo_data.add_to_map.#{msg_type}", map: map.name)]
+  end
+
+  def validate_additional_info
+    unless data_params[:additional_info].nil? || data_params[:additional_info].is_a?(Hash)
+      err = {additional_info: [I18n.t('additional_info.invalid')]}
+      render json: {errors: err}, status: :unprocessable_entity
+    end
   end
 end
