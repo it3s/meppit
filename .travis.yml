@@ -6,6 +6,9 @@ branches:
   only:
     - master
 
+addons:
+  postgresql: "9.3"
+
 postgres:
   adapter: postgresql
   database: test
