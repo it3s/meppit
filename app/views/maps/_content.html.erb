@@ -27,6 +27,7 @@
           <%= raw map.description %>
         <% end %>
       </div>
+      <%= render 'shared/additional_info/show', object: map %>
     </div>
     <div class="tab-content" id="data" data-components="list" data-list='{"scroll": {"behavior": "local"}}'>
       <div id="geo_data_collection-pagination">

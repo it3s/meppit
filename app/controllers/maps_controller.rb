@@ -2,6 +2,7 @@ class MapsController < ApplicationController
   before_action :require_login, only:   [:edit, :update, :add_data]
   before_action :find_map,      except: [:index, :search_by_name]
   before_action :geo_data_list, only:   [:show]
+  before_action :validate_additional_info, only: [:update]
 
   def index
     @maps_collection = Map.page(params[:page]).per(params[:per])
@@ -47,6 +48,7 @@ class MapsController < ApplicationController
     params.require(:map).permit(:name, :description).tap do |whitelisted|
       whitelisted[:contacts]  = cleaned_contacts params[:map]
       whitelisted[:tags] = cleaned_tags params[:map]
+      whitelisted[:additional_info] = cleaned_additional_info params[:map]
     end
   end
 
@@ -62,6 +64,13 @@ class MapsController < ApplicationController
     mapping = @map.add_data geo_data
     msg_type = mapping.id ? 'added' : 'exists'
     [mapping, t("maps.add_data.#{msg_type}", data: geo_data.name)]
+  end
+
+  def validate_additional_info
+    unless map_params[:additional_info].nil? || map_params[:additional_info].is_a?(Hash)
+      err = {additional_info: [I18n.t('additional_info.invalid')]}
+      render json: {errors: err}, status: :unprocessable_entity
+    end
   end
 
 end
