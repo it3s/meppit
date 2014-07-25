@@ -1,0 +1,6 @@
+<li class="version-list-item">
+  <div class="wrapper">
+
+    <%= "#{version.event} by #{User.find(version.whodunnit.to_i).name} on #{version.created_at} " %>
+  </div>
+</li>
