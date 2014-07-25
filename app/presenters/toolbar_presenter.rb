@@ -72,7 +72,9 @@ class ToolbarPresenter
   end
 
   def _history_tool
-    { icon: :'clock-o', title: t('toolbar.history'), url: "" }
+    history_url = ctx.url_for([object, :history])
+    { icon: :'clock-o', title: t('toolbar.history'), url: history_url,
+      active?: ctx.request.path == history_url }
   end
 
   def _settings_tool

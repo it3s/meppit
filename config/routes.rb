@@ -33,6 +33,10 @@ Meppit::Application.routes.draw do
     get "following" => "followings#following"
   end
 
+  concern :versionable do
+    get "history" => "versions#history"
+  end
+
   resources :users, except: [:destroy, :index],
                     concerns: [:contributor, :followable, :follower] do
     member do
@@ -62,7 +66,7 @@ Meppit::Application.routes.draw do
   end
 
   resources :maps, only: [:index, :show, :edit, :update, :geo_data],
-                   concerns: [:contributable, :followable] do
+                   concerns: [:contributable, :followable, :versionable] do
     member do
       get  'geo_data'
       post 'add_geo_data'
