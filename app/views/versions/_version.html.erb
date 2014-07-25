@@ -11,5 +11,7 @@
     </time>
     <%= link_to icon("history", t("versions.revert")), "#", class: "action-btn version-revert" %>
     <%= link_to icon("eye", ""), "#", class: "action-btn version-see-object" %>
+
+    <%= render 'versions/diff', diff: DiffPresenter.new(items: presenter.diff_items, ctx: self) %>
   </div>
 </li>

@@ -1,0 +1,10 @@
+<div class="version-diff">
+  <% diff.items.each do |key, vals| %>
+    <div class="diff-item">
+      <header><h3><%= icon 'angle-double-right', key.humanize %></h3></header>
+      <section>
+        <%= diff.show key, vals %>
+      </section>
+    </div>
+  <% end %>
+</div>

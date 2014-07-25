@@ -33,5 +33,9 @@ class VersionPresenter
   def time_ago
     ctx.t('time_ago', time: ctx.time_ago_in_words(time))
   end
+
+  def diff_items
+    Hash[*object.changeset.map {|k, v| [k, OpenStruct.new(old_value: v[0], new_value: v[1])]}.flatten]
+  end
 end
 
