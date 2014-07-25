@@ -2,3 +2,11 @@ en:
   versions:
     title: "Versions history for %{content}"
     empty: "There are no other versions for this content"
+
+    event:
+      update: 'updated'
+      create: 'created'
+      delete: 'deleted'
+
+    revert: 'Revert'
+

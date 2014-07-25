@@ -54,7 +54,7 @@ Meppit::Application.routes.draw do
   end
 
   resources :geo_data, only: [:index, :show, :edit, :update, :maps],
-                       concerns: [:contributable, :followable] do
+                       concerns: [:contributable, :followable, :versionable] do
     member do
       get  'maps'
       post 'add_map'

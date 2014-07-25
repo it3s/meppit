@@ -1,0 +1,45 @@
+.version-title {
+  font-size: 1.5em;
+  margin: 20px 0;
+}
+.versions-list {
+
+  .version-list-item {
+    background-color: $meppit-light-blue;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 1.1em;
+
+    .version-event {
+      display: inline-block;
+    }
+    .author-name {
+      color: darken($ocean-blue, 10%);
+    }
+
+    .event-name {
+      font-weight: bold;
+    }
+    .version-time {
+      display: inline-block;
+      font-size: 0.8em;
+      color: $grey;
+      margin-left: 10px;
+    }
+
+    .version-revert {
+      @include blue-button;
+    }
+    .version-see-object {
+      @include button;
+    }
+
+    .action-btn {
+      float: right;
+      margin: 0 5px;
+      font-size: 0.8em;
+      padding: 3px 14px;
+    }
+  }
+}

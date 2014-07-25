@@ -5,6 +5,7 @@ en:
   save_changes: "Save Changes"
   save: "Save"
   cancel: "Cancel"
+  time_ago: "%{time} ago"
 
   empty_location: "Loocation not provided yet"
 
@@ -20,3 +21,5 @@ en:
     explanation: "enter data in yaml format."
     help: "click here for help."
     invalid: "Invalid format"
+
+

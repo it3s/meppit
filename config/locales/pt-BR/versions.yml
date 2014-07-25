@@ -2,3 +2,10 @@ pt-BR:
   versions:
     title: "Histórico de versões para %{content}"
     empty: "Não há outras versões para este conteúdo"
+
+    event:
+      update: 'atualizou'
+      create: 'criou'
+      delete: 'deletou'
+
+    revert: 'Reverter'

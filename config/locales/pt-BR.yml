@@ -5,6 +5,7 @@ pt-BR:
   save_changes: 'Salvar Alterações'
   save: 'Salvar'
   cancel: 'Cancelar'
+  time_ago: "há %{time}"
 
   empty_location: 'Localização não fornecida'
 

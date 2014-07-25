@@ -1,6 +1,15 @@
 <li class="version-list-item">
   <div class="wrapper">
-
-    <%= "#{version.event} #{version.changeset} by #{User.find(version.whodunnit.to_i).name} on #{version.created_at} " %>
+    <div class="version-event">
+      <%= icon 'edit' %>
+      <%= link_to presenter.author_name, user_path(presenter.author), class: "author-name" %>
+      <span class="event-name"><%= presenter.event %></span>
+      <%= presenter.changes %>
+    </div>
+    <time class="version-time" datetime="<%= presenter.time.to_datetime.rfc3339 %>">
+      <%= presenter.time_ago %>
+    </time>
+    <%= link_to icon("history", t("versions.revert")), "#", class: "action-btn version-revert" %>
+    <%= link_to icon("eye", ""), "#", class: "action-btn version-see-object" %>
   </div>
 </li>
