@@ -6,6 +6,8 @@ en:
   save: "Save"
   cancel: "Cancel"
   time_ago: "%{time} ago"
+  before: "Before"
+  after: "After"
 
   empty_location: "Loocation not provided yet"
 

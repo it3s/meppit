@@ -10,3 +10,6 @@ en:
 
     revert: 'Revert'
 
+    jsontable:
+      empty: "Empty data for this version"
+

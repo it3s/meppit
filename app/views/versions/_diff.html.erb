@@ -2,7 +2,7 @@
   <% diff.items.each do |key, vals| %>
     <div class="diff-item">
       <header><h3><%= icon 'angle-double-right', key.humanize %></h3></header>
-      <section>
+      <section class="diff-show">
         <%= diff.show key, vals %>
       </section>
     </div>

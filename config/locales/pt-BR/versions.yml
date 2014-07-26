@@ -9,3 +9,6 @@ pt-BR:
       delete: 'deletou'
 
     revert: 'Reverter'
+
+    jsontable:
+      empty: "Dados vazios para esta versão"

@@ -12,7 +12,7 @@
   }
   .version-list-item {
     background-color: $meppit-light-blue;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     padding: 10px;
     border-radius: 4px;
     font-size: 1.1em;
@@ -55,6 +55,10 @@
       font-size: 1em;
       margin: 10px 0;
     }
+    .diff-show {
+      border-left: solid 2px $soft-grey;
+      padding-left: 20px;
+    }
     del.differ {
       font-style: line-through;
       color: $dark-red;
@@ -78,5 +82,18 @@
         opacity: 0.5;
       }
     }
+    .jsontable-after, .jsontable-before {
+      padding: 10px;
+      background-color: $main-color-bg;
+      border-radius: 4px;
+      margin-bottom: 10px;
+
+      .jsontable-title {
+        font-weight: bold;
+        margin: 10px 0 20px;
+      }
+    }
+    .jsontable-before .jsontable-title { color: $dark-red; opacity: 0.6; }
+    .jsontable-after  .jsontable-title { color: $meppit-dark-green; opacity: 0.9; }
   }
 }
