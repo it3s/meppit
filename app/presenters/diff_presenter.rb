@@ -18,15 +18,15 @@ class DiffPresenter
   private
 
   def _string_diff(vals)
-    ::Differ.diff_by_word(vals.new_value, vals.old_value).format_as(:html)
+    ::Differ.diff_by_word(vals.after, vals.before).format_as(:html)
   end
 
   def _text_diff(vals)
-    ::Differ.diff_by_line(vals.new_value, vals.old_value).format_as(:html)
+    ::Differ.diff_by_line(vals.after, vals.before).format_as(:html)
   end
 
   def _tags_diff(vals)
-    all_tags = vals.old_value + vals.new_value
+    all_tags = vals.before + vals.after
     ctx.content_tag :div, class: 'tags' do
       all_tags.uniq.map { |tag| "<span class='tag #{_tag_class tag, vals}'>#{ctx.icon :tag, tag}</span>" }.join.html_safe
     end
@@ -39,21 +39,21 @@ class DiffPresenter
   end
 
   def _contacts_diff(vals)
-    all_keys = vals.old_value.keys + vals.new_value.keys
+    all_keys = vals.before.keys + vals.after.keys
     contacts = Hash[*all_keys.map { |key| [key, _contact_value(key, vals).html_safe] }.flatten]
     ctx.render 'shared/contacts/view', object: OpenStruct.new(contacts: contacts)
   end
 
   def _contact_value(key, vals)
-    return "<ins class='differ'>#{vals.new_value[key]}</ins>" if vals.new_value[key] && !vals.old_value[key]
-    return "<del class='differ'>#{vals.old_value[key]}</del>" if vals.old_value[key] && !vals.new_value[key]
-    return vals.old_value[key] if vals.old_value[key] == vals.new_value[key]
-    "<del class='differ'>#{vals.old_value[key]}</del><ins class='differ'>#{vals.new_value[key]}</ins>"
+    return "<ins class='differ'>#{vals.after[key]}</ins>"  if vals.after[key]  && !vals.before[key]
+    return "<del class='differ'>#{vals.before[key]}</del>" if vals.before[key] && !vals.after[key]
+    return vals.before[key] if vals.before[key] == vals.after[key]
+    "<del class='differ'>#{vals.before[key]}</del><ins class='differ'>#{vals.after[key]}</ins>"
   end
 
   def _tag_class(tag, vals)
-    return "ins" if !vals.old_value.include?(tag)
-    return "del" if !vals.new_value.include?(tag)
+    return "ins" if !vals.before.include?(tag)
+    return "del" if !vals.after.include?(tag)
     ""
   end
 end

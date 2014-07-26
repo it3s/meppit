@@ -35,7 +35,7 @@ class VersionPresenter
   end
 
   def diff_items
-    Hash[*object.changeset.map {|k, v| [k, OpenStruct.new(old_value: v[0], new_value: v[1])]}.flatten]
+    Hash[*object.changeset.map {|k, v| [k, OpenStruct.new(before: v[0], after: v[1])]}.flatten]
   end
 end
 
