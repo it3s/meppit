@@ -1,6 +1,6 @@
 
-<div class='jsontable-before'>
-  <div class='jsontable-title'><%= t 'before'%>:</div>
+<div class='version-diff-before jsontable-diff'>
+  <div class='before-title'><%= t 'before'%>:</div>
   <% if vals.before %>
     <div class="json-table" data-components="jsonTable"
       data-component-jsontable='<%= additional_info_json OpenStruct.new(additional_info: vals.before) %>'></div>
@@ -9,8 +9,8 @@
   <% end %>
 </div>
 
-<div class='jsontable-after'>
-  <div class='jsontable-title'><%= t 'after' %>:</div>
+<div class='version-diff-after jsontable-diff'>
+  <div class='after-title'><%= t 'after' %>:</div>
   <% if vals.after %>
     <div class="json-table" data-components="jsonTable"
       data-component-jsontable='<%= additional_info_json OpenStruct.new(additional_info: vals.after) %>'></div>

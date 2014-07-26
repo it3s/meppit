@@ -82,18 +82,22 @@
         opacity: 0.5;
       }
     }
-    .jsontable-after, .jsontable-before {
+
+    .jsontable-diff {
       padding: 10px;
       background-color: $main-color-bg;
       border-radius: 4px;
+    }
+
+    .version-diff-before, .version-diff-after {
       margin-bottom: 10px;
 
-      .jsontable-title {
+      .before-title, .after-title {
         font-weight: bold;
         margin: 10px 0 20px;
       }
+      .before-title { color: $dark-red; opacity: 0.6; }
+      .after-title { color: $meppit-dark-green; opacity: 0.9; }
     }
-    .jsontable-before .jsontable-title { color: $dark-red; opacity: 0.6; }
-    .jsontable-after  .jsontable-title { color: $meppit-dark-green; opacity: 0.9; }
   }
 }

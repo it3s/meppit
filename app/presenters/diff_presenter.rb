@@ -9,6 +9,7 @@ class DiffPresenter
     tags: "tags",
     contacts: "contacts",
     additional_info: "jsontable",
+    location: "location",
   }
 
   def show(key, vals)
@@ -32,16 +33,23 @@ class DiffPresenter
     end
   end
 
+  def _contacts_diff(vals)
+    all_keys = vals.before.keys + vals.after.keys
+    contacts = Hash[*all_keys.map { |key| [key, _contact_value(key, vals).html_safe] }.flatten]
+    ctx.render 'shared/contacts/view', object: OpenStruct.new(contacts: contacts)
+  end
+
   def _jsontable_diff(vals)
     ctx.content_tag :div do
       ctx.render 'versions/jsontable_diff', vals: vals
     end
   end
 
-  def _contacts_diff(vals)
-    all_keys = vals.before.keys + vals.after.keys
-    contacts = Hash[*all_keys.map { |key| [key, _contact_value(key, vals).html_safe] }.flatten]
-    ctx.render 'shared/contacts/view', object: OpenStruct.new(contacts: contacts)
+  def _location_diff(vals)
+    ctx.content_tag :div do
+      ctx.render('versions/location_diff', before: _parse_location(vals, :before),
+                                           after: _parse_location(vals, :after) )
+    end
   end
 
   def _contact_value(key, vals)
@@ -55,5 +63,9 @@ class DiffPresenter
     return "ins" if !vals.before.include?(tag)
     return "del" if !vals.after.include?(tag)
     ""
+  end
+
+  def _parse_location(vals, value_type)
+    ::GeoData.new(location: (vals[value_type] || {})["wkt"])
   end
 end
