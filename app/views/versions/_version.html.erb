@@ -9,7 +9,7 @@
     <time class="version-time" datetime="<%= presenter.time.to_datetime.rfc3339 %>">
       <%= presenter.time_ago %>
     </time>
-    <%= link_to icon("history", t("versions.revert")), "#", class: "action-btn version-revert" %>
+    <%= link_to icon("history", t("versions.revert")), revert_version_path(presenter.object), class: "action-btn version-revert", method: :post, "data-components" => "loginRequired" %>
     <%= link_to icon("eye", ""), "#", class: "action-btn version-see-object" %>
 
     <%= render 'versions/diff', diff: DiffPresenter.new(items: presenter.diff_items, ctx: self) %>

@@ -9,6 +9,8 @@ pt-BR:
       delete: 'deletou'
 
     revert: 'Reverter'
+    reverted: "<b>%{content}</b> revertido com sucesso"
+
 
     jsontable:
       empty: "Dados vazios para esta versão"

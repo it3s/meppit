@@ -15,6 +15,8 @@ Meppit::Application.routes.draw do
   post "search"      => "application#search", as: :search
   get  "tags/search" => "tags#search",        as: :tag_search
 
+  post "versions/:id/revert" => "versions#revert", :as => "revert_version"
+
   concern :contributable do
     get "contributors" => "contributings#contributors"
   end

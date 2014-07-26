@@ -9,6 +9,7 @@ en:
       delete: 'deleted'
 
     revert: 'Revert'
+    reverted: "Reverted <b>%{content}</b> successfully"
 
     jsontable:
       empty: "Empty data for this version"
