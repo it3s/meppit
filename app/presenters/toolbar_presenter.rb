@@ -92,7 +92,7 @@ class ToolbarPresenter
   def _follow_component
     opts_json = ctx.follow_options_for object
     {
-      :type => "follow",
+      :type => "follow loginRequired",
       :opts => "data-follow=#{ opts_json } "
     }
   end
