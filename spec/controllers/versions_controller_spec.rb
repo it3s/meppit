@@ -52,7 +52,6 @@ describe VersionsController, versioning: true do
       context "logged in" do
         before { login_user user }
 
-
         it "find version" do
           post :revert, id: version.id
           expect(assigns[:version]).to eq version
@@ -94,22 +93,95 @@ describe VersionsController, versioning: true do
   end
 
   describe "GET show" do
-    pending
-  end
+    let(:user) { FactoryGirl.create :user }
 
-  describe "build_object_for_version" do
-    pending
+    shared_examples_for "show version" do
+      let!(:version) {target.versions.last}
+
+      before { login_user user }
+
+      it "find version" do
+        post :revert, id: version.id
+        expect(assigns[:version]).to eq version
+      end
+
+      it "builds object for this version" do
+        post :show, id: version.id
+        expect(assigns[:object].name).to eq "old name"
+      end
+
+      it "render versions/show with layout nil" do
+        post :show, id: version.id
+        expect(response).to render_template "versions/show"
+        expect(response).to render_template layout: nil
+      end
+    end
+
+    context "geo_data" do
+      let!(:target) do
+        geo_data = FactoryGirl.create :geo_data, name: "old name"
+        geo_data.update_attributes! name: "new name"
+        geo_data
+      end
+
+      it_behaves_like "show version"
+    end
+
+    context "map" do
+      let!(:target) do
+        map = FactoryGirl.create :map, name: "old name"
+        map.update_attributes! name: "new name"
+        map
+      end
+
+      it_behaves_like "show version"
+    end
   end
 
   describe "revert_to_version!" do
-    pending
+    let!(:geo_data) do
+      geo_data = FactoryGirl.create :geo_data, name: "old name"
+      geo_data.update_attributes! name: "new name"
+      geo_data
+    end
+
+    it "rebuilds the object for a given version and save" do
+      expect(geo_data.name).to eq "new name"
+      controller.instance_variable_set "@version", geo_data.versions.last
+      controller.send :revert_to_version!
+      expect(geo_data.reload.name).to eq "old name"
+    end
   end
 
   describe "reified_object" do
-    pending
+    let!(:geo_data) do
+      geo_data = FactoryGirl.create :geo_data, name: "old name"
+      geo_data.update_attributes! name: "new name"
+      geo_data
+    end
+
+    it "rebuilds the object for a given version" do
+      expect(geo_data.name).to eq "new name"
+      controller.instance_variable_set "@version", geo_data.versions.last
+      expect(controller.send(:reified_object).name).to eq "old name"
+    end
   end
 
   describe "version_location" do
-    pending
+    let!(:geo_data) do
+      geo_data = FactoryGirl.create :geo_data, location: "GeometryCollection (Point (-10.0 -10.0))"
+      geo_data.update_attributes! location: nil
+      geo_data
+    end
+
+    it "parses properly the wkt string for the location of a reified object" do
+      expect(geo_data.location).to eq nil
+      controller.instance_variable_set "@version", geo_data.versions.last
+      expect(controller.send(:version_location)).to eq "GeometryCollection (Point (-10.0 -10.0))"
+    end
+    it "returns nil if version has no location" do
+      controller.instance_variable_set "@version", double(object: "no_location: true")
+      expect(controller.send(:version_location)).to be nil
+    end
   end
 end
