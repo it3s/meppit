@@ -14,16 +14,8 @@ App.components.search = (container) ->
       App.mediator.publish "components:start", results_content
 
     onSuccess: (data) ->
-      @hideSpinner()
+      App.spinner.hide()
       @showResults data
-
-    showSpinner: ->
-      @spinner ||=  $('<div class="modal-spinner"></div>')
-      $('body').append(@spinner)
-      @spinner.show()
-
-    hideSpinner: ->
-      @spinner?.remove()
 
     doSearch: ->
       _this = this
@@ -32,7 +24,7 @@ App.components.search = (container) ->
 
       return if search_term?.length is 0
 
-      @showSpinner()
+      App.spinner.show()
       $.ajax
         type: 'POST'
         url: url
