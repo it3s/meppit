@@ -15,8 +15,6 @@ Meppit::Application.routes.draw do
   post "search"      => "application#search", as: :search
   get  "tags/search" => "tags#search",        as: :tag_search
 
-  post "versions/:id/revert" => "versions#revert", :as => "revert_version"
-
   concern :contributable do
     get "contributors" => "contributings#contributors"
   end
@@ -77,6 +75,10 @@ Meppit::Application.routes.draw do
     collection do
       get :search_by_name
     end
+  end
+
+  resources :versions, only: [:show] do
+    post "revert", on: :member
   end
 
   if Rails.env.development?

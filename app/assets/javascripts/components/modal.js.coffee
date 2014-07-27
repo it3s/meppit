@@ -35,6 +35,7 @@ App.components.modal = (container) ->
       if @shouldOpen()
         opts = _.clone(@defaults)
         opts = _.extend(opts, @preventClose) if @data.prevent_close
+        opts = _.extend(opts, {modalClass: @data.modal_class}) if @data.modal_class?.length > 0
         @target.modal(opts)
       false
 

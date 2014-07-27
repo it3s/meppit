@@ -101,3 +101,17 @@
     }
   }
 }
+
+.modal.version-modal {
+  width: 800px;
+  height: 500px;
+  background-color: $main-color-bg;
+
+  .version-show {
+    font-size: 0.75em;
+    height: 500px;
+    overflow: scroll;
+    .toolbar { display: none; }
+
+  }
+}
