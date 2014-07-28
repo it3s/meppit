@@ -97,3 +97,30 @@ nav.pagination { display: none; }  // We are using infinite scroll
       .item-excerpt { display: none; }
    }
 }
+
+.site-page.index {
+  .list-headline { border-bottom: solid 1px $ultra-soft-grey; }
+
+  .list-actions {
+    padding: 10px 0;
+    border-bottom: solid 1px $ultra-soft-grey;
+
+    .add-to-map { float: none; }
+
+    .upload-btn, .download-btn, .select-all-btn {
+      @include button;
+    }
+
+    .select-all-btn {
+      padding-top: 5px;
+      input[type=checkbox] { position: relative; top: 3px; }
+    }
+
+    .add-new-btn {
+      @include blue-button;
+      $border: darken($meppit-dark-blue, 20%);
+      float: right;
+    }
+
+  }
+}

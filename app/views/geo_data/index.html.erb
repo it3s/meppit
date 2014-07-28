@@ -1,7 +1,24 @@
-<div class="site-page full data-list">
+<div class="site-page full data-list geo_data index">
   <div data-components="list">
-    <h1 class="title"><%= raw t('geo_data.list.title', :count => "<em>#{@geo_data_collection.total_count}</em>") %></h1>
-    <div id="geodata-pagination"><%= paginate @geo_data_collection, :remote => true %></div>
+
+    <div class="list-headline">
+      <h1 class="title">
+        <%= raw t('geo_data.list.title', :count => "<em>#{@geo_data_collection.total_count}</em>") %>
+      </h1>
+      <div id="geodata-pagination"><%= paginate @geo_data_collection, :remote => true %></div>
+    </div>
+
+    <div class="list-actions">
+      <%= link_to '<input type="checkbox" /> Select All'.html_safe, '#', class: 'select-all-btn' %>
+
+      <%= link_to_modal icon("globe", t("geo_data.add_map.title")), "#add-to-map-modal", login_required: true, html: {class: "add-to-map"} %>
+
+      <%= link_to icon('upload', ''), '#', class: 'upload-btn' %>
+      <%= link_to icon('download', ''), '#', class: 'download-btn' %>
+
+      <%= link_to icon('map-marker', 'Add new'), '#', class: 'add-new-btn' %>
+    </div>
+
     <ul id="geodata-list" class="list data-list">
       <%= render @geo_data_collection, :checkbox => true %>
     </ul>
