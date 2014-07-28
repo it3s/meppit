@@ -1,0 +1,15 @@
+<section>
+  <div id="versions">
+    <h2 class="version-title"><%= icon "clock-o", t('versions.title', content: @versionable.name) %></h2>
+    <!--div id="versions-pagination"><%#= paginate @versions, :remote => true %></div-->
+    <ul id="versions-list" class="versions-list">
+      <% if @versions.empty? %>
+        <p class="empty"><%= t 'versions.empty' %></p>
+      <% else %>
+        <% @versions.each do |version| %>
+          <%= render 'versions/version', presenter: VersionPresenter.new(object: version, ctx: self) %>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</section>

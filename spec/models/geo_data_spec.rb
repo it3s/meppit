@@ -66,4 +66,17 @@ describe GeoData do
     it { expect(GeoData.search_by_name('br'  ).map(&:name)).to eq ['OKFN-br'] }
     it { expect(GeoData.search_by_name('bl'  ).map(&:name)).to eq ['bla', 'ble'] }
   end
+
+  describe "versioning", versioning: true do
+    let(:geo_data) { FactoryGirl.create :geo_data, name: 'name' }
+
+    it { expect(geo_data).to be_versioned }
+
+    it "save versions" do
+      expect(geo_data.versions.count).to eq 1
+      geo_data.update_attributes! name: 'new name'
+      expect(geo_data.versions.count).to eq 2
+      expect(geo_data.versions.where_object(name: 'name').any?).to be true
+    end
+  end
 end

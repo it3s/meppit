@@ -72,7 +72,9 @@ class ToolbarPresenter
   end
 
   def _history_tool
-    { icon: :'clock-o', title: t('toolbar.history'), url: "" }
+    history_url = ctx.url_for([object, :history])
+    { icon: :'clock-o', title: t('toolbar.history'), url: history_url,
+      active?: ctx.request.path == history_url }
   end
 
   def _settings_tool
@@ -90,7 +92,7 @@ class ToolbarPresenter
   def _follow_component
     opts_json = ctx.follow_options_for object
     {
-      :type => "follow",
+      :type => "follow loginRequired",
       :opts => "data-follow=#{ opts_json } "
     }
   end

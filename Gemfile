@@ -41,7 +41,9 @@ gem 'remotipart'                    # enable ajax file uploads on remote forms
 gem 'kaminari'                      # paginator
 gem 'event_bus'                     # event bus for decoupling logic between models
 gem 'rdiscount'                     # render markdown
-gem 'safe_yaml'
+gem 'safe_yaml'                     # safe yaml load to avoid code injection
+gem 'paper_trail'                   # model versioning
+gem 'differ'                        # build diffs
 
 group :doc do
   gem 'sdoc', :require => false

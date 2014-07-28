@@ -1,0 +1,20 @@
+
+<div class='version-diff-before jsontable-diff'>
+  <div class='before-title'><%= t 'before'%>:</div>
+  <% if vals.before %>
+    <div class="json-table" data-components="jsonTable"
+      data-component-jsontable='<%= additional_info_json OpenStruct.new(additional_info: vals.before) %>'></div>
+  <% else %>
+    <div class="jsontable-empty"><%= t 'versions.jsontable.empty' %></div>
+  <% end %>
+</div>
+
+<div class='version-diff-after jsontable-diff'>
+  <div class='after-title'><%= t 'after' %>:</div>
+  <% if vals.after %>
+    <div class="json-table" data-components="jsonTable"
+      data-component-jsontable='<%= additional_info_json OpenStruct.new(additional_info: vals.after) %>'></div>
+    <% else %>
+      <div class="jsontable-empty"><%= t 'versions.jsontable.empty' %></div>
+    <% end %>
+</div>

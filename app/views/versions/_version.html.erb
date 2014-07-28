@@ -1,0 +1,21 @@
+<li class="version-list-item">
+  <div class="wrapper">
+    <div class="version-event">
+      <%= icon 'edit' %>
+      <%= link_to presenter.author_name, user_path(presenter.author), class: "author-name" %>
+      <span class="event-name"><%= presenter.event %></span>
+      <%= presenter.changes %>
+    </div>
+    <time class="version-time" datetime="<%= presenter.time.to_datetime.rfc3339 %>">
+      <%= presenter.time_ago %>
+    </time>
+
+    <%= link_to icon("history", t("versions.revert")), revert_version_path(presenter.object), method: :post,
+          class: "action-btn version-revert", "data-components" => "loginRequired" %>
+
+    <%= link_to_modal icon("eye", ""), version_path(presenter.object), remote: true,
+          modal_class: "modal version-modal", html: { class: "action-btn version-see-object" } %>
+
+    <%= render 'versions/diff', diff: DiffPresenter.new(items: presenter.diff_items, ctx: self) %>
+  </div>
+</li>

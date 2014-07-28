@@ -5,6 +5,10 @@ pt-BR:
   save_changes: 'Salvar Alterações'
   save: 'Salvar'
   cancel: 'Cancelar'
+  time_ago: "há %{time}"
+  before: "Antes"
+  after: "Depois"
+
 
   empty_location: 'Localização não fornecida'
 

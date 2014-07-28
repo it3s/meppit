@@ -33,12 +33,15 @@ App.components.modal = (container) ->
 
     open: () ->
       if @shouldOpen()
+        App.spinner.show() if @data.remote
         opts = _.clone(@defaults)
         opts = _.extend(opts, @preventClose) if @data.prevent_close
+        opts = _.extend(opts, {modalClass: @data.modal_class}) if @data.modal_class?.length > 0
         @target.modal(opts)
       false
 
-    startComponents: () ->
+    onAjaxComplete: () ->
+      App.spinner.hide()
       setTimeout( ->
         currentModal = $('.modal.current')
         App.mediator.publish('components:start', currentModal)
@@ -52,6 +55,6 @@ App.components.modal = (container) ->
 
       if @data.remote
         # trigger components:start for ajax loaded elements
-        @container.on 'modal:ajax:complete', @startComponents.bind(this)
+        @container.on 'modal:ajax:complete', @onAjaxComplete.bind(this)
 
   }

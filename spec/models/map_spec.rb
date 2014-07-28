@@ -131,4 +131,17 @@ describe Map do
     it { expect(Map.search_by_name('data').map(&:name)).to eq ['Open Data Orgs', 'Data Centers'] }
     it { expect(Map.search_by_name('bl'  ).map(&:name)).to eq ['bla', 'ble'] }
   end
+
+  describe "versioning", versioning: true do
+    let(:map) { FactoryGirl.create :map, name: 'name' }
+
+    it { expect(map).to be_versioned }
+
+    it "save versions" do
+      expect(map.versions.count).to eq 1
+      map.update_attributes! name: 'new name'
+      expect(map.versions.count).to eq 2
+      expect(map.versions.where_object(name: 'name').any?).to be true
+    end
+  end
 end

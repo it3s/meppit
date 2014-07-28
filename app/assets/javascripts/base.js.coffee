@@ -59,12 +59,22 @@ flashMessage = (msg)->
   $('body').append(flashMsg)
   mediator.publish 'components:start', flashMsg
 
+spinner = {
+  show: ->
+    @spinner ||=  $('<div class="modal-spinner"></div>')
+    $('body').append(@spinner)
+    @spinner.show()
+
+  hide: -> @spinner?.remove()
+}
+
 # setup global App namesmpace
 window.App =
   mediator    : mediator
   utils       : {}
   components  : components
   flashMessage: flashMessage
+  spinner     : spinner
 
 
 # setup testing ns
