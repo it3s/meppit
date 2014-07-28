@@ -16,7 +16,7 @@ en:
     title: "Search Results"
 
   flash:
-    updated: "Updated successfully"
+    saved: "Saved successfully"
 
   additional_info:
     title: "Additional Info"

@@ -15,7 +15,7 @@ module Utils
     if obj.valid? && obj.save
       obj_name = obj.class.name.underscore
       EventBus.publish "#{obj_name}_updated", obj_name.to_sym => obj, current_user: current_user
-      flash[:notice] = t('flash.updated')
+      flash[:notice] = t('flash.saved')
       render json: {redirect: polymorphic_path([obj])}
     else
       render json: {errors: obj.errors.messages}, status: :unprocessable_entity

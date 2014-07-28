@@ -1,7 +1,7 @@
 class ObjectsController < ApplicationController
   before_action :find_object,    except: [:index, :new, :create, :search_by_name]
-  before_action :build_instance, only:   [:new]
-  before_action :validate_additional_info, only: [:update]
+  before_action :build_instance, only:   [:new, :create]
+  before_action :validate_additional_info, only: [:create, :update]
 
   def index
     instance_variable_set "@#{controller_name}_collection", model.page(params[:page]).per(params[:per])
@@ -15,6 +15,7 @@ class ObjectsController < ApplicationController
   end
 
   def create
+    update_object current_object, cleaned_params
   end
 
   def show
