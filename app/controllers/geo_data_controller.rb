@@ -1,5 +1,5 @@
 class GeoDataController < ObjectsController
-  before_action :require_login, only: [:edit, :update, :add_map]
+  before_action :require_login, except: [:index, :show, :maps, :search_by_name]
 
   def maps
     @maps = paginate @geo_data.maps

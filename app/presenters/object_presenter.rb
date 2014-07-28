@@ -25,6 +25,11 @@
 #   By default always show the location. If you want to hide, pass the argument:
 #   `show_location: false`.
 #
+# == Displaying the toolbar:
+#
+#   By default always show the toolbar. If you want to hide, pass the argument:
+#   `show_toolbar: false`.
+#
 # == Styling
 #
 #   The `.site-page` wrapper will always have two css classes, one after the
@@ -86,5 +91,11 @@ class ObjectPresenter
   # Only hides if `show_location: false` is given on initialize.
   def hide_location?
     try(:show_location) == false
+  end
+
+  # Check if should render the toolbar partial.
+  # Only hides if `show_toolbar: false` is given on initialize.
+  def hide_toolbar?
+    try(:show_toolbar) == false
   end
 end

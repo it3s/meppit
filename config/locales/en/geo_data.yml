@@ -17,6 +17,7 @@ en:
 
     list:
       title: '%{count} objects'
+      add_new: 'Add new'
 
     add_map:
       title: "Add to a Map"

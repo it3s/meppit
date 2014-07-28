@@ -17,6 +17,7 @@ pt-BR:
 
     list:
       title: '%{count} objetos'
+      add_new: 'Adicionar novo'
 
     add_map:
       title: "Adicione a um Mapa"

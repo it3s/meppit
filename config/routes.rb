@@ -53,7 +53,7 @@ Meppit::Application.routes.draw do
     end
   end
 
-  resources :geo_data, only: [:index, :show, :edit, :update, :maps],
+  resources :geo_data, except: [:destroy],
                        concerns: [:contributable, :followable, :versionable] do
     member do
       get  'maps'

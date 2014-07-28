@@ -19,3 +19,6 @@ pt-BR:
           password_confirmation: 'Confirmação da senha'
           license_aggrement: "Eu li e aceito os <a href=\"/\">termos de uso</a>"
 
+    placeholders:
+      defaults:
+        name: 'Nome'

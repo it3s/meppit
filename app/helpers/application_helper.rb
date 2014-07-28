@@ -30,7 +30,7 @@ module ApplicationHelper
   end
 
   def edit_mode?
-    params[:action] == 'edit'
+    ['edit', 'new'].include? params[:action]
   end
 
   def identifier_for(obj)
