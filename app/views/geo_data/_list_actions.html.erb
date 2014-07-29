@@ -1,5 +1,7 @@
 <div class="list-actions">
-  <%= link_to '<input type="checkbox" /> Select All'.html_safe, '#', class: 'select-all-btn' %>
+  <button class="select-all-btn" data-components='selectAll'>
+    <input type="checkbox" name="all" />Select All
+  </button>
 
   <%= link_to_modal icon("globe", t("geo_data.add_map.title")), "#add-to-map-modal",
         login_required: true, html: {class: "add-to-map"} %>
