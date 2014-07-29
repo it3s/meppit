@@ -26,4 +26,8 @@ en:
       explanation: "Select the map in which you want to insert this content"
       invalid: "Invalid Map"
 
+    bulk_add_map:
+      title: "Add the selected items to a Map"
+      explanation: "Select the map in which you want to insert the selected items"
+
 

@@ -3,8 +3,10 @@
     <input type="checkbox" name="all" />Select All
   </button>
 
-  <%= link_to_modal icon("globe", t("geo_data.add_map.title")), "#add-to-map-modal",
+  <%= link_to_modal icon("globe", t("geo_data.add_map.title")), "#bulk-add-to-map-modal",
         login_required: true, html: {class: "add-to-map"} %>
+
+  <%= render "geo_data/bulk_add_map_modal" %>
 
   <%= link_to icon('upload', ''), '#', class: 'upload-btn' %>
   <%= link_to icon('download', ''), '#', class: 'download-btn' %>

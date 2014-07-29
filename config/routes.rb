@@ -56,12 +56,13 @@ Meppit::Application.routes.draw do
   resources :geo_data, except: [:destroy],
                        concerns: [:contributable, :followable, :versionable] do
     member do
-      get  'maps'
-      post 'add_map'
+      get  :maps
+      post :add_map
     end
 
     collection do
-      get :search_by_name
+      get  :search_by_name
+      post :bulk_add_map
     end
   end
 

@@ -9,4 +9,8 @@ class GeoDataController < ObjectsController
   def add_map
     add_mapping_to Map
   end
+
+  def bulk_add_map
+    render json: {}
+  end
 end

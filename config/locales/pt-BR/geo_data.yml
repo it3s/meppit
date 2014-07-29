@@ -26,3 +26,6 @@ pt-BR:
       explanation: "Selecione o mapa em que você deseja inserir esse conteúdo"
       invalid: "Mapa Inválido"
 
+    bulk_add_map:
+      title: "Adicione os itens selecionados a um Mapa"
+      explanation: "Selecione o mapa no qual você quer inserir os itens selecionados"
