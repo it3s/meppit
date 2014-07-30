@@ -11,5 +11,5 @@
   <%= link_to icon('upload', ''), '#', class: 'upload-btn' %>
   <%= link_to icon('download', ''), '#', class: 'download-btn' %>
 
-  <%= link_to icon('map-marker', t('geo_data.list.add_new')), new_geo_data_path, class: 'add-new-btn' %>
+  <%= link_to icon('map-marker', t('geo_data.list.add_new')), new_geo_data_path, class: 'add-new-btn' , "data-components" => "loginRequired" %>
 </div>

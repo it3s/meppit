@@ -125,4 +125,14 @@ nav.pagination { display: none; }  // We are using infinite scroll
       .add-to-map { float: none; }
     }
   }
+
+  &.maps {
+    .list-actions {
+
+      .add-new-btn {
+        @include button($meppit-maps-color, $dark-orange, $white, $border: $meppit-maps-color);
+        float: right;
+      }
+    }
+  }
 }
