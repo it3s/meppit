@@ -6,7 +6,7 @@ class VersionsController < ApplicationController
   before_action :build_map_geo_data,       only: [:show]
 
   def history
-    @versions = @versionable.versions
+    @versions = @versionable.versions.reorder('created_at desc')
     render layout: nil if request.xhr?
   end
 
