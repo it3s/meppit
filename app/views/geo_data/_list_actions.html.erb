@@ -4,7 +4,7 @@
   </button>
 
   <%= link_to_modal icon("globe", t("geo_data.add_map.title")), "#bulk-add-to-map-modal",
-        login_required: true, html: {class: "add-to-map"} %>
+        login_required: true, html: {class: "add-to-map", id: "bulk-add-to-map"} %>
 
   <%= render "geo_data/bulk_add_map_modal" %>
 

@@ -9,11 +9,7 @@ App.components.addMapManager = (container) ->
       @addListeners()
 
     addListeners: ->
-      if App.components._instances[@formId]
-        @listen()
-      else
-        App.mediator.subscribe 'component:started', (evt, componentId) =>
-          @listen() if componentId is @formId
+      App.utils.whenComponentStarted @formId, @listen.bind(this)
 
     closeModal: ->
       @form.container.find('input[name=map]').val('')
@@ -23,11 +19,11 @@ App.components.addMapManager = (container) ->
     onSuccess: (el, response) ->
       @closeModal()
       App.mediator.publish("mapping:changed", {id: @identifier, count: response.count})
-      App.flashMessage(response.flash)
+      App.utils.flashMessage(response.flash)
 
     onError: (el, response) ->
       @closeModal()
-      App.flashMessage(response.flash)
+      App.utils.flashMessage(response.flash)
 
     listen: ->
       _this = this
