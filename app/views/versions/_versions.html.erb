@@ -1,8 +1,10 @@
 <section>
-  <div id="versions">
+  <div id="versions" data-components="list">
     <h2 class="version-title"><%= icon "clock-o", t('versions.title', content: @versionable.name) %></h2>
-    <!--div id="versions-pagination"><%#= paginate @versions, :remote => true %></div-->
-    <ul id="versions-list" class="versions-list">
+
+    <div id="versions-pagination"><%= paginate @versions, :remote => true %></div>
+
+    <ul id="versions-list" class="versions-list list">
       <% if @versions.empty? %>
         <p class="empty"><%= t 'versions.empty' %></p>
       <% else %>

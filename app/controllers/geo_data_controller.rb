@@ -2,7 +2,6 @@ class GeoDataController < ObjectsController
   before_action :require_login, except: [:index, :show, :maps, :search_by_name]
   before_action :find_object,   except: [:index, :new, :create, :search_by_name, :bulk_add_map]
 
-
   def maps
     @maps = paginate @geo_data.maps
     render layout: nil if request.xhr?
@@ -36,5 +35,4 @@ class GeoDataController < ObjectsController
   def invalid_map
     [t("geo_data.add_map.invalid"), :unprocessable_entity]
   end
-
 end

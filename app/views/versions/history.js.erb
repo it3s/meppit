@@ -1,0 +1,2 @@
+$('#versions-list').html('<%= escape_javascript render(@list, :checkbox => true) %>');
+$('#versions-pagination').html('<%= escape_javascript(paginate(@list, :remote => true).to_s) %>');
