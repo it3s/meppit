@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 20140801172615) do
     t.datetime "updated_at"
     t.integer  "administrator_id",              null: false
     t.json     "additional_info"
-    t.json     "relations"
   end
 
   add_index "maps", ["administrator_id"], :name => "index_maps_on_administrator_id"
