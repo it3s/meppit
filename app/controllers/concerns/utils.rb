@@ -4,12 +4,19 @@ module Utils
   included do
   end
 
-  def set_login_cookie(user)
+  def set_logged_in_cookie
     cookies[:logged_in] = true
   end
 
-  def destroy_login_cookie(user)
+  def destroy_logged_in_cookie
     cookies.delete(:logged_in)
+  end
+
+  def login_redirect_path
+    path = session[:return_to_url] || request.env['HTTP_REFERER'] || root_path
+    session[:return_to_url] = nil
+    path = root_path if path == login_path
+    path
   end
 
   def to_bool(string)
