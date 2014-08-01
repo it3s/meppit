@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140724231605) do
+ActiveRecord::Schema.define(version: 20140801172615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20140724231605) do
     t.datetime "updated_at"
     t.spatial  "location",        limit: {:srid=>4326, :type=>"geometry"}
     t.json     "additional_info"
+    t.json     "relations"
   end
 
   add_index "geo_data", ["location"], :name => "index_geo_data_on_location", :spatial => true
@@ -83,6 +84,7 @@ ActiveRecord::Schema.define(version: 20140724231605) do
     t.datetime "updated_at"
     t.integer  "administrator_id",              null: false
     t.json     "additional_info"
+    t.json     "relations"
   end
 
   add_index "maps", ["administrator_id"], :name => "index_maps_on_administrator_id"
