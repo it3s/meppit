@@ -75,6 +75,11 @@ describe AuthenticationsController do
         get :callback, params
         expect(controller).to redirect_to root_path
       end
+
+      it "sets logged_in cookie" do
+        get :callback, params
+        expect(response.cookies['logged_in']).to eq 'true'
+      end
     end
 
     context "new provider" do
@@ -90,6 +95,11 @@ describe AuthenticationsController do
         expect(controller).to receive :add_provider
         get :callback, params
         expect(controller).to redirect_to root_path
+      end
+
+      it "sets logged_in cookie" do
+        get :callback, params
+        expect(response.cookies['logged_in']).to eq 'true'
       end
     end
   end

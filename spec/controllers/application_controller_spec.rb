@@ -87,6 +87,48 @@ describe ApplicationController do
   end
 
   describe "Utils" do
+    describe "#set_logged_in_cookie" do
+      it "sets cookie" do
+        controller.send :set_logged_in_cookie
+        expect(controller.send(:cookies)[:logged_in]).to be true
+      end
+    end
+
+    describe "#destroy_logged_in_cookie" do
+      it "deletes cookie" do
+        controller.send(:cookies)[:logged_in] = true
+        controller.send :destroy_logged_in_cookie
+        expect(controller.send(:cookies)[:logged_in]).to be nil
+      end
+    end
+
+    describe "#login_redirect_path" do
+      it "gets from session if has return_to_url set" do
+        allow(controller).to receive(:session).and_return({return_to_url: '/return_url'})
+        expect(controller.send :login_redirect_path).to eq '/return_url'
+      end
+
+      it "removes return_to_url from session" do
+        allow(controller).to receive(:session).and_return({return_to_url: '/return_url'})
+        expect(controller.send :login_redirect_path).to eq '/return_url'
+        expect(controller.send(:session)[:return_to_url]).to be nil
+      end
+
+      it "gets from HTTP_REFERER if no return_to_url is set" do
+        allow(controller.request).to receive(:env).and_return({'HTTP_REFERER' => '/referer_url'})
+        expect(controller.send :login_redirect_path).to eq '/referer_url'
+      end
+
+      it "returns root_path if has no return_to_url or referer" do
+        expect(controller.send :login_redirect_path).to eq controller.root_path
+      end
+
+      it "returns root_path if referer is the login_path" do
+        allow(controller.request).to receive(:env).and_return({'HTTP_REFERER' => '/login'})
+        expect(controller.send :login_redirect_path).to eq controller.root_path
+      end
+    end
+
     describe '#to_bool' do
       it 'gets true from string' do
         expect(controller.send :to_bool, 'true').to be true

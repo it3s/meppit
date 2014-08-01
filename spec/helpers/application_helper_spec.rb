@@ -49,7 +49,11 @@ describe ApplicationHelper do
       helper.stub(:params).and_return(action: 'edit')
       expect(helper.edit_mode?).to be true
     end
-    it "returns false if any other action than edit" do
+    it "returns true if action is edit" do
+      helper.stub(:params).and_return(action: 'new')
+      expect(helper.edit_mode?).to be true
+    end
+    it "returns false if any other action than edit or new" do
       helper.stub(:params).and_return(action: 'show')
       expect(helper.edit_mode?).to be false
     end

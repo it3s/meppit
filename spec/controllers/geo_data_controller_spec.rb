@@ -35,6 +35,57 @@ describe GeoDataController do
     end
   end
 
+  describe "GET new" do
+    context "not logged in" do
+      before { logout_user }
+      it "require_login" do
+        controller.should_receive :require_login
+        get :new
+        expect(controller.logged_in?).to be false
+      end
+    end
+
+    context "logged in" do
+      before { login_user user }
+
+      it 'calls build_instance filter' do
+        controller.should_receive :build_instance
+        get :new
+      end
+
+      it 'sets map and render template' do
+        get :new
+        expect(assigns :geo_data).to be_a_kind_of GeoData
+        expect(response).to render_template :new
+      end
+    end
+  end
+
+
+  describe "POST create" do
+    let(:geo_data_params) { {:description => "<h2>Test</h2> <p>save html text</p>",
+                             :name => "new geo_data"} }
+
+    before { login_user user }
+
+    it 'saves geo_data and return redirect' do
+      post :create, {:geo_data => geo_data_params}
+      expect(assigns :geo_data).to be_a_kind_of GeoData
+      expect(response.body).to match({:redirect => geo_data_path(assigns :geo_data)}.to_json)
+    end
+
+    it "publishes geo_data_updated to EventBus" do
+      expect(EventBus).to receive(:publish).with("geo_data_updated", anything)
+      post :create, {:geo_data => geo_data_params}
+    end
+
+    it 'validates model and returns errors' do
+      post :create, {:geo_data => geo_data_params.merge!(:name => "")}
+      expect(assigns :geo_data).to be_a_kind_of GeoData
+      expect(response.body).to eq({:errors => {:name => [controller.t('activerecord.errors.messages.blank')]}}.to_json)
+    end
+  end
+
   describe "GET edit" do
     context "not logged in" do
       before { logout_user }
@@ -153,6 +204,48 @@ describe GeoDataController do
     end
   end
 
+  describe "POST bulk_add_map" do
+    let(:map) { FactoryGirl.create :map }
+    before { login_user user }
+
+    context "invalid map" do
+      let(:params) { {map: "", geo_data_ids: ""} }
+
+      it "returns unprocessable_entity with error message " do
+        expect(controller).to receive(:flash_xhr).with(
+          I18n.t "geo_data.add_map.invalid").and_return ""
+        post :bulk_add_map, params
+        expect(response.status).to eq 422
+      end
+    end
+
+    context "valid map and empty geo_data_ids" do
+      let(:params) { {map: map.id, geo_data_ids: ""} }
+
+      it "returns unprocessable_entity with error message " do
+        expect(controller).to receive(:flash_xhr).with(
+          I18n.t "geo_data.bulk_add_map.empty_selection").and_return ""
+        post :bulk_add_map, params
+        expect(response.status).to eq 422
+      end
+    end
+
+    context "valid map and empty geo_data_ids" do
+      let(:params) { {map: map.id, geo_data_ids: "1,2,3"} }
+      before { 3.times { |i| FactoryGirl.create :geo_data, id: i+1 } }
+
+      it "returns unprocessable_entity with error message " do
+        expect(map.mappings.count).to eq 0
+        expect(controller).to receive(:flash_xhr).with(
+          I18n.t('geo_data.bulk_add_map.added', count: 3, name: map.name)).and_return ""
+        post :bulk_add_map, params
+        expect(response.status).to eq 200
+        expect(map.mappings.count).to eq 3
+      end
+    end
+
+  end
+
   describe "create_mapping" do
     before { controller.instance_variable_set "@geo_data", geo_data }
 
@@ -169,4 +262,5 @@ describe GeoDataController do
       expect(controller.send(:create_mapping, map)[1]).to eq I18n.t('geo_data.add_map.exists', target: map.name)
     end
   end
+
 end
