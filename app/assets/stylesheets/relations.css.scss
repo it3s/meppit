@@ -1,0 +1,16 @@
+.relations {
+
+  &.edit {
+    .add-new-relation {
+      @include button;
+      margin-bottom: 20px;
+    }
+
+    .relation-item {
+      background-color: $meppit-light-blue;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 4px;
+    }
+  }
+}
