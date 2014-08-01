@@ -1,6 +1,19 @@
-<div class="session-new"
+<section class="sign-in"
          data-components="modal"
          data-modal="<%= {:autoload => true, :prevent_close => true }.to_json %>" >
-  <h1>Log in</h1>
-  <%= render 'sessions/login_form' %>
-</div>
+
+  <header>
+    <h2><%=  t 'sessions.login' %></h2>
+  </header>
+
+  <div>
+    <ul class="external_providers">
+      <%= render 'sessions/external_login', :provider => :google %>
+      <%= render 'sessions/external_login', :provider => :facebook %>
+    </ul>
+
+    <%= render 'shared/vertical_separator' %>
+
+    <%= render "sessions/login_form" %>
+  </div>
+</section>

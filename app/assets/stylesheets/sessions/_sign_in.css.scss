@@ -91,12 +91,3 @@ $signin_box_width: 560px;
     width: 100%;
   }
 }
-
-.session-new {
-  @include modal;
-  width: 350px;
-  form { margin: 0 auto; }
-
-  h1 { text-align: center; }
-  input[type=submit] { width: 103%;}
-}
