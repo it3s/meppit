@@ -1,12 +1,16 @@
 class MapsController < ObjectsController
-  before_action :require_login, only: [:edit, :update, :add_geo_data]
-  before_action :geo_data_list, only: [:show]
+  before_action :require_login, except: [:index, :show, :geo_data, :search_by_name]
+  before_action :geo_data_list, only:   [:show]
+
+  def create
+    _params = cleaned_params.merge(administrator: current_user)
+    update_object @map, _params
+  end
 
   def geo_data
     @geo_data_collection = paginate @map.geo_data
     render layout: nil if request.xhr?
   end
-
 
   def add_geo_data
     add_mapping_to GeoData

@@ -6,7 +6,6 @@ Meppit::Application.routes.draw do
   get  "logout" => "sessions#destroy", as: :logout
   get  "login"  => "sessions#new",     as: :login
   post "login"  => "sessions#create",  as: :do_login
-  get  "sessions/logged_in" => "sessions#logged_in", as: :logged_in
 
   post "oauth/:provider/callback"  => "authentications#callback"
   get  "oauth/:provider/callback"  => "authentications#callback"
@@ -53,23 +52,24 @@ Meppit::Application.routes.draw do
     end
   end
 
-  resources :geo_data, only: [:index, :show, :edit, :update, :maps],
+  resources :geo_data, except:   [:destroy],
                        concerns: [:contributable, :followable, :versionable] do
     member do
-      get  'maps'
-      post 'add_map'
+      get  :maps
+      post :add_map
     end
 
     collection do
-      get :search_by_name
+      get  :search_by_name
+      post :bulk_add_map
     end
   end
 
-  resources :maps, only: [:index, :show, :edit, :update, :geo_data],
+  resources :maps, except:   [:destroy],
                    concerns: [:contributable, :followable, :versionable] do
     member do
-      get  'geo_data'
-      post 'add_geo_data'
+      get  :geo_data
+      post :add_geo_data
     end
 
     collection do
@@ -78,7 +78,7 @@ Meppit::Application.routes.draw do
   end
 
   resources :versions, only: [:show] do
-    post "revert", on: :member
+    post :revert, on: :member
   end
 
   if Rails.env.development?

@@ -17,7 +17,7 @@ pt-BR:
     title: "Resultados da Busca"
 
   flash:
-    updated: "Atualizado com sucesso"
+    saved: "Salvo com sucesso"
 
   additional_info:
     title: 'Informações Adicionais'

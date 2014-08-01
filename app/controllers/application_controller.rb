@@ -35,5 +35,4 @@ class ApplicationController < ActionController::Base
   def extract_from_header
     http_accept_language.compatible_language_from(I18n.available_locales)
   end
-
 end

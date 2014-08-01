@@ -1,6 +1,7 @@
 class ObjectsController < ApplicationController
-  before_action :find_object, except: [:index, :search_by_name]
-  before_action :validate_additional_info, only: [:update]
+  before_action :find_object,    except: [:index, :new, :create, :search_by_name]
+  before_action :build_instance, only:   [:new, :create]
+  before_action :validate_additional_info, only: [:create, :update]
 
   def index
     instance_variable_set "@#{controller_name}_collection", model.page(params[:page]).per(params[:per])
@@ -8,6 +9,13 @@ class ObjectsController < ApplicationController
       format.html
       format.js
     end
+  end
+
+  def new
+  end
+
+  def create
+    update_object current_object, cleaned_params
   end
 
   def show
@@ -41,6 +49,10 @@ class ObjectsController < ApplicationController
 
   def find_object
     instance_variable_set "@#{object_sym}", model.find(params[:id])
+  end
+
+  def build_instance
+    instance_variable_set "@#{object_sym}", model.new
   end
 
   def cleaned_params

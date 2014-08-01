@@ -26,14 +26,14 @@ App.components.modal = (container) ->
       $("#{ @container.attr('href') }")
 
     loggedIn: ->
-      @container.data('loggedIn')
+      !!$.cookie('logged_in')
 
     shouldOpen: ->
       (!@data.login_required) || (@data.login_required && @loggedIn())
 
     open: () ->
       if @shouldOpen()
-        App.spinner.show() if @data.remote
+        App.utils.spinner.show() if @data.remote
         opts = _.clone(@defaults)
         opts = _.extend(opts, @preventClose) if @data.prevent_close
         opts = _.extend(opts, {modalClass: @data.modal_class}) if @data.modal_class?.length > 0
@@ -41,7 +41,7 @@ App.components.modal = (container) ->
       false
 
     onAjaxComplete: () ->
-      App.spinner.hide()
+      App.utils.spinner.hide()
       setTimeout( ->
         currentModal = $('.modal.current')
         App.mediator.publish('components:start', currentModal)

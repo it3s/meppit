@@ -14,7 +14,7 @@ App.components.search = (container) ->
       App.mediator.publish "components:start", results_content
 
     onSuccess: (data) ->
-      App.spinner.hide()
+      App.utils.spinner.hide()
       @showResults data
 
     doSearch: ->
@@ -24,7 +24,7 @@ App.components.search = (container) ->
 
       return if search_term?.length is 0
 
-      App.spinner.show()
+      App.utils.spinner.show()
       $.ajax
         type: 'POST'
         url: url

@@ -17,12 +17,19 @@ en:
 
     list:
       title: '%{count} objects'
+      add_new: 'Add new'
 
     add_map:
       title: "Add to a Map"
-      added: "Added content to <strong>%{target}</strong>"
-      exists: "Content already on <strong>%{target}</strong>"
+      added: "Added content to <b>%{target}</b>"
+      exists: "Content already on <b>%{target}b</b>"
       explanation: "Select the map in which you want to insert this content"
       invalid: "Invalid Map"
+
+    bulk_add_map:
+      title: "Add the selected items to a Map"
+      explanation: "Select the map in which you want to insert the selected items"
+      added: "Added <b>%{count}</b> objects to <b>%{name}</b>"
+      empty_selection: "Empty data selection"
 
 

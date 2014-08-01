@@ -1,4 +1,4 @@
-<%= render 'shared/toolbar', presenter: ToolbarPresenter.new(object: presenter.object, ctx: self) %>
+<%= render('shared/toolbar', presenter: ToolbarPresenter.new(object: presenter.object, ctx: self)) unless presenter.hide_toolbar? %>
 
 <div class="site-page objects <%= "#{ presenter.controller_ref } #{ params[:action] }" %>" >
   <% if edit_mode? %>

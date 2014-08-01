@@ -17,11 +17,18 @@ pt-BR:
 
     list:
       title: '%{count} objetos'
+      add_new: 'Adicionar novo'
 
     add_map:
       title: "Adicione a um Mapa"
-      added: "Conteúdo adicionado a <strong>%{target}</strong>"
-      exists: "Conteúdo já existe em <strong>%{target}</strong>"
+      added: "Conteúdo adicionado a <b>%{target}</b>"
+      exists: "Conteúdo já existe em <b>%{target}</b>"
       explanation: "Selecione o mapa em que você deseja inserir esse conteúdo"
       invalid: "Mapa Inválido"
+
+    bulk_add_map:
+      title: "Adicione os itens selecionados a um Mapa"
+      explanation: "Selecione o mapa no qual você quer inserir os itens selecionados"
+      added: "<b>%{count}</b> objetos adicionados a <b>%{name}</b>"
+      empty_selection: "Seleção de dados vazia"
 

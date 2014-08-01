@@ -4,6 +4,21 @@ module Utils
   included do
   end
 
+  def set_logged_in_cookie
+    cookies[:logged_in] = true
+  end
+
+  def destroy_logged_in_cookie
+    cookies.delete(:logged_in)
+  end
+
+  def login_redirect_path
+    path = session[:return_to_url] || request.env['HTTP_REFERER'] || root_path
+    session[:return_to_url] = nil
+    path = root_path if path == login_path
+    path
+  end
+
   def to_bool(string)
     return true if string == true || string =~ (/(true|t|yes|y|1)$/i)
     return false if string == false || string.nil? || string =~ (/(false|f|no|n|0)$/i)
@@ -15,7 +30,7 @@ module Utils
     if obj.valid? && obj.save
       obj_name = obj.class.name.underscore
       EventBus.publish "#{obj_name}_updated", obj_name.to_sym => obj, current_user: current_user
-      flash[:notice] = t('flash.updated')
+      flash[:notice] = t('flash.saved')
       render json: {redirect: polymorphic_path([obj])}
     else
       render json: {errors: obj.errors.messages}, status: :unprocessable_entity

@@ -5,18 +5,11 @@ App.components.loginRequired = (container) ->
     loginModalId: 'modal:sign-in-modal'
 
     init: ->
-      @bindIfNotlogged()
-
-    bindIfNotlogged: ->
-      $.getJSON '/sessions/logged_in/'
-      .then (data) =>
-        @container.data('loggedIn', data.logged_in)
-        @bindEvent() if data.logged_in is false
+      @bindEvent() unless $.cookie('logged_in')
 
     bindEvent: ->
       @container.on 'click', (evt) =>
         evt.preventDefault()
         App.components._instances[@loginModalId].open()
-
 
   }

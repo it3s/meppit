@@ -97,3 +97,42 @@ nav.pagination { display: none; }  // We are using infinite scroll
       .item-excerpt { display: none; }
    }
 }
+
+.site-page.index {
+  .list-headline { border-bottom: solid 1px $ultra-soft-grey; }
+
+  .list-actions {
+    padding: 10px 0;
+    border-bottom: solid 1px $ultra-soft-grey;
+
+    .upload-btn, .download-btn, .select-all-btn {
+      @include button;
+    }
+
+    .select-all-btn {
+      padding-top: 5px;
+      input[type=checkbox] { position: relative; top: 3px; }
+    }
+  }
+
+  &.geo_data {
+    .list-actions {
+
+      .add-new-btn {
+        @include button($meppit-data-color, $meppit-dark-blue, $white, $border: $meppit-data-color);
+        float: right;
+      }
+      .add-to-map { float: none; }
+    }
+  }
+
+  &.maps {
+    .list-actions {
+
+      .add-new-btn {
+        @include button($meppit-maps-color, $dark-orange, $white, $border: $meppit-maps-color);
+        float: right;
+      }
+    }
+  }
+}

@@ -39,6 +39,56 @@ describe MapsController do
     end
   end
 
+  describe "GET new" do
+    context "not logged in" do
+      before { logout_user }
+      it "require_login" do
+        controller.should_receive :require_login
+        get :new
+        expect(controller.logged_in?).to be false
+      end
+    end
+
+    context "logged in" do
+      before { login_user user }
+
+      it 'calls build_instance filter' do
+        controller.should_receive :build_instance
+        get :new
+      end
+
+      it 'sets map and render template' do
+        get :new
+        expect(assigns :map).to be_a_kind_of Map
+        expect(response).to render_template :new
+      end
+    end
+  end
+
+  describe "POST create" do
+    let(:map_params) { {:description => "<h2>Test</h2> <p>save html text</p>",
+                         :name => "new nap"} }
+
+    before { login_user user }
+
+    it 'saves map and return redirect' do
+      post :create, {:map => map_params}
+      expect(assigns :map).to be_a_kind_of Map
+      expect(response.body).to match({:redirect => map_path(assigns :map)}.to_json)
+    end
+
+    it "publishes map_updated to EventBus" do
+      expect(EventBus).to receive(:publish).with("map_updated", anything)
+      post :create, {:map => map_params}
+    end
+
+    it 'validates model and returns errors' do
+      post :create, {:map => map_params.merge!(:name => "")}
+      expect(assigns :map).to be_a_kind_of Map
+      expect(response.body).to eq({:errors => {:name => [controller.t('activerecord.errors.messages.blank')]}}.to_json)
+    end
+  end
+
   describe "GET edit" do
     context "not logged in" do
       before { logout_user }

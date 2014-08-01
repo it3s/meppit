@@ -80,4 +80,18 @@ describe ObjectPresenter do
     end
   end
 
+  describe "hide_toolbar" do
+    context "default" do
+      let(:presenter) { ObjectPresenter.new(object: user) }
+      it { expect(presenter.hide_toolbar?).to be false }
+    end
+    context "show toolbar" do
+      let(:presenter) { ObjectPresenter.new(object: user, show_toolbar: true) }
+      it { expect(presenter.hide_toolbar?).to be false }
+    end
+    context "hide location" do
+      let(:presenter) { ObjectPresenter.new(object: user, show_toolbar: false) }
+      it { expect(presenter.hide_toolbar?).to be true }
+    end
+  end
 end

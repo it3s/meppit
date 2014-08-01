@@ -43,6 +43,7 @@ describe SessionsController do
       it { expect(response.body).to match({:redirect => root_path}.to_json) }
       it { expect(response).to be_success }
       it { expect(response.header['Content-Type']).to match 'application/json' }
+      it { expect(response.cookies["logged_in"]).to eq "true" }
     end
   end
 
@@ -56,6 +57,7 @@ describe SessionsController do
       get :destroy
       expect(response).to redirect_to(root_path)
     end
+    it { expect(response.cookies["logged_in"]).to be nil }
   end
 
 end

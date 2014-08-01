@@ -7,6 +7,7 @@ en:
 
     list:
       title: '%{count} maps'
+      add_new: "Add new"
 
     description:
       empty: "No description provided yet for %{name}"

@@ -16,11 +16,17 @@ en:
         name: 'Name'
         email: 'E-mail'
         password: 'Password'
+        description: 'Description'
 
       user:
         new:
           password_confirmation: 'Password Confirmation'
           license_aggrement: "I've read and accept the <a href=\"/\">terms of use</a>"
+
+    placeholders:
+      defaults:
+        name: 'Name'
+
 
     # hints:
     #   defaults:

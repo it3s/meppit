@@ -69,7 +69,7 @@ describe 'modal', ->
       it 'does not open if login_required and user not loggedIn', ->
         @component.init()
         @component.data.login_required = true
-        @component.container.data("loggedIn", false)
+        $.removeCookie 'logged_in'
 
         expect(@component.shouldOpen()).to.be.false
 
@@ -91,21 +91,21 @@ describe 'modal', ->
         @component.init()
         expect(@component.target).to.be.deep.equal @component.container
 
-      it 'bind startComponents on ajax complete', ->
+      it 'bind onAjaxComplete on ajax complete', ->
         spy @component.container, 'on', =>
-          spy @component, 'startComponents', =>
+          spy @component, 'onAjaxComplete', =>
             @component.init()
             expect(@component.container.on).to.be.calledWith 'modal:ajax:complete'
 
             @component.container.trigger 'modal:ajax:complete'
-            expect(@component.startComponents).to.be.called
+            expect(@component.onAjaxComplete).to.be.called
 
 
       it 'start components with loaded DOM as root', (done) ->
         sinon.spy App.mediator, 'publish'
 
         @component.init()
-        @component.startComponents()
+        @component.onAjaxComplete()
         setTimeout( ->
           args = App.mediator.publish.args[0]
           expect(args[0]).to.be.equal 'components:start'

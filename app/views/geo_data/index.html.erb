@@ -1,7 +1,15 @@
-<div class="site-page full data-list">
+<div class="site-page full data-list geo_data index">
   <div data-components="list">
-    <h1 class="title"><%= raw t('geo_data.list.title', :count => "<em>#{@geo_data_collection.total_count}</em>") %></h1>
-    <div id="geodata-pagination"><%= paginate @geo_data_collection, :remote => true %></div>
+
+    <div class="list-headline">
+      <h1 class="title">
+        <%= raw t('geo_data.list.title', :count => "<em>#{@geo_data_collection.total_count}</em>") %>
+      </h1>
+      <div id="geodata-pagination"><%= paginate @geo_data_collection, :remote => true %></div>
+    </div>
+
+    <%= render 'geo_data/list_actions' %>
+
     <ul id="geodata-list" class="list data-list">
       <%= render @geo_data_collection, :checkbox => true %>
     </ul>

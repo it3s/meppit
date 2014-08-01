@@ -102,7 +102,7 @@
     }
   }
 
-  &.edit {
+  &.edit, &.new {
     .field {
       padding: 0;
       label { display: none; }

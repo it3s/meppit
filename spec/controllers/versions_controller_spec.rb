@@ -20,6 +20,11 @@ describe VersionsController, versioning: true do
         get :history, params
         expect(response).to render_template(layout: nil)
       end
+
+      it "gets versions is reverse creation date order" do
+        get :history, params
+        expect(assigns[:versions].explain). to match "ORDER BY created_at desc"
+      end
     end
 
     context "geo_data" do

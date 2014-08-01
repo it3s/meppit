@@ -68,13 +68,21 @@ spinner = {
   hide: -> @spinner?.remove()
 }
 
+whenComponentStarted = (componentId, fn) ->
+  if components._instances[componentId]
+    fn()
+  else
+    mediator.subscribe 'component:started', (evt, _componentId) =>
+      fn() if _componentId is componentId
+
 # setup global App namesmpace
 window.App =
-  mediator    : mediator
-  utils       : {}
-  components  : components
-  flashMessage: flashMessage
-  spinner     : spinner
+  mediator  : mediator
+  components: components
+  utils     :
+    flashMessage        : flashMessage
+    spinner             : spinner
+    whenComponentStarted: whenComponentStarted
 
 
 # setup testing ns
