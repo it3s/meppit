@@ -69,13 +69,14 @@ describe 'modal', ->
       it 'does not open if login_required and user not loggedIn', ->
         @component.init()
         @component.data.login_required = true
-        @component.container.data("loggedIn", false)
+        $.cookie 'logged_in', true
 
         expect(@component.shouldOpen()).to.be.false
 
         spy @component.target, "modal", =>
           @component.open()
           expect(@component.target.modal).to.not.be.called
+          $.removeCookie 'logged_in'
 
 
     describe 'remote modal', ->

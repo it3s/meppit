@@ -4,6 +4,14 @@ module Utils
   included do
   end
 
+  def set_login_cookie(user)
+    cookies[:logged_in] = true
+  end
+
+  def destroy_login_cookie(user)
+    cookies.delete(:logged_in)
+  end
+
   def to_bool(string)
     return true if string == true || string =~ (/(true|t|yes|y|1)$/i)
     return false if string == false || string.nil? || string =~ (/(false|f|no|n|0)$/i)

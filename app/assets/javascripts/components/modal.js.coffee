@@ -26,7 +26,7 @@ App.components.modal = (container) ->
       $("#{ @container.attr('href') }")
 
     loggedIn: ->
-      @container.data('loggedIn')
+      $.cookie('logged_in')
 
     shouldOpen: ->
       (!@data.login_required) || (@data.login_required && @loggedIn())

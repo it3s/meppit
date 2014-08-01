@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
     user = login(params[:email], params[:password], to_bool(params[:remember_me]))
     if user
       render :json => { redirect: session[:return_to_url] || request.env['HTTP_REFERER'] || root_path }
+      set_login_cookie current_user
       session[:return_to_url] = nil
     else
       render :json => { errors: error_message }, status: :unprocessable_entity
@@ -14,12 +15,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    destroy_login_cookie current_user
     logout
     redirect_to root_url, notice: t('sessions.flash.logout')
-  end
-
-  def logged_in
-    render json: {logged_in: logged_in?}
   end
 
   private

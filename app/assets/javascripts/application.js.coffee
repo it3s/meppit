@@ -4,6 +4,7 @@
 #= require jquery.remotipart
 #= require jquery.ui.autocomplete
 #= require jquery.infinitescroll
+#= require jquery.cookie
 
 #= require base
 
