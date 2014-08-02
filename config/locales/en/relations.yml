@@ -10,60 +10,45 @@ en:
     types:
       ownership_dir: 'owns'
       ownership_rev: 'is owned by'
-      # possui pertence à
 
       participation_dir: 'participates in'
       participation_rev: 'has as participant'
-      # participa de tem como participante
 
       partnership_dir: 'partners with'
       partnership_rev: 'partners with'
-      # é parceiro de é parceiro de
 
       grants_dir: 'gives a grant to'
       grants_rev: 'receives a grant from'
-      # finacia recebe um financiamento de
 
       certification_dir: 'certifies'
       certification_rev: 'is certified by'
-      # certifica é certificada por
 
       attendance_dir: 'attended by'
       attendance_rev: 'attends'
-      # students attendance attends students from - atende alunos de
 
       directing_people_dir: 'directs people to'
       directing_people_rev: 'receives people from'
-      # encaminha atendidos para recebe encaminhamentos de atendidos de
 
       volunteers_dir: 'recruits volunteers for'
       volunteers_rev: 'receives volunteers from'
-      # recruta voluntários para recebe voluntários de
 
       support_dir: 'supports'
       support_rev: 'is supported by'
-      # suporta recebe suporte
 
       representation_dir: 'represents'
       representation_rev: 'is represented by'
-      # representa é representado por
 
       membership_dir: 'is a member of'
       membership_rev: 'has as member'
-      # é membro de tem como membro
 
       supply_dir: 'supplies to'
       supply_rev: 'buys from'
-      # fornece para compra de
 
       council_dir: 'is board member of'
       council_rev: 'has as board member'
-      # é conselheiro de tem como conselheiro
 
       contains_dir: 'contains'
       contains_rev: 'belongs to'
-      # contém pertence a
 
       investment_dir: 'invested in'
       investment_rev: 'received investment from'
-      # investiu em recebeu investimento de
