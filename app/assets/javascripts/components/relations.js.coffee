@@ -9,8 +9,10 @@ App.components.relations = (container) ->
 
     onAdd: (evt) ->
       evt.preventDefault()
-      @container.append $(@template.html())
-      false
+
+      item = $ @template.html()
+      @container.append item
+      App.mediator.publish 'components:start', item
 
     listen: ->
       @addButton.click @onAdd.bind(this)

@@ -4,7 +4,9 @@
 
   <script type="text/template" id="relation-form-template">
     <div class="relation-item">
-      <%= select_tag :relation_type, options_for_select(f.object.class.relations_options), include_blank: true %>
+      <%= select_tag :relation_type, options_for_select(f.object.class.relations_options), include_blank: true,
+          "data-components" => "chosen", "data-placeholder" => t('relations.relation_type_placeholder') %>
+      <%= autocomplete_field_tag "relation_target", search_by_name_geo_data_index_path %>
     </div>
   </script>
 </div>
