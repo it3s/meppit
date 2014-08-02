@@ -4,7 +4,7 @@
 
   <script type="text/template" id="relation-form-template">
     <div class="relation-item">
-      RELATION FORM
+      <%= select_tag :relation_type, options_for_select(f.object.class.relations_options), include_blank: true %>
     </div>
   </script>
 </div>

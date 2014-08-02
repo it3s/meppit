@@ -6,6 +6,7 @@ class GeoData < ActiveRecord::Base
   include Contributable
   include Mappable
   include Searchable
+  include Relations
 
   geojson_field :location
   searchable_tags :tags
