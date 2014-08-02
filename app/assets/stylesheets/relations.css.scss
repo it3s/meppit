@@ -14,7 +14,7 @@
 
       input[name=relation_target_autocomplete] {
         display: inline-block;
-        width: 317px;
+        width: 249px;
       }
 
       .chosen-container a.chosen-single {
@@ -23,6 +23,11 @@
         top: -1px;
         border: 1px solid $grey;
         color: $grey;
+      }
+
+      .relation-metadata, .relation-remove {
+        @include button;
+        padding: 3px 9px;
       }
     }
   }

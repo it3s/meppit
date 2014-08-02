@@ -4,6 +4,11 @@ en:
 
     relation_type_placeholder: 'Select a relation type'
 
+    title:
+      add: 'Add new relation'
+      metadata: 'Add metadata to this relation'
+      remove: 'Remove this relation'
+
     types:
       ownership_dir: 'owns'
       ownership_rev: 'is owned by'

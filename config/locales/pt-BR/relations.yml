@@ -4,6 +4,11 @@ pt-BR:
 
     relation_type_placeholder: 'Selecione um tipo de relação'
 
+    title:
+      add: 'Adicionar nova relação'
+      metadata: 'Adiconar metadados para essa relação'
+      remove: 'Remover essa relação'
+
     types:
       ownership_dir: 'possui'
       ownership_rev: 'pertence à'

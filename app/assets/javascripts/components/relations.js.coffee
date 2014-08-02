@@ -12,9 +12,19 @@ App.components.relations = (container) ->
 
       item = $ @template.html()
       @container.append item
-      App.mediator.publish 'components:start', item
+      @bindItemEvents item
+
+    onClickRemove: (evt) ->
+      evt.preventDefault()
+      item = $(evt.target).closest('.relation-item')
+      item.fadeOut 100, -> item.remove()
 
     listen: ->
       @addButton.click @onAdd.bind(this)
+
+    bindItemEvents: (item) ->
+      App.mediator.publish 'components:start', item
+
+      item.find('.relation-remove').click @onClickRemove.bind(this)
 
   }
