@@ -2,8 +2,6 @@ en:
   relations:
     add: 'Add relation'
 
-    relation_type_placeholder: 'Select a relation type'
-
     title:
       add: 'Add new relation'
       metadata: 'Add metadata to this relation'

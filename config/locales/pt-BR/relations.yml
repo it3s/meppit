@@ -2,8 +2,6 @@ pt-BR:
   relations:
     add: 'Adicionar relação'
 
-    relation_type_placeholder: 'Selecione um tipo de relação'
-
     title:
       add: 'Adicionar nova relação'
       metadata: 'Adiconar metadados para essa relação'

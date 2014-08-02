@@ -49,7 +49,6 @@ module Concerns
     def relations_manager_data(object)
       {
         options: object.class.relations_options,
-        type_placeholder: t('relations.relation_type_placeholder'),
         autocomplete_placeholder: t("components.autocomplete.relation_target"),
         autocomplete_url: search_by_name_geo_data_index_path,
         metadata_title: t("relations.title.metadata"),
