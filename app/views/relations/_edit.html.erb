@@ -4,6 +4,6 @@
   <button class="add-new-relation" title="<%= t 'relations.title.add' %>">
     <%= icon 'plus',  t('relations.add') %>
   </button>
-  <%= hidden_field_tag "relations" , "", class: 'relations-value' %>
+  <%= f.input :relations, as: :hidden, input_html: { class: 'relations-value' } %>
 
 </div>
