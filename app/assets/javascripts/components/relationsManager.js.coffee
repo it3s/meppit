@@ -68,14 +68,12 @@ App.components.relationsManager = (container) ->
 
     init: ->
       @data = @container.data 'relationsManager'
-      console.log @relationsInput.val()
       @loadData() if @relationsInput.val().length > 0
       @addItem()  # always show an empty new entry
       @listen()
 
     loadData: ->
       entries = JSON.parse @relationsInput.val()
-      @counter = entries.length
       _.each entries, (entry) =>
         item = @addItem()
         item.setValue(entry)
