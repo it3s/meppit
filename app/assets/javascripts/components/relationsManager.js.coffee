@@ -43,6 +43,11 @@ relationItem = ->
       else
         null
 
+    setValue: (entry)->
+      @targetEl.val(entry.target.id)
+      @el.find('.relation_target_autocomplete').val(entry.target.label)
+      @typeEl.val(entry.type)
+
     onChange: ->
       App.mediator.publish 'relationItem:changed' if @getValue()
 
@@ -59,18 +64,32 @@ App.components.relationsManager = (container) ->
     addButton     : container.find('.add-new-relation')
     relationsInput: container.find('.relations-value')
     items         : []
+    counter       : 0
 
     init: ->
       @data = @container.data 'relationsManager'
-      @counter = 0
+      console.log @relationsInput.val()
+      @loadData() if @relationsInput.val().length > 0
+      @addItem()  # always show an empty new entry
       @listen()
 
-    onAdd: (evt) ->
-      evt.preventDefault()
+    loadData: ->
+      entries = JSON.parse @relationsInput.val()
+      @counter = entries.length
+      _.each entries, (entry) =>
+        item = @addItem()
+        item.setValue(entry)
+
+    addItem: ->
       item = relationItem().init _.extend({}, @data, {index: @counter++})
       @items.push item
       @container.append(item.el)
       App.mediator.publish 'components:start', item.el
+      item
+
+    onAdd: (evt) ->
+      evt.preventDefault()
+      @addItem()
 
     onRemove: (evt, index) ->
       @items[index] = null

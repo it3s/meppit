@@ -56,6 +56,19 @@ module Concerns
       }
     end
 
+    def relations_value(f)
+      return "" if f.object.relations.nil?
+      f.object.relations.map do |r|
+        {
+          target: {
+            id:    r['target'],
+            label: GeoData.find_by(id: r['target']).try(:name)
+          },
+          type: r['type']
+        }
+      end
+    end
+
     private
 
     def _hash_with_humanized_keys(hash)
