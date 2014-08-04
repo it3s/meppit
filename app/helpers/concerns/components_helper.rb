@@ -48,25 +48,12 @@ module Concerns
 
     def relations_manager_data(object)
       {
-        options: object.class.relations_options,
+        options: Relation.options,
         autocomplete_placeholder: t("components.autocomplete.relation_target"),
         autocomplete_url: search_by_name_geo_data_index_path,
         metadata_title: t("relations.title.metadata"),
         remove_title: t("relations.title.remove"),
       }
-    end
-
-    def relations_value(f)
-      return "" if f.object.relations.nil?
-      f.object.relations.map do |r|
-        {
-          target: {
-            id:    r['target'],
-            label: GeoData.find_by(id: r['target']).try(:name)
-          },
-          type: r['type']
-        }
-      end
     end
 
     private

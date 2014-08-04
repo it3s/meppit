@@ -125,4 +125,15 @@ describe Relation do
       expect(result.second.related_ids).to eq [obj2.id, obj3.id].map &:to_s
     end
   end
+
+  describe ".options" do
+    it "generates a list of options" do
+      expect(Relation.options).to be_a_kind_of Array
+    end
+
+    it "generates each option as list of size 2 (translated and key)" do
+      expect(Relation.options.first).to be_a_kind_of Array
+      expect(Relation.options.first.size).to eq 2
+    end
+  end
 end

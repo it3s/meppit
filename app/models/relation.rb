@@ -5,6 +5,8 @@ class Relation < ActiveRecord::Base
   validate :direction_is_dir_or_rev
   validate :rel_type_from_accepted_types_list
 
+  scope :find_related, -> (_id) { where 'related_ids @> ARRAY[?]', _id.to_s }
+
 
   RELATION_TYPES = [
     :ownership,
@@ -24,16 +26,11 @@ class Relation < ActiveRecord::Base
     :investment,
   ]
 
-  def self.relations_options
-    # untested
+  def self.options
     RELATION_TYPES.map { |key| [
       [translated("#{key}_dir").humanize, "#{key}_dir"],
       [translated("#{key}_rev").humanize, "#{key}_rev"],
     ] }.flatten(1)
-  end
-
-  def self.find_related(_id)
-    where 'related_ids @> ARRAY[?]', _id.to_s
   end
 
   private
