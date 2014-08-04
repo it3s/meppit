@@ -1,0 +1,56 @@
+class Relation < ActiveRecord::Base
+  validates :related_ids, :rel_type, :direction, presence: true
+
+  validate :related_ids_size_eq_two
+  validate :direction_is_dir_or_rev
+  validate :rel_type_from_accepted_types_list
+
+
+  RELATION_TYPES = [
+    :ownership,
+    :participation,
+    :partnership,
+    :grants,
+    :certification,
+    :attendance,
+    :directing_people,
+    :volunteers,
+    :support,
+    :representation,
+    :membership,
+    :supply,
+    :council,
+    :contains,
+    :investment,
+  ]
+
+  def self.relations_options
+    # untested
+    RELATION_TYPES.map { |key| [
+      [translated("#{key}_dir").humanize, "#{key}_dir"],
+      [translated("#{key}_rev").humanize, "#{key}_rev"],
+    ] }.flatten(1)
+  end
+
+  def self.find_related(_id)
+    where 'related_ids @> ARRAY[?]', _id.to_s
+  end
+
+  private
+
+  def self.translated(key_with_direction)
+    I18n.t("relations.types.#{key_with_direction}")
+  end
+
+  def related_ids_size_eq_two
+    errors.add(:related_ids, I18n.t('relations.invalid_related_ids_size')) unless related_ids.try(:size) == 2
+  end
+
+  def direction_is_dir_or_rev
+    errors.add :direction, I18n.t('relations.invalid_direction') unless [:dir, :rev].include? direction.try(:to_sym)
+  end
+
+  def rel_type_from_accepted_types_list
+    errors.add :rel_type, I18n.t('relations.invalid_type') unless RELATION_TYPES.include? rel_type.try(:to_sym)
+  end
+end

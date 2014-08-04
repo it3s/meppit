@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140801172615) do
+ActiveRecord::Schema.define(version: 20140803210425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,7 +59,6 @@ ActiveRecord::Schema.define(version: 20140801172615) do
     t.datetime "updated_at"
     t.spatial  "location",        limit: {:srid=>4326, :type=>"geometry"}
     t.json     "additional_info"
-    t.json     "relations"
   end
 
   add_index "geo_data", ["location"], :name => "index_geo_data_on_location", :spatial => true
@@ -97,6 +96,16 @@ ActiveRecord::Schema.define(version: 20140801172615) do
     t.datetime "updated_at"
   end
 
+  create_table "relations", force: true do |t|
+    t.text     "related_ids", default: [], null: false, array: true
+    t.string   "rel_type",                 null: false
+    t.string   "direction",                null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "relations", ["related_ids"], :name => "index_relations_on_related_ids"
+
   create_table "tags", force: true do |t|
     t.string   "tag"
     t.datetime "created_at"
@@ -133,11 +142,12 @@ ActiveRecord::Schema.define(version: 20140801172615) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token"
 
   create_table "versions", force: true do |t|
-    t.string   "item_type",  null: false
-    t.integer  "item_id",    null: false
-    t.string   "event",      null: false
+    t.string   "item_type",      null: false
+    t.integer  "item_id",        null: false
+    t.string   "event",          null: false
     t.string   "whodunnit"
     t.text     "object"
+    t.text     "object_changes"
     t.datetime "created_at"
   end
 

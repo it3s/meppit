@@ -2,6 +2,10 @@ pt-BR:
   relations:
     add: 'Adicionar relação'
 
+    invalid_related_ids_size: 'Você deve forncer 2 objetos relacionados'
+    invalid_direction: "Direção deve ser 'dir' para direta ou 'rev' para reversa"
+    invalid_type: "Tipo de relação inválido"
+
     title:
       add: 'Adicionar nova relação'
       metadata: 'Adiconar metadados para essa relação'

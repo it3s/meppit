@@ -2,6 +2,10 @@ en:
   relations:
     add: 'Add relation'
 
+    invalid_related_ids_size: 'You must provide 2 related objects'
+    invalid_direction: "Direction must be 'dir' for direct or 'rev' for reverse"
+    invalid_type: "Invalid relation type"
+
     title:
       add: 'Add new relation'
       metadata: 'Add metadata to this relation'
