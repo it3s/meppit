@@ -44,7 +44,7 @@ relationItem = ->
 
     getValue: ->
       if @targetEl.val().length > 0 && @typeEl.val().length > 0
-        {id: @getId(), target: @targetEl.val(), type: @typeEl.val()}
+        {id: @getId(), target: {id: @targetEl.val()}, type: @typeEl.val()}
       else
         null
 
