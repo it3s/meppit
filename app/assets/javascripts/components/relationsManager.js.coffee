@@ -17,7 +17,7 @@ relationItem = ->
             data-components="autocomplete"
             data-component-options='{"name":"relation_target_<%= index %>","url":"<%= autocomplete_url %>"}' />
 
-        <a href="#" class="relation-metadata" title="<%= metadata_title %>"><i class="fa fa-plus"></i></a>
+        <a href="#" class="relation-metadata" title="<%= metadata_title %>"><i class="fa fa-book"></i></a>
         <a href="#" class="relation-remove" title="<%= remove_title %>"><i class="fa fa-trash-o"></i></a>
 
       </div>

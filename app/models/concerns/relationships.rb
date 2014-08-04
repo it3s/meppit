@@ -4,6 +4,8 @@ module Relationships
   included do
     attr_accessor :relations_attributes
 
+    after_destroy :remove_relations_for_destroyed_related!
+
     def relations
       Relation.find_related(self.id)
     end
@@ -22,6 +24,10 @@ module Relationships
     end
 
     private
+
+    def remove_relations_for_destroyed_related!
+      relations.destroy_all
+    end
 
     def related_with_name(r)
       _id = r.related_ids.first == self.id.to_s ? r.related_ids.second.to_i : r.related_ids.first.to_i
