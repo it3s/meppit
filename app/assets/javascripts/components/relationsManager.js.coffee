@@ -50,7 +50,7 @@ relationItem = ->
 
     setValue: (entry)->
       @targetEl.val(entry.target.id)
-      @el.find('.relation_target_autocomplete').val(entry.target.label)
+      @el.find('.relation_target_autocomplete').val(entry.target.name)
       @typeEl.val(entry.type)
       @idEl.val(entry.id)
 
