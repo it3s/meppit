@@ -60,6 +60,7 @@ class ObjectsController < ApplicationController
       whitelisted[:contacts]  = cleaned_contacts params[object_sym]
       whitelisted[:tags] = cleaned_tags params[object_sym]
       whitelisted[:additional_info] = cleaned_additional_info params[object_sym]
+      whitelisted[:relations_attributes] = JSON.parse params[object_sym][:relations_attributes] if params[object_sym][:relations_attributes]
     end
   end
 

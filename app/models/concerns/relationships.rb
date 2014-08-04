@@ -2,6 +2,8 @@ module Relationships
   extend ActiveSupport::Concern
 
   included do
+    attr_accessor :relations_attributes
+
     def relations
       Relation.find_related(self.id)
     end
