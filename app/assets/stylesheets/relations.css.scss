@@ -1,7 +1,7 @@
 .relations {
   &.show {
     height: 350px;
-    overflow: scroll;
+    overflow-y: scroll;
 
     .relation-item-type {
       font-weight: bold;
@@ -32,6 +32,11 @@
       margin-bottom: 20px;
     }
 
+    .relations-list {
+      height: 400px;
+      overflow-y: scroll;
+    }
+
     .relation-item {
       background-color: $meppit-light-blue;
       padding: 15px 10px;
@@ -40,7 +45,7 @@
 
       .relation_target_autocomplete {
         display: inline-block;
-        width: 247px;
+        width: 238px;
       }
 
       .relation-metadata, .relation-remove {

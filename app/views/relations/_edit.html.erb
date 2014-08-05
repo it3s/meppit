@@ -5,5 +5,6 @@
     <%= icon 'plus',  t('relations.add') %>
   </button>
   <%= f.input :relations_attributes, as: :hidden, input_html: { class: 'relations-value', value: f.object.relations_values.to_json } %>
+  <div class="relations-list"></div>
 
 </div>

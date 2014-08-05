@@ -8,6 +8,7 @@
 
 #= require base
 
+#= require_tree ./templates
 #= require_tree ./components
 
 onReady = ->

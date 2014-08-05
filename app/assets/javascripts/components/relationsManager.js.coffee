@@ -1,31 +1,10 @@
 relationItem = ->
   {
-    template: """
-      <div class="relation-item" data-rel-index="<%= index %>">
-        <input type="hidden" name="relation_id" class="relation_id" />
-
-        <select name="relations_type_<%= index%>" class="relation_type" >
-          <option value=""> </option>
-          <% _.each(options, function(opt) { %>
-            <option value="<%= opt[1] %>"><%= opt[0] %></option>
-          <% }); %>
-        </select>
-
-        <input type="hidden" name="relations_target_<%= index%>" class="relation_target"
-            id="relation_target_<%= index %>-autocomplete"/>
-        <input type="text" class="relation_target_autocomplete" placeholder="<%= autocomplete_placeholder %>"
-            data-components="autocomplete"
-            data-component-options='{"name":"relation_target_<%= index %>","url":"<%= autocomplete_url %>"}' />
-
-        <a href="#" class="relation-metadata" title="<%= metadata_title %>"><i class="fa fa-book"></i></a>
-        <a href="#" class="relation-remove" title="<%= remove_title %>"><i class="fa fa-trash-o"></i></a>
-
-      </div>
-    """
+    template: JST['templates/relationItem']
 
     init: (opts) ->
       @index = opts.index
-      @el = $(_.template @template, opts)
+      @el = $ @template(opts)
       @targetEl = @el.find('.relation_target')
       @typeEl   = @el.find('.relation_type')
       @idEl     = @el.find('.relation_id')
@@ -67,6 +46,7 @@ relationItem = ->
 App.components.relationsManager = (container) ->
   {
     container     : container
+    itemsContainer: container.find('.relations-list')
     addButton     : container.find('.add-new-relation')
     relationsInput: container.find('.relations-value')
     items         : []
@@ -87,7 +67,7 @@ App.components.relationsManager = (container) ->
     addItem: ->
       item = relationItem().init _.extend({}, @data, {index: @counter++})
       @items.push item
-      @container.append(item.el)
+      @itemsContainer.append(item.el)
       App.mediator.publish 'components:start', item.el
       item
 

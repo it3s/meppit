@@ -25,6 +25,7 @@ gem 'tinymce-rails'                 # tinymce wysiwyg editor
 gem 'tinymce-rails-langs'           # tinymce language pack
 gem "jquery-fileupload-rails"       # jquery-fielupload plugin
 gem 'jquery-ui-rails'               # jqueryUI
+gem 'ejs'                           # js templating for js test fixtures
 gem 'meppit-map-rails', :github => 'it3s/meppit-map-rails'  # our beloved map
 
 # gem 'turbolinks'                  # speed page loading
@@ -73,7 +74,6 @@ group :test do
   gem 'factory_girl_rails'          # mock objects
   gem 'capybara'                    # acceptance tests
   gem 'poltergeist'                 # phantomjs driver
-  gem 'ejs'                         # js templating for js test fixtures
   gem 'database_cleaner'            # improved database cleaning for tests
   gem 'simplecov', '~> 0.7.1', require: false   # coverage report
   gem 'coveralls', require: false   # use coveralls with travisCI
