@@ -1,4 +1,27 @@
 .relations {
+  &.show {
+    .relation-item-type {
+      font-weight: bold;
+    }
+    .list-item {
+      &.small .item { width: 505px; }
+
+      .item-avatar{
+        font-size: 20px;
+        width: 22px;
+        height: 22px;
+        border-radius: 4px;
+      }
+      .item-title a { color: $meppit-data-color; }
+    }
+
+    .empty {
+      text-align: center;
+      font-weight: bold;
+      margin: 30px 0;
+      color: $grey;
+    }
+  }
 
   &.edit {
     .add-new-relation {

@@ -17,7 +17,7 @@ describe Relation do
 
       it "returns error" do
         expect(relation.valid?).to eq false
-        expect(relation.errors[:related_ids][1]).to eq I18n.t('relations.invalid_related_ids_size')
+        expect(relation.errors[:related_ids][1]).to eq I18n.t('relations.invalid.related_ids_size')
       end
     end
     context "one id" do
@@ -25,7 +25,7 @@ describe Relation do
 
       it "returns error" do
         expect(relation.valid?).to eq false
-        expect(relation.errors[:related_ids]).to eq [I18n.t('relations.invalid_related_ids_size')]
+        expect(relation.errors[:related_ids]).to eq [I18n.t('relations.invalid.related_ids_size')]
       end
     end
     context "more than 2 ids" do
@@ -33,7 +33,7 @@ describe Relation do
 
       it "returns error" do
         expect(relation.valid?).to eq false
-        expect(relation.errors[:related_ids]).to eq [I18n.t('relations.invalid_related_ids_size')]
+        expect(relation.errors[:related_ids]).to eq [I18n.t('relations.invalid.related_ids_size')]
       end
     end
     context "2 ids" do
@@ -50,7 +50,7 @@ describe Relation do
 
       it "returns error" do
         expect(relation.valid?).to eq false
-        expect(relation.errors[:direction]).to eq [I18n.t('relations.invalid_direction')]
+        expect(relation.errors[:direction]).to eq [I18n.t('relations.invalid.direction')]
       end
     end
     context "dir as symbol" do
@@ -87,7 +87,7 @@ describe Relation do
 
       it "returns error" do
         expect(relation.valid?).to eq false
-        expect(relation.errors[:rel_type]).to eq [I18n.t('relations.invalid_type')]
+        expect(relation.errors[:rel_type]).to eq [I18n.t('relations.invalid.type')]
       end
     end
   end

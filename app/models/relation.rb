@@ -40,14 +40,14 @@ class Relation < ActiveRecord::Base
   end
 
   def related_ids_size_eq_two
-    errors.add(:related_ids, I18n.t('relations.invalid_related_ids_size')) unless related_ids.try(:size) == 2
+    errors.add(:related_ids, I18n.t('relations.invalid.related_ids_size')) unless related_ids.try(:size) == 2
   end
 
   def direction_is_dir_or_rev
-    errors.add :direction, I18n.t('relations.invalid_direction') unless [:dir, :rev].include? direction.try(:to_sym)
+    errors.add :direction, I18n.t('relations.invalid.direction') unless [:dir, :rev].include? direction.try(:to_sym)
   end
 
   def rel_type_from_accepted_types_list
-    errors.add :rel_type, I18n.t('relations.invalid_type') unless RELATION_TYPES.include? rel_type.try(:to_sym)
+    errors.add :rel_type, I18n.t('relations.invalid.type') unless RELATION_TYPES.include? rel_type.try(:to_sym)
   end
 end

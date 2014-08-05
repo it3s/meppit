@@ -1,0 +1,21 @@
+<div class="relations show">
+  <ul>
+    <% if relations.empty? %>
+      <div class="empty"><%= t('relations.empty') %></div>
+    <% else %>
+      <% relations.each do |rel| %>
+        <li class="list-item geo_data small">
+          <div class="wrapper">
+            <div class="item-avatar">
+              <%= icon 'map-marker', "", class: "relation-item-icon" %>
+            </div>
+            <div class="item">
+              <span class="relation-item-type"> <%= Relation.translated("#{rel[:type]}") %> </span>
+              <span class="item-title"> <%= link_to rel[:target][:name], geo_data_path(rel[:target][:id]) %> </span>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
