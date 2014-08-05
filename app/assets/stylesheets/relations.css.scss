@@ -1,4 +1,9 @@
 .relations {
+  .relation-metadata {
+    display: none;
+    padding: 20 10px 10px;
+  }
+
   &.show {
     height: 350px;
     overflow-y: scroll;
@@ -48,7 +53,7 @@
         width: 238px;
       }
 
-      .relation-metadata, .relation-remove {
+      .relation-metadata-btn, .relation-remove-btn {
         @include button;
         padding: 3px 9px;
       }
