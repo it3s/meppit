@@ -11,7 +11,13 @@ module Relationships
     end
 
     def relations_values
-      relations.map { |r| {id: r.id, target: related_with_name(r), type: relation_type(r) } }
+      relations_with_relateds.map do |r|
+        {
+          id:     r.relation.id,
+          target: {id: r.related.id, name: r.related.name },
+          type:   relation_type(r.relation)
+        }
+      end
     end
 
     def save_relations_from_attributes
@@ -29,10 +35,18 @@ module Relationships
       relations.destroy_all
     end
 
-    def related_with_name(r)
-      _id = r.related_ids.first == self.id.to_s ? r.related_ids.second.to_i : r.related_ids.first.to_i
-      _name = GeoData.select(:name).find(_id).name
-      {id: _id, name: _name}
+    def relations_with_relateds
+      _relateds = get_all_relateds
+      relations.map { |r| OpenStruct.new relation: r, related: _relateds[related_id_for_relation(r)] }
+    end
+
+    def related_id_for_relation(r)
+      r.related_ids.first == self.id.to_s ? r.related_ids.second.to_i : r.related_ids.first.to_i
+    end
+
+    def get_all_relateds
+      _ids = relations.map { |r| related_id_for_relation(r) }.uniq
+      Hash[ *GeoData.select(:id, :name).where('id IN (?)', _ids).map { |g| [g.id, g] }.flatten ]
     end
 
     def relation_type(r)

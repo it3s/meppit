@@ -33,6 +33,7 @@
 
 # secrets
 /config/secrets.yml
+/config/initializers/local_settings.rb
 
 # code coverage
 /coverage

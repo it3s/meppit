@@ -1,5 +1,8 @@
 .relations {
   &.show {
+    height: 350px;
+    overflow: scroll;
+
     .relation-item-type {
       font-weight: bold;
     }
