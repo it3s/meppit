@@ -3,8 +3,11 @@ metadataForm = ->
     template: JST['templates/relationMetadata']
 
     init: (opts) ->
+      @index = opts.index
       @el = $ @template(opts)
+      @findFields()
       @status = 'hidden'
+      @bindEvents()
       this
 
     show: ->
@@ -14,6 +17,32 @@ metadataForm = ->
     hide: ->
       @el.slideUp('fast')
       @status = "hidden"
+
+    findFields: ->
+      @fields = {}
+      _.each ['description', 'start_date', 'end_date', 'currency', 'amount'], (key) =>
+        @fields[key] = @el.find(".metadata_#{key}")
+
+    onChange: ->
+      App.mediator.publish 'relationMetadata:changed', @index
+
+    getValue: ->
+      vals = {}
+      _.each @fields, (el, key) -> vals[key] = el.val()
+      vals
+
+    bindEvents: ->
+      _.each @fields, (el, key) =>
+        switch key
+          when 'description'
+            App.mediator.subscribe 'tinymce:changed', (evt, data) =>
+              if data.id is el.attr('id')
+                el.val data.content
+                @onChange()
+          when 'amount'
+            el.on "change keyup paste", _.debounce(@onChange.bind(this), 100)
+          else
+            el.change _.debounce(@onChange.bind(this), 100)
   }
 
 relationItem = ->
@@ -49,7 +78,7 @@ relationItem = ->
 
     getValue: ->
       if @targetEl.val().length > 0 && @typeEl.val().length > 0
-        {id: @getId(), target: {id: @targetEl.val()}, type: @typeEl.val()}
+        {id: @getId(), target: {id: @targetEl.val()}, type: @typeEl.val(), metadata: @metadata.getValue()}
       else
         null
 
@@ -62,6 +91,9 @@ relationItem = ->
     onChange: ->
       App.mediator.publish 'relationItem:changed' if @getValue()
 
+    metadataChanged: (evt, index) ->
+      @onChange() if index is @index
+
     toggleMetadata: (evt)->
       evt.preventDefault()
       if @metadata.status is 'hidden' then @metadata.show() else @metadata.hide()
@@ -72,6 +104,8 @@ relationItem = ->
 
       @targetEl.change @onChange.bind(this)
       @typeEl.change @onChange.bind(this)
+
+      App.mediator.subscribe 'relationMetadata:changed', @metadataChanged.bind(this)
   }
 
 App.components.relationsManager = (container) ->
@@ -114,7 +148,9 @@ App.components.relationsManager = (container) ->
       vals = []
       _.each @items, (item) ->
         vals.push item.getValue() if item && item.getValue()
+      console.log 'CHANGE', vals
       @relationsInput.val JSON.stringify(vals)
+      console.log @relationsInput.val()
 
     listen: ->
       @addButton.click @onAdd.bind(this)
