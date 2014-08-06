@@ -21,7 +21,7 @@
     </div>
     <div class="amount-field inline-field">
       <label for="metadata_amount_<%=index%>"><%= amount_label %></label>
-      <input type="text" pattern="^\d+(\.|\,)\d{2}$" name="metadata_amount_<%=index%>" class="metadata_amount" />
+      <input type="text" name="metadata_amount_<%=index%>" class="metadata_amount" data-components="money" />
     </div>
   </div>
 </div>
