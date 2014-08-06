@@ -53,7 +53,9 @@ module Concerns
         autocomplete_url: search_by_name_geo_data_index_path,
         metadata_title: t("relations.title.metadata"),
         remove_title: t("relations.title.remove"),
-        metadata_title: t("relations.metadata.title")
+        metadata_title: t("relations.metadata.title"),
+        start_date_label: t("relations.metadata.start_date"),
+        end_date_label: t("relations.metadata.end_date"),
       }
     end
 

@@ -15,6 +15,8 @@ en:
 
     metadata:
       title: 'Metadata'
+      start_date: 'Start date'
+      end_date: 'End date'
 
     types:
       ownership_dir: 'owns'

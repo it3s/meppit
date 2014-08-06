@@ -56,6 +56,10 @@
       margin-bottom: 15px;
       border-radius: 4px;
 
+      .relation_type {
+        width: 210px;
+      }
+
       .relation_target_autocomplete {
         display: inline-block;
         width: 238px;
@@ -64,6 +68,18 @@
       .relation-metadata-btn, .relation-remove-btn {
         @include button;
         padding: 3px 9px;
+      }
+    }
+
+    .relation-metadata {
+      label {
+        color: $grey;
+        margin-top: 10px;
+      }
+
+      .time-field {
+        display: inline-block;
+        width: 49.5%;
       }
     }
   }

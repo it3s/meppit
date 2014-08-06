@@ -15,6 +15,9 @@ pt-BR:
 
     metadata:
       title: 'Metadados'
+      start_date: 'Data inicial'
+      end_date: 'Data final'
+
 
     types:
       ownership_dir: 'possui'

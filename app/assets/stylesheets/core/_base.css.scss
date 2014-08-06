@@ -146,3 +146,9 @@ h3 {
 body .mce-menu-item .mce-text {
   font-size: 10px;
 }
+
+// fix calendar size
+.ui-datepicker {
+  width: 18em;
+  font-size: 12px;
+}
