@@ -23,13 +23,19 @@ relationItem = ->
     init: (opts) ->
       @index = opts.index
       @el = $ @template(opts)
+      @addMetadataForm(opts)
+      @findElements()
+      @bindEvents()
+      this
+
+    addMetadataForm: (opts) ->
       @metadata =  metadataForm().init(opts)
       @el.find('.metadata-container').append @metadata.el
+
+    findElements: ->
       @targetEl = @el.find('.relation_target')
       @typeEl   = @el.find('.relation_type')
       @idEl     = @el.find('.relation_id')
-      @bindEvents()
-      this
 
     onRemove: (evt) ->
       evt.preventDefault()

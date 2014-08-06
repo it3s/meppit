@@ -1,7 +1,15 @@
 .relations {
   .relation-metadata {
     display: none;
-    padding: 20 10px 10px;
+    margin-top: 10px;
+    padding: 10px;
+    border-top: solid 1px $soft-grey;
+
+    h3 {
+      font-size: 1.1em;
+      color: $grey;
+      margin-bottom: 10px;
+    }
   }
 
   &.show {

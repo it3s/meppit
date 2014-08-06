@@ -13,6 +13,9 @@ en:
       metadata: 'Add metadata to this relation'
       remove: 'Remove this relation'
 
+    metadata:
+      title: 'Metadata'
+
     types:
       ownership_dir: 'owns'
       ownership_rev: 'is owned by'

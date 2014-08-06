@@ -13,6 +13,9 @@ pt-BR:
       metadata: 'Adiconar metadados para essa relação'
       remove: 'Remover essa relação'
 
+    metadata:
+      title: 'Metadados'
+
     types:
       ownership_dir: 'possui'
       ownership_rev: 'pertence à'
