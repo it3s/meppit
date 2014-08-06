@@ -17,6 +17,7 @@ en:
       title: 'Metadata'
       start_date: 'Start date'
       end_date: 'End date'
+      amount: '$ amount'
 
     types:
       ownership_dir: 'owns'

@@ -56,6 +56,7 @@ module Concerns
         metadata_title: t("relations.metadata.title"),
         start_date_label: t("relations.metadata.start_date"),
         end_date_label: t("relations.metadata.end_date"),
+        amount_label: t("relations.metadata.amount"),
       }
     end
 

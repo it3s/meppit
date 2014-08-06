@@ -77,10 +77,13 @@
         margin-top: 10px;
       }
 
-      .time-field {
+      .inline-field, {
         display: inline-block;
-        width: 49.5%;
       }
+
+      .time-field     { width: 150px; }
+      .currency-field { width: 50px; }
+      .amount-field   { width: 140px; }
     }
   }
 }

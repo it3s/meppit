@@ -17,7 +17,7 @@ pt-BR:
       title: 'Metadados'
       start_date: 'Data inicial'
       end_date: 'Data final'
-
+      amount: '$ valor'
 
     types:
       ownership_dir: 'possui'
