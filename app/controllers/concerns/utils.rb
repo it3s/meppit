@@ -71,7 +71,7 @@ module Utils
         id:        (r['id'].blank?     ? nil : r['id'].to_i    ),
         target:    (r['target']['id'].blank? ? nil : r['target']['id'].to_i),
         direction: r['type'].split('_').last,       # something_dir => dir
-        rel_type:  r['type'].gsub(/_dir|_rev/, '')  # something_dir => something
+        rel_type:  r['type'].gsub(/_dir|_rev/, ''), # something_dir => something
       )
     end
   end

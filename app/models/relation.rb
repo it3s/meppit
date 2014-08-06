@@ -1,4 +1,6 @@
 class Relation < ActiveRecord::Base
+  has_one :metadata, class_name: 'RelationMetadata'
+
   validates :related_ids, :rel_type, :direction, presence: true
 
   validate :related_ids_size_eq_two
@@ -6,7 +8,6 @@ class Relation < ActiveRecord::Base
   validate :rel_type_from_accepted_types_list
 
   scope :find_related, -> (_id) { where 'related_ids @> ARRAY[?]', _id.to_s }
-
 
   RELATION_TYPES = [
     :ownership,
