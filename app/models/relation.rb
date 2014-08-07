@@ -34,6 +34,12 @@ class Relation < ActiveRecord::Base
     ] }.flatten(1)
   end
 
+  def upsert_metadata(metadata_struct)
+    build_metadata if metadata.nil?
+    metadata.assign_attributes metadata_struct.to_h
+    metadata.save
+  end
+
   private
 
   def self.translated(key_with_direction)

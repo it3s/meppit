@@ -25,7 +25,7 @@ module Relationships
       relations_attributes.each do |r|
         rel = Relation.find_or_initialize_by id: r.id
         rel.assign_attributes related_ids: [self.id, r.target], rel_type: r.rel_type, direction: r.direction
-        rel.save
+        rel.upsert_metadata(r.metadata)
       end
     end
 

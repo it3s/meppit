@@ -148,9 +148,7 @@ App.components.relationsManager = (container) ->
       vals = []
       _.each @items, (item) ->
         vals.push item.getValue() if item && item.getValue()
-      console.log 'CHANGE', vals
       @relationsInput.val JSON.stringify(vals)
-      console.log @relationsInput.val()
 
     listen: ->
       @addButton.click @onAdd.bind(this)
