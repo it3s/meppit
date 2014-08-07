@@ -13,9 +13,10 @@ module Relationships
     def relations_values
       relations_with_relateds.map do |r|
         {
-          id:     r.relation.id,
-          target: {id: r.related.id, name: r.related.name },
-          type:   relation_type(r.relation)
+          id:       r.relation.id,
+          target:   {id: r.related.id, name: r.related.name },
+          type:     relation_type(r.relation),
+          metadata: r.relation.metadata.nil? ? {} : r.relation.metadata.attributes,
         }
       end
     end

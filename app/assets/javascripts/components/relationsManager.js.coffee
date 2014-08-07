@@ -31,6 +31,14 @@ metadataForm = ->
       _.each @fields, (el, key) -> vals[key] = el.val()
       vals
 
+    setValue: (entry) ->
+      _.each ['description', 'start_date', 'end_date', 'currency', 'amount'], (key) =>
+        if key is 'amount'
+          @fields[key].val entry[key]?.toFixed(2)
+        else
+          @fields[key].val entry[key]
+
+
     bindEvents: ->
       _.each @fields, (el, key) =>
         switch key
@@ -87,6 +95,7 @@ relationItem = ->
       @el.find('.relation_target_autocomplete').val(entry.target.name)
       @typeEl.val(entry.type)
       @idEl.val(entry.id)
+      @metadata.setValue(entry.metadata)
 
     onChange: ->
       App.mediator.publish 'relationItem:changed' if @getValue()

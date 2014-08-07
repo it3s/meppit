@@ -7,7 +7,7 @@ class Relation < ActiveRecord::Base
   validate :direction_is_dir_or_rev
   validate :rel_type_from_accepted_types_list
 
-  scope :find_related, -> (_id) { where 'related_ids @> ARRAY[?]', _id.to_s }
+  scope :find_related, -> (_id) { where('related_ids @> ARRAY[?]', _id.to_s).includes(:metadata) }
 
   RELATION_TYPES = [
     :ownership,
