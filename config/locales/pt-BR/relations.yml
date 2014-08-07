@@ -18,6 +18,8 @@ pt-BR:
       start_date: 'Data inicial'
       end_date: 'Data final'
       amount: '$ valor'
+      description: 'Descrição'
+      value: 'Valor'
 
     types:
       ownership_dir: 'possui'

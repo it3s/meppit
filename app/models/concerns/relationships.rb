@@ -16,7 +16,7 @@ module Relationships
           id:       r.relation.id,
           target:   {id: r.related.id, name: r.related.name },
           type:     relation_type(r.relation),
-          metadata: r.relation.metadata.nil? ? {} : r.relation.metadata.attributes,
+          metadata: metadata_values(r.relation.metadata),
         }
       end
     end
@@ -66,6 +66,11 @@ module Relationships
       old_ids = relations.pluck :id
       new_ids = relations_attributes.map(&:id).compact
       (old_ids - new_ids).each { |_id| Relation.find(_id).destroy }
+    end
+
+    def metadata_values(_metadata)
+      accepted_keys = [:description, :start_date, :end_date, :currency, :amount]
+      _metadata.nil? ? {} : _metadata.attributes.select { |k,v| accepted_keys.include? k.to_sym }
     end
 
   end

@@ -18,6 +18,8 @@ en:
       start_date: 'Start date'
       end_date: 'End date'
       amount: '$ amount'
+      description: 'Description'
+      value: 'Value'
 
     types:
       ownership_dir: 'owns'

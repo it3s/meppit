@@ -29,6 +29,31 @@
         border-radius: 4px;
       }
       .item-title a { color: $meppit-data-color; }
+
+      .metadata-btn {
+        @include button;
+        font-size: 0.8em;
+        padding: 2px 8px;
+        float: right;
+      }
+      .metadata-info {
+        display: none;
+        padding: 10px 20px;
+
+        .metadata-item {
+          margin-bottom: 10px;
+
+          .metadata-key, .metadata-value { display: inline-block; }
+
+          .metadata-key {
+            width: 30%;
+            color: $dark-grey;
+            vertical-align: top;
+            font-weight: bold;
+          }
+          .metadata-value { width: 69% }
+        }
+      }
     }
 
     .empty {

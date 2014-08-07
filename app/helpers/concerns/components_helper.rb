@@ -60,6 +60,19 @@ module Concerns
       }
     end
 
+    def show_relation_metadata?(rel)
+      !rel[:metadata].empty? && !rel[:metadata].values.all?(&:blank?)
+    end
+
+    def currency_symbol(curr)
+      case curr
+        when 'eur' then icon("euro")
+        when 'usd' then icon("dollar")
+        when 'brl' then "R$"
+        else "$"
+      end
+    end
+
     private
 
     def _hash_with_humanized_keys(hash)
