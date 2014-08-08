@@ -22,10 +22,11 @@ module Relationships
     end
 
     def save_relations_from_attributes
-      destroy_removed_relations
+      destroy_removed_relations!
       relations_attributes.each do |r|
         rel = Relation.find_or_initialize_by id: r.id
         rel.assign_attributes related_ids: [self.id, r.target], rel_type: r.rel_type, direction: r.direction
+        rel.save
         rel.upsert_metadata(r.metadata)
       end
     end
@@ -62,7 +63,7 @@ module Relationships
       (direction.to_sym == :dir) ? :rev : :dir
     end
 
-    def destroy_removed_relations
+    def destroy_removed_relations!
       old_ids = relations.pluck :id
       new_ids = relations_attributes.map(&:id).compact
       (old_ids - new_ids).each { |_id| Relation.find(_id).destroy }

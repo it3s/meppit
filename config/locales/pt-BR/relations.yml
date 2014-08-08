@@ -10,7 +10,6 @@ pt-BR:
 
     title:
       add: 'Adicionar nova relação'
-      metadata: 'Adiconar metadados para essa relação'
       remove: 'Remover essa relação'
 
     metadata:

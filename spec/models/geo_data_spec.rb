@@ -79,4 +79,51 @@ describe GeoData do
       expect(geo_data.versions.where_object(name: 'name').any?).to be true
     end
   end
+
+  describe "Relationships" do
+    let(:geo_data) { FactoryGirl.create :geo_data }
+    let(:other)    { FactoryGirl.create :geo_data }
+    let(:another)  { FactoryGirl.create :geo_data }
+    let!(:relation) { Relation.create related_ids: [geo_data.id, other.id], rel_type: 'partnership', direction: 'dir' }
+
+    it "on destroy remove all relations" do
+      expect(Relation.find_related(geo_data.id).count).to eq 1
+      geo_data.destroy
+      expect(Relation.find_related(geo_data.id).count).to eq 0
+    end
+
+    describe "relations_values" do
+      it { expect(geo_data.relations_values).to be_a_kind_of Array }
+      it { expect(geo_data.relations_values.first).to be_a_kind_of Hash }
+      it { expect(geo_data.relations_values.first).to eq({
+          id:       relation.id,
+          target:   {id: other.id, name: other.name },
+          type:     "partnership_dir",
+          metadata: {},
+        })
+      }
+    end
+
+    describe "save_relations_from_attributes" do
+      before {
+        Relation.destroy_all
+        @rel1 = Relation.create related_ids: [geo_data.id, geo_data.id], rel_type: 'partnership', direction: 'dir'
+        @rel2 = Relation.create related_ids: [geo_data.id, other.id], rel_type: 'partnership', direction: 'dir'
+        @attrs = [
+          OpenStruct.new(id: @rel2.id, target: other.id, direction: 'dir', rel_type: 'ownership', metadata: {}),
+          OpenStruct.new(id: nil, target: another.id, direction: 'dir', rel_type: 'partnership', metadata: {}),
+        ]
+      }
+
+      it "removes rel1, updates rel2, and add relation to another.id" do
+        expect(geo_data.send(:get_all_relateds).keys).to eq [geo_data.id, other.id]
+        geo_data.relations_attributes = @attrs
+        geo_data.save_relations_from_attributes
+        geo_data.relations.reload
+
+        expect(geo_data.send(:get_all_relateds).keys).to eq [other.id, another.id]
+        expect(@rel2.reload.rel_type).to eq 'ownership'
+      end
+    end
+  end
 end

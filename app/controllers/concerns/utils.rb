@@ -72,12 +72,12 @@ module Utils
         target:    (r['target']['id'].blank? ? nil : r['target']['id'].to_i),
         direction: r['type'].split('_').last,       # something_dir => dir
         rel_type:  r['type'].gsub(/_dir|_rev/, ''), # something_dir => something
-        metadata:  clean_relation_metadata(r['metadata']),
+        metadata:  cleaned_relation_metadata(r['metadata']),
       )
     end
   end
 
-  def clean_relation_metadata(m)
+  def cleaned_relation_metadata(m)
     OpenStruct.new(
       description: m['description'].strip().blank? ? nil : m['description'],
       start_date:  m['start_date'].blank? ? nil : Date.parse(m['start_date']),

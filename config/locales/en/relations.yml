@@ -10,7 +10,6 @@ en:
 
     title:
       add: 'Add new relation'
-      metadata: 'Add metadata to this relation'
       remove: 'Remove this relation'
 
     metadata:

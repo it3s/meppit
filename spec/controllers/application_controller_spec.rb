@@ -230,6 +230,67 @@ describe ApplicationController do
       end
     end
 
+    describe "#cleaned_relations_attributes" do
+      let(:cleaned) { controller.send :cleaned_relations_attributes, params }
+      let(:rel) { cleaned.first }
+      before { allow(controller).to receive(:cleaned_relation_metadata).and_return({}) }
+
+      describe "defaults" do
+        let(:params) { {relations_attributes: [{id: "", target: {id: ""}, type: "", metadata: {} }].to_json} }
+
+        it "expect to return array of open Structs" do
+          expect(cleaned).to be_a_kind_of Array
+          expect(rel).to be_a_kind_of OpenStruct
+        end
+
+        it { expect(rel.id).to be nil }
+        it { expect(rel.target).to be nil }
+        it { expect(rel.direction).to be nil }
+      end
+
+      describe "parse" do
+        let(:params) { {relations_attributes: [{id: "2", target: {id: "42"}, type: "support_dir", metadata: {} }].to_json} }
+
+        it "expect to return array of open Structs" do
+          expect(cleaned).to be_a_kind_of Array
+          expect(rel).to be_a_kind_of OpenStruct
+        end
+
+        it { expect(rel.id).to eq 2 }
+        it { expect(rel.target).to eq 42 }
+        it { expect(rel.direction).to eq 'dir' }
+        it { expect(rel.rel_type).to eq 'support' }
+      end
+    end
+
+    describe "#cleaned_relation_metadata" do
+      let(:cleaned) { controller.send :cleaned_relation_metadata, params }
+
+      describe "defaults" do
+        let(:params) { {description: "  ", start_date: "", end_date: "", currency: "usd", amount: "" }.with_indifferent_access }
+
+        it { expect(cleaned).to be_a_kind_of OpenStruct }
+
+        it { expect(cleaned.description).to be nil }
+        it { expect(cleaned.start_date).to be nil }
+        it { expect(cleaned.end_date).to be nil }
+        it { expect(cleaned.currency).to be nil }
+        it { expect(cleaned.amount).to be nil }
+      end
+
+      describe "parse" do
+        let(:params) { {description: "bla", start_date: "2014-08-7", end_date: "2014-08-10", currency: "brl", amount: "14000.00" }.with_indifferent_access }
+
+        it { expect(cleaned).to be_a_kind_of OpenStruct }
+
+        it { expect(cleaned.description).to eq 'bla' }
+        it { expect(cleaned.start_date).to eq Date.new(2014, 8, 7) }
+        it { expect(cleaned.end_date).to eq Date.new(2014, 8, 10) }
+        it { expect(cleaned.currency).to eq "brl" }
+        it { expect(cleaned.amount).to eq 14000.00 }
+      end
+    end
+
     describe "#flash_xhr" do
       it "renders alerts partial" do
         expect(controller).to receive(:render_to_string).with(partial: 'shared/alerts')

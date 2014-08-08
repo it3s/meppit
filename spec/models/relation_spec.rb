@@ -136,4 +136,25 @@ describe Relation do
       expect(Relation.options.first.size).to eq 2
     end
   end
+
+  describe "upsert_metadata" do
+    let(:relation) { Relation.create related_ids: [1, 2], rel_type: 'partnership', direction: 'dir' }
+    let(:params) { OpenStruct.new description: 'bla' }
+
+    it "build metadata if relation has no metadata" do
+      expect(relation.metadata).to be nil
+      relation.upsert_metadata params
+      expect(relation.metadata).to be_a_kind_of RelationMetadata
+      expect(relation.metadata.description).to eq 'bla'
+    end
+    it "update metadata if already has one" do
+      relation.create_metadata
+      expect(relation.metadata).to_not be nil
+      old_id = relation.metadata.id
+      relation.upsert_metadata params
+      expect(relation.metadata).to be_a_kind_of RelationMetadata
+      expect(relation.metadata.id).to eq old_id
+    end
+
+  end
 end

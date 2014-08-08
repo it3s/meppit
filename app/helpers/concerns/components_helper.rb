@@ -46,12 +46,11 @@ module Concerns
       _hash_with_humanized_keys(object.additional_info).to_json
     end
 
-    def relations_manager_data(object)
+    def relations_manager_data
       {
         options: Relation.options,
         autocomplete_placeholder: t("components.autocomplete.relation_target"),
         autocomplete_url: search_by_name_geo_data_index_path,
-        metadata_title: t("relations.title.metadata"),
         remove_title: t("relations.title.remove"),
         metadata_title: t("relations.metadata.title"),
         start_date_label: t("relations.metadata.start_date"),
