@@ -20,6 +20,13 @@ Maps rebuild
 * create and configure your database.yml and secrets.yml (see .yml.sample files)
 * `rake db:create db:migrate`
 
+* You must set a `.env` file with environemnt configs
+
+```
+PORT=3000
+RAILS_ENV=development
+```
+
 * `rspec` or `rake spec` # run ruby tests
 * `rake konacha:serve` # run js tests on the browser (port 3500)
 

@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby "2.0.0"                        # ruby version (used by heroku and rvm)
 
 gem 'rails', '~> 4.1.1'
-gem 'puma'                          # faster app server
+gem 'puma'                          # app server
 gem 'foreman'                       # process supervision
 gem 'pg'                            # postgresql
 gem 'rgeo'                          # geometry abstraction
@@ -46,13 +46,14 @@ gem 'safe_yaml'                     # safe yaml load to avoid code injection
 gem 'paper_trail'                   # model versioning
 gem 'differ'                        # build diffs
 
+gem 'better_errors'               # better error page, and shell session when crash
+gem 'binding_of_caller'           # used by better_errors
+
 group :doc do
   gem 'sdoc', :require => false
 end
 
 group :development do
-  gem 'better_errors'               # better error page, and shell session when crash
-  gem 'binding_of_caller'           # used by better_errors
   gem 'clean_logger'                # silence assets logging
   gem 'letter_opener'               # preview email in the browser
   gem 'letter_opener_web'           # web ui for letter_opener
@@ -77,4 +78,8 @@ group :test do
   gem 'database_cleaner'            # improved database cleaning for tests
   gem 'simplecov', '~> 0.7.1', require: false   # coverage report
   gem 'coveralls', require: false   # use coveralls with travisCI
+end
+
+group :production, :staging do
+  gem 'rails_12factor'              # heroku rails logs and assets
 end

@@ -49,3 +49,4 @@ TODO
 
 # elasticsearch
 /vendor/elasticsearch
+.env
