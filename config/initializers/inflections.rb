@@ -16,4 +16,5 @@
 # end
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'geo_data', 'geo_data'
+  inflect.irregular 'relation_metadata', 'relation_metadata'
 end

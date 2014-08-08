@@ -29,7 +29,7 @@
       <%= render 'shared/additional_info/show', object: geo_data %>
     </div>
     <div class="tab-content" id="relations">
-      Relations Placeholder
+      <%= render 'relations/show', relations: geo_data.relations_values %>
     </div>
     <div class="tab-content" id="media">
       Media Placeholder

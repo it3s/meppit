@@ -1,0 +1,21 @@
+<div class="relation-item" data-rel-index="<%= index %>">
+  <input type="hidden" name="relation_id" class="relation_id" />
+
+  <select name="relations_type_<%= index%>" class="relation_type" >
+    <option value=""> </option>
+    <% _.each(options, function(opt) { %>
+      <option value="<%= opt[1] %>"><%= opt[0] %></option>
+    <% }); %>
+  </select>
+
+  <input type="hidden" name="relations_target_<%= index%>" class="relation_target"
+      id="relation_target_<%= index %>-autocomplete"/>
+  <input type="text" class="relation_target_autocomplete" placeholder="<%= autocomplete_placeholder %>"
+      data-components="autocomplete"
+      data-component-options='{"name":"relation_target_<%= index %>","url":"<%= autocomplete_url %>"}' />
+
+  <a href="#" class="relation-metadata-btn" title="<%= metadata_title %>"><i class="fa fa-book"></i></a>
+  <a href="#" class="relation-remove-btn" title="<%= remove_title %>"><i class="fa fa-trash-o"></i></a>
+
+  <div class="metadata-container"></div>
+</div>

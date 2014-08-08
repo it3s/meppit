@@ -11,7 +11,9 @@ App.components.autocomplete = (container) ->
 
     onSelect: (event, ui) ->
       value = ui.item?.id || ""
-      @autocompleteTarget().val(value)
+      target = @autocompleteTarget()
+      target.val(value)
+      target.trigger 'change'
 
     startPlugin: ->
       _this = this

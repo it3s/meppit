@@ -1,0 +1,67 @@
+pt-BR:
+  relations:
+    add: 'Adicionar relação'
+    empty: 'Não há relações ainda para este conteúdo'
+
+    invalid:
+      related_ids_size: 'Você deve forncer 2 objetos relacionados'
+      direction: "Direção deve ser 'dir' para direta ou 'rev' para reversa"
+      type: "Tipo de relação inválido"
+
+    title:
+      add: 'Adicionar nova relação'
+      remove: 'Remover essa relação'
+
+    metadata:
+      title: 'Metadados'
+      start_date: 'Data inicial'
+      end_date: 'Data final'
+      amount: '$ valor'
+      description: 'Descrição'
+      value: 'Valor'
+
+    types:
+      ownership_dir: 'possui'
+      ownership_rev: 'pertence à'
+
+      participation_dir: 'participa de'
+      participation_rev: 'tem como participante'
+
+      partnership_dir: 'é parceiro de'
+      partnership_rev: 'é parceiro de'
+
+      grants_dir: 'finacia'
+      grants_rev: 'recebe um financiamento de'
+
+      certification_dir: 'certifica'
+      certification_rev: 'é certificada por'
+
+      attendance_dir: 'é atendido por'
+      attendance_rev: 'atende'
+
+      directing_people_dir: 'encaminha pessoas para'
+      directing_people_rev: 'recebe encaminhamentos de'
+
+      volunteers_dir: 'recruta voluntários para '
+      volunteers_rev: 'recebe voluntários de'
+
+      support_dir: 'suporta '
+      support_rev: 'recebe suporte de'
+
+      representation_dir: 'representa '
+      representation_rev: 'é representado por'
+
+      membership_dir: 'é membro de '
+      membership_rev: 'tem como membro'
+
+      supply_dir: 'fornece para '
+      supply_rev: 'compra de'
+
+      council_dir: 'é conselheiro de '
+      council_rev: 'tem como conselheiro'
+
+      contains_dir: 'contém '
+      contains_rev: 'pertence a'
+
+      investment_dir: 'investiu em '
+      investment_rev: 'recebeu investimento de'

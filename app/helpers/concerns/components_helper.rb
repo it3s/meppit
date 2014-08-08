@@ -46,6 +46,32 @@ module Concerns
       _hash_with_humanized_keys(object.additional_info).to_json
     end
 
+    def relations_manager_data
+      {
+        options: Relation.options,
+        autocomplete_placeholder: t("components.autocomplete.relation_target"),
+        autocomplete_url: search_by_name_geo_data_index_path,
+        remove_title: t("relations.title.remove"),
+        metadata_title: t("relations.metadata.title"),
+        start_date_label: t("relations.metadata.start_date"),
+        end_date_label: t("relations.metadata.end_date"),
+        amount_label: t("relations.metadata.amount"),
+      }
+    end
+
+    def show_relation_metadata?(rel)
+      !rel[:metadata].empty? && !rel[:metadata].values.all?(&:blank?)
+    end
+
+    def currency_symbol(curr)
+      case curr
+        when 'eur' then icon("euro")
+        when 'usd' then icon("dollar")
+        when 'brl' then "R$"
+        else "$"
+      end
+    end
+
     private
 
     def _hash_with_humanized_keys(hash)

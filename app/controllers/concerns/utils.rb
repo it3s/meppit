@@ -64,6 +64,29 @@ module Utils
     (yaml && !yaml.empty?) ? SafeYAML.load(yaml, safe: true) : nil
   end
 
+  def cleaned_relations_attributes(_params)
+    _attrs = JSON.parse _params[:relations_attributes]
+    _attrs.map do |r|
+      OpenStruct.new(
+        id:        (r['id'].blank? ? nil : r['id'].to_i    ),
+        target:    (r['target']['id'].blank? ? nil : r['target']['id'].to_i),
+        direction: r['type'].split('_').last,       # something_dir => dir
+        rel_type:  r['type'].gsub(/_dir|_rev/, ''), # something_dir => something
+        metadata:  cleaned_relation_metadata(r['metadata']),
+      )
+    end
+  end
+
+  def cleaned_relation_metadata(m)
+    OpenStruct.new(
+      description: m['description'].strip().blank? ? nil : m['description'],
+      start_date:  m['start_date'].blank? ? nil : Date.parse(m['start_date']),
+      end_date:    m['end_date'].blank?   ? nil : Date.parse(m['end_date']),
+      currency:    m['amount'].blank? ? nil : m['currency'],
+      amount:      m['amount'].blank? ? nil : m['amount'].to_f,
+    )
+  end
+
   def flash_xhr(msg)
     flash.now[:notice] = msg
     render_to_string(partial: 'shared/alerts')

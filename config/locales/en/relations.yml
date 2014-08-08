@@ -1,0 +1,67 @@
+en:
+  relations:
+    add: 'Add relation'
+    empty: 'There are no relations yet for this content'
+
+    invalid:
+      related_ids_size: 'You must provide 2 related objects'
+      direction: "Direction must be 'dir' for direct or 'rev' for reverse"
+      type: "Invalid relation type"
+
+    title:
+      add: 'Add new relation'
+      remove: 'Remove this relation'
+
+    metadata:
+      title: 'Metadata'
+      start_date: 'Start date'
+      end_date: 'End date'
+      amount: '$ amount'
+      description: 'Description'
+      value: 'Value'
+
+    types:
+      ownership_dir: 'owns'
+      ownership_rev: 'is owned by'
+
+      participation_dir: 'participates in'
+      participation_rev: 'has as participant'
+
+      partnership_dir: 'partners with'
+      partnership_rev: 'partners with'
+
+      grants_dir: 'gives a grant to'
+      grants_rev: 'receives a grant from'
+
+      certification_dir: 'certifies'
+      certification_rev: 'is certified by'
+
+      attendance_dir: 'attended by'
+      attendance_rev: 'attends'
+
+      directing_people_dir: 'directs people to'
+      directing_people_rev: 'receives people from'
+
+      volunteers_dir: 'recruits volunteers for'
+      volunteers_rev: 'receives volunteers from'
+
+      support_dir: 'supports'
+      support_rev: 'is supported by'
+
+      representation_dir: 'represents'
+      representation_rev: 'is represented by'
+
+      membership_dir: 'is a member of'
+      membership_rev: 'has as member'
+
+      supply_dir: 'supplies to'
+      supply_rev: 'buys from'
+
+      council_dir: 'is board member of'
+      council_rev: 'has as board member'
+
+      contains_dir: 'contains'
+      contains_rev: 'belongs to'
+
+      investment_dir: 'invested in'
+      investment_rev: 'received investment from'

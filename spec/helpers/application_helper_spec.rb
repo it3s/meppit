@@ -276,6 +276,35 @@ HTML
         helper.send :_nested_hash_value, {foo: 42}
       end
     end
-  end
 
+    describe "#relations_manager_data" do
+      it "expects all required keys to be present" do
+        keys = [:options, :autocomplete_placeholder, :autocomplete_url, :remove_title,
+                :metadata_title, :start_date_label, :end_date_label, :amount_label]
+        expect(helper.relations_manager_data.keys).to eq keys
+      end
+    end
+
+    describe "#show_relation_metadata" do
+      it "retuns false for empty" do
+        rel = {metadata: {}}
+        expect(helper.show_relation_metadata?(rel)).to be false
+      end
+      it "returns false is all values are blank" do
+        rel = {metadata: {description: "", start_date: "", amount: nil}}
+        expect(helper.show_relation_metadata?(rel)).to be false
+      end
+      it "returns true otherwise" do
+        rel = {metadata: {description: "blaa", start_date: nil}}
+        expect(helper.show_relation_metadata?(rel)).to be true
+      end
+    end
+
+    describe "#currency_symbol" do
+      it { expect(helper.currency_symbol('eur')).to eq helper.icon('euro') }
+      it { expect(helper.currency_symbol('usd')).to eq helper.icon('dollar') }
+      it { expect(helper.currency_symbol('brl')).to eq "R$" }
+      it { expect(helper.currency_symbol('')).to eq "$" }
+    end
+  end
 end

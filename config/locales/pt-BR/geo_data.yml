@@ -1,10 +1,10 @@
 pt-BR:
   geo_data:
     tabs:
-      content: "Content"
-      relations: "Relations"
-      media: "Media"
-      talk: "Talk"
+      content: "Conteúdo"
+      relations: "Relações"
+      media: "Mídia"
+      talk: "Conversa"
 
     description:
       empty: "Nenhuma descrição fornecida para %{name}"

@@ -154,6 +154,36 @@ describe GeoDataController do
         it { expect(response.body).to eq({errors: {additional_info: [I18n.t('additional_info.invalid')]}}.to_json) }
       end
     end
+
+    describe "save relations and metadata" do
+      let(:related) { FactoryGirl.create :geo_data }
+      let(:relation_params) {
+        { relations_attributes: [{
+          id: "2", target: {id: related.id.to_s}, type: "support_dir",
+          metadata: {description: "bla", start_date: "2014-08-7", end_date: "2014-08-10", currency: "brl", amount: "14000.00" }
+        }].to_json}
+      }
+
+      it "saves properly" do
+        post :update, {:id => geo_data.id, :geo_data => data_params.merge(relation_params)}
+        expect(assigns :geo_data).to eq geo_data
+        expect(response.body).to match({:redirect => geo_data_path(geo_data)}.to_json)
+
+        geo_data.reload
+        values = geo_data.relations_values.first
+
+        expect(values[:target]).to eq({id: related.id, name: related.name })
+        expect(values[:type]).to eq 'support_dir'
+        expect(values[:metadata]).to eq({
+          "description" => 'bla',
+          "start_date"  => Date.new(2014, 8, 7),
+          "end_date"    => Date.new(2014, 8, 10),
+          "currency"    => 'brl',
+          "amount"      => 14000.00,
+        })
+      end
+
+    end
   end
 
   describe "GET maps from geo_data" do
