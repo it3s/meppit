@@ -42,7 +42,11 @@ describe User do
     let(:salt) { 'batata-frita' }
 
     before do
-      Rails.application.config.stub(:SECRETS).and_return({:fixed_salt => salt })
+      @orig_value = ENV['FIXED_SALT']
+      ENV['FIXED_SALT'] = salt
+    end
+    after do
+      ENV['FIXED_SALT'] = @orig_value
     end
 
     let(:password) { FactoryGirl.build(:user).password }

@@ -17,13 +17,12 @@ Maps rebuild
 
 * git clone
 * `bundle`
-* create and configure your database.yml and secrets.yml (see .yml.sample files)
+* create and configure your database.yml and application.yml (see .yml.sample files)
 * `rake db:create db:migrate`
-
 * `rspec` or `rake spec` # run ruby tests
 * `rake konacha:serve` # run js tests on the browser (port 3500)
 
-* `foreman start`
+* `./run`  runs foreman with the dev procfile
 
 
 ### Vagrant:

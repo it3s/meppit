@@ -2,8 +2,9 @@ source 'https://rubygems.org'
 
 ruby "2.0.0"                        # ruby version (used by heroku and rvm)
 
-gem 'rails', '~> 4.1.1'
-gem 'puma'                          # faster app server
+gem 'figaro'                        # easier enviroment variables
+gem 'rails', '~> 4.1.1'             # rails
+gem 'puma'                          # app server
 gem 'foreman'                       # process supervision
 gem 'pg'                            # postgresql
 gem 'rgeo'                          # geometry abstraction
@@ -42,17 +43,17 @@ gem 'remotipart'                    # enable ajax file uploads on remote forms
 gem 'kaminari'                      # paginator
 gem 'event_bus'                     # event bus for decoupling logic between models
 gem 'rdiscount'                     # render markdown
-gem 'safe_yaml'                     # safe yaml load to avoid code injection
 gem 'paper_trail'                   # model versioning
 gem 'differ'                        # build diffs
+
+gem 'better_errors'               # better error page, and shell session when crash
+gem 'binding_of_caller'           # used by better_errors
 
 group :doc do
   gem 'sdoc', :require => false
 end
 
 group :development do
-  gem 'better_errors'               # better error page, and shell session when crash
-  gem 'binding_of_caller'           # used by better_errors
   gem 'clean_logger'                # silence assets logging
   gem 'letter_opener'               # preview email in the browser
   gem 'letter_opener_web'           # web ui for letter_opener
@@ -77,4 +78,18 @@ group :test do
   gem 'database_cleaner'            # improved database cleaning for tests
   gem 'simplecov', '~> 0.7.1', require: false   # coverage report
   gem 'coveralls', require: false   # use coveralls with travisCI
+end
+
+group :production, :staging do
+  gem 'rails_12factor'              # heroku rails logs and assets
+  gem 'mailgun_rails'               # mailgun integration for actionmailer
+end
+
+# Rails requires automatically all gems from the default and environment groups
+# This group allows the gem to be available but not required, so we can load
+# it manually
+# for example: we need to import safe_yaml with 'safe_yaml/load' so it don't
+# patch the default YAML, which would break sidekiq and other libs
+group :do_not_autoload do
+  gem 'safe_yaml'                   # safe yaml loading
 end

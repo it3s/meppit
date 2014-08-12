@@ -121,6 +121,9 @@ GEM
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.3)
+    figaro (0.7.0)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     fog (1.22.1)
       fog-brightbox
       fog-core (~> 1.22)
@@ -202,6 +205,9 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mailgun_rails (0.6.1)
+      rails (>= 3.2.13)
+      rest-client (>= 1.6.7)
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_magick (3.7.0)
@@ -263,6 +269,11 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.1)
       sprockets-rails (~> 2.0)
+    rails_12factor (0.0.2)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.2)
+    rails_stdout_logging (0.0.3)
     railties (4.1.1)
       actionpack (= 4.1.1)
       activesupport (= 4.1.1)
@@ -395,6 +406,7 @@ DEPENDENCIES
   ejs
   event_bus
   factory_girl_rails
+  figaro
   fog
   font-awesome-sass
   foreman
@@ -408,6 +420,7 @@ DEPENDENCIES
   konacha
   letter_opener
   letter_opener_web
+  mailgun_rails
   meppit-map-rails!
   mini_magick
   neat
@@ -420,6 +433,7 @@ DEPENDENCIES
   pry-rails
   puma
   rails (~> 4.1.1)
+  rails_12factor
   rdiscount
   remotipart
   rgeo

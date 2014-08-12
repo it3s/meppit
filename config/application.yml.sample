@@ -1,0 +1,56 @@
+SECRET_TOKEN: "b82bbcb5a636bb565472f407d98a339b2d08d3c60cafdc7cc56f5fc625650d5c8f13e90fd84eb89c2ddf8ebddc031db0c098a8766869000cc56b119874462dcf"
+FIXED_SALT: "long and complicated salt goes here"
+
+development:
+  PORT: 3000
+  OAUTH_CALLBACK_HOST: "http://localhost:3000"
+  FACEBOOK_KEY: ""
+  FACEBOOK_SECRET: ""
+  GOOGLE_KEY: ""
+  GOOGLE_SERCRET: ""
+  S3_KEY: ""
+  S3_SECRET: ""
+  S3_BUCKET: ""
+
+test:
+  FIXED_SALT: "test-salt"
+  OAUTH_CALLBACK_HOST: "http://test.host/"
+  FACEBOOK_KEY: ""
+  FACEBOOK_SECRET: ""
+  GOOGLE_KEY: ""
+  GOOGLE_SECRET: ""
+  S3_KEY: ""
+  S3_SECRET: ""
+  S3_BUCKET: ""
+
+staging:
+  SECRET_TOKEN: ""
+  OAUTH_CALLBACK_HOST: ""
+  FACEBOOK_KEY: ""
+  FACEBOOK_SECRET: ""
+  GOOGLE_KEY: ""
+  GOOGLE_SECRET: ""
+  S3_KEY: ""
+  S3_SECRET: ""
+  S3_BUCKET: ""
+  MAILGUN_API_KEY: ""
+  MAILGUN_DOMAIN: ""
+  MEPPIT_HOST: ""
+  MIN_THREADS: 1
+  MAX_THREADS: 1
+
+production:
+  SECRET_TOKEN: ""
+  OAUTH_CALLBACK_HOST: ""
+  FACEBOOK_KEY: ""
+  FACEBOOK_SECRET: ""
+  GOOGLE_KEY: ""
+  GOOGLE_SECRET: ""
+  S3_KEY: ""
+  S3_SECRET: ""
+  S3_BUCKET: ""
+  MAILGUN_API_KEY: ""
+  MAILGUN_DOMAIN: ""
+  MEPPIT_HOST: ""
+  MIN_THREADS: 1
+  MAX_THREADS: 1

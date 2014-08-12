@@ -16,7 +16,7 @@ module Sorcery
         def encrypt(*tokens)
           tokens = tokens.flatten
           digest = tokens.shift
-          digest = secure_digest([Rails.application.config.SECRETS[:fixed_salt], digest].join(''))
+          digest = secure_digest([ENV["FIXED_SALT"], digest].join(''))
           digest
         end
 

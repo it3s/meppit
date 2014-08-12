@@ -109,10 +109,10 @@ Rails.application.config.sorcery.configure do |config|
   # config.twitter.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=twitter"
   # config.twitter.user_info_mapping = {:email => "screen_name"}
 
-  callback_host = Rails.application.config.SECRETS[:oauth_callback_host]
+  callback_host = ENV["OAUTH_CALLBACK_HOST"]
 
-  config.facebook.key = Rails.application.config.SECRETS[:facebook_key]
-  config.facebook.secret = Rails.application.config.SECRETS[:facebook_secret]
+  config.facebook.key = ENV["FACEBOOK_KEY"]
+  config.facebook.secret = ENV["FACEBOOK_SECRET"]
   config.facebook.callback_url = "#{callback_host}/oauth/facebook/callback"
   config.facebook.user_info_mapping = {:email => "email", :name => "name"}
   config.facebook.access_permissions = ["email"]
@@ -122,8 +122,8 @@ Rails.application.config.sorcery.configure do |config|
   # config.github.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=github"
   # config.github.user_info_mapping = {:email => "name"}
 
-  config.google.key = Rails.application.config.SECRETS[:google_key]
-  config.google.secret = Rails.application.config.SECRETS[:google_sercret]
+  config.google.key = ENV["GOOGLE_KEY"]
+  config.google.secret = ENV["GOOGLE_SERCRET"]
   config.google.callback_url = "#{callback_host}/oauth/google/callback"
   config.google.user_info_mapping = {:email => "email", :name => "name"}
 

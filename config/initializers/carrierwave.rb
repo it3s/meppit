@@ -7,10 +7,10 @@ else
   CarrierWave.configure do |config|
     config.fog_credentials = {
       :provider               => 'AWS',
-      :aws_access_key_id      => Rails.application.config.SECRETS[:s3_key],
-      :aws_secret_access_key  => Rails.application.config.SECRETS[:s3_secret],
+      :aws_access_key_id      => ENV["S3_KEY"],
+      :aws_secret_access_key  => ENV["S3_SECRET"],
     }
-    config.asset_host     = "https://s3.amazonaws.com/#{Rails.application.config.SECRETS[:s3_bucket]}"
-    config.fog_directory  = Rails.application.config.SECRETS[:s3_bucket]
+    config.asset_host     = "https://s3.amazonaws.com/#{ENV["S3_BUCKET"]}"
+    config.fog_directory  = ENV["S3_BUCKET"]
   end
 end
