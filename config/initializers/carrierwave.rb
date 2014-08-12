@@ -4,11 +4,14 @@ if Rails.env.test? || Rails.env.development?
     config.enable_processing = false
   end
 else
+  # try to debug breaking push to heroku
+  puts ENV
+  puts 's3 key --> ', ENV["S3_KEY"]
   CarrierWave.configure do |config|
     config.fog_credentials = {
       :provider               => 'AWS',
-      :aws_access_key_id      => ENV["S3_KEY"],
-      :aws_secret_access_key  => ENV["S3_SECRET"],
+      :aws_access_key_id      => ENV.fetch("S3_KEY", ""),
+      :aws_secret_access_key  => ENV.fetch("S3_SECRET", ""),
     }
     config.asset_host     = "https://s3.amazonaws.com/#{ENV["S3_BUCKET"]}"
     config.fog_directory  = ENV["S3_BUCKET"]
