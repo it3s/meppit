@@ -33,6 +33,9 @@ staging:
   S3_KEY: ""
   S3_SECRET: ""
   S3_BUCKET: ""
+  MAILGUN_API_KEY: ""
+  MAILGUN_DOMAIN: ""
+  MEPPIT_HOST: ""
   MIN_THREADS: 1
   MAX_THREADS: 1
 
@@ -46,5 +49,8 @@ production:
   S3_KEY: ""
   S3_SECRET: ""
   S3_BUCKET: ""
+  MAILGUN_API_KEY: ""
+  MAILGUN_DOMAIN: ""
+  MEPPIT_HOST: ""
   MIN_THREADS: 1
   MAX_THREADS: 1

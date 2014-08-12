@@ -83,4 +83,5 @@ end
 
 group :production, :staging do
   gem 'rails_12factor'              # heroku rails logs and assets
+  gem 'mailgun_rails'               # mailgun integration for actionmailer
 end
