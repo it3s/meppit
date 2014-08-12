@@ -19,13 +19,13 @@ class ActiveRecordOverrideRailtie < Rails::Railtie
         ActiveRecord::Base.connection_pool.disconnect!
         parsed_url = URI.parse(url)
         config =  {
-          adapter:             'postgis',
-          host:                parsed_url.host,
-          encoding:            'unicode',
-          database:            parsed_url.path.split("/")[-1],
-          port:                parsed_url.port,
-          username:            parsed_url.user,
-          password:            parsed_url.password
+          adapter:  'postgis',
+          host:     parsed_url.host,
+          encoding: 'unicode',
+          database: parsed_url.path.split("/")[-1],
+          port:     parsed_url.port,
+          username: parsed_url.user,
+          password: parsed_url.password
         }
         establish_connection(config)
       end
