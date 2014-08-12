@@ -43,7 +43,6 @@ gem 'remotipart'                    # enable ajax file uploads on remote forms
 gem 'kaminari'                      # paginator
 gem 'event_bus'                     # event bus for decoupling logic between models
 gem 'rdiscount'                     # render markdown
-gem 'safe_yaml'                     # safe yaml load to avoid code injection
 gem 'paper_trail'                   # model versioning
 gem 'differ'                        # build diffs
 
@@ -84,4 +83,13 @@ end
 group :production, :staging do
   gem 'rails_12factor'              # heroku rails logs and assets
   gem 'mailgun_rails'               # mailgun integration for actionmailer
+end
+
+# Rails requires automatically all gems from the default and environment groups
+# This group allows the gem to be available but not required, so we can load
+# it manually
+# for example: we need to import safe_yaml with 'safe_yaml/load' so it don't
+# patch the default YAML, which would break sidekiq and other libs
+group :do_not_autoload do
+  gem 'safe_yaml'                   # safe yaml loading
 end
