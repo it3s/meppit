@@ -17,20 +17,12 @@ Maps rebuild
 
 * git clone
 * `bundle`
-* create and configure your database.yml and secrets.yml (see .yml.sample files)
+* create and configure your database.yml and application.yml (see .yml.sample files)
 * `rake db:create db:migrate`
-
-* You must set a `.env` file with environemnt configs
-
-```
-PORT=3000
-RAILS_ENV=development
-```
-
 * `rspec` or `rake spec` # run ruby tests
 * `rake konacha:serve` # run js tests on the browser (port 3500)
 
-* `foreman start`
+* `./run`  runs foreman with the dev procfile
 
 
 ### Vagrant:
