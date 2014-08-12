@@ -4,9 +4,6 @@ if Rails.env.test? || Rails.env.development?
     config.enable_processing = false
   end
 else
-  # try to debug breaking push to heroku
-  puts ENV
-  puts 's3 key --> ', ENV["S3_KEY"]
   CarrierWave.configure do |config|
     config.fog_credentials = {
       :provider               => 'AWS',
