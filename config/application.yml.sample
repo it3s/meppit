@@ -8,9 +8,6 @@ development:
   FACEBOOK_SECRET: ""
   GOOGLE_KEY: ""
   GOOGLE_SERCRET: ""
-  S3_KEY: ""
-  S3_SECRET: ""
-  S3_BUCKET: ""
 
 test:
   FIXED_SALT: "test-salt"
@@ -19,9 +16,6 @@ test:
   FACEBOOK_SECRET: ""
   GOOGLE_KEY: ""
   GOOGLE_SECRET: ""
-  S3_KEY: ""
-  S3_SECRET: ""
-  S3_BUCKET: ""
 
 staging:
   SECRET_TOKEN: ""
@@ -30,14 +24,12 @@ staging:
   FACEBOOK_SECRET: ""
   GOOGLE_KEY: ""
   GOOGLE_SECRET: ""
-  S3_KEY: ""
-  S3_SECRET: ""
-  S3_BUCKET: ""
   MAILGUN_API_KEY: ""
   MAILGUN_DOMAIN: ""
   MEPPIT_HOST: ""
-  MIN_THREADS: 1
-  MAX_THREADS: 1
+  DB_USERNAME: ""
+  DB_PASSWORD: ""
+
 
 production:
   SECRET_TOKEN: ""
@@ -46,11 +38,9 @@ production:
   FACEBOOK_SECRET: ""
   GOOGLE_KEY: ""
   GOOGLE_SECRET: ""
-  S3_KEY: ""
-  S3_SECRET: ""
-  S3_BUCKET: ""
   MAILGUN_API_KEY: ""
   MAILGUN_DOMAIN: ""
   MEPPIT_HOST: ""
-  MIN_THREADS: 1
-  MAX_THREADS: 1
+  DB_USERNAME: ""
+  DB_PASSWORD: ""
+

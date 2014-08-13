@@ -111,7 +111,6 @@ GEM
     ejs (1.1.1)
     erubis (2.7.0)
     event_bus (1.0.0)
-    excon (0.37.0)
     execjs (2.2.0)
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
@@ -124,24 +123,6 @@ GEM
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
-    fog (1.22.1)
-      fog-brightbox
-      fog-core (~> 1.22)
-      fog-json
-      ipaddress (~> 0.5)
-      nokogiri (~> 1.5, >= 1.5.11)
-    fog-brightbox (0.0.2)
-      fog-core
-      fog-json
-    fog-core (1.22.0)
-      builder
-      excon (~> 0.33)
-      formatador (~> 0.2)
-      mime-types
-      net-scp (~> 1.1)
-      net-ssh (>= 2.1.3)
-    fog-json (1.0.0)
-      multi_json (~> 1.0)
     font-awesome-sass (4.1.0)
       sass (~> 3.2)
     foreman (0.71.0)
@@ -170,7 +151,6 @@ GEM
       slop (>= 3.5.0)
       term-ansicolor
       terminal-table
-    ipaddress (0.8.0)
     jquery-fileupload-rails (0.4.1)
       actionpack (>= 3.1)
       railties (>= 3.1)
@@ -220,9 +200,6 @@ GEM
     neat (1.5.1)
       bourbon (>= 3.1)
       sass (~> 3.2.19)
-    net-scp (1.2.1)
-      net-ssh (>= 2.6.5)
-    net-ssh (2.9.1)
     nokogiri (1.6.2.1)
       mini_portile (= 0.6.0)
     oauth (0.4.7)
@@ -269,11 +246,6 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.1)
       sprockets-rails (~> 2.0)
-    rails_12factor (0.0.2)
-      rails_serve_static_assets
-      rails_stdout_logging
-    rails_serve_static_assets (0.0.2)
-    rails_stdout_logging (0.0.3)
     railties (4.1.1)
       actionpack (= 4.1.1)
       activesupport (= 4.1.1)
@@ -407,7 +379,6 @@ DEPENDENCIES
   event_bus
   factory_girl_rails
   figaro
-  fog
   font-awesome-sass
   foreman
   guard-rspec
@@ -433,7 +404,6 @@ DEPENDENCIES
   pry-rails
   puma
   rails (~> 4.1.1)
-  rails_12factor
   rdiscount
   remotipart
   rgeo
