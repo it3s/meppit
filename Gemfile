@@ -27,7 +27,7 @@ gem 'tinymce-rails-langs'           # tinymce language pack
 gem "jquery-fileupload-rails"       # jquery-fielupload plugin
 gem 'jquery-ui-rails'               # jqueryUI
 gem 'ejs'                           # js templating for js test fixtures
-gem 'meppit-map-rails', :github => 'it3s/meppit-map-rails'  # our beloved map
+gem 'meppit-map-rails', github: 'it3s/meppit-map-rails'  # our beloved map
 
 # gem 'turbolinks'                  # speed page loading
 
@@ -38,19 +38,20 @@ gem 'http_accept_language'          # get locale from http headers
 gem 'carrierwave'                   # file uploads abstraction
 gem 'carrierwave_backgrounder'      # delegate uploads to background jobs
 gem 'mini_magick'                   # image processing for uploaders
-gem 'fog'                           # upload images to amazon S3
 gem 'remotipart'                    # enable ajax file uploads on remote forms
 gem 'kaminari'                      # paginator
 gem 'event_bus'                     # event bus for decoupling logic between models
 gem 'rdiscount'                     # render markdown
 gem 'paper_trail'                   # model versioning
 gem 'differ'                        # build diffs
+gem 'safe_yaml', require: false     # safe yaml loading
+
 
 gem 'better_errors'               # better error page, and shell session when crash
 gem 'binding_of_caller'           # used by better_errors
 
 group :doc do
-  gem 'sdoc', :require => false
+  gem 'sdoc', require: false
 end
 
 group :development do
@@ -81,15 +82,5 @@ group :test do
 end
 
 group :production, :staging do
-  gem 'rails_12factor'              # heroku rails logs and assets
   gem 'mailgun_rails'               # mailgun integration for actionmailer
-end
-
-# Rails requires automatically all gems from the default and environment groups
-# This group allows the gem to be available but not required, so we can load
-# it manually
-# for example: we need to import safe_yaml with 'safe_yaml/load' so it don't
-# patch the default YAML, which would break sidekiq and other libs
-group :do_not_autoload do
-  gem 'safe_yaml'                   # safe yaml loading
 end
