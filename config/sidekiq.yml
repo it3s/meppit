@@ -1,5 +1,4 @@
 :verbose: false
-:pidfile: ./tmp/pids/sidekiq.pid
 :timeout: 20
 :queues:
   - [default, 1]

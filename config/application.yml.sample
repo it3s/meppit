@@ -27,8 +27,6 @@ staging:
   MAILGUN_API_KEY: ""
   MAILGUN_DOMAIN: ""
   MEPPIT_HOST: ""
-  DB_USERNAME: ""
-  DB_PASSWORD: ""
 
 
 production:
@@ -41,6 +39,4 @@ production:
   MAILGUN_API_KEY: ""
   MAILGUN_DOMAIN: ""
   MEPPIT_HOST: ""
-  DB_USERNAME: ""
-  DB_PASSWORD: ""
 

@@ -29,9 +29,9 @@ then
   sudo -u vagrant ln -s /vagrant /home/vagrant/meppit
 
   cd meppit
-  if [ ! -f config/secrets.yml ]
+  if [ ! -f config/application.yml ]
   then
-    sudo -u vagrant cp config/secrets.yml.sample config/secrets.yml
+    sudo -u vagrant cp config/application.yml.sample config/application.yml
   fi
 
   if [ ! -f config/database.yml ]

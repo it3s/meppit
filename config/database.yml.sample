@@ -1,39 +1,32 @@
-development:
+default: &default
   adapter: postgis
   schema_search_path: '"$user",public'
   postgis_extension: true
   encoding: unicode
-  database: meppit_development
   pool: 5
-  username: postgres
+
+development:
+  <<: *default
+  database: meppit_development
+  username: vagrant
   password:
 
 test:
-  adapter: postgis
-  schema_search_path: '"$user",public'
-  postgis_extension: true
-  encoding: unicode
+  <<: *default
   database: meppit_test
-  pool: 5
-  username: postgres
-  password:
-
-production:
-  adapter: postgis
-  schema_search_path: '"$user",public'
-  postgis_extension: true
-  encoding: unicode
-  database: meppit_production
-  pool: 5
-  username: postgres
+  username: vagrant
   password:
 
 staging:
-  adapter: postgis
-  schema_search_path: '"$user",public'
-  postgis_extension: true
-  encoding: unicode
+  <<: *default
   database: meppit_staging
-  pool: 5
-  username: postgres
-  password:
+  username: db_username
+  password: db_passwd
+  poll: 10
+
+production:
+  <<: *default
+  database: meppit_production
+  username: db_username
+  password: db_passwd
+  poll: 10

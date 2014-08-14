@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.0.0"                        # ruby version (used by heroku and rvm)
+ruby "2.0.0"
 
 gem 'figaro'                        # easier enviroment variables
 gem 'rails', '~> 4.1.1'             # rails
