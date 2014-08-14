@@ -12,7 +12,7 @@ addons:
 postgres:
   adapter: postgresql
   database: test
-  username: postgres
+  username: vagrant
 
 before_script:
   - "psql -c 'create database test;' -U postgres"
