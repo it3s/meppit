@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_locale, except: :language
+  before_action :logged_in_cookie
 
   def language
     code = params[:code]
@@ -27,12 +28,16 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def set_locale
-    I18n.locale = (current_user.try(:language) || session[:language] ||
-                   extract_from_header || I18n.default_locale)
-  end
+    def set_locale
+      I18n.locale = (current_user.try(:language) || session[:language] ||
+                     extract_from_header || I18n.default_locale)
+    end
 
-  def extract_from_header
-    http_accept_language.compatible_language_from(I18n.available_locales)
-  end
+    def extract_from_header
+      http_accept_language.compatible_language_from(I18n.available_locales)
+    end
+
+    def logged_in_cookie
+      logged_in? ? set_logged_in_cookie : destroy_logged_in_cookie
+    end
 end
