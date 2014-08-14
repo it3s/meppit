@@ -74,8 +74,17 @@ componentBuilder = (name, container) ->
   start: ->
     _comp = components[name]()
     _comp.container = container
-    _comp.attr = _.extend(@options(), _comp.attributes?())
+    _comp.attr = _.extend({}, @options(), _comp.attributes?())
     _comp.identifier = @compId()
+
+    _comp.on = (target_or_evt, evt_or_cb, cb) ->
+      [target, evt, fn] = if _.isString(target_or_evt) && _.isFunction(evt_or_cb)
+                            [_comp.container, target_or_evt, evt_or_cb]
+                          else
+                            [target_or_evt, evt_or_cb, cb]
+
+      target.on evt, fn.bind(_comp)
+
     _comp.initialize()
     _comp
 

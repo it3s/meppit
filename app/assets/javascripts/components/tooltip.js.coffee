@@ -12,7 +12,6 @@ App.components.tooltip = ->
     @container.removeClass 'active'
 
   startPlugin: (content) ->
-    console.log 'starting tooltip for ', @identifier
     @container.qtip
       show: 'mousedown'
       content: $(@attr.template).html()
