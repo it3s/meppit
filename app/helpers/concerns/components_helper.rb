@@ -21,7 +21,7 @@ module Concerns
     end
 
     def link_to_tooltip(body, selector)
-      "<a href=\"#\" data-components=\"tooltip\" data-tooltip='#{ {template: selector}.to_json }'>#{body}</a>".html_safe
+      "<a href=\"#{selector}\" data-mpt-components=\"tooltip\" data-tooltip-options='#{ {template: selector}.to_json }'>#{body}</a>".html_safe
     end
 
     def remote_form_for(record, options={}, &block)

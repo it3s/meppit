@@ -54,6 +54,54 @@ startComponents = (evt, root=document) ->
 
 mediator.subscribe 'components:start', startComponents
 
+##### NEW components ###############
+
+componentBuilder = (name, container) ->
+  options: ->
+    container.data("#{name.toLowerCase()}-options")
+
+  randomId: ->
+    Math.random().toString(36).substring(7)
+
+  getRef: ->
+    href = container.attr('href')
+    if href?.length > 0 && href isnt "#" then href else undefined
+
+  compId: ->
+    _id = container.attr('id') || @getRef() || @randomId()
+    "#{name}:#{_id}"
+
+  start: ->
+    _comp = components[name]()
+    _comp.container = container
+    _comp.attr = _.extend(@options(), _comp.attributes?())
+    _comp.identifier = @compId()
+    _comp.initialize()
+    _comp
+
+componentsManager = (container) ->
+  container: container
+
+  names: container.data('mpt-components').split /\s+/
+
+  started  : -> @container.data('components-started') || false
+
+  onStarted: -> @container.data('components-started', true)
+
+  buildComponents: ->
+    unless @started()
+      _.each @names, (name) =>
+        componentBuilder(name, @container).start()
+        @onStarted()
+
+startMptComponents = (evt, root=document) ->
+  $(root).find('[data-mpt-components]').each (i, container) =>
+    componentsManager($(container)).buildComponents()
+
+mediator.subscribe 'components:start', startMptComponents
+
+###################################
+
 flashMessage = (msg)->
   flashMsg = $(msg)
   $('body').append(flashMsg)
