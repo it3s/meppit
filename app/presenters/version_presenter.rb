@@ -11,11 +11,11 @@ class VersionPresenter
   required_keys :object, :ctx  # ctx is the view context
 
   def author
-    @_user ||= User.find object.whodunnit.to_i
+    @_user ||= User.find_by id: object.whodunnit.to_i
   end
 
   def author_name
-    author.name
+    author.try(:name)
   end
 
   def event

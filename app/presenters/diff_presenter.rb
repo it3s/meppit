@@ -66,6 +66,7 @@ class DiffPresenter
   end
 
   def _parse_location(vals, value_type)
-    ::GeoData.new(location: (vals[value_type] || {})["wkt"])
+    _location = vals[value_type]
+    ::GeoData.newlocation: (_location.is_a?(Hash) ? _location["wkt"] : _location)
   end
 end
