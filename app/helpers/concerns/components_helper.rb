@@ -30,7 +30,7 @@ module Concerns
     end
 
     def tags_input(f, name, tags)
-      f.input name, :input_html => {'data-components' => 'tags', 'data-tags' => tags.to_json, 'data-autocomplete' => tag_search_path }
+      f.input name, :input_html => {'data-mpt-components' => 'tags', 'data-tags-options' => {tags: tags, autocomplete: tag_search_path}.to_json }
     end
 
     def autocomplete_field_tag(name, url)
