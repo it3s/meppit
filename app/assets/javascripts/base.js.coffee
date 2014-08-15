@@ -37,7 +37,7 @@ setupContainer = (container) ->
   names = container.data('components').split /\s+/
   _.each names, (name) =>
     component = components[name]?(container)
-    asyncFn ->  component.init()
+    asyncFn ->  if component.init then component.init() else console.log('COMP ERROR', name, container)
     .then   ->  onComponentStarted(name, container, component)
 
 # check if the components are already started

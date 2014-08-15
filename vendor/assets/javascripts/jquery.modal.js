@@ -118,7 +118,7 @@
       } else {
         this.$elm.show();
       }
-      App.mediator.publish("modal:open", {identifier: this.options.identifier, ctx: this._ctx()});
+      App.mediator.publish("modal:afterOpen", {identifier: this.options.identifier, ctx: this._ctx()});
       this.$elm.trigger($.modal.OPEN, [this._ctx()]);
     },
 

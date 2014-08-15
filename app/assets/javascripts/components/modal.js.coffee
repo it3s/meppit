@@ -1,6 +1,6 @@
 #= require jquery.modal
 
-App.components.modal = (container) ->
+App.components.modal = ->
   attributes: ->
     target: @getTarget()
     defaults:
@@ -18,6 +18,7 @@ App.components.modal = (container) ->
   initialize: ->
     if @attr.autoload then @open() else @on 'click', @open
     App.mediator.subscribe 'modal:open', @onOpen.bind(this)
+    App.mediator.subscribe 'modal:afterOpen', @afterOpen.bind(this)
 
   getTarget: ->
     if @attr.remote || @attr.autoload then @container else @referedElement()
@@ -31,7 +32,10 @@ App.components.modal = (container) ->
       @attr.target.modal @pluginOptions()
     false
 
-  onOpen: (evt, data)->
+  onOpen: (evt, data) ->
+    @open() if @identifier is data.identifier
+
+  afterOpen: (evt, data)->
     return unless @identifier is data.identifier
 
     App.utils.spinner.hide()

@@ -11,7 +11,7 @@
     </time>
 
     <%= link_to icon("history", t("versions.revert")), revert_version_path(presenter.object), method: :post,
-          class: "action-btn version-revert", "data-components" => "loginRequired" %>
+          class: "action-btn version-revert", "data-mpt-components" => "loginRequired" %>
 
     <%= link_to_modal icon("eye", ""), version_path(presenter.object), remote: true,
           modal_class: "modal version-modal", html: { class: "action-btn version-see-object" } %>
