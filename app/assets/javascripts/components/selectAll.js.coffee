@@ -1,25 +1,25 @@
-App.components.selectAll = (container) ->
-  {
-    container: container
+App.components.selectAll = ->
+  attributes: ->
+    checkbox: @container.find('input[type=checkbox]')
+    listItems: $('.list-item input[type=checkbox]')
 
-    init: ->
-      @checkbox = @container.find('input[type=checkbox]')
-      @listItems = $('.list-item input[type=checkbox]')
-      @bindEvents()
+  initialize: ->
+    @on 'click', @toggle
 
-    checked: ->
-      @checkbox.is(':checked')
+  toggle: ->
+    if @checked() then @uncheck() else @check()
 
-    setCheck: (val) ->
-      @checkbox.prop('checked', val)
-      @listItems.prop('checked', val)
+  checked: ->
+    @attr.checkbox.is(':checked')
 
-    check:   -> @setCheck(true)
-    uncheck: -> @setCheck(false)
+  check: ->
+    @setCheck(true)
 
-    toggle: ->
-      if @checked() then @uncheck() else @check()
+  uncheck: ->
+    @setCheck(false)
 
-    bindEvents: ->
-      @container.click @toggle.bind(this)
-  }
+  setCheck: (val) ->
+    @attr.checkbox.prop('checked', val)
+    @attr.listItems.prop('checked', val)
+
+
