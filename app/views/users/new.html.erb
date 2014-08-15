@@ -1,7 +1,7 @@
 <section class="sign-up"
   <% unless request.xhr? %>
-    data-components="modal"
-    data-modal="<%= {autoload: true, prevent_close: true }.to_json %>"
+    data-mpt-components="modal"
+    data-modal-options="<%= {autoload: true, prevent_close: true }.to_json %>"
   <% end %> >
 
   <header>

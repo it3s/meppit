@@ -5,7 +5,7 @@
         data-components="<%= counter.component[:type] %>" <%= counter.component[:opts] %>
       <% end %>
   >
-      <a href="<%= counter.url %>" title="<%= t(counter.string, :count => counter.count) %>" data-components="modal" data-modal='{ "remote": true }'>
+      <a href="<%= counter.url %>" title="<%= t(counter.string, :count => counter.count) %>" data-mpt-components="modal" data-modal-options='{ "remote": true }'>
         <%= icon counter.icon %><span class="counter-value">
           <%= raw counter.value %>
         </span>

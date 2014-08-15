@@ -1,8 +1,10 @@
 App.components.loginRequired = (container) ->
   {
-    container: container
+    container: @container || container
 
     loginModalId: 'modal:sign-in-modal'
+
+    initialize: -> @init()
 
     init: ->
       @bindEvent() unless $.cookie('logged_in')

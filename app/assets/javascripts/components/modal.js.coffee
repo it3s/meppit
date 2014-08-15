@@ -1,60 +1,50 @@
 #= require jquery.modal
 
 App.components.modal = (container) ->
-  {
-    container: container
-
-    defaults: {
+  attributes: ->
+    target: @getTarget()
+    defaults:
       fadeDuration: 150
       zIndex: 200
-    }
-
-    # options for preventing close on autloaded modals
-    preventClose: {
+      showSpinner: false  # this is buggy, so we do manually
+      modalClass: @attr.modal_class || "modal"
+      identifier: @identifier
+    preventCloseOpts:
       escapeClose: false
       clickClose: false
       closeText: ''
       showClose: false
-    }
 
-    init: ->
-      @data = JSON.parse(@container.attr('data-modal') || '{}')
-      @target = if @data.remote || @data.autoload then @container else @referedElement()
-      @start()
+  initialize: ->
+    if @attr.autoload then @open() else @on 'click', @open
+    App.mediator.subscribe 'modal:open', @onOpen.bind(this)
 
-    referedElement: ->
-      $("#{ @container.attr('href') }")
+  getTarget: ->
+    if @attr.remote || @attr.autoload then @container else @referedElement()
 
-    loggedIn: ->
-      !!$.cookie('logged_in')
+  referedElement: ->
+    $("#{ @container.attr('href') }")
 
-    shouldOpen: ->
-      (!@data.login_required) || (@data.login_required && @loggedIn())
+  open: () ->
+    if @shouldOpen()
+      App.utils.spinner.show() if @attr.remote
+      @attr.target.modal @pluginOptions()
+    false
 
-    open: () ->
-      if @shouldOpen()
-        App.utils.spinner.show() if @data.remote
-        opts = _.clone(@defaults)
-        opts = _.extend(opts, @preventClose) if @data.prevent_close
-        opts = _.extend(opts, {modalClass: @data.modal_class}) if @data.modal_class?.length > 0
-        @target.modal(opts)
-      false
+  onOpen: (evt, data)->
+    return unless @identifier is data.identifier
 
-    onAjaxComplete: () ->
-      App.utils.spinner.hide()
-      setTimeout( ->
-        currentModal = $('.modal.current')
-        App.mediator.publish('components:start', currentModal)
-      , @defaults.fadeDuration)
+    App.utils.spinner.hide()
+    if @attr.remote
+      currentModal = $('.modal.current')
+      App.mediator.publish('components:start', currentModal)
 
-    start: ->
-      if @data.autoload
-        @open(this)
-      else
-        @container.on 'click', @open.bind(this)
+  pluginOptions: ->
+    closeOptions = if @attr.prevent_close then  @attr.preventCloseOpts else {}
+    _.extend {}, @attr.defaults, closeOptions
 
-      if @data.remote
-        # trigger components:start for ajax loaded elements
-        @container.on 'modal:ajax:complete', @onAjaxComplete.bind(this)
+  shouldOpen: ->
+    (!@attr.login_required) || (@attr.login_required && @loggedIn())
 
-  }
+  loggedIn: ->
+    !!$.cookie('logged_in')

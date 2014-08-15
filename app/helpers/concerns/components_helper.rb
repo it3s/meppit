@@ -17,7 +17,7 @@ module Concerns
       modal_attrs = options.except(:html).to_json
       components = ["modal"] + (options[:login_required] ? ["loginRequired"] : [])
 
-      "<a href=\"#{url}\" #{html_attrs} data-components=\"#{ components.join(' ') }\" data-modal='#{ modal_attrs }'>#{body}</a>".html_safe
+      "<a href=\"#{url}\" #{html_attrs} data-mpt-components=\"#{ components.join(' ') }\" data-modal-options='#{ modal_attrs }'>#{body}</a>".html_safe
     end
 
     def link_to_tooltip(body, selector)

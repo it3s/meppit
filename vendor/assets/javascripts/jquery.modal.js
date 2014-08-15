@@ -1,6 +1,10 @@
 /*
     A simple jQuery modal (http://github.com/kylefox/jquery-modal)
     Version 0.5.4
+
+    Meppit modificiation:
+      - add identifier option
+      - publish events to app mediator
 */
 (function($) {
 
@@ -114,6 +118,7 @@
       } else {
         this.$elm.show();
       }
+      App.mediator.publish("modal:open", {identifier: this.options.identifier, ctx: this._ctx()});
       this.$elm.trigger($.modal.OPEN, [this._ctx()]);
     },
 
