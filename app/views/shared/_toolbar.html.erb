@@ -1,5 +1,5 @@
 <div class="toolbar">
-  <ul class="toolbar-buttons" role="toolbar" data-components="stick">
+  <ul class="toolbar-buttons" role="toolbar" data-mpt-components="stick">
     <% presenter.tools.each do |tool| %>
       <li title="<%= tool.title.first %>">
         <a class="<%= 'active' if tool.active? %>" href="<%= tool.url %>"

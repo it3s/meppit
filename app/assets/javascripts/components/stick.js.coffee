@@ -1,17 +1,18 @@
 #= require jquery.sticky
-#
+
 App.components.stick = (container) ->
-  {
-    container: container,
+  attributes: ->
+    topSpacing:    0
+    bottomSpacing: 0
+    getWidthFrom:  ''
 
-    init: ->
-      data = @container.data 'stick'
+  initialize: ->
+    @startPlugin()
 
-      @container.sticky
-        className: 'stick'
-        wrapperClassName: 'stick-wrapper'
-        topSpacing: data?.top_spacing
-        bottomSpacing: data?.bottom_spacing
-        getWidthFrom: data?.get_width_from
-
-  }
+  startPlugin: ->
+    @container.sticky
+      className:        'stick'
+      wrapperClassName: 'stick-wrapper'
+      topSpacing:       @attr.top_spacing
+      bottomSpacing:    @attr.bottom_spacing
+      getWidthFrom:     @attr.get_width_from

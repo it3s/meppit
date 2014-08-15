@@ -74,7 +74,8 @@ componentBuilder = (name, container) ->
   start: ->
     _comp = components[name]()
     _comp.container = container
-    _comp.attr = _.extend({}, @options(), _comp.attributes?())
+    _comp.attr = _.extend {}, @options()
+    _comp.attr = _.extend _comp.attr, _comp.attributes?()
     _comp.identifier = @compId()
 
     _comp.on = (target_or_evt, evt_or_cb, cb) ->

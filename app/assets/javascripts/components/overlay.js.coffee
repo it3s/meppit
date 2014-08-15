@@ -1,31 +1,18 @@
-App.components.overlay = (container) ->
-  {
-    container: container
+overlayTemplate = """
+  <div class="overlay <%= style %>">
+    <div class="overlay-message"><%= message %></div>
+  </div>
+"""
 
-    overlayElement: """<div class="overlay"></div>"""
-    overlayMessage: """<div class="overlay-message"></div>"""
+App.components.overlay = ->
+  attributes: ->
+    style:   @attr.style   || 'dark'
+    message: @attr.message || ''
 
-    init: ->
-      data = @container.data('overlay')
-      overlay = @createOverlay(data)
-      @inject overlay
+  initialize: ->
+    @render()
 
-    createOverlay: (data) ->
-      overlay = $(@overlayElement)
-
-      # toggle dark/light
-      overlay.addClass(data.style) if data?.style
-
-      overlay.append(@createMessage data) if data?.message
-      overlay
-
-    createMessage: (data)->
-      message = $(@overlayMessage)
-      message.text(data.message)
-      message
-
-    inject: (overlay) ->
-      @container.css 'position', 'relative'
-      @container.prepend overlay
-
-  }
+  render: ->
+    @overlay = $ _.template(overlayTemplate, @attr)
+    @container.css 'position', 'relative'
+    @container.prepend @overlay
