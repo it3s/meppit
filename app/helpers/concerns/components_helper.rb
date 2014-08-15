@@ -43,7 +43,7 @@ module Concerns
     end
 
     def additional_info_json(object)
-      _hash_with_humanized_keys(object.additional_info).to_json
+      {jsonData: _hash_with_humanized_keys(object.additional_info)}.to_json
     end
 
     def relations_manager_data

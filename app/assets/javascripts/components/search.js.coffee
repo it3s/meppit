@@ -1,44 +1,37 @@
-App.components.search = (container) ->
-  {
-    container: container
+App.components.search = ->
+  attributes: ->
+    _form = @container.find('form')
+    {
+      form: _form
+      input: @container.find('input#search')
+      url: _form.attr('action')
+    }
 
-    init: ->
-      @form = @container.find('form')
-      @input = @container.find('input#search')
-      @bindEvents()
+  initialize: ->
+    @on @attr.form, 'submit', @onSubmit
 
-    showResults: (content) ->
-      $('#search-results-wrapper').remove()
-      results_content = $(content)
-      $('body').append(results_content)
-      App.mediator.publish "components:start", results_content
+  onSubmit: (evt) ->
+    evt.preventDefault()
+    @doSearch()
+    false
 
-    onSuccess: (data) ->
-      App.utils.spinner.hide()
-      @showResults data
+  doSearch: ->
+    search_term = @attr.input.val()
+    return if search_term?.length is 0
 
-    doSearch: ->
-      _this = this
-      search_term = @input.val()
-      url = @form.attr('action')
+    App.utils.spinner.show()
+    $.ajax
+      type:    'POST'
+      url:     @attr.url
+      data:    {term: search_term}
+      success: @onSuccess.bind(this)
 
-      return if search_term?.length is 0
+  onSuccess: (data) ->
+    App.utils.spinner.hide()
+    @showResults data
 
-      App.utils.spinner.show()
-      $.ajax
-        type: 'POST'
-        url: url
-        data: {term: search_term}
-        success: _this.onSuccess.bind(_this)
-
-
-    onSubmit: (evt) ->
-      evt.preventDefault()
-      @doSearch()
-      false
-
-    bindEvents: ->
-      @timeout_fn = null
-      @form.submit @onSubmit.bind(this)
-
-  }
+  showResults: (content) ->
+    $('#search-results-wrapper').remove()
+    results_content = $(content)
+    $('body').append(results_content)
+    App.mediator.publish "components:start", results_content
