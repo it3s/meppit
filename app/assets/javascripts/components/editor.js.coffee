@@ -1,30 +1,21 @@
 #= require tinymce
 
-App.components.editor = (container) ->
-  {
-    container: container
-
-    defaults:
+App.components.editor = ->
+  attributes: ->
+    pluginOptions:
       theme: 'modern'
       menubar: false
       statusbar: false
-      height: 350
+      height: @attr.height || 200
+      language: $('body').data('locale').replace('-', '_')
+      selector: "textarea##{@container.attr('id')}"
 
-    getLocale: ->
-      $('body').data('locale').replace('-', '_')
+  initialize: ->
+    tinyMCE.init(_.extend @attr.pluginOptions, {
+      setup: (ed) =>
+        ed.on 'change', _.debounce(@onEditorChange).bind(this)
+    })
 
-    onEditorChange: (ed)->
-      App.mediator.publish 'tinymce:changed', {id: @container.attr('id'), content: ed.target.getContent()}
+  onEditorChange: (ed)->
+    App.mediator.publish 'tinymce:changed', {id: @container.attr('id'), content: ed.target.getContent()}
 
-    options: ->
-      _.extend {}, @defaults, {
-        selector: "textarea##{@container.attr('id')}"
-        language: @getLocale()
-        height: @container.attr('data-height') or @defaults.height
-        setup: (ed) =>
-          ed.on 'change', _.debounce(@onEditorChange).bind(this)
-      }
-
-    init: ->
-      tinyMCE.init @options()
-  }

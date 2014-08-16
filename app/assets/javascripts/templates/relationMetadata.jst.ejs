@@ -1,9 +1,9 @@
 <div class="relation-metadata">
   <h3><%= metadata_title %>:</h3>
   <textarea id="metadata_description_<%= index %>" class="metadata_description tinymce"
-            data-components="editor" data-height="100">
+            data-mpt-components="editor" data-editor-options='{"height":100}'>
   </textarea>
-  <div class="wrapper" data-components="dateRange">
+  <div class="wrapper" data-mpt-components="dateRange">
     <div class="time-field inline-field">
       <label for="metadata_start_date_<%=index%>"><%= start_date_label %></label>
       <input type="text" class="metadata_start_date" data-date-range="from" />

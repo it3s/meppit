@@ -4,7 +4,7 @@
       <li title="<%= tool.title.first %>">
         <a class="<%= 'active' if tool.active? %>" href="<%= tool.url %>"
           <% if tool.component %>
-            data-components="<%= tool.component[:type] %>" <%= tool.component[:opts] %>
+            data-mpt-components="<%= tool.component[:type] %>" <%= tool.component[:opts] %>
           <% end %>
          role="button">
           <%= icon tool.icon, '', :class => "fa-lg fa-fw" %>
