@@ -85,7 +85,7 @@ class CountersPresenter
     opts_json = {type: type, id: ctx.identifier_for(object)}.to_json
     {
       :type => "counter",
-      :opts => "data-counter=#{ opts_json } "
+      :opts => "data-counter-options=#{ opts_json } "
     }
   end
 end

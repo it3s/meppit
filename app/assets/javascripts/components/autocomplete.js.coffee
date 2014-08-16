@@ -1,25 +1,15 @@
-App.components.autocomplete = (container) ->
-  {
-    container: container
+App.components.autocomplete = ->
+  attributes: ->
+    target: $("##{@attr.name}-autocomplete")
 
-    init: ->
-      @data = @container.data("component-options")
-      @startPlugin()
+  initialize: ->
+    @container.autocomplete
+      minLength: 2
+      source:    @attr.url
+      select:    @onSelect.bind(this)
 
-    autocompleteTarget: ->
-      $("##{@data.name}-autocomplete");
-
-    onSelect: (event, ui) ->
-      value = ui.item?.id || ""
-      target = @autocompleteTarget()
-      target.val(value)
-      target.trigger 'change'
-
-    startPlugin: ->
-      _this = this
-      @container.autocomplete
-        minLength: 2
-        source:    _this.data.url
-        select:    _this.onSelect.bind(_this)
-
-  }
+  onSelect: (event, ui) ->
+    value = ui.item?.id || ""
+    target = @attr.target
+    target.val(value)
+    target.trigger 'change'

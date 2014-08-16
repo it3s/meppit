@@ -2,7 +2,7 @@
   <% presenter.counters.each do |counter| %>
     <li class="counter <%= counter.classname %>"
       <% if counter[:component] %>
-        data-components="<%= counter.component[:type] %>" <%= counter.component[:opts] %>
+        data-mpt-components="<%= counter.component[:type] %>" <%= counter.component[:opts] %>
       <% end %>
   >
       <a href="<%= counter.url %>" title="<%= t(counter.string, :count => counter.count) %>" data-mpt-components="modal" data-modal-options='{ "remote": true }'>
