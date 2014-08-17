@@ -25,7 +25,7 @@ module Concerns
     end
 
     def remote_form_for(record, options={}, &block)
-      options.deep_merge!(:remote => true, :html => {'data-components' => 'remoteForm', 'multipart' => true})
+      options.deep_merge!(:remote => true, :html => {'data-mpt-components' => 'remoteForm', 'multipart' => true})
       simple_form_for(record, options, &block)
     end
 
