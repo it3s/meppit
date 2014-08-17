@@ -1,5 +1,5 @@
-<div class="relations edit" data-components="relationsManager"
-                            data-relations-manager='<%= relations_manager_data.to_json %>'>
+<div class="relations edit" data-mpt-components="editRelations"
+                            data-editrelations-options='<%= {data: relations_manager_data}.to_json %>'>
 
   <button class="add-new-relation" title="<%= t 'relations.title.add' %>">
     <%= icon 'plus',  t('relations.add') %>
