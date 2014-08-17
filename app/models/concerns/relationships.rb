@@ -33,47 +33,46 @@ module Relationships
 
     private
 
-    def remove_relations_for_destroyed_related!
-      relations.destroy_all
-    end
+      def remove_relations_for_destroyed_related!
+        relations.destroy_all
+      end
 
-    def relations_with_relateds
-      _relateds = get_all_relateds
-      relations.map { |r| OpenStruct.new relation: r, related: _relateds[related_id_for_relation(r)] }
-    end
+      def relations_with_relateds
+        _relateds = get_all_relateds
+        relations.map { |r| OpenStruct.new relation: r, related: _relateds[related_id_for_relation(r)] }
+      end
 
-    def related_id_for_relation(r)
-      r.related_ids.first == self.id.to_s ? r.related_ids.second.to_i : r.related_ids.first.to_i
-    end
+      def related_id_for_relation(r)
+        r.related_ids.first == self.id.to_s ? r.related_ids.second.to_i : r.related_ids.first.to_i
+      end
 
-    def get_all_relateds
-      _ids = relations.map { |r| related_id_for_relation(r) }.uniq
-      Hash[ *GeoData.select(:id, :name).where('id IN (?)', _ids).map { |g| [g.id, g] }.flatten ]
-    end
+      def get_all_relateds
+        _ids = relations.map { |r| related_id_for_relation(r) }.uniq
+        Hash[ *GeoData.select(:id, :name).where('id IN (?)', _ids).map { |g| [g.id, g] }.flatten ]
+      end
 
-    def relation_type(r)
-      "#{r.rel_type}_#{relation_direction(r)}"
-    end
+      def relation_type(r)
+        "#{r.rel_type}_#{relation_direction(r)}"
+      end
 
-    def relation_direction(r)
-      _id = r.related_ids.first == self.id.to_s ? r.direction : swap_direction(r.direction)
-    end
+      def relation_direction(r)
+        _id = r.related_ids.first == self.id.to_s ? r.direction : swap_direction(r.direction)
+      end
 
-    def swap_direction(direction)
-      (direction.to_sym == :dir) ? :rev : :dir
-    end
+      def swap_direction(direction)
+        (direction.to_sym == :dir) ? :rev : :dir
+      end
 
-    def destroy_removed_relations!
-      old_ids = relations.pluck :id
-      new_ids = relations_attributes.map(&:id).compact
-      (old_ids - new_ids).each { |_id| Relation.find(_id).destroy }
-    end
+      def destroy_removed_relations!
+        old_ids = relations.pluck :id
+        new_ids = relations_attributes.map(&:id).compact
+        (old_ids - new_ids).each { |_id| Relation.find(_id).destroy }
+      end
 
-    def metadata_values(_metadata)
-      accepted_keys = [:description, :start_date, :end_date, :currency, :amount]
-      _metadata.nil? ? {} : _metadata.attributes.select { |k,v| accepted_keys.include? k.to_sym }
-    end
+      def metadata_values(_metadata)
+        accepted_keys = [:description, :start_date, :end_date, :currency, :amount]
+        _metadata.nil? ? {} : _metadata.attributes.select { |k,v| accepted_keys.include? k.to_sym }
+      end
 
   end
-
 end

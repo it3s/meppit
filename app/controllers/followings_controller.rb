@@ -23,15 +23,15 @@ class FollowingsController < ApplicationController
 
   private
 
-  def find_followable
-    @followable = find_polymorphic_object
-  end
-
-  def follow_button_json_response(action_result)
-    if action_result
-      render json: {ok: true, following: current_user.follow?(@followable), count: @followable.followers_count}
-    else
-      render json: {ok: false}, status: :unprocessable_entity
+    def find_followable
+      @followable = find_polymorphic_object
     end
-  end
+
+    def follow_button_json_response(action_result)
+      if action_result
+        render json: {ok: true, following: current_user.follow?(@followable), count: @followable.followers_count}
+      else
+        render json: {ok: false}, status: :unprocessable_entity
+      end
+    end
 end

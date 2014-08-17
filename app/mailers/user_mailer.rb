@@ -10,14 +10,14 @@ class UserMailer < BaseMailer
 
   private
 
-  def mail_with_token(user_id, locale, &block)
-    set_user_and_locale user_id, locale
-    @url = block.call(@user)
-    mail :to => email_with_name(@user)
-  end
+    def mail_with_token(user_id, locale, &block)
+      set_user_and_locale user_id, locale
+      @url = block.call(@user)
+      mail :to => email_with_name(@user)
+    end
 
-  def set_user_and_locale(user_id, locale)
-    I18n.locale = locale || I18n.default_locale
-    @user = User.find user_id
-  end
+    def set_user_and_locale(user_id, locale)
+      I18n.locale = locale || I18n.default_locale
+      @user = User.find user_id
+    end
 end

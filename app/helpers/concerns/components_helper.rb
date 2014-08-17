@@ -74,13 +74,12 @@ module Concerns
 
     private
 
-    def _hash_with_humanized_keys(hash)
-      Hash[hash.map {|k,v| [k.humanize, _nested_hash_value(v)] }]
-    end
+      def _hash_with_humanized_keys(hash)
+        Hash[hash.map {|k,v| [k.humanize, _nested_hash_value(v)] }]
+      end
 
-    def _nested_hash_value(val)
-      (val.is_a? Hash) ? _hash_with_humanized_keys(val) : val
-    end
-
+      def _nested_hash_value(val)
+        (val.is_a? Hash) ? _hash_with_humanized_keys(val) : val
+      end
   end
 end

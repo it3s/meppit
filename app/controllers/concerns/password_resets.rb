@@ -34,14 +34,14 @@ module PasswordResets
 
   private
 
-  def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
-  end
+    def user_params
+      params.require(:user).permit(:email, :password, :password_confirmation)
+    end
 
-  def load_user_from_token
-    @token = params[:token]
-    @user = User.load_from_reset_password_token(@token)
+    def load_user_from_token
+      @token = params[:token]
+      @user = User.load_from_reset_password_token(@token)
 
-    return not_authenticated if @user.blank?
-  end
+      return not_authenticated if @user.blank?
+    end
 end

@@ -20,13 +20,13 @@ class SessionsController < ApplicationController
 
   private
 
-  def error_message
-    if params[:email].blank? || params[:password].blank?
-      t('sessions.create.blank')
-    elsif (user = User.find_by(email: params[:email])) && user.activation_state == 'pending'
-      t('sessions.create.pending')
-    else
-      t('sessions.create.invalid')
+    def error_message
+      if params[:email].blank? || params[:password].blank?
+        t('sessions.create.blank')
+      elsif (user = User.find_by(email: params[:email])) && user.activation_state == 'pending'
+        t('sessions.create.pending')
+      else
+        t('sessions.create.invalid')
+      end
     end
-  end
 end

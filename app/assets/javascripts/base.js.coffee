@@ -98,4 +98,3 @@ window.App =
 # setup testing ns
 window.__testing__?.base =
   startComponents: startComponents
-  setupContainer : setupContainer

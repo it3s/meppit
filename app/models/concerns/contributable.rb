@@ -19,12 +19,12 @@ module Contributable
 
     private
 
-    def _contributable_params
-      {contributable: self}
-    end
+      def _contributable_params
+        {contributable: self}
+      end
 
-    def clean_contributings_for_destroyed_contributable!
-      Contributing.where(_contributable_params).destroy_all
-    end
+      def clean_contributings_for_destroyed_contributable!
+        Contributing.where(_contributable_params).destroy_all
+      end
   end
 end
