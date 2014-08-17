@@ -18,7 +18,9 @@ App.components.modal = ->
   initialize: ->
     if @attr.autoload then @open() else @on 'click', @open
     App.mediator.subscribe 'modal:open', @onOpen.bind(this)
+    App.mediator.subscribe 'modal:close', @close.bind(this)
     App.mediator.subscribe 'modal:afterOpen', @afterOpen.bind(this)
+
 
   getTarget: ->
     if @attr.remote || @attr.autoload then @container else @referedElement()
@@ -26,11 +28,14 @@ App.components.modal = ->
   referedElement: ->
     $("#{ @container.attr('href') }")
 
-  open: () ->
+  open: ->
     if @shouldOpen()
       App.utils.spinner.show() if @attr.remote
       @attr.target.modal @pluginOptions()
     false
+
+  close: ->
+    $.modal.close()
 
   onOpen: (evt, data) ->
     @open() if @identifier is data.identifier

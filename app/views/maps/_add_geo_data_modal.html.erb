@@ -1,4 +1,5 @@
-<div id="add-data-modal" class="add-data-modal" data-components="addGeoDataManager" data-identifier="<%= identifier_for(map) %>">
+<div id="add-data-modal" class="add-data-modal" data-mpt-components="addMapping"
+     data-addmapping-options="<%= { mapping: 'geo_data', formId: 'add-data-form', objectIdentifier: identifier_for(map) }.to_json %>">
   <header><h2><%= t 'maps.add_geo_data.title' %></h2></header>
   <section>
     <div class="explanation"><%=  t 'maps.add_geo_data.explanation' %></div>

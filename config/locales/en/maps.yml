@@ -22,7 +22,7 @@ en:
 
     add_geo_data:
       title: "Add data"
-      added: "Added <strong>%{target}</strong> to this map"
-      exists: "<strong>%{target}</strong> already on this map"
+      added: "Added <b>%{target}</b> to this map"
+      exists: "<b>%{target}</b> already on this map"
       explanation: "Select the content you want to insert in this map"
       invalid: "Invalid Data"
