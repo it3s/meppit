@@ -1,5 +1,5 @@
 <div class="list-actions">
-  <button class="select-all-btn" data-mpt-components='selectAll'>
+  <button class="select-all-btn" data-components='selectAll'>
     <input type="checkbox" name="all" />Select All
   </button>
 
@@ -11,5 +11,5 @@
   <%= link_to icon('upload', ''), '#', class: 'upload-btn' %>
   <%= link_to icon('download', ''), '#', class: 'download-btn' %>
 
-  <%= link_to icon('map-marker', t('geo_data.list.add_new')), new_geo_data_path, class: 'add-new-btn' , "data-mpt-components" => "loginRequired" %>
+  <%= link_to icon('map-marker', t('geo_data.list.add_new')), new_geo_data_path, class: 'add-new-btn' , "data-components" => "loginRequired" %>
 </div>

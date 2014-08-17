@@ -17,45 +17,6 @@ asyncFn = (fn) ->
 # components namespaces
 components = { _instances: {} }
 
-# random id generator for components without id
-_randomId = ->
-  Math.random().toString(36).substring(7)
-
-# component id
-_compId = (name, container) ->
-  "#{name}:#{container.attr('id') || _randomId()}"
-
-onComponentStarted = (name, container, component) ->
-  _id = _compId(name, container)
-  components._instances[_id] = component
-  container.data('components-started', true)
-  mediator.publish 'component:started', _id
-
-# Initialize a component and add the instance to the container data
-setupContainer = (container) ->
-  container = $(container) unless container.jquery
-  names = container.data('components').split /\s+/
-  _.each names, (name) =>
-    component = components[name]?(container)
-    asyncFn ->  if component.init then component.init() else console.log('COMP ERROR', name, container)
-    .then   ->  onComponentStarted(name, container, component)
-
-# check if the components are already started
-containerStarted = (container) ->
-  container = $(container) unless container.jquery
-  container.data('components-started') || false
-
-
-# setup all components for a DOM root
-startComponents = (evt, root=document) ->
-  $(root).find('[data-components]').each (i, container) =>
-    setupContainer(container) unless containerStarted(container)
-
-
-mediator.subscribe 'components:start', startComponents
-
-##### NEW components ###############
-
 componentBuilder = (name, container) ->
   options: ->
     container.data("#{name.toLowerCase()}-options")
@@ -92,7 +53,7 @@ componentBuilder = (name, container) ->
 componentsManager = (container) ->
   container: container
 
-  names: container.data('mpt-components').split /\s+/
+  names: container.data('components').split /\s+/
 
   started  : -> @container.data('components-started') || false
 
@@ -104,13 +65,12 @@ componentsManager = (container) ->
         componentBuilder(name, @container).start()
         @onStarted()
 
-startMptComponents = (evt, root=document) ->
-  $(root).find('[data-mpt-components]').each (i, container) =>
+startComponents = (evt, root=document) ->
+  $(root).find('[data-components]').each (i, container) =>
     componentsManager($(container)).buildComponents()
 
-mediator.subscribe 'components:start', startMptComponents
+mediator.subscribe 'components:start', startComponents
 
-###################################
 
 flashMessage = (msg)->
   flashMsg = $(msg)
@@ -126,21 +86,13 @@ spinner = {
   hide: -> @spinner?.remove()
 }
 
-whenComponentStarted = (componentId, fn) ->
-  if components._instances[componentId]
-    fn()
-  else
-    mediator.subscribe 'component:started', (evt, _componentId) =>
-      fn() if _componentId is componentId
-
 # setup global App namesmpace
 window.App =
   mediator  : mediator
   components: components
   utils     :
-    flashMessage        : flashMessage
-    spinner             : spinner
-    whenComponentStarted: whenComponentStarted
+    flashMessage: flashMessage
+    spinner     : spinner
 
 
 # setup testing ns

@@ -1,7 +1,7 @@
 <section>
   <br>
   <h2><%= icon "star", t('followings.followers') %></h2>
-  <div id="followers" class="list-container" data-mpt-components="list">
+  <div id="followers" class="list-container" data-components="list">
     <div id="followers-pagination"><%= paginate @followers, :remote => true %></div>
     <ul id="followers-list" class="list followers-list">
       <% unless @followers.empty? %>

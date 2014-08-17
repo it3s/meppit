@@ -1,10 +1,10 @@
 <div class="list-actions">
-  <button class="select-all-btn" data-mpt-components='selectAll'>
+  <button class="select-all-btn" data-components='selectAll'>
     <input type="checkbox" name="all" />Select All
   </button>
 
   <%= link_to icon('upload', ''), '#', class: 'upload-btn' %>
   <%= link_to icon('download', ''), '#', class: 'download-btn' %>
 
-  <%= link_to icon('globe', t('maps.list.add_new')), new_map_path, class: 'add-new-btn' , "data-mpt-components" => "loginRequired" %>
+  <%= link_to icon('globe', t('maps.list.add_new')), new_map_path, class: 'add-new-btn' , "data-components" => "loginRequired" %>
 </div>

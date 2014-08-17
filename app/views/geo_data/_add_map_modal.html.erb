@@ -1,9 +1,9 @@
-<div id="add-to-map-modal" class="add-to-map-modal" data-mpt-components="addMapping"
+<div id="add-to-map-modal" class="add-to-map-modal" data-components="addMapping"
      data-addmapping-options="<%= { mapping: 'map', formId: 'add-to-map-form', objectIdentifier: identifier_for(geo_data) }.to_json %>">
   <header><h2><%= t 'geo_data.add_map.title' %></h2></header>
   <section>
     <div class="explanation"><%=  t 'geo_data.add_map.explanation' %></div>
-    <%= form_tag add_map_geo_data_path(geo_data), method: :post, id: "add-to-map-form", remote: true, "data-mpt-components" => "remoteForm" do %>
+    <%= form_tag add_map_geo_data_path(geo_data), method: :post, id: "add-to-map-form", remote: true, "data-components" => "remoteForm" do %>
       <p>
         <%= autocomplete_field_tag :map, search_by_name_maps_path %>
       </p>

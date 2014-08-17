@@ -1,2 +1,2 @@
 <%= hidden_field_tag name , "", id: "#{name}-autocomplete" %>
-<%= text_field_tag "#{name}_autocomplete", "", placeholder: t("components.autocomplete.#{name}"), "data-mpt-components" => "autocomplete", "data-autocomplete-options" => {name: name, url: url}.to_json %>
+<%= text_field_tag "#{name}_autocomplete", "", placeholder: t("components.autocomplete.#{name}"), "data-components" => "autocomplete", "data-autocomplete-options" => {name: name, url: url}.to_json %>
