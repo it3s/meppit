@@ -17,42 +17,60 @@ asyncFn = (fn) ->
 # components namespaces
 components = { _instances: {} }
 
-# random id generator for components without id
-_randomId = ->
-  Math.random().toString(36).substring(7)
+componentBuilder = (name, container) ->
+  options: ->
+    container.data("#{name.toLowerCase()}-options")
 
-# component id
-_compId = (name, container) ->
-  "#{name}:#{container.attr('id') || _randomId()}"
+  randomId: ->
+    Math.random().toString(36).substring(7)
 
-onComponentStarted = (name, container, component) ->
-  _id = _compId(name, container)
-  components._instances[_id] = component
-  container.data('components-started', true)
-  mediator.publish 'component:started', _id
+  getRef: ->
+    href = container.attr('href')
+    if href?.length > 0 && href isnt "#" then href else undefined
 
-# Initialize a component and add the instance to the container data
-setupContainer = (container) ->
-  container = $(container) unless container.jquery
-  names = container.data('components').split /\s+/
-  _.each names, (name) =>
-    component = components[name]?(container)
-    asyncFn ->  component.init()
-    .then   ->  onComponentStarted(name, container, component)
+  compId: ->
+    _id = container.attr('id') || @getRef() || @randomId()
+    "#{name}:#{_id}"
 
-# check if the components are already started
-containerStarted = (container) ->
-  container = $(container) unless container.jquery
-  container.data('components-started') || false
+  start: ->
+    _comp = components[name]()
+    _comp.container = container
+    _comp.identifier = @compId()
+    _comp.attr = _.extend {}, @options()
+    _comp.attr = _.extend _comp.attr, _comp.attributes?()
 
+    _comp.on = (target_or_evt, evt_or_cb, cb) ->
+      [target, evt, fn] = if _.isString(target_or_evt) && _.isFunction(evt_or_cb)
+                            [_comp.container, target_or_evt, evt_or_cb]
+                          else
+                            [target_or_evt, evt_or_cb, cb]
 
-# setup all components for a DOM root
+      target.on evt, fn.bind(_comp)
+
+    _comp.initialize()
+    _comp
+
+componentsManager = (container) ->
+  container: container
+
+  names: container.data('components').split /\s+/
+
+  started  : -> @container.data('components-started') || false
+
+  onStarted: -> @container.data('components-started', true)
+
+  buildComponents: ->
+    unless @started()
+      _.each @names, (name) =>
+        componentBuilder(name, @container).start()
+        @onStarted()
+
 startComponents = (evt, root=document) ->
   $(root).find('[data-components]').each (i, container) =>
-    setupContainer(container) unless containerStarted(container)
-
+    componentsManager($(container)).buildComponents()
 
 mediator.subscribe 'components:start', startComponents
+
 
 flashMessage = (msg)->
   flashMsg = $(msg)
@@ -68,24 +86,15 @@ spinner = {
   hide: -> @spinner?.remove()
 }
 
-whenComponentStarted = (componentId, fn) ->
-  if components._instances[componentId]
-    fn()
-  else
-    mediator.subscribe 'component:started', (evt, _componentId) =>
-      fn() if _componentId is componentId
-
 # setup global App namesmpace
 window.App =
   mediator  : mediator
   components: components
   utils     :
-    flashMessage        : flashMessage
-    spinner             : spinner
-    whenComponentStarted: whenComponentStarted
+    flashMessage: flashMessage
+    spinner     : spinner
 
 
 # setup testing ns
 window.__testing__?.base =
   startComponents: startComponents
-  setupContainer : setupContainer

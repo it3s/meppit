@@ -19,8 +19,8 @@ class ContributingsController < ApplicationController
 
   private
 
-  def find_contributable
-    @contributable = find_polymorphic_object
-  end
+    def find_contributable
+      @contributable = find_polymorphic_object
+    end
 
 end

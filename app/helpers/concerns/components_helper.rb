@@ -17,11 +17,11 @@ module Concerns
       modal_attrs = options.except(:html).to_json
       components = ["modal"] + (options[:login_required] ? ["loginRequired"] : [])
 
-      "<a href=\"#{url}\" #{html_attrs} data-components=\"#{ components.join(' ') }\" data-modal='#{ modal_attrs }'>#{body}</a>".html_safe
+      "<a href=\"#{url}\" #{html_attrs} data-components=\"#{ components.join(' ') }\" data-modal-options='#{ modal_attrs }'>#{body}</a>".html_safe
     end
 
     def link_to_tooltip(body, selector)
-      "<a href=\"#\" data-components=\"tooltip\" data-tooltip='#{ {template: selector}.to_json }'>#{body}</a>".html_safe
+      "<a href=\"#{selector}\" data-components=\"tooltip\" data-tooltip-options='#{ {template: selector}.to_json }'>#{body}</a>".html_safe
     end
 
     def remote_form_for(record, options={}, &block)
@@ -30,7 +30,7 @@ module Concerns
     end
 
     def tags_input(f, name, tags)
-      f.input name, :input_html => {'data-components' => 'tags', 'data-tags' => tags.to_json, 'data-autocomplete' => tag_search_path }
+      f.input name, :input_html => {'data-components' => 'tags', 'data-tags-options' => {tags: tags, autocomplete: tag_search_path}.to_json }
     end
 
     def autocomplete_field_tag(name, url)
@@ -43,7 +43,7 @@ module Concerns
     end
 
     def additional_info_json(object)
-      _hash_with_humanized_keys(object.additional_info).to_json
+      {jsonData: _hash_with_humanized_keys(object.additional_info)}.to_json
     end
 
     def relations_manager_data
@@ -74,13 +74,12 @@ module Concerns
 
     private
 
-    def _hash_with_humanized_keys(hash)
-      Hash[hash.map {|k,v| [k.humanize, _nested_hash_value(v)] }]
-    end
+      def _hash_with_humanized_keys(hash)
+        Hash[hash.map {|k,v| [k.humanize, _nested_hash_value(v)] }]
+      end
 
-    def _nested_hash_value(val)
-      (val.is_a? Hash) ? _hash_with_humanized_keys(val) : val
-    end
-
+      def _nested_hash_value(val)
+        (val.is_a? Hash) ? _hash_with_humanized_keys(val) : val
+      end
   end
 end

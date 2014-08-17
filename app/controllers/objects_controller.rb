@@ -35,58 +35,58 @@ class ObjectsController < ApplicationController
 
   protected
 
-  def model
-    controller_name.classify.constantize
-  end
-
-  def object_sym
-    controller_name.singularize.underscore.to_sym
-  end
-
-  def current_object
-    instance_variable_get "@#{object_sym}"
-  end
-
-  def find_object
-    instance_variable_set "@#{object_sym}", model.find(params[:id])
-  end
-
-  def build_instance
-    instance_variable_set "@#{object_sym}", model.new
-  end
-
-  def cleaned_params
-    @cleaned_params ||= params.require(object_sym).permit(:name, :description).tap do |whitelisted|
-      whitelisted[:contacts]  = cleaned_contacts params[object_sym]
-      whitelisted[:tags] = cleaned_tags params[object_sym]
-      whitelisted[:additional_info] = cleaned_additional_info params[object_sym]
-      whitelisted[:relations_attributes] = cleaned_relations_attributes(params[object_sym]) if params[object_sym][:relations_attributes]
+    def model
+      controller_name.classify.constantize
     end
-  end
 
-  def validate_additional_info
-    unless cleaned_params[:additional_info].nil? || cleaned_params[:additional_info].is_a?(Hash)
-      err = {additional_info: [I18n.t('additional_info.invalid')]}
-      render json: {errors: err}, status: :unprocessable_entity
+    def object_sym
+      controller_name.singularize.underscore.to_sym
     end
-  end
 
-  def add_mapping_to(target_model)
-    target_ref = target_model.name.underscore
-    if target = target_model.find_by(id: params[target_ref.to_sym])
-      _mapping, msg = create_mapping target
-      count_method = :"#{target_ref.pluralize}_count"
-      render json: {flash: flash_xhr(msg), count: current_object.send(count_method)}
-    else
-      msg = t("#{controller_name}.add_#{target_ref}.invalid")
-      render json: {flash: flash_xhr(msg)}, status: :unprocessable_entity
+    def current_object
+      instance_variable_get "@#{object_sym}"
     end
-  end
 
-  def create_mapping(target)
-    add_method = :"add_#{target.class.name.underscore}"
-    mapping = current_object.send add_method, target
-    msg_type = mapping.id ? 'added' : 'exists'
-    [mapping, t("#{controller_name}.#{add_method}.#{msg_type}", target: target.name)]
-  end
+    def find_object
+      instance_variable_set "@#{object_sym}", model.find(params[:id])
+    end
+
+    def build_instance
+      instance_variable_set "@#{object_sym}", model.new
+    end
+
+    def cleaned_params
+      @cleaned_params ||= params.require(object_sym).permit(:name, :description).tap do |whitelisted|
+        whitelisted[:contacts]  = cleaned_contacts params[object_sym]
+        whitelisted[:tags] = cleaned_tags params[object_sym]
+        whitelisted[:additional_info] = cleaned_additional_info params[object_sym]
+        whitelisted[:relations_attributes] = cleaned_relations_attributes(params[object_sym]) if params[object_sym][:relations_attributes]
+      end
+    end
+
+    def validate_additional_info
+      unless cleaned_params[:additional_info].nil? || cleaned_params[:additional_info].is_a?(Hash)
+        err = {additional_info: [I18n.t('additional_info.invalid')]}
+        render json: {errors: err}, status: :unprocessable_entity
+      end
+    end
+
+    def add_mapping_to(target_model)
+      target_ref = target_model.name.underscore
+      if target = target_model.find_by(id: params[target_ref.to_sym])
+        _mapping, msg = create_mapping target
+        count_method = :"#{target_ref.pluralize}_count"
+        render json: {flash: flash_xhr(msg), count: current_object.send(count_method)}
+      else
+        msg = t("#{controller_name}.add_#{target_ref}.invalid")
+        render json: {flash: flash_xhr(msg)}, status: :unprocessable_entity
+      end
+    end
+
+    def create_mapping(target)
+      add_method = :"add_#{target.class.name.underscore}"
+      mapping = current_object.send add_method, target
+      msg_type = mapping.id ? 'added' : 'exists'
+      [mapping, t("#{controller_name}.#{add_method}.#{msg_type}", target: target.name)]
+    end
 end

@@ -25,36 +25,35 @@ class VersionsController < ApplicationController
 
   private
 
-  def find_versionable
-    @versionable = find_polymorphic_object
-  end
+    def find_versionable
+      @versionable = find_polymorphic_object
+    end
 
-  def find_version
-    @version = PaperTrail::Version.find(params[:id])
-  end
+    def find_version
+      @version = PaperTrail::Version.find(params[:id])
+    end
 
-  def build_object_for_version
-    @object = reified_object
-  end
+    def build_object_for_version
+      @object = reified_object
+    end
 
-  def build_map_geo_data
-    @geo_data_collection ||= paginate(@object.try(:geo_data), params[:data_page]) if @object.class.name == 'Map'
-  end
+    def build_map_geo_data
+      @geo_data_collection ||= paginate(@object.try(:geo_data), params[:data_page]) if @object.class.name == 'Map'
+    end
 
-  def revert_to_version!
-    object = reified_object
-    object.save!
-    object
-  end
+    def revert_to_version!
+      object = reified_object
+      object.save!
+      object
+    end
 
-  def reified_object
-    object = @version.reify
-    object.location = version_location if object.has_attribute?(:location)
-    object
-  end
+    def reified_object
+      object = @version.reify
+      object.location = version_location if object.has_attribute?(:location)
+      object
+    end
 
-  def version_location
-    (SafeYAML.load(@version.object)["location"] || {})["wkt"]
-  end
-
+    def version_location
+      (SafeYAML.load(@version.object)["location"] || {})["wkt"]
+    end
 end

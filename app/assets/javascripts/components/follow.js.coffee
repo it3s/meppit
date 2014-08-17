@@ -1,58 +1,42 @@
-App.components.follow = (container) ->
-  container: container
+App.components.follow = ->
+  attributes: ->
+    _url = @attr.url || @container.attr('href')
+    {
+      url:   _url
+      id:    @attr.id || _url
+      label: @container.find('> .label')
+    }
 
-  init: ->
-    @data = @container.data('follow') || {}
-    @url = @data.url || @container.attr('href')
-    @id = @data.id || @url
-    @toggleActive @data.following
-    @addListeners()
+  initialize: ->
+    @toggleActive @attr.following
 
-  isActive: ->
-    @data.following
+    @on 'click', @doRequest
+    @on 'mouseover', @toggleLabel
+    @on 'mouseout', @resetLabel
+    App.mediator.subscribe "following:changed", (evt, data) =>
+      @toggleActive(data.following) if data.id == @attr.id
 
-  method: ->
-    if @isActive() then "delete" else "post"
+  doRequest: ->
+    $.ajax
+      type:     "POST"
+      url:      @attr.url
+      dataType: "json"
+      data:     @requestData()
+      success:  (data) =>
+        App.mediator.publish "following:changed", _.extend(data, {id: @attr.id})
+    false
 
   requestData: ->
-    _.extend {}, {"_method": @method()}
+    {_method: if @attr.following then "delete" else "post"}
 
   toggleActive: (following) ->
-    following ?= not @data.following
-    @data.following = following
-    if following
-      @container.addClass 'active'
-    else
-      @container.removeClass 'active'
+    following ?= not @attr.following
+    @attr.following = following
+    if following then @container.addClass('active') else @container.removeClass('active')
     @resetLabel()
 
   toggleLabel: ->
-    if @data.following
-      @container.find('> .label').text(I18n?.followings.unfollow)
-    else
-      @container.find('> .label').text(I18n?.followings.follow)
+    @attr.label.text I18n?.followings[ if @attr.following then 'unfollow' else 'follow' ]
 
   resetLabel: ->
-    if @data.following
-      @container.find('> .label').text(I18n?.followings.following)
-    else
-      @container.find('> .label').text(I18n?.followings.follow)
-
-  doRequest: ->
-    _this = this
-    $.ajax
-      type:     "POST"
-      url:      _this.url
-      dataType: "json"
-      data:     _this.requestData()
-      success:  (data) ->
-        App.mediator.publish("following:changed", _.extend(data, {id: _this.id}))
-    false
-
-  addListeners: ->
-    _this = this
-    @container.on 'click', @doRequest.bind(this)
-    @container.on 'mouseover', @toggleLabel.bind(this)
-    @container.on 'mouseout', @resetLabel.bind(this)
-    App.mediator.subscribe "following:changed", (evt, data) ->
-      _this.toggleActive(data.following) if data.id == _this.id
+    @attr.label.text I18n?.followings[ if @attr.following then 'following' else 'follow' ]

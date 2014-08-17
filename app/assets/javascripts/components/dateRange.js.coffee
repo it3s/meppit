@@ -1,30 +1,24 @@
-App.components.dateRange = (container) ->
-  {
-    container: container
+App.components.dateRange = ->
+  attributes: ->
+    from:   @container.find('[data-date-range=from]')
+    to:     @container.find('[data-date-range=to]')
+    locale: @getLocale()
+    pluginOptions:
+      changeMonth: true
+      changeYear: true
+      dateFormat: 'yy-mm-dd'
 
-    init: ->
-      @from = @container.find('[data-date-range=from]')
-      @to   = @container.find('[data-date-range=to]')
+  initialize: ->
+    @attr.from.datepicker( _.extend {}, @attr.pluginOptions, {
+      onClose: (selectedDate) => @attr.to.datepicker('option', 'minDate', selectedDate)
+    })
 
-      @startPlugin()
+    @attr.to.datepicker( _.extend {}, @attr.pluginOptions, {
+      onClose: (selectedDate) => @attr.from.datepicker('option', 'maxDate', selectedDate)
+    })
 
-    locale: ->
-      _locale = $('body').data 'locale'
-      $.datepicker.regional[_locale] || $.datepicker.regional[""]
+    $.datepicker.setDefaults @attr.locale
 
-    startPlugin: ->
-      @from.datepicker
-        changeMonth: true
-        changeYear: true
-        dateFormat: 'yy-mm-dd'
-        onClose: (selectedDate) => @to.datepicker('option', 'minDate', selectedDate)
-
-      @to.datepicker
-        changeMonth: true
-        changeYear: true
-        dateFormat: 'yy-mm-dd'
-        onClose: (selectedDate) => @from.datepicker('option', 'maxDate', selectedDate)
-
-      $.datepicker.setDefaults @locale()
-  }
-
+  getLocale: ->
+    _locale = $('body').data 'locale'
+    $.datepicker.regional[_locale] || $.datepicker.regional[""]

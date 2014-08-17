@@ -47,27 +47,27 @@ class UsersController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation,
-                                 :license_aggrement, :about_me, :avatar).tap do |whitelisted|
-      whitelisted[:contacts]  = cleaned_contacts params[:user]
-      whitelisted[:interests] = cleaned_tags params[:user], :interests
+    def user_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation,
+                                   :license_aggrement, :about_me, :avatar).tap do |whitelisted|
+        whitelisted[:contacts]  = cleaned_contacts params[:user]
+        whitelisted[:interests] = cleaned_tags params[:user], :interests
+      end
     end
-  end
 
-  def find_user
-    @user = User.find(params[:id])
-  end
+    def find_user
+      @user = User.find(params[:id])
+    end
 
-  def is_current_user
-    redirect_to(root_path, notice: t('access_denied')) if @user != current_user
-  end
+    def is_current_user
+      redirect_to(root_path, notice: t('access_denied')) if @user != current_user
+    end
 
-  def contributions_list
-    @contributions ||= paginate @user.try(:contributions), params[:contributions_page]
-  end
+    def contributions_list
+      @contributions ||= paginate @user.try(:contributions), params[:contributions_page]
+    end
 
-  def following_list
-    @following ||= paginate @user.try(:following), params[:following_page]
-  end
+    def following_list
+      @following ||= paginate @user.try(:following), params[:following_page]
+    end
 end

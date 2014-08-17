@@ -1,30 +1,27 @@
-App.components.list = (container) ->
-  {
-    container: container
-    list: container.find("ul.list")
+App.components.list = ->
+  attributes: ->
+    list:   @container.find("ul.list")
+    scroll: @attr.scroll || {}
 
     infiniteScrollDefaults:
-      navSelector: container.find("nav.pagination")
-      nextSelector: container.find("nav.pagination a[rel=next]")
+      navSelector:  @container.find("nav.pagination")
+      nextSelector: @container.find("nav.pagination a[rel=next]")
       itemSelector: ".list .list-item"
-      prefill: on
-      dataType: "html"
+      prefill:      on
+      dataType:     "html"
 
-    init: ->
-      options = @handleOptions()
-      @startInfiniteScroll(options)
+  initialize: ->
+    options = @handleOptions()
+    @startInfiniteScroll(options)
 
-    handleOptions: ->
-      data = @container.data('list') ? {}
-      options = _.defaults(data.scroll ? {}, @infiniteScrollDefaults)
-      if options['behavior'] is 'local'
-        options.binder ?= container
-      options
+  handleOptions: ->
+    options = _.defaults(@attr.scroll, @attr.infiniteScrollDefaults)
+    options.binder ?= container if options['behavior'] is 'local'
+    options
 
-    startComponents: (container) ->
-      App.mediator.publish('components:start', $(container))
+  startInfiniteScroll: (opts) ->
+    _this = this
+    @attr.list.infinitescroll opts, -> _this.startComponents.bind(_this)(this)
 
-    startInfiniteScroll: (opts) ->
-      _this = this
-      @list.infinitescroll opts, () -> _this.startComponents.bind(_this)(this)
-  }
+  startComponents: (container) ->
+    App.mediator.publish('components:start', $(container))

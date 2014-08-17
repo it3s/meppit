@@ -1,15 +1,14 @@
-App.components.loginRequired = (container) ->
-  {
-    container: container
+App.components.loginRequired = ->
+  attributes: ->
+    loginModal: 'modal:sign-in-modal'
 
-    loginModalId: 'modal:sign-in-modal'
+  initialize: ->
+    @on 'click', @openLoginModal unless @loggedIn()
 
-    init: ->
-      @bindEvent() unless $.cookie('logged_in')
+  loggedIn: ->
+    !!$.cookie('logged_in')
 
-    bindEvent: ->
-      @container.on 'click', (evt) =>
-        evt.preventDefault()
-        App.components._instances[@loginModalId].open()
-
-  }
+  openLoginModal: (evt) ->
+    evt.preventDefault()
+    App.mediator.publish 'modal:open', {identifier: @attr.loginModal}
+    false

@@ -30,62 +30,62 @@ class CountersPresenter
 
   private
 
-  def counter_url(params)
-    begin
-      ctx.url_for(params)
-    rescue Exception
-      ctx.url_for(params.reverse)
+    def counter_url(params)
+      begin
+        ctx.url_for(params)
+      rescue Exception
+        ctx.url_for(params.reverse)
+      end
     end
-  end
 
-  def _geo_data_counter
-    {
-      icon:       :'map-marker',
-      string:     'counters.geo_data',
-      method:     :geo_data_count,
-      classname:  "geo_data-counter",
-      url_params: [:geo_data, object],
-      component:  _component_for('geo_data')
-    }
-  end
+    def _geo_data_counter
+      {
+        icon:       :'map-marker',
+        string:     'counters.geo_data',
+        method:     :geo_data_count,
+        classname:  "geo_data-counter",
+        url_params: [:geo_data, object],
+        component:  _component_for('geo_data')
+      }
+    end
 
-  def _maps_counter
-    {
-      icon:       :globe,
-      string:     'counters.maps',
-      method:     :maps_count,
-      classname:  "maps-counter",
-      url_params: [:maps, object],
-      component:  _component_for('maps')
-    }
-  end
+    def _maps_counter
+      {
+        icon:       :globe,
+        string:     'counters.maps',
+        method:     :maps_count,
+        classname:  "maps-counter",
+        url_params: [:maps, object],
+        component:  _component_for('maps')
+      }
+    end
 
-  def _followers_counter
-    {
-      icon:       :star,
-      string:     'counters.followers',
-      method:     :followers_count,
-      classname:  "followers-counter",
-      url_params: [object, :followers],
-      component:  _component_for('followers')
-    }
-  end
+    def _followers_counter
+      {
+        icon:       :star,
+        string:     'counters.followers',
+        method:     :followers_count,
+        classname:  "followers-counter",
+        url_params: [object, :followers],
+        component:  _component_for('followers')
+      }
+    end
 
-  def _contributors_counter
-    {
-      icon:       :users,
-      string:     'counters.contributors',
-      method:     :contributors_count,
-      classname:  "contributors-counter",
-      url_params: [object, :contributors]
-    }
-  end
+    def _contributors_counter
+      {
+        icon:       :users,
+        string:     'counters.contributors',
+        method:     :contributors_count,
+        classname:  "contributors-counter",
+        url_params: [object, :contributors]
+      }
+    end
 
-  def _component_for(type)
-    opts_json = {type: type, id: ctx.identifier_for(object)}.to_json
-    {
-      :type => "counter",
-      :opts => "data-counter=#{ opts_json } "
-    }
-  end
+    def _component_for(type)
+      opts_json = {type: type, id: ctx.identifier_for(object)}.to_json
+      {
+        :type => "counter",
+        :opts => "data-counter-options=#{ opts_json } "
+      }
+    end
 end

@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_locale, except: :language
+  before_action :logged_in_cookie
 
   def language
     code = params[:code]
@@ -17,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def search
-    @results = paginate PgSearch.multisearch(params[:term]).limit(20).map { |d| d.searchable }
+    @results = paginate find_search_results
     render 'shared/search_results', layout: nil
   end
 
@@ -27,12 +28,20 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def set_locale
-    I18n.locale = (current_user.try(:language) || session[:language] ||
-                   extract_from_header || I18n.default_locale)
-  end
+    def set_locale
+      I18n.locale = (current_user.try(:language) || session[:language] ||
+                     extract_from_header || I18n.default_locale)
+    end
 
-  def extract_from_header
-    http_accept_language.compatible_language_from(I18n.available_locales)
-  end
+    def extract_from_header
+      http_accept_language.compatible_language_from(I18n.available_locales)
+    end
+
+    def logged_in_cookie
+      logged_in? ? set_logged_in_cookie : destroy_logged_in_cookie
+    end
+
+    def find_search_results
+      PgSearch.multisearch(params[:term]).includes(:searchable).limit(20).map { |d| d.searchable }
+    end
 end

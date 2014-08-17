@@ -5,7 +5,7 @@ class TagsController < ApplicationController
 
   private
 
-  def search_tags
-    Tag.search(params[:term]).map(&:tag)
-  end
+    def search_tags
+      Tag.search(params[:term]).map(&:tag)
+    end
 end

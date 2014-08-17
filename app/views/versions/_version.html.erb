@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="version-event">
       <%= icon 'edit' %>
-      <%= link_to presenter.author_name, user_path(presenter.author), class: "author-name" %>
+      <%= link_to presenter.author_name, user_path(presenter.author), class: "author-name"  if presenter.author %>
       <span class="event-name"><%= presenter.event %></span>
       <%= presenter.changes %>
     </div>

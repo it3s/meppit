@@ -1,22 +1,23 @@
 App.components.alert = (container) ->
-  {
-    container: container
-    fadeTime: 200
+  attributes: ->
+    fadeTime   : 200
+    closeTime  : 2000
+    closeButton: @container.find('.close')
+    closed     : false
+    alerts     : @container.closest('.alerts')
 
-    init: ->
-      @closeButton = @container.find('.close')
-      @bindEvents()
+  initialize: ->
+    @on @attr.closeButton, 'click', @close
+    setTimeout @close.bind(this), @attr.closeTime
 
-    close: () ->
-      alertsContainer = @container.closest('.alerts')
-      @closed = true
-      $.when(@container.fadeOut @fadeTime).then =>
-        @container.remove()
-        alertsContainer.remove() if alertsContainer.find('.alert').length is 0
+  close: () ->
+    unless @attr.closed
+      @attr.closed = true
+      $.when(@container.fadeOut @attr.fadeTime).then @afterFade.bind(this)
 
-    bindEvents: ->
-      @closeButton.on 'click', @close.bind(this)
-      setTimeout( =>
-        @close() unless @closed
-      , 2000)
-  }
+  afterFade: ->
+    @container.remove()
+    @attr.alerts.remove() if @emptyAlerts()
+
+  emptyAlerts: ->
+    @attr.alerts.find('.alert').length is 0

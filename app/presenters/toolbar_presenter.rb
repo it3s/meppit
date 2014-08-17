@@ -55,45 +55,45 @@ class ToolbarPresenter
 
   private
 
-  def _edit_tool
-    edit_url = ctx.url_for([:edit, object])
-    { icon: :pencil, title: t('toolbar.edit'), url: edit_url,
-      active?: ctx.request.path == edit_url }
-  end
+    def _edit_tool
+      edit_url = ctx.url_for([:edit, object])
+      { icon: :pencil, title: t('toolbar.edit'), url: edit_url,
+        active?: ctx.request.path == edit_url }
+    end
 
-  def _star_tool
-    { icon: :star, title: t('toolbar.star'), url: "#",
-      active?: current_user && current_user.follow?(object),
-      component: _follow_component }
-  end
+    def _star_tool
+      { icon: :star, title: t('toolbar.star'), url: "#",
+        active?: current_user && current_user.follow?(object),
+        component: _follow_component }
+    end
 
-  def _comment_tool
-    { icon: :comment, title: t('toolbar.comment'), url: "" }
-  end
+    def _comment_tool
+      { icon: :comment, title: t('toolbar.comment'), url: "" }
+    end
 
-  def _history_tool
-    history_url = ctx.url_for([object, :history])
-    { icon: :'clock-o', title: t('toolbar.history'), url: history_url,
-      active?: ctx.request.path == history_url }
-  end
+    def _history_tool
+      history_url = ctx.url_for([object, :history])
+      { icon: :'clock-o', title: t('toolbar.history'), url: history_url,
+        active?: ctx.request.path == history_url }
+    end
 
-  def _settings_tool
-    { icon: :'cog', title: t('toolbar.settings'), url: "" }
-  end
+    def _settings_tool
+      { icon: :'cog', title: t('toolbar.settings'), url: "" }
+    end
 
-  def _flag_tool
-    { icon: :flag, title: t('toolbar.flag'), url: "" }
-  end
+    def _flag_tool
+      { icon: :flag, title: t('toolbar.flag'), url: "" }
+    end
 
-  def _delete_tool
-    { icon: :'trash-o', title: t('toolbar.delete'), url: "" }
-  end
+    def _delete_tool
+      { icon: :'trash-o', title: t('toolbar.delete'), url: "" }
+    end
 
-  def _follow_component
-    opts_json = ctx.follow_options_for object
-    {
-      :type => "follow loginRequired",
-      :opts => "data-follow=#{ opts_json } "
-    }
-  end
+    def _follow_component
+      opts_json = ctx.follow_options_for object
+      {
+        :type => "follow loginRequired",
+        :opts => "data-follow-options=#{ opts_json } "
+      }
+    end
 end

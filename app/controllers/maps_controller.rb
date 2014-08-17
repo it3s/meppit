@@ -18,7 +18,7 @@ class MapsController < ObjectsController
 
   private
 
-  def geo_data_list
-    @geo_data_collection ||= paginate @map.try(:geo_data), params[:data_page]
-  end
+    def geo_data_list
+      @geo_data_collection ||= paginate @map.try(:geo_data), params[:data_page]
+    end
 end

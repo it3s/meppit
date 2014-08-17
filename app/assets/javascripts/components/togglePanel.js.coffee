@@ -1,26 +1,19 @@
-App.components.togglePanel = (container) ->
-  {
-    container: container
+App.components.togglePanel = ->
+  attributes: ->
+    panel : $("#{@container.attr('href')}")
+    status: 'hidden'
 
-    init: ->
-      @panel = $("#{@container.attr('href')}")
-      @status = 'hidden'
-      @bindEvents()
+  initialize: ->
+    @on 'click', @toggle
 
-    bindEvents: ->
-      @container.on 'click', @toggle.bind(this)
+  show: ->
+    @attr.panel.slideDown('fast')
+    @attr.status = 'visible'
 
-    show: ->
-      @panel.slideDown('fast')
-      @status = 'visible'
+  hide: ->
+    @attr.panel.slideUp('fast')
+    @attr.status = 'hidden'
 
-    hide: ->
-      @panel.slideUp('fast')
-      @status = 'hidden'
-
-    toggle: (evt) ->
-      evt.preventDefault()
-      if @status is 'visible' then @hide() else @show()
-
-
-  }
+  toggle: (evt) ->
+    evt.preventDefault()
+    if @attr.status is 'visible' then @hide() else @show()

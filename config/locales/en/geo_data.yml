@@ -22,7 +22,7 @@ en:
     add_map:
       title: "Add to a Map"
       added: "Added content to <b>%{target}</b>"
-      exists: "Content already on <b>%{target}b</b>"
+      exists: "Content already on <b>%{target}</b>"
       explanation: "Select the map in which you want to insert this content"
       invalid: "Invalid Map"
 

@@ -27,12 +27,12 @@ module Followable
 
     private
 
-    def _followable_params
-      {followable: self}
-    end
+      def _followable_params
+        {followable: self}
+      end
 
-    def clean_followings_for_destroyed_followable!
-      Following.where(_followable_params).destroy_all
-    end
+      def clean_followings_for_destroyed_followable!
+        Following.where(_followable_params).destroy_all
+      end
   end
 end

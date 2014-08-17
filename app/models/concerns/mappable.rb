@@ -16,11 +16,11 @@ module Mappable
 
     private
 
-    def _define_mappings_for(mapping_type)
-      obj_ref = mapping_type.to_s.singularize.to_sym
-      has_many mapping_type, through: :mappings
-      define_method :"#{mapping_type}_count" do send(mapping_type).count end
-      define_method :"add_#{obj_ref}" do |obj| mappings.create(obj_ref => obj) end
-    end
+      def _define_mappings_for(mapping_type)
+        obj_ref = mapping_type.to_s.singularize.to_sym
+        has_many mapping_type, through: :mappings
+        define_method :"#{mapping_type}_count" do send(mapping_type).count end
+        define_method :"add_#{obj_ref}" do |obj| mappings.create(obj_ref => obj) end
+      end
   end
 end
