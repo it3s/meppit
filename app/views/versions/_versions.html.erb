@@ -1,5 +1,5 @@
 <section>
-  <div id="versions" data-components="list">
+  <div id="versions" data-mpt-components="list">
     <h2 class="version-title"><%= icon "clock-o", t('versions.title', content: @versionable.name) %></h2>
 
     <div id="versions-pagination"><%= paginate @versions, :remote => true %></div>

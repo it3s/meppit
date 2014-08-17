@@ -1,7 +1,7 @@
 <section>
   <br>
   <h2><%= icon "users", t('contributings.contributors') %></h2>
-  <div id="contributors" class="list-container" data-components="list">
+  <div id="contributors" class="list-container" data-mpt-components="list">
     <div id="contributors-pagination"><%= paginate @contributors, :remote => true  %></div>
     <ul id="contributors-list" class="list contributors-list">
       <% unless @contributors.empty? %>

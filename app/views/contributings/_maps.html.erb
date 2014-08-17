@@ -1,7 +1,7 @@
 <section>
   <br>
   <h2><%= icon "globe", t('geo_data.maps.title') %></h2>
-  <div id="maps" class="list-container" data-components="list">
+  <div id="maps" class="list-container" data-mpt-components="list">
     <div id="maps-pagination"><%= paginate @maps, :remote => true %></div>
     <ul id="maps-list" class="list maps-list">
       <% unless @maps.empty? %>
