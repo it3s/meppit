@@ -4,8 +4,18 @@ namespace :tags do
   end
 
   desc "index User interests"
-  task :user => :environment do
+  task :users => :environment do
     User.all.each { |u| index_tags u.interests }
+  end
+
+  desc "index GeodData tags"
+  task :geo_data => :environment do
+    GeodData.all.each { |g| index_tags g.tags }
+  end
+
+  desc "index Map tags"
+  task :maps => :environment do
+    Map.all.each { |m| index_tags m.tags }
   end
 
   desc "clean all tags"
@@ -14,5 +24,5 @@ namespace :tags do
   end
 
   desc "Index all tags"
-  task :all => [:user]
+  task :all => [:users, :geo_data, :maps]
 end
