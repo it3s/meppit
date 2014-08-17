@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def search
-    @results = paginate PgSearch.multisearch(params[:term]).limit(20).map { |d| d.searchable }
+    @results = paginate find_search_results
     render 'shared/search_results', layout: nil
   end
 
@@ -39,5 +39,9 @@ class ApplicationController < ActionController::Base
 
     def logged_in_cookie
       logged_in? ? set_logged_in_cookie : destroy_logged_in_cookie
+    end
+
+    def find_search_results
+      PgSearch.multisearch(params[:term]).includes(:searchable).limit(20).map { |d| d.searchable }
     end
 end
