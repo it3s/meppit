@@ -37,5 +37,9 @@ class VersionPresenter
   def diff_items
     Hash[*object.changeset.map {|k, v| [k, OpenStruct.new(before: v[0], after: v[1])]}.flatten]
   end
+
+  def created?
+    object.event == 'create'
+  end
 end
 
