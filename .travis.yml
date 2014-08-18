@@ -21,5 +21,4 @@ before_script:
   - "bundle exec rake db:create db:migrate db:test:prepare"
 
 script:
-  - bundle exec rake
-
+  - bundle exec rspec
