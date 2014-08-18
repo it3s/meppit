@@ -12,7 +12,7 @@ class GeoData < ActiveRecord::Base
   searchable_tags :tags
   search_fields scoped: :name, multi: [:name, :description]
   has_maps
-  has_paper_trail ignore: [:updated_at]
+  has_paper_trail ignore: [:id, :created_at, :updated_at]
 
   validates :name, presence: true
 

@@ -8,6 +8,7 @@ en:
   time_ago: "%{time} ago"
   before: "Before"
   after: "After"
+  by: 'by'
 
   empty_location: "Loocation not provided yet"
 

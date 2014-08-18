@@ -10,13 +10,29 @@ class DiffPresenter
     contacts: "contacts",
     additional_info: "jsontable",
     location: "location",
-  }
+  }.with_indifferent_access
+
+  DEFAULTS = {
+    string:    "",
+    text:      "",
+    tags:      [],
+    contacts:  {},
+    jsontable: nil,
+    location:  nil,
+  }.with_indifferent_access
 
   def show(key, vals)
-    send(:"_#{ DIFF_TYPES[key.to_sym] }_diff", vals).html_safe
+    _type = DIFF_TYPES[key]
+    send(:"_#{ _type }_diff", vals_with_defaults(vals, _type)).html_safe if _type
   end
 
   private
+
+    def vals_with_defaults(vals, _type)
+      vals.before ||= DEFAULTS[_type]
+      vals.after  ||= DEFAULTS[_type]
+      vals
+    end
 
     def _string_diff(vals)
       ::Differ.diff_by_word(vals.after, vals.before).format_as(:html)
