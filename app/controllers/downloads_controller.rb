@@ -22,6 +22,6 @@ class DownloadsController < ApplicationController
     end
 
     def download_file(_type)
-      send_data @downloadable.send(:"to_#{_type}"), filename: filename(_type)
+      send_data @downloadable.serialize(_type), filename: filename(_type)
     end
 end

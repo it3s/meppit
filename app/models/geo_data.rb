@@ -18,6 +18,6 @@ class GeoData < ActiveRecord::Base
   validates :name, presence: true
 
   def geojson_properties
-    {name: name, id: id, description: description}
+    active_model_serializer.new(self).serializable_hash.except(:location)
   end
 end
