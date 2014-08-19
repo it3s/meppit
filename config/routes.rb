@@ -70,7 +70,7 @@ Meppit::Application.routes.draw do
   end
 
   resources :maps, except:   [:destroy],
-                   concerns: [:contributable, :followable, :versionable] do
+                   concerns: [:contributable, :followable, :versionable, :downloadable] do
     member do
       get  :geo_data
       post :add_geo_data

@@ -5,6 +5,7 @@ class Map < ActiveRecord::Base
   include Contributable
   include Mappable
   include Searchable
+  include Exportable
 
   belongs_to :administrator, class_name: 'User'
 
