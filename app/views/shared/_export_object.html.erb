@@ -7,12 +7,11 @@
     <p class="explanation"><%= t 'export.explanation' %></p>
 
     <div class="export-options">
-      <%= link_to "JSON",    "#", class: "option" %>
+      <%= link_to "JSON", export_path_for(object, :json), class: "option" %>
       <%= link_to "GeoJSON", "#", class: "option" %>
       <%= link_to "KML",     "#", class: "option" %>
       <%= link_to "CSV",     "#", class: "option" %>
     </div>
-
     <div class="help">
       <%= link_to t('export.help'), '#' %>
     </div>

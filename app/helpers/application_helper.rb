@@ -44,4 +44,8 @@ module ApplicationHelper
       id: identifier_for(obj)
     }.to_json
   end
+
+  def export_path_for(obj, format)
+    polymorphic_path([obj, :export], format: format)
+  end
 end

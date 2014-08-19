@@ -36,6 +36,10 @@ Meppit::Application.routes.draw do
     get "history" => "versions#history"
   end
 
+  concern :downloadable do
+    get "export" => "downloads#export"
+  end
+
   resources :users, except: [:destroy, :index],
                     concerns: [:contributor, :followable, :follower] do
     member do
@@ -53,7 +57,7 @@ Meppit::Application.routes.draw do
   end
 
   resources :geo_data, except:   [:destroy],
-                       concerns: [:contributable, :followable, :versionable] do
+                       concerns: [:contributable, :followable, :versionable, :downloadable] do
     member do
       get  :maps
       post :add_map
