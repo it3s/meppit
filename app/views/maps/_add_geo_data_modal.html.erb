@@ -1,3 +1,5 @@
+<%= link_to_modal icon("map-marker", t("maps.add_geo_data.title")), "#add-data-modal", login_required: true, html: {class: "add-data"} %>
+
 <div id="add-data-modal" class="add-data-modal" data-components="addMapping"
      data-addmapping-options="<%= { mapping: 'geo_data', formId: 'add-data-form', objectIdentifier: identifier_for(map) }.to_json %>">
   <header><h2><%= t 'maps.add_geo_data.title' %></h2></header>

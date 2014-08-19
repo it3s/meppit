@@ -1,8 +1,6 @@
-<%= link_to_modal icon("download"), "#export-object", html: {class: "download"} %>
-<%= link_to_modal icon("globe", t("geo_data.add_map.title")), "#add-to-map-modal", login_required: true, html: {class: "add-to-map"} %>
 
-<%= render "geo_data/add_map_modal", geo_data: geo_data %>
 <%= render 'shared/export_object', object: geo_data %>
+<%= render "geo_data/add_map_modal", geo_data: geo_data %>
 
 <section class="main-info">
 
