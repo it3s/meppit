@@ -9,8 +9,8 @@
     <div class="export-options">
       <%= link_to "JSON",    export_path_for(object, :json),    class: "option" %>
       <%= link_to "GeoJSON", export_path_for(object, :geojson), class: "option" %>
-      <%= link_to "KML",     "#", class: "option" %>
-      <%= link_to "CSV",     "#", class: "option" %>
+      <%= link_to "XML",     export_path_for(object, :xml),     class: "option" %>
+      <%= link_to "CSV",     export_path_for(object, :csv),     class: "option" %>
     </div>
     <div class="help">
       <%= link_to t('export.help'), '#' %>

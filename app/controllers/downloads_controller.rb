@@ -4,8 +4,10 @@ class DownloadsController < ApplicationController
 
   def export
     respond_to do |format|
-      format.json    { download_file :to_json, :json }
-      format.geojson { download_file :location_geojson, :geojson }
+      format.json    { download_file :json }
+      format.geojson { download_file :geojson }
+      format.csv     { download_file :csv }
+      format.xml     { download_file :xml }
     end
   end
 
@@ -19,7 +21,7 @@ class DownloadsController < ApplicationController
       "#{@downloadable.class.name.underscore}_#{@downloadable.id}.#{_type}"
     end
 
-    def download_file(method, _type)
-      send_data @downloadable.send(method), filename: filename(_type)
+    def download_file(_type)
+      send_data @downloadable.send(:"to_#{_type}"), filename: filename(_type)
     end
 end
