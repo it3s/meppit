@@ -6,6 +6,7 @@ App.components.map = ->
     @show() if @attr.geojson
 
   startMap: ->
+    L.Icon.Default.imagePath = '/assets'
     @map = new Meppit.Map
       element:           @container[0],
       enableGeoJsonTile: false

@@ -1,0 +1,18 @@
+<div id="export-object" class="export">
+  <header><h2><%= t 'export.download' %></h2></header>
+
+  <section>
+    <p class="explanation"><%= t 'export.explanation' %></p>
+
+    <div class="export-options">
+      <%= link_to "JSON",    "#", class: "option" %>
+      <%= link_to "GeoJSON", "#", class: "option" %>
+      <%= link_to "KML",     "#", class: "option" %>
+      <%= link_to "CSV",     "#", class: "option" %>
+    </div>
+
+    <div class="help">
+      <%= link_to t('export.help'), '#' %>
+    </div>
+  </section>
+</div>
