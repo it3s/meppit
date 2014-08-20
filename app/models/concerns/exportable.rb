@@ -2,33 +2,40 @@ module Exportable
   extend ActiveSupport::Concern
 
   included do
-    def serialize(_format)
+    def serialized_as(format)
       hash = active_model_serializer.new(self).serializable_hash
-      case _format
+      case format
         when :json    then hash.to_json
         when :xml     then hash.to_xml
-        when :csv     then csv_from_hash(hash)
+        when :csv     then self.class.generate_csv([hash])
         when :geojson then location_geojson
+      end
+    end
+
+    def self.serialized_as(format)
+      collection = all.map { |obj| active_model_serializer.new(obj).serializable_hash }
+      case format
+        when :json    then collection.to_json
+        when :xml     then collection.to_xml
+        when :csv     then generate_csv(collection)
+        when :geojson then "" # TODO
       end
     end
 
     private
 
-      def csv_from_hash(hash)
-        columns = hash.keys
+      def self.generate_csv(array)
+        return "" if array.empty?
+
+        columns = array[0].keys
         CSV.generate do |csv|
           csv << columns
-          csv << hash.values_at(*columns).map { |v| v.is_a?(Hash) || v.is_a?(Array) ? v.to_json : v }
+          array.each { |hash| csv << hash.values_at(*columns).map { |v| csv_value v } }
         end
       end
 
-      # def self.to_csv(options = {})
-      #   CSV.generate(options) do |csv|
-      #     csv << column_names
-      #     all.each do |product|
-      #       csv << product.attributes.values_at(*column_names)
-      #     end
-      #   end
-      # end
+      def self.csv_value(v)
+        v.is_a?(Hash) || v.is_a?(Array) ? v.to_json : v
+      end
   end
 end

@@ -37,7 +37,8 @@ Meppit::Application.routes.draw do
   end
 
   concern :downloadable do
-    get "export" => "downloads#export"
+    get "export" => "downloads#export", on: :member
+    get "bulk_export" => "downloads#bulk_export", on: :collection
   end
 
   resources :users, except: [:destroy, :index],
