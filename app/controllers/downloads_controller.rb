@@ -2,12 +2,11 @@ class DownloadsController < ApplicationController
 
   before_action :find_downloadable
 
+  FORMATS = [:json, :geojson, :csv, :xml]
+
   def export
     respond_to do |format|
-      format.json    { download_file :json }
-      format.geojson { download_file :geojson }
-      format.csv     { download_file :csv }
-      format.xml     { download_file :xml }
+      FORMATS.each { |_type| format.send(_type) { download_file _type } }
     end
   end
 
