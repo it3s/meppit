@@ -3,12 +3,12 @@ module Exportable
 
   included do
     def serialized_as(format)
-      hash = active_model_serializer.new(self).serializable_hash
+      serializer = active_model_serializer.new(self)
       case format
-        when :json    then hash.to_json
-        when :xml     then hash.to_xml
-        when :csv     then self.class.generate_csv([hash])
-        when :geojson then location_geojson
+        when :json    then serializer.to_json
+        when :xml     then serializer.to_xml
+        # when :csv     then self.class.generate_csv([hash])
+        when :geojson then serializer.to_geojson  # TODO return simple feature, with embed featureCollection for map#geo_data
       end
     end
 

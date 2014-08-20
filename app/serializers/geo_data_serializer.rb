@@ -1,4 +1,6 @@
 class GeoDataSerializer < ActiveModel::Serializer
+  include BaseSerializer
+
   attributes :id, :name, :description, :location, :additional_info, :contacts,
              :tags, :relations, :created_at, :updated_at
 

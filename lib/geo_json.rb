@@ -34,11 +34,15 @@ module GeoJSON
     features_with_geom, features_without_geom = features.partition &:geometry
 
     collection = RGeo::GeoJSON.encode rgeo_factory.feature_collection(features_with_geom)
-    collection["features"].concat features_without_geom.map { |f| encode_empty_feature(f) }
+    collection["features"].concat features_without_geom.map { |f| encode_feature(f) }
     collection
   end
 
-  def encode_empty_feature(feature)
-    {"type"=>"Feature", "geometry"=>nil,"properties"=>feature.properties}
+  def encode_feature(feature)
+    if feature.geometry
+      RGeo::GeoJSON.encode feature
+    else
+      {"type"=>"Feature", "geometry"=>nil,"properties"=>feature.properties, "id"=>feature.properties["id"]}
+    end
   end
 end
