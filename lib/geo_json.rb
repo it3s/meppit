@@ -31,6 +31,14 @@ module GeoJSON
   end
 
   def encode_feature_collection(features)
-    RGeo::GeoJSON.encode rgeo_factory.feature_collection(features)
+    features_with_geom, features_without_geom = features.partition &:geometry
+
+    collection = RGeo::GeoJSON.encode rgeo_factory.feature_collection(features_with_geom)
+    collection["features"].concat features_without_geom.map { |f| encode_empty_feature(f) }
+    collection
+  end
+
+  def encode_empty_feature(feature)
+    {"type"=>"Feature", "geometry"=>nil,"properties"=>feature.properties}
   end
 end

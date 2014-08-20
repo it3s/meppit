@@ -18,7 +18,7 @@ module Exportable
         columns = hash.keys
         CSV.generate do |csv|
           csv << columns
-          csv << hash.values_at(*columns)
+          csv << hash.values_at(*columns).map { |v| v.is_a?(Hash) || v.is_a?(Array) ? v.to_json : v }
         end
       end
 

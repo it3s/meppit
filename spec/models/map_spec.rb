@@ -73,12 +73,6 @@ describe Map do
       it { expect(map.geo_data_count).to eq 2 }
     end
 
-    describe "#geo_data_features" do
-      it { expect(map.geo_data_features).to be_a_kind_of Array }
-      it { expect(map.geo_data_features.count).to eq 2 }
-      it { expect(map.geo_data_features.first).to be_a_kind_of RGeo::GeoJSON::Feature }
-    end
-
     describe "#location" do
       it "returns nil if geo_data_count is zero" do
         allow(map).to receive(:geo_data_count).and_return 0
@@ -86,7 +80,7 @@ describe Map do
       end
 
       it "encode a feature collection" do
-        expect(::GeoJSON).to receive(:encode_feature_collection).with map.geo_data_features
+        expect(::GeoJSON).to receive(:encode_feature_collection)
         map.location
       end
 
