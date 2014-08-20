@@ -2,7 +2,7 @@ module BaseSerializer
   extend ActiveSupport::Concern
 
   def to_json
-    serializable_hash.to_hash
+    serializable_hash.to_json
   end
 
   def to_xml
@@ -11,6 +11,10 @@ module BaseSerializer
 
   def to_geojson
     geojson_feature_hash.to_json
+  end
+
+  def to_csv
+    ::CSVGenerator::generate([serializable_hash])
   end
 
   def geojson_feature_hash

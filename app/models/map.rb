@@ -21,7 +21,7 @@ class Map < ActiveRecord::Base
   def location
     return nil if geo_data_count.zero?
 
-    ::GeoJSON.encode_feature_collection geo_data_features
+    ::GeoJSON::encode_feature_collection geo_data_features
   end
 
   def location_geojson

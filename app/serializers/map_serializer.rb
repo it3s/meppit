@@ -6,10 +6,10 @@ class MapSerializer  < ActiveModel::Serializer
 
   has_many :geo_data
 
-  def to_geojson
-    feature = ::GeoJSON.build_feature nil, object.id, object.geojson_properties
+  def geojson_feature_hash
+    feature = ::GeoJSON::build_feature nil, object.id, object.geojson_properties
     encoded = ::GeoJSON::encode_feature(feature)
     encoded["properties"]["geo_data"] = object.location
-    encoded.to_json
+    encoded
   end
 end

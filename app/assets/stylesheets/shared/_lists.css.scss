@@ -105,8 +105,10 @@ nav.pagination { display: none; }  // We are using infinite scroll
     padding: 10px 0;
     border-bottom: solid 1px $ultra-soft-grey;
 
-    .upload-btn, .download-btn, .select-all-btn {
+    .upload-btn, .download, .select-all-btn {
       @include button;
+      float: none;
+      margin-left: 0;
     }
 
     .select-all-btn {
