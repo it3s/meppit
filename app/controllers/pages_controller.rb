@@ -5,6 +5,10 @@ class PagesController < ApplicationController
     @news = news
   end
 
+  def export_help
+    render layout: nil
+  end
+
   private
 
     def news

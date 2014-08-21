@@ -13,7 +13,7 @@
       <%= link_to "CSV",     export_path_for(object, :csv),     class: "option" %>
     </div>
     <div class="help">
-      <%= link_to t('export.help'), '#' %>
+      <%= link_to_modal t('export.help'), export_help_path, remote: true %>
     </div>
   </section>
 </div>

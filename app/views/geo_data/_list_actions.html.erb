@@ -9,7 +9,7 @@
   <%= render "geo_data/bulk_add_map_modal" %>
 
   <%= link_to icon('upload', ''), '#', class: 'upload-btn' %>
-  <%= render 'shared/export_object', object: nil %>
+  <%= render 'shared/export/export_object', object: nil %>
 
 
   <%= link_to icon('map-marker', t('geo_data.list.add_new')), new_geo_data_path, class: 'add-new-btn' , "data-components" => "loginRequired" %>

@@ -14,6 +14,8 @@ Meppit::Application.routes.draw do
   post "search"      => "application#search", as: :search
   get  "tags/search" => "tags#search",        as: :tag_search
 
+  get  "export/help" => "pages#export_help",  as: :export_help
+
   concern :contributable do
     get "contributors" => "contributings#contributors"
   end

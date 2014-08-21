@@ -4,7 +4,7 @@
   </button>
 
   <%= link_to icon('upload', ''), '#', class: 'upload-btn' %>
-  <%= render 'shared/export_object', object: nil %>
+  <%= render 'shared/export/export_object', object: nil %>
 
 
   <%= link_to icon('globe', t('maps.list.add_new')), new_map_path, class: 'add-new-btn' , "data-components" => "loginRequired" %>
