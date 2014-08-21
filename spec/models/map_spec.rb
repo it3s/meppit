@@ -94,15 +94,15 @@ describe Map do
       it { expect(map.location["features"].size).to eq 2 }
     end
 
-    # TODO fix-me later .. breaks randomly because test depends on expected value order
-    # describe "#location_geojson" do
-    #   it "returns nil when location is nil" do
-    #     allow(map).to receive(:location).and_return nil
-    #     expect(map.location_geojson).to be nil
-    #   end
+    describe "#location_geojson" do
+      it "returns nil when location is nil" do
+        allow(map).to receive(:location).and_return nil
+        expect(map.location_geojson).to be nil
+      end
 
-    #   it { expect(map.location_geojson).to eq geojson.to_json }
-    # end
+      it { expect(map.location_geojson).to include geojson["features"][0].to_json }
+      it { expect(map.location_geojson).to include geojson["features"][1].to_json }
+    end
 
     describe "#add_geo_data" do
       before { map.mappings.destroy_all }
