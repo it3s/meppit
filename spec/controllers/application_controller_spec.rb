@@ -215,6 +215,17 @@ describe ApplicationController do
       end
     end
 
+    describe "#find_polymorphic_model" do
+      it "gets the maps model from the referer" do
+        controller.stub_chain(:request, :path).and_return "/maps/bulk_export"
+        expect(controller.send :find_polymorphic_model).to eq Map
+      end
+      it "gets the geo_data model from the referer" do
+        controller.stub_chain(:request, :path).and_return "/geo_data/bulk_export"
+        expect(controller.send :find_polymorphic_model).to eq GeoData
+      end
+    end
+
     describe "#cleaned_tags" do
       context 'default field name' do
         let(:params) { {tags: "foo,bar,baz"} }

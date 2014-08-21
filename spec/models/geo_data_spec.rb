@@ -102,6 +102,14 @@ describe GeoData do
           metadata: {},
         })
       }
+      it { expect(geo_data.relations_values(splitted_type: true).first).to eq({
+          id:        relation.id,
+          target:    {id: other.id, name: other.name },
+          rel_type:  "partnership",
+          direction: "dir",
+          metadata:  {},
+        })
+      }
     end
 
     describe "save_relations_from_attributes" do

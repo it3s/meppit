@@ -14,6 +14,8 @@ Meppit::Application.routes.draw do
   post "search"      => "application#search", as: :search
   get  "tags/search" => "tags#search",        as: :tag_search
 
+  get  "export/help" => "pages#export_help",  as: :export_help
+
   concern :contributable do
     get "contributors" => "contributings#contributors"
   end
@@ -36,6 +38,11 @@ Meppit::Application.routes.draw do
     get "history" => "versions#history"
   end
 
+  concern :downloadable do
+    get "export" => "downloads#export", on: :member
+    get "bulk_export" => "downloads#bulk_export", on: :collection
+  end
+
   resources :users, except: [:destroy, :index],
                     concerns: [:contributor, :followable, :follower] do
     member do
@@ -53,7 +60,7 @@ Meppit::Application.routes.draw do
   end
 
   resources :geo_data, except:   [:destroy],
-                       concerns: [:contributable, :followable, :versionable] do
+                       concerns: [:contributable, :followable, :versionable, :downloadable] do
     member do
       get  :maps
       post :add_map
@@ -66,7 +73,7 @@ Meppit::Application.routes.draw do
   end
 
   resources :maps, except:   [:destroy],
-                   concerns: [:contributable, :followable, :versionable] do
+                   concerns: [:contributable, :followable, :versionable, :downloadable] do
     member do
       get  :geo_data
       post :add_geo_data

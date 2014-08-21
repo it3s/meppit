@@ -43,6 +43,11 @@ module Utils
     instance_variable_set "@#{_model.name.underscore}", _model.find(id)  # set var and return the obj
   end
 
+  def find_polymorphic_model
+    resource = request.path.split('/')[1]
+    resource.classify.constantize
+  end
+
   def paginate(collection, page = nil, per = nil)
     page ||= params[:page]
     per  ||= params[:per]

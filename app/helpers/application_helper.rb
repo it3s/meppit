@@ -44,4 +44,13 @@ module ApplicationHelper
       id: identifier_for(obj)
     }.to_json
   end
+
+  def export_path_for(obj, format)
+    if obj.nil?
+      ctrl = controller_name == 'geo_data' ? 'geo_data_index' : controller_name
+      polymorphic_path([:bulk_export, ctrl], format: format)
+    else
+      polymorphic_path([:export, obj], format: format)
+    end
+  end
 end

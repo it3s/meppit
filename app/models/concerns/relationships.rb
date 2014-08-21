@@ -10,14 +10,18 @@ module Relationships
       Relation.find_related(self.id)
     end
 
-    def relations_values
+    def relations_values(splitted_type=false)
       relations_with_relateds.map do |r|
+        rel = r.relation
         {
-          id:       r.relation.id,
+          id:       rel.id,
           target:   {id: r.related.id, name: r.related.name },
-          type:     relation_type(r.relation),
-          metadata: metadata_values(r.relation.metadata),
-        }
+          metadata: metadata_values(rel.metadata),
+        }.merge(
+          splitted_type ?
+          {rel_type: rel.rel_type, direction: relation_direction(rel)} :
+          {type: relation_type(rel)}
+        )
       end
     end
 

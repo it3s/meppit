@@ -1,0 +1,19 @@
+<%= link_to_modal icon("download"), "#export-object", html: {class: "download"} %>
+
+<div id="export-object" class="export" data-components="exporter">
+  <header><h2><%= t 'export.download' %></h2></header>
+
+  <section>
+    <p class="explanation"><%= t 'export.explanation' %></p>
+
+    <div class="export-options">
+      <%= link_to "JSON",    export_path_for(object, :json),    class: "option" %>
+      <%= link_to "GeoJSON", export_path_for(object, :geojson), class: "option" %>
+      <%= link_to "XML",     export_path_for(object, :xml),     class: "option" %>
+      <%= link_to "CSV",     export_path_for(object, :csv),     class: "option" %>
+    </div>
+    <div class="help">
+      <%= link_to_modal t('export.help'), export_help_path, remote: true %>
+    </div>
+  </section>
+</div>

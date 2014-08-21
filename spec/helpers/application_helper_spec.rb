@@ -135,6 +135,23 @@ describe ApplicationHelper do
     end
   end
 
+  describe "#export_path_for" do
+    let(:geo_data) { FactoryGirl.create :geo_data }
+    let(:map) { FactoryGirl.create :map }
+
+    it { expect(helper.export_path_for(geo_data, :json)).to eq helper.export_geo_data_path(geo_data, format: :json) }
+    it { expect(helper.export_path_for(map, :json)).to eq helper.export_map_path(map, format: :json) }
+
+    it "generate path for bluk export on geo_data" do
+      allow(helper).to receive(:controller_name).and_return 'geo_data'
+      expect(helper.export_path_for nil, :json).to eq helper.bulk_export_geo_data_index_path(format: :json)
+    end
+
+    it "generate path for bluk export on maps" do
+      allow(helper).to receive(:controller_name).and_return 'maps'
+      expect(helper.export_path_for nil, :json).to eq helper.bulk_export_maps_path(format: :json)
+    end
+  end
 
   describe "Concerns::ComponentsHelper" do
     describe "#hash_to_attributes" do

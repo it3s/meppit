@@ -5,6 +5,7 @@ class Map < ActiveRecord::Base
   include Contributable
   include Mappable
   include Searchable
+  include Exportable
 
   belongs_to :administrator, class_name: 'User'
 
@@ -20,14 +21,18 @@ class Map < ActiveRecord::Base
   def location
     return nil if geo_data_count.zero?
 
-    ::GeoJSON.encode_feature_collection geo_data_features
+    ::GeoJSON::encode_feature_collection geo_data_features
   end
 
   def location_geojson
     location ? location.to_json : nil
   end
 
+  def geojson_properties
+    active_model_serializer.new(self).serializable_hash.except(:location, :geo_data)
+  end
+
   def geo_data_features
-    geo_data.all.map { |data| ::GeoJSON::feature_from_model data if data.location  }
+    geo_data.all.map { |data| ::GeoJSON::feature_from_model data }
   end
 end
