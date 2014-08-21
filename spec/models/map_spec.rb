@@ -48,7 +48,7 @@ describe Map do
               "type" => "GeometryCollection",
               "geometries" => [{"type"=>"Point", "coordinates"=>[-10.0, -10.0]}]
             },
-            "properties" => {"name"=>"Data 1", "id"=>data1.id, "description"=>nil},
+            "properties" => data1.geojson_properties.stringify_keys,
             "id" => data1.id
           },
           {
@@ -57,7 +57,7 @@ describe Map do
               "type" => "GeometryCollection",
               "geometries" => [{"type"=>"Point", "coordinates"=>[-10.001, -10.001]}]
             },
-            "properties" => {"name"=>"Data 2", "id"=>data2.id, "description"=>nil},
+            "properties" => data2.geojson_properties.stringify_keys,
             "id" => data2.id
           }
         ]
@@ -90,7 +90,8 @@ describe Map do
         map.location
       end
 
-      it { expect(map.location).to eq geojson }
+      it { expect(map.location.keys).to eq geojson.keys }
+      it { expect(map.location["features"].size).to eq 2 }
     end
 
     describe "#location_geojson" do
