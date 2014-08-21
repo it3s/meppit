@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   include Followable
   include Follower
   include Searchable
+  include PublicActivity::Common
 
   mount_uploader :avatar, AvatarUploader
   process_in_background :avatar

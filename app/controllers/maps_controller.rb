@@ -4,7 +4,7 @@ class MapsController < ObjectsController
 
   def create
     _params = cleaned_params.merge(administrator: current_user)
-    update_object @map, _params
+    save_object @map, _params
   end
 
   def geo_data

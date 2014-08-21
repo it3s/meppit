@@ -25,11 +25,12 @@ module Utils
     raise ArgumentError.new("invalid value for Boolean: \"#{string}\"")
   end
 
-  def update_object(obj, params_hash)
+  def save_object(obj, params_hash)
     obj.assign_attributes(params_hash)
     if obj.valid? && obj.save
       obj_name = obj.class.name.underscore
-      EventBus.publish "#{obj_name}_updated", obj_name.to_sym => obj, current_user: current_user
+      event_type = params[:action] == 'create' ? 'created' : 'updated'
+      EventBus.publish "#{obj_name}_#{event_type}", obj_name.to_sym => obj, current_user: current_user
       flash[:notice] = t('flash.saved')
       render json: {redirect: polymorphic_path([obj])}
     else
@@ -84,7 +85,7 @@ module Utils
 
   def cleaned_relation_metadata(m)
     OpenStruct.new(
-      description: m['description'].strip().blank? ? nil : m['description'],
+      description: m['description'].blank? ? nil : m['description'],
       start_date:  m['start_date'].blank? ? nil : Date.parse(m['start_date']),
       end_date:    m['end_date'].blank?   ? nil : Date.parse(m['end_date']),
       currency:    m['amount'].blank? ? nil : m['currency'],

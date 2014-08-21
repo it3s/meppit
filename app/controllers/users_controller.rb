@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    update_object @user, user_params
+    save_object @user, user_params
   end
 
   private
