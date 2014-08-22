@@ -75,7 +75,7 @@ describe GeoDataController do
     end
 
     it "publishes geo_data_updated to EventBus" do
-      expect(EventBus).to receive(:publish).with("geo_data_updated", anything)
+      expect(EventBus).to receive(:publish).with("geo_data_created", anything)
       post :create, {:geo_data => geo_data_params}
     end
 
