@@ -8,7 +8,8 @@ pt-BR:
   time_ago: "há %{time}"
   before: "Antes"
   after: "Depois"
-  by: 'by'
+  by: 'por'
+  profile: 'perfil'
 
   empty_location: 'Localização não fornecida'
 

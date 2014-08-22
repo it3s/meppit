@@ -1,0 +1,45 @@
+.activities-list {
+  .empty {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: $grey;
+    text-align: center;
+    margin-top: 120px;
+  }
+
+  .list-item {
+
+    &.small .item { width: 570px; }
+
+    .trackable { font-weight: bold; }
+
+    &.user {
+      .item-avatar { background-color: $meppit-dark-green; }
+      .trackable { color: $meppit-dark-green; }
+    }
+
+    &.geo_data {
+      .trackable { color: $meppit-data-color; }
+    }
+
+    &.map {
+      .trackable { color: $meppit-maps-color; }
+    }
+  }
+
+  .event-name {
+    font-weight: bold;
+  }
+
+  .activity-event {
+    display: inline-block;
+  }
+
+  .activity-time {
+    display: inline-block;
+    font-size: 0.8em;
+    color: $grey;
+    margin-left: 10px;
+  }
+
+}

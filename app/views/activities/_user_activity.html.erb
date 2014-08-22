@@ -1,16 +1,18 @@
-<li class="list-item">
-<!--   <div class="wrapper">
-    <a href="<%#= presenter.url %>" title="<%#= presenter.name %>">
+<li class="list-item small <%= activity.type %>">
+  <div class="wrapper">
+    <a href="<%= activity.url %>" title="<%= activity.name %>">
       <div class="item-avatar">
-        <%#= presenter.avatar %>
+        <%= activity.avatar %>
       </div>
     </a>
     <div class="item">
-      <a href="<%#= presenter.url %>" title="<%#= presenter.name %>">
-        <h2 class="item-title"><%#= presenter.title %></h2>
-        <p class="item-excerpt"><%#= presenter.description %></p>
-      </a>
+      <div class="activity-event">
+        <span class="event-name"><%= activity.event %></span>
+        <%= activity.headline %>
+      </div>
+      <time class="activity-time" datetime="<%= activity.time.to_datetime.rfc3339 %>">
+        <%= activity.time_ago %>
+      </time>
     </div>
-  </div> -->
-  <%= activity.attributes %>
+  </div>
 </li>

@@ -1,0 +1,11 @@
+en:
+  activities:
+
+    empty: "There are no activity recorded for this user yet"
+
+    changes: "%{changes} on"
+
+    event:
+      update: 'updated'
+      create: 'created'
+      delete: 'deleted'

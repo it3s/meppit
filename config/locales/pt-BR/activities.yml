@@ -1,0 +1,11 @@
+pt-BR:
+  activities:
+
+    empty: "Não há registro de atividade para este usuário ainda"
+
+    changes: "%{changes} em"
+
+    event:
+      update: 'atualizou'
+      create: 'criou'
+      delete: 'deletou'

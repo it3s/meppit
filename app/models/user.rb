@@ -41,6 +41,6 @@ class User < ActiveRecord::Base
   end
 
   def activities_performed
-    PublicActivity::Activity.where(owner: self).order('created_at desc')
+    PublicActivity::Activity.where(owner: self).includes(:trackable).order('created_at desc')
   end
 end

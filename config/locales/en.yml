@@ -9,6 +9,7 @@ en:
   before: "Before"
   after: "After"
   by: 'by'
+  profile: 'profile'
 
   empty_location: "Loocation not provided yet"
 
