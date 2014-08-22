@@ -47,6 +47,7 @@ Meppit::Application.routes.draw do
                     concerns: [:contributor, :followable, :follower] do
     member do
       get :activate
+      get "activity" => "activities#user_activity"
     end
 
     collection do

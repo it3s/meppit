@@ -1,4 +1,17 @@
-<div id="activity">
-  Activity Placeholder
-  <%= activities.map { |a| a } %>
+<div id="activity" data-components="list" data-list='{"scroll": {"behavior": "local"}}'>
+  <div id="activities-pagination"><%= paginate activities, :remote => true,
+    :params => {:controller => 'activities', :action => 'user_activity', :user_id => user.id} %></div>
+  <ul id="activities-list" class="list activities-list">
+    <% if activities.empty? %>
+
+      <p><%= t 'activities.empty', {name: user.name} %></p>
+
+    <% else %>
+
+      <% activities.each do |activity| %>
+        <%= render 'activities/user_activity', activity: activity %>
+      <% end %>
+
+    <% end %>
+  </ul>
 </div>
