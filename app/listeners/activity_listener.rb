@@ -1,37 +1,42 @@
 class ActivityListener
 
+  IGNORE_KEYS = ["updated_at", "created_at", "administrator_id"]
+  REMOVE_VALS = ["avatar"]
+
   def geo_data_created(payload)
-    puts "on geo_data_created"
-    save_activity payload[:geo_data], :create, payload[:current_user]
+    save_activity payload, :geo_data, :create
   end
 
   def geo_data_updated(payload)
-    puts "on geo_data_updated"
-    save_activity payload[:geo_data], :update, payload[:current_user]
+    save_activity payload, :geo_data, :update
   end
 
 
   def map_created(payload)
-    puts "on map_created"
-    save_activity payload[:map], :create, payload[:current_user]
+    save_activity payload, :map, :create
   end
 
   def map_updated(payload)
-    puts "on map_updated"
-    save_activity payload[:map], :update, payload[:current_user]
+    save_activity payload, :map, :update
   end
 
   def user_updated(payload)
-    puts "user_updated"
-    save_activity payload[:user], :update, payload[:current_user]
+    save_activity payload, :user, :update
   end
 
   private
 
-    def save_activity(trackable, action, user)
-      activity = trackable.create_activity :create, owner: user
-      puts "SAVE ACTIVITY"
-      puts activity, activity.attributes
+    def save_activity(params, key, action)
+      trackable = params[key]
+      changes = cleaned_changes(params)
+
+      trackable.create_activity(action, owner: params[:current_user], parameters: {changes: changes}) unless changes.empty?
+    end
+
+    def cleaned_changes
+      changes = payload[:changes].except(*IGNORE_KEYS)
+      REMOVE_VALS.each { |key| changes[key] = ["", ""] if changes[key] }
+      changes
     end
 end
 

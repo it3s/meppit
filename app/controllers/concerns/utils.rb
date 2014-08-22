@@ -27,10 +27,11 @@ module Utils
 
   def save_object(obj, params_hash)
     obj.assign_attributes(params_hash)
+    changes = obj.changes
     if obj.valid? && obj.save
       obj_name = obj.class.name.underscore
       event_type = params[:action] == 'create' ? 'created' : 'updated'
-      EventBus.publish "#{obj_name}_#{event_type}", obj_name.to_sym => obj, current_user: current_user
+      EventBus.publish "#{obj_name}_#{event_type}", obj_name.to_sym => obj, current_user: current_user, changes: changes
       flash[:notice] = t('flash.saved')
       render json: {redirect: polymorphic_path([obj])}
     else
