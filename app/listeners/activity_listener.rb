@@ -33,8 +33,9 @@ class ActivityListener
       trackable.create_activity(action, owner: params[:current_user], parameters: {changes: changes}) unless changes.empty?
     end
 
-    def cleaned_changes
-      changes = payload[:changes].except(*IGNORE_KEYS)
+    def cleaned_changes(params)
+      return {} unless params[:changes]
+      changes = params[:changes].except(*IGNORE_KEYS)
       REMOVE_VALS.each { |key| changes[key] = ["", ""] if changes[key] }
       changes
     end
