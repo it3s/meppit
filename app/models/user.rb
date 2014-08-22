@@ -39,4 +39,8 @@ class User < ActiveRecord::Base
   def geojson_properties
     {name: name, id: id}
   end
+
+  def activities_performed
+    PublicActivity::Activity.where(owner: self).order('created_at desc')
+  end
 end
