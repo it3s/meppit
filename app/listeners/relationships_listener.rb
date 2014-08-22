@@ -1,9 +1,19 @@
 class RelationshipsListener
 
   def geo_data_updated(payload)
-    geo_data = payload[:geo_data]
-    geo_data.save_relations_from_attributes if geo_data.relations_attributes
+    save_relation payload[:geo_data]
   end
 
+  def geo_data_created(payload)
+    save_relation payload[:geo_data]
+  end
+
+  private
+
+    def save_relation(geo_data)
+      puts "on save_relation"
+      binding.pry
+      geo_data.save_relations_from_attributes if geo_data.relations_attributes
+    end
 end
 
