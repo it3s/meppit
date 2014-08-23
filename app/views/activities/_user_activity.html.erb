@@ -7,12 +7,14 @@
     </a>
     <div class="item">
       <div class="activity-event">
-        <span class="event-name"><%= activity.event %></span>
-        <%= activity.headline %>
+        <%= activity.event %>
       </div>
       <time class="activity-time" datetime="<%= activity.time.to_datetime.rfc3339 %>">
         <%= activity.time_ago %>
       </time>
+      <div class="activity-changes">
+        <%= activity.changes %>
+      </div>
     </div>
   </div>
 </li>

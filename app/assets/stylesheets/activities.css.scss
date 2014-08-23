@@ -1,12 +1,4 @@
 .activities-list {
-  .empty {
-    font-size: 1.6em;
-    font-weight: bold;
-    color: $grey;
-    text-align: center;
-    margin-top: 120px;
-  }
-
   .list-item {
 
     &.small .item { width: 570px; }
@@ -27,7 +19,7 @@
     }
   }
 
-  .event-name {
+  .event-type {
     font-weight: bold;
   }
 
@@ -42,4 +34,9 @@
     margin-left: 10px;
   }
 
+  .activity-changes {
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: $grey;
+  }
 }

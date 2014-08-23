@@ -30,14 +30,10 @@ class ActivityPresenter
 
   def changes
     changeset = object.parameters[:changes]
-    changeset.nil? || changeset.empty?  ? "" : changeset.keys.to_sentence
-  end
-
-  def headline
-    if type == :user
-      ctx.link_to(ctx.t("profile"), url, class: "trackable").html_safe
+    if changeset.nil? || changeset.empty?
+      ""
     else
-      "#{ctx.t 'activities.changes', changes: changes} #{ctx.link_to name, url, class: "trackable"}".html_safe
+      ctx.icon("edit", changeset.keys.to_sentence).html_safe
     end
   end
 
@@ -50,7 +46,19 @@ class ActivityPresenter
   end
 
   def event
+    "<span class=\"event-type\">#{ event_type }</span> #{headline}".html_safe
+  end
+
+  def event_type
     ctx.t "activities.event.#{object.key.split('.').last}"
   end
 
+  def user?
+    type == :user
+  end
+
+  def headline
+    text = user? ? ctx.t("profile") : name
+    ctx.link_to(text, url, class: "trackable").html_safe
+  end
 end
