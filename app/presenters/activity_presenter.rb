@@ -20,6 +20,8 @@ class ActivityPresenter
   end
 
   def avatar
+    return ctx.image_tag trackable.avatar.thumb.url if trackable.try(:avatar) && !user_itself?
+
     case type
     when :map      then ctx.icon :globe
     when :geo_data then ctx.icon :'map-marker'
@@ -53,12 +55,12 @@ class ActivityPresenter
     ctx.t "activities.event.#{object.key.split('.').last}"
   end
 
-  def user?
-    type == :user
+  def user_itself?
+    type == :user && trackable.id == object.owner.id
   end
 
   def headline
-    text = user? ? ctx.t("profile") : name
+    text = user_itself? ? ctx.t("profile") : name
     ctx.link_to(text, url, class: "trackable").html_safe
   end
 end

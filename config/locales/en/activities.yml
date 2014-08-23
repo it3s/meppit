@@ -7,3 +7,4 @@ en:
       update: 'updated'
       create: 'created'
       delete: 'deleted'
+      follow: 'followed'

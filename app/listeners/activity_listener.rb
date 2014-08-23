@@ -24,13 +24,17 @@ class ActivityListener
     save_activity payload, :user, :update
   end
 
+  def followed(payload)
+    save_activity payload, :object, :follow
+  end
+
   private
 
     def save_activity(params, key, action)
       trackable = params[key]
       changes = cleaned_changes(params)
 
-      trackable.create_activity(action, owner: params[:current_user], parameters: {changes: changes}) unless changes.empty?
+      trackable.create_activity action, owner: params[:current_user], parameters: {changes: changes}
     end
 
     def cleaned_changes(params)
