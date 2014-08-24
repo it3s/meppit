@@ -4,7 +4,7 @@ class NotificationWorker
   def perform(activity_id)
     activity = PublicActivity::Activity.find(activity_id).includes(:trackable)
     users_to_receive_notification(activity.trackable).each do |user|
-      Notification.create activity: activity, user: user
+      Notification.create activity: activity, user: user if user != activity.owner
     end
   end
 
