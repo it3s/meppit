@@ -50,6 +50,7 @@
     cursor: pointer;
     display: inline-block;
     text-align: center;
+    vertical-align: top;
 
     a {
       display: block;
@@ -106,6 +107,19 @@
       a {
         color: lighten($text-color, 30%);
         &:hover { color: $text-color; }
+      }
+      .notifications-count {
+        display: inline-block;
+        position: relative;
+        right: -10px;
+        top: -40px;
+        height: 16px;
+        min-width: 16px;
+        border-radius: 8px;
+        font-size: 0.8em;
+        padding-top: 2px;
+        background-color: $dark-red;
+        color: white;
       }
     }
 
@@ -177,6 +191,10 @@
       margin-right: 5px;
     }
   }
+}
+
+.notifications-tooltip {
+  font-size: $base-font-size;
 }
 
 .language-selector {
