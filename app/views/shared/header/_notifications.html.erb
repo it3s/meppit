@@ -1,8 +1,4 @@
-<%= link_to_tooltip icon('bell'), '#notifications-tooltip-tpl' %>
-<div class="notifications-count">5</div>
-
-<template id="notifications-tooltip-tpl">
-  <ul class="notifications-tooltip">
-    LIST of notifications
-  </ul>
-</template>
+<%= link_to_modal icon('bell'), notifications_path, remote: true %>
+<% if notifications_count > 0 %>
+  <div class="notifications-count"><%= notifications_count %></div>
+<% end %>

@@ -53,4 +53,8 @@ module ApplicationHelper
       polymorphic_path([:export, obj], format: format)
     end
   end
+
+  def notifications_count
+    Notification.where(user: current_user, status: "unread").count
+  end
 end
