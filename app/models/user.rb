@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   include Followable
   include Follower
   include Searchable
+  include PublicActivity::Common
 
   mount_uploader :avatar, AvatarUploader
   process_in_background :avatar
@@ -37,5 +38,9 @@ class User < ActiveRecord::Base
 
   def geojson_properties
     {name: name, id: id}
+  end
+
+  def activities_performed
+    PublicActivity::Activity.where(owner: self).includes(:trackable, :owner).order('created_at desc')
   end
 end

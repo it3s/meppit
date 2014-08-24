@@ -37,6 +37,12 @@ describe FollowingsController do
       expect(response.status).to eq 422
       expect(response.body).to match not_ok_response
     end
+
+    it "publish_followed_event after action" do
+      expect(EventBus).to receive("publish").with("followed", object: geo_data, current_user: user)
+      post :create, params
+      expect(response.status).to eq 200
+    end
   end
 
   describe "DELETE destroy" do

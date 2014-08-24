@@ -15,7 +15,7 @@ class ObjectsController < ApplicationController
   end
 
   def create
-    update_object current_object, cleaned_params
+    save_object current_object, cleaned_params
   end
 
   def show
@@ -25,7 +25,7 @@ class ObjectsController < ApplicationController
   end
 
   def update
-    update_object current_object, cleaned_params
+    save_object current_object, cleaned_params
   end
 
   def search_by_name

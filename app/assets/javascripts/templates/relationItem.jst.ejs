@@ -1,14 +1,14 @@
 <div class="relation-item" data-rel-index="<%= index %>">
   <input type="hidden" name="relation_id" class="relation_id" />
 
-  <select name="relations_type_<%= index%>" class="relation_type" >
+  <select class="relation_type" >
     <option value=""> </option>
     <% _.each(options, function(opt) { %>
       <option value="<%= opt[1] %>"><%= opt[0] %></option>
     <% }); %>
   </select>
 
-  <input type="hidden" name="relations_target_<%= index%>" class="relation_target"
+  <input type="hidden" class="relation_target"
       id="relation_target_<%= index %>-autocomplete"/>
   <input type="text" class="relation_target_autocomplete" placeholder="<%= autocomplete_placeholder %>"
       data-components="autocomplete"

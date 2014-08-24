@@ -78,4 +78,20 @@ describe User do
       expect(user.geojson_properties).to have_key(:id)
     end
   end
+
+  describe "activities_performed" do
+    let(:geo_data) { FactoryGirl.create :geo_data }
+    let(:map) { FactoryGirl.create :map }
+
+    before do
+      geo_data.create_activity :update, owner: user
+      map.create_activity :follow, owner: user
+    end
+
+    it { expect(user.activities_performed.count).to eq 2 }
+    it { expect(user.activities_performed.first.trackable).to eq map }
+    it { expect(user.activities_performed.first.key).to eq 'map.follow' }
+    it { expect(user.activities_performed.last.trackable).to eq geo_data }
+    it { expect(user.activities_performed.last.key).to eq 'geo_data.update' }
+  end
 end

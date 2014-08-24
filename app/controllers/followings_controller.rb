@@ -2,6 +2,7 @@ class FollowingsController < ApplicationController
 
   before_action :require_login, except: [:followers, :following]
   before_action :find_followable
+  after_action  :publish_followed_event, only: [:create]
 
   def create
     follow_button_json_response @followable.add_follower(current_user)
@@ -33,5 +34,9 @@ class FollowingsController < ApplicationController
       else
         render json: {ok: false}, status: :unprocessable_entity
       end
+    end
+
+    def publish_followed_event
+      EventBus.publish "followed", object: @followable, current_user: current_user if response.ok?
     end
 end

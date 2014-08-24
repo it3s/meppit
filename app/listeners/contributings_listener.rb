@@ -4,7 +4,15 @@ class ContributingsListener
     save_contribution payload[:geo_data], payload[:current_user]
   end
 
+  def geo_data_created(payload)
+    save_contribution payload[:geo_data], payload[:current_user]
+  end
+
   def map_updated(payload)
+    save_contribution payload[:map], payload[:current_user]
+  end
+
+  def map_created(payload)
     save_contribution payload[:map], payload[:current_user]
   end
 

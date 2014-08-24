@@ -163,16 +163,16 @@ describe ApplicationController do
       end
     end
 
-    describe "#update_object" do
+    describe "#save_object" do
       let(:geo_data) { FactoryGirl.create :geo_data }
       let(:user) { FactoryGirl.create :user }
 
       before { controller.stub(:current_user).and_return user }
 
       it "expects to send updated event to EventBus" do
-        expect(EventBus).to receive(:publish).with("geo_data_updated", geo_data: geo_data, current_user: user)
+        expect(EventBus).to receive(:publish).with("geo_data_updated", geo_data: geo_data, current_user: user, changes: anything)
         expect(controller).to receive(:render).with(json: {redirect: controller.geo_data_path(geo_data)})
-        controller.send :update_object, geo_data, {name: 'new name'}
+        controller.send :save_object, geo_data, {name: 'new name'}
       end
     end
 

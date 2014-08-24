@@ -78,7 +78,7 @@ describe MapsController do
     end
 
     it "publishes map_updated to EventBus" do
-      expect(EventBus).to receive(:publish).with("map_updated", anything)
+      expect(EventBus).to receive(:publish).with("map_created", anything)
       post :create, {:map => map_params}
     end
 

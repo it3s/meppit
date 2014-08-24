@@ -1,0 +1,13 @@
+<div id="contributions" data-components="list" data-list='{"scroll": {"behavior": "local"}}'>
+  <div id="contributions-pagination">
+    <%= paginate contributions, remote: true,
+      params: {controller: 'contributings', action: 'contributions', user_id: user.id} %>
+  </div>
+  <ul id="contributions-list" class="list contributions-list">
+    <% unless contributions.empty? %>
+      <%= render contributions, :size => :small %>
+    <% else %>
+      <p><%= t 'contributings.empty.contributions' %></p>
+    <% end %>
+  </ul>
+</div>

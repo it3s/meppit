@@ -46,9 +46,10 @@ gem 'paper_trail'                   # model versioning
 gem 'differ'                        # build diffs
 gem 'safe_yaml', require: false     # safe yaml loading
 gem "active_model_serializers", "~> 0.8.0"  # model serializer
+gem 'public_activity'               # record users activity
 
-gem 'better_errors'               # better error page, and shell session when crash
-gem 'binding_of_caller'           # used by better_errors
+gem 'better_errors'                 # better error page, and shell session when crash
+gem 'binding_of_caller'             # used by better_errors
 
 group :doc do
   gem 'sdoc', require: false

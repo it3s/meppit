@@ -6,6 +6,7 @@ class Map < ActiveRecord::Base
   include Mappable
   include Searchable
   include Exportable
+  include PublicActivity::Common
 
   belongs_to :administrator, class_name: 'User'
 
