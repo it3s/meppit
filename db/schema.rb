@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140821180533) do
+ActiveRecord::Schema.define(version: 20140824163916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,14 @@ ActiveRecord::Schema.define(version: 20140821180533) do
   add_index "maps", ["administrator_id"], :name => "index_maps_on_administrator_id"
   add_index "maps", ["tags"], :name => "index_maps_on_tags"
 
+  create_table "notifications", force: true do |t|
+    t.integer "user_id",                        null: false
+    t.integer "activity_id",                    null: false
+    t.string  "status",      default: "unread", null: false
+  end
+
+  add_index "notifications", ["user_id"], :name => "index_notifications_on_user_id"
+
   create_table "pg_search_documents", force: true do |t|
     t.text     "content"
     t.integer  "searchable_id"
@@ -172,11 +180,12 @@ ActiveRecord::Schema.define(version: 20140821180533) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token"
 
   create_table "versions", force: true do |t|
-    t.string   "item_type",  null: false
-    t.integer  "item_id",    null: false
-    t.string   "event",      null: false
+    t.string   "item_type",      null: false
+    t.integer  "item_id",        null: false
+    t.string   "event",          null: false
     t.string   "whodunnit"
     t.text     "object"
+    t.text     "object_changes"
     t.datetime "created_at"
   end
 
