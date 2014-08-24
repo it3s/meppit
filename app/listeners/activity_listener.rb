@@ -11,7 +11,6 @@ class ActivityListener
     save_activity payload, :geo_data, :update
   end
 
-
   def map_created(payload)
     save_activity payload, :map, :create
   end
