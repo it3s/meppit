@@ -46,6 +46,11 @@ describe ActivityListener do
         expect(activity.trackable).to eq geo_data
         expect(activity.owner).to eq user
       end
+
+      it "build_notifications" do
+        expect(Notification).to receive(:build_notifications)
+        listener.send :save_activity, {geo_data: geo_data, current_user: user}, :geo_data, :update
+      end
     end
 
     describe "cleaned_changes" do
