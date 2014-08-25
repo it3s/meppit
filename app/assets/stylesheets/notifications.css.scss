@@ -10,6 +10,10 @@
 
       .item-avatar {
         background-color: $meppit-dark-green;
+
+        img {
+          border: solid 1px $meppit-dark-green;
+        }
       }
     }
 
@@ -23,6 +27,15 @@
       padding-top: 1px;
       position: relative;
       left: -12px;
+
+      img {
+        width: 1em;
+        height: auto;
+        border-radius: 0.5em;
+        position: relative;
+        top: -2px;
+        left: -4px;
+      }
     }
     .notification-event {
       display: inline-block;

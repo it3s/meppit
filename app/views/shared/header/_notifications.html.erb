@@ -1,4 +1,4 @@
-<%= link_to_modal icon('bell'), notifications_path, remote: true %>
+<%= link_to_modal icon('bell'), notifications_path, remote: true, html: {id: 'notifications-modal'} %>
 <% if notifications_count > 0 %>
   <div class="notifications-count"><%= notifications_count %></div>
 <% end %>

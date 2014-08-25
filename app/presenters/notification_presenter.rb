@@ -16,7 +16,7 @@ class NotificationPresenter
   end
 
   def name
-    trackable.name
+    type == :user ? ctx.t("profile") : trackable.name
   end
 
   def url
