@@ -5,7 +5,7 @@
         <%= notification.avatar %>
       </div>
     </a>
-    <div class="item">
+    <div class="item" data-notification-id="<%= notification.id %>">
       <div class="notification-event">
         <%= link_to notification.author.name, user_path(notification.author) %>
         <span class="event-type"><%= notification.event_type %></span>

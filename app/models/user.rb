@@ -45,6 +45,6 @@ class User < ActiveRecord::Base
   end
 
   def notifications
-    Notification.includes(:user, activity: [:trackable, :owner]).where(user: self).order('created_at desc')
+    Notification.includes(activity: [:trackable, :owner]).where(user: self).order('created_at desc')
   end
 end
