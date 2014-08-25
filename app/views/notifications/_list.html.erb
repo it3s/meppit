@@ -1,0 +1,17 @@
+<div id="notifications" data-components="list" data-list='{"scroll": {"behavior": "local"}}'>
+  <div id="notifications-pagination"><%= paginate notifications, :remote => true,
+    :params => {:controller => 'notifications', :action => 'notifications'} %></div>
+  <ul id="notifications-list" class="list notifications-list">
+    <% if notifications.empty? %>
+
+      <p class="empty"><%= t 'notifications.empty' %></p>
+
+    <% else %>
+
+      <% notifications.each do |notification| %>
+        <%= render 'notifications/notification', notification:  NotificationPresenter.new(object: notification, ctx: self) %>
+      <% end %>
+
+    <% end %>
+  </ul>
+</div>

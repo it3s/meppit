@@ -1,5 +1,1 @@
-Notifications
-
-<% @notifications.each do |notif| %>
-  <%= notif.attributes %>
-<% end %>
+<%= render 'notifications/list', notifications: @notifications %>

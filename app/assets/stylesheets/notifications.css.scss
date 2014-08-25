@@ -1,0 +1,44 @@
+.notifications-list {
+  border-left: solid 2px $soft-grey;
+
+  .list-item.notification {
+    border-bottom: none;
+
+    &.unread {
+      background-color: lighten($meppit-blue, 5%);
+      &:hover { background-color: lighten($meppit-blue, 15%); }
+
+      .item-avatar {
+        background-color: $meppit-dark-green;
+      }
+    }
+
+    .item { width: 92%; }
+
+    .item-avatar {
+      font-size: 1.2em;
+      height: 1.4em;
+      width: 1.4em;
+      border-radius: 0.7em;
+      padding-top: 1px;
+      position: relative;
+      left: -12px;
+    }
+    .notification-event {
+      display: inline-block;
+      .event-type { font-weight: bold; }
+    }
+    .notification-time {
+      display: inline-block;
+      font-size: 0.8em;
+      color: $grey;
+      margin-left: 10px;
+    }
+    .notification-changes {
+      margin-top: 5px;
+      font-size: 0.9em;
+      color: $grey;
+    }
+  }
+
+}
