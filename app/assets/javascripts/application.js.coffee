@@ -14,6 +14,7 @@
 #= require_tree ./components
 
 onReady = ->
+  App.faye = new Faye.Client(fayeUrl)
   App.mediator.publish('components:start')
 
 $(document).ready onReady

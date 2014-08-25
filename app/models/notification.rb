@@ -8,4 +8,10 @@ class Notification < ActiveRecord::Base
     _id = activity.is_a?(PublicActivity::Activity) ? activity.id : activity
     NotificationWorker.perform_async(_id)
   end
+
+  def self.publish(channel, data)
+    message = {channel: channel, data: data}
+    uri = URI.parse(ENV['FAYE_URL'])
+    Net::HTTP.post_form(uri, message: message.to_json)
+  end
 end

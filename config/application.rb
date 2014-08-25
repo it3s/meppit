@@ -8,6 +8,7 @@ require 'safe_yaml/load'
 SafeYAML::OPTIONS[:default_mode] = :safe
 
 require 'csv'
+require 'net/http'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.

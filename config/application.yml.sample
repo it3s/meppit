@@ -8,6 +8,8 @@ development:
   FACEBOOK_SECRET: ""
   GOOGLE_KEY: ""
   GOOGLE_SERCRET: ""
+  FAYE_URL: "http://localhost:9292/faye"
+  FAYE_JS: "http://localhost:9292/faye.js"
 
 test:
   FIXED_SALT: "test-salt"
@@ -16,6 +18,8 @@ test:
   FACEBOOK_SECRET: ""
   GOOGLE_KEY: ""
   GOOGLE_SECRET: ""
+  FAYE_URL: "http://localhost:9292/faye"
+  FAYE_JS: "http://localhost:9292/faye.js"
 
 staging:
   SECRET_TOKEN: ""
@@ -27,7 +31,8 @@ staging:
   MAILGUN_API_KEY: ""
   MAILGUN_DOMAIN: ""
   MEPPIT_HOST: ""
-
+  FAYE_URL: ""
+  FAYE_JS: ""
 
 production:
   SECRET_TOKEN: ""
@@ -39,4 +44,5 @@ production:
   MAILGUN_API_KEY: ""
   MAILGUN_DOMAIN: ""
   MEPPIT_HOST: ""
-
+  FAYE_URL: ""
+  FAYE_JS: ""

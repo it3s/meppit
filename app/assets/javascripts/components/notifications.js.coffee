@@ -6,10 +6,14 @@ App.components.notifications = ->
   initialize: ->
     @toggleCounter()
     App.mediator.subscribe "modal:afterOpen", @onModalOpen.bind(this)
+    App.faye.subscribe "/notifications/#{@attr.userId}", @onNotified.bind(this)
 
   onModalOpen: (evt, data) ->
     if data.identifier is @attr.modalId
       @markAsRead()
+
+  onNotified: (data) ->
+    console.log("notified", data)
 
   markAsRead: ->
     ids = @unreadIds()
