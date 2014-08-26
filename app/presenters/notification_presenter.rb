@@ -16,7 +16,11 @@ class NotificationPresenter
   end
 
   def name
-    type == :user ? ctx.t("profile") : trackable.name
+    if type == :user
+      trackable.id == ctx.current_user.id ? ctx.t('you') : ctx.t("profile")
+    else
+      trackable.name
+    end
   end
 
   def id
