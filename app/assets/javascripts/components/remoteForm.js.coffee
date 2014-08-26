@@ -1,6 +1,10 @@
 App.components.remoteForm = ->
   initialize: ->
     @on 'ajax:complete', @onAjaxComplete.bind(this)
+    @on 'submit', @onSubmit.bind(this)
+
+  onSubmit: ->
+    App.mediator.publish 'remoteForm:beforeSubmit', @container
 
   onAjaxComplete: (el, response) ->
     callback = if parseInt(response.status, 10) is 200 then @onSuccess else @onError

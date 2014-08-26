@@ -94,6 +94,10 @@ module Utils
     )
   end
 
+  def cleaned_location(_params)
+    RGeo::GeoJSON.decode(_params[:location], json_parser: :json).try(:'[]', 0).try(:geometry)
+  end
+
   def flash_xhr(msg)
     flash.now[:notice] = msg
     render_to_string(partial: 'shared/alerts')

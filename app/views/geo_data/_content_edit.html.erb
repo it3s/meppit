@@ -16,6 +16,7 @@
     </div>
 
     <div class="tab-content" id="content">
+      <%= f.input :location, :as => :hidden %>
       <div class="description">
         <%= f.input :description, :as => :text, :input_html => {:class => 'tinymce', 'data-components' => 'editor'} %>
       </div>

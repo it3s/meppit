@@ -21,4 +21,8 @@ class GeoData < ActiveRecord::Base
   def geojson_properties
     active_model_serializer.new(self).serializable_hash.except(:location)
   end
+
+  def has_location
+    self.location.try(:is_empty?) == false
+  end
 end
