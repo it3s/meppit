@@ -36,4 +36,8 @@ class Map < ActiveRecord::Base
   def geo_data_features
     geo_data.all.map { |data| ::GeoJSON::feature_from_model data }
   end
+
+  def geo_data_ids
+    geo_data.all.map { |data| data.id }
+  end
 end
