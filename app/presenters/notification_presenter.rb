@@ -13,7 +13,7 @@ class NotificationPresenter
 
   def avatar
     if its_you?
-      author.try(:avatar) ? ctx.image_tag(author.avatar.thumb.url) : ctx.icon(:user)
+      author.try(:avatar?) ? ctx.image_tag(author.avatar.thumb.url) : ctx.icon(:user)
     else
       activity.avatar
     end
