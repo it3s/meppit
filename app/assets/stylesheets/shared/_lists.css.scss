@@ -99,7 +99,16 @@ nav.pagination { display: none; }  // We are using infinite scroll
 }
 
 .site-page.index {
-  .list-headline { border-bottom: solid 1px $ultra-soft-grey; }
+  .list-headline {
+    border-bottom: solid 1px $ultra-soft-grey;
+
+    .selected-count {
+      display: inline-block;
+      font-size: 0.8em;
+      color: $soft-grey;
+      margin-left: 10px;
+    }
+  }
 
   .list-actions {
     padding: 10px 0;

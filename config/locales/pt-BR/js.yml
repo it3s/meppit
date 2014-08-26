@@ -4,11 +4,19 @@ pt-BR:
       select_image: 'Selecionar imagem'
       uploading: 'carregando... '
       uploaded: 'Arquivo carregado. Atualize ou salve'
+
     modal:
       close: 'Fechar'
+
     tags:
       placeholder: 'Adicionar palavra-chave'
+
     followings:
       following: 'Seguindo'
       follow: 'Seguir'
       unfollow: 'Deixar de seguir'
+
+    lists:
+      selected:
+        one: '(1 selecionado)'
+        other: '(%{count} selecionados)'

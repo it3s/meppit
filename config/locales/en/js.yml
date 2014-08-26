@@ -4,11 +4,19 @@ en:
       select_image: 'Select Image'
       uploading: 'uploading... '
       uploaded: 'File Uploaded. Refresh or Save'
+
     modal:
       close: 'Close'
+
     tags:
       placeholder: 'Add tag'
+
     followings:
       following: 'Following'
       follow: 'Follow'
       unfollow: 'Unfollow'
+
+    lists:
+      selected:
+        one: '(1 selected)'
+        other: '(%{count} selected)'
