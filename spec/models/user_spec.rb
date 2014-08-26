@@ -94,4 +94,16 @@ describe User do
     it { expect(user.activities_performed.last.trackable).to eq geo_data }
     it { expect(user.activities_performed.last.key).to eq 'geo_data.update' }
   end
+
+  describe "notifications" do
+    let(:user) { FactoryGirl.create :user }
+    let(:other_user) { FactoryGirl.create :user, name: 'other' }
+    let(:geo_data) { FactoryGirl.create :geo_data }
+    let(:activity) { geo_data.create_activity :update, owner: other_user, parameters: {changes: {"name"=>["", geo_data.name]}} }
+    let!(:notification) { Notification.create user: user, activity: activity }
+
+    it { expect(user.notifications.count).to eq 1 }
+    it { expect(user.notifications.first).to eq notification }
+    it { expect(user.notifications.explain).to match 'created_at desc' }
+  end
 end
