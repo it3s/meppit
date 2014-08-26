@@ -13,7 +13,7 @@ App.components.notifications = ->
       @markAsRead()
 
   onNotified: (data) ->
-    console.log("notified", data)
+    @setCounter data.count
 
   markAsRead: ->
     ids = @unreadIds()
