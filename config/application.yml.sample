@@ -1,5 +1,6 @@
 SECRET_TOKEN: "b82bbcb5a636bb565472f407d98a339b2d08d3c60cafdc7cc56f5fc625650d5c8f13e90fd84eb89c2ddf8ebddc031db0c098a8766869000cc56b119874462dcf"
 FIXED_SALT: "long and complicated salt goes here"
+FAYE_TOKEN: "token for faye authentication"
 
 development:
   PORT: 3000

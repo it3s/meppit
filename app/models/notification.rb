@@ -10,7 +10,7 @@ class Notification < ActiveRecord::Base
   end
 
   def self.publish(channel, data)
-    message = {channel: channel, data: data}
+    message = { channel: channel, data: data, ext: {auth_token: ENV['FAYE_TOKEN']} }
     uri = URI.parse(ENV['FAYE_URL'])
     Net::HTTP.post_form(uri, message: message.to_json)
   end
