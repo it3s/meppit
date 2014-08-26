@@ -10,6 +10,7 @@ en:
   after: "After"
   by: 'by'
   profile: 'profile'
+  you: 'you'
 
   empty_location: "Loocation not provided yet"
 

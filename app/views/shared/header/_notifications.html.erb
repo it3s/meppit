@@ -1,0 +1,3 @@
+<%= link_to_modal icon('bell'), notifications_path, remote: true, html: {id: 'notifications-modal'} %>
+<div class="notifications-count"><%= notifications_count %></div>
+<div id="notifications-manager" data-components="notifications" data-notifications-options='{"url":"<%= read_notifications_path %>","userId":<%= current_user.id %>}'></div>

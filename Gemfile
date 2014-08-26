@@ -11,6 +11,8 @@ gem 'rgeo'                          # geometry abstraction
 gem 'rgeo-geojson'                  # geojson encode/decode
 gem 'activerecord-postgis-adapter'  # postgis
 gem 'pg_search'                     # postgres fulltext search
+gem 'thin'                          # server to run faye
+gem 'faye'                          # realtime pub/sub
 
 gem 'coffee-rails', '~> 4.0.0'      # coffeescript
 gem 'uglifier', '>= 1.3.0'          # minify

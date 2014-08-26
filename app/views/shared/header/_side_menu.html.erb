@@ -1,7 +1,7 @@
 <ul class="side-menu">
   <% if logged_in? %>
     <li class="menu-item notifications">
-      <%= link_to icon('bell'), '#' %>
+      <%= render 'shared/header/notifications' %>
     </li>
     <li class="menu-item user-info">
       <%= render 'shared/header/user_info' %>

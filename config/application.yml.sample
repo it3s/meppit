@@ -1,5 +1,6 @@
 SECRET_TOKEN: "b82bbcb5a636bb565472f407d98a339b2d08d3c60cafdc7cc56f5fc625650d5c8f13e90fd84eb89c2ddf8ebddc031db0c098a8766869000cc56b119874462dcf"
 FIXED_SALT: "long and complicated salt goes here"
+FAYE_TOKEN: "token for faye authentication"
 
 development:
   PORT: 3000
@@ -8,6 +9,8 @@ development:
   FACEBOOK_SECRET: ""
   GOOGLE_KEY: ""
   GOOGLE_SERCRET: ""
+  FAYE_URL: "http://localhost:9292/faye"
+  FAYE_JS: "http://localhost:9292/faye.js"
 
 test:
   FIXED_SALT: "test-salt"
@@ -16,6 +19,8 @@ test:
   FACEBOOK_SECRET: ""
   GOOGLE_KEY: ""
   GOOGLE_SECRET: ""
+  FAYE_URL: "http://localhost:9292/faye"
+  FAYE_JS: "http://localhost:9292/faye.js"
 
 staging:
   SECRET_TOKEN: ""
@@ -27,7 +32,8 @@ staging:
   MAILGUN_API_KEY: ""
   MAILGUN_DOMAIN: ""
   MEPPIT_HOST: ""
-
+  FAYE_URL: ""
+  FAYE_JS: ""
 
 production:
   SECRET_TOKEN: ""
@@ -39,4 +45,5 @@ production:
   MAILGUN_API_KEY: ""
   MAILGUN_DOMAIN: ""
   MEPPIT_HOST: ""
-
+  FAYE_URL: ""
+  FAYE_JS: ""

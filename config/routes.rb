@@ -16,6 +16,9 @@ Meppit::Application.routes.draw do
 
   get  "export/help" => "pages#export_help",  as: :export_help
 
+  get  "notifications" => "notifications#notifications", as: :notifications
+  post "notifications/read" => "notifications#read", as: :read_notifications
+
   concern :contributable do
     get "contributors" => "contributings#contributors"
   end

@@ -33,7 +33,8 @@ class ActivityListener
       trackable = params[key]
       changes = cleaned_changes(params)
 
-      trackable.create_activity action, owner: params[:current_user], parameters: {changes: changes}
+      activity = trackable.create_activity action, owner: params[:current_user], parameters: {changes: changes}
+      Notification.build_notifications(activity)
     end
 
     def cleaned_changes(params)

@@ -1,2 +1,3 @@
 web: bundle exec rails s
+faye: rackup faye.ru -s thin -E production
 worker: bundle exec sidekiq -C config/sidekiq.yml
