@@ -40,8 +40,12 @@ App.components.map = ->
   edit: (feature) ->
     @map.edit feature, @updateInput.bind(this)
 
+  onDraw: (feature) ->
+   @updateInput()
+   @edit feature
+
   draw: (feature) ->
-    @map.draw feature, @updateInput.bind(this)
+    @map.draw feature, @onDraw.bind(this)
 
   updateInput: ->
     $(@attr.inputSelector).val JSON.stringify(@map.toSimpleGeoJSON())

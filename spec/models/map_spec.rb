@@ -79,6 +79,10 @@ describe Map do
       it { expect(map.geo_data_features.first).to be_a_kind_of RGeo::GeoJSON::Feature }
     end
 
+    describe "#geo_data_ids" do
+      it { expect(map.geo_data_ids).to eq [data1.id, data2.id] }
+    end
+
     describe "#location" do
       it "returns nil if geo_data_count is zero" do
         allow(map).to receive(:geo_data_count).and_return 0
