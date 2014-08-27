@@ -14,6 +14,7 @@ describe User do
   it { expect(subject).to have_db_column :about_me }
   it { expect(subject).to have_db_column :contacts }
   it { expect(subject).to have_db_column :avatar }
+  it { expect(subject).to have_db_column :location }
 
   it 'validates format of email' do
     user.email = 'invalidmail'

@@ -25,6 +25,14 @@ describe GeoData do
     it { expect(data.geojson_properties).to have_key(:name) }
   end
 
+  describe "#location_geojson" do
+    let(:geom) { RGeo::Cartesian.simple_factory.parse_wkt "GEOMETRYCOLLECTION (POINT (-10.000 -10.000))" }
+    let(:data) { FactoryGirl.create(:geo_data, location: geom) }
+
+    it { expect(data.location_geojson).to be_a String }
+    it { expect{ JSON.parse data.location_geojson }.to_not raise_error  }
+  end
+
   describe "mappings" do
     let(:geo_data) { FactoryGirl.create :geo_data }
     let(:map) { FactoryGirl.create :map }
@@ -107,6 +115,14 @@ describe GeoData do
           target:    {id: other.id, name: other.name },
           rel_type:  "partnership",
           direction: "dir",
+          metadata:  {},
+        })
+      }
+      it { expect(other.relations_values(splitted_type: true).first).to eq({
+          id:        relation.id,
+          target:    {id: geo_data.id, name: geo_data.name },
+          rel_type:  "partnership",
+          direction: "rev",
           metadata:  {},
         })
       }

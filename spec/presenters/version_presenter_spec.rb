@@ -7,6 +7,9 @@ describe VersionPresenter do
     changeset: {name: ["joh", "John"], about_me: ["", "hi"]},
     created_at: time ) }
   let(:presenter) { VersionPresenter.new object: version, ctx: double('ctx', t: '') }
+  let(:create) { double(whodunnit: user.id.to_s, event: "create",
+    created_at: time ) }
+  let(:presenter2) { VersionPresenter.new object: create, ctx: double('ctx', t: '') }
 
   describe "#author" do
     it { expect(presenter.author).to eq user }
@@ -52,5 +55,10 @@ describe VersionPresenter do
       expect(diff_items[:about_me].before).to eq ""
       expect(diff_items[:about_me].after).to eq "hi"
     end
+  end
+
+  describe "#created?" do
+    it { expect(presenter.created?).to be false }
+    it { expect(presenter2.created?).to be true }
   end
 end
