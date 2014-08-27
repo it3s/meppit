@@ -4,6 +4,7 @@
     <div class="list-headline">
       <h1 class="title">
         <%= raw t('maps.list.title', :count => "<em>#{@maps_collection.total_count}</em>") %>
+        <div class="selected-count"></div>
       </h1>
       <div id="map-pagination"><%= paginate @maps_collection, :remote => true %></div>
     </div>
