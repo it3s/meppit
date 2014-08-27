@@ -1,6 +1,13 @@
 <div class="site-page full map-list maps index">
   <div data-components="list">
 
+    <div class="list-filters">
+      <div class="filter-headline">
+        Visualization and filter options
+        <div class="expand"><%= icon 'chevron-down', 'expand' %></div>
+      </div>
+    </div>
+
     <div class="list-headline">
       <h1 class="title">
         <%= raw t('maps.list.title', :count => "<em>#{@maps_collection.total_count}</em>") %>

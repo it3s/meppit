@@ -99,6 +99,25 @@ nav.pagination { display: none; }  // We are using infinite scroll
 }
 
 .site-page.index {
+
+  .list-filters {
+    // @include meppit-box-shadow;
+    background-color: $meppit-light-blue;
+    border: $meppit-blue 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+
+    .filter-headline {
+      font-weight: bold;
+
+      .expand {
+        display: inline-block;
+        float: right;
+        cursor: pointer;
+      }
+    }
+  }
+
   .list-headline {
     border-bottom: solid 1px $ultra-soft-grey;
 
