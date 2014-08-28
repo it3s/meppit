@@ -7,7 +7,7 @@ describe ActivityPresenter do
   let(:obj) { geo_data }
 
   let(:ctx) { ApplicationController.new.view_context }
-  let(:activity) { obj.create_activity :update, owner: user, parameters: {changes: {"name"=>["bla", obj.name]}} }
+  let(:activity) { obj.create_activity :update, owner: user, parameters: {changes: {"name"=>["bla", obj.try(:name)]}} }
   let(:presenter) { ActivityPresenter.new object: activity, ctx: ctx }
 
   describe "#trackable" do
@@ -51,6 +51,11 @@ describe ActivityPresenter do
 
       it { expect(presenter.avatar).to eq "<img alt=\"Avatar placeholder\" src=\"/assets/imgs/avatar-placeholder.png\" />" }
     end
+    context "unknown" do
+      let(:obj) { map }
+      before {allow(presenter).to receive(:type).and_return :unknown }
+      it { expect(presenter.avatar).to eq ctx.icon(:question) }
+    end
   end
 
   describe "#changes" do
@@ -68,12 +73,24 @@ describe ActivityPresenter do
     it { expect(presenter.time.to_s).to eq presenter.object.created_at.to_s }
   end
 
+  describe "#url" do
+    it { expect(ctx).to receive(:url_for).with(obj); presenter.url }
+  end
+
   describe "#time_ago" do
     it { expect(ctx).to receive(:t).with('time_ago', time: anything); presenter.time_ago }
   end
 
   describe "#event_type" do
     it { expect(ctx).to receive(:t).with("activities.event.update"); presenter.event_type }
+  end
+
+  describe "#event" do
+    before {
+      allow(presenter).to receive(:event_type).and_return 'EVENTTYPE'
+      allow(presenter).to receive(:headline).and_return 'HEADLINE'
+    }
+    it { expect(presenter.event).to include('EVENTTYPE', 'HEADLINE') }
   end
 
   describe "#user_itself" do
