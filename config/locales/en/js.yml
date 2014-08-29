@@ -20,3 +20,6 @@ en:
       selected:
         one: '(1 selected)'
         other: '(%{count} selected)'
+
+      collapse: 'collapse'
+      expand: 'expand'

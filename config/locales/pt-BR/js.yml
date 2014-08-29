@@ -20,3 +20,6 @@ pt-BR:
       selected:
         one: '(1 selecionado)'
         other: '(%{count} selecionados)'
+
+      collapse: 'colapsar'
+      expand: 'expandir'

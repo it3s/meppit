@@ -110,10 +110,13 @@ nav.pagination { display: none; }  // We are using infinite scroll
     .filter-headline {
       font-weight: bold;
 
-      .expand {
+      .toggle-panel {
         display: inline-block;
         float: right;
         cursor: pointer;
+        width: 80px;
+
+        i { margin-right: 5px; }
       }
     }
   }

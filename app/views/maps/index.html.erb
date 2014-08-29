@@ -1,12 +1,12 @@
 <div class="site-page full map-list maps index">
   <div data-components="list">
 
-    <div class="list-filters">
+    <div class="list-filters" data-components="listFilter">
       <div class="filter-headline">
         Visualization and filter options
-        <div class="expand"><%= link_to icon('chevron-up', 'collapse'), '#filters', "data-components" => "togglePanel" %></div>
+        <div class="toggle-panel" data-toggle="expanded"><%= icon('chevron-up', t('js.lists.collapse')) %></div>
       </div>
-      <div idcd="filters">
+      <div class="filters">
         FILTERS FORM
       </div>
     </div>
