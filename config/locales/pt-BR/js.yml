@@ -21,5 +21,5 @@ pt-BR:
         one: '(1 selecionado)'
         other: '(%{count} selecionados)'
 
-      collapse: 'esconder painel de filtros'
-      expand: 'mostrar painel de filtros'
+      collapse: 'esconder filtros'
+      expand: 'mostrar filtros'

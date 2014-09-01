@@ -1,15 +1,7 @@
 <div class="site-page full map-list maps index">
   <div data-components="list">
 
-    <div class="list-filters" data-components="listFilter">
-      <div class="filter-headline">
-        <span class="title"><%= t 'lists.filters.title' %></span>
-        <div class="toggle-panel" data-toggle="collapsed"><%= icon('chevron-down', t('js.lists.expand')) %></div>
-      </div>
-      <div class="filters">
-        FILTERS FORM
-      </div>
-    </div>
+    <%= render 'shared/lists/filters' %>
 
     <div class="list-headline">
       <h1 class="title">

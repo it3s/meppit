@@ -120,17 +120,14 @@ nav.pagination { display: none; }  // We are using infinite scroll
         @include blue-button;
         display: inline-block;
         cursor: pointer;
-        width: 205px;
         padding: 4px 8px;
         position: absolute;
         right: 0;
-        text-align: right;
+        width: 150px;
 
-        i {
-          margin-right: 10px;
-          position: absolute;
-          left: 10px;
-        }
+        &.en { width: 120px; }
+
+        i { margin-right: 10px; }
       }
     }
 
