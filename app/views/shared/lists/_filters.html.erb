@@ -9,20 +9,20 @@
     <div class="filter-choices">
 
       <div class="choice">
-        <label>Filter by:</label>
-        <input type="checkbox" />tags
+        <label><%= t 'lists.filters.filter_by' %>:</label>
+        <span class="option"><input type="checkbox" name="filter_by" /><%= t 'lists.filters.tags' %></span>
       </div>
 
       <div class="choice">
-        <label>Sort by:</label>
-        <input type="radio">name
-        <input type="radio">date
+        <label><%= t 'lists.filters.sort_by' %>:</label>
+        <span class="option"><input type="radio" name="sort_by"><%= t 'lists.filters.name' %></span>
+        <span class="option"><input type="radio" name="sort_by"><%= t 'lists.filters.date' %></span>
       </div>
 
       <div class="choice">
-        <label>Visualization:</label>
-        <input type="radio">list
-        <input type="radio">map
+        <label><%= t 'lists.filters.visualization' %>:</label>
+        <span class="option"><input type="radio" name="visualization"><%= t 'lists.filters.list' %></span>
+        <span class="option"><input type="radio" name="visualization"><%= t 'lists.filters.map' %></span>
       </div>
     </div>
     <div class="filters-apply">

@@ -189,15 +189,31 @@ nav.pagination { display: none; }  // We are using infinite scroll
         .choice {
           display: inline-block;
           width: 30%;
+
+          label {
+            font-weight: bold;
+            margin-right: 10px;
+          }
+
+          input {
+            margin-right: 5px;
+            position: relative;
+            bottom: -3px;
+          }
+
+          .option {
+            margin-right: 15px;
+          }
         }
       }
 
       .filters-apply {
         position: relative;
         height: 1.8em;
+        margin-top: 10px;
 
         .apply-btn {
-          @include green-button;
+          @include blue-button;
           position: absolute;
           right: 0;
           padding: 4px 25px;

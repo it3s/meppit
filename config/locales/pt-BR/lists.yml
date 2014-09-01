@@ -5,4 +5,12 @@ pt-BR:
     filters:
       title: 'Visualização e opções de filtragem'
       apply: 'Aplicar'
+      filter_by: 'Filtrar por'
+      sort_by: 'Ordenar por'
+      visualization: 'Visualização'
+      tags: 'Palavras-chave'
+      name: 'Nome'
+      date: 'Data'
+      list: 'Lista'
+      map: 'Mapa'
 

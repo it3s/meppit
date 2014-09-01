@@ -5,3 +5,11 @@ en:
     filters:
       title: 'Visualization and filter options'
       apply: 'Apply'
+      filter_by: 'Filter by'
+      sort_by: 'Sort by'
+      visualization: 'Visualization'
+      tags: 'Tags'
+      name: 'Name'
+      date: 'Date'
+      list: 'List'
+      map: 'Map'
