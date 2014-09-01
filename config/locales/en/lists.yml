@@ -1,5 +1,6 @@
 en:
   lists:
+    select_all: 'Select All'
 
     filters:
       title: 'Visualization and filter options'

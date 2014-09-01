@@ -1,5 +1,6 @@
 pt-BR:
   lists:
+    select_all: 'Selecionar Todos'
 
     filters:
       title: 'Visualização e opções de filtragem'
