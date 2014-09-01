@@ -2,40 +2,97 @@
 
 App.components.map = ->
   geometrySelectorTemplate: JST['templates/mapGeometrySelector']
+  locationSelectorTemplate: JST['templates/mapLocationSelector']
 
   initialize: ->
-    if @attr.editor and not @attr.hasLocation
-      @startGeometrySelector()
-    else
-      @startMap()
+    @drawAssistenceSteps = [
+      @drawAssistenceGeometrySelection,
+      @drawAssistenceLocationSelection
+    ]
+    @startMap()
     @bindEvents()
+    if @attr.editor and not @attr.hasLocation
+      @startDrawAssistence()
 
-  startGeometrySelector: (opts) ->
-    @geometrySelectorEl = $ @geometrySelectorTemplate(opts)
-    @container.append @geometrySelectorEl
+  startDrawAssistence: ->
+    @mapEl.hide()
+    @drawAssistenceRemainingSteps = @drawAssistenceSteps.slice()
+    @drawAssistenceGoToNextStep()
+
+  drawAssistenceGoToNextStep: ->
+    step = @drawAssistenceSteps.shift()
+    if step
+      step.bind(this)()
+    else
+      @onFinishDrawAssistence()
+
+  drawAssistenceStepFinished:->
+    @drawAssistenceGoToNextStep()
+
+  onFinishDrawAssistence: ->
+    @mapEl.show()
+    @map.refresh()
+    setTimeout =>
+      @map.fit @drawAssistenceLocation
+      @draw @drawAssistenceGeometryType
+    , 100
+
+  drawAssistenceGeometrySelection: ->
+    @geometrySelectorEl = $ @geometrySelectorTemplate()
+    @container.prepend @geometrySelectorEl
     @bindGeometrySelectorEvents()
+
+  bindGeometrySelectorEvents: ->
+    @geometrySelectorEl.find('.option').click @onGeometrySelected.bind(this)
+
+  onGeometrySelected: (evt) ->
+    evt.preventDefault()
+    @drawAssistenceGeometryType =  $(evt.target).data 'geometry-type'
+    @geometrySelectorEl.hide()
+    @drawAssistenceStepFinished()
+
+  drawAssistenceLocationSelection: ->
+    @locationSelectorEl = $ @locationSelectorTemplate()
+    @locationSelectorQuestionEl =
+      @locationSelectorEl.find("#location-selector-question").show()
+    @locationSelectorInstructionsEl =
+      @locationSelectorEl.find("#location-selector-instructions").hide()
+    @container.prepend @locationSelectorEl
+    @bindLocationSelectorEvents()
+
+  bindLocationSelectorEvents: ->
+    @locationSelectorEl.find('.option').click @onLocationSelected.bind(this)
+
+  onLocationSelected: (evt) ->
+    evt.preventDefault()
+    @drawAssistenceIsNear = $(evt.target).data 'is-near'
+    onSuccess = (e) =>
+      console.log e
+      @drawAssistenceLocation = e.location
+      @locationSelectorEl.hide()
+      @drawAssistenceStepFinished()
+    if @drawAssistenceIsNear
+      @map.locate onSuccess
+      @locationSelectorQuestionEl.hide()
+      @locationSelectorInstructionsEl.show()
+    else
+      # TODO: add search option
+      @locationSelectorEl.hide()
+      @drawAssistenceStepFinished()
 
   startMap: ->
     L.Icon.Default.imagePath = '/assets'
     window.map = this
+    @mapEl = $('<div>').addClass('map-container')
+    @container.append @mapEl
     @map = new Meppit.Map
-      element: @container[0],
+      element: @mapEl[0],
       enableGeoJsonTile: false
       featureURL: '#{baseURL}geo_data/#{id}/export.geojson'
     feature = @attr.geojson or @attr.geoDataIds
     if feature
       @show feature
       @edit feature if @attr.editor
-
-  onSelectGeometry: (evt) ->
-    evt.preventDefault()
-    geometryType =  $(evt.target).data 'geometry-type'
-    @geometrySelectorEl.hide()
-    @startMap()
-    @draw geometryType
-
-  bindGeometrySelectorEvents: ->
-    @geometrySelectorEl.find('.option').click @onSelectGeometry.bind(this)
 
   edit: (feature) ->
     @map.edit feature, @updateInput.bind(this)
@@ -58,6 +115,7 @@ App.components.map = ->
       @map.done()
 
   expand: ->
+    @_originalScrollTop = $(window).scrollTop()
     @_originalCss =
       position: @container.css('position')
       top: @container.css('top')
@@ -66,6 +124,7 @@ App.components.map = ->
       width: @container.css('width')
       'z-index': @container.css('z-index')
     top = $("#header").height()
+    $(window).scrollTop(0)
     @container.css
       position: 'absolute'
       top: top
@@ -78,6 +137,7 @@ App.components.map = ->
 
   collapse: ->
     return if not @expanded
+    $(window).scrollTop(@_originalScrollTop)
     @container.css @_originalCss
     @map.refresh()
     @expanded = false
