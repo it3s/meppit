@@ -99,46 +99,6 @@ nav.pagination { display: none; }  // We are using infinite scroll
 }
 
 .site-page.index {
-
-  .list-filters {
-    background-color: $meppit-light-blue;
-    border: $meppit-blue 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-
-    .filter-headline {
-      font-weight: bold;
-      position: relative;
-      height: 1.8em;
-
-      .title {
-        display: inline-block;
-        padding-top: 5px;
-      }
-
-      .toggle-panel {
-        @include blue-button;
-        display: inline-block;
-        cursor: pointer;
-        padding: 4px 8px;
-        position: absolute;
-        right: 0;
-        width: 150px;
-
-        &.en { width: 120px; }
-
-        i { margin-right: 10px; }
-      }
-    }
-
-    .filters {
-      display: none;
-      margin-top: 20px;
-      border-top: solid 1px $soft-grey;
-      padding-top: 10px;
-    }
-  }
-
   .list-headline {
     border-bottom: solid 1px $ultra-soft-grey;
 
@@ -186,4 +146,66 @@ nav.pagination { display: none; }  // We are using infinite scroll
       }
     }
   }
+
+
+  .list-filters {
+    background-color: $meppit-light-blue;
+    border: $meppit-blue 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+
+    .filter-headline {
+      font-weight: bold;
+      position: relative;
+      height: 1.8em;
+
+      .title {
+        display: inline-block;
+        padding-top: 5px;
+      }
+
+      .toggle-panel {
+        @include blue-button;
+        display: inline-block;
+        cursor: pointer;
+        padding: 4px 8px;
+        position: absolute;
+        right: 0;
+        width: 150px;
+
+        &.en { width: 120px; }
+
+        i { margin-right: 10px; }
+      }
+    }
+
+    .filters {
+      display: none;
+      margin-top: 20px;
+      border-top: solid 1px $soft-grey;
+      padding-top: 10px;
+
+      .filter-choices {
+        .choice {
+          display: inline-block;
+          width: 30%;
+        }
+      }
+
+      .filters-apply {
+        position: relative;
+        height: 1.8em;
+
+        .apply-btn {
+          @include green-button;
+          position: absolute;
+          right: 0;
+          padding: 4px 25px;
+        }
+      }
+
+    }
+  }
+
 }
+

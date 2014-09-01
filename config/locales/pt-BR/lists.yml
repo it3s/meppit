@@ -4,3 +4,5 @@ pt-BR:
 
     filters:
       title: 'Visualização e opções de filtragem'
+      apply: 'Aplicar'
+

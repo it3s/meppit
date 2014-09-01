@@ -1,9 +1,33 @@
 <div class="list-filters" data-components="listFilter">
+
   <div class="filter-headline">
     <span class="title"><%= t 'lists.filters.title' %></span>
     <div class="toggle-panel <%= I18n.locale %>" data-toggle="collapsed"><%= icon('chevron-down', t('js.lists.expand')) %></div>
   </div>
+
   <div class="filters">
-    FILTERS FORM
+    <div class="filter-choices">
+
+      <div class="choice">
+        <label>Filter by:</label>
+        <input type="checkbox" />tags
+      </div>
+
+      <div class="choice">
+        <label>Sort by:</label>
+        <input type="radio">name
+        <input type="radio">date
+      </div>
+
+      <div class="choice">
+        <label>Visualization:</label>
+        <input type="radio">list
+        <input type="radio">map
+      </div>
+    </div>
+    <div class="filters-apply">
+      <%= link_to t('lists.filters.apply'), "#", class: "apply-btn" %>
+    </div>
   </div>
+
 </div>
