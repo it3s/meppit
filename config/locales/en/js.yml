@@ -21,5 +21,5 @@ en:
         one: '(1 selected)'
         other: '(%{count} selected)'
 
-      collapse: 'collapse'
-      expand: 'expand'
+      collapse: 'hide filters panel'
+      expand: 'show filters panel'

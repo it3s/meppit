@@ -101,7 +101,6 @@ nav.pagination { display: none; }  // We are using infinite scroll
 .site-page.index {
 
   .list-filters {
-    // @include meppit-box-shadow;
     background-color: $meppit-light-blue;
     border: $meppit-blue 1px solid;
     border-radius: 5px;
@@ -109,15 +108,37 @@ nav.pagination { display: none; }  // We are using infinite scroll
 
     .filter-headline {
       font-weight: bold;
+      position: relative;
+      height: 1.8em;
+
+      .title {
+        display: inline-block;
+        padding-top: 5px;
+      }
 
       .toggle-panel {
+        @include blue-button;
         display: inline-block;
-        float: right;
         cursor: pointer;
-        width: 80px;
+        width: 205px;
+        padding: 4px 8px;
+        position: absolute;
+        right: 0;
+        text-align: right;
 
-        i { margin-right: 5px; }
+        i {
+          margin-right: 10px;
+          position: absolute;
+          left: 10px;
+        }
       }
+    }
+
+    .filters {
+      display: none;
+      margin-top: 20px;
+      border-top: solid 1px $soft-grey;
+      padding-top: 10px;
     }
   }
 
