@@ -7,24 +7,28 @@
 
   <div class="filters">
     <div class="filter-choices">
-
       <div class="choice">
         <label><%= t 'lists.filters.filter_by' %>:</label>
-        <span class="option"><input type="checkbox" name="filter_by" /><%= t 'lists.filters.tags' %></span>
+        <span class="option"><input type="checkbox" name="filter_by" data-filter="#tags-filter"/><%= t 'lists.filters.tags' %></span>
       </div>
 
       <div class="choice">
         <label><%= t 'lists.filters.sort_by' %>:</label>
-        <span class="option"><input type="radio" name="sort_by"><%= t 'lists.filters.name' %></span>
+        <span class="option"><input type="radio" name="sort_by" checked><%= t 'lists.filters.name' %></span>
         <span class="option"><input type="radio" name="sort_by"><%= t 'lists.filters.date' %></span>
       </div>
 
       <div class="choice">
         <label><%= t 'lists.filters.visualization' %>:</label>
-        <span class="option"><input type="radio" name="visualization"><%= t 'lists.filters.list' %></span>
+        <span class="option"><input type="radio" name="visualization" checked><%= t 'lists.filters.list' %></span>
         <span class="option"><input type="radio" name="visualization"><%= t 'lists.filters.map' %></span>
       </div>
     </div>
+
+    <div id="tags-filter" class="filter">
+      Tag Filter
+    </div>
+
     <div class="filters-apply">
       <%= link_to t('lists.filters.apply'), "#", class: "apply-btn" %>
     </div>

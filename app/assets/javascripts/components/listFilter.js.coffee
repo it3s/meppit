@@ -7,11 +7,13 @@ collapsed = """
 
 App.components.listFilter = ->
   attributes: ->
-    toggleBtn:   @container.find('.toggle-panel')
-    filtersForm: @container.find('.filters')
+    toggleBtn:    @container.find('.toggle-panel')
+    filtersForm:  @container.find('.filters')
+    filterChoice: @container.find('input[data-filter]')
 
   initialize: ->
     @on @attr.toggleBtn, 'click', @toggle
+    @on @attr.filterChoice, 'click', @toggleFilter
 
   toggle: ->
     if @isExpanded() then @collapse() else @expand()
@@ -28,3 +30,8 @@ App.components.listFilter = ->
     @attr.filtersForm.slideDown('fast')
     @attr.toggleBtn.data('toggle', 'expanded')
     @attr.toggleBtn.html expanded
+
+  toggleFilter: (evt)->
+    el = $ evt.target
+    panel = @container.find el.data('filter')
+    panel.slideToggle 'fast'

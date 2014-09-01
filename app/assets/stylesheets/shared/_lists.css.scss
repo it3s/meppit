@@ -207,6 +207,11 @@ nav.pagination { display: none; }  // We are using infinite scroll
         }
       }
 
+      .filter {
+        display: none;
+        padding: 20px 0 10px;
+      }
+
       .filters-apply {
         position: relative;
         height: 1.8em;
