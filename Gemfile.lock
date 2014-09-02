@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/it3s/meppit-map-rails.git
-  revision: 9f28788f357060dcc4d09ce644e81e4d44e0de01
+  revision: c44c5860cade5f4564e7ea0df208c0a39748cfde
   specs:
-    meppit-map-rails (0.1.2)
+    meppit-map-rails (0.1.3)
       coffee-rails
       rails (~> 4.1.1)
 
@@ -83,7 +83,7 @@ GEM
     coffee-script (2.3.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.7.1)
+    coffee-script-source (1.8.0)
     colorize (0.7.3)
     compass (0.12.6)
       chunky_png (~> 1.2)
