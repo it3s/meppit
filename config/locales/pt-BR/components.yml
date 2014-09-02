@@ -7,3 +7,17 @@ pt-BR:
       relation_target: 'procure um dado pelo nome'
       test: 'test'
 
+    map:
+      geometry_selector:
+        title: 'Forma geométrica'
+        explanation: 'Selecione a forma geométrica que descreve o tipo de informação geoespacial que você deseja armazenar'
+      location_selector:
+        title: 'Localização'
+        question_explanation: 'Você está próximo ao local?'
+        instruction_explanation: 'Por favor, autorize a geolocalização'
+        near_button: 'Sim'
+        far_button: 'Não'
+      geometries:
+        marker: 'Ponto'
+        shape: 'Polígono'
+        line: 'Linha'

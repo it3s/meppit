@@ -25,9 +25,14 @@ class Map < ActiveRecord::Base
     ::GeoJSON::encode_feature_collection geo_data_features
   end
 
+  def location_geohash
+    location ? location : nil
+  end
+
   def location_geojson
     location ? location.to_json : nil
   end
+
 
   def geojson_properties
     active_model_serializer.new(self).serializable_hash.except(:location, :geo_data)

@@ -1,14 +1,14 @@
 <div class="location-selector selector">
-  <header><h2>Location</h2></header><section>
+  <header><h2><%= location_selector_title %></h2></header><section>
     <div id="location-selector-question">
-      <p class="explanation">Are you near the location?</p>
+      <p class="explanation"><%= location_selector_question_explanation %></p>
       <ul class="location-options options">
-        <li role="button" class="option" data-is-near="true">Yes</li>
-        <li role="button" class="option" data-is-near="false">No</li>
+        <li role="button" class="option" data-is-near="true"><%= near_button_title %></li>
+        <li role="button" class="option" data-is-near="false"><%= far_button_title %></li>
       </ul>
     </div>
     <div id="location-selector-instructions">
-      <p class="explanation">Please allow geolocation access</p>
+      <p class="explanation"><%= location_selector_instruction_explanation %></p>
     </div>
   </section>
 </div>

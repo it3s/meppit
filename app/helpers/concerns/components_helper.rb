@@ -59,6 +59,21 @@ module Concerns
       }
     end
 
+    def map_data
+      {
+        geometry_selector_title: t("components.map.geometry_selector.title"),
+        geometry_selector_explanation: t("components.map.geometry_selector.explanation"),
+        marker_button_title: t("components.map.geometries.marker"),
+        shape_button_title: t("components.map.geometries.shape"),
+        line_button_title: t("components.map.geometries.line"),
+        location_selector_title: t("components.map.location_selector.title"),
+        location_selector_question_explanation: t("components.map.location_selector.question_explanation"),
+        near_button_title: t("components.map.location_selector.near_button"),
+        far_button_title:t("components.map.location_selector.far_button"),
+        location_selector_instruction_explanation: t("components.map.location_selector.instruction_explanation"),
+      }
+    end
+
     def show_relation_metadata?(rel)
       !rel[:metadata].empty? && !rel[:metadata].values.all?(&:blank?)
     end

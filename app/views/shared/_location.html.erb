@@ -1,6 +1,6 @@
 <section class="location">
   <% if edit_mode? %>
-    <div class="map" data-components="map" data-map-options='{"editor":true, "geoDataIds": <%= raw object.try(:geo_data_ids) || object.id || 'null' %>, "hasLocation": <%= raw object.try(:'has_location?') %>, "inputSelector": "#geo_data_location"}'></div>
+    <div class="map" data-components="map" data-map-options="<%= {editor: true, geoDataIds: (object.try(:geo_data_ids) || object.id || nil), hasLocation: object.try(:'has_location?'), inputSelector: "#geo_data_location", data: map_data}.to_json %>"></div>
   <% else %>
     <%= render 'shared/map', object: object %>
   <% end %>

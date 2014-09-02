@@ -1,84 +1,132 @@
 #= require meppit-map
 
-App.components.map = ->
-  geometrySelectorTemplate: JST['templates/mapGeometrySelector']
-  locationSelectorTemplate: JST['templates/mapLocationSelector']
+geometrySelection = ->
+  template: JST['templates/mapGeometrySelector']
 
+  init: (opts, @action, @done) ->
+    @el = $ @template(opts)
+    @bindEvents()
+    this
+
+  bindEvents: ->
+    @el.find('.option').click @onOptionSelected.bind(this)
+
+  onOptionSelected: (evt) ->
+    evt.preventDefault()
+    geometryType =  $(evt.target).data 'geometry-type'
+    @el.hide()
+    @done geometryType
+
+locationSelection = ->
+  template: JST['templates/mapLocationSelector']
+
+  init: (opts, @action, @done) ->
+    @el = $ @template(opts)
+    @findElements()
+    @bindEvents()
+    @displayQuestion()
+    this
+
+  findElements: ->
+    @questionEl     = @el.find("#location-selector-question")
+    @instructionsEl = @el.find("#location-selector-instructions")
+
+  bindEvents: ->
+    @el.find('#location-selector-question .option').click @onQuestionOptionSelected.bind(this)
+
+  displayQuestion: ->
+    @questionEl.show()
+    @instructionsEl.hide()
+
+  displaySearch: ->
+    # TODO: add search option
+    @el.hide()
+    @done()
+
+  onQuestionOptionSelected: (evt) ->
+    evt.preventDefault()
+    isNear = $(evt.target).data 'is-near'
+    onSuccess = (e) =>
+      console.log e
+      @el.hide()
+      @done e.location
+    onError = (e) =>
+      @displaySearch()
+    if isNear
+      @action? onSuccess, onError
+      @questionEl.hide()
+      setTimeout =>
+        @instructionsEl.show()
+      , 1000
+    else
+      @displaySearch()
+
+
+drawAssistence = =>
+  init: (@opts, @done)->
+    @map = @opts.map
+    @availableSteps = {
+      geometrySelection: @geometrySelection,
+      locationSelection: @locationSelection
+    }
+    @defaultSteps = _.keys @availableSteps
+    @steps = (@availableSteps[step] for step in (@opts.steps ? @defaultSteps))
+    @el = $ '<div>'
+    @remainingSteps = @steps.slice()
+    @goToNextStep()
+    this
+
+  goToNextStep: ->
+    step = @remainingSteps.shift()
+    if step
+      step.bind(this)()
+    else
+      @onFinish()
+
+  stepFinished:->
+    @goToNextStep()
+
+  onFinish: ->
+    @el.hide()
+    @done? {
+      geometryType: @geometryType,
+      location: @location
+    }
+
+  geometrySelection: ->
+    done = (geometryType) =>
+      @geometryType = geometryType
+      @stepFinished()
+    geometrySelection = geometrySelection().init @opts, null, done
+    @el.prepend geometrySelection.el
+
+  locationSelection: ->
+    action = => @map.locate.apply(@map, arguments)
+    done = (location) =>
+      @location = location
+      @stepFinished()
+    locationSelection = locationSelection().init @opts, action, done
+    @el.prepend locationSelection.el
+
+
+App.components.map = ->
   initialize: ->
-    @drawAssistenceSteps = [
-      @drawAssistenceGeometrySelection,
-      @drawAssistenceLocationSelection
-    ]
     @startMap()
     @bindEvents()
     if @attr.editor and not @attr.hasLocation
       @startDrawAssistence()
 
   startDrawAssistence: ->
+    done = (content) =>
+      @mapEl.show()
+      @map.refresh()
+      setTimeout =>
+        @map.fit content.location
+        @draw content.geometryType
+      , 100
+    @drawAssistence = drawAssistence().init _.extend(@attr.data, {map: @map}), done
+    @container.prepend @drawAssistence.el
     @mapEl.hide()
-    @drawAssistenceRemainingSteps = @drawAssistenceSteps.slice()
-    @drawAssistenceGoToNextStep()
-
-  drawAssistenceGoToNextStep: ->
-    step = @drawAssistenceSteps.shift()
-    if step
-      step.bind(this)()
-    else
-      @onFinishDrawAssistence()
-
-  drawAssistenceStepFinished:->
-    @drawAssistenceGoToNextStep()
-
-  onFinishDrawAssistence: ->
-    @mapEl.show()
-    @map.refresh()
-    setTimeout =>
-      @map.fit @drawAssistenceLocation
-      @draw @drawAssistenceGeometryType
-    , 100
-
-  drawAssistenceGeometrySelection: ->
-    @geometrySelectorEl = $ @geometrySelectorTemplate()
-    @container.prepend @geometrySelectorEl
-    @bindGeometrySelectorEvents()
-
-  bindGeometrySelectorEvents: ->
-    @geometrySelectorEl.find('.option').click @onGeometrySelected.bind(this)
-
-  onGeometrySelected: (evt) ->
-    evt.preventDefault()
-    @drawAssistenceGeometryType =  $(evt.target).data 'geometry-type'
-    @geometrySelectorEl.hide()
-    @drawAssistenceStepFinished()
-
-  drawAssistenceLocationSelection: ->
-    @locationSelectorEl = $ @locationSelectorTemplate()
-    @locationSelectorQuestionEl =
-      @locationSelectorEl.find("#location-selector-question").show()
-    @locationSelectorInstructionsEl =
-      @locationSelectorEl.find("#location-selector-instructions").hide()
-    @container.prepend @locationSelectorEl
-    @bindLocationSelectorEvents()
-
-  bindLocationSelectorEvents: ->
-    @locationSelectorEl.find('.option').click @onLocationSelected.bind(this)
-
-  onLocationSelected: (evt) ->
-    evt.preventDefault()
-    @drawAssistenceIsNear = $(evt.target).data 'is-near'
-    onSuccess = (e) =>
-      console.log e
-      @drawAssistenceLocation = e.location
-      @locationSelectorEl.hide()
-      @drawAssistenceStepFinished()
-    if @drawAssistenceIsNear
-      @map.locate onSuccess
-      @locationSelectorQuestionEl.hide()
-      @locationSelectorInstructionsEl.show()
-    else
-      # TODO: add search option
-      @locationSelectorEl.hide()
-      @drawAssistenceStepFinished()
 
   startMap: ->
     L.Icon.Default.imagePath = '/assets'
