@@ -15,6 +15,7 @@ App.components.tags = ->
       placeholderColor: '#999'
       autocomplete_url: @attr.autocomplete
       onAddTag        : @onAdd.bind(this)
+      onChange        : @onChange.bind(this)
 
   onAdd: (tag) ->
     lowercased = tag.toLowerCase()
@@ -23,3 +24,7 @@ App.components.tags = ->
   replaceTag: (tag, new_tag) ->
     @container.removeTag(tag)
     @container.addTag(new_tag) unless @container.tagExist(new_tag)
+
+  onChange: (el) ->
+    taglist = @container.val().split(',')
+    App.mediator.publish 'tags:changed', {id: @identifier, ctx: el, tags: taglist}

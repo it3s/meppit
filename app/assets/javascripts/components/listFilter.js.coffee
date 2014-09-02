@@ -10,10 +10,15 @@ App.components.listFilter = ->
     toggleBtn:    @container.find('.toggle-panel')
     filtersForm:  @container.find('.filters')
     filterChoice: @container.find('input[data-filter]')
+    sortChoice:   @container.find('.choice input[type=radio]')
+    tags:         @container.find('input#tags')
 
   initialize: ->
-    @on @attr.toggleBtn, 'click', @toggle
+    @on @attr.toggleBtn,    'click', @toggle
     @on @attr.filterChoice, 'click', @toggleFilter
+
+    @on @attr.sortChoice,  'click',        @sortChanged
+    App.mediator.subscribe 'tags:changed', @tagsChanged.bind(this)
 
   toggle: ->
     if @isExpanded() then @collapse() else @expand()
@@ -35,3 +40,9 @@ App.components.listFilter = ->
     el = $ evt.target
     panel = @container.find el.data('filter')
     panel.slideToggle 'fast'
+
+  sortChanged: (evt) ->
+    console.log 'sortChanged'
+
+  tagsChanged: (evt, data) ->
+    console.log 'tagsChanged', evt, data
