@@ -25,8 +25,11 @@
       </div>
     </div>
 
-    <div id="tags-filter" class="filter tags">
-      <%= text_field_tag :tags, "", "data-components" => "tags", "data-tags-options" => {tags:[], autocomplete: tag_search_path }.to_json %>
+    <div id="tags-filter" class="filter tags-filter">
+      <label><%= t 'lists.filters.tags' %>:</label>
+      <div class="tags">
+        <%= text_field_tag :tags, "", "data-components" => "tags", "data-tags-options" => {tags:[], autocomplete: tag_search_path }.to_json %>
+      </div>
     </div>
 
     <div class="filters-apply">
