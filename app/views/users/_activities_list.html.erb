@@ -8,9 +8,7 @@
 
     <% else %>
 
-      <% activities.each do |activity| %>
-        <%= render 'activities/user_activity', activity: ActivityPresenter.new(object: activity, ctx: self) %>
-      <% end %>
+      <%= render 'activities/user_activities_list' %>
 
     <% end %>
   </ul>

@@ -7,7 +7,7 @@
       <% unless @maps.empty? %>
         <%= render @maps, :size => :small %>
       <% else %>
-        <p><%= t 'geo_data.maps.empty', {name: @geo_data.try(:name)} %></p>
+        <p class="empty"><%= t 'geo_data.maps.empty', {name: @geo_data.try(:name)} %></p>
       <% end %>
     </ul>
   </div>

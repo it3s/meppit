@@ -1,7 +1,7 @@
 <div class="relations show">
   <ul>
     <% if relations.empty? %>
-      <div class="empty"><%= t('relations.empty') %></div>
+      <p class="empty"><%= t('relations.empty') %></p>
     <% else %>
       <% relations.each do |rel| %>
         <%= render 'relations/relation', rel: rel %>

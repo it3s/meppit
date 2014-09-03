@@ -7,7 +7,7 @@
       <% unless @followers.empty? %>
         <%= render @followers, :size => :small %>
       <% else %>
-        <p><%= t 'followings.empty.followers', {name: @followable.try(:name)} %></p>
+        <p class="empty"><%= t 'followings.empty.followers', {name: @followable.try(:name)} %></p>
       <% end %>
     </ul>
   </div>

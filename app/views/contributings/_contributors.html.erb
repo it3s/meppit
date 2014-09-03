@@ -7,7 +7,7 @@
       <% unless @contributors.empty? %>
         <%= render @contributors, :size => :small %>
       <% else %>
-        <p><%= t 'contributings.empty.contributors' %></p>
+        <p class="empty"><%= t 'contributings.empty.contributors' %></p>
       <% end %>
     </ul>
   </div>
