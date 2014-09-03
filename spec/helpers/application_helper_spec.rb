@@ -323,7 +323,7 @@ HTML
       it "expects all required keys to be present" do
         keys = [:options, :autocomplete_placeholder, :autocomplete_url, :remove_title,
                 :metadata_title, :start_date_label, :end_date_label, :amount_label]
-        expect(helper.relations_manager_data.keys).to eq keys
+        expect(helper.relations_manager_data.keys).to match_array keys
       end
     end
 
@@ -347,6 +347,56 @@ HTML
       it { expect(helper.currency_symbol('usd')).to eq helper.icon('dollar') }
       it { expect(helper.currency_symbol('brl')).to eq "R$" }
       it { expect(helper.currency_symbol('')).to eq "$" }
+    end
+
+    describe "#map_data" do
+      it "expects all required keys to be present" do
+        keys = [:expand_button_title, :collapse_button_title]
+        expect(helper.map_data.keys).to match_array keys
+      end
+
+      context "edit_mode" do
+        before { allow(helper).to receive(:edit_mode?).and_return(true) }
+        it "expects all keys related to editor to be present" do
+          allow(helper).to receive(:edit_mode?).and_return(true)
+          keys = [:geometry_selector_title, :geometry_selector_explanation,
+                  :marker_button_title, :shape_button_title, :line_button_title,
+                  :location_selector_title, :location_selector_question_explanation,
+                  :near_button_title, :far_button_title,
+                  :location_selector_instruction_explanation,
+                  :expand_button_title, :collapse_button_title]
+          expect(helper.map_data.keys).to match_array keys
+        end
+      end
+    end
+
+    describe "#map_options" do
+      let(:geo_data) { FactoryGirl.create :geo_data }
+      let(:user)     { FactoryGirl.create :user }
+
+      it "expects all required keys to be present" do
+        keys = [:geojson, :featuresIds, :featureURL, :hasLocation]
+        expect(helper.map_options(geo_data).keys).to eq keys
+      end
+
+      context "edit_mode" do
+        before { allow(helper).to receive(:edit_mode?).and_return(true) }
+        it "expects all keys related to editor to be present" do
+          keys = [:geojson, :featuresIds, :featureURL, :hasLocation, :editor,
+                  :inputSelector]
+          expect(helper.map_options(geo_data).keys).to eq keys
+        end
+
+        it "expects all keys related to user location editor to be present" do
+          keys = [:geojson, :featuresIds, :featureURL, :hasLocation, :editor,
+                  :inputSelector, :geometryType, :geolocation]
+          expect(helper.map_options(user).keys).to eq keys
+        end
+
+        it "expects 'editor' value to be true" do
+          expect(helper.map_options(user)[:editor]).to be true
+        end
+      end
     end
   end
 end

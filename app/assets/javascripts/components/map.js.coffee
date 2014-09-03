@@ -150,7 +150,7 @@ App.components.map = ->
       element: @mapEl[0],
       enableGeoJsonTile: false
       featureURL: @attr.featureURL
-    feature = @attr.geojson or @attr.objectsIds
+    feature = @attr.geojson or @attr.featuresIds
     if feature
       @show(feature, => @edit feature if @attr.editor)
 
