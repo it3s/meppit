@@ -26,5 +26,6 @@ App.components.tags = ->
     @container.addTag(new_tag) unless @container.tagExist(new_tag)
 
   onChange: (el) ->
-    taglist = @container.val().split(',')
-    App.mediator.publish 'tags:changed', {id: @identifier, ctx: el, tags: taglist}
+    val = @container.val()
+    taglist = if val.length > 0 then val.split(',') else []
+    App.mediator.publish 'tags:changed', {identifier: @identifier, ctx: el, tags: taglist}

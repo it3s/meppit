@@ -11,7 +11,8 @@ App.components.listFilter = ->
     filtersForm:  @container.find('.filters')
     filterChoice: @container.find('input[data-filter]')
     sortChoice:   @container.find('.choice input[type=radio]')
-    tags:         @container.find('input#tags')
+    tags:         @container.find('input#filter_tags')
+    tagsId:       'tags:filter_tags'
 
   initialize: ->
     @on @attr.toggleBtn,    'click', @toggle
@@ -45,4 +46,5 @@ App.components.listFilter = ->
     console.log 'sortChanged'
 
   tagsChanged: (evt, data) ->
-    console.log 'tagsChanged', evt, data
+    if data.identifier is @attr.tagsId
+      console.log 'tagsChanged', evt, data
