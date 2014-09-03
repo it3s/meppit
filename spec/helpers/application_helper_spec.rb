@@ -80,8 +80,8 @@ describe ApplicationHelper do
   end
 
   describe "#follow_options_for" do
-    let(:user) { FactoryGirl.create :user, id: 42 }
-    let(:geo_data) { FactoryGirl.create :geo_data, id: 42 }
+    let(:user) { FactoryGirl.create :user}
+    let(:geo_data) { FactoryGirl.create :geo_data}
 
     before { allow(helper).to receive(:current_user).and_return user }
 

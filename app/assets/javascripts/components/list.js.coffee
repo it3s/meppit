@@ -9,6 +9,7 @@ App.components.list = ->
       itemSelector: ".list .list-item"
       prefill:      on
       dataType:     "html"
+      pathParse:    (path) -> path.match(/^(.*?page=)[0-9]+(.*|$)/).slice(1)
 
   initialize: ->
     options = @handleOptions()

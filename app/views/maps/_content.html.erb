@@ -20,7 +20,7 @@
     <div class="tab-content" id="content">
       <div class="description">
         <% if map.description.blank? %>
-          <%= t 'maps.description.empty', name: map.name %>
+          <p class="empty"><%= t 'maps.description.empty', name: map.name %></p>
         <% else %>
           <%= raw map.description %>
         <% end %>
@@ -37,7 +37,7 @@
         <% unless @geo_data_collection.empty? %>
           <%= render @geo_data_collection, :size => :small %>
         <% else %>
-          <p><%= t 'maps.data.empty', name: map.name %></p>
+          <p class="empty"><%= t 'maps.data.empty', name: map.name %></p>
         <% end %>
       </ul>
     </div>
