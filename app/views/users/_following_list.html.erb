@@ -5,7 +5,7 @@
     <% unless following.empty? %>
       <%= render following, :size => :small, :control_type => :follow_button %>
     <% else %>
-      <p><%= t 'followings.empty.following', {name: user.name} %></p>
+      <p class="empty"><%= t 'followings.empty.following', {name: user.name} %></p>
     <% end %>
   </ul>
 </div>

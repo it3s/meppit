@@ -79,6 +79,19 @@ describe ApplicationHelper do
     end
   end
 
+  describe "#follow_options_for" do
+    let(:user) { FactoryGirl.create :user}
+    let(:geo_data) { FactoryGirl.create :geo_data}
+
+    before { allow(helper).to receive(:current_user).and_return user }
+
+    it "returns a json" do
+      resp = helper.follow_options_for geo_data
+      expect(resp).to be_a String
+      expect{JSON.parse resp}.to_not raise_error
+    end
+  end
+
   describe "Concerns::I18nHelper" do
     describe "#i18n_language_names" do
       it 'has names for all availables locales' do

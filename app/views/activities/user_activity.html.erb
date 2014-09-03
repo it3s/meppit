@@ -1,0 +1,12 @@
+<% if request.xhr? %>
+
+  <%= render 'activities/user_activities_list' %>
+
+<% else %>
+
+  <%= render 'shared/object',
+    presenter: ObjectPresenter.new(object: @user, ctx: self,
+      show_location: false, content: 'activities/user_activities_list')
+  %>
+
+<% end %>

@@ -121,4 +121,26 @@ describe GeoJSON do
     it { expect(feature_collection).to be_a_kind_of Hash }
     it { expect(feature_collection).to eq hash}
   end
+
+  describe "#encode_feature" do
+    let(:user) { FactoryGirl.create :user, location: geom }
+    let(:feature) { GeoJSON::build_feature user.location, user.id, {} }
+    let(:feature_encoded) { GeoJSON::encode_feature feature }
+    let(:hash) {
+      {
+       "type" => "Feature",
+       "geometry" => {
+         "type" => "GeometryCollection",
+         "geometries" => [
+           {"type"=> "Point", "coordinates" => [-46.747319110450746, -23.56587791267138]}
+         ]
+       },
+       "properties" => {},
+       "id" => user.id
+      }
+    }
+
+    it { expect(feature_encoded).to be_a_kind_of Hash }
+    it { expect(feature_encoded).to eq hash}
+  end
 end

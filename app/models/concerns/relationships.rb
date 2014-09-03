@@ -64,7 +64,7 @@ module Relationships
       end
 
       def swap_direction(direction)
-        (direction.to_sym == :dir) ? :rev : :dir
+        (direction.to_sym == :dir) ? "rev" : "dir"
       end
 
       def destroy_removed_relations!
