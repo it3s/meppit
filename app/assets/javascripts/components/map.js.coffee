@@ -144,8 +144,7 @@ App.components.map = ->
       featureURL: '#{baseURL}geo_data/#{id}/export.geojson'
     feature = @attr.geojson or @attr.geoDataIds
     if feature
-      @show feature
-      @edit feature if @attr.editor
+      @show(feature, => @edit feature if @attr.editor)
 
   edit: (feature) ->
     @map.edit feature, @updateInput.bind(this)
@@ -160,8 +159,10 @@ App.components.map = ->
   updateInput: ->
     $(@attr.inputSelector).val JSON.stringify(@map.toSimpleGeoJSON())
 
-  show: (feature) ->
-    @map.show feature, @updateInput.bind(this)
+  show: (feature, callback) ->
+    @map.show feature, =>
+      @updateInput()
+      callback?()
 
   bindEvents: ->
     App.mediator.subscribe 'remoteForm:beforeSubmit', () =>
