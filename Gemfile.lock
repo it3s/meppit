@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/it3s/meppit-map-rails.git
-  revision: 80dffded099764e2141b41ce4c1a423290359ee9
+  revision: e7b81c9ab6f4cdb03da8d8eff680b8dbb3dc2645
   specs:
     meppit-map-rails (0.1.5)
       coffee-rails
