@@ -71,6 +71,8 @@ module Concerns
         near_button_title: t("components.map.location_selector.near_button"),
         far_button_title:t("components.map.location_selector.far_button"),
         location_selector_instruction_explanation: t("components.map.location_selector.instruction_explanation"),
+        expand_button_title: t("components.map.expand_button_title"),
+        collapse_button_title: t("components.map.collapse_button_title"),
       }
     end
 

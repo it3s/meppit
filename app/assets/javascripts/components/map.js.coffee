@@ -38,6 +38,10 @@ locationSelection = ->
     @questionEl.show()
     @instructionsEl.hide()
 
+  displayInstructions: ->
+    @questionEl.hide()
+    @instructionsEl.show()
+
   displaySearch: ->
     # TODO: add search option
     @el.hide()
@@ -56,7 +60,7 @@ locationSelection = ->
       @action? onSuccess, onError
       @questionEl.hide()
       setTimeout =>
-        @instructionsEl.show()
+        @displayInstructions()
       , 1000
     else
       @displaySearch()
@@ -112,6 +116,7 @@ drawAssistence = =>
 App.components.map = ->
   initialize: ->
     @startMap()
+    @addButtons()
     @bindEvents()
     if @attr.editor and not @attr.hasLocation
       @startDrawAssistence()
@@ -161,16 +166,26 @@ App.components.map = ->
   bindEvents: ->
     App.mediator.subscribe 'remoteForm:beforeSubmit', () =>
       @map.done()
+    $(window).resize =>
+      @expand() if @expanded
+
+  addButtons: ->
+    @map.addButton 'expand', 'fa-expand', @expand.bind(this), @attr.data['expand_button_title'], 'topright'
+    @map.addButton 'collapse', 'fa-compress', @collapse.bind(this), @attr.data['collapse_button_title'], 'topright'
+    @map.hideButton 'collapse'
 
   expand: ->
-    @_originalScrollTop = $(window).scrollTop()
-    @_originalCss =
-      position: @container.css('position')
-      top: @container.css('top')
-      left: @container.css('left')
-      height: @container.css('height')
-      width: @container.css('width')
-      'z-index': @container.css('z-index')
+    @map.hideButton 'expand'
+    @map.showButton 'collapse'
+    if not @expanded
+      @_originalScrollTop = $(window).scrollTop()
+      @_originalCss =
+        position: @container.css('position')
+        top: @container.css('top')
+        left: @container.css('left')
+        height: @container.css('height')
+        width: @container.css('width')
+        'z-index': @container.css('z-index')
     top = $("#header").height()
     $(window).scrollTop(0)
     @container.css
@@ -185,6 +200,8 @@ App.components.map = ->
 
   collapse: ->
     return if not @expanded
+    @map.hideButton 'collapse'
+    @map.showButton 'expand'
     $(window).scrollTop(@_originalScrollTop)
     @container.css @_originalCss
     @map.refresh()

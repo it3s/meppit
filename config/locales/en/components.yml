@@ -8,6 +8,8 @@ en:
       test: 'test'
 
     map:
+      expand_button_title: 'Expand'
+      collapse_button_title: 'Collapse'
       geometry_selector:
         title: 'Geometry Type'
         explanation: 'Select the geometry type that describes the kind of geospatial information you want to store'

@@ -8,6 +8,8 @@ pt-BR:
       test: 'test'
 
     map:
+      expand_button_title: 'Expandir'
+      collapse_button_title: 'Retrair'
       geometry_selector:
         title: 'Forma geométrica'
         explanation: 'Selecione a forma geométrica que descreve o tipo de informação geoespacial que você deseja armazenar'
