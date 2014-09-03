@@ -15,6 +15,9 @@ module Geometry
         define_method "#{field}_geohash" do
           ::GeoJSON::encode(send(field), id, geojson_properties)
         end
+        define_method "has_#{field}?" do
+         self.send(field).try(:is_empty?) == false
+        end
       end
     end
   end

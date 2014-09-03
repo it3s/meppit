@@ -76,6 +76,25 @@ module Concerns
       }
     end
 
+    def map_options(obj)
+      obj_type = object_type obj
+      opts = {
+        geojson: obj.location_geohash,
+        objectsIds: (obj.try(:geo_data_ids) || obj.id || nil),
+        featureURL: "\#{baseURL}#{obj_type}/\#{id}/export.geojson",
+        hasLocation: obj.try(:'has_location?'),
+      }
+      opts = opts.merge({
+        editor: true,
+        inputSelector: "##{obj_type}_location"
+      }) if edit_mode?
+      opts = opts.merge({
+        geometryType: 'Point',
+        geolocation: true
+      }) if obj_type == :user && edit_mode?
+      opts
+    end
+
     def show_relation_metadata?(rel)
       !rel[:metadata].empty? && !rel[:metadata].values.all?(&:blank?)
     end

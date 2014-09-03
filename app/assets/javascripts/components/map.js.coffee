@@ -3,9 +3,12 @@
 geometrySelection = ->
   template: JST['templates/mapGeometrySelector']
 
-  init: (opts, @action, @done) ->
-    @el = $ @template(opts)
-    @bindEvents()
+  init: (@attr, @action, @done) ->
+    if @attr.geometryType
+      @done @attr.geometryType
+    else
+      @el = $ @template(@attr.data)
+      @bindEvents()
     this
 
   bindEvents: ->
@@ -20,11 +23,14 @@ geometrySelection = ->
 locationSelection = ->
   template: JST['templates/mapLocationSelector']
 
-  init: (opts, @action, @done) ->
-    @el = $ @template(opts)
+  init: (@attr, @action, @done) ->
+    @el = $ @template(@attr.data)
     @findElements()
     @bindEvents()
-    @displayQuestion()
+    if @attr.geolocation
+      @locate()
+    else
+      @displayQuestion()
     this
 
   findElements: ->
@@ -50,31 +56,33 @@ locationSelection = ->
   onQuestionOptionSelected: (evt) ->
     evt.preventDefault()
     isNear = $(evt.target).data 'is-near'
+    if isNear then @locate() else @displaySearch()
+
+  locate: ->
+    timer = null
     onSuccess = (e) =>
-      console.log e
+      clearTimeout timer
       @el.hide()
       @done e.location
     onError = (e) =>
+      clearTimeout timer
       @displaySearch()
-    if isNear
-      @action? onSuccess, onError
-      @questionEl.hide()
-      setTimeout =>
-        @displayInstructions()
-      , 1000
-    else
-      @displaySearch()
+    @action? onSuccess, onError
+    @questionEl.hide()
+    timer = setTimeout =>
+      @displayInstructions()
+    , 1000
 
 
 drawAssistence = =>
-  init: (@opts, @done)->
-    @map = @opts.map
+  init: (@attr, @done)->
+    @map = @attr.map
     @availableSteps = {
       geometrySelection: @geometrySelection,
       locationSelection: @locationSelection
     }
     @defaultSteps = _.keys @availableSteps
-    @steps = (@availableSteps[step] for step in (@opts.steps ? @defaultSteps))
+    @steps = (@availableSteps[step] for step in (@attr.steps ? @defaultSteps))
     @el = $ '<div>'
     @remainingSteps = @steps.slice()
     @goToNextStep()
@@ -101,16 +109,16 @@ drawAssistence = =>
     done = (geometryType) =>
       @geometryType = geometryType
       @stepFinished()
-    geometrySelection = geometrySelection().init @opts, null, done
-    @el.prepend geometrySelection.el
+    geometrySelection = geometrySelection().init @attr, null, done
+    @el.prepend geometrySelection.el if geometrySelection.el
 
   locationSelection: ->
     action = => @map.locate.apply(@map, arguments)
     done = (location) =>
       @location = location
       @stepFinished()
-    locationSelection = locationSelection().init @opts, action, done
-    @el.prepend locationSelection.el
+    locationSelection = locationSelection().init @attr, action, done
+    @el.prepend locationSelection.el if locationSelection.el
 
 
 App.components.map = ->
@@ -129,7 +137,7 @@ App.components.map = ->
         @map.fit content.location
         @draw content.geometryType
       , 100
-    @drawAssistence = drawAssistence().init _.extend(@attr.data, {map: @map}), done
+    @drawAssistence = drawAssistence().init _.extend(@attr, {map: @map}), done
     @container.prepend @drawAssistence.el
     @mapEl.hide()
 
@@ -141,8 +149,8 @@ App.components.map = ->
     @map = new Meppit.Map
       element: @mapEl[0],
       enableGeoJsonTile: false
-      featureURL: '#{baseURL}geo_data/#{id}/export.geojson'
-    feature = @attr.geojson or @attr.geoDataIds
+      featureURL: @attr.featureURL
+    feature = @attr.geojson or @attr.objectsIds
     if feature
       @show(feature, => @edit feature if @attr.editor)
 
@@ -150,10 +158,13 @@ App.components.map = ->
     @map.edit feature, @updateInput.bind(this)
 
   onDraw: (feature) ->
+   @drawing = false
    @updateInput()
    @edit feature
 
   draw: (feature) ->
+    return if @drawing
+    @drawing = true
     @map.draw feature, @onDraw.bind(this)
 
   updateInput: ->
@@ -195,7 +206,7 @@ App.components.map = ->
       left: 0
       height: $(window).height() - top
       width: $(window).width()
-      'z-index': 100
+      'z-index': 9
     @map.refresh()
     @expanded = true
 

@@ -53,6 +53,7 @@ class UsersController < ApplicationController
                                    :license_aggrement, :about_me, :avatar).tap do |whitelisted|
         whitelisted[:contacts]  = cleaned_contacts params[:user]
         whitelisted[:interests] = cleaned_tags params[:user], :interests
+        whitelisted[:location]  = cleaned_location params[:user]
       end
     end
 
