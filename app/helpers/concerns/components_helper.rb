@@ -59,6 +59,47 @@ module Concerns
       }
     end
 
+    def map_data
+      # Data used by map
+      data = {
+        expand_button_title: t("components.map.expand_button_title"),
+        collapse_button_title: t("components.map.collapse_button_title"),
+      }
+      # Data used by map editor
+      data = data.merge({
+        geometry_selector_title: t("components.map.geometry_selector.title"),
+        geometry_selector_explanation: t("components.map.geometry_selector.explanation"),
+        marker_button_title: t("components.map.geometries.marker"),
+        shape_button_title: t("components.map.geometries.shape"),
+        line_button_title: t("components.map.geometries.line"),
+        location_selector_title: t("components.map.location_selector.title"),
+        location_selector_question_explanation: t("components.map.location_selector.question_explanation"),
+        near_button_title: t("components.map.location_selector.near_button"),
+        far_button_title:t("components.map.location_selector.far_button"),
+        location_selector_instruction_explanation: t("components.map.location_selector.instruction_explanation"),
+      }) if edit_mode?
+      data
+    end
+
+    def map_options(obj)
+      obj_type = object_type obj
+      opts = {
+        geojson: obj.location_geohash,
+        featuresIds: (obj.try(:geo_data_ids) || obj.id || nil),
+        featureURL: "\#{baseURL}#{obj_type}/\#{id}/",
+        hasLocation: obj.try(:'has_location?'),
+      }
+      opts = opts.merge({
+        editor: true,
+        inputSelector: "##{obj_type}_location"
+      }) if edit_mode?
+      opts = opts.merge({
+        geometryType: 'Point',
+        geolocation: true
+      }) if obj_type == :user && edit_mode?
+      opts
+    end
+
     def show_relation_metadata?(rel)
       !rel[:metadata].empty? && !rel[:metadata].values.all?(&:blank?)
     end

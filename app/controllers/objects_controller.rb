@@ -61,6 +61,7 @@ class ObjectsController < ApplicationController
         whitelisted[:tags] = cleaned_tags params[object_sym]
         whitelisted[:additional_info] = cleaned_additional_info params[object_sym]
         whitelisted[:relations_attributes] = cleaned_relations_attributes(params[object_sym]) if params[object_sym][:relations_attributes]
+        whitelisted[:location] = cleaned_location(params[object_sym]) if params[object_sym][:location]
       end
     end
 

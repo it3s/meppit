@@ -79,6 +79,10 @@ describe Map do
       it { expect(map.geo_data_features.first).to be_a_kind_of RGeo::GeoJSON::Feature }
     end
 
+    describe "#geo_data_ids" do
+      it { expect(map.geo_data_ids).to eq [data1.id, data2.id] }
+    end
+
     describe "#location" do
       it "returns nil if geo_data_count is zero" do
         allow(map).to receive(:geo_data_count).and_return 0
@@ -92,6 +96,16 @@ describe Map do
 
       it { expect(map.location.keys).to eq geojson.keys }
       it { expect(map.location["features"].size).to eq 2 }
+    end
+
+    describe "#location_geohash" do
+      it "returns nil when location is nil" do
+        allow(map).to receive(:location).and_return nil
+        expect(map.location_geohash).to be nil
+      end
+
+      it { expect(map.location_geohash.to_json).to include geojson["features"][0].to_json }
+      it { expect(map.location_geohash.to_json).to include geojson["features"][1].to_json }
     end
 
     describe "#location_geojson" do

@@ -6,3 +6,20 @@ en:
       geo_data: 'search by data name'
       relation_target: 'search by data name'
       test: 'test'
+
+    map:
+      expand_button_title: 'Expand'
+      collapse_button_title: 'Collapse'
+      geometry_selector:
+        title: 'Geometry Type'
+        explanation: 'Select the geometry type that describes the kind of geospatial information you want to store'
+      location_selector:
+        title: 'Location'
+        question_explanation: 'Are you near the location?'
+        instruction_explanation: 'Please allow geolocation access'
+        near_button: 'Yes'
+        far_button: 'No'
+      geometries:
+        marker: 'Marker'
+        shape: 'Shape'
+        line: 'Line'

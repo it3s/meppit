@@ -1,5 +1,5 @@
 <% if object.location %>
-  <div class="map" data-components="map" data-map-options='{"geojson":<%= raw object.location_geojson %>}'></div>
+  <div class="map" data-components="map" data-map-options="<%= {geojson: object.location_geohash, data: map_data }.to_json %>"></div>
 <% else %>
   <div data-components='overlay' data-overlay-options='<%= {message: t("empty_location")}.to_json %>'>
     <%= image_tag "imgs/map-placeholder-wide.png", :alt => 'location', :class => 'placeholder' %>
