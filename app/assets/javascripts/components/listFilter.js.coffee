@@ -10,7 +10,7 @@ App.components.listFilter = ->
     toggleBtn:    @container.find('.toggle-panel')
     filtersForm:  @container.find('.filters')
     filterChoice: @container.find('input[data-filter]')
-    sortChoice:   @container.find('.choice input[type=radio]')
+    choiceBtn:    @container.find('.choice input[type=radio]')
     tags:         @container.find('input#filter_tags')
     tagsId:       'tags:filter_tags'
     applyBtn:     @container.find('.apply-btn')
@@ -20,8 +20,10 @@ App.components.listFilter = ->
     @on @attr.toggleBtn,    'click', @toggle
     @on @attr.filterChoice, 'click', @toggleFilter
 
-    @on @attr.sortChoice,  'click',        @choiceChanged
+    @on @attr.choiceBtn,   'click',        @choiceChanged
     App.mediator.subscribe 'tags:changed', @tagsChanged.bind(this)
+
+    @loadValues() unless _.isEmpty @parseQueryString()
 
   toggle: ->
     if @isExpanded() then @collapse() else @expand()
@@ -69,7 +71,25 @@ App.components.listFilter = ->
     href = if query.length > 0 then '?' + query.join('&') else '#'
     @attr.applyBtn.attr 'href', href
 
+  loadValues: ->
+    p = @attr.params
+    console.log 'loadValues', p
 
+  parseQueryString: ->
+    data = {}
+    queryString = location.search.substring(1)
 
+    _.each queryString.split('&'), (kv) =>
+      [key, val] = kv.split('=')
+      data[@_decode(key)] = @_decode(val) if key && val
 
+    @attr.params = {
+      filters:       if data.tags?.length > 0 then {tags: data.tags.split(',')} else {}
+      sort_by:       data.sort_by || 'name'
+      visualization: data.visualization || 'list'
+    } unless _.isEmpty data
 
+    data
+
+  _decode: (s) ->
+    decodeURIComponent(s.replace /\+/g, " ")
