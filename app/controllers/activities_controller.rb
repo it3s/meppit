@@ -6,6 +6,10 @@ class ActivitiesController < ApplicationController
     render layout: nil if request.xhr?
   end
 
+  def news_feed
+    @activities = news_feed_results
+  end
+
   private
 
     def find_user

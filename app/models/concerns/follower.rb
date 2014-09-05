@@ -21,5 +21,21 @@ module Follower
     def follow?(obj)
       followings.where(followable: obj).exists?
     end
+
+    def following_activities
+      activities = PublicActivity::Activity.arel_table
+      followings = Following.arel_table
+      sql = activities.join(followings).on(
+        followings[:followable_type].eq(activities[:trackable_type])
+      ).where(
+        activities[:trackable_id].eq(followings[:followable_id]).and(
+          followings[:follower_id].eq(self.id)
+        #).and(
+        #  activities[:owner_type].eq(self.class.name).and(
+        #    activities[:owner_id].not_eq(self.id))
+        )
+      ).order("activities.created_at desc").project('activities.*')
+      PublicActivity::Activity.find_by_sql(sql)
+    end
   end
 end

@@ -44,4 +44,13 @@ class ApplicationController < ActionController::Base
     def find_search_results
       PgSearch.multisearch(params[:term]).includes(:searchable).limit(20).map { |d| d.searchable }
     end
+
+    def news_feed_results
+      if current_user
+        activities = paginate current_user.following_activities
+      else
+        activities = paginate PublicActivity::Activity.order('created_at desc').includes(:trackable).includes(:owner)
+      end
+      activities
+    end
 end

@@ -1,8 +1,8 @@
-<div class="last_updates">
-  <h3><%= t 'frontpage.news.updates_title' %></h3>
+<section>
+  <br>
+  <h2><%= icon "clock-o", t('news_feed.title') %></h2>
   <div id="activity" data-components="list">
-    <div id="activities-pagination"><%= paginate @activities, :remote => true,
-    :params => {:controller => 'activities', :action => 'news_feed'} %></div>
+    <div id="activities-pagination"><%= paginate @activities, :remote => true %></div>
     <ul id="activities-list" class="list activities-list">
         <% unless @activities.empty? %>
           <% @activities.each do |activity| %>
@@ -13,7 +13,4 @@
         <% end %>
     </ul>
   </div>
-  <div class="apart">
-    <a href="<%= news_feed_path %>"><%= t 'frontpage.news.updates_all' %></a>
-  </div>
-</div>
+</section>

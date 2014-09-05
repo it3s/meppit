@@ -18,6 +18,10 @@ en:
     empty: "No results found!"
     title: "Search Results"
 
+  news_feed:
+    title: "News Feed"
+    empty: "No activities"
+
   flash:
     saved: "Saved successfully"
 

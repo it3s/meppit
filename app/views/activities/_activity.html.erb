@@ -1,0 +1,23 @@
+<li class="list-item small <%= activity.type %>">
+  <div class="wrapper">
+    <a href="<%= activity.url %>" title="<%= activity.name %>">
+      <div class="item-avatar">
+        <%= activity.avatar %>
+      </div>
+      <div class="owner-avatar">
+        <%= activity.owner_avatar %>
+      </div>
+    </a>
+    <div class="item">
+      <div class="activity-event">
+        <%= activity.event_with_owner %>
+      </div>
+      <time class="activity-time" datetime="<%= activity.time.to_datetime.rfc3339 %>">
+        <%= activity.time_ago %>
+      </time>
+      <div class="activity-changes">
+        <%= activity.changes %>
+      </div>
+    </div>
+  </div>
+</li>

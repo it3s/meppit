@@ -18,6 +18,10 @@ pt-BR:
     empty: "Nenhum resultado encontrado!"
     title: "Resultados da Busca"
 
+  news_feed:
+    title: "Novidades"
+    empty: "Nenhuma novidade"
+
   flash:
     saved: "Salvo com sucesso"
 

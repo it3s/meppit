@@ -151,7 +151,7 @@
       h3{ text-indent: 5px; }
     }
 
-    li {
+    .blog li {
       :hover { background: $meppit-light-blue; }
       a {
         display: block;
@@ -162,10 +162,19 @@
       img { margin-right: 0.2em }
     }
 
-    .last_updates .updates {
+    .last_updates {
       margin: 0;
 
-      li a { margin-bottom: 0; }
+      #activity {
+         height: 310px;
+         overflow-y: auto;
+      }
+
+      .activities-list {
+        .list-item { 
+          &.small .item { width: 350px; }
+        }
+      }
     }
 
     .apart {
