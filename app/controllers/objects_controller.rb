@@ -1,7 +1,7 @@
 class ObjectsController < ApplicationController
-  before_action :find_object,    except: [:index, :new, :create, :search_by_name]
-  before_action :build_instance, only:   [:new, :create]
-  before_action :validate_additional_info, only: [:create, :update]
+  before_action :find_object,              except: [:index, :new, :create, :search_by_name]
+  before_action :build_instance,           only:   [:new, :create]
+  before_action :validate_additional_info, only:   [:create, :update]
 
   def index
     instance_variable_set "@#{controller_name}_collection", object_collection
@@ -55,12 +55,18 @@ class ObjectsController < ApplicationController
       instance_variable_set "@#{object_sym}", model.new
     end
 
-    def object_collection
-      @visualization = params.fetch :visualization, 'list'
+    def filters
+      @filters ||= OpenStruct.new({
+          sort_by:       params.fetch(:sort_by, 'name'),
+          visualization: params.fetch(:visualization, 'list'),
+        }.merge( params[:tags] ? {tags: params[:tags].split(',')} : {} )
+      )
+    end
 
+    def object_collection
       qs = model
-      params[:tags].split(',').each { |tag| qs = qs.where("? = ANY(tags)", tag) } if params[:filters] && params[:tags]
-      qs = qs.order params[:sort_by] == 'date' ? 'created_at desc' : 'name'
+      qs = qs.with_tags filters.tags if filters.tags
+      qs = qs.order filters.sort_by == 'created_at' ? 'created_at desc': filters.sort_by
       qs.page(params[:page]).per(params[:per])
     end
 
