@@ -4,7 +4,7 @@ class ObjectsController < ApplicationController
   before_action :validate_additional_info, only: [:create, :update]
 
   def index
-    instance_variable_set "@#{controller_name}_collection", model.page(params[:page]).per(params[:per])
+    instance_variable_set "@#{controller_name}_collection", object_collection
     respond_to do |format|
       format.html
       format.js
@@ -53,6 +53,15 @@ class ObjectsController < ApplicationController
 
     def build_instance
       instance_variable_set "@#{object_sym}", model.new
+    end
+
+    def object_collection
+      @visualization = params.fetch :visualization, 'list'
+
+      qs = model
+      params[:tags].split(',').each { |tag| qs = qs.where("? = ANY(tags)", tag) } if params[:filters] && params[:tags]
+      qs = qs.order params[:sort_by] == 'date' ? 'created_at desc' : 'name'
+      qs.page(params[:page]).per(params[:per])
     end
 
     def cleaned_params
