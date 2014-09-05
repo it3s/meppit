@@ -68,7 +68,7 @@ class ActivityPresenter
   end
 
   def owner_link
-    "<a href=\"#{ ctx.url_for owner }\" class=\"event-owner\">#{ owner.name }</a>"
+    ctx.link_to(owner.name, ctx.url_for(owner), class: "event-owner").html_safe
   end
 
   def event_type

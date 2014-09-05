@@ -14,6 +14,10 @@ describe ActivityPresenter do
     it { expect(presenter.trackable).to eq geo_data }
   end
 
+  describe "#owner" do
+    it { expect(presenter.owner).to eq user }
+  end
+
   describe "#name" do
     it { expect(presenter.name).to eq geo_data.name }
   end
@@ -61,6 +65,20 @@ describe ActivityPresenter do
     end
   end
 
+  describe "#owner_avatar" do
+    context "user itself" do
+      let(:obj) { user }
+      it { expect(presenter.owner_avatar).to eq ctx.icon(:user) }
+    end
+    context "user but not itself" do
+      let(:other_user) { FactoryGirl.create :user, name: 'Jane'}
+      let(:obj) { other_user }
+      before { allow(presenter.owner).to receive(:thumb).and_return(double url: '' ) }
+
+      it { expect(presenter.owner_avatar).to eq "<img alt=\"Avatar placeholder\" src=\"/assets/imgs/avatar-placeholder.png\" />" }
+    end
+  end
+
   describe "#changes" do
     it { expect(presenter.changes).to eq "<i class=\"fa fa-edit\"></i> name"}
 
@@ -94,6 +112,20 @@ describe ActivityPresenter do
       allow(presenter).to receive(:headline).and_return 'HEADLINE'
     }
     it { expect(presenter.event).to include('EVENTTYPE', 'HEADLINE') }
+  end
+
+  describe "#event_with_owner" do
+    before {
+      allow(presenter).to receive(:event_type).and_return 'EVENTTYPE'
+      allow(presenter).to receive(:headline).and_return 'HEADLINE'
+      allow(presenter).to receive(:owner_link).and_return 'OWNERLINK'
+    }
+    it { expect(presenter.event_with_owner).to include('EVENTTYPE', 'HEADLINE', 'OWNERLINK') }
+  end
+
+  describe "#owner_link" do
+    before { allow(ctx).to receive(:url_for).and_return 'URL' }
+    it { expect(presenter.owner_link).to include('URL', 'event-owner', user.name) }
   end
 
   describe "#user_itself" do
