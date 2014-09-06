@@ -179,81 +179,28 @@ nav.pagination { display: none; }  // We are using infinite scroll
       }
     }
 
-    .filters {
-      display: none;
-      margin-top: 20px;
-      border-top: solid 1px $soft-grey;
-      padding-top: 10px;
 
-      .filter-choices {
-        .choice {
-          display: inline-block;
-          width: 30%;
+    // .tags {
+    //   display: inline-block;
+    //   width: 825px;
+    //   margin-top: 0;
 
-          label {
-            font-weight: bold;
-            margin-right: 10px;
-          }
+    //   .tagsinput {
+    //     background: inherit;
+    //     min-height: 0 !important;
 
-          input {
-            margin-right: 5px;
-            position: relative;
-            bottom: -3px;
-          }
+    //     .tag {
+    //       background-color: darken($meppit-light-blue, 5%);
+    //     }
 
-          .option {
-            margin-right: 15px;
-          }
-        }
-      }
+    //     input {
+    //       background: $main-color-bg;
+    //       border-radius: 4px;
+    //     }
+    //   }
+    // }
 
-      .filter {
-        display: none;
-        padding: 20px 0 10px;
 
-        label {
-          font-weight: bold;
-          margin-right: 10px;
-          vertical-align: top;
-          display: inline-block;
-        }
-        &.tags-filter label { margin-top: 10px; }
-
-        .tags {
-          display: inline-block;
-          width: 825px;
-          margin-top: 0;
-
-          .tagsinput {
-            background: inherit;
-            min-height: 0 !important;
-
-            .tag {
-              background-color: darken($meppit-light-blue, 5%);
-            }
-
-            input {
-              background: $main-color-bg;
-              border-radius: 4px;
-            }
-          }
-        }
-      }
-
-      .filters-apply {
-        position: relative;
-        height: 1.8em;
-        margin-top: 10px;
-
-        .apply-btn {
-          @include blue-button;
-          position: absolute;
-          right: 0;
-          padding: 4px 25px;
-        }
-      }
-
-    }
   }
 
 }

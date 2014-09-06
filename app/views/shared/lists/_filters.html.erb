@@ -5,52 +5,8 @@
     <div class="toggle-panel <%= I18n.locale %>" data-toggle="collapsed"><%= icon('chevron-down', t('js.lists.expand')) %></div>
   </div>
 
-  <div class="filters">
-    <div class="filter-choices">
-      <div class="choice">
-        <label><%= t 'lists.filters.filter_by' %>:</label>
-        <span class="option">
-          <input type="checkbox" name="filter_by" data-filter="#tags-filter"/>
-          <%= t 'lists.filters.tags' %>
-        </span>
-      </div>
-
-      <div class="choice">
-        <label><%= t 'lists.filters.sort_by' %>:</label>
-        <span class="option">
-          <input type="radio" name="sort_by" value="name" checked />
-          <%= t 'lists.filters.name' %>
-        </span>
-        <span class="option">
-          <input type="radio" name="sort_by" value="created_at" >
-          <%= t 'lists.filters.date' %>
-        </span>
-      </div>
-
-      <div class="choice">
-        <label><%= t 'lists.filters.visualization' %>:</label>
-        <span class="option">
-          <input type="radio" name="visualization" value="list" checked />
-          <%= t 'lists.filters.list' %>
-        </span>
-        <span class="option">
-          <input type="radio" name="visualization" value="map" >
-          <%= t 'lists.filters.map' %>
-        </span>
-      </div>
-    </div>
-
-    <div id="tags-filter" class="filter tags-filter">
-      <label><%= t 'lists.filters.tags' %>:</label>
-      <div class="tags">
-        <%= text_field_tag :filter_tags, "", "data-components" => "tags",
-              "data-tags-options" => {tags:[], autocomplete: tag_search_path }.to_json %>
-      </div>
-    </div>
-
-    <div class="filters-apply">
-      <%= link_to t('lists.filters.apply'), "#", class: "apply-btn" %>
-    </div>
+  <div class="filter-form">
+    <%= form_tag method: :get do
   </div>
 
 </div>
