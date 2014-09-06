@@ -24,15 +24,15 @@ class ActivityPresenter
   end
 
   def avatar
-    object_avatar trackable
+    object_avatar trackable, !user_itself?
   end
 
   def owner_avatar
     object_avatar owner
   end
 
-  def object_avatar(obj)
-    return ctx.image_tag obj.avatar.thumb.url if obj.try(:avatar) && !user_itself?
+  def object_avatar(obj, allow_image = true)
+    return ctx.image_tag obj.avatar.thumb.url if obj.try(:avatar) && allow_image
 
     case type
     when :map      then ctx.icon :globe
@@ -76,7 +76,7 @@ class ActivityPresenter
   end
 
   def user_itself?
-    type == :user && trackable.id == object.owner.id
+    type == :user && trackable.id == owner.id
   end
 
   def headline

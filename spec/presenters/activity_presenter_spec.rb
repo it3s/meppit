@@ -68,7 +68,7 @@ describe ActivityPresenter do
   describe "#owner_avatar" do
     context "user itself" do
       let(:obj) { user }
-      it { expect(presenter.owner_avatar).to eq ctx.icon(:user) }
+      it { expect(presenter.owner_avatar).to eq "<img alt=\"Avatar placeholder\" src=\"/assets/imgs/avatar-placeholder.png\" />" }
     end
     context "user but not itself" do
       let(:other_user) { FactoryGirl.create :user, name: 'Jane'}
