@@ -3,7 +3,7 @@ class ListFilter
   extend ActiveModel::Naming
   include ActiveModel::Conversion
 
-  attr_accessor :tags, :sort_by, :order, :visualization
+  attr_accessor :tags, :tags_type, :sort_by, :order, :visualization
 
   def initialize(attributes = {})
     attributes.each { |name, value| send "#{name}=", value }
@@ -27,9 +27,10 @@ class ListFilter
   private
 
     def set_defaults
-      self.tags    ||= []
+      self.tags ||= []
+      self.tags_type ||= 'all'
       self.sort_by ||= 'name'
-      self.order   ||= 'asc'
+      self.order ||= 'asc'
       self.visualization ||= 'list'
     end
 
