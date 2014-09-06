@@ -179,27 +179,101 @@ nav.pagination { display: none; }  // We are using infinite scroll
       }
     }
 
+    section {
+      border-bottom: solid 1px $soft-grey;
+      padding: 10px 0;
 
-    // .tags {
-    //   display: inline-block;
-    //   width: 825px;
-    //   margin-top: 0;
+      &.splitted {
+        display: inline-block;
+        width: 48%;
+        vertical-align: top;
+        border-bottom: none;
 
-    //   .tagsinput {
-    //     background: inherit;
-    //     min-height: 0 !important;
+        &.right { padding-left: 20px; }
+      }
 
-    //     .tag {
-    //       background-color: darken($meppit-light-blue, 5%);
-    //     }
+      header {
+        font-size: 14px;
+        font-weight: bold;
+        margin: 10px 0;
+      }
+    }
 
-    //     input {
-    //       background: $main-color-bg;
-    //       border-radius: 4px;
-    //     }
-    //   }
-    // }
+    .vertical-separator {
+      width: 1px;
+      height: 60px;
+      margin-top: 20px;
+      border-left: solid 1px $soft-grey;
+      display: inline-block;
+    }
 
+    .filter-form {
+      .filter-tags {
+        label[for=tags] {
+          display: inline-block;
+          vertical-align: top;
+          font-weight: bold;
+          margin-top: 12px;
+        }
+
+        .tags_type {
+          display: inline-block;
+          width: 220px;
+          vertical-align: top;
+          margin-top: 5px;
+        }
+        .tags {
+          display: inline-block;
+          width: 600px;
+          margin-top: 0;
+
+          .tagsinput {
+            background: inherit;
+            min-height: 0 !important;
+
+            .tag {
+              background-color: darken($meppit-light-blue, 5%);
+            }
+
+            input {
+              background: $main-color-bg;
+              border-radius: 4px;
+            }
+          }
+        }
+      }
+
+      .sort_by, .order {
+        display: inline-block;
+        width: 48%;
+      }
+
+      .choice-title {
+        font-weight: bold;
+        margin-right: 20px;
+        vertical-align: top;
+      }
+
+      .choice {
+        display: inline-block;
+        width: 350px;
+      }
+      .sort_by .choice { width: 80px; }
+      .order .choice { width: 110px; }
+
+      .filters-apply {
+        position: relative;
+        height: 1.8em;
+        margin-top: 10px;
+
+        .apply-btn {
+          @include blue-button;
+          position: absolute;
+          right: 0;
+          padding: 4px 25px;
+        }
+      }
+    }
 
   }
 

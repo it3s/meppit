@@ -1,5 +1,7 @@
 class ListFilter
   extend ActiveModel::Model
+  extend ActiveModel::Naming
+  include ActiveModel::Conversion
 
   attr_accessor :tags, :sort_by, :order, :visualization
 
@@ -8,14 +10,18 @@ class ListFilter
     set_defaults
   end
 
-  def ordering
-    "#{sort_by} #{order}"
-  end
-
   def filter(queryset)
     queryset = queryset.with_tags tags unless tags.empty?
     queryset = queryset.order ordering
     queryset
+  end
+
+  def persisted?
+    false
+  end
+
+  def id
+    nil
   end
 
   private
@@ -27,4 +33,7 @@ class ListFilter
       self.visualization ||= 'list'
     end
 
+    def ordering
+      "#{sort_by} #{order}"
+    end
 end

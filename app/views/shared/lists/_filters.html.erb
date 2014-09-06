@@ -6,7 +6,69 @@
   </div>
 
   <div class="filter-form">
-    <%= form_tag method: :get do
+    <%= form_tag '', method: 'get' do %>
+
+      <section>
+        <header>Filters:</header>
+        <div class="filter-tags">
+          <%= label_tag :tags, t('lists.filters.tags') %>
+          <div class="tags">
+            <%= text_field_tag 'list_filter[tags]', "", "data-components" => "tags",
+              "data-tags-options" => {tags:[], autocomplete: tag_search_path }.to_json %>
+          </div>
+          <div class="tags_type">
+            <%= radio_button_tag('list_filter[tags_type]', "all") %>
+            <%= label_tag(:list_filter_tags_type, "Contains all selected tags") %>
+            <%= radio_button_tag('list_filter[tags_type]', "any") %>
+            <%= label_tag(:list_filter_tags_type, "Contains any of the selected tags") %>
+          </div>
+        </div>
+      </section>
+
+      <div>
+        <section class="splitted">
+          <header>Sort by:</header>
+
+          <div class="sort_by">
+            <span class="choice-title">Field:</span>
+            <div class="choice">
+              <%= radio_button_tag('list_filter[sort_by]', "name") %>
+              <%= label_tag(:list_filter_sort_by, "Name") %>
+              <%= radio_button_tag('list_filter[sort_by]', "created_at") %>
+              <%= label_tag(:list_filter_sort_by, "Date") %>
+            </div>
+          </div>
+          <div class="order">
+            <span class="choice-title">Order:</span>
+            <div class="choice">
+              <%= radio_button_tag('list_filter[order]', "asc") %>
+              <%= label_tag(:list_filter_order, "Ascending") %>
+              <%= radio_button_tag('list_filter[order]', "desc") %>
+              <%= label_tag(:list_filter_order, "Descending") %>
+            </div>
+          </div>
+        </section>
+
+        <div class="vertical-separator"> </div>
+
+        <section class="splitted right">
+          <header>Visualization:</header>
+
+          <span class="choice-title">Display:</span>
+          <div class="choice">
+            <%= radio_button_tag('list_filter[visualization]', "list") %>
+            <%= label_tag(:list_filter_visualization, "List") %>
+            <%= radio_button_tag('list_filter[visualization]', "map") %>
+            <%= label_tag(:list_filter_visualization, "Map") %>
+          </div>
+        </section>
+      </div>
+
+      <div class="filters-apply">
+        <%= submit_tag :apply, class: 'apply-btn' %>
+      </div>
+
+    <% end %>
   </div>
 
 </div>
