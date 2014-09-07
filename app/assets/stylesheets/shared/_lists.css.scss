@@ -208,6 +208,8 @@ nav.pagination { display: none; }  // We are using infinite scroll
     }
 
     .filter-form {
+      display: none;
+
       .filter-tags {
         label[for=tags] {
           display: inline-block;

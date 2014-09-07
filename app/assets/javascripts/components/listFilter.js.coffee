@@ -8,10 +8,10 @@ collapsed = """
 App.components.listFilter = ->
   attributes: ->
     toggleBtn:    @container.find('.toggle-panel')
-    filtersForm:  @container.find('.filters')
+    filterForm:  @container.find('.filter-form')
 
   initialize: ->
-    @on @attr.toggleBtn,    'click', @toggle
+    @on @attr.toggleBtn, 'click', @toggle
 
   toggle: ->
     if @isExpanded() then @collapse() else @expand()
@@ -20,11 +20,11 @@ App.components.listFilter = ->
     @attr.toggleBtn.data('toggle') is 'expanded'
 
   collapse: ->
-    @attr.filtersForm.slideUp('fast')
+    @attr.filterForm.slideUp('fast')
     @attr.toggleBtn.data('toggle', 'collapsed')
     @attr.toggleBtn.html collapsed
 
   expand: ->
-    @attr.filtersForm.slideDown('fast')
+    @attr.filterForm.slideDown('fast')
     @attr.toggleBtn.data('toggle', 'expanded')
     @attr.toggleBtn.html expanded
