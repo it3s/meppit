@@ -92,6 +92,44 @@ describe ApplicationHelper do
     end
   end
 
+  describe "#collection_location" do
+    let(:geom1) { RGeo::Cartesian.simple_factory.parse_wkt "GEOMETRYCOLLECTION (POINT (-10.000 -10.000))" }
+    let(:geo_data1) { FactoryGirl.create(:geo_data, location: geom1) }
+    let(:geom2) { RGeo::Cartesian.simple_factory.parse_wkt "GEOMETRYCOLLECTION (POINT (-20.000 -20.000))" }
+    let(:geo_data2) { FactoryGirl.create(:geo_data, location: geom2) }
+    let(:map) { FactoryGirl.create :map }
+    let(:geojson1) {
+      {
+        "type"=>"Feature",
+        "geometry"=>{
+          "type"=>"GeometryCollection",
+          "geometries"=>[{"type"=>"Point", "coordinates"=>[-10.0, -10.0]}]
+        },
+        "properties"=> geo_data1.geojson_properties.stringify_keys,
+        "id"=>geo_data1.id
+      }.to_json
+    }
+    let(:geojson2) {
+      {
+        "type"=>"Feature",
+        "geometry"=>{
+          "type"=>"GeometryCollection",
+          "geometries"=>[{"type"=>"Point", "coordinates"=>[-20.0, -20.0]}]
+        },
+        "properties"=> geo_data2.geojson_properties.stringify_keys,
+        "id"=>geo_data2.id
+      }.to_json
+    }
+
+    before {
+      map.add_geo_data geo_data1
+    }
+
+    it { expect(helper.collection_location([map, geo_data2])).to be_a_kind_of OpenStruct }
+    it { expect(helper.collection_location([map, geo_data2]).location_geojson).to include geojson1 }
+    it { expect(helper.collection_location([map, geo_data2]).location_geojson).to include geojson2 }
+  end
+
   describe "Concerns::I18nHelper" do
     describe "#i18n_language_names" do
       it 'has names for all availables locales' do
