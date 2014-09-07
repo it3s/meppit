@@ -8,11 +8,8 @@ module Taggable
 
         # MyModel.with_tags(['foo', 'bar'], :any)
         scope :"with_#{field}", -> (tags, search_for=:all) {
-          if search_for == :any
-            where('tags && ARRAY[?]', tags)
-          else
-            where('tags @> ARRAY[?]', tags)
-          end
+          operator = search_for == :any ? '&&' : '@>'
+          where("tags #{operator} ARRAY[?]", tags)
         }
       end
     end

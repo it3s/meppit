@@ -11,7 +11,7 @@ class ListFilter
   end
 
   def filter(queryset)
-    queryset = queryset.with_tags tags unless tags.empty?
+    queryset = queryset.with_tags(tags, tags_type.to_sym) unless tags.empty?
     queryset = queryset.order ordering
     queryset
   end
@@ -22,6 +22,10 @@ class ListFilter
 
   def id
     nil
+  end
+
+  def checked? (field, val)
+    val == send(field)
   end
 
   private

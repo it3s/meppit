@@ -57,7 +57,9 @@ class ObjectsController < ApplicationController
     end
 
     def build_list_filter
-      @list_filter = ListFilter.new params.fetch(:list_filter, {})
+      _filter_params = params.fetch(:list_filter, {})
+      _filter_params[:tags] = _filter_params[:tags].split(',') if _filter_params[:tags]
+      @list_filter = ListFilter.new _filter_params
     end
 
     def object_collection
