@@ -9,7 +9,7 @@ module Taggable
         # MyModel.with_tags(['foo', 'bar'], :any)
         scope :"with_#{field}", -> (tags, search_for=:all) {
           operator = search_for == :any ? '&&' : '@>'
-          where("tags #{operator} ARRAY[?]", tags)
+          where("#{field} #{operator} ARRAY[?]", tags)
         }
       end
     end
