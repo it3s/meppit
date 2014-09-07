@@ -2,7 +2,14 @@
 
   <div class="filter-headline">
     <span class="title"><%= t 'lists.filters.title' %></span>
-    <div class="toggle-panel <%= I18n.locale %>" data-toggle="collapsed"><%= icon('chevron-down', t('js.lists.expand')) %></div>
+    <% unless list_filter.tags.empty? %>
+    <span class="filtering-by">
+      (<%= t 'lists.filters.filtering_by' %>: <em><%= list_filter.tags.join(', ') %></em>)
+    </span>
+    <% end %>
+    <div class="toggle-panel <%= I18n.locale %>" data-toggle="collapsed">
+      <%= icon('chevron-down', t('js.lists.expand')) %>
+    </div>
   </div>
 
   <div class="filter-form">

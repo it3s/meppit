@@ -164,6 +164,15 @@ nav.pagination { display: none; }  // We are using infinite scroll
         padding-top: 5px;
       }
 
+      .filtering-by {
+        margin-left: 5px;
+        color: $grey;
+        font-size: 0.9em;
+        font-weight: normal;
+
+        em { font-weight: bold; }
+      }
+
       .toggle-panel {
         @include blue-button;
         display: inline-block;

@@ -4,6 +4,7 @@ en:
 
     filters:
       title: 'Visualization and filter options'
+      filtering_by: 'filtering by tags'
       apply: 'Apply'
       filter_by: 'Filter by'
       sort_by: 'Sort by'
