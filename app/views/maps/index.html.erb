@@ -1,20 +1,29 @@
 <div class="site-page full map-list maps index">
-  <div data-components="list">
 
-    <%= render 'shared/lists/filters', list_filter: @list_filter %>
+  <%= render 'shared/lists/filters', list_filter: @list_filter %>
 
-    <div class="list-headline">
-      <h1 class="title">
-        <%= raw t('maps.list.title', :count => "<em>#{@maps_collection.total_count}</em>") %>
-        <div class="selected-count"></div>
-      </h1>
-      <div id="map-pagination"><%= paginate @maps_collection, :remote => true %></div>
+  <% if @list_filter.map? %>
+
+  MAP !!
+  <%#= render 'shared/location', object: collection_location(@maps_collection) %>
+
+  <% else %>
+
+    <div data-components="list">
+      <div class="list-headline">
+        <h1 class="title">
+          <%= raw t('maps.list.title', :count => "<em>#{@maps_collection.total_count}</em>") %>
+          <div class="selected-count"></div>
+        </h1>
+        <div id="map-pagination"><%= paginate @maps_collection, :remote => true %></div>
+      </div>
+
+      <%= render 'maps/list_actions' %>
+
+      <ul id="map-list" class="list map-list">
+        <%= render @maps_collection, :checkbox => true %>
+      </ul>
     </div>
 
-    <%= render 'maps/list_actions' %>
-
-    <ul id="map-list" class="list map-list">
-      <%= render @maps_collection, :checkbox => true %>
-    </ul>
-  </div>
+  <% end %>
 </div>

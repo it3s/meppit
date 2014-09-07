@@ -47,4 +47,8 @@ class User < ActiveRecord::Base
   def notifications
     Notification.includes(activity: [:trackable, :owner]).where(user: self).order('created_at desc')
   end
+
+  def unread_notifications_count
+    Notification.where(user: self, status: "unread").count
+  end
 end

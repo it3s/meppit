@@ -28,6 +28,10 @@ class ListFilter
     val == send(field)
   end
 
+  def map?
+    visualization == 'map'
+  end
+
   private
 
     def set_defaults

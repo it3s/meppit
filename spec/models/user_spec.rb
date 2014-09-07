@@ -106,5 +106,9 @@ describe User do
     it { expect(user.notifications.count).to eq 1 }
     it { expect(user.notifications.first).to eq notification }
     it { expect(user.notifications.explain).to match 'created_at desc' }
+
+    describe "#unread_notifications_count" do
+      it { expect(user.unread_notifications_count).to eq 1 }
+    end
   end
 end

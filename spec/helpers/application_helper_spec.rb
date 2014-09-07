@@ -166,18 +166,6 @@ describe ApplicationHelper do
     end
   end
 
-  describe "#notifications_count" do
-    let(:user) { FactoryGirl.create :user }
-    let(:other_user) { FactoryGirl.create :user, name: 'other' }
-    let(:geo_data) { FactoryGirl.create :geo_data }
-    let(:activity) { geo_data.create_activity :update, owner: other_user, parameters: {changes: {"name"=>["", geo_data.name]}} }
-    let!(:notification) { Notification.create user: user, activity: activity }
-
-    before { allow(helper).to receive(:current_user).and_return user }
-
-    it { expect(helper.notifications_count).to eq 1 }
-  end
-
   describe "Concerns::ComponentsHelper" do
     describe "#hash_to_attributes" do
       it "return empty string for empty hash" do

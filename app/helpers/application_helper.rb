@@ -54,7 +54,7 @@ module ApplicationHelper
     end
   end
 
-  def notifications_count
-    Notification.where(user: current_user, status: "unread").count
+  def collection_location(collection)
+    OpenStruct(location: nil, location_geojson: nil)
   end
 end
