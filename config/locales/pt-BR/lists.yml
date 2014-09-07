@@ -13,4 +13,15 @@ pt-BR:
       date: 'Data'
       list: 'Lista'
       map: 'Mapa'
+      display: 'Exibição'
+
+      tags_type:
+        all: 'Contém todas as tags ao lado'
+        any: 'Contém qualquer uma das tags'
+
+      sort:
+        field: 'Campo'
+        order: 'Ordem'
+        asc: 'Ascendente'
+        desc: 'Descendente'
 

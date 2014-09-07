@@ -13,3 +13,18 @@ en:
       date: 'Date'
       list: 'List'
       map: 'Map'
+      display: 'Display'
+
+      tags_type:
+        all: 'Contains all selected tags'
+        any: 'Contains any of the selected tags'
+
+      sort:
+        field: 'Field'
+        order: 'Order'
+        asc: 'Ascending'
+        desc: 'Descending'
+
+
+
+

@@ -9,7 +9,7 @@
     <%= form_tag '', method: 'get' do %>
 
       <section>
-        <header>Filters:</header>
+        <header><%= t('lists.filters.filter_by') %>:</header>
         <div class="filter-tags">
           <%= label_tag :tags, t('lists.filters.tags') %>
           <div class="tags">
@@ -18,33 +18,33 @@
           </div>
           <div class="tags_type">
             <%= radio_button_tag('list_filter[tags_type]', "all") %>
-            <%= label_tag(:list_filter_tags_type, "Contains all selected tags") %>
+            <%= label_tag(:list_filter_tags_type, t('lists.filters.tags_type.all')) %>
             <%= radio_button_tag('list_filter[tags_type]', "any") %>
-            <%= label_tag(:list_filter_tags_type, "Contains any of the selected tags") %>
+            <%= label_tag(:list_filter_tags_type, t('lists.filters.tags_type.any')) %>
           </div>
         </div>
       </section>
 
       <div>
         <section class="splitted">
-          <header>Sort by:</header>
+          <header><%= t('lists.filters.sort_by') %>:</header>
 
           <div class="sort_by">
-            <span class="choice-title">Field:</span>
+            <span class="choice-title"><%= t('lists.filters.sort.field') %>:</span>
             <div class="choice">
               <%= radio_button_tag('list_filter[sort_by]', "name") %>
-              <%= label_tag(:list_filter_sort_by, "Name") %>
+              <%= label_tag(:list_filter_sort_by, t('lists.filters.name')) %>
               <%= radio_button_tag('list_filter[sort_by]', "created_at") %>
-              <%= label_tag(:list_filter_sort_by, "Date") %>
+              <%= label_tag(:list_filter_sort_by, t('lists.filters.date')) %>
             </div>
           </div>
           <div class="order">
-            <span class="choice-title">Order:</span>
+            <span class="choice-title"><%= t('lists.filters.sort.order') %>:</span>
             <div class="choice">
               <%= radio_button_tag('list_filter[order]', "asc") %>
-              <%= label_tag(:list_filter_order, "Ascending") %>
+              <%= label_tag(:list_filter_order, t('lists.filters.sort.asc')) %>
               <%= radio_button_tag('list_filter[order]', "desc") %>
-              <%= label_tag(:list_filter_order, "Descending") %>
+              <%= label_tag(:list_filter_order, t('lists.filters.sort.desc')) %>
             </div>
           </div>
         </section>
@@ -52,20 +52,20 @@
         <div class="vertical-separator"> </div>
 
         <section class="splitted right">
-          <header>Visualization:</header>
+          <header><%= t('lists.filters.visualization') %>:</header>
 
-          <span class="choice-title">Display:</span>
+          <span class="choice-title"><%= t('lists.filters.display') %>:</span>
           <div class="choice">
             <%= radio_button_tag('list_filter[visualization]', "list") %>
-            <%= label_tag(:list_filter_visualization, "List") %>
+            <%= label_tag(:list_filter_visualization, t('lists.filters.list')) %>
             <%= radio_button_tag('list_filter[visualization]', "map") %>
-            <%= label_tag(:list_filter_visualization, "Map") %>
+            <%= label_tag(:list_filter_visualization, t('lists.filters.map')) %>
           </div>
         </section>
       </div>
 
       <div class="filters-apply">
-        <%= submit_tag :apply, class: 'apply-btn' %>
+        <input type="submit" value="<%= t 'lists.filters.apply' %>" class="apply-btn" />
       </div>
 
     <% end %>
