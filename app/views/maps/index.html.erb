@@ -4,8 +4,9 @@
 
   <% if @list_filter.map? %>
 
-  MAP !!
-  <%#= render 'shared/location', object: collection_location(@maps_collection) %>
+  <div class="index-map">
+    <%= render 'shared/location', object: collection_location(@maps_collection) %>
+  </div>
 
   <% else %>
 
