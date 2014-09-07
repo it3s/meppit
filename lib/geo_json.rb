@@ -11,10 +11,11 @@ module GeoJSON
 
   # convert a GeoJSON string or hash to a RGeo geometry object (or WKT string)
   def parse(geojson, opts={})
+    return nil if geojson.nil? || geojson.try(:empty?)
     geojson_hash = geojson.is_a?(Hash) ? geojson : JSON.parse(geojson)
     decoded_geojson = RGeo::GeoJSON.decode(geojson_hash)
     decoded_geojson = decoded_geojson.first if decoded_geojson.is_a? Enumerable
-    opts.fetch(:to, :geometry) == :wkt ? decoded_geojson.geometry.as_text : decoded_geojson.geometry
+    opts.fetch(:to, :geometry) == :wkt ? decoded_geojson.try(:geometry).try(:as_text) : decoded_geojson.try(:geometry)
   end
 
   def rgeo_factory

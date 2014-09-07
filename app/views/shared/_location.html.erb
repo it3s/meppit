@@ -1,6 +1,6 @@
 <section class="location">
   <% if edit_mode? %>
-    <div class="map" data-components="map" data-map-options='{"editor":true, "geojson":<%= raw object.location_geojson %>}'></div>
+    <div class="map" data-components="map" data-map-options="<%= map_options(object).merge({data: map_data}).to_json %>"></div>
   <% else %>
     <%= render 'shared/map', object: object %>
   <% end %>

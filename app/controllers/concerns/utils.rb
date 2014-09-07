@@ -94,6 +94,10 @@ module Utils
     )
   end
 
+  def cleaned_location(_params)
+    GeoJSON.parse(_params[:location])
+  end
+
   def flash_xhr(msg)
     flash.now[:notice] = msg
     render_to_string(partial: 'shared/alerts')

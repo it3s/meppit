@@ -33,6 +33,18 @@ describe GeoData do
     it { expect{ JSON.parse data.location_geojson }.to_not raise_error  }
   end
 
+  describe "#has_location?" do
+    let(:data) { FactoryGirl.create(:geo_data) }
+    it "returns false if there is no location defined" do
+      data.location = nil
+      expect(data.has_location?).to be false
+    end
+    it "returns true if there is location defined" do
+      data.location = "POINT (16.0 26.0)"
+      expect(data.has_location?).to be true
+    end
+  end
+
   describe "with_tags" do
     before do
       FactoryGirl.create :geo_data, tags: ['aa', 'bb']

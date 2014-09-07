@@ -206,6 +206,25 @@ describe ApplicationController do
       end
     end
 
+    describe "#cleaned_location" do
+      context "nil" do
+        let(:params) { {location: nil} }
+        it { expect(controller.send :cleaned_location, params).to eq nil}
+      end
+      context "empty string" do
+        let(:params) { {location: ""} }
+        it { expect(controller.send :cleaned_location, params).to eq nil}
+      end
+      context "valid geojson" do
+        let(:params) { {location: '{"type": "FeatureCollection", "features": [{"type": "Feature", "properties": {}, "geometry": {"type": "Point", "coordinates": [16, 26]}}]}' } }
+        it { expect(controller.send(:cleaned_location, params).as_text).to eq "POINT (16.0 26.0)" }
+      end
+      context "return nil if invalid geojson" do
+        let(:params) { {location: '{"type": "FeatureColecton", "features": [{"type": "Feature", "properties": {}, "geomty": {"type": "Point", "coordinates": [16, 26]}}]}' } }
+        it { expect(controller.send :cleaned_location, params).to eq nil}
+      end
+    end
+
     describe "#find_polymorphic_object" do
       let(:map) { FactoryGirl.create :map }
       it "gets the object from the referer" do

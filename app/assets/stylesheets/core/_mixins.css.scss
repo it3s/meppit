@@ -62,7 +62,12 @@
   clear: both;
   width: 100%;
   margin: 10px 0;
-  border: 1px solid transparent;
+
+  .map-container {
+    width: 100%;
+    height: 100%;
+    border: 1px solid $grey;
+  }
 
   .map { height: 180px; }
   .placeholder  { max-height: 50px; width: 100%; }
