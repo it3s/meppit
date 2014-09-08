@@ -95,6 +95,7 @@ Meppit::Application.routes.draw do
   namespace :api do
     resources :geo_data, only: [:show, :index]
     resources :maps,     only: [:show, :index]
+    resources :users,    only: [:show]
   end
 
   if Rails.env.development?
