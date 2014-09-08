@@ -92,6 +92,10 @@ Meppit::Application.routes.draw do
     post :revert, on: :member
   end
 
+  namespace :api do
+    resources :geo_data, only: [:show, :index]
+  end
+
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
