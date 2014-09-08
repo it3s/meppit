@@ -47,9 +47,12 @@ describe ActivityPresenter do
     context "user but not itself" do
       let(:other_user) { FactoryGirl.create :user, name: 'Jane'}
       let(:obj) { other_user }
-      before { allow(presenter.trackable).to receive(:thumb).and_return(double url: '' ) }
+      before {
+        allow(presenter.trackable).to receive(:avatar?).and_return true
+        allow(presenter.trackable).to receive(:avatar).and_return(double thumb: double(url: 'some-image.png' ))
+      }
 
-      it { expect(presenter.avatar).to eq "<img alt=\"Avatar placeholder\" src=\"/assets/imgs/avatar-placeholder.png\" />" }
+      it { expect(presenter.avatar).to eq "<img alt=\"Some image\" src=\"/images/some-image.png\" />" }
     end
     context "unknown" do
       let(:obj) { map }

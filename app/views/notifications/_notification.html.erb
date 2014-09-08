@@ -1,6 +1,6 @@
 <li class="list-item small notification <%= notification.status %>">
   <div class="wrapper">
-    <a href="<%= notification.url %>" title="<%= notification.name %>">
+    <a href="<%= notification.activity.url %>" title="<%= notification.name %>">
       <div class="item-avatar">
         <%= notification.avatar %>
       </div>
@@ -8,14 +8,14 @@
     <div class="item" data-notification-id="<%= notification.id %>">
       <div class="notification-event">
         <%= link_to notification.author.name, user_path(notification.author) %>
-        <span class="event-type"><%= notification.event_type %></span>
-        <%= link_to notification.name, notification.url %>
-        <time class="notification-time" datetime="<%= notification.time.to_datetime.rfc3339 %>">
-          <%= notification.time_ago %>
+        <span class="event-type"><%= notification.activity.event_type %></span>
+        <%= link_to notification.name, notification.activity.url %>
+        <time class="notification-time" datetime="<%= notification.activity.time.to_datetime.rfc3339 %>">
+          <%= notification.activity.time_ago %>
         </time>
       </div>
       <div class="notification-changes">
-        <%= notification.changes %>
+        <%= notification.activity.changes %>
       </div>
     </div>
   </div>

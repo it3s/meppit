@@ -137,6 +137,19 @@ describe Map do
     end
   end
 
+  describe "with_tags" do
+    before do
+      FactoryGirl.create :map, tags: ['aa', 'bb']
+      FactoryGirl.create :map, tags: ['aa']
+      FactoryGirl.create :map, tags: ['bb', 'cc']
+    end
+
+    it { expect(Map.with_tags(['cc']).count).to eq 1}
+    it { expect(Map.with_tags(['aa']).count).to eq 2}
+    it { expect(Map.with_tags(['aa', 'bb']).count).to eq 1}
+    it { expect(Map.with_tags(['aa', 'bb'], :any).count).to eq 3}
+  end
+
   describe ".search_by_name" do
     before do
       ['Open Data Orgs', 'ONGS', 'Data Centers', 'bla', 'ble'].each { |n| FactoryGirl.create :map, name: n }

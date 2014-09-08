@@ -45,6 +45,19 @@ describe GeoData do
     end
   end
 
+  describe "with_tags" do
+    before do
+      FactoryGirl.create :geo_data, tags: ['aa', 'bb']
+      FactoryGirl.create :geo_data, tags: ['aa']
+      FactoryGirl.create :geo_data, tags: ['bb', 'cc']
+    end
+
+    it { expect(GeoData.with_tags(['cc']).count).to eq 1}
+    it { expect(GeoData.with_tags(['aa']).count).to eq 2}
+    it { expect(GeoData.with_tags(['aa', 'bb']).count).to eq 1}
+    it { expect(GeoData.with_tags(['aa', 'bb'], :any).count).to eq 3}
+  end
+
   describe "mappings" do
     let(:geo_data) { FactoryGirl.create :geo_data }
     let(:map) { FactoryGirl.create :map }

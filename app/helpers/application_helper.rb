@@ -54,7 +54,13 @@ module ApplicationHelper
     end
   end
 
-  def notifications_count
-    Notification.where(user: current_user, status: "unread").count
+  def collection_location(collection)
+    ids = collection.map { |item| item.is_a?(Map) ? item.geo_data.pluck(:id) : item.id }.flatten.uniq
+    geo_data = GeoData.where(id: ids)
+
+    features = geo_data.map { |data| ::GeoJSON::feature_from_model(data) }
+    location = features.empty? ? nil : ::GeoJSON::encode_feature_collection(features)
+
+    OpenStruct.new(location: location, location_geojson: location.try(:to_json))
   end
 end

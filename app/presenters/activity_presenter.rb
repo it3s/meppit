@@ -20,7 +20,7 @@ class ActivityPresenter
   end
 
   def avatar
-    return ctx.image_tag trackable.avatar.thumb.url if trackable.try(:avatar) && !user_itself?
+    return ctx.image_tag trackable.avatar.thumb.url if trackable.try(:avatar?)
 
     case type
     when :map      then ctx.icon :globe
