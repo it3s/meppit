@@ -50,10 +50,10 @@ module Follower
           activities[:owner_type].eq(self.class.name).and(
             activities[:owner_id].not_eq(self.id))
         )
-      ).order("activities.created_at desc").project('activities.id')
+      ).project('activities.id')
       # Convert to ActiveRecord Relation
       PublicActivity::Activity.includes(:trackable).where(
-        activities[:id].in(sql))
+        activities[:id].in(sql)).order("activities.created_at desc")
     end
   end
 end
