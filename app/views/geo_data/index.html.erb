@@ -1,17 +1,30 @@
 <div class="site-page full data-list geo_data index">
-  <div data-components="list">
 
-    <div class="list-headline">
-      <h1 class="title">
-        <%= raw t('geo_data.list.title', :count => "<em>#{@geo_data_collection.total_count}</em>") %>
-      </h1>
-      <div id="geodata-pagination"><%= paginate @geo_data_collection, :remote => true %></div>
+  <%= render 'shared/lists/filters', list_filter: @list_filter %>
+
+  <% if @list_filter.map? %>
+
+  <div class="index-map">
+    <%= render 'shared/location', object: collection_location(@geo_data_collection) %>
+  </div>
+
+  <% else %>
+
+    <div data-components="list">
+      <div class="list-headline">
+        <h1 class="title">
+          <%= raw t('geo_data.list.title', :count => "<em>#{@geo_data_collection.total_count}</em>") %>
+          <div class="selected-count"></div>
+        </h1>
+        <div id="geodata-pagination"><%= paginate @geo_data_collection, :remote => true %></div>
+      </div>
+
+      <%= render 'geo_data/list_actions' %>
+
+      <ul id="geodata-list" class="list data-list">
+        <%= render @geo_data_collection, :checkbox => true %>
+      </ul>
     </div>
 
-    <%= render 'geo_data/list_actions' %>
-
-    <ul id="geodata-list" class="list data-list">
-      <%= render @geo_data_collection, :checkbox => true %>
-    </ul>
-  </div>
+  <% end %>
 </div>

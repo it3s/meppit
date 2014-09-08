@@ -1,0 +1,31 @@
+en:
+  lists:
+    select_all: 'Select All'
+
+    filters:
+      title: 'Visualization and filter options'
+      filtering_by: 'filtering by tags'
+      apply: 'Apply'
+      filter_by: 'Filter by'
+      sort_by: 'Sort by'
+      visualization: 'Visualization'
+      tags: 'Tags'
+      name: 'Name'
+      date: 'Date'
+      list: 'List'
+      map: 'Map'
+      display: 'Display'
+
+      tags_type:
+        all: 'Contains all selected tags'
+        any: 'Contains any of the selected tags'
+
+      sort:
+        field: 'Field'
+        order: 'Order'
+        asc: 'Ascending'
+        desc: 'Descending'
+
+
+
+

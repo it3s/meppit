@@ -50,6 +50,10 @@ class User < ActiveRecord::Base
     Notification.includes(activity: [:trackable, :owner]).where(user: self).order('created_at desc')
   end
 
+  def unread_notifications_count
+    Notification.where(user: self, status: "unread").count
+  end
+
   private
 
     def set_auth_token

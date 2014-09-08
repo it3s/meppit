@@ -1,10 +1,11 @@
 class ObjectsController < ApplicationController
-  before_action :find_object,    except: [:index, :new, :create, :search_by_name]
-  before_action :build_instance, only:   [:new, :create]
-  before_action :validate_additional_info, only: [:create, :update]
+  before_action :find_object,              except: [:index, :new, :create, :search_by_name]
+  before_action :build_instance,           only:   [:new, :create]
+  before_action :validate_additional_info, only:   [:create, :update]
+  before_action :build_list_filter,        only:   [:index]
 
   def index
-    instance_variable_set "@#{controller_name}_collection", model.page(params[:page]).per(params[:per])
+    instance_variable_set "@#{controller_name}_collection", object_collection
     respond_to do |format|
       format.html
       format.js
@@ -53,6 +54,16 @@ class ObjectsController < ApplicationController
 
     def build_instance
       instance_variable_set "@#{object_sym}", model.new
+    end
+
+    def build_list_filter
+      _filter_params = params.fetch(:list_filter, {})
+      _filter_params[:tags] = _filter_params[:tags].split(',') if _filter_params[:tags]
+      @list_filter = ListFilter.new _filter_params
+    end
+
+    def object_collection
+      @list_filter.filter(model).page(params[:page]).per(params[:per])
     end
 
     def cleaned_params

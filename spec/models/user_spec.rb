@@ -106,6 +106,23 @@ describe User do
     it { expect(user.notifications.count).to eq 1 }
     it { expect(user.notifications.first).to eq notification }
     it { expect(user.notifications.explain).to match 'created_at desc' }
+
+    describe "#unread_notifications_count" do
+      it { expect(user.unread_notifications_count).to eq 1 }
+    end
+  end
+
+  describe "with_interests" do
+    before do
+      FactoryGirl.create :user, interests: ['aa', 'bb']
+      FactoryGirl.create :user, interests: ['aa']
+      FactoryGirl.create :user, interests: ['bb', 'cc']
+    end
+
+    it { expect(User.with_interests(['cc']).count).to eq 1}
+    it { expect(User.with_interests(['aa']).count).to eq 2}
+    it { expect(User.with_interests(['aa', 'bb']).count).to eq 1}
+    it { expect(User.with_interests(['aa', 'bb'], :any).count).to eq 3}
   end
 
   describe "auth_token" do
