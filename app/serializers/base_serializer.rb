@@ -1,7 +1,7 @@
 module BaseSerializer
   extend ActiveSupport::Concern
 
-  def to_json
+  def to_json(ctx=nil)
     serializable_hash.to_json
   end
 

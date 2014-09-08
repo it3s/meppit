@@ -11,13 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140905181858) do
+ActiveRecord::Schema.define(version: 20140908010847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "hstore"
-  enable_extension "uuid-ossp"
   enable_extension "postgis"
+  enable_extension "hstore"
   enable_extension "pg_trgm"
   enable_extension "fuzzystrmatch"
 
@@ -173,9 +172,11 @@ ActiveRecord::Schema.define(version: 20140905181858) do
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.text     "interests",                                                                default: [],              array: true
+    t.string   "auth_token"
   end
 
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"
+  add_index "users", ["auth_token"], :name => "index_users_on_auth_token"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["interests"], :name => "index_users_on_interests"
   add_index "users", ["location"], :name => "index_users_on_location", :spatial => true
@@ -183,12 +184,11 @@ ActiveRecord::Schema.define(version: 20140905181858) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token"
 
   create_table "versions", force: true do |t|
-    t.string   "item_type",      null: false
-    t.integer  "item_id",        null: false
-    t.string   "event",          null: false
+    t.string   "item_type",  null: false
+    t.integer  "item_id",    null: false
+    t.string   "event",      null: false
     t.string   "whodunnit"
     t.text     "object"
-    t.text     "object_changes"
     t.datetime "created_at"
   end
 

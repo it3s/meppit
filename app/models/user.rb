@@ -27,6 +27,8 @@ class User < ActiveRecord::Base
   validates :password,          length:       {minimum: 6}, on: :create
   validates :license_aggrement, acceptance:   true,         on: :create
 
+  before_create :set_auth_token
+
   def send_activation_email
     UserMailer.delay.activation_email(id, I18n.locale)
   end
@@ -51,4 +53,15 @@ class User < ActiveRecord::Base
   def unread_notifications_count
     Notification.where(user: self, status: "unread").count
   end
+
+  private
+
+    def set_auth_token
+      return if auth_token.present?
+      self.auth_token = generate_auth_token
+    end
+
+    def generate_auth_token
+      SecureRandom.uuid.gsub /\-/, ''
+    end
 end

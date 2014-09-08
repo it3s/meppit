@@ -124,4 +124,10 @@ describe User do
     it { expect(User.with_interests(['aa', 'bb']).count).to eq 1}
     it { expect(User.with_interests(['aa', 'bb'], :any).count).to eq 3}
   end
+
+  describe "auth_token" do
+    before { FactoryGirl.create :user }
+
+    it { expect(user.auth_token).to_not be nil }
+  end
 end
