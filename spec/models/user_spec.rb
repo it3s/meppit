@@ -107,4 +107,10 @@ describe User do
     it { expect(user.notifications.first).to eq notification }
     it { expect(user.notifications.explain).to match 'created_at desc' }
   end
+
+  describe "auth_token" do
+    before { FactoryGirl.create :user }
+
+    it { expect(user.auth_token).to_not be nil }
+  end
 end
