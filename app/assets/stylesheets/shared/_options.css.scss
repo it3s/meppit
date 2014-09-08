@@ -31,6 +31,16 @@
 .selector {
   margin: 10px 0;
 
+  .options-label {
+    font-weight: bold;
+  }
+
+  .options-label,
+  .options-container {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
   .options {
     min-height: 40px;
 

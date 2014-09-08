@@ -58,6 +58,7 @@ App.components.selector = ->
   changeValue: (param, value) ->
     return if param.value is value
     param.value = value
+    App.mediator.publish "selector:changed", @getURLParams()
     @loadURL() if @attr.autoload
     @updateDisplay()
 
@@ -75,15 +76,20 @@ App.components.selector = ->
     content = $(data).find(@attr.target)
     $(@attr.target).replaceWith content
     App.mediator.publish "components:start", content
+    App.utils.spinner.hide()
+
+  getURLParams: ->
+    params = {}
+    for paramName, param of @params
+      params[paramName] = param.value if param.value?
+    params
 
   getURL: ->
-    urlParams = {}
-    for paramName, param of @params
-      urlParams[paramName] = param.value if param.value?
-    urlParams_ = $.param urlParams
-    "#{@baseURL}?#{urlParams_}#{window.location.hash}"
+    params = $.param @getURLParams()
+    "#{@baseURL}?#{params}#{window.location.hash}"
 
   loadURL: ->
+    App.utils.spinner.show()
     if @attr.remote
       $.get @getURL(), @onSuccess.bind(this)
     else

@@ -23,8 +23,10 @@ pt-BR:
     empty: "Nenhuma novidade"
     selector:
         display:
-            following: "Seguindo"
-            all: "Todos"
+            label: "Exibir:"
+            options:
+                following: "Seguindo"
+                all: "Todos"
 
   flash:
     saved: "Salvo com sucesso"

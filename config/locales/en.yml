@@ -23,8 +23,10 @@ en:
     empty: "No activities"
     selector:
         display:
-            following: "Following"
-            all: "All"
+            label: "Display:"
+            options:
+                following: "Following"
+                all: "All"
 
   flash:
     saved: "Saved successfully"
