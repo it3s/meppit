@@ -33,6 +33,10 @@ componentBuilder = (name, container) ->
     "#{name}:#{_id}"
 
   start: ->
+    if not components[name]?
+      console?.error "Component not found: #{name}"
+      return
+    console?.log "Starting Component: #{name}"
     _comp = components[name]()
     _comp.container = container
     _comp.identifier = @compId()
@@ -66,7 +70,10 @@ componentsManager = (container) ->
         @onStarted()
 
 startComponents = (evt, root=document) ->
-  $(root).find('[data-components]').each (i, container) =>
+  attr = 'data-components'
+  $root = $ root
+  componentsManager($root).buildComponents() if $root.attr(attr)
+  $root.find("[#{attr}]").each (i, container) =>
     componentsManager($(container)).buildComponents()
 
 mediator.subscribe 'components:start', startComponents

@@ -7,8 +7,11 @@
 
   .help { margin-top: 20px;}
 
-  .option {
-    width: 89.5px;
+  .options {
+    width: 100%;
+    .option {
+      width: 25%;
+    }
   }
 }
 #export-help {

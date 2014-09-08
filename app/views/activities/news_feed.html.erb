@@ -1,6 +1,14 @@
 <section>
   <br>
   <h2><%= icon "clock-o", t('news_feed.title') %></h2>
+  <% if current_user %>
+  <div class="selector" data-components="selector" data-selector-options="<%= {autoload: true, remote: true, target: '#activity'}.to_json %>">
+    <div class="options" data-selector-param="display">
+      <%= selector_option t('news_feed.selector.display.following'), :display, :following, true %>
+      <%= selector_option t('news_feed.selector.display.all'), :display, :all %>
+    </div>
+  </div>
+  <% end %>
   <div id="activity" data-components="list">
     <div id="activities-pagination"><%= paginate @activities, :remote => true %></div>
     <ul id="activities-list" class="list activities-list">

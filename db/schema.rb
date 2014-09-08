@@ -15,8 +15,9 @@ ActiveRecord::Schema.define(version: 20140908010847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "postgis"
   enable_extension "hstore"
+  enable_extension "uuid-ossp"
+  enable_extension "postgis"
   enable_extension "pg_trgm"
   enable_extension "fuzzystrmatch"
 
@@ -184,11 +185,12 @@ ActiveRecord::Schema.define(version: 20140908010847) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token"
 
   create_table "versions", force: true do |t|
-    t.string   "item_type",  null: false
-    t.integer  "item_id",    null: false
-    t.string   "event",      null: false
+    t.string   "item_type",      null: false
+    t.integer  "item_id",        null: false
+    t.string   "event",          null: false
     t.string   "whodunnit"
     t.text     "object"
+    t.text     "object_changes"
     t.datetime "created_at"
   end
 

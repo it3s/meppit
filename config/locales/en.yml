@@ -21,6 +21,10 @@ en:
   news_feed:
     title: "News Feed"
     empty: "No activities"
+    selector:
+        display:
+            following: "Following"
+            all: "All"
 
   flash:
     saved: "Saved successfully"

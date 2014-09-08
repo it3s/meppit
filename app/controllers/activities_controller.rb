@@ -7,7 +7,9 @@ class ActivitiesController < ApplicationController
   end
 
   def news_feed
-    @activities = news_feed_results
+    all = (params[:display] == 'all')
+    @activities = news_feed_results all
+    render layout: nil if request.xhr?
   end
 
   private

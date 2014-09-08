@@ -1,21 +1,51 @@
-.option {
-  display: inline-block;
-  cursor: pointer;
-  text-align: center;
-  margin: 0 5px;
-  padding: 20px 0;
-  font-size: 1.2em;
-  font-weight: bold;
-  text-decoration: none;
-  color: white;
-  background-color: $meppit-dark-blue;
-  border-radius: 5px;
-  border: solid 1px $meppit-data-color;
+.options {
+  display: table;
+  min-height: 60px;
+  border-spacing: 5px;
 
-  &:first-child { margin-left: 0;}
-  &:last-child { margin-right: 0;}
+  .option {
+    display: table-cell;
+    cursor: pointer;
+    text-align: center;
+    margin: 0 5px;
+    padding: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    background-color: $meppit-dark-blue;
+    border-radius: 5px;
+    border: solid 1px $meppit-data-color;
+    vertical-align: middle;
 
-  &:hover {
-    background-color: lighten($meppit-dark-blue, 10%);
+    &:first-child { margin-left: 0;}
+    &:last-child { margin-right: 0;}
+
+    &:hover {
+      background-color: lighten($meppit-dark-blue, 10%);
+      border: solid 1px $meppit-data-color;
+    }
+  }
+}
+
+.selector {
+  margin: 10px 0;
+
+  .options {
+    min-height: 40px;
+
+    .option {
+      color: $medium-grey;
+      background-color: $ultra-soft-grey;
+      border: solid 1px $soft-grey;
+      font-weight: normal;
+      padding: 10px;
+
+      &.selected {
+        color: $white;
+        background-color: $meppit-dark-blue;
+        border: solid 1px $meppit-data-color;
+      }
+    }
   }
 }

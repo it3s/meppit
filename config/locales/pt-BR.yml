@@ -21,6 +21,10 @@ pt-BR:
   news_feed:
     title: "Novidades"
     empty: "Nenhuma novidade"
+    selector:
+        display:
+            following: "Seguindo"
+            all: "Todos"
 
   flash:
     saved: "Salvo com sucesso"
