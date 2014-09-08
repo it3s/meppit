@@ -76,7 +76,8 @@ class ActivityPresenter
   end
 
   def user_itself?
-    type == :user && trackable.id == owner.id
+    # using `owner_id` instead of `owner` to avoid unnecessary `includes(:owner)`
+    type == :user && trackable.id == object.owner_id
   end
 
   def headline
