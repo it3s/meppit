@@ -9,7 +9,6 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def avatar
-    binding.pry
     object.avatar_url
   end
 
