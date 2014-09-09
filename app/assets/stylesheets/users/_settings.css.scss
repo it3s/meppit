@@ -1,0 +1,35 @@
+.edit-settings {
+
+  margin-top: 20px;
+
+  h1 {
+    font-size: 16px;
+    padding-top: 5px;
+    border-top: solid 1px $soft-grey;
+  }
+
+  p {
+
+    margin-bottom: 5px;
+
+    label {
+      display: inline-block;
+      font-weight: bold;
+      width: 150px;
+    }
+
+    input, select, .inline {
+      display: inline-block;
+    }
+    select { width: 150px }
+
+    .inline {
+      padding: 5px 10px;
+      font-weight: bold;
+      background-color: $ultra-soft-grey;
+      border-radius: 4px;
+    }
+
+    input[type=submit] { margin-top: 20px; }
+  }
+}

@@ -14,5 +14,9 @@ module Concerns
       @translations ||= I18n.backend.send(:translations)
       (@translations[I18n.locale] || {}).with_indifferent_access
     end
+
+    def language_options
+      I18n.available_locales.map { |lang| [i18n_language_names[lang], lang] }
+    end
   end
 end
