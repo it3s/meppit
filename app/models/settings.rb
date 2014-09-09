@@ -15,7 +15,7 @@ class Settings
     self.user = user
     self.language = user.language
     self.auth_token = user.auth_token
-    self.mail_notifications = user.try(:mail_notifications) || 'daily'
+    self.mail_notifications = user.mail_notifications
   end
 
   def assign_attributes(attrs)
@@ -23,7 +23,8 @@ class Settings
   end
 
   def save
-    false
+    user.assign_attributes language: language, mail_notifications: mail_notifications
+    user.save
   end
 
   def persisted?
