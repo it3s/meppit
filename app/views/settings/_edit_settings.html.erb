@@ -21,6 +21,22 @@
     </p>
 
     <p>
+      <%= f.label :mail_notifications, 'E-mail notifications' %>
+      <span class="mail_notifications_choice">
+        <%= f.radio_button:mail_notifications, "daily" %>
+        <%= f.label :mail_notifications_daily, "Daily" %>
+      </span>
+      <span class="mail_notifications_choice">
+        <%= f.radio_button :mail_notifications, "weekly" %>
+        <%= f.label :mail_notifications_weekly, "Weekly" %>
+      </span>
+      <span class="mail_notifications_choice">
+        <%= f.radio_button :mail_notifications, "never" %>
+        <%= f.label :mail_notifications_never, "Never" %>
+      </span>
+    </p>
+
+    <p>
       <%= f.submit 'save changes' %>
     </p>
   <% end %>

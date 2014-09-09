@@ -10,6 +10,8 @@
 
   p {
 
+    padding-bottom: 10px;
+    // border-bottom: solid 1px $ultra-soft-grey;
     margin-bottom: 5px;
 
     label {
@@ -29,9 +31,18 @@
       background-color: $ultra-soft-grey;
       border-radius: 4px;
     }
-    .password-field {
+    .password-field, .mail_notifications_choice {
       display: inline-block;
       width: 153px;
+    }
+
+    .mail_notifications_choice {
+      label, input {
+        display: inline-block;
+        font-weight: normal;
+        vertical-align: top;
+      }
+      label { width: 125px; }
     }
 
     input[type=submit] { margin-top: 20px; }
