@@ -4,7 +4,7 @@
   <ul class="settings-tooltip">
 
     <% if current_user %>
-      <li><%= link_to icon('cog', t('header.settings_menu.settings')), '#', class: 'settings-item' %></li>
+      <li><%= link_to icon('cog', t('header.settings_menu.settings')), settings_path(current_user), class: 'settings-item' %></li>
     <% end %>
 
     <li><%= link_to_modal icon('flag-o', t('header.settings_menu.language')), "#language-selector", :html => {:class => 'settings-item'} %></li>
