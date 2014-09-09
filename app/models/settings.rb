@@ -2,14 +2,8 @@ class Settings
   extend ActiveModel::Model
   extend ActiveModel::Naming
   include ActiveModel::Conversion
-  include ActiveModel::Validations
 
-
-  attr_accessor :user, :language, :auth_token, :old_password, :new_password,
-                :mail_notifications
-
-  validate  :change_password
-  validates :new_password, confirmation: true
+  attr_accessor :user, :language, :auth_token, :mail_notifications
 
   def initialize(user)
     self.user = user
@@ -34,15 +28,5 @@ class Settings
   def id
     nil
   end
-
-  private
-
-    def change_password
-      unless [old_password, new_password, new_password_confirmation].all? &:blank?
-        errors.add :old_password, 'invalid password' unless User.authenticate(@user.email, old_password)
-        errors.add :new_password, 'provide a new password' if new_password.blank?
-        errors.add :new_password, 'password is too short' if new_password.size < 6
-      end
-    end
 
 end

@@ -45,14 +45,9 @@
       label { width: 125px; }
     }
 
-    &.passwords {
-      .field {
-        display: inline-block;
-        vertical-align: top;
-      }
-      label { vertical-align: top; padding-top: 5px; }
-      .error { font-size: 0.8em; }
-
+    .password-reset {
+      @include button;
+      padding: 4px 10px;
     }
 
     input[type=submit] { margin-top: 20px; }

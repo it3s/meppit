@@ -7,12 +7,8 @@ class SettingsController < ApplicationController
 
   def update
     @settings.assign_attributes(params[:settings])
-    if @settings.valid? && @settings.save
-      flash[:notice] = t('flash.saved')
-      render json: {redirect: user_path(@user)}
-    else
-      render json: {errors: @settings.errors.messages}, status: :unprocessable_entity
-    end
+    flash[:notice] = @settings.save ? t('flash.saved') : 'Error saving settings'
+    render json: {redirect: user_path(@user)}
   end
 
   private

@@ -5,24 +5,13 @@
   <%= remote_form_for @settings, url: settings_path, method: 'patch' do |f| %>
 
     <p>
-      <%= f.label :language, 'Language' %>
-      <%= f.select :language, language_options %>
+      <%= f.label :password, 'Change Password' %>
+      <%= link_to_modal 'Send a reset link', forgot_password_users_path, :remote => true, html: {class: 'password-reset'} %>
     </p>
 
-    <p class="passwords">
-      <%= f.label :password, 'Change Password' %>
-      <span class="field">
-      <%= f.password_field :old_password, class: 'password-field', placeholder: 'Current password' %>
-      </span>
-      <span class="field">
-      <%= f.password_field :new_password, class: 'password-field', placeholder: 'New password' %>
-      </span>
-      <span class="field">
-      <%= f.password_field :new_password_confirmation, class: 'password-field', placeholder: 'Confirm new password' %>
-      </span>
     <p>
-      <%= f.label :auth_token, 'API Token' %>
-      <span class="auth_token inline"><%= @settings.auth_token%></span>
+      <%= f.label :language, 'Language' %>
+      <%= f.select :language, language_options %>
     </p>
 
     <p>
@@ -39,6 +28,11 @@
         <%= f.radio_button :mail_notifications, "never" %>
         <%= f.label :mail_notifications_never, "Never" %>
       </span>
+    </p>
+
+    <p>
+      <%= f.label :auth_token, 'API Token' %>
+      <span class="auth_token inline"><%= @settings.auth_token%></span>
     </p>
 
     <p>
