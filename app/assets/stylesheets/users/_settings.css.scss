@@ -45,6 +45,16 @@
       label { width: 125px; }
     }
 
+    &.passwords {
+      .field {
+        display: inline-block;
+        vertical-align: top;
+      }
+      label { vertical-align: top; padding-top: 5px; }
+      .error { font-size: 0.8em; }
+
+    }
+
     input[type=submit] { margin-top: 20px; }
   }
 }
