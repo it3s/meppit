@@ -51,6 +51,7 @@ Meppit::Application.routes.draw do
     member do
       get :activate
       get "activity" => "activities#user_activity"
+      resource :settings, only: [:show, :update]
     end
 
     collection do

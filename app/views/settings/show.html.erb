@@ -1,0 +1,4 @@
+<%= render 'shared/object',
+  presenter: ObjectPresenter.new(object: @user, ctx: self,
+    show_location: false, content: 'settings/edit_settings')
+%>
