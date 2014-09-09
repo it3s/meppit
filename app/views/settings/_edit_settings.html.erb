@@ -1,13 +1,19 @@
-<section class="edit-settings wrapper">
+<section class="user-settings wrapper">
 
   <header><h1>Update settings</h1></header>
 
-  <%= form_for user.settings, url: settings_path, html: {method: 'patch'} do |f| %>
+  <%= remote_form_for user.settings, url: settings_path, method: 'patch' do |f| %>
 
     <p>
       <%= f.label :language, 'Language' %>
       <%= f.select :language, language_options %>
     </p>
+
+    <p>
+      <%= f.label :password, 'Change Password' %>
+      <%= f.password_field :old_password, class: 'password-field', placeholder: 'Current password' %>
+      <%= f.password_field :new_password, class: 'password-field', placeholder: 'New password' %>
+      <%= f.password_field :new_password_confirmation, class: 'password-field', placeholder: 'Confirm new password' %>
 
     <p>
       <%= f.label :auth_token, 'API Token' %>

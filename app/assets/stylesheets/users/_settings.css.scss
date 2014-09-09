@@ -1,4 +1,4 @@
-.edit-settings {
+.user-settings {
 
   margin-top: 20px;
 
@@ -21,13 +21,17 @@
     input, select, .inline {
       display: inline-block;
     }
-    select { width: 150px }
+    select { width: 153px }
 
     .inline {
       padding: 5px 10px;
       font-weight: bold;
       background-color: $ultra-soft-grey;
       border-radius: 4px;
+    }
+    .password-field {
+      display: inline-block;
+      width: 153px;
     }
 
     input[type=submit] { margin-top: 20px; }

@@ -2,8 +2,12 @@ class Settings
   extend ActiveModel::Model
   extend ActiveModel::Naming
   include ActiveModel::Conversion
+  include ActiveModel::Validations
 
-  attr_accessor :language, :auth_token
+
+  attr_accessor :language, :auth_token, :old_password, :new_password
+
+  validates :new_password, confirmation: true
 
   def initialize(user)
     self.language = user.language
