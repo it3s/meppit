@@ -11,7 +11,7 @@ describe ToolbarPresenter do
 
   def mock_context(type=:in)
     _user = (type == :in) ? user : nil
-    double('Context', current_user: _user, t: '', url_for: '', request: double('request', path: ''), follow_options_for: '{}')
+    double('Context', current_user: _user, t: '', url_for: '', request: double('request', path: ''), follow_options_for: '{}', settings_path: '')
   end
 
   def tp(obj, ctx=nil)
