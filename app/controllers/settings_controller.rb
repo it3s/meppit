@@ -7,7 +7,7 @@ class SettingsController < ApplicationController
 
   def update
     @settings.assign_attributes(params[:settings])
-    flash[:notice] = @settings.save ? t('flash.saved') : 'Error saving settings'
+    flash[:notice] = @settings.save ? t('flash.saved') : t('settings.error')
     render json: {redirect: user_path(@user)}
   end
 

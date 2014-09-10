@@ -1,42 +1,43 @@
 <section class="user-settings wrapper">
 
-  <header><h1>Update settings</h1></header>
+  <header><h1><%= t 'settings.title' %></h1></header>
 
   <%= remote_form_for @settings, url: settings_path, method: 'patch' do |f| %>
 
     <p>
-      <%= f.label :password, 'Change Password' %>
-      <%= link_to_modal 'Send a reset link', forgot_password_users_path, :remote => true, html: {class: 'password-reset'} %>
+      <%= f.label :password, t('settings.password.label') %>
+      <%= link_to_modal t('settings.password.button'), forgot_password_users_path,
+            :remote => true, html: {class: 'password-reset'} %>
     </p>
 
     <p>
-      <%= f.label :language, 'Language' %>
+      <%= f.label :language, t('settings.language') %>
       <%= f.select :language, language_options %>
     </p>
 
     <p>
-      <%= f.label :mail_notifications, 'E-mail notifications' %>
+      <%= f.label :mail_notifications, t('settings.mail_notifications.label') %>
       <span class="mail_notifications_choice">
         <%= f.radio_button:mail_notifications, "daily" %>
-        <%= f.label :mail_notifications_daily, "Daily" %>
+        <%= f.label :mail_notifications_daily, t('settings.mail_notifications.daily') %>
       </span>
       <span class="mail_notifications_choice">
         <%= f.radio_button :mail_notifications, "weekly" %>
-        <%= f.label :mail_notifications_weekly, "Weekly" %>
+        <%= f.label :mail_notifications_weekly, t('settings.mail_notifications.weekly') %>
       </span>
       <span class="mail_notifications_choice">
         <%= f.radio_button :mail_notifications, "never" %>
-        <%= f.label :mail_notifications_never, "Never" %>
+        <%= f.label :mail_notifications_never, t('settings.mail_notifications.never') %>
       </span>
     </p>
 
     <p>
-      <%= f.label :auth_token, 'API Token' %>
+      <%= f.label :auth_token, t('settings.api_token') %>
       <span class="auth_token inline"><%= @settings.auth_token%></span>
     </p>
 
     <p>
-      <%= f.submit 'save changes' %>
+      <%= f.submit t('settings.submit') %>
     </p>
   <% end %>
 

@@ -1,0 +1,21 @@
+pt-BR:
+  settings:
+
+    title: 'Atualizar Configurações'
+
+    password:
+      label: 'Mudar Senha'
+      button: 'Enviar link para resetar'
+
+    language: 'Linguagem'
+
+    mail_notifications:
+      label: 'Notificações por e-mail'
+      daily: 'Diariamente'
+      weekly: 'Semanalmente'
+      never: 'Nunca'
+
+    api_token: 'API Token'
+    submit: 'salvar mudanças'
+
+    error: 'Erro ao salvar configurações'
