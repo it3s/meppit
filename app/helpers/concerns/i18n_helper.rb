@@ -16,7 +16,7 @@ module Concerns
     end
 
     def language_options
-      I18n.available_locales.map { |lang| [i18n_language_names[lang], lang] }
+      I18n.available_locales.map { |lang| [i18n_language_names[lang], lang.to_s] }
     end
   end
 end
