@@ -42,6 +42,7 @@ App.components.uploader = ->
   onDone: (e, data) ->
     setTimeout( =>
       @reloadImage(data.result)
+      App.utils.flashMessage(data.result.flash)
       @reset()
     , 200)
 

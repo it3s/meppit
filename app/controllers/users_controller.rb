@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     @user.avatar = user_params[:avatar]
     if @user.valid? && @user.save
       EventBus.publish "user_updated", user: @user, current_user: current_user, changes: {'avatar'=>[]}
-      render json: {avatar: @user.avatar.url}
+      render json: {avatar: @user.avatar.url, flash: flash_xhr(t "flash.file_uploaded")}
     else
       render json: {errors: @user.errors.messages}, status: :unprocessable_entity
     end
