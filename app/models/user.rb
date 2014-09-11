@@ -54,6 +54,10 @@ class User < ActiveRecord::Base
     Notification.where(user: self, status: "unread").count
   end
 
+  def settings
+    @settings ||= Settings.new(self)
+  end
+
   private
 
     def set_auth_token

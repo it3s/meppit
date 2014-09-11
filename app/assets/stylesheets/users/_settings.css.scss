@@ -1,0 +1,55 @@
+.user-settings {
+
+  margin-top: 20px;
+
+  h1 {
+    font-size: 16px;
+    padding-top: 5px;
+    border-top: solid 1px $soft-grey;
+    margin-bottom: 20px;
+  }
+
+  p {
+
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+
+    label {
+      display: inline-block;
+      font-weight: bold;
+      width: 150px;
+    }
+
+    input, select, .inline {
+      display: inline-block;
+    }
+    select { width: 153px }
+
+    .inline {
+      padding: 5px 10px;
+      font-weight: bold;
+      background-color: $ultra-soft-grey;
+      border-radius: 4px;
+    }
+    .password-field, .mail_notifications_choice {
+      display: inline-block;
+      width: 153px;
+    }
+
+    .mail_notifications_choice {
+      label, input {
+        display: inline-block;
+        font-weight: normal;
+        vertical-align: top;
+      }
+      label { width: 125px; }
+    }
+
+    .password-reset {
+      @include button;
+      padding: 4px 10px;
+    }
+
+    input[type=submit] { margin-top: 20px; }
+  }
+}

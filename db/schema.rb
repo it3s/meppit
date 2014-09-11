@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140908010847) do
+ActiveRecord::Schema.define(version: 20140909233348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -153,8 +153,8 @@ ActiveRecord::Schema.define(version: 20140908010847) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "name",                                                                                  null: false
-    t.string   "email",                                                                                 null: false
+    t.string   "name",                                                                                       null: false
+    t.string   "email",                                                                                      null: false
     t.string   "crypted_password"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -171,8 +171,9 @@ ActiveRecord::Schema.define(version: 20140908010847) do
     t.spatial  "location",                        limit: {:srid=>4326, :type=>"geometry"}
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
-    t.text     "interests",                                                                default: [],              array: true
+    t.text     "interests",                                                                default: [],                   array: true
     t.string   "auth_token"
+    t.string   "mail_notifications",                                                       default: "daily"
   end
 
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"

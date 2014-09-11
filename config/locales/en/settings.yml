@@ -1,0 +1,21 @@
+en:
+  settings:
+
+    title: 'Update Settings'
+
+    password:
+      label: 'Change Password'
+      button: 'Send a reset link'
+
+    language: 'Language'
+
+    mail_notifications:
+      label: 'E-mail notifications'
+      daily: 'Daily'
+      weekly: 'Weekly'
+      never: 'Never'
+
+    api_token: 'API Token'
+    submit: 'save changes'
+
+    error: 'Error saving settings'
