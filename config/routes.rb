@@ -51,6 +51,7 @@ Meppit::Application.routes.draw do
     member do
       get :activate
       get "activity" => "activities#user_activity"
+      patch :upload_avatar
       resource :settings, only: [:show, :update]
     end
 

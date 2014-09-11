@@ -1,6 +1,8 @@
 <div class="avatar">
   <%= image_tag user.avatar.thumb.url, :alt => 'user picture' %>
-  <%= f.input(:avatar, :as => :file, :input_html => {'data-components' => 'uploader'}) if edit_mode? %>
+  <%= f.input(:avatar, :as => :file, :input_html => {
+        'data-components' => 'uploader',
+        'data-uploader-options' => {url: upload_avatar_user_path(user)}.to_json}) if edit_mode? %>
 </div>
 
 <div class="extra-info">
