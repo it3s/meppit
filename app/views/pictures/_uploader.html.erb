@@ -6,7 +6,9 @@
   </p>
 
   <div class="pictures-thumbs">
-
+    <% object.pictures.find_all do |picture| %>
+      <%= image_tag picture.image.thumb.url, class: 'thumb' %>
+    <% end %>
   </div>
 
 </section>
