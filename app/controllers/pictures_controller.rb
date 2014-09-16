@@ -3,7 +3,7 @@ class PicturesController < ApplicationController
 
   def upload
     puts "\nPARAMS\n#{params}\n"
-    render json: { avatar: User.new.avatar.url }
+    render json: { url: User.new.avatar.url, flash: flash_xhr(t "flash.file_uploaded") }
     # @user.avatar = user_params[:avatar]
     # if @user.valid? && @user.save
     #   EventBus.publish "user_updated", user: @user, current_user: current_user, changes: {'avatar'=>[]}

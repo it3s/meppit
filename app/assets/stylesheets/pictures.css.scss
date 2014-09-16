@@ -6,4 +6,18 @@
 
     i { margin-right: 5px; }
   }
+
+  .pictures-thumbs {
+    margin-top: 10px;
+    margin-left: -5px;
+
+    .thumb {
+      max-width: 175px;
+      max-height: 175px;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 5px;
+      background-color: $meppit-light-blue;
+    }
+  }
 }
