@@ -3,8 +3,13 @@
     <%= image_tag @picture.image.url  %>
   </div>
 
+  <div class="picture-description">
+    <textarea id="description" name="picture[description]">
+    </textarea>
+  </div>
+
   <div class="actions">
-    <!-- delete -->
-    <!-- save -->
+    <%= link_to 'Delete', '#', class: 'delete-button' %>
+    <%= link_to 'Save', '#', class: 'save-button' %>
   </div>
 </div>

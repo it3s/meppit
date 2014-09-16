@@ -41,4 +41,29 @@
       max-height: 400px;
     }
   }
+
+  .picture-description {
+    margin-top: 10px;
+
+    textarea {
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+
+  .actions {
+    position: relative;
+    text-align: center;
+    margin-top: 10px;
+
+    .delete-button {
+      @include red-button;
+      display: inline-block;
+      margin-right: 40px;
+    }
+    .save-button {
+      @include green-button;
+      display: inline-block;
+    }
+  }
 }
