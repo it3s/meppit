@@ -3,19 +3,21 @@ class PicturesController < ApplicationController
   before_action :find_object
 
   def upload
-    puts "\nPARAMS\n#{params}\n"
-    puts @object
-    render json: { url: User.new.avatar.url, flash: flash_xhr(t "flash.file_uploaded") }
-    # @user.avatar = user_params[:avatar]
-    # if @user.valid? && @user.save
-    #   EventBus.publish "user_updated", user: @user, current_user: current_user, changes: {'avatar'=>[]}
-    #   render json: {avatar: @user.avatar.url, flash: flash_xhr(t "flash.file_uploaded")}
-    # else
-    #   render json: {errors: @user.errors.messages}, status: :unprocessable_entity
-    # end
+    picture = Picture.new picture_params
+
+    if picture.valid? && picture.save
+      # EventBus.publish "??_updated", picture: picture, current_user: current_user, changes: {'picture'=>[]}
+      render json: {url: picture.image.url, flash: flash_xhr(t "flash.file_uploaded")}
+    else
+      render json: {errors: picture.errors.messages}, status: :unprocessable_entity
+    end
   end
 
   private
+
+    def picture_params
+      { image: params[:picture], author: current_user, object: @object }
+    end
 
     def find_object
       @object = find_polymorphic_object
