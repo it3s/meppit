@@ -2,13 +2,15 @@
 
 uploaderTemplate = """
   <div class="uploader">
-    <span class="upload-button">#{I18n.uploader.select_image}</span>
+    <span class="upload-button"><%= buttonLabel %></span>
   </div>
 """
 
 App.components.uploader = ->
+  buttonLabel: I18n.uploader.select_image
+
   attributes: ->
-    _uploader = $(uploaderTemplate)
+    _uploader = $ _.template(uploaderTemplate, buttonLabel: @buttonLabel)
     {
       field:    @container.closest('.field')
       uploader: _uploader
@@ -57,7 +59,7 @@ App.components.uploader = ->
 
   reset: ->
     @attr.button.find('i').remove()
-    @attr.button.text I18n.uploader.select_image
+    @attr.button.html @buttonLabel
     @startPlugin() # restart plugin (kludge for retrying uploads)
 
   getErrorMsg: (data) ->

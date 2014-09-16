@@ -1,0 +1,9 @@
+.pictures {
+
+  .uploader .upload-button {
+    @include button;
+    width: auto;
+
+    i { margin-right: 5px; }
+  }
+}
