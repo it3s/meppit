@@ -4,7 +4,7 @@ App.components.pictureUploader = ->
 
     buttonLabel: "<i class='fa fa-plus'></i>Upload Picture"
 
-    pictureThumb: "<img class='thumb' src='<%= url %>' ></img>"
+    pictureThumb: "<a href='#' class='thumb'><img class='thumb-image' src='<%= url %>' ></img></a>"
 
     onDone: (e, data) ->
       setTimeout( =>

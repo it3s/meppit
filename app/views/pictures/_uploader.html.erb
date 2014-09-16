@@ -7,7 +7,9 @@
 
   <div class="pictures-thumbs">
     <% object.pictures.find_all do |picture| %>
-      <%= image_tag picture.image.thumb.url, class: 'thumb' %>
+      <a href="#" class="thumb">
+        <%= image_tag picture.image.thumb.url, class: 'thumb-image' %>
+      </a>
     <% end %>
   </div>
 
