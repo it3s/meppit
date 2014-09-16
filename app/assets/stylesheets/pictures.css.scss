@@ -25,9 +25,20 @@
 
       .thumb-image {
         width: 105px;
-        max-height: 152px;
+        max-height: 105px;
         border-radius: 5px;
       }
+    }
+  }
+}
+
+.picture {
+  .picture-image {
+    text-align: center;
+
+    img {
+      max-width: 400px;
+      max-height: 400px;
     }
   }
 }

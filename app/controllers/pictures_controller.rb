@@ -1,6 +1,7 @@
 class PicturesController < ApplicationController
   before_action :require_login, only: [:upload]
   before_action :find_object
+  before_action :find_picture,  only: [:show]
 
   def upload
     @picture = Picture.new picture_params
@@ -14,7 +15,7 @@ class PicturesController < ApplicationController
   end
 
   def show
-    render json: {}
+    render layout: nil if request.xhr?
   end
 
   private
@@ -29,5 +30,9 @@ class PicturesController < ApplicationController
 
     def find_object
       @object = find_polymorphic_object
+    end
+
+    def find_picture
+      @picture = Picture.find params[:id]
     end
 end
