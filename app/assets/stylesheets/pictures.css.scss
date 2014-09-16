@@ -17,9 +17,14 @@
       padding: 10px;
       margin: 5px;
       background-color: $meppit-light-blue;
+      vertical-align: top;
+
+      &:hover {
+        background-color: $meppit-blue;
+      }
 
       .thumb-image {
-        max-width: 152px;
+        width: 105px;
         max-height: 152px;
         border-radius: 5px;
       }
