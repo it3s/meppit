@@ -23,3 +23,6 @@ en:
         marker: 'Marker'
         shape: 'Shape'
         line: 'Line'
+
+    picture:
+      description_placeholder: 'Add Description ...'

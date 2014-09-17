@@ -3,6 +3,8 @@ pt-BR:
     uploader:
       select_image: 'Selecionar imagem'
       uploading: 'carregando... '
+      picture: 'Carregar Imagem'
+
 
     modal:
       close: 'Fechar'

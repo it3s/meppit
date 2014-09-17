@@ -5,6 +5,7 @@ en:
   save_changes: "Save Changes"
   save: "Save"
   cancel: "Cancel"
+  delete: "Delete"
   time_ago: "%{time} ago"
   before: "Before"
   after: "After"

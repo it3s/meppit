@@ -5,6 +5,7 @@ pt-BR:
   save_changes: 'Salvar Alterações'
   save: 'Salvar'
   cancel: 'Cancelar'
+  delete: "Deletar"
   time_ago: "há %{time}"
   before: "Antes"
   after: "Depois"

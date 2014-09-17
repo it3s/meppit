@@ -5,12 +5,12 @@
 
   <% if logged_in? %>
     <div class="picture-description">
-      <textarea id="description" name="picture[description]"><%= @picture.description %></textarea>
+      <textarea id="description" name="picture[description]" placeholder="<%= t 'components.picture.description_placeholder' %>"><%= @picture.description %></textarea>
     </div>
 
     <div class="actions">
-      <%= link_to 'Delete', '#', class: 'delete-button' %>
-      <%= link_to 'Save', '#', class: 'save-button' %>
+      <%= link_to t('delete'), '#', class: 'delete-button' %>
+      <%= link_to t('save')  , '#', class: 'save-button' %>
     </div>
   <% end %>
 </div>

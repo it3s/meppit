@@ -2,7 +2,7 @@
 App.components.pictureUploader = ->
   _.extend App.components.uploader(), {
 
-    buttonLabel: "<i class='fa fa-plus'></i>Upload Picture"
+    buttonLabel: "<i class='fa fa-plus'></i>#{I18n.uploader.picture}"
 
     picturesList: $('.pictures-thumbs')
 
