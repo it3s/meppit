@@ -5,14 +5,16 @@
            data-pictureuploader-options='<%= {url: url_for([:picture_upload, object]) }.to_json %>' />
   </p>
 
-  <div class="pictures-thumbs">
+  <ul class="pictures-thumbs">
     <% object.pictures.find_all do |picture| %>
-      <a href="<%= url_for([object, picture]) %>" class="thumb"
-         data-components="modal" data-modal-options='{"remote":"true"}'>
+      <li>
+        <a href="<%= url_for([object, picture]) %>" class="thumb"
+           data-components="modal" data-modal-options='{"remote":"true"}'>
 
-        <%= image_tag picture.image.thumb.url, class: 'thumb-image' %>
-      </a>
+          <%= image_tag picture.image.thumb.url, class: 'thumb-image' %>
+        </a>
+      </li>
     <% end %>
-  </div>
+  </ul>
 
 </section>

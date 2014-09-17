@@ -48,7 +48,7 @@ Meppit::Application.routes.draw do
 
   concern :has_media do
     patch "picture_upload" => "pictures#upload",  on: :member
-    resources :pictures, only: [:show]
+    resources :pictures, only: [:show, :update, :destroy]
   end
 
   resources :users, except: [:destroy, :index],

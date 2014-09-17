@@ -1,7 +1,7 @@
 class PicturesController < ApplicationController
-  before_action :require_login, only: [:upload]
+  before_action :require_login, only: [:upload, :update, :destroy]
   before_action :find_object
-  before_action :find_picture,  only: [:show]
+  before_action :find_picture,  only: [:show, :update, :destroy]
 
   def upload
     @picture = Picture.new picture_params
@@ -16,6 +16,14 @@ class PicturesController < ApplicationController
 
   def show
     render layout: nil if request.xhr?
+  end
+
+  def update
+    render json: {}
+  end
+
+  def destroy
+    render json: {}
   end
 
   private

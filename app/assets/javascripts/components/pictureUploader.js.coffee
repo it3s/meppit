@@ -5,9 +5,11 @@ App.components.pictureUploader = ->
     buttonLabel: "<i class='fa fa-plus'></i>Upload Picture"
 
     pictureThumb: """
-    <a href='<%= show_url %>' class='thumb' data-components='modal' data-modal-options='{"remote":"true"}'>
-      <img class='thumb-image' src='<%= image_url %>' ></img>
-    </a>
+    <li>
+      <a href='<%= show_url %>' class='thumb' data-components='modal' data-modal-options='{"remote":"true"}'>
+        <img class='thumb-image' src='<%= image_url %>' ></img>
+      </a>
+    </li>
     """
 
     onDone: (e, data) ->
@@ -20,6 +22,7 @@ App.components.pictureUploader = ->
 
     addPictureThumb: (result) ->
       picture = $ _.template(@pictureThumb, result)
-      $('.pictures-thumbs').append picture
+      $('.pictures-thumbs').prepend picture
+      App.mediator.publish 'components:start', picture
 
   }

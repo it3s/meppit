@@ -1,15 +1,16 @@
-<div class="picture">
+<div class="picture" data-components="picture" data-picture-options='{"url":"<%= url_for [@object, @picture] %>"}'>
   <div class="picture-image">
     <%= image_tag @picture.image.url  %>
   </div>
 
-  <div class="picture-description">
-    <textarea id="description" name="picture[description]">
-    </textarea>
-  </div>
+  <% if logged_in? %>
+    <div class="picture-description">
+      <textarea id="description" name="picture[description]"></textarea>
+    </div>
 
-  <div class="actions">
-    <%= link_to 'Delete', '#', class: 'delete-button' %>
-    <%= link_to 'Save', '#', class: 'save-button' %>
-  </div>
+    <div class="actions">
+      <%= link_to 'Delete', '#', class: 'delete-button' %>
+      <%= link_to 'Save', '#', class: 'save-button' %>
+    </div>
+  <% end %>
 </div>

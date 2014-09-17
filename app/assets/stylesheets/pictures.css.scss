@@ -11,6 +11,8 @@
     margin-top: 10px;
     margin-left: -5px;
 
+    li { display: inline-block; }
+
     .thumb {
       display: inline-block;
       border-radius: 5px;
@@ -18,6 +20,8 @@
       margin: 5px;
       background-color: $meppit-light-blue;
       vertical-align: top;
+      width: 125px;
+      height: 125px;
 
       &:hover {
         background-color: $meppit-blue;
@@ -27,6 +31,7 @@
         width: 105px;
         max-height: 105px;
         border-radius: 5px;
+
       }
     }
   }
