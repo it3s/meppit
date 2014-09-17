@@ -24,7 +24,8 @@ class PicturesController < ApplicationController
   end
 
   def destroy
-    render json: {}
+    @picture.destroy
+    render json: {id: @picture.id, flash: flash_xhr(t 'flash.deleted')}
   end
 
   private

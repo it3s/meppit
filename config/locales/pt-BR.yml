@@ -20,6 +20,7 @@ pt-BR:
 
   flash:
     saved: "Salvo com sucesso"
+    deleted: "Removido com sucesso"
     file_uploaded: "Arquivo carregado com sucesso"
 
   additional_info:

@@ -20,6 +20,7 @@ en:
 
   flash:
     saved: "Saved successfully"
+    deleted: "Removed successfully"
     file_uploaded: "File upload successfully"
 
   additional_info:

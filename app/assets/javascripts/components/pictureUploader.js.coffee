@@ -35,6 +35,7 @@ App.components.pictureUploader = ->
       @picturesList.find("[data-picture_id=#{data.id}]").attr('title', data.description)
 
     onDelete: (evt, data) ->
-      console.log 'picture:deleted', data
+      picture = @picturesList.find("[data-picture_id=#{data.id}]")
+      picture.fadeOut -> picture.remove()
 
   }
