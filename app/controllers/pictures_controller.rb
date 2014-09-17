@@ -7,7 +7,6 @@ class PicturesController < ApplicationController
     @picture = Picture.new picture_params
 
     if @picture.valid? && @picture.save
-      # EventBus.publish "??_updated", picture: picture, current_user: current_user, changes: {'picture'=>[]}
       render json: success_json
     else
       render json: {errors: @picture.errors.messages}, status: :unprocessable_entity
@@ -19,7 +18,9 @@ class PicturesController < ApplicationController
   end
 
   def update
-    render json: {}
+    @picture.description = params[:picture][:description] unless params[:picture][:description].blank?
+    @picture.save
+    render json: success_json
   end
 
   def destroy
@@ -29,7 +30,13 @@ class PicturesController < ApplicationController
   private
 
     def success_json
-      {image_url: @picture.image.url, show_url: url_for([@object, @picture]), flash: flash_xhr(t "flash.file_uploaded")}
+      {
+        id: @picture.id,
+        description: @picture.description,
+        image_url: @picture.image.url,
+        show_url: url_for([@object, @picture]),
+        flash: flash_xhr(t "flash.#{ params[:action] == 'upload' ? 'file_uploaded' : 'saved' }")
+      }
     end
 
     def picture_params

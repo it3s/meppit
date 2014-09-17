@@ -4,13 +4,19 @@ App.components.pictureUploader = ->
 
     buttonLabel: "<i class='fa fa-plus'></i>Upload Picture"
 
+    picturesList: $('.pictures-thumbs')
+
     pictureThumb: """
-    <li>
+    <li data-picture_id="<%= id %>" >
       <a href='<%= show_url %>' class='thumb' data-components='modal' data-modal-options='{"remote":"true"}'>
         <img class='thumb-image' src='<%= image_url %>' ></img>
       </a>
     </li>
     """
+
+    afterInitialize: ->
+      App.mediator.subscribe "picture:updated", @onUpdate.bind(this)
+      App.mediator.subscribe "picture:deleted", @onDelete.bind(this)
 
     onDone: (e, data) ->
       setTimeout( =>
@@ -22,7 +28,13 @@ App.components.pictureUploader = ->
 
     addPictureThumb: (result) ->
       picture = $ _.template(@pictureThumb, result)
-      $('.pictures-thumbs').prepend picture
+      @picturesList.prepend picture
       App.mediator.publish 'components:start', picture
+
+    onUpdate: (evt, data) ->
+      @picturesList.find("[data-picture_id=#{data.id}]").attr('title', data.description)
+
+    onDelete: (evt, data) ->
+      console.log 'picture:deleted', data
 
   }

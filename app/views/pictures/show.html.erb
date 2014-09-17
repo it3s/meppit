@@ -5,7 +5,7 @@
 
   <% if logged_in? %>
     <div class="picture-description">
-      <textarea id="description" name="picture[description]"></textarea>
+      <textarea id="description" name="picture[description]"><%= @picture.description %></textarea>
     </div>
 
     <div class="actions">

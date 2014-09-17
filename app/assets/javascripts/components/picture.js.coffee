@@ -10,7 +10,22 @@ App.components.picture = ->
   onSave: (evt) ->
     evt.preventDefault()
     console.log 'onSave'
+    @xhrRequest('update')
 
   onDelete: (evt) ->
     evt.preventDefault()
     console.log 'onDelete'
+
+  xhrRequest: (type) ->
+    method = if type is 'delete' then 'DELETE' else 'PUT'
+    action = if type is 'delete' then 'deleted' else 'updated'
+    $.ajax
+      type:     method
+      url:      @attr.url
+      dataType: "json"
+      data:     {picture: {description: @container.find('#description').val()}}
+      success:  (data) =>
+        console.log 'success', data
+        App.mediator.publish "picture:#{action}", data
+        App.utils.flashMessage(data.flash)
+        App.mediator.publish 'modal:close'

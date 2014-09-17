@@ -7,7 +7,7 @@
 
   <ul class="pictures-thumbs">
     <% object.pictures.find_all do |picture| %>
-      <li>
+      <li data-picture_id="<%= picture.id %>" title="<%= picture.description %>">
         <a href="<%= url_for([object, picture]) %>" class="thumb"
            data-components="modal" data-modal-options='{"remote":"true"}'>
 
