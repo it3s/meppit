@@ -124,17 +124,17 @@ ActiveRecord::Schema.define(version: 20140917151854) do
   end
 
   create_table "pictures", force: true do |t|
-    t.string   "image",       null: false
-    t.integer  "author_id",   null: false
-    t.integer  "object_id"
-    t.string   "object_type"
+    t.string   "image",        null: false
+    t.integer  "author_id",    null: false
+    t.integer  "content_id"
+    t.string   "content_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
   end
 
   add_index "pictures", ["author_id"], :name => "index_pictures_on_author_id"
-  add_index "pictures", ["object_id", "object_type"], :name => "index_pictures_on_object_id_and_object_type"
+  add_index "pictures", ["content_id", "content_type"], :name => "index_pictures_on_content_id_and_content_type"
 
   create_table "relation_metadata", force: true do |t|
     t.integer  "relation_id"

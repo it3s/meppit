@@ -1,6 +1,6 @@
 class PicturesController < ApplicationController
   before_action :require_login, only: [:upload, :update, :destroy]
-  before_action :find_object
+  before_action :find_content
   before_action :find_picture,  only: [:show, :update, :destroy]
   before_action :set_edit_mode, only: [:show]
 
@@ -36,17 +36,17 @@ class PicturesController < ApplicationController
         id: @picture.id,
         description: @picture.description,
         image_url: @picture.image.url,
-        show_url: url_for([@object, @picture]),
+        show_url: url_for([@content, @picture]),
         flash: flash_xhr(t "flash.#{ params[:action] == 'upload' ? 'file_uploaded' : 'saved' }")
       }
     end
 
     def picture_params
-      { image: params[:picture], author: current_user, object: @object }
+      { image: params[:picture], author: current_user, content: @content }
     end
 
-    def find_object
-      @object = find_polymorphic_object
+    def find_content
+      @content = find_polymorphic_object
     end
 
     def find_picture

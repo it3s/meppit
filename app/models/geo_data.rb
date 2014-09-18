@@ -15,7 +15,7 @@ class GeoData < ActiveRecord::Base
   search_fields scoped: :name, multi: [:name, :description]
   has_maps
   has_paper_trail ignore: [:id, :created_at, :updated_at]
-  has_many :pictures, as: :object
+  has_many :pictures, as: :content
 
   validates :name, presence: true
 

@@ -26,3 +26,4 @@ en:
 
     picture:
       description_placeholder: 'Add Description ...'
+      empty: '%{name} has no pictures yet'
