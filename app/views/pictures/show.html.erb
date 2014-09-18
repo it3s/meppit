@@ -3,7 +3,7 @@
     <%= image_tag @picture.image.url  %>
   </div>
 
-  <% if logged_in? %>
+  <% if logged_in? && @edit_enabled %>
     <div class="picture-description">
       <textarea id="description" name="picture[description]" placeholder="<%= t 'components.picture.description_placeholder' %>"><%= @picture.description %></textarea>
     </div>

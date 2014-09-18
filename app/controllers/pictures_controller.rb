@@ -2,6 +2,7 @@ class PicturesController < ApplicationController
   before_action :require_login, only: [:upload, :update, :destroy]
   before_action :find_object
   before_action :find_picture,  only: [:show, :update, :destroy]
+  before_action :set_edit_mode, only: [:show]
 
   def upload
     @picture = Picture.new picture_params
@@ -50,5 +51,9 @@ class PicturesController < ApplicationController
 
     def find_picture
       @picture = Picture.find params[:id]
+    end
+
+    def set_edit_mode
+      @edit_enabled = request.env['HTTP_REFERER'].split('/').last == 'edit'
     end
 end
