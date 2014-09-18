@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   include PasswordResets
 
-  before_action :require_login,      only: [:edit, :update]
-  before_action :find_user,          only: [:show, :edit, :update]
-  before_action :is_current_user,    only: [:edit, :update]
+  before_action :require_login,      only: [:edit, :update, :upload_avatar]
+  before_action :find_user,          only: [:show, :edit, :update, :upload_avatar]
+  before_action :is_current_user,    only: [:edit, :update, :upload_avatar]
   before_action :contributions_list, only: [:show]
   before_action :following_list,     only: [:show]
   before_action :activities_list,    only: [:show]
@@ -44,6 +44,16 @@ class UsersController < ApplicationController
 
   def update
     save_object @user, user_params
+  end
+
+  def upload_avatar
+    @user.avatar = user_params[:avatar]
+    if @user.valid? && @user.save
+      EventBus.publish "user_updated", user: @user, current_user: current_user, changes: {'avatar'=>[]}
+      render json: {avatar: @user.avatar.url, flash: flash_xhr(t "flash.file_uploaded")}
+    else
+      render json: {errors: @user.errors.messages}, status: :unprocessable_entity
+    end
   end
 
   private

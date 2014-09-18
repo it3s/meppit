@@ -1,0 +1,16 @@
+<div class="picture" data-components="picture" data-picture-options='{"url":"<%= url_for [@content, @picture] %>"}'>
+  <div class="picture-image">
+    <%= image_tag @picture.image.url  %>
+  </div>
+
+  <% if logged_in? && @edit_enabled %>
+    <div class="picture-description">
+      <textarea id="description" name="picture[description]" placeholder="<%= t 'components.picture.description_placeholder' %>"><%= @picture.description %></textarea>
+    </div>
+
+    <div class="actions">
+      <%= link_to t('delete'), '#', class: 'delete-button' %>
+      <%= link_to t('save')  , '#', class: 'save-button' %>
+    </div>
+  <% end %>
+</div>

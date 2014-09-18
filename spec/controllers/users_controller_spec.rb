@@ -76,6 +76,31 @@ describe UsersController do
     end
   end
 
+  describe "upload_avatar" do
+    let(:user) { FactoryGirl.create :user }
+    let(:file) { File.join(Rails.root, 'app', 'assets', 'images', 'imgs', 'avatar-placeholder.png') }
+    let(:invalid_file) { File.join(Rails.root, 'app', 'assets', 'images', 'gifs', 'spinner.gif') }
+
+    before { login_user user }
+
+    context 'valid' do
+      it "saves avatar" do
+        expect(user.avatar?).to be false
+        patch :upload_avatar, {user: {avatar: Rack::Test::UploadedFile.new(file)}, id: user.id}
+        user.reload
+        expect(response.status).to eq 200
+        expect(user.avatar?).to be true
+      end
+    end
+    context 'invalid' do
+      it "raise validation errors" do
+        expect(user.avatar?).to be false
+        patch :upload_avatar, {user: {avatar: Rack::Test::UploadedFile.new(invalid_file)}, id: user.id}
+        expect(response.status).to eq 422
+      end
+    end
+  end
+
   describe "PasswordResets" do
     let!(:user) { FactoryGirl.create(:user, :reset_password_token => 'abcdef', :reset_password_token_expires_at => Time.now + 2.days) }
     let(:params) { {:token => 'abcdef'} }

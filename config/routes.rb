@@ -46,11 +46,17 @@ Meppit::Application.routes.draw do
     get "bulk_export" => "downloads#bulk_export", on: :collection
   end
 
+  concern :has_media do
+    patch "picture_upload" => "pictures#upload",  on: :member
+    resources :pictures, only: [:show, :update, :destroy]
+  end
+
   resources :users, except: [:destroy, :index],
                     concerns: [:contributor, :followable, :follower] do
     member do
       get :activate
       get "activity" => "activities#user_activity"
+      patch :upload_avatar
       resource :settings, only: [:show, :update]
     end
 
@@ -65,7 +71,8 @@ Meppit::Application.routes.draw do
   end
 
   resources :geo_data, except:   [:destroy],
-                       concerns: [:contributable, :followable, :versionable, :downloadable] do
+                       concerns: [:contributable, :followable, :versionable,
+                                  :downloadable, :has_media] do
     member do
       get  :maps
       post :add_map
