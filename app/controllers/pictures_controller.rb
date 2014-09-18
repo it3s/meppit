@@ -54,6 +54,6 @@ class PicturesController < ApplicationController
     end
 
     def set_edit_mode
-      @edit_enabled = request.env['HTTP_REFERER'].split('/').last == 'edit'
+      @edit_enabled = request.env.fetch('HTTP_REFERER', '').split('/').last == 'edit'
     end
 end
