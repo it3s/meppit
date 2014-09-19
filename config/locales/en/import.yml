@@ -1,0 +1,10 @@
+en:
+  import:
+    title: 'Batch Upload'
+
+    explanation: 'You can upload content in batch. For starting the importation, upload a CSV file.'
+
+    example: 'Download the example file'
+    example_link: 'Example'
+
+    upload_button: 'Upload CSV file'

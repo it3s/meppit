@@ -1,0 +1,17 @@
+<%= link_to_modal icon('upload'), '#import-modal', html: {class: 'upload-btn', title: 'Upload content in batch'} %>
+
+<div id="import-modal" class="import-modal" >
+  <header><h2><%= t 'import.title' %></h2></header>
+
+  <section>
+    <p class="explanation"><%=  t 'import.explanation' %></p>
+
+    <p class="example">
+      <%= t 'import.example' %>: <%= link_to icon('file-text', t('import.example_link')), import_example_path %>
+    </p>
+
+    <div class="upload-file-wrapper">
+      <button class="upload-file"><%= t 'import.upload_button' %></button>
+    </div>
+  </section>
+</div>

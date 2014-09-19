@@ -1,0 +1,10 @@
+pt-BR:
+  import:
+    title: 'Upload em Lote'
+
+    explanation: 'Você pode subir dados em lote. Para isso começar a importação, carregue um arquivo CSV.'
+
+    example: 'Baixe o arquivo de exemplo'
+    example_link: 'Exemplo'
+
+    upload_button: 'Carregar arquivo CSV'

@@ -1,0 +1,29 @@
+.import-modal {
+  @include modal;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .explanation {
+    margin-bottom: 30px;
+  }
+
+  .example {
+    margin: 20px 0 30px;
+  }
+
+  .upload-file-wrapper {
+    text-align: center;
+  }
+
+  .upload-file {
+    @include blue-button-with-border;
+    padding: 15px 80px;
+  }
+}
+
+.import {
+
+}
