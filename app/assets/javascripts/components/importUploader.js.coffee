@@ -11,8 +11,8 @@ App.components.importUploader = ->
 
     onDone: (e, data) ->
       setTimeout( =>
-        console.log data
-        # App.utils.flashMessage(data.result.flash)
+        console.log data.result
+        window.location = data.result.redirect if data.result.redirect
         @reset()
       , 200)
 

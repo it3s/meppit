@@ -16,6 +16,11 @@
 
   .upload-file-wrapper {
     text-align: center;
+
+    .error {
+      display: block;
+      color: $dark-red;
+    }
   }
 
   .upload-button {
