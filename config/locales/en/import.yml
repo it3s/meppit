@@ -2,9 +2,25 @@ en:
   import:
     title: 'Batch Upload'
 
-    explanation: 'You can upload content in batch. For starting the importation, upload a CSV file.'
+    explanation: 'You can upload content in batch. For starting the importation upload a CSV file.'
 
     example: 'Download the example file'
     example_link: 'Example'
 
     example_filename: "import_example.csv"
+
+    example_value:
+      'name': "content name"
+      'description': "content description"
+      'tags': "Tags separated by commas"
+      'contacts:phone': "phone number"
+      'contacts:email': "email address"
+      'contacts:address': "address"
+      'contacts:city': "city"
+      'contacts:compl': "complement for the address"
+      'contacts:site': "web site"
+      'contacts:other': "other contact info"
+      'contacts:postal_code': "postal code"
+      'contacts:twitter': "twitter user"
+      'contacts:facebook': "facebook url"
+      'additional_info': "additional info in yaml format"

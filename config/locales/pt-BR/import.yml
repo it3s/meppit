@@ -8,3 +8,19 @@ pt-BR:
     example_link: 'Exemplo'
 
     example_filename: "exemplo_de_importacao.csv"
+
+    example_value:
+      'name': "nome do conteúdo name"
+      'description': "descrição do conteúdo"
+      'tags': "Palavras-chave separadas por vírgula"
+      'contacts:phone': "número de telefone"
+      'contacts:email': "endereço de e-mail"
+      'contacts:address': "endereço"
+      'contacts:city': "cidade"
+      'contacts:compl': "complemento para o endereço"
+      'contacts:site': "web site"
+      'contacts:other': "outras informações de contato"
+      'contacts:postal_code': "cep"
+      'contacts:twitter': "usuário no twitter"
+      'contacts:facebook': "url do facebook"
+      'additional_info': "informações adicionais no formato yaml"

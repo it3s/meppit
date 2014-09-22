@@ -1,7 +1,9 @@
 class ImportsController < ApplicationController
 
-  before_action :require_login, except: [:example]
-  before_action :find_import,   only:   [:edit]
+  before_action :require_login,   except: [:example]
+  before_action :find_import,     only:   [:edit]
+  before_action :is_current_user, only:   [:edit]
+
 
   def create
     @import = Import.new import_params
@@ -17,14 +19,14 @@ class ImportsController < ApplicationController
   end
 
   def example
-    send_data csv_example , filename: t("import.example_filename")
+    send_data example_csv , filename: t("import.example_filename")
   end
 
   private
 
-    def csv_example
-      # TODO this is a mock, move this to model and implement properly
-      ['name', 'description', 'tags', 'contacts', 'additional_info'].join(',')
+    def example_csv
+      values = Import.csv_headers.map { |key| t "import.example_value.#{key}" }
+      "#{ Import.csv_headers.join(',') }\n#{ values.join(',') }"
     end
 
     def import_params
@@ -34,4 +36,9 @@ class ImportsController < ApplicationController
     def find_import
       @import = Import.find params[:id]
     end
+
+    def is_current_user
+      redirect_to(root_path, notice: t('access_denied')) if @import.user != current_user
+    end
+
 end
