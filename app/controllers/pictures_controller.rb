@@ -42,7 +42,7 @@ class PicturesController < ApplicationController
     end
 
     def picture_params
-      { image: params[:picture], author: current_user, content: @content }
+      { image: params[:picture][:image], author: current_user, content: @content }
     end
 
     def find_content
