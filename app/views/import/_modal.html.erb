@@ -7,14 +7,14 @@
     <p class="explanation"><%=  t 'import.explanation' %></p>
 
     <p class="example">
-      <%= t 'import.example' %>: <%= link_to icon('file-text', t('import.example_link')), import_example_path %>
+      <%= t 'import.example' %>: <%= link_to icon('file-text', t('import.example_link')), example_imports_path %>
     </p>
 
     <div class="upload-file-wrapper">
       <p class="field file" >
-        <input type="file" class="file-field" name="picture"
+        <input type="file" class="file-field" name="import"
                data-components="importUploader"
-               data-importuploader-options='<%= {url: '/' }.to_json %>' />
+               data-importuploader-options='<%= {url: imports_path }.to_json %>' />
       </p>
     </div>
   </section>

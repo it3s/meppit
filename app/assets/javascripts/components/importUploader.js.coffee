@@ -4,6 +4,8 @@ App.components.importUploader = ->
 
     buttonLabel: I18n.uploader.import
 
+    method: 'POST'
+
     afterInitialize: ->
       console.log 'afterInitialize: bind evts here'
 

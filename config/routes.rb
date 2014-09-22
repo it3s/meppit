@@ -19,8 +19,6 @@ Meppit::Application.routes.draw do
   get  "notifications" => "notifications#notifications", as: :notifications
   post "notifications/read" => "notifications#read", as: :read_notifications
 
-  get 'imports/example' => 'imports#example', as: :import_example
-
   concern :contributable do
     get "contributors" => "contributings#contributors"
   end
@@ -100,6 +98,10 @@ Meppit::Application.routes.draw do
 
   resources :versions, only: [:show] do
     post :revert, on: :member
+  end
+
+  resources :imports, only: [:create, :edit] do
+    get :example, on: :collection
   end
 
   namespace :api do
