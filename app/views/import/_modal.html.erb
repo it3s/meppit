@@ -1,4 +1,4 @@
-<%= link_to_modal icon('upload'), '#import-modal', html: {class: 'upload-btn', title: 'Upload content in batch'} %>
+<%= link_to_modal icon('upload'), '#import-modal', login_required: true, html: {class: 'upload-btn', title: 'Upload content in batch'} %>
 
 <div id="import-modal" class="import-modal" >
   <header><h2><%= t 'import.title' %></h2></header>
@@ -11,7 +11,11 @@
     </p>
 
     <div class="upload-file-wrapper">
-      <button class="upload-file"><%= t 'import.upload_button' %></button>
+      <p class="field file" >
+        <input type="file" class="file-field" name="picture"
+               data-components="importUploader"
+               data-importuploader-options='<%= {url: '/' }.to_json %>' />
+      </p>
     </div>
   </section>
 </div>

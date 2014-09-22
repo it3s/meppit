@@ -1,7 +1,7 @@
 class ImportsController < ApplicationController
 
   def example
-    send_data csv_example , filename: "import_example.csv"
+    send_data csv_example , filename: t("import.example_filename")
   end
 
   private

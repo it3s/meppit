@@ -4,6 +4,7 @@ en:
       select_image: 'Select Image'
       uploading: 'uploading... '
       picture: 'Upload Picture'
+      import: 'Upload CSV file'
 
     modal:
       close: 'Close'

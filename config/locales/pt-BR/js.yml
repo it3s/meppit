@@ -4,7 +4,7 @@ pt-BR:
       select_image: 'Selecionar imagem'
       uploading: 'carregando... '
       picture: 'Carregar Imagem'
-
+      import: 'Carregar arquivo CSV'
 
     modal:
       close: 'Fechar'

@@ -7,4 +7,4 @@ pt-BR:
     example: 'Baixe o arquivo de exemplo'
     example_link: 'Exemplo'
 
-    upload_button: 'Carregar arquivo CSV'
+    example_filename: "exemplo_de_importacao.csv"
