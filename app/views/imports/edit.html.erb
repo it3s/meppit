@@ -1,10 +1,11 @@
 <div class="site-page imports edit">
 
   <header class="title">
-    <h2><%= t 'import.edit.title' %></h2>
+    <h1><%= t 'import.edit.title', fname: @import.source.file.filename %></h1>
   </header>
 
-  <div class="upload-file-wrapper">
+  <div class="import-file">
+    <label><%= t 'import.edit.file_field' %>: </label>
     <p class="field file" >
       <input type="file" class="file-field" name="import[source]"
              data-components="importUploader"

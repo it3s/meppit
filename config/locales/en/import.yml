@@ -26,4 +26,5 @@ en:
       'additional_info': "additional info in yaml format"
 
     edit:
-      title: 'Importation'
+      title: 'Importation for %{fname}'
+      file_field: 'Update importation file'

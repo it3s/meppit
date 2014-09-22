@@ -30,5 +30,23 @@
 }
 
 .imports {
+  .title {
+    margin-bottom: 40px;
 
+    h1 { text-align: center; }
+  }
+  .import-file {
+    margin-bottom: 20px;
+
+    label { font-weight: bold; }
+  }
+  .uploader {
+    display: inline-block;
+
+    .upload-button {
+      @include blue-button-with-border;
+      padding: 5px 10px;
+      width: auto;
+    }
+  }
 }
