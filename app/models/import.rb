@@ -10,7 +10,7 @@ class Import < ActiveRecord::Base
   def parse_source
     collection = []
     CSV.foreach(source.file.path, col_sep: ';', headers: :first_row) do |row|
-      collection << GeoData.new(build_attrs row)
+      collection << build_attrs(row)
     end
     collection
   end
@@ -42,7 +42,7 @@ class Import < ActiveRecord::Base
         description: row['description'],
         tags: row['tags'].split(',').map(&:strip),
         contacts: contacts_to_hash(row),
-        # additional_info: row['additional_info'],
+        additional_info: parse_yaml(row),
       }
     end
 
@@ -53,5 +53,10 @@ class Import < ActiveRecord::Base
         'postal_code', 'twitter', 'facebook'
       ].each { |k| contacts[k.to_sym] = row["contacts:#{k}"] unless row["contacts:#{k}"].blank? }
       contacts
+    end
+
+    def parse_yaml(row)
+      info = row['additional_info']
+      (info && !info.empty?) ? SafeYAML.load(info, safe: true) : nil
     end
 end

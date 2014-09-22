@@ -24,3 +24,7 @@ pt-BR:
       'contacts:twitter': "usuário no twitter"
       'contacts:facebook': "url do facebook"
       'additional_info': "informações adicionais no formato yaml"
+
+    edit:
+      title: 'Importação'
+

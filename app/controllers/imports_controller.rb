@@ -16,6 +16,7 @@ class ImportsController < ApplicationController
   end
 
   def edit
+    @parsed_data = @import.parse_source
   end
 
   def example

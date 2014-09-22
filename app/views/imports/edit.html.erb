@@ -1,1 +1,23 @@
-Edit for Import <%= @import %>
+<div class="site-page imports edit">
+
+  <header class="title">
+    <h2><%= t 'import.edit.title' %></h2>
+  </header>
+
+  <div class="upload-file-wrapper">
+    <p class="field file" >
+      <input type="file" class="file-field" name="import[source]"
+             data-components="importUploader"
+             data-importuploader-options='<%= {url: "/" }.to_json %>' />
+    </p>
+  </div>
+
+  <section class="parsed-data">
+    <% @parsed_data.each_with_index do |data, index| %>
+      <div id="parsed-data-<%= index %>" class="json-table"
+        data-components="jsonTable" data-jsontable-options='<%= {jsonData: data}.to_json %>'>
+      </div>
+    <% end %>
+  </section>
+
+</div>
