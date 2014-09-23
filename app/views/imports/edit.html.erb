@@ -13,12 +13,10 @@
     </p>
   </div>
 
-  <section class="parsed-data">
+  <ul class="parsed-data-list">
     <% @parsed_data.each_with_index do |data, index| %>
-      <div id="parsed-data-<%= index %>" class="json-table"
-        data-components="jsonTable" data-jsontable-options='<%= {jsonData: data}.to_json %>'>
-      </div>
+      <%= render 'imports/parsed_data', presenter: ParsedDataPresenter.new(data: data, index: index, ctx: self) %>
     <% end %>
-  </section>
+  </ul>
 
 </div>

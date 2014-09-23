@@ -49,4 +49,40 @@
       width: auto;
     }
   }
+
+  .parsed-data-list {
+    .parsed-data {
+      position: relative;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      width: 100%;
+
+      .icon {
+        margin-right: 5px;
+      }
+
+      &.valid {
+        border: solid 1px $dark-green;
+        .icon { color: $dark-green }
+      }
+      &.invalid {
+        border: solid 1px $dark-red;
+        .icon { color: $dark-red }
+      }
+
+      .see-table-button {
+        @include button;
+        display: inline-block;
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        padding: 4px 8px;
+      }
+
+      .json-table {
+        display: none;
+      }
+    }
+  }
 }

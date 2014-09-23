@@ -1,0 +1,11 @@
+<li class="parsed-data <%= presenter.valid_class %>">
+  <div class="headline">
+    <span class='icon'><%= icon('map-marker') %></span>
+    <span class="title"><%= presenter.data[:name] %></span>
+    <%= link_to icon('table'), "##{ presenter.jsontable_id }", class: 'see-table-button', title: 'see data', 'data-components' => 'togglePanel' %>
+  </div>
+
+  <div id="<%= presenter.jsontable_id %>" class="json-table"
+    data-components="jsonTable" data-jsontable-options='<%= presenter.jsontable_options %>'>
+  </div>
+</li>
