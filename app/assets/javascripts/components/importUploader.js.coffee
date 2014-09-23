@@ -4,7 +4,8 @@ App.components.importUploader = ->
 
     buttonLabel: I18n.uploader.import
 
-    method: 'POST'
+    afterInitialize: ->
+      @method = if @attr.update then 'PATCH' else 'POST'
 
     onDone: (e, data) ->
       setTimeout( =>

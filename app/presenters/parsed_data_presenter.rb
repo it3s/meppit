@@ -4,7 +4,12 @@ class ParsedDataPresenter
   required_keys :data, :index, :ctx
 
   def object
-    @object ||= GeoData.new data
+    @valid_additional_info = (data[:additional_info].nil? || data[:additional_info].is_a?(Hash))
+    @object ||= begin
+      GeoData.new data
+    rescue
+      GeoData.new data.merge(additional_info: nil)
+    end
   end
 
   def valid?
@@ -21,6 +26,14 @@ class ParsedDataPresenter
 
   def jsontable_id
     "json_table_#{ index }"
+  end
+
+  def errors
+    object.errors.add(:additional_info, ctx.t('additional_info.invalid')) unless @valid_additional_info
+    errs = object.errors.messages.map do |k, v|
+      "<span class=\"err-key\">#{k}:</span> #{v.first}"
+    end
+    errs.join(" | ").html_safe
   end
 
 end

@@ -3,6 +3,13 @@
     <span class='icon'><%= icon('map-marker') %></span>
     <span class="title"><%= presenter.data[:name] %></span>
     <%= link_to icon('table'), "##{ presenter.jsontable_id }", class: 'see-table-button', title: 'see data', 'data-components' => 'togglePanel' %>
+
+    <% unless presenter.valid? %>
+      <ul class="invalid-attrs">
+        <%= icon('exclamation-triangle') %>
+        <%= presenter.errors %>
+      </ul>
+    <% end %>
   </div>
 
   <div id="<%= presenter.jsontable_id %>" class="json-table"

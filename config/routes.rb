@@ -100,7 +100,7 @@ Meppit::Application.routes.draw do
     post :revert, on: :member
   end
 
-  resources :imports, only: [:create, :edit] do
+  resources :imports, only: [:create, :edit, :update] do
     get :example, on: :collection
   end
 

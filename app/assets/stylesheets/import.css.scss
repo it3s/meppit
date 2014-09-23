@@ -83,6 +83,16 @@
       .json-table {
         display: none;
       }
+
+      .invalid-attrs {
+        margin-top: 10px;
+        margin-left: -2px;
+        font-size: 0.9em;
+        color: $dark-red;
+        opacity: 0.8;
+
+        .err-key { font-weight: bold; }
+      }
     }
   }
 }

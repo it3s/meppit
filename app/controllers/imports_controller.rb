@@ -1,22 +1,22 @@
 class ImportsController < ApplicationController
 
   before_action :require_login,   except: [:example]
-  before_action :find_import,     only:   [:edit]
-  before_action :is_current_user, only:   [:edit]
+  before_action :find_import,     only:   [:edit, :update]
+  before_action :is_current_user, only:   [:edit, :update]
 
 
   def create
     @import = Import.new import_params
-
-    if @import.valid? && @import.save
-      render json: {redirect: edit_import_path(@import)}
-    else
-      render json: {errors: @import.errors.messages}, status: :unprocessable_entity
-    end
+    save_import
   end
 
   def edit
     @parsed_data = @import.parse_source
+  end
+
+  def update
+    @import.source = params[:import][:source]
+    save_import
   end
 
   def example
@@ -36,6 +36,14 @@ class ImportsController < ApplicationController
 
     def find_import
       @import = Import.find params[:id]
+    end
+
+    def save_import
+      if @import.valid? && @import.save
+        render json: {redirect: edit_import_path(@import)}
+      else
+        render json: {errors: @import.errors.messages}, status: :unprocessable_entity
+      end
     end
 
     def is_current_user
