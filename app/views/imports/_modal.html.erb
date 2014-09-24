@@ -6,6 +6,10 @@
   <section>
     <p class="explanation"><%=  t 'import.explanation' %></p>
 
+    <p class="warn">
+      <%= icon('exclamation-triangle') %> <%= raw t('import.warn_notice') %>
+    </p>
+
     <p class="example">
       <%= t 'import.example' %>: <%= link_to icon('file-text', t('import.example_link')), example_imports_path %>
     </p>

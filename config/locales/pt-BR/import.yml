@@ -9,6 +9,8 @@ pt-BR:
 
     example_filename: "exemplo_de_importacao.csv"
 
+    warn_notice: '<b>Aviso</b>: No CSV use ponto-e-vírgula (<b>;</b>) como separador. Também use aspas (<b>"</b>) para incluir valores.'
+
     example_value:
       'name': "nome do conteúdo name"
       'description': "descrição do conteúdo"

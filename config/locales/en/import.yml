@@ -9,6 +9,8 @@ en:
 
     example_filename: "import_example.csv"
 
+    warn_notice: '<b>Warning</b>: On the CSV use a semicolon (<b>;</b>) as separator. Also use quotes (<b>"</b>) to enclose values.'
+
     example_value:
       'name': "content name"
       'description': "content description"

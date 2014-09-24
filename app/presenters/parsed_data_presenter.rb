@@ -36,4 +36,8 @@ class ParsedDataPresenter
     errs.join(" | ").html_safe
   end
 
+  def number
+    "##{index + 1}"
+  end
+
 end

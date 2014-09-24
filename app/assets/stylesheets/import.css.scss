@@ -7,7 +7,7 @@
   }
 
   .explanation {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 
   .example {
@@ -60,6 +60,12 @@
 
       .icon {
         margin-right: 5px;
+      }
+
+      .number {
+        font-weight: bold;
+        margin-right: 10px;
+        color: $grey;
       }
 
       &.valid {
