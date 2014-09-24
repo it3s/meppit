@@ -30,5 +30,12 @@ pt-BR:
     edit:
       title: 'Importação para %{fname}'
       file_field: 'Atualizar arquivo de importação'
+      map_label: 'Selecione um Mapa para importar'
+      submit: 'Iniciar importação'
+      row_label: 'Linha original do CSV'
+      table_label: 'Tabela de dados convertidos'
+
+
+
 
 

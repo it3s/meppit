@@ -10,7 +10,7 @@ class Import < ActiveRecord::Base
   def parse_source
     collection = []
     CSV.foreach(source.file.path, col_sep: ';', headers: :first_row) do |row|
-      collection << build_attrs(row)
+      collection << OpenStruct.new(data: build_attrs(row), row: row)
     end
     collection
   end

@@ -30,3 +30,8 @@ en:
     edit:
       title: 'Importation for %{fname}'
       file_field: 'Update importation file'
+      map_label: 'Pick a Map to import'
+      submit: 'Start importation'
+      row_label: 'Original line from CSV'
+      table_label: 'Parsed data table'
+

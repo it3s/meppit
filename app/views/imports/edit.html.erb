@@ -13,9 +13,15 @@
     </p>
   </div>
 
+  <div class="import-action">
+    <label><%= t 'import.edit.map_label' %>: </label>
+    <%= autocomplete_field_tag 'map', search_by_name_maps_path %>
+    <%= submit_tag t('import.edit.submit'), class: "submit-btn" %>
+  </div>
+
   <ul class="parsed-data-list">
-    <% @parsed_data.each_with_index do |data, index| %>
-      <%= render 'imports/parsed_data', presenter: ParsedDataPresenter.new(data: data, index: index, ctx: self) %>
+    <% @parsed_data.each_with_index do |parsed, index| %>
+      <%= render 'imports/parsed_data', presenter: ParsedDataPresenter.new(parsed: parsed, index: index, ctx: self) %>
     <% end %>
   </ul>
 

@@ -1,7 +1,15 @@
 class ParsedDataPresenter
   include Presenter
 
-  required_keys :data, :index, :ctx
+  required_keys :parsed, :index, :ctx
+
+  def data
+    @data ||= parsed.data
+  end
+
+  def row
+    @row ||= parsed.row
+  end
 
   def object
     @valid_additional_info = (data[:additional_info].nil? || data[:additional_info].is_a?(Hash))
@@ -26,6 +34,10 @@ class ParsedDataPresenter
 
   def jsontable_id
     "json_table_#{ index }"
+  end
+
+  def data_preview_id
+    "data-preview-#{ index }"
   end
 
   def errors
