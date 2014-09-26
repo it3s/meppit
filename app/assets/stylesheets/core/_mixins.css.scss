@@ -58,6 +58,10 @@
   @include button($meppit-dark-blue, lighten($meppit-dark-blue, 10%), $white, $border: $border);
 }
 
+@mixin red-button {
+  @include button($dark-red, $red, $white, $border: $dark-red);
+}
+
 @mixin map-view() {
   clear: both;
   width: 100%;

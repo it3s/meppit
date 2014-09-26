@@ -15,6 +15,7 @@ describe User do
   it { expect(subject).to have_db_column :contacts }
   it { expect(subject).to have_db_column :avatar }
   it { expect(subject).to have_db_column :location }
+  it { expect(subject).to have_db_column :mail_notifications }
 
   it 'validates format of email' do
     user.email = 'invalidmail'
@@ -37,6 +38,11 @@ describe User do
     user.contacts = {'test' => 'ok', 'address' => 'av paulista, 800, SP'}
     expect(user.save).to be true
     expect(User.find_by(:id => user.id).contacts).to eq({'test' => 'ok', 'address' => 'av paulista, 800, SP'})
+  end
+
+  it "has default for mail_notifications" do
+    user = FactoryGirl.create(:user)
+    expect(user.mail_notifications).to eq 'daily'
   end
 
   describe "encryption matches legacy DB" do
@@ -129,5 +135,14 @@ describe User do
     before { FactoryGirl.create :user }
 
     it { expect(user.auth_token).to_not be nil }
+  end
+
+  describe "settings" do
+    let(:user) { FactoryGirl.build :user }
+
+    it "build settings model for the user" do
+      expect(Settings).to receive(:new).with(user)
+      user.settings
+    end
   end
 end

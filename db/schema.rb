@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140908010847) do
+ActiveRecord::Schema.define(version: 20140917151854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,6 +124,19 @@ ActiveRecord::Schema.define(version: 20140908010847) do
     t.datetime "updated_at"
   end
 
+  create_table "pictures", force: true do |t|
+    t.string   "image",        null: false
+    t.integer  "author_id",    null: false
+    t.integer  "content_id"
+    t.string   "content_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "description"
+  end
+
+  add_index "pictures", ["author_id"], :name => "index_pictures_on_author_id"
+  add_index "pictures", ["content_id", "content_type"], :name => "index_pictures_on_content_id_and_content_type"
+
   create_table "relation_metadata", force: true do |t|
     t.integer  "relation_id"
     t.text     "description"
@@ -154,8 +167,8 @@ ActiveRecord::Schema.define(version: 20140908010847) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "name",                                                                                  null: false
-    t.string   "email",                                                                                 null: false
+    t.string   "name",                                                                                       null: false
+    t.string   "email",                                                                                      null: false
     t.string   "crypted_password"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -172,8 +185,9 @@ ActiveRecord::Schema.define(version: 20140908010847) do
     t.spatial  "location",                        limit: {:srid=>4326, :type=>"geometry"}
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
-    t.text     "interests",                                                                default: [],              array: true
+    t.text     "interests",                                                                default: [],                   array: true
     t.string   "auth_token"
+    t.string   "mail_notifications",                                                       default: "daily"
   end
 
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"

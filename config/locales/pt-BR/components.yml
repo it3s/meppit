@@ -23,3 +23,7 @@ pt-BR:
         marker: 'Ponto'
         shape: 'Polígono'
         line: 'Linha'
+
+    picture:
+      description_placeholder: 'Adicione uma Descrição ...'
+      empty: '%{name} não possui imagens ainda'

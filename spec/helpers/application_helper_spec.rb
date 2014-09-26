@@ -151,6 +151,15 @@ describe ApplicationHelper do
         expect(translations).to eq I18n.backend.send(:translations)[:en].with_indifferent_access
       end
     end
+
+    describe "#language_options" do
+      it "generates list of options" do
+        opts = helper.language_options
+        expect(opts).to be_a_kind_of Array
+        expect(opts).to include ['English', 'en']
+        expect(opts).to include ['Português', 'pt-BR']
+      end
+    end
   end
 
   describe "Concerns::ContactsHelper" do

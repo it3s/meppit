@@ -1,0 +1,9 @@
+<section class="pictures">
+
+  <% if object.pictures.count > 0 %>
+    <%= render 'pictures/thumbs_list', object: object %>
+  <% else %>
+    <p class="empty"><%= t 'components.picture.empty', {name: object.try(:name)} %></p>
+  <% end %>
+
+</section>

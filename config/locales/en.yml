@@ -5,6 +5,7 @@ en:
   save_changes: "Save Changes"
   save: "Save"
   cancel: "Cancel"
+  delete: "Delete"
   time_ago: "%{time} ago"
   before: "Before"
   after: "After"
@@ -30,6 +31,8 @@ en:
 
   flash:
     saved: "Saved successfully"
+    deleted: "Removed successfully"
+    file_uploaded: "File upload successfully"
 
   additional_info:
     title: "Additional Info"

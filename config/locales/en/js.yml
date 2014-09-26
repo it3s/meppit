@@ -3,7 +3,7 @@ en:
     uploader:
       select_image: 'Select Image'
       uploading: 'uploading... '
-      uploaded: 'File Uploaded. Refresh or Save'
+      picture: 'Upload Picture'
 
     modal:
       close: 'Close'

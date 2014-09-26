@@ -113,6 +113,14 @@ describe GeoData do
     end
   end
 
+  describe "pictures" do
+    let(:geo_data) { FactoryGirl.create :geo_data }
+    let!(:picture) { FactoryGirl.create :picture, content: geo_data }
+
+    it { expect(geo_data.pictures.count).to eq 1 }
+    it { expect(geo_data.pictures.first).to eq picture }
+  end
+
   describe "Relationships" do
     let(:geo_data) { FactoryGirl.create :geo_data }
     let(:other)    { FactoryGirl.create :geo_data }

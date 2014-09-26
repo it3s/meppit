@@ -78,7 +78,9 @@ class ToolbarPresenter
     end
 
     def _settings_tool
-      { icon: :'cog', title: t('toolbar.settings'), url: "" }
+      settings_url = ctx.settings_path
+      { icon: :'cog', title: t('toolbar.settings'), url: settings_url,
+        active?: ctx.request.path == settings_url }
     end
 
     def _flag_tool

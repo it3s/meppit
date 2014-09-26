@@ -2,26 +2,26 @@
 
 uploaderTemplate = """
   <div class="uploader">
-    <div class="upload-success">#{I18n.uploader.uploaded}</div>
-    <span class="upload-button">#{I18n.uploader.select_image}</span>
+    <span class="upload-button"><%= buttonLabel %></span>
   </div>
 """
 
 App.components.uploader = ->
+  buttonLabel: I18n.uploader.select_image
+
   attributes: ->
-    _uploader = $(uploaderTemplate)
+    _uploader = $ _.template(uploaderTemplate, buttonLabel: @buttonLabel)
     {
       field:    @container.closest('.field')
-      url:      @container.closest('form').attr('action')
       uploader: _uploader
       button:   _uploader.find('.upload-button')
-      message:  _uploader.find('.upload-success')
     }
 
   initialize: ->
     @render()
     @on @attr.button, 'click', (evt) => @container.trigger 'click'
     @startPlugin()
+    @afterInitialize?()
 
   render: ->
     @attr.field.hide()
@@ -42,17 +42,26 @@ App.components.uploader = ->
     @attr.button.append "<i class=\"fa fa-spinner fa-spin\"></i>"
     data.submit()
 
-  onDone: ->
-    setTimeout @showMessage.bind(this), 200
+  onDone: (e, data) ->
+    setTimeout( =>
+      @reloadImage(data.result)
+      App.utils.flashMessage(data.result.flash)
+      @reset()
+    , 200)
 
   onFail: (evt, data) ->
-    @attr.button.find('i').remove()
-    @attr.button.text I18n.uploader.select_image
     @attr.button.after "<span class='error'>#{ @getErrorMsg(data) }</span>"
-    @startPlugin() # restart plugin (kludge for retrying uploads)
+    @reset()
 
-  showMessage: ->
-    @attr.button.fadeOut => @attr.message.fadeIn()
+  reloadImage: (res) ->
+    img = $(".avatar img")
+    img.fadeOut ->
+      img.attr("src", res.avatar + '?' + (new Date()).getTime()).fadeIn()
+
+  reset: ->
+    @attr.button.find('i').remove()
+    @attr.button.html @buttonLabel
+    @startPlugin() # restart plugin (kludge for retrying uploads)
 
   getErrorMsg: (data) ->
     errors = data.jqXHR.responseJSON.errors
