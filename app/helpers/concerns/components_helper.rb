@@ -37,6 +37,13 @@ module Concerns
       render('shared/components/autocomplete', name: name, url: url).html_safe
     end
 
+    def selector_option(label, param, value, default=false, class_name=nil)
+      class_name = value unless class_name
+      selected = params[param] == value.to_s || (params[param].nil? && default)
+      "<a href=\"?#{param}=#{value}\" class=\"option #{class_name}#{' selected' if selected}\" data-selector-param=\"#{param}\" data-selector-value=\"#{value}\" #{'data-selector-default="true"' if default}>#{label}</a>".html_safe
+
+    end
+
     def additional_info_value(f)
       dict = f.object.additional_info
       (dict && !dict.empty?) ? dict.to_yaml.gsub("---\n", "") : ""

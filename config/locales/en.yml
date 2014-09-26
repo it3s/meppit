@@ -19,6 +19,16 @@ en:
     empty: "No results found!"
     title: "Search Results"
 
+  news_feed:
+    title: "News Feed"
+    empty: "No activities"
+    selector:
+        display:
+            label: "Display:"
+            options:
+                following: "Following"
+                all: "All"
+
   flash:
     saved: "Saved successfully"
     deleted: "Removed successfully"

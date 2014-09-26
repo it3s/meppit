@@ -1,10 +1,19 @@
 <div class="last_updates">
   <h3><%= t 'frontpage.news.updates_title' %></h3>
-
-  <%= render 'updates/last_updates' %>
-
+  <div id="activity" data-components="list">
+    <div id="activities-pagination"><%= paginate @activities, :remote => true,
+    :params => {:controller => 'activities', :action => 'news_feed'} %></div>
+    <ul id="activities-list" class="list activities-list">
+        <% unless @activities.empty? %>
+          <% @activities.each do |activity| %>
+            <%= render 'activities/activity', activity: ActivityPresenter.new(object: activity, ctx: self) %>
+          <% end %>
+        <% else %>
+          <p class="empty"><%= t 'news_feed.empty' %></p>
+        <% end %>
+    </ul>
+  </div>
   <div class="apart">
-    <a href="#list_updates"><%= t 'frontpage.news.updates_all' %></a>
+    <a href="<%= news_feed_path %>"><%= t 'frontpage.news.updates_all' %></a>
   </div>
 </div>
-

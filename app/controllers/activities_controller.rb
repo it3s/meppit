@@ -6,6 +6,12 @@ class ActivitiesController < ApplicationController
     render layout: nil if request.xhr?
   end
 
+  def news_feed
+    all = (params[:display] == 'all')
+    @activities = news_feed_results all
+    render layout: nil if request.xhr?
+  end
+
   private
 
     def find_user

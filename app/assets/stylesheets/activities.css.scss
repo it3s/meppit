@@ -19,12 +19,13 @@
     }
   }
 
+  .event-owner,
   .event-type {
     font-weight: bold;
   }
 
   .activity-event {
-    display: inline-block;
+    display: inline;
   }
 
   .activity-time {
@@ -32,6 +33,19 @@
     font-size: 0.8em;
     color: $grey;
     margin-left: 10px;
+  }
+
+  .owner-avatar {
+    display: inline-block;
+    float: left;
+    margin: -3px 6px 0 -22px;
+    position: relative;
+    
+    img {
+      border: $white 1px solid;
+      width: 22px; 
+      height: 22px; 
+    }
   }
 
   .activity-changes {

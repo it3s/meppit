@@ -1,0 +1,27 @@
+<section>
+  <br>
+  <h2><%= icon "clock-o", t('news_feed.title') %></h2>
+  <% if current_user %>
+  <div class="selector" data-components="selector" data-selector-options="<%= {autoload: true, remote: true, target: '#activity'}.to_json %>">
+    <span class="options-label"><%= t('news_feed.selector.display.label') %></span>
+    <div class="options-container">
+      <div class="options" data-selector-param="display">
+        <%= selector_option t('news_feed.selector.display.options.following'), :display, :following, true %>
+        <%= selector_option t('news_feed.selector.display.options.all'), :display, :all %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <div id="activity" data-components="list">
+    <div id="activities-pagination"><%= paginate @activities, :remote => true %></div>
+    <ul id="activities-list" class="list activities-list">
+        <% unless @activities.empty? %>
+          <% @activities.each do |activity| %>
+            <%= render 'activities/activity', activity: ActivityPresenter.new(object: activity, ctx: self) %>
+          <% end %>
+        <% else %>
+          <p class="empty"><%= t 'news_feed.empty' %></p>
+        <% end %>
+    </ul>
+  </div>
+</section>

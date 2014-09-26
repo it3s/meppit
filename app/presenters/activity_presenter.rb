@@ -7,6 +7,10 @@ class ActivityPresenter
     @trackable ||= object.trackable
   end
 
+  def owner
+    @owner ||= object.owner
+  end
+
   def name
     trackable.try(:name)
   end
@@ -20,7 +24,15 @@ class ActivityPresenter
   end
 
   def avatar
-    return ctx.image_tag trackable.avatar.thumb.url if trackable.try(:avatar?)
+    object_avatar trackable, !user_itself?
+  end
+
+  def owner_avatar
+    object_avatar owner
+  end
+
+  def object_avatar(obj, allow_image = true)
+    return ctx.image_tag obj.avatar.thumb.url if obj.try(:avatar) && allow_image
 
     case type
     when :map      then ctx.icon :globe
@@ -51,12 +63,21 @@ class ActivityPresenter
     "<span class=\"event-type\">#{ event_type }</span> #{headline}".html_safe
   end
 
+  def event_with_owner
+    "#{ owner_link } <span class=\"event-type\">#{ event_type }</span> #{headline}".html_safe
+  end
+
+  def owner_link
+    ctx.link_to(owner.name, ctx.url_for(owner), class: "event-owner").html_safe
+  end
+
   def event_type
     ctx.t "activities.event.#{object.key.split('.').last}"
   end
 
   def user_itself?
-    type == :user && trackable.id == object.owner.id
+    # using `owner_id` instead of `owner` to avoid unnecessary `includes(:owner)`
+    type == :user && trackable.id == object.owner_id
   end
 
   def headline

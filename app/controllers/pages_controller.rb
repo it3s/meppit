@@ -2,6 +2,7 @@
 
 class PagesController < ApplicationController
   def frontpage
+    @activities = news_feed_results
     @news = news
   end
 

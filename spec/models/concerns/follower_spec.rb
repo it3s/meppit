@@ -4,6 +4,7 @@ describe Follower do
   let(:user) { FactoryGirl.create :user }
   let(:other_user) { FactoryGirl.create :user, name: 'John Doe' }
   let(:geo_data) { FactoryGirl.create :geo_data }
+  let(:other_geo_data) { FactoryGirl.create :geo_data }
 
   describe "has_many followings" do
     it { expect {user.followings}.to_not raise_error }

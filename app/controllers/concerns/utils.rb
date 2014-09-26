@@ -102,5 +102,14 @@ module Utils
     flash.now[:notice] = msg
     render_to_string(partial: 'shared/alerts')
   end
+
+  def news_feed_results(all=false)
+    if all || !current_user
+      activities = paginate PublicActivity::Activity.order('created_at desc').includes(:trackable, :owner)
+    else
+      activities = paginate current_user.following_activities.includes(:owner)
+    end
+    activities
+  end
 end
 

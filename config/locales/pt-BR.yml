@@ -19,6 +19,16 @@ pt-BR:
     empty: "Nenhum resultado encontrado!"
     title: "Resultados da Busca"
 
+  news_feed:
+    title: "Novidades"
+    empty: "Nenhuma novidade"
+    selector:
+        display:
+            label: "Exibir:"
+            options:
+                following: "Seguindo"
+                all: "Todos"
+
   flash:
     saved: "Salvo com sucesso"
     deleted: "Removido com sucesso"
