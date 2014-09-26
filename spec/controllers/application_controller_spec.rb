@@ -327,6 +327,53 @@ describe ApplicationController do
         controller.send :flash_xhr, "message"
       end
     end
+
+    describe "#news_feed_results" do
+      let(:user) { FactoryGirl.create(:user) }
+      let(:other_user) { FactoryGirl.create :user, name: 'John Doe' }
+      let(:geo_data) { FactoryGirl.create :geo_data }
+      let(:other_geo_data) { FactoryGirl.create :geo_data }
+
+      before do
+        Following.create followable: geo_data, follower: user
+        Following.create followable: other_user, follower: user
+
+        PublicActivity::Activity.create owner: user, trackable: other_geo_data
+        PublicActivity::Activity.create owner: other_user, trackable: geo_data
+        PublicActivity::Activity.create owner: other_user, trackable: other_geo_data
+      end
+
+      after do
+        Following.delete_all
+        PublicActivity::Activity.delete_all
+      end
+
+      context 'annonymous user' do
+        it "gets all activities" do
+          expect(controller.send(:news_feed_results).count).to be 3
+        end
+      end
+
+      context 'logged user' do
+        before do
+          login_user user
+        end
+
+        it "allows to get all activities" do
+          expect(controller.send(:news_feed_results, true).count).to be 3
+        end
+
+        it "gets following activities" do
+          expect(user.following.count).to be 2
+          expect(controller.send(:news_feed_results).count).to be 2
+        end
+
+        it "does not get activities from the user itself" do
+          activity = PublicActivity::Activity.create owner: user, trackable: geo_data
+          expect(controller.send(:news_feed_results)).to_not include activity
+        end
+      end
+    end
   end
 
 end

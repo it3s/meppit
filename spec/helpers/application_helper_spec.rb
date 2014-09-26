@@ -315,6 +315,13 @@ HTML
       end
     end
 
+    describe "#selector_option" do
+      let(:anchor) { '<a href="?param=value" class="option classname selected" data-selector-param="param" data-selector-value="value" data-selector-default="true">Label</a>' }
+      it "renders selector item" do
+        expect(helper.selector_option 'Label', 'param', 'value', true, 'classname').to eq anchor
+      end
+    end
+
     describe "#additional_info_value" do
       context "nil" do
         let(:f) { double(object: double(additional_info: nil)) }
