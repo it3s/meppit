@@ -3,6 +3,7 @@ class Import < ActiveRecord::Base
   process_in_background :source
 
   belongs_to :user
+  belongs_to :project
 
   validates :source, presence: true
   validates :user,   presence: true
