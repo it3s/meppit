@@ -24,3 +24,8 @@ pt-BR:
 
       collapse: 'esconder filtros'
       expand: 'mostrar filtros'
+
+    imports:
+      errors:
+        map: 'Você deve escolher um Mapa para importação'
+        invalid: 'O conjunto de dados contém entradas inválidas'

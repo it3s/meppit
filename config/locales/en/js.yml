@@ -24,3 +24,8 @@ en:
 
       collapse: 'hide filters'
       expand: 'show filters'
+
+    imports:
+      errors:
+        map: 'Must provide a Map to import'
+        invalid: 'Data set contains invalid entries'

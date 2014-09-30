@@ -68,6 +68,19 @@
     }
   }
 
+  .validation-errors {
+    margin: 10px 0;
+
+    .err {
+      color: $dark-red;
+      padding: 10px;
+      background: lighten($soft-red, 25%);
+      border-radius: 4px;
+      margin-bottom: 5px;
+
+      i { margin-right: 10px; }
+    }
+  }
 
   .parsed-data-list {
 

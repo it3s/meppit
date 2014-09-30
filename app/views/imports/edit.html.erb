@@ -1,4 +1,4 @@
-<div class="site-page imports edit">
+<div class="site-page imports edit" data-components="importEdit">
 
   <header class="title">
     <h1><%= t 'import.edit.title', fname: @import.source.file.filename %></h1>
@@ -17,6 +17,9 @@
     <label><%= t 'import.edit.map_label' %>: </label>
     <%= autocomplete_field_tag 'map', search_by_name_maps_path %>
     <%= submit_tag t('import.edit.submit'), class: "submit-btn" %>
+  </div>
+
+  <div class="validation-errors">
   </div>
 
   <ul class="parsed-data-list">
