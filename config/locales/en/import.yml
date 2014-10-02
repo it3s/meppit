@@ -34,4 +34,9 @@ en:
       submit: 'Start importation'
       row_label: 'Original line from CSV'
       table_label: 'Parsed data table'
+      imported: 'Data set already imported to %{map}'
+      load:
+        success: 'Data set imported successfully'
+        error: 'Some error happened during importation'
+
 

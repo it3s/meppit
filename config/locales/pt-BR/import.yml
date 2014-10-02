@@ -34,6 +34,12 @@ pt-BR:
       submit: 'Iniciar importação'
       row_label: 'Linha original do CSV'
       table_label: 'Tabela de dados convertidos'
+      imported: 'Conjunto de dados já foi importado para %{map}'
+      load:
+        success: 'Conjunto de dados importados com sucesso'
+        error: 'Ocorreu algum erro durante importação'
+
+
 
 
 

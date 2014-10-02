@@ -101,7 +101,8 @@ Meppit::Application.routes.draw do
   end
 
   resources :imports, only: [:create, :edit, :update] do
-    get :example, on: :collection
+    get  :example, on: :collection
+    post :load,    on: :member
   end
 
   namespace :api do

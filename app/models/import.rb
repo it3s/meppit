@@ -3,7 +3,7 @@ class Import < ActiveRecord::Base
   process_in_background :source
 
   belongs_to :user
-  belongs_to :project
+  belongs_to :map
 
   validates :source, presence: true
   validates :user,   presence: true
@@ -33,6 +33,22 @@ class Import < ActiveRecord::Base
       'contacts:facebook',
       'additional_info'
     ]
+  end
+
+  def load_to_map!(map_id)
+    imported_data_ids = parse_source.map do |parsed|
+      geo_data = GeoData.new parsed.data
+      geo_data.save
+      geo_data.mappings.create map_id: map_id
+      geo_data.id
+    end.compact
+
+    if imported_data_ids.size > 0
+      assign_attributes imported: true, imported_data_ids: imported_data_ids, map_id: map_id
+      save
+    else
+      false
+    end
   end
 
   private

@@ -4,23 +4,35 @@
     <h1><%= t 'import.edit.title', fname: @import.source.file.filename %></h1>
   </header>
 
-  <div class="import-file">
-    <label><%= t 'import.edit.file_field' %>: </label>
-    <p class="field file" >
-      <input type="file" class="file-field" name="import[source]"
-             data-components="importUploader"
-             data-importuploader-options='<%= {url: import_path(@import), update: true }.to_json %>' />
-    </p>
-  </div>
+  <% if @import.imported %>
 
-  <div class="import-action">
-    <label><%= t 'import.edit.map_label' %>: </label>
-    <%= autocomplete_field_tag 'map', search_by_name_maps_path %>
-    <%= submit_tag t('import.edit.submit'), class: "submit-btn" %>
-  </div>
+    <div class="already-imported">
+      <h2><%= icon 'check-circle' %><%= t 'import.edit.imported', map: @import.map.name %></h2>
+    </div>
 
-  <div class="validation-errors">
-  </div>
+  <% else %>
+
+    <%= form_tag load_import_path(@import), method: :post, id: "load-form" do %>
+      <div class="import-file">
+        <label><%= t 'import.edit.file_field' %>: </label>
+        <p class="field file" >
+          <input type="file" class="file-field" name="import[source]"
+                 data-components="importUploader"
+                 data-importuploader-options='<%= {url: import_path(@import), update: true }.to_json %>' />
+        </p>
+      </div>
+
+      <div class="import-action">
+        <label><%= t 'import.edit.map_label' %>: </label>
+        <%= autocomplete_field_tag 'map', search_by_name_maps_path %>
+        <%= submit_tag t('import.edit.submit'), class: "submit-btn" %>
+      </div>
+
+      <div class="validation-errors">
+      </div>
+    <% end %>
+
+  <% end %>
 
   <ul class="parsed-data-list">
     <% @parsed_data.each_with_index do |parsed, index| %>

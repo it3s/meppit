@@ -82,6 +82,18 @@
     }
   }
 
+  .already-imported {
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+    color: $dark-green;
+    background-color: lighten($soft-green, 35%);
+    border-radius: 4px;
+    margin-bottom: 20px;
+
+    i { margin-right: 10px; }
+  }
+
   .parsed-data-list {
 
     .parsed-data {

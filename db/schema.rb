@@ -88,10 +88,10 @@ ActiveRecord::Schema.define(version: 20140930182821) do
     t.datetime "updated_at"
     t.boolean  "imported",          default: false
     t.text     "imported_data_ids", default: [],                 array: true
-    t.integer  "project_id"
+    t.integer  "map_id"
   end
 
-  add_index "imports", ["project_id"], :name => "index_imports_on_project_id"
+  add_index "imports", ["map_id"], :name => "index_imports_on_map_id"
   add_index "imports", ["user_id"], :name => "index_imports_on_user_id"
 
   create_table "mappings", force: true do |t|

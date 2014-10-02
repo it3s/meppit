@@ -1,8 +1,8 @@
 class ImportsController < ApplicationController
 
   before_action :require_login,   except: [:example]
-  before_action :find_import,     only:   [:edit, :update]
-  before_action :is_current_user, only:   [:edit, :update]
+  before_action :find_import,     only:   [:edit, :update, :load]
+  before_action :is_current_user, only:   [:edit, :update, :load]
 
 
   def create
@@ -21,6 +21,13 @@ class ImportsController < ApplicationController
 
   def example
     send_data example_csv , filename: t("import.example_filename")
+  end
+
+  def load
+    map_id = params[:map].to_i
+    loaded = @import.load_to_map! map_id
+    flash[:notice] = t("import.edit.load.#{ loaded ? 'success' : 'error' }")
+    redirect_to map_path(map_id)
   end
 
   private

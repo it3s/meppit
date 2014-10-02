@@ -17,9 +17,6 @@ App.components.importEdit = ->
     unless @isValid()
       @showErrors()
       evt.preventDefault()
-    else
-      evt.preventDefault()
-      console.log 'submiting'
 
   isValid: ->
     @hasMap() && @allEntriesAreValid()
