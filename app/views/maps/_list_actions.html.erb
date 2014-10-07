@@ -3,7 +3,7 @@
     <input type="checkbox" name="all" /><%= t 'lists.select_all' %>
   </button>
 
-  <%= link_to icon('upload', ''), '#', class: 'upload-btn' %>
+  <%= render 'imports/modal' %>
   <%= render 'shared/export/export_object', object: nil %>
 
 
