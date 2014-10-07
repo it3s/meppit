@@ -39,6 +39,13 @@ pt-BR:
         success: 'Conjunto de dados importados com sucesso'
         error: 'Ocorreu algum erro durante importação'
 
+    list:
+      empty: 'Não há importações para %{name}'
+      imported:     'Já foi importado'
+      not_imported: 'Não importado ainda'
+
+
+
 
 
 

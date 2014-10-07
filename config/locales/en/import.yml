@@ -39,4 +39,9 @@ en:
         success: 'Data set imported successfully'
         error: 'Some error happened during importation'
 
+    list:
+      empty: 'There are no importations for %{name}'
+      imported:     'Already imported'
+      not_imported: 'Not imported yet'
+
 

@@ -1,3 +1,11 @@
-<div id="importations">
-  IMPORTS
+<div id="importations" data-components="list" data-list='{"scroll": {"behavior": "local"}}'>
+  <div id="imports-pagination"><%= paginate imports, :remote => true,
+    :params => {:controller => 'user', :action => 'show', :user_id => user.id} %></div>
+  <ul id="imports-list" class="list imports-list">
+    <% unless imports.empty? %>
+      <%= render imports, :size => :small %>
+    <% else %>
+      <p class="empty"><%= t 'import.list.empty', {name: user.name} %></p>
+    <% end %>
+  </ul>
 </div>

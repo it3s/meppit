@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   before_action :contributions_list, only: [:show]
   before_action :following_list,     only: [:show]
   before_action :activities_list,    only: [:show]
+  before_action :imports_list,       only: [:show]
 
   def new
     @user = User.new
@@ -85,5 +86,9 @@ class UsersController < ApplicationController
 
     def activities_list
       @activities ||= paginate @user.try(:activities_performed), params[:activities_page]
+    end
+
+    def imports_list
+      @imports ||= paginate @user.try(:imports), params[:imports_page]
     end
 end

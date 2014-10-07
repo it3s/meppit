@@ -51,6 +51,10 @@ class Import < ActiveRecord::Base
     end
   end
 
+  def filename
+    source.file.filename
+  end
+
   private
 
     def build_attrs(row)

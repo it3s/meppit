@@ -161,3 +161,27 @@
     }
   }
 }
+.list-item.import {
+  .item-avatar {
+    font-size: 30px;
+    width: 32px;
+    height: 32px;
+    border-radius: 5px;
+  }
+
+  .import-status {
+    float: right;
+    padding: 5px;
+    color: white;
+    border-radius: 4px;
+    width: 150px;
+    text-align: center;
+  }
+
+  &.imported-true {
+    .item-avatar, .import-status { background-color: $dark-green; }
+  }
+  &.imported-false {
+    .item-avatar, .import-status { background-color: $dark-red; }
+  }
+}

@@ -1,0 +1,17 @@
+<li class="list-item import imported-<%= import.imported %>">
+  <div class="wrapper">
+    <a href="<%= edit_import_path(import) %>" title="<%= import.filename %>">
+      <div class="item-avatar">
+        <%= icon('upload') %>
+      </div>
+    </a>
+    <div class="item">
+      <a href="<%= edit_import_path(import) %>" title="<%= import.filename %>">
+        <h2 class="item-title"><%= import.filename %></h2>
+      </a>
+    </div>
+    <div class="item-controls">
+      <span class="import-status"><%= t("import.list.#{ import.imported? ? 'imported' : 'not_imported' }") %></span>
+    </div>
+  </div>
+</li>
