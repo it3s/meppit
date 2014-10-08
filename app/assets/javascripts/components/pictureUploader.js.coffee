@@ -20,7 +20,6 @@ App.components.pictureUploader = ->
 
     onDone: (e, data) ->
       setTimeout( =>
-        console.log data.result
         @addPictureThumb data.result
         App.utils.flashMessage(data.result.flash)
         @reset()

@@ -102,6 +102,11 @@ Meppit::Application.routes.draw do
     post :revert, on: :member
   end
 
+  resources :imports, only: [:create, :edit, :update] do
+    get  :example, on: :collection
+    post :load,    on: :member
+  end
+
   namespace :api do
     namespace :v1 do
       resources :geo_data, only: [:show, :index]

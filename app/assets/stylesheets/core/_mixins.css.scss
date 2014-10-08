@@ -58,6 +58,10 @@
   @include button($meppit-dark-blue, lighten($meppit-dark-blue, 10%), $white, $border: $border);
 }
 
+@mixin blue-button-with-border {
+  @include blue-button($border: darken($meppit-dark-blue, 20%));
+}
+
 @mixin red-button {
   @include button($dark-red, $red, $white, $border: $dark-red);
 }

@@ -63,4 +63,8 @@ module ApplicationHelper
 
     OpenStruct.new(location: location, location_geojson: location.try(:to_json))
   end
+
+  def show_imports?(user)
+    logged_in? && user == current_user && !@imports.empty?
+  end
 end

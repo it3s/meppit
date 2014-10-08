@@ -41,7 +41,7 @@ describe PicturesController do
     context 'valid' do
       it "creates a picture for the content" do
         expect(geo_data.pictures.count).to eq 0
-        patch :upload, {picture: Rack::Test::UploadedFile.new(file), id: geo_data.id }
+        patch :upload, {picture: {image: Rack::Test::UploadedFile.new(file)}, id: geo_data.id }
         expect(response.status).to eq 200
         expect(geo_data.pictures.count).to eq 1
         expect(geo_data.pictures.first.author).to eq user
@@ -51,7 +51,7 @@ describe PicturesController do
     context 'invalid' do
       it "creates a picture for the content" do
         expect(geo_data.pictures.count).to eq 0
-        patch :upload, {id: geo_data.id }
+        patch :upload, {picture: {}, id: geo_data.id }
         expect(response.status).to eq 422
         expect(response.body).to eq({errors: {image: [blank_msg]}}.to_json)
       end

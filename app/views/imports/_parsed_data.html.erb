@@ -1,0 +1,27 @@
+<li class="parsed-data <%= presenter.valid_class %>">
+  <div class="headline">
+    <span class='icon'><%= icon('map-marker') %></span>
+    <span class="number" title="line number"><%= presenter.number %></span>
+    <span class="title"><%= presenter.data[:name] %></span>
+    <%= link_to icon('table'), "##{ presenter.data_preview_id }", class: 'see-table-button', title: 'see data', 'data-components' => 'togglePanel' %>
+
+    <% unless presenter.valid? %>
+      <ul class="invalid-attrs">
+        <%= icon('exclamation-triangle') %>
+        <%= presenter.errors %>
+      </ul>
+    <% end %>
+  </div>
+
+  <div id="<%= presenter.data_preview_id %>" class="data-preview">
+    <div class="raw-line">
+      <span class="section-label"><%= t 'import.edit.row_label' %>:</span>
+      <p class="line"><%= presenter.row %></p>
+    </div>
+
+    <span class="section-label"><%= t 'import.edit.table_label' %>:</span>
+    <div id="<%= presenter.jsontable_id %>" class="json-table"
+      data-components="jsonTable" data-jsontable-options='<%= presenter.jsontable_options %>'>
+    </div>
+  </div>
+</li>

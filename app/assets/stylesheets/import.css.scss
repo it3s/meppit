@@ -1,0 +1,187 @@
+.import-modal {
+  @include modal;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .explanation {
+    margin-bottom: 20px;
+  }
+
+  .example {
+    margin: 20px 0 30px;
+  }
+
+  .upload-file-wrapper {
+    text-align: center;
+
+    .error {
+      display: block;
+      color: $dark-red;
+    }
+  }
+
+  .upload-button {
+    @include blue-button-with-border;
+    padding: 15px 80px;
+  }
+}
+
+.imports {
+  .title {
+    margin-bottom: 40px;
+
+    h1 { text-align: center; }
+  }
+  .import-file, .import-action {
+    margin-bottom: 20px;
+
+    label {
+      font-weight: bold;
+      display: inline-block;
+      width: 250px;
+    }
+  }
+  .uploader {
+    display: inline-block;
+
+    .upload-button {
+      @include blue-button-with-border;
+      padding: 5px 10px;
+      width: auto;
+    }
+  }
+
+  .import-action {
+    position: relative;
+
+    .ui-autocomplete-input { width: 250px; }
+
+    .submit-btn {
+      @include blue-button-with-border;
+      display: inline-block;
+      position: absolute;
+      right: 0;
+      top: -5px;
+    }
+  }
+
+  .validation-errors {
+    margin: 10px 0;
+
+    .err {
+      color: $dark-red;
+      padding: 10px;
+      background: lighten($soft-red, 25%);
+      border-radius: 4px;
+      margin-bottom: 5px;
+
+      i { margin-right: 10px; }
+    }
+  }
+
+  .already-imported {
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+    color: $dark-green;
+    background-color: lighten($soft-green, 35%);
+    border-radius: 4px;
+    margin-bottom: 20px;
+
+    i { margin-right: 10px; }
+  }
+
+  .parsed-data-list {
+
+    .parsed-data {
+      position: relative;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      width: 100%;
+      background-color: lighten($meppit-light-blue, 5%);
+
+      .icon {
+        margin-right: 5px;
+      }
+
+      .number {
+        font-weight: bold;
+        margin-right: 10px;
+        color: $grey;
+      }
+
+      &.valid {
+        border: solid 1px $dark-green;
+        .icon { color: $dark-green }
+      }
+      &.invalid {
+        border: solid 1px $dark-red;
+        .icon { color: $dark-red }
+      }
+
+      .see-table-button {
+        @include button;
+        display: inline-block;
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        padding: 4px 8px;
+      }
+
+      .data-preview {
+        display: none;
+      }
+
+      .section-label {
+        display: block;
+        margin: 20px 0 10px;
+        font-weight: bold;
+      }
+
+      .raw-line .line, .json-table {
+        padding: 10px;
+        background: $main-color-bg;
+        border-radius: 4px;
+        border: solid 1px $ultra-soft-grey;
+      }
+
+      .invalid-attrs {
+        margin-top: 10px;
+        margin-left: -2px;
+        font-size: 0.9em;
+        color: $dark-red;
+        opacity: 0.8;
+
+        .err-key { font-weight: bold; }
+      }
+    }
+  }
+}
+.list-item.import {
+  .item-avatar {
+    font-size: 30px;
+    width: 32px;
+    height: 32px;
+    border-radius: 5px;
+  }
+
+  .import-status {
+    float: right;
+    padding: 5px;
+    color: white;
+    border-radius: 4px;
+    width: 150px;
+    text-align: center;
+  }
+
+  &.imported-true {
+    .item-avatar, .import-status { background-color: $dark-green; }
+  }
+  &.imported-false {
+    .item-avatar, .import-status { background-color: $dark-red; }
+  }
+}

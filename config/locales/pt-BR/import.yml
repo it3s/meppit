@@ -1,0 +1,54 @@
+pt-BR:
+  import:
+    title: 'Upload em Lote'
+
+    explanation: 'Você pode subir dados em lote. Para isso começar a importação, carregue um arquivo CSV.'
+
+    example: 'Baixe o arquivo de exemplo'
+    example_link: 'Exemplo'
+
+    example_filename: "exemplo_de_importacao.csv"
+
+    warn_notice: '<b>Aviso</b>: No CSV use ponto-e-vírgula (<b>;</b>) como separador. Também use aspas (<b>"</b>) para incluir valores.'
+
+    example_value:
+      'name': "nome do conteúdo name"
+      'description': "descrição do conteúdo"
+      'tags': "Palavras-chave separadas por vírgula"
+      'contacts:phone': "número de telefone"
+      'contacts:email': "endereço de e-mail"
+      'contacts:address': "endereço"
+      'contacts:city': "cidade"
+      'contacts:compl': "complemento para o endereço"
+      'contacts:site': "web site"
+      'contacts:other': "outras informações de contato"
+      'contacts:postal_code': "cep"
+      'contacts:twitter': "usuário no twitter"
+      'contacts:facebook': "url do facebook"
+      'additional_info': "informações adicionais no formato yaml"
+
+    edit:
+      title: 'Importação para %{fname}'
+      file_field: 'Atualizar arquivo de importação'
+      map_label: 'Selecione um Mapa para importar'
+      submit: 'Iniciar importação'
+      row_label: 'Linha original do CSV'
+      table_label: 'Tabela de dados convertidos'
+      imported: 'Conjunto de dados já foi importado para %{map}'
+      load:
+        success: 'Conjunto de dados importados com sucesso'
+        error: 'Ocorreu algum erro durante importação'
+
+    list:
+      empty: 'Não há importações para %{name}'
+      imported:     'Já foi importado'
+      not_imported: 'Não importado ainda'
+
+
+
+
+
+
+
+
+

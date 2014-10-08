@@ -1,6 +1,6 @@
 <section class="pictures edit">
   <p class="field file" >
-    <input type="file" class="file-field" name="picture"
+    <input type="file" class="file-field" name="picture[image]"
            data-components="pictureUploader"
            data-pictureuploader-options='<%= {url: url_for([:picture_upload, object]) }.to_json %>' />
   </p>

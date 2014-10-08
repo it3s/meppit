@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   searchable_tags :interests
   search_fields multi: [:name, :about_me]
 
+  has_many :imports
+
   attr_reader :license_aggrement
 
   validates :email, :name,      presence:     true

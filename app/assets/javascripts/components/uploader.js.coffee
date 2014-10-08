@@ -9,6 +9,8 @@ uploaderTemplate = """
 App.components.uploader = ->
   buttonLabel: I18n.uploader.select_image
 
+  method: 'PATCH'
+
   attributes: ->
     _uploader = $ _.template(uploaderTemplate, buttonLabel: @buttonLabel)
     {
@@ -20,8 +22,8 @@ App.components.uploader = ->
   initialize: ->
     @render()
     @on @attr.button, 'click', (evt) => @container.trigger 'click'
-    @startPlugin()
     @afterInitialize?()
+    @startPlugin()
 
   render: ->
     @attr.field.hide()
@@ -30,7 +32,7 @@ App.components.uploader = ->
   startPlugin: ->
     @container.fileupload
       url:      @attr.url
-      type:     'PATCH'
+      type:     @method
       dataType: 'json'
       add:      @onAdd.bind(this)
       done:     @onDone.bind(this)

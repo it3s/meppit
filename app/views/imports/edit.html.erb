@@ -1,0 +1,43 @@
+<div class="site-page imports edit" data-components="importEdit">
+
+  <header class="title">
+    <h1><%= t 'import.edit.title', fname: @import.filename %></h1>
+  </header>
+
+  <% if @import.imported %>
+
+    <div class="already-imported">
+      <h2><%= icon 'check-circle' %><%= t 'import.edit.imported', map: @import.map.name %></h2>
+    </div>
+
+  <% else %>
+
+    <%= form_tag load_import_path(@import), method: :post, id: "load-form" do %>
+      <div class="import-file">
+        <label><%= t 'import.edit.file_field' %>: </label>
+        <p class="field file" >
+          <input type="file" class="file-field" name="import[source]"
+                 data-components="importUploader"
+                 data-importuploader-options='<%= {url: import_path(@import), update: true }.to_json %>' />
+        </p>
+      </div>
+
+      <div class="import-action">
+        <label><%= t 'import.edit.map_label' %>: </label>
+        <%= autocomplete_field_tag 'map', search_by_name_maps_path %>
+        <%= submit_tag t('import.edit.submit'), class: "submit-btn" %>
+      </div>
+
+      <div class="validation-errors">
+      </div>
+    <% end %>
+
+  <% end %>
+
+  <ul class="parsed-data-list">
+    <% @parsed_data.each_with_index do |parsed, index| %>
+      <%= render 'imports/parsed_data', presenter: ParsedDataPresenter.new(parsed: parsed, index: index, ctx: self) %>
+    <% end %>
+  </ul>
+
+</div>

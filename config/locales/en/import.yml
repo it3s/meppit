@@ -1,0 +1,47 @@
+en:
+  import:
+    title: 'Batch Upload'
+
+    explanation: 'You can upload content in batch. For starting the importation upload a CSV file.'
+
+    example: 'Download the example file'
+    example_link: 'Example'
+
+    example_filename: "import_example.csv"
+
+    warn_notice: '<b>Warning</b>: On the CSV use a semicolon (<b>;</b>) as separator. Also use quotes (<b>"</b>) to enclose values.'
+
+    example_value:
+      'name': "content name"
+      'description': "content description"
+      'tags': "Tags separated by commas"
+      'contacts:phone': "phone number"
+      'contacts:email': "email address"
+      'contacts:address': "address"
+      'contacts:city': "city"
+      'contacts:compl': "complement for the address"
+      'contacts:site': "web site"
+      'contacts:other': "other contact info"
+      'contacts:postal_code': "postal code"
+      'contacts:twitter': "twitter user"
+      'contacts:facebook': "facebook url"
+      'additional_info': "additional info in yaml format"
+
+    edit:
+      title: 'Importation for %{fname}'
+      file_field: 'Update importation file'
+      map_label: 'Pick a Map to import'
+      submit: 'Start importation'
+      row_label: 'Original line from CSV'
+      table_label: 'Parsed data table'
+      imported: 'Data set already imported to %{map}'
+      load:
+        success: 'Data set imported successfully'
+        error: 'Some error happened during importation'
+
+    list:
+      empty: 'There are no importations for %{name}'
+      imported:     'Already imported'
+      not_imported: 'Not imported yet'
+
+
