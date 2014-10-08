@@ -51,4 +51,11 @@ describe Import do
       expect(import.map).to eq map
     end
   end
+
+  describe "user#imports" do
+    let!(:user)   { FactoryGirl.create :user }
+    let!(:import) { FactoryGirl.create :import, user: user }
+
+    it { expect(user.imports.first).to eq import }
+  end
 end

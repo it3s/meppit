@@ -130,6 +130,41 @@ describe ApplicationHelper do
     it { expect(helper.collection_location([map, geo_data2]).location_geojson).to include geojson2 }
   end
 
+  describe "#show_imports?" do
+    let(:user) { FactoryGirl.create :user }
+
+    context 'logged out' do
+      it { expect(helper.show_imports?(user)).to eq false }
+    end
+
+    context 'logged in' do
+      before { allow(helper).to receive(:logged_in?).and_return true }
+
+      context "other user" do
+        let(:other) { FactoryGirl.create :user, name: 'other' }
+        before { allow(helper).to receive(:current_user).and_return other }
+
+        it { expect(helper.show_imports?(user)).to eq false }
+      end
+
+      context "same user" do
+        before { allow(helper).to receive(:current_user).and_return user }
+
+        context "without imports" do
+          before { helper.instance_variable_set :@imports, [] }
+
+          it { expect(helper.show_imports?(user)).to eq false }
+        end
+        context "with imports" do
+          let(:import) { FactoryGirl.create :import, user: user }
+          before { helper.instance_variable_set :@imports, [import] }
+
+          it { expect(helper.show_imports?(user)).to eq true }
+        end
+      end
+    end
+  end
+
   describe "Concerns::I18nHelper" do
     describe "#i18n_language_names" do
       it 'has names for all availables locales' do
