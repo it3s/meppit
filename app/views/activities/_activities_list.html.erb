@@ -1,0 +1,14 @@
+<div id="activities-pagination"><%= paginate activities, :remote => true, params: (local_assigns[:paginate_params] || {}) %></div>
+<ul id="activities-list" class="list activities-list">
+    <% unless activities.empty? %>
+      <% activities.each do |activity| %>
+        <%= render_activity activity, @user %>
+      <% end %>
+    <% else %>
+      <% if @user %>
+        <p class="empty"><%= t 'activities.empty', {name: @user.name} %></p>
+      <% else %>
+        <p class="empty"><%= t 'news_feed.empty' %></p>
+      <% end %>
+    <% end %>
+</ul>

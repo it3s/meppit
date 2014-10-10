@@ -67,4 +67,12 @@ module ApplicationHelper
   def show_imports?(user)
     logged_in? && user == current_user && !@imports.empty?
   end
+
+  def render_activity(activity, user = nil)
+    if user
+      render 'activities/user_activity', activity: ActivityPresenter.new(object: activity, ctx: self)
+    else
+      render 'activities/activity', activity: ActivityPresenter.new(object: activity, ctx: self)
+    end
+  end
 end

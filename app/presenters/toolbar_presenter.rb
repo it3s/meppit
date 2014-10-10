@@ -78,7 +78,7 @@ class ToolbarPresenter
     end
 
     def _settings_tool
-      settings_url = ctx.settings_path
+      settings_url = ctx.settings_path id: _user_id
       { icon: :'cog', title: t('toolbar.settings'), url: settings_url,
         active?: ctx.request.path == settings_url }
     end
@@ -97,5 +97,9 @@ class ToolbarPresenter
         :type => "follow loginRequired",
         :opts => "data-follow-options=#{ opts_json } "
       }
+    end
+
+    def _user_id
+      ctx.params[:id] || ctx.params[:user_id]
     end
 end
