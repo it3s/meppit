@@ -1,0 +1,17 @@
+<div class="site-page full dashboard">
+  <div class="central-pane">
+    <section class="newsfeed">
+      <div id="activity" data-components="list">
+        <%= render "activities/activities_list", activities: @activities, paginate_params: {controller: 'activities', action: 'news_feed'} %>
+      </div>
+    </section>
+  </div>
+  <div class="side-pane">
+    <section class="contributions">
+      <h2><%= t 'dashboard.panes.maps.title' %></h2>
+      <div id="contributions" data-components="list">
+        <%= render "contributings/contributions_list", contributions: @maps, size: :small, paginate_params: {controller: 'contributings', action: 'maps', user_id: current_user.id} %>
+      </div>
+    </section>
+  </div>
+</div>

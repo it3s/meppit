@@ -1,6 +1,8 @@
 Meppit::Application.routes.draw do
   root "pages#frontpage"
 
+  get "dashboard" => "dashboard#dashboard"
+
   get "news_feed" => "activities#news_feed"
 
   get  "language/:code" => "application#language", as: :language

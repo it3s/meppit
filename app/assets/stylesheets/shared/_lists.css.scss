@@ -5,8 +5,6 @@ nav.pagination { display: none; }  // We are using infinite scroll
   padding: 15px 0;
   border-bottom: 1px solid $list-item-separator-color;
 
-  &:hover { background: $dark-white; }
-
   a, a:hover { text-decoration: none; }
 
   .item-checkbox { float: left; }
@@ -96,6 +94,21 @@ nav.pagination { display: none; }  // We are using infinite scroll
 
       .item-excerpt { display: none; }
    }
+}
+
+.side-pane {
+  .list-item {
+    .item {
+      width: 260px;
+
+      .item-excerpt {
+        display: none;
+      }
+    }
+    .counters {
+      margin: 0;
+    }
+  }
 }
 
 .site-page.index {

@@ -2,6 +2,7 @@
 
 class PagesController < ApplicationController
   def frontpage
+    redirect_to dashboard_path if current_user
     @activities = news_feed_results
     @news = news
   end

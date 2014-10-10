@@ -1,0 +1,5 @@
+en:
+  dashboard:
+    panes:
+      maps:
+        title: 'Maps you contribute to'

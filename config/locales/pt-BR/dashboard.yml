@@ -1,0 +1,5 @@
+pt-BR:
+  dashboard:
+    panes:
+      maps:
+        title: 'Mapas para os quais contribui'
