@@ -128,6 +128,7 @@ App.components.map = ->
     @bindEvents()
     if @attr.editor and not @attr.hasLocation
       @startDrawAssistence()
+    App.mediator.publish 'component:initialized', this
 
   startDrawAssistence: ->
     done = (content) =>
@@ -190,6 +191,7 @@ App.components.map = ->
     @map.hideButton 'expand'
     @map.showButton 'collapse'
     if not @expanded
+      @_sitePageOriginalPosition = $('.site-page').css('position')
       @_originalScrollTop = $(window).scrollTop()
       @_originalCss =
         position: @container.css('position')
@@ -200,6 +202,8 @@ App.components.map = ->
         'z-index': @container.css('z-index')
     top = $("#header").height()
     $(window).scrollTop(0)
+    # make sure the map position is really absolute
+    $('.site-page').css position: 'initial'
     @container.css
       position: 'absolute'
       top: top
@@ -215,6 +219,7 @@ App.components.map = ->
     @map.hideButton 'collapse'
     @map.showButton 'expand'
     $(window).scrollTop(@_originalScrollTop)
+    $('.site-page').css position: @_sitePageOriginalPosition
     @container.css @_originalCss
     @map.refresh()
     @expanded = false

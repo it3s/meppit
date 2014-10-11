@@ -5,7 +5,9 @@
 
     <%= remote_form_for presenter.object do |f| %>
       <%= render 'shared/form_actions', object: presenter.object %>
-      <%= render presenter.layout_partial, f: f, presenter: presenter %>
+      <div class="wrapper">
+        <%= render presenter.layout_partial, f: f, presenter: presenter %>
+      </div>
     <% end %>
 
   <% else %>

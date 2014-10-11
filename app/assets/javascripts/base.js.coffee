@@ -78,6 +78,21 @@ startComponents = (evt, root=document) ->
 
 mediator.subscribe 'components:start', startComponents
 
+stickyRecalc = () ->
+  setTimeout () -> $(document.body).trigger 'sticky_kit:recalc', 100
+
+componentInitialized = (evt, component) ->
+  console.log "Component Initialized: #{component}"
+  stickyRecalc()
+
+mediator.subscribe 'component:initialized', componentInitialized
+
+componentChanged = (evt, component) ->
+  console.log "Component Changed: #{component}"
+  stickyRecalc()
+
+mediator.subscribe 'component:changed', componentChanged
+
 
 flashMessage = (msg)->
   flashMsg = $(msg)

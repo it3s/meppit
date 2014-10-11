@@ -11,9 +11,11 @@ App.components.editor = ->
       selector: "textarea##{@container.attr('id')}"
 
   initialize: ->
+    window.tm = tinyMCE
     tinyMCE.init(_.extend @attr.pluginOptions, {
       setup: (ed) =>
         ed.on 'change', _.debounce(@onEditorChange).bind(this)
+        ed.on 'init', () => App.mediator.publish 'component:initialized', this
     })
     App.mediator.subscribe 'editor:clean', @clean.bind(this)
 

@@ -24,7 +24,7 @@ App.components.list = ->
     _this = this
     @attr.list.infinitescroll opts, ->
       _this.startComponents.bind(_this)(this)
-      $(document.body).trigger 'sticky_kit:recalc'
+      App.mediator.publish 'component:changed', _this
 
   startComponents: (container) ->
     App.mediator.publish('components:start', $(container))
