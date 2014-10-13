@@ -3,4 +3,6 @@ class Comment < ActiveRecord::Base
   belongs_to :content, polymorphic: true
 
   validates :user, :content, :comment, presence: true
+
+  default_scope { order('created_at desc') }
 end
