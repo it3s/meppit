@@ -1,0 +1,11 @@
+<div id="comments" data-components="list" data-list='{"scroll": {"behavior": "local"}}'>
+  <div id="comments-pagination"><%#= paginate comments, :remote => true,
+    :params => {:controller => 'comments', :action => 'index'} %></div>
+  <ul id="comments-list" class="list comments-list">
+    <% unless comments.empty? %>
+      <%= render comments %>
+    <% else %>
+      <p class="empty"><%= t 'comments.empty', {name: object.name} %></p>
+    <% end %>
+  </ul>
+</div>

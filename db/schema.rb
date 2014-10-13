@@ -11,13 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140930182821) do
+ActiveRecord::Schema.define(version: 20141013145901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "hstore"
-  enable_extension "uuid-ossp"
   enable_extension "postgis"
+  enable_extension "hstore"
   enable_extension "pg_trgm"
   enable_extension "fuzzystrmatch"
 
@@ -45,6 +44,18 @@ ActiveRecord::Schema.define(version: 20140930182821) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "comments", force: true do |t|
+    t.integer  "user_id",      null: false
+    t.integer  "content_id",   null: false
+    t.string   "content_type", null: false
+    t.text     "comment",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["content_id", "content_type"], :name => "index_comments_on_content_id_and_content_type"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "contributings", force: true do |t|
     t.integer  "contributor_id"
