@@ -1,11 +1,17 @@
 <div id="comments" data-components="list" data-list='{"scroll": {"behavior": "local"}}'>
-  <div id="comments-pagination"><%#= paginate comments, :remote => true,
-    :params => {:controller => 'comments', :action => 'index'} %></div>
+
+  <%= form_tag url_for([object, :comments]), method: :post, id: "comment-form",
+               remote: true, "data-components" => "remoteForm" do %>
+
+    <textarea id="comment_comment" class="comment_input tinymce"
+              data-components="editor" data-editor-options='{"height":70}' >
+    </textarea>
+
+    <%= submit_tag 'Add comment' %>
+
+  <% end %>
+
   <ul id="comments-list" class="list comments-list">
-    <% unless comments.empty? %>
-      <%= render comments %>
-    <% else %>
-      <p class="empty"><%= t 'comments.empty', {name: object.name} %></p>
-    <% end %>
+    <%= render comments %>
   </ul>
 </div>
