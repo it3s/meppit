@@ -1,3 +1,5 @@
 pt-BR:
   comments:
     empty: '%{name} não possui comentários ainda.'
+    submit: 'Adicionar comentário'
+

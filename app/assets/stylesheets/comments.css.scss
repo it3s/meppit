@@ -1,0 +1,11 @@
+.comments {
+  #comment-form {
+    position: relative;
+
+    input[type=submit] {
+      margin-top: 10px;
+      position: absolute;
+      right: 0;
+    }
+  }
+}
