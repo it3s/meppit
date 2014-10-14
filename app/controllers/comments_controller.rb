@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new comment_params
-    if @comment.valid? # @comment.save
+    if @comment.save
       render json: {flash: flash_xhr(t 'comments.saved'), comment_html: comment_html}
     else
       render json: {errors: @comment.errors.messages}, status: :unprocessable_entity

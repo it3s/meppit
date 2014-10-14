@@ -4,5 +4,5 @@ class Comment < ActiveRecord::Base
 
   validates :user, :content, :comment, presence: true
 
-  default_scope { order('created_at desc') }
+  default_scope { includes(:user).order('created_at desc') }
 end

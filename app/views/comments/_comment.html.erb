@@ -1,11 +1,11 @@
 <div class="comment">
   <div class="comment-headline">
-    <%#= image_tag comment.user.avatar.thumb , class: "avatar", title: comment.user.name %>
+    <%= image_tag comment.user.avatar.thumb , class: "avatar", title: comment.user.name %>
     <a href="<%= user_path(comment.user) %>">
       <span><%= comment.user.name %></span>
     </a>
-    <time class="comment-time" datetime="<%#= comment.created_at.to_datetime.rfc3339 %>">
-      <%#= ctx.t('time_ago', time: ctx.time_ago_in_words(comment.created_at)) %>
+    <time class="comment-time" datetime="<%= comment.created_at.to_datetime.rfc3339 %>">
+      <%= t 'time_ago', time: time_ago_in_words(comment.created_at) %>
     </time>
   </div>
   <div class="comment-text">
