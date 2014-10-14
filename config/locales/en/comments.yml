@@ -2,3 +2,4 @@ en:
   comments:
     empty: '%{name} has no comments yet.'
     submit: 'Add comment'
+    saved: 'Comment added'

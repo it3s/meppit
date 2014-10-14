@@ -8,4 +8,14 @@
       right: 0;
     }
   }
+
+  .comments-list {
+    margin-top: 60px;
+
+    .comment {
+      border-top: solid 1px $soft-grey;
+      padding: 10px;
+      color: $dark-grey;
+    }
+  }
 }

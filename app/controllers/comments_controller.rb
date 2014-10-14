@@ -4,11 +4,11 @@ class CommentsController < ApplicationController
   before_action :find_commentable
 
   def create
-    comment = Comment.new comment_params
-    if comment.valid? # comment.save
-      render json: {flash: flash_xhr(t 'comments.saved'), comment_html: ""}
+    @comment = Comment.new comment_params
+    if @comment.valid? # @comment.save
+      render json: {flash: flash_xhr(t 'comments.saved'), comment_html: comment_html}
     else
-      render json: {errors: comment.errors.messages}, status: :unprocessable_entity
+      render json: {errors: @comment.errors.messages}, status: :unprocessable_entity
     end
   end
 
@@ -24,6 +24,10 @@ class CommentsController < ApplicationController
 
     def comment_params
       {user: current_user, content: @commentable, comment: params[:comment][:comment]}
+    end
+
+    def comment_html
+      render_to_string(partial: 'comments/comment', locals: {comment: @comment})
     end
 
 end
