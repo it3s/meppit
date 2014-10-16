@@ -1,12 +1,12 @@
 en:
   frontpage:
-    title: 'colaborative mapping of your region.'
+    title: 'Collaborative mapping of your region.'
 
     call:
       participate: 'Want to participate'
       edit: 'Edit the map.'
       anyone: 'Anyone can help!'
-      create_account: 'Create your account'
+      create_account: "Sign Up - It\'s Free"
 
     what:
       what_is_it_for: 'What is it for?'
@@ -20,6 +20,9 @@ en:
       journalism_explanation: "Build maps using public data. Use them into your news and mobilize for changes."
       guide: 'Neighborhood guide'
       guide_explanation: "Map existing services in your neighborhood. Help other dwellers to know the territory better and use local resources."
+
+    featured:
+      featured-maps: 'Featured Maps'
 
     projects:
       title: 'Projects that uses MootiroMaps'

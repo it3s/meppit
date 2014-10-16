@@ -1,4 +1,17 @@
+@import "animate";
+
 .frontpage {
+
+  .marketing-section {
+    color: $white;
+    background-color: $ocean-blue;
+    padding: 15px;
+    min-height: 400px;
+
+    h1 {
+      margin: 0;
+    }
+  }
 
   .title {
     padding-top: 50px;
@@ -25,6 +38,15 @@
     }
   }
 
+  > section {
+    padding: 40px 0;
+
+    h2 {
+      text-align: center;
+      margin: 0 0 20px;
+    }
+  }
+
 
   .call-for-action {
     background-color: $ultra-soft-grey;
@@ -39,44 +61,53 @@
 
 
   .what-is-it-for {
-    white-space: nowrap; /* hack for windows */
+    text-align: center;
 
     *  { @include box-sizing(border-box); }
     a  { color: inherit }
-    h2 { margin: 40px 0 10px 40px; }
 
     .topic {
       white-space: normal; /* hack for windows */
 
       vertical-align: top;
       display: inline-block;
+      text-align: center;
       width: 19%;
-      margin: 0 0.35%;
-
-      &:hover {
-        background: $ultra-soft-grey;
-        h3 { background: $meppit-blue; }
-      }
+      margin: 25px 5%;
 
       h3 {
         display: inline-block;
-        padding: 0.5em 1em;
         margin-bottom: 1em;
-        border-bottom: 1px solid $ocean-blue;
         width: 100%;
-        font-size: 20px;
+        font-size: 1.3em;
         text-align: center;
         color: $ocean-blue;
       }
 
-      img { max-width: 100%; }
+      img { max-width: 70%; }
+      p { padding: 0.5em 0.2em 0; }
+    }
+  }
+
+  .featured-maps {
+    background-color: $soft-blue;
+    h2, a, .map  { color: $white }
+
+    .map {
+      display: inline-block;
+      width: 31%;
+      margin: 5px 1% 15px;
+
+      img {
+        width: 100%;
+        min-height: 150px;
+        margin: 0 0 10px;
+      }
       p { padding: 0.5em 0.2em 0; }
     }
   }
 
   .projects {
-    background-color: $ultra-soft-grey;
-    margin-top: 50px;
     padding-bottom: 10px;
 
     h2 { padding: 20px; }
@@ -140,7 +171,7 @@
 
   .news {
     margin: 20px 0 40px;
-    > div {
+    .wrapper > div {
       @include box-sizing(border-box);
 
       display: inline-block;
@@ -171,7 +202,7 @@
       }
 
       .activities-list {
-        .list-item { 
+        .list-item {
           &.small .item { width: 350px; }
         }
       }

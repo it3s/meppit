@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Meppit</title>
+  <%= stylesheet_link_tag "application", media: "all" %>
+
+  <%= csrf_meta_tags %>
+
+  <!--[if lt IE 9]>
+    <%= javascript_include_tag "html5shiv" %>
+  <![endif]-->
+  <%= javascript_include_tag "head" %>
+
+  <%= yield :head %>
+</head>
+<body data-locale="<%= I18n.locale %>" class="landingpage">
+  <%= render 'shared/header' %>
+  <%= render 'shared/alerts' %>
+
+  <div id="main-content">
+      <%= content_for?(:content) ? yield(:content) : yield %>
+    <div id="main-content-footer"></div>
+  </div>
+
+  <%= render 'shared/footer' %>
+
+  <%= render 'sessions/sign_in' unless logged_in? %>
+  <%= render 'sessions/language_selector' %>
+
+  <script type="text/javascript">
+    window.I18n = <%= current_translations[:js].to_json.html_safe %>
+    window.I18n.pluralize = function(key, count) {
+      return count === 1 ? key.one : key.other.replace('%{count}', count)
+    };
+
+    window.fayeUrl = "<%= ENV['FAYE_URL'] %>";
+  </script>
+
+  <%= javascript_include_tag "application", ENV['FAYE_JS'] %>
+</body>
+</html>

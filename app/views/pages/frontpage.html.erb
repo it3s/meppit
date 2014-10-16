@@ -1,69 +1,77 @@
-<div class="frontpage">
+<div class="frontpage" data-components="animation">
 
-  <section class="title">
-    <header>
-      <span class="maps-logo"></span>
+  <section class="marketing-section">
+    <div class="wrapper">
       <h1><%= t 'frontpage.title' %></h1>
-    </h1>
-
-    <div class="video">
-      <iframe src="http://player.vimeo.com/video/56746348?title=0&amp;byline=0&amp;portrait=0&amp;color=28b8ce" width="600" height="337" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+      <h2>
+        <div><%= t 'frontpage.call.anyone' %></div>
+        <a class="big button animation flipInY" href="#"><%= t 'frontpage.call.create_account' %></a>
+      </h2>
     </div>
   </section>
 
-  <section class="call-for-action">
-    <% if logged_in? %>
-      <h2><%= t 'frontpage.call.participate' %>, <%= current_user.name %>?
-        <a href="#map-panel-add"><%= t 'frontpage.call.edit' %></a>
-      </h2>
-    <% else %>
-      <h2><%= t 'frontpage.call.anyone' %>
-        <a class="big button" href="#"><%= t 'frontpage.call.create_account' %></a>
-      </h2>
-    <% end %>
-  </section>
-
   <section class="what-is-it-for">
-    <h2><%= t 'frontpage.what.what_is_it_for' %></h2>
-
-    <% use_cases.each do |use_case| %>  <%# pages_helper#use_cases %>
-      <a href="<%= use_case[:href] %>">
-        <div class="topic">
-          <h3><%= use_case[:title] %></h3>
-          <%= image_tag use_case[:image] %>
-          <p><%= use_case[:text] %></p>
-        </div>
-      </a>
-    <% end %>
-
+    <div class="wrapper">
+      <h2 class="animation slideInLeft"><%= t 'frontpage.what.what_is_it_for' %></h2>
+      <% delay = 0 %>
+      <% use_cases.each do |use_case| %>  <%# pages_helper#use_cases %>
+        <a href="<%= use_case[:href] %>">
+          <div class="topic animation fadeIn">
+            <%= image_tag use_case[:image] %>
+            <h3><%= use_case[:title] %></h3>
+            <p><%= use_case[:text] %></p>
+          </div>
+        </a>
+      <% end %>
+    </div>
   </section>
 
+  <section class="featured-maps">
+    <div class="wrapper">
+      <h2 class="animation slideInLeft"><%= t 'frontpage.featured.featured-maps' %></h2>
+      <% delay = 0 %>
+      <% featured_maps.each do |map| %>  <%# pages_helper#featured_maps %>
+        <% delay = delay + 0.25 %>
+        <a href="<%= map[:url] %>">
+          <div class="map animation fadeIn" data-wow-delay="<%= delay %>s">
+            <%= image_tag map[:image] %>
+            <h3><%= map[:title] %></h3>
+            <p><%= map[:excerpt] %></p>
+          </div>
+        </a>
+      <% end %>
+    </div>
+  </section>
 
   <section class="projects">
-    <h2><%= t('frontpage.projects.title') %></h2>
+    <div class="wrapper">
+      <h2 class="animation slideInLeft"><%= t('frontpage.projects.title') %></h2>
 
-    <div class="flexslider" data-components="flexslider">
-      <ul class="slides">
-        <% projects_slides.each do |proj| %>  <%# pages_helper#projects_slides %>
-          <li class="<%= proj[:name] %>">
-            <a href="<%= proj[:href] %>"><%= image_tag proj[:image] %></a>
-            <p class="testimony">
-              “<%= proj[:text] %>” <br/>
-              <span class="author-info">
-                — <a href="<%= proj[:author_href] %>"><%= proj[:author_name] %></a>,
-                <%= raw proj[:author_title] %>.
-              </span>
-            </p>
-          </li>
-        <% end %>
-      </ul>
+      <div class="flexslider" data-components="flexslider">
+        <ul class="slides">
+          <% projects_slides.each do |proj| %>  <%# pages_helper#projects_slides %>
+            <li class="<%= proj[:name] %>">
+              <a href="<%= proj[:href] %>"><%= image_tag proj[:image] %></a>
+              <p class="testimony">
+                “<%= proj[:text] %>” <br/>
+                <span class="author-info">
+                  — <a href="<%= proj[:author_href] %>"><%= proj[:author_name] %></a>,
+                  <%= raw proj[:author_title] %>.
+                </span>
+              </p>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </section>
 
 
   <section class="news">
-    <%= render 'pages/blog_updates', :news => @news %>
-    <%= render 'pages/updates', :updates => [] %>
+    <div class="wrapper">
+      <%= render 'pages/blog_updates', :news => @news %>
+      <%= render 'pages/updates', :updates => [] %>
+    </div>
   </section>
 
 </div>

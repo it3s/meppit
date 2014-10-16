@@ -8,6 +8,7 @@
 #= require jquery.infinitescroll
 #= require jquery.cookie
 #= require jquery.sticky-kit.min
+#= require wow
 
 #= require base
 
