@@ -7,6 +7,7 @@ en:
       edit: 'Edit the map.'
       anyone: 'Anyone can help!'
       create_account: "Sign Up - It\'s Free"
+      login: 'Or log in'
 
     what:
       what_is_it_for: 'What is it for?'
@@ -23,11 +24,14 @@ en:
 
     featured:
       featured-maps: 'Featured Maps'
+      explore: 'Explore more maps'
 
-    projects:
-      title: 'Projects that uses MootiroMaps'
+    testimonials:
+      title: 'Testimonials'
+      formely_konwn_as: 'Meppit was formely known as MootiroMaps.'
 
     news:
+      title: 'News'
       blog_title: 'IT3S blog'
       blog_visit: 'visit the blog'
 

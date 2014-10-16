@@ -2,63 +2,70 @@
 
 .frontpage {
 
-  .marketing-section {
-    color: $white;
-    background-color: $ocean-blue;
-    padding: 15px;
-    min-height: 400px;
-
-    h1 {
-      margin: 0;
-    }
-  }
-
-  .title {
-    padding-top: 50px;
-    text-align: center;
-
-    .maps-logo {
-      @include sprite-image($logos-map, mootiro-maps);
-    }
-
-    h1 {
-      display: inline-block;
-      color: $ultra-dark-grey;
-      font-size: 32px;
-      letter-spacing: -1px;
-      font-weight: 400;
-      margin: -45px 0 0 10px;
-      vertical-align: middle;
-      text-rendering: optimizelegibility;
-    }
-
-    .video {
-      margin: 30px;
-      text-align: center;
-    }
-  }
-
   > section {
     padding: 40px 0;
 
+    > .wrapper > .content {
+      @include span-columns(12);
+    }
+
     h2 {
+      font-size: 2em;
       text-align: center;
       margin: 0 0 20px;
     }
   }
 
-
-  .call-for-action {
-    background-color: $ultra-soft-grey;
-    width: 80%;
+  .button.signup {
+    background: $soft-green;
+    border: 2px solid $white;
+    color: $white;
     padding: 20px;
-    text-align: center;
-    margin: 0 auto;
+    margin: 90px 0 35px;
+    font-size: 1.5em;
 
-    h2 { margin-top: -10px; }
-    .button { margin: 0 0 -10px 20px; }
+    &:hover {
+      background: $green-lime;
+    }
   }
 
+  .marketing-section {
+    color: $white;
+    background: $ocean-blue url('imgs/marketing-bg.png') no-repeat;
+    min-height: 360px;
+    overflow: hidden;
+
+    .marketing-section-main {
+      @include span-columns(9 of 12);
+
+      .screenshots {
+        position: relative;
+        bottom: -51px;
+        left: -50px;
+        margin-top: -25px;
+      }
+    }
+
+    .marketing-section-signup {
+      @include span-columns(3 of 12);
+
+      text-align: center;
+
+      .marketing-section-login {
+        display: block;
+        color: white;
+        font-size: 1.5em;
+      }
+    }
+
+    h1 {
+      font-family: $main-font;
+      font-size: 3.5em;
+      margin: 0 0 0 30px;
+      line-height: 0.8em;
+      width: 80%;
+    }
+  }
 
   .what-is-it-for {
     text-align: center;
@@ -76,12 +83,9 @@
       margin: 25px 5%;
 
       h3 {
-        display: inline-block;
-        margin-bottom: 1em;
-        width: 100%;
-        font-size: 1.3em;
-        text-align: center;
         color: $ocean-blue;
+        font-size: 1.3em;
+        margin-bottom: 1em;
       }
 
       img { max-width: 70%; }
@@ -94,32 +98,36 @@
     h2, a, .map  { color: $white }
 
     .map {
-      display: inline-block;
-      width: 31%;
-      margin: 5px 1% 15px;
+      @include span-columns(4 of 12);
+      padding: 5px;
 
       img {
         width: 100%;
-        min-height: 150px;
+        height: 150px;
         margin: 0 0 10px;
       }
       p { padding: 0.5em 0.2em 0; }
     }
+
+    .explore {
+      font-size: 1.5em;
+      text-align: center;
+
+      .button {
+         margin: 40px 0 20px;
+         background: $meppit-maps-color;
+       }
+    }
   }
 
-  .projects {
-    padding-bottom: 10px;
-
-    h2 { padding: 20px; }
-
+  .testimonials {
     .flexslider {
       background-color: inherit;
       width: 800px;
       height: 150px;
       position: relative;
       left: 50%;
-      margin-top: 20px;
-      margin-left: -400px;
+      margin: 20px 0 0 -400px;
       border: none;
       box-shadow: none;
 
@@ -142,59 +150,65 @@
         text-align: justify;
 
         .author-info {
+          display: inline-block;
           float: right;
           text-align: right;
           margin-top: 0.5em;
           font-size: 80%;
           max-width: 80%;
-          display: inline-block;
         }
       }
 
       .aldeias-infantis {
         img { margin-left: 30px }
-        p { margin-top: 15px }
+        p   { margin-top: 15px }
       }
       .heliopolis-verde {
         img { margin-left: 35px }
-        p { margin-top: 0 }
+        p   { margin-top: 0 }
       }
       .bairro-educador {
         img { margin-left: 40px }
-        p { margin-top: 20px }
+        p   { margin-top: 20px }
       }
       .educar-na-cidade {
         img { margin-left: 45px}
       }
     }
+
+    .formely-known-as {
+      text-align: right;
+      color: $medium-grey;
+      margin: 0 75px 0 0;
+    }
+  }
+
+  .signup-bottom {
+    text-align: center;
+
+    .button.signup { margin: 0; }
   }
 
   .news {
-    margin: 20px 0 40px;
-    .wrapper > div {
-      @include box-sizing(border-box);
+    .blog {
+      @include span-columns(5 of 12);
 
-      display: inline-block;
-      vertical-align: top;
-      width: 45%;
-      margin: 1%;
+      > h3 { margin-left: 5px }
 
-      h3{ text-indent: 5px; }
-    }
-
-    .blog li {
-      :hover { background: $meppit-light-blue; }
-      a {
-        display: block;
-        padding: 5px;
-        text-decoration: none;
+      li {
+        :hover { background: $meppit-light-blue; }
+        a {
+          display: block;
+          padding: 5px;
+          text-decoration: none;
+        }
+        span { color: $text-color; }
+        img  { margin-right: 0.2em }
       }
-      span { color: $text-color; }
-      img { margin-right: 0.2em }
     }
 
     .last_updates {
-      margin: 0;
+      @include span-columns(7 of 12);
 
       #activity {
          height: 310px;
@@ -213,4 +227,5 @@
       font-size: 0.9em;
     }
   }
+
 }

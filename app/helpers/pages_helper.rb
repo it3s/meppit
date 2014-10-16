@@ -36,7 +36,7 @@ module PagesHelper
     ]
   end
 
-  def projects_slides
+  def testimonials
     # MOCKED
     [
       {

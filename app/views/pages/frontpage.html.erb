@@ -2,17 +2,23 @@
 
   <section class="marketing-section">
     <div class="wrapper">
-      <h1><%= t 'frontpage.title' %></h1>
-      <h2>
-        <div><%= t 'frontpage.call.anyone' %></div>
-        <a class="big button animation flipInY" href="#"><%= t 'frontpage.call.create_account' %></a>
-      </h2>
+    <div class="content">
+      <div class="marketing-section-main">
+        <h1 class="animation bounceInDown"><%= t 'frontpage.title' %></h1>
+        <%= image_tag 'imgs/marketing-screenshots.png', class: 'screenshots animation fadeIn' %>
+      </div>
+      <div class="marketing-section-signup">
+        <%= link_to_modal t('frontpage.call.create_account'), new_user_path, remote: true, html: {class: 'big button signup'} %>
+        <%= link_to_modal t('frontpage.call.login'), '#sign-in', html: {id: "call-sign-in-modal", class: "marketing-section-login"} %>
+      </div>
+    </div>
     </div>
   </section>
 
   <section class="what-is-it-for">
     <div class="wrapper">
-      <h2 class="animation slideInLeft"><%= t 'frontpage.what.what_is_it_for' %></h2>
+    <div class="content">
+      <h2 class="animation fadeIn"><%= t 'frontpage.what.what_is_it_for' %></h2>
       <% delay = 0 %>
       <% use_cases.each do |use_case| %>  <%# pages_helper#use_cases %>
         <a href="<%= use_case[:href] %>">
@@ -24,54 +30,77 @@
         </a>
       <% end %>
     </div>
+    </div>
   </section>
 
   <section class="featured-maps">
     <div class="wrapper">
-      <h2 class="animation slideInLeft"><%= t 'frontpage.featured.featured-maps' %></h2>
+    <div class="content">
+      <h2 class="animation fadeIn"><%= t 'frontpage.featured.featured-maps' %></h2>
       <% delay = 0 %>
       <% featured_maps.each do |map| %>  <%# pages_helper#featured_maps %>
         <% delay = delay + 0.25 %>
-        <a href="<%= map[:url] %>">
-          <div class="map animation fadeIn" data-wow-delay="<%= delay %>s">
-            <%= image_tag map[:image] %>
-            <h3><%= map[:title] %></h3>
-            <p><%= map[:excerpt] %></p>
-          </div>
+        <a class="map animation fadeIn" data-wow-delay="<%= delay %>s" href="<%= map[:url] %>">
+          <%= image_tag map[:image] %>
+          <h3><%= map[:title] %></h3>
+          <p><%= map[:excerpt] %></p>
         </a>
       <% end %>
     </div>
+    <div class="explore">
+      <a class="big button" href="<%= maps_path %>">
+        <%= icon "globe", t('frontpage.featured.explore') %>
+      </a>
+    </div>
+    </div>
   </section>
 
-  <section class="projects">
+  <section class="testimonials">
     <div class="wrapper">
-      <h2 class="animation slideInLeft"><%= t('frontpage.projects.title') %></h2>
+    <div class="content">
+      <h2 class="animation fadeIn"><%= t 'frontpage.testimonials.title' %></h2>
 
-      <div class="flexslider" data-components="flexslider">
+      <div class="flexslider animation fadeIn" data-components="flexslider">
         <ul class="slides">
-          <% projects_slides.each do |proj| %>  <%# pages_helper#projects_slides %>
-            <li class="<%= proj[:name] %>">
-              <a href="<%= proj[:href] %>"><%= image_tag proj[:image] %></a>
+          <% testimonials.each do |testimonial| %>  <%# pages_helper#testimonials %>
+            <li class="<%= testimonial[:name] %>">
+              <a href="<%= testimonial[:href] %>"><%= image_tag testimonial[:image] %></a>
               <p class="testimony">
-                “<%= proj[:text] %>” <br/>
+                “<%= testimonial[:text] %>” <br/>
                 <span class="author-info">
-                  — <a href="<%= proj[:author_href] %>"><%= proj[:author_name] %></a>,
-                  <%= raw proj[:author_title] %>.
+                  — <a href="<%= testimonial[:author_href] %>"><%= testimonial[:author_name] %></a>,
+                  <%= raw testimonial[:author_title] %>.
                 </span>
               </p>
             </li>
           <% end %>
         </ul>
       </div>
+      <div class="formely-known-as"><%= t 'frontpage.testimonials.formely_konwn_as' %></div>
+    </div>
     </div>
   </section>
 
 
   <section class="news">
     <div class="wrapper">
-      <%= render 'pages/blog_updates', :news => @news %>
+    <div class="content">
+      <h2 class="animation fadeIn"><%= t 'frontpage.news.title' %></h2>
+      <div class="animation fadeIn">
+        <%= render 'pages/blog_updates', :news => @news %>
+      </div>
+      <div class="animation fadeIn">
       <%= render 'pages/updates', :updates => [] %>
+      </div>
+    </div>
     </div>
   </section>
 
+  <section class="signup-bottom">
+    <div class="wrapper">
+    <div class="content">
+      <%= link_to_modal t('frontpage.call.create_account'), new_user_path, remote: true, html: {class: 'big button signup animation bounceInDown'} %>
+    </div>
+    </div>
+  </section>
 </div>
