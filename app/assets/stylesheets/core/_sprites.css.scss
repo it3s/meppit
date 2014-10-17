@@ -7,3 +7,8 @@ $logos-spacing: 20px;
 @import "logos/*.png";
 @include all-logos-sprites;
 $logos-map: sprite-map("logos/*.png");
+
+$usecases-spacing: 20px;
+@import "usecases/*.png";
+@include all-usecases-sprites;
+$usecases-map: sprite-map("usecases/*.png");
