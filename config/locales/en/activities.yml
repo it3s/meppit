@@ -4,7 +4,8 @@ en:
     empty: "There are no activity recorded for this user yet"
 
     event:
-      update: 'updated'
-      create: 'created'
-      delete: 'deleted'
-      follow: 'followed'
+      update:  'updated'
+      create:  'created'
+      delete:  'deleted'
+      follow:  'followed'
+      comment: 'commented'

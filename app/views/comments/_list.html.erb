@@ -1,6 +1,6 @@
 <div id="comments" class="comments" data-components='comments'>
 
-  <% if logged_in? %>
+  <% if logged_in? && !edit_mode? %>
 
     <%= form_tag url_for([object, :comments]), method: :post, id: "comment-form",
                  remote: true, "data-components" => "remoteForm" do %>

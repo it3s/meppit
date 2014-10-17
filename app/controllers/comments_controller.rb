@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
 
   before_action :require_login
   before_action :find_commentable
+  after_action  :publish_commented_event
 
   def create
     @comment = Comment.new comment_params
@@ -24,6 +25,12 @@ class CommentsController < ApplicationController
 
     def comment_html
       render_to_string(partial: 'comments/comment', locals: {comment: @comment})
+    end
+
+    def publish_commented_event
+      if response.ok?
+        EventBus.publish "commented", object: @commentable, current_user: current_user, changes: {'comment' => @comment.comment}
+      end
     end
 
 end
