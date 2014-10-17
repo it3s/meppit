@@ -3,12 +3,12 @@ $icon-spacing: 10px;
 @include all-icons-sprites;
 $icons-map: sprite-map("icons/*.png");
 
-$logos-spacing: 20px;
+$logos-spacing: 30px;
 @import "logos/*.png";
 @include all-logos-sprites;
 $logos-map: sprite-map("logos/*.png");
 
-$usecases-spacing: 20px;
+$usecases-spacing: 30px;
 @import "usecases/*.png";
 @include all-usecases-sprites;
 $usecases-map: sprite-map("usecases/*.png");

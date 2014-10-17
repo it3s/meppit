@@ -23,7 +23,7 @@
       <% use_cases.each do |use_case| %>  <%# pages_helper#use_cases %>
         <a href="<%= use_case[:href] %>">
           <div class="topic animation fadeIn">
-            <%= image_tag use_case[:image] %>
+            <span class="image usecase <%= use_case[:sprite] %>"></span>
             <h3><%= use_case[:title] %></h3>
             <p><%= use_case[:text] %></p>
           </div>
@@ -81,6 +81,31 @@
     </div>
   </section>
 
+  <section class="partners">
+    <div class="wrapper">
+    <div class="content">
+      <h2 class="animation fadeIn"><%= t 'frontpage.partners.title' %></h2>
+      <div class="animation fadeIn">
+        <span class="image medium cea-logo"></span>
+      </div>
+      <div class="animation fadeIn">
+        <span class="image medium cenpec-logo"></span>
+      </div>
+      <div class="animation fadeIn">
+        <span class="image medium aldeias-logo"></span>
+      </div>
+      <div class="animation fadeIn">
+        <span class="image medium cedaps-logo"></span>
+      </div>
+      <div class="animation fadeIn">
+        <span class="image medium soudapaz-logo"></span>
+      </div>
+      <div class="animation fadeIn">
+        <span class="image medium polis-logo"></span>
+      </div>
+    </div>
+    </div>
+  </section>
 
   <section class="news">
     <div class="wrapper">

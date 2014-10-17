@@ -1,7 +1,6 @@
 @import "animate";
 
 .frontpage {
-
   > section {
     padding: 40px 0;
 
@@ -88,7 +87,13 @@
         margin-bottom: 1em;
       }
 
-      img { max-width: 70%; }
+      .image {
+        &.journalism { @include resize-sprite($usecases-map, journalism, 40); }
+        &.network    { @include resize-sprite($usecases-map, network, 40); }
+        &.evaluation { @include resize-sprite($usecases-map, evaluation, 40); }
+        &.diagnosis  { @include resize-sprite($usecases-map, diagnosis, 40); }
+        &.guide      { @include resize-sprite($usecases-map, guide, 40); }
+      }
       p { padding: 0.5em 0.2em 0; }
     }
   }
@@ -96,6 +101,7 @@
   .featured-maps {
     background-color: $soft-blue;
     h2, a, .map  { color: $white }
+    a:hover { text-decoration: none; }
 
     .map {
       @include span-columns(4 of 12);
@@ -114,6 +120,8 @@
       text-align: center;
 
       .button {
+         padding: 20px;
+         border: 2px solid $white;
          margin: 40px 0 20px;
          background: $meppit-maps-color;
        }
@@ -189,6 +197,25 @@
     .button.signup { margin: 0; }
   }
 
+  .partners {
+    background: $transparent-blue;
+
+    .content {
+      text-align: center;
+
+      div {
+        display: inline-block;
+        vertical-align: middle;
+        width: 14.25%;
+        margin: 0 1%;
+        padding: 20px;
+
+
+        img { width: 100%; }
+      }
+    }
+  }
+
   .news {
     .blog {
       @include span-columns(5 of 12);
@@ -227,5 +254,4 @@
       font-size: 0.9em;
     }
   }
-
 }
