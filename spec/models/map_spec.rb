@@ -19,6 +19,15 @@ describe Map do
     expect(Map.find_by(:id => map.id).contacts).to eq({'test' => 'ok', 'address' => 'av paulista, 800, SP'})
   end
 
+  describe "comments" do
+    let(:map) { FactoryGirl.create :map }
+    let(:user) { FactoryGirl.create :user }
+    let!(:comment) { Comment.create user: user, content: map, comment: 'blaa'}
+
+    it { expect(map.comments.count).to eq 1 }
+    it { expect(map.comments.first.comment).to eq 'blaa' }
+  end
+
   describe "mappings" do
     let(:map) { FactoryGirl.create :map }
     let(:geo_data) { FactoryGirl.create :geo_data }

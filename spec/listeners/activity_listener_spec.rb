@@ -33,6 +33,11 @@ describe ActivityListener do
       EventBus.publish 'followed', object: geo_data, current_user: user, changes: {}
     end
 
+    it "calls save_activity when commented event is raised" do
+      expect(listener).to receive(:save_activity).with(anything, :object, :comment)
+      EventBus.publish 'commented', object: geo_data, current_user: user, changes: {}
+    end
+
     describe "save_activity" do
       it "saves activity" do
         expect(geo_data.activities.count).to eq 0
