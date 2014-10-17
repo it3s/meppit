@@ -54,7 +54,7 @@ Meppit::Application.routes.draw do
   end
 
   concern :commentable do
-    resource :comments, on: :member, only: [:create, :index]
+    resource :comments, on: :member, only: [:create]
   end
 
   resources :users, except: [:destroy, :index],

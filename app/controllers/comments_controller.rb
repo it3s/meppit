@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-  before_action :require_login, only: [:create]
+  before_action :require_login
   before_action :find_commentable
 
   def create
@@ -10,10 +10,6 @@ class CommentsController < ApplicationController
     else
       render json: {errors: @comment.errors.messages}, status: :unprocessable_entity
     end
-  end
-
-  def index
-    render nothing: true
   end
 
   private
