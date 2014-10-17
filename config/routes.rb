@@ -78,7 +78,7 @@ Meppit::Application.routes.draw do
 
   resources :geo_data, except:   [:destroy],
                        concerns: [:contributable, :followable, :versionable,
-                                  :downloadable, :has_media] do
+                                  :downloadable, :commentable, :has_media] do
     member do
       get  :maps
       post :add_map
