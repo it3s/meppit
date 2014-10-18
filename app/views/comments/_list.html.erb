@@ -1,0 +1,30 @@
+<div id="comments" class="comments" data-components='comments'>
+
+  <% if logged_in? && !edit_mode? %>
+
+    <%= form_tag url_for([object, :comments]), method: :post, id: "comment-form",
+                 remote: true, "data-components" => "remoteForm" do %>
+      <div class="field">
+        <textarea id="comment_comment" class="comment_input tinymce" name="comment[comment]"
+                  data-components="editor" data-editor-options='{"height":70}' >
+        </textarea>
+      </div>
+      <%= submit_tag 'Add comment' %>
+    <% end %>
+
+    <ul id="comments-list" class="comments-list">
+      <%= render comments %>
+    </ul>
+
+  <% else %>
+
+    <% if comments.empty? %>
+      <p class="empty"><%= t 'comments.empty', {name: object.name} %></p>
+    <% else %>
+      <ul id="comments-list" class="comments-list">
+        <%= render comments %>
+      </ul>
+    <% end %>
+
+  <% end %>
+</div>

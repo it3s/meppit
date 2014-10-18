@@ -4,7 +4,8 @@ pt-BR:
     empty: "Não há registro de atividade para este usuário ainda"
 
     event:
-      update: 'atualizou'
-      create: 'criou'
-      delete: 'deletou'
-      follow: 'seguiu'
+      update:  'atualizou'
+      create:  'criou'
+      delete:  'deletou'
+      follow:  'seguiu'
+      comment: 'commentou'

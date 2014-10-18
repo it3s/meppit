@@ -29,7 +29,7 @@
       <%= render 'pictures/uploader', object: geo_data %>
     </div>
     <div class="tab-content" id="talk">
-      Talk Placeholder
+      <%= render 'comments/list', comments: geo_data.comments, object: geo_data %>
     </div>
   </div>
 

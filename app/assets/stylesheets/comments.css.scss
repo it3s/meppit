@@ -1,0 +1,46 @@
+.comments {
+  #comment-form {
+    position: relative;
+
+    input[type=submit] {
+      margin-top: 10px;
+      position: absolute;
+      right: 0;
+    }
+  }
+
+  .comments-list {
+    margin-top: 60px;
+
+    .comment {
+      border-top: solid 1px $soft-grey;
+      padding: 10px;
+      color: $dark-grey;
+
+      .comment-headline {
+        a {
+          color: $link-color;
+          text-decoration: none;
+        }
+        .avatar {
+          width: 30px;
+          height: 30px;
+          border-radius: 15px;
+          top: 10px;
+          position: relative;
+          margin-right: 5px;
+        }
+        .comment-time {
+          color: $grey;
+          font-size: 0.9em;
+          margin-left: 10px;
+        }
+      }
+      .comment-text {
+        margin: 20px 15px;
+        border-left: solid 3px $ultra-soft-grey;
+        padding-left: 15px;
+      }
+    }
+  }
+}

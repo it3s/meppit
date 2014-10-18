@@ -7,6 +7,7 @@ App.components.remoteForm = ->
     App.mediator.publish 'remoteForm:beforeSubmit', @container
 
   onAjaxComplete: (el, response) ->
+    @cleanErrors()
     callback = if parseInt(response.status, 10) is 200 then @onSuccess else @onError
     callback.bind(this)(el, JSON.parse(response.responseText))
 
@@ -18,7 +19,6 @@ App.components.remoteForm = ->
 
   onError: (el, response) ->
     err = response.errors || 'Error'
-    @cleanErrors()
     if _.isObject err
       _.each err, (value, key) =>
         field = @container.find("[name*='[#{key}]']").closest('.field')

@@ -27,6 +27,10 @@ class ActivityListener
     save_activity payload, :object, :follow
   end
 
+  def commented(payload)
+    save_activity payload, :object, :comment
+  end
+
   private
 
     def save_activity(params, key, action)

@@ -15,7 +15,12 @@ App.components.editor = ->
       setup: (ed) =>
         ed.on 'change', _.debounce(@onEditorChange).bind(this)
     })
+    App.mediator.subscribe 'editor:clean', @clean.bind(this)
 
   onEditorChange: (ed)->
     App.mediator.publish 'tinymce:changed', {id: @container.attr('id'), content: ed.target.getContent()}
+
+  clean: (evt, data) ->
+    if data.identifier is @identifier
+      tinyMCE.get(@container.attr('id')).setContent ''
 

@@ -7,6 +7,7 @@ class Map < ActiveRecord::Base
   include Searchable
   include Exportable
   include PublicActivity::Common
+  include Commentable
 
   belongs_to :administrator, class_name: 'User'
 
@@ -45,4 +46,5 @@ class Map < ActiveRecord::Base
   def geo_data_ids
     geo_data.all.map { |data| data.id }
   end
+
 end
