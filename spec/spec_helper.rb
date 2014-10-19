@@ -64,6 +64,9 @@ RSpec.configure do |config|
 
   # Opt-in spec type inference
   config.infer_spec_type_from_file_location!
+
+  config.include Sorcery::TestHelpers::Rails::Controller, type: :controller
+  config.include Sorcery::TestHelpers::Rails::Integration, type: :feature
 end
 
 # add factory girl

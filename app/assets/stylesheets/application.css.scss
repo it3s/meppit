@@ -3,6 +3,7 @@
 @import "compass/utilities/sprites";
 @import "bourbon";
 @import "neat";
+@import "font-awesome-sprockets";
 @import "font-awesome";
 
 // settings, mixins and core style
@@ -18,9 +19,9 @@
 @import "flexslider";
 @import "jquery.qtip";
 @import "jquery.tagsinput";
-@import "jquery.ui.autocomplete-scss";
-@import "jquery.ui.datepicker-scss";
-@import "jquery.ui.tabs";
+@import "jquery-ui/autocomplete";
+@import "jquery-ui/datepicker";
+@import "jquery-ui/tabs";
 @import "meppit-map";
 
 // app common
