@@ -25,9 +25,11 @@ class ToolbarPresenter
     when 'user'
       current_user == object ? [:edit, :settings] : [:star, :flag]
     when 'geo_data'
-      (current_user ? [:edit] : []) + [:star, :history, :flag, :delete]
+      (current_user ? [:edit] : []) + [:star, :history, :flag, :delete] +
+        (is_admin? ? [:feature] : [])
     when 'map'
-      (current_user ? [:edit] : []) + [:star, :history, :flag, :delete]
+      (current_user ? [:edit] : []) + [:star, :history, :flag, :delete] +
+        (is_admin? ? [:feature] : [])
     else
       available_tools
     end
@@ -51,6 +53,10 @@ class ToolbarPresenter
   # current user proxy
   def current_user
     ctx.current_user
+  end
+
+  def is_admin?
+    ctx.is_admin?
   end
 
   private
@@ -91,11 +97,25 @@ class ToolbarPresenter
       { icon: :'trash-o', title: t('toolbar.delete'), url: "" }
     end
 
+    def _feature_tool
+      { icon: :'certificate', title: t('toolbar.feature'), url: "#",
+        active?: object.is_featured?,
+        component: _feature_component }
+    end
+
     def _follow_component
       opts_json = ctx.follow_options_for object
       {
         :type => "follow loginRequired",
         :opts => "data-follow-options=#{ opts_json } "
+      }
+    end
+
+    def _feature_component
+      opts_json = ctx.feature_button_options_for object
+      {
+        :type => "featureButton loginRequired",
+        :opts => "data-featureButton-options=#{ opts_json } "
       }
     end
 

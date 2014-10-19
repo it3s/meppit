@@ -60,6 +60,10 @@ class User < ActiveRecord::Base
     @settings ||= Settings.new(self)
   end
 
+  def is_admin?
+    self.id == 1
+  end
+
   private
 
     def set_auth_token

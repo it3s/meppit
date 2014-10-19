@@ -26,6 +26,14 @@ class ApplicationController < ActionController::Base
     redirect_to login_path
   end
 
+  def require_admin_role
+    unless is_admin?
+      flash[:error] = "unauthorized access"
+      redirect_to root_path
+      false
+    end
+  end
+
   private
 
     def set_locale

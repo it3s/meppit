@@ -38,12 +38,12 @@
     <div class="content">
       <h2 class="animation fadeIn"><%= t 'frontpage.featured.featured-maps' %></h2>
       <% delay = 0 %>
-      <% featured_maps.each do |map| %>  <%# pages_helper#featured_maps %>
+      <% featured_maps(3).each do |map| %>  <%# pages_helper#featured_maps %>
         <% delay = delay + 0.25 %>
-        <a class="map animation fadeIn" data-wow-delay="<%= delay %>s" href="<%= map[:url] %>">
+        <a class="map animation fadeIn" data-wow-delay="<%= delay %>s" href="<%= url_for map %>">
           <%= image_tag map[:image] %>
-          <h3><%= map[:title] %></h3>
-          <p><%= map[:excerpt] %></p>
+          <h3><%= sanitize map[:name] %></h3>
+          <p><%= truncate sanitize(map[:description]), length: 150 %></p>
         </a>
       <% end %>
     </div>

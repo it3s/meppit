@@ -8,6 +8,7 @@ class Map < ActiveRecord::Base
   include Exportable
   include PublicActivity::Common
   include Commentable
+  include Featurable
 
   belongs_to :administrator, class_name: 'User'
 

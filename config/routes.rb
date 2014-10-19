@@ -59,6 +59,10 @@ Meppit::Application.routes.draw do
     resource :comments, on: :member, only: [:create]
   end
 
+  concern :featurable do
+    resource :feature, controller: :feature, only: [:create, :destroy]
+  end
+
   resources :users, except: [:destroy, :index],
                     concerns: [:contributor, :followable, :follower] do
     member do
@@ -80,7 +84,8 @@ Meppit::Application.routes.draw do
 
   resources :geo_data, except:   [:destroy],
                        concerns: [:contributable, :followable, :versionable,
-                                  :downloadable, :commentable, :has_media] do
+                                  :downloadable, :commentable, :has_media,
+                                  :featurable] do
     member do
       get  :maps
       post :add_map
@@ -94,7 +99,7 @@ Meppit::Application.routes.draw do
 
   resources :maps, except:   [:destroy],
                    concerns: [:contributable, :followable, :versionable,
-                              :downloadable, :commentable] do
+                              :downloadable, :commentable, :featurable] do
     member do
       get  :geo_data
       post :add_geo_data

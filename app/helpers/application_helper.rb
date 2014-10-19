@@ -45,6 +45,14 @@ module ApplicationHelper
     }.to_json
   end
 
+  def feature_button_options_for(obj)
+    {
+      isFeatured: obj.is_featured?,
+      url: url_for([obj, :feature]),
+      id: identifier_for(obj)
+    }.to_json
+  end
+
   def export_path_for(obj, format)
     if obj.nil?
       ctrl = controller_name == 'geo_data' ? 'geo_data_index' : controller_name
@@ -74,5 +82,9 @@ module ApplicationHelper
     else
       render 'activities/activity', activity: ActivityPresenter.new(object: activity, ctx: self)
     end
+  end
+
+  def is_admin?
+    current_user && current_user.is_admin?
   end
 end

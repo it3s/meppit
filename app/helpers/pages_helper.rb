@@ -78,28 +78,8 @@ module PagesHelper
     ]
   end
 
-  def featured_maps
-    # MOCKED
-    [
-      {
-        :url  => '#',
-        :title => 'Featured Map',
-        :image => '',
-        :excerpt  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor',
-      },
-      {
-        :url  => '#',
-        :title => 'Featured Map',
-        :image => '',
-        :excerpt  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor',
-      },
-      {
-        :url  => '#',
-        :title => 'Featured Map',
-        :image => '',
-        :excerpt  => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor',
-      },
-    ]
+  def featured_maps(limit = 6)
+    Map.where(is_featured: true).limit(limit)
   end
 
 end
