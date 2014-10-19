@@ -94,6 +94,16 @@ module Utils
     )
   end
 
+  def cleaned_layers_attributes(_params)
+    #TODO
+    _attrs = JSON.parse _params[:layers_attributes]
+    _attrs.map do |layer|
+      OpenStruct.new(
+        id:        (layer['id'].blank? ? nil : layer['id'].to_i    ),
+      )
+    end
+  end
+
   def cleaned_location(_params)
     GeoJSON.parse(_params[:location])
   end

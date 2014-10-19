@@ -1,0 +1,20 @@
+en:
+  layers:
+    add: 'Add layer'
+    empty: 'There are no layers yet for this map'
+
+    invalid:
+      empty_rule: 'You must provide the layer rule'
+      empty_fill_color: "You must provide the layer fill color"
+      empty_stroke_color: "You must provide the layer stroke color"
+
+    title:
+      add: 'Add new layer'
+      remove: 'Remove this layer'
+
+    data:
+      title: 'Data'
+      name: 'Name'
+      fill_color: 'Fill Color'
+      stroke_color: 'Stroke Color'
+      rule: 'Rule'

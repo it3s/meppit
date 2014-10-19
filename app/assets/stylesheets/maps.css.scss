@@ -70,14 +70,16 @@
     margin-top: 48px;
 
     .tab-content {
-      @include inline-pane(65%);
+      @include span-columns(12);
     }
   }
 
+  .main-info {
+    @include span-columns(9 of 12);
+  }
+
   .extra-info {
-    margin-top: 20px;
-    float: right;
-    width: 30%;
+    @include span-columns(3 of 12);
 
     .administrator{
       margin-bottom: 30px;

@@ -66,6 +66,13 @@ module Concerns
       }
     end
 
+    def layers_manager_data
+      {
+        data_title: t("relations.metadata.title"),
+        remove_title: t("relations.title.remove"),
+      }
+    end
+
     def map_data
       # Data used by map
       data = {
