@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   include PasswordResets
 
-  before_action :require_login,      only: [:edit, :update, :upload_avatar]
-  before_action :find_user,          only: [:show, :edit, :update, :upload_avatar]
-  before_action :is_current_user,    only: [:edit, :update, :upload_avatar]
+  before_action :require_login,      only: [:edit, :update, :upload_avatar, :admin]
+  before_action :find_user,          only: [:show, :edit, :update, :upload_avatar, :admin]
+  before_action :is_current_user,    only: [:edit, :update, :upload_avatar, :admin]
+  before_action :is_admin,           only: [:admin]
   before_action :contributions_list, only: [:show]
   before_action :following_list,     only: [:show]
   before_action :activities_list,    only: [:show]
@@ -57,6 +58,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def admin
+  end
+
   private
 
     def user_params
@@ -74,6 +78,10 @@ class UsersController < ApplicationController
 
     def is_current_user
       redirect_to(root_path, notice: t('access_denied')) if @user != current_user
+    end
+
+    def is_admin
+      redirect_to(root_path, notice: t('access_denied')) unless current_user.admin?
     end
 
     def contributions_list
