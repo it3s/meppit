@@ -6,7 +6,7 @@ App.components.tags = ->
     @startPlugin()
 
   loadValues: () ->
-    @container.val @attr.tags.join(',')
+    @container.val @attr.tags?.join(',')
 
   startPlugin: ->
     @container.tagsInput
