@@ -55,12 +55,12 @@ LayerItem = ->
     @el.find('.data-container').append @data.el
 
   findElements: ->
-    @nameEl = @el.find('.layer_name')
-    @fillColorEl = @el.find('.layer_fill_color')
+    @nameEl        = @el.find('.layer_name')
+    @fillColorEl   = @el.find('.layer_fill_color')
     @strokeColorEl = @el.find('.layer_stroke_color')
-    @visibleEl   = @el.find('.layer_visible')
-    @tagsEl   = @el.find('.layer_tags')
-    @idEl     = @el.find('.layer_id')
+    @visibleEl     = @el.find('.layer_visible')
+    @tagsEl        = @el.find('.layer_tags')
+    @idEl          = @el.find('.layer_id')
 
   onRemove: (evt) ->
     evt.preventDefault()
@@ -73,20 +73,20 @@ LayerItem = ->
     if @idEl.val().length > 0 then @idEl.val() else null
 
   getValue: ->
-    #FIXME
-    if @fillColorEl.val().length > 0 && @strokeColorEl.val().length > 0 && @tagsEl.val().length > 0
-      {id: @getId(), name: @nameEl.val(), visible: @visibleEl.val(), fillColor: @fillColorEl.val(), strokeColor: @strokeColorEl.val(), tags: @tagsEl.val()}
+    #TODO: get the layer position
+    if @nameEl.val().length > 0 && @tagsEl.val().length > 0
+      {id: @getId(), name: @nameEl.val(), visible: @visibleEl.val(), fillColor: @fillColorEl.val(), strokeColor: @strokeColorEl.val(), tags: @tagsEl.val(), position: null}
     else
       null
 
   setValue: (entry)->
+    @idEl.val(entry.id)
     @nameEl.val(entry.name)
     @visibleEl.val(entry.visible)
     @fillColorEl.val(entry.fillColor)
     @strokeColorEl.val(entry.strokeColor)
-    @tagsEl.val(entry.tagsColor)
-    @idEl.val(entry.id)
-    @metadata.setValue(entry.metadata)
+    @tagsEl.val(entry.tags)
+    #@metadata.setValue(entry.metadata)
 
   onChange: ->
     App.mediator.publish 'layerItem:changed' if @getValue()
@@ -111,6 +111,7 @@ LayerItem = ->
     App.mediator.subscribe 'layerData:changed', @dataChanged.bind(this)
 
 
+#TODO: allow to reorder
 App.components.editLayers = ->
   attributes: ->
     itemsContainer: @container.find('.layers-list')

@@ -7,11 +7,19 @@ module Layers
     after_destroy :remove_layers_for_destroyed_map!
 
     def layers
-      Layer.where(map: self)
+      Layer.where map: self
     end
 
     def layers_values
       layers.map do |l|
+        {
+          id: l.id,
+          name: l.name,
+          fillColor: l.fill_color,
+          strokeColor: l.stroke_color,
+          visible: l.visible,
+          rule: l.rule,
+        }
       end
     end
 
@@ -19,7 +27,9 @@ module Layers
       destroy_removed_layers!
       layers_attributes.each do |l|
         layer = Layer.find_or_initialize_by id: l.id
-        layer.assign_attributes {}
+        puts "---> #{l.as_json}"
+        layer.assign_attributes map: self, name: l.name, fill_color: l.fill_color,
+          stroke_color: l.stroke_color, visible: l.visible, rule: l.rule, position: l.position
         layer.save
       end
     end

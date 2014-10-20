@@ -95,11 +95,16 @@ module Utils
   end
 
   def cleaned_layers_attributes(_params)
-    #TODO
     _attrs = JSON.parse _params[:layers_attributes]
     _attrs.map do |layer|
       OpenStruct.new(
-        id:        (layer['id'].blank? ? nil : layer['id'].to_i    ),
+        id:           layer['id'].blank? ? nil : layer['id'].to_i,
+        name:         layer['name'].blank? ? nil : layer['name'],
+        fill_color:   layer['fillColor'].blank? ? nil : layer['fillColor'],
+        stroke_color: layer['strokeColor'].blank? ? nil : layer['strokeColor'],
+        visible:      layer['visible'].blank? ? true : layer['visible'] == 'true',
+        position:     layer['position'].blank? ? nil : layer['position'].to_i,
+        rule:         layer['rule'].blank? ? nil : layer['rule'].to_json,
       )
     end
   end
