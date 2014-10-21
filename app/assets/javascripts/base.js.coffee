@@ -34,8 +34,8 @@ components =
 
   _getInstancesFor: (container) ->
     comps = container.data('components')?.split ' '
-    _.map comps, (name) ->
-      components._getInstanceFor name, container
+    _.without (_.map comps, (name) -> components._getInstanceFor name, container)
+      , undefined
 
 componentBuilder = (name, container) ->
   options: ->

@@ -1,10 +1,14 @@
-<div class="list-item" data-rel-index="<%= index %>">
+<div class="list-item layer" data-item-index="<%= index %>">
   <input type="hidden" class="layer_id" id="layer_id_<%= index %>"/>
 
-  <h1 class="layer_name"></h1>
-
-  <a href="#" class="list-item-metadata-btn" title="<%= data_title %>"><i class="fa fa-book"></i></a>
-  <a href="#" class="list-item-remove-btn" title="<%= remove_title %>"><i class="fa fa-trash-o"></i></a>
+  <div class="layer-header">
+    <div class="layer-color-preview"></div>
+    <h2 class="layer-name-preview"></h2>
+    <div class="layer-controls">
+      <a href="#" class="list-item-metadata-btn" title="<%= data_title %>"><i class="fa fa-book"></i></a>
+      <a href="#" class="list-item-remove-btn" title="<%= remove_title %>"><i class="fa fa-trash-o"></i></a>
+    </div>
+  </div>
 
   <div class="data-container"></div>
 </div>

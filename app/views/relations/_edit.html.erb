@@ -1,10 +1,10 @@
 <div class="relations edit list-editor" data-components="editRelations"
                             data-editrelations-options='<%= {data: relations_manager_data}.to_json %>'>
 
+  <%= f.input :relations_attributes, as: :hidden, input_html: { class: 'relations-value', value: f.object.relations_values.to_json } %>
+  <div class="relations-list"></div>
   <button class="add-new-btn" title="<%= t 'relations.title.add' %>">
     <%= icon 'plus',  t('relations.add') %>
   </button>
-  <%= f.input :relations_attributes, as: :hidden, input_html: { class: 'relations-value', value: f.object.relations_values.to_json } %>
-  <div class="relations-list"></div>
 
 </div>

@@ -71,15 +71,6 @@
     }
 
     .relation-metadata {
-      label {
-        color: $grey;
-        margin-top: 10px;
-      }
-
-      .inline-field, {
-        display: inline-block;
-      }
-
       .time-field     { width: 150px; }
       .currency-field { width: 50px; }
       .amount-field   { width: 140px; }

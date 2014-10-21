@@ -308,6 +308,19 @@ nav.pagination { display: none; }  // We are using infinite scroll
     margin-bottom: 15px;
     border-radius: 4px;
 
+    label {
+      color: $grey;
+      margin-top: 10px;
+
+      &.checkbox-label {
+        color: $ultra-dark-grey;
+      }
+    }
+
+    .inline-field, {
+      display: inline-block;
+    }
+
     .list-item-metadata-btn, .list-item-remove-btn {
       @include button;
       padding: 3px 9px;

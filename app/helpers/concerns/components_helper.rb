@@ -68,8 +68,15 @@ module Concerns
 
     def layers_manager_data
       {
-        data_title: t("relations.metadata.title"),
-        remove_title: t("relations.title.remove"),
+        remove_title: t("layers.title.remove"),
+        data_title: t("layers.title.data"),
+        fill_color_title: t("layers.title.fill_color"),
+        stroke_color_title: t("layers.title.stroke_color"),
+        unnamed_layer: t("layers.unnamed"),
+        data_name: t("layers.data.name"),
+        data_visible: t("layers.data.visible"),
+        data_color: t("layers.data.color"),
+        data_tags: t("layers.data.tags"),
       }
     end
 

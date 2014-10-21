@@ -2,6 +2,7 @@ pt-BR:
   layers:
     add: 'Adicionar camada'
     empty: 'Não há camadas ainda para este mapa'
+    unnamed: 'Layer sem nome'
 
     invalid:
       empty_rule: 'Você deve fornecer uma regra para a camada'
@@ -11,10 +12,15 @@ pt-BR:
     title:
       add: 'Adicionar nova camada'
       remove: 'Remover essa camada'
+      data: 'Exibir dados da camada'
+      fill_color: 'Selecionar a cor de preenchimento'
+      stroke_color: 'Selecionar a cor de contorno'
 
     data:
-      title: 'Dados'
       name: 'Nome'
+      visible: 'Visível'
+      color: 'Cor'
       fill_color: 'Cor de preenchimento'
       stroke_color: 'Cor de contorno'
       rule: 'Regra'
+      tags: 'Tags'

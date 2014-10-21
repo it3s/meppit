@@ -102,7 +102,7 @@ module Utils
         name:         layer['name'].blank? ? nil : layer['name'],
         fill_color:   layer['fill_color'].blank? ? nil : layer['fill_color'],
         stroke_color: layer['stroke_color'].blank? ? nil : layer['stroke_color'],
-        visible:      layer['visible'].blank? ? true : layer['visible'] == 'true',
+        visible:      layer['visible'].nil? ? true : layer['visible'],
         position:     layer['position'].blank? ? nil : layer['position'].to_i,
         rule:         layer['rule'].blank? ? nil : layer['rule'].to_json,
       )

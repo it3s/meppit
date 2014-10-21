@@ -26,7 +26,7 @@ App.components.colorPicker = ->
   findElements: ->
     if @container.is 'input'
       @fieldEl = @container
-      @pickerEl = $('<div>')
+      @pickerEl = $('<div>').attr('title', @fieldEl.attr('title'))
       @fieldEl.before @pickerEl
     else
       @pickerEl = @container
@@ -49,6 +49,8 @@ App.components.colorPicker = ->
 
   onChange: (color) ->
     @setValue color
+    @_triggerFieldChange ?= _.debounce () -> @fieldEl?.trigger 'change', 100
+    @_triggerFieldChange()
     App.mediator.publish 'colorpicker:changed', color
 
   update: ->
