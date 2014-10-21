@@ -404,6 +404,15 @@ HTML
       end
     end
 
+    describe "#layers_manager_data" do
+      it "expects all required keys to be present" do
+        keys = [:tags_autocomplete_url, :remove_title, :unnamed_layer,
+                :data_title, :fill_color_title, :stroke_color_title,
+                :data_name, :data_visible, :data_color, :data_tags]
+        expect(helper.layers_manager_data.keys).to match_array keys
+      end
+    end
+
     describe "#show_relation_metadata" do
       it "retuns false for empty" do
         rel = {metadata: {}}

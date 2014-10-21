@@ -68,6 +68,7 @@ module Concerns
 
     def layers_manager_data
       {
+        tags_autocomplete_url: '', #TODO
         remove_title: t("layers.title.remove"),
         data_title: t("layers.title.data"),
         fill_color_title: t("layers.title.fill_color"),

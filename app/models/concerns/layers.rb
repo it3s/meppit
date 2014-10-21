@@ -15,9 +15,10 @@ module Layers
         {
           id: l.id,
           name: l.name,
+          visible: l.visible,
           fill_color: l.fill_color,
           stroke_color: l.stroke_color,
-          visible: l.visible,
+          position: l.position,
           rule: l.rule,
         }
       end

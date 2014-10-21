@@ -14,7 +14,7 @@ en:
       remove: 'Remove this layer'
       data: 'Display layer data'
       fill_color: 'Select the fill color'
-      stroke_color: 'Select the strok color'
+      stroke_color: 'Select the stroke color'
 
     data:
       name: 'Name'
