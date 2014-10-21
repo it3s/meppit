@@ -104,7 +104,7 @@ module Utils
         stroke_color: layer['stroke_color'].blank? ? nil : layer['stroke_color'],
         visible:      layer['visible'].nil? ? true : layer['visible'],
         position:     layer['position'].blank? ? nil : layer['position'].to_i,
-        rule:         layer['rule'].blank? ? nil : layer['rule'].to_json,
+        rule:         layer['rule'].blank? ? nil : layer['rule'],
       )
     end
   end

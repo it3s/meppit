@@ -161,7 +161,7 @@ describe MapsController do
     describe "save layers" do
       let(:layers_params) {
         { layers_attributes: [{
-          id: "2", name: "Layer Name", visible: true, fill_color: "#ff000", stroke_color: "#00ff00", position: "3", rule: {}
+          id: "2", name: "Layer Name", visible: true, fill_color: "#ff000", stroke_color: "#00ff00", position: "3", rule: {operator: "has", property: "tags", value: ["tagA","tagB"]}
         }].to_json}
       }
 
@@ -180,7 +180,11 @@ describe MapsController do
           visible: true,
           fill_color: "#ff000",
           stroke_color: "#00ff00",
-          rule: nil
+          rule: {
+            "value" => '["tagA", "tagB"]',
+            "operator" => "has",
+            "property" => "tags",
+          }
         })
       end
     end

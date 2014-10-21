@@ -30,7 +30,7 @@ module Layers
         layer = Layer.find_or_initialize_by id: l.id
         layer.assign_attributes map: self, name: l.name, fill_color: l.fill_color,
           stroke_color: l.stroke_color, visible: l.visible, rule: l.rule, position: l.position
-        layer.save
+        layer.save!
       end
     end
 

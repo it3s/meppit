@@ -1,5 +1,6 @@
 DataForm = ->
   template: JST['templates/layerData']
+  _params: ['name', 'visible', 'fill_color', 'stroke_color', 'rule']
 
   init: (opts) ->
     @index = opts.index
@@ -25,18 +26,38 @@ DataForm = ->
   onChange: ->
     App.mediator.publish 'layerData:changed', @index
 
+  _getRule: ->
+    tags = @fields['tags'].val()
+    if tags.length > 0
+      {
+        operator: 'has'
+        property: 'tags'
+        value: tags.split(',')
+      }
+    else
+      null
+
+  _setRule: (rule) ->
+    if rule? and rule.operator == 'has' and rule.property == 'tags' and rule.value?
+      value = JSON.parse(rule.value).join(',')
+      @fields['tags'].setComponentValue('tags', value)
+
   getValue: ->
     vals = {}
-    _.each @fields, (el, key) ->
-      if el.attr('type') is 'checkbox'
-        vals[key] = el.prop('checked')
+    _.each @_params, (key) =>
+      if key == 'rule'
+        vals['rule'] = @_getRule()
+      else if @fields[key].attr('type') is 'checkbox'
+        vals[key] = @fields[key].prop('checked')
       else
-        vals[key] = el.val()
+        vals[key] = @fields[key].val()
     vals
 
   setValue: (entry) ->
-    _.each ['name', 'visible', 'fill_color', 'stroke_color', 'tags'], (key) =>
-      if @fields[key].attr('type') is 'checkbox'
+    _.each @_params, (key) =>
+      if key == 'rule'
+        return @_setRule(entry[key])
+      else if @fields[key].attr('type') is 'checkbox'
         @fields[key].prop('checked', entry[key])
       else
         @fields[key].val(entry[key])
@@ -87,7 +108,7 @@ LayerItem = ->
 
   validateValue: ->
     value = @getValue()
-    value.name.length > 0 && value.tags.length > 0
+    value.name.length > 0 && value.rule?
 
   setValue: (entry)->
     @idEl.val(entry.id)
@@ -96,7 +117,7 @@ LayerItem = ->
       visible: _.result entry, 'visible'
       fill_color: _.result entry, 'fill_color'
       stroke_color: _.result entry, 'stroke_color'
-      tags: _.result entry, 'tags'
+      rule: _.result entry, 'rule'
     )
     @update()
 
