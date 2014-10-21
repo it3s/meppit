@@ -6,7 +6,7 @@ App.components.tags = ->
     @startPlugin()
 
   loadValues: () ->
-    @container.val @attr.tags?.join(',')
+    @container.val @attr.tags.join(',') if @attr.tags
 
   startPlugin: ->
     @container.tagsInput
@@ -17,6 +17,9 @@ App.components.tags = ->
       onAddTag        : @onAdd.bind(this)
       onRemoveTag     : @onRemove.bind(this)
       onChange        : @onChange.bind(this)
+
+  setValue: (value) ->
+    @container.importTags value
 
   getValue: ->
     @container.val?().split(',')
