@@ -2,16 +2,55 @@
 #
 App.components.colorPicker = ->
   attributes: ->
-    defaultColor: @attr.color || '#0000ff'
+    defaultColor: @attr.color || @container.val?() || '#0000ff'
 
   initialize: ->
-    @container.colpick
+    @findElements()
+    @bindEvents()
+    @initializePicker()
+    @setValue @attr.defaultColor
+
+  initializePicker: ->
+    @pickerEl.addClass 'color-picker'
+    @previewEl = $ '<div class="color-picker-preview"></div>'
+    @previewEl.css 'background-color', @getValue()
+    @fieldEl?.val @getValue()
+    @pickerEl.append @previewEl
+    @fieldEl?.hide()
+    @pickerEl.colpick
       layout: 'hex'
       color: @attr.defaultColor
       submit: false
-      onChange: @onChange.bind(this)
+      onChange: @onPickerChange.bind(this)
 
-  onChange: (hsb, hex, rgb, el, bySetColor) ->
-    @container.css 'background-color', '#'+hex
-    @container.data 'colorPicker-color', '#'+hex
-    App.mediator.publish 'colorpicker:changed', '#'+hex
+  findElements: ->
+    if @container.is 'input'
+      @fieldEl = @container
+      @pickerEl = $('<div>')
+      @fieldEl.before @pickerEl
+    else
+      @pickerEl = @container
+
+  bindEvents: ->
+    @fieldEl?.change @onFieldChange.bind(this)
+
+  setValue: (value) ->
+    @color = value
+    @update()
+
+  getValue: -> @color
+
+  onPickerChange: (hsb, hex, rgb, el, bySetColor) ->
+    @onChange '#' + hex
+
+  onFieldChange: ->
+    @onChange @fieldEl.val()
+
+  onChange: (color) ->
+    @setValue color
+    App.mediator.publish 'colorpicker:changed', color
+
+  update: ->
+    @previewEl.css 'background-color', @getValue()
+    @container.data 'colorPicker-color', @getValue()
+    @fieldEl?.val @getValue()
