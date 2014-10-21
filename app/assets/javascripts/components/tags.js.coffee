@@ -19,7 +19,7 @@ App.components.tags = ->
       onChange        : @onChange.bind(this)
 
   setValue: (value) ->
-    @container.importTags value
+    @container.importTags value if value?
 
   getValue: ->
     @container.val?().split(',')

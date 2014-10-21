@@ -32,7 +32,8 @@ DataForm = ->
 
   setValue: (entry) ->
     _.each ['name', 'visible', 'fill_color', 'stroke_color', 'tags'], (key) =>
-        @fields[key].val entry[key]
+        @fields[key].val?(entry[key])
+        @fields[key].setComponentValue(entry[key])
 
   bindEvents: ->
     _.each @fields, (el, key) =>
@@ -56,10 +57,6 @@ LayerItem = ->
 
   findElements: ->
     @nameEl        = @el.find('.layer_name')
-    @fillColorEl   = @el.find('.layer_fill_color')
-    @strokeColorEl = @el.find('.layer_stroke_color')
-    @visibleEl     = @el.find('.layer_visible')
-    @tagsEl        = @el.find('.layer_tags')
     @idEl          = @el.find('.layer_id')
 
   onRemove: (evt) ->
@@ -74,19 +71,22 @@ LayerItem = ->
 
   getValue: ->
     #TODO: get the layer position
-    if @nameEl.val().length > 0 && @tagsEl.val().length > 0
-      {id: @getId(), name: @nameEl.val(), visible: @visibleEl.val(), fillColor: @fillColorEl.val(), strokeColor: @strokeColorEl.val(), tags: @tagsEl.val(), position: null}
+    dataValue = @data.getValue()
+    if dataValue.name.length > 0 && dataValue.tags.length > 0
+      _.extend {id: @getId(), position: null}, dataValue
     else
       null
 
   setValue: (entry)->
     @idEl.val(entry.id)
-    @nameEl.val(entry.name)
-    @visibleEl.val(entry.visible)
-    @fillColorEl.val(entry.fillColor)
-    @strokeColorEl.val(entry.strokeColor)
-    @tagsEl.val(entry.tags)
-    #@metadata.setValue(entry.metadata)
+    @nameEl.text(entry.name)
+    @data.setValue(
+      name: entry.name
+      visible: entry.visible
+      fill_color: entry.fill_color
+      stroke_color: entry.stroke_color
+      tags: entry.tags
+    )
 
   onChange: ->
     App.mediator.publish 'layerItem:changed' if @getValue()
@@ -103,10 +103,6 @@ LayerItem = ->
     @el.find('.list-item-metadata-btn').click @toggleData.bind(this)
 
     @nameEl.change @onChange.bind(this)
-    @visibleEl.change @onChange.bind(this)
-    @fillColorEl.change @onChange.bind(this)
-    @strokeColorEl.change @onChange.bind(this)
-    @tagsEl.change @onChange.bind(this)
 
     App.mediator.subscribe 'layerData:changed', @dataChanged.bind(this)
 

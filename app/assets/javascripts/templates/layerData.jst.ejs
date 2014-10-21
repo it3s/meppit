@@ -1,3 +1,7 @@
 <div class="layer-data">
-  <h3><%= data_title %>:</h3>
+  <input type="text" class="data_name" id="layer_name_<%= index %>"/>
+  <input type="text" class="data_visible" id="layer_visible_<%= index %>"/>
+  <input type="text" class="data_fill_color" id="layer_fill_color_<%= index %>" data-components="colorPicker"/>
+  <input type="text" class="data_stroke_color" id="layer_stroke_color_<%= index %>" data-components="colorPicker"/>
+  <input type="text" class="data_tags" id="layer_tags_<%= index %>" data-components="tags"/>
 </div>

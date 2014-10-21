@@ -100,8 +100,8 @@ module Utils
       OpenStruct.new(
         id:           layer['id'].blank? ? nil : layer['id'].to_i,
         name:         layer['name'].blank? ? nil : layer['name'],
-        fill_color:   layer['fillColor'].blank? ? nil : layer['fillColor'],
-        stroke_color: layer['strokeColor'].blank? ? nil : layer['strokeColor'],
+        fill_color:   layer['fill_color'].blank? ? nil : layer['fill_color'],
+        stroke_color: layer['stroke_color'].blank? ? nil : layer['stroke_color'],
         visible:      layer['visible'].blank? ? true : layer['visible'] == 'true',
         position:     layer['position'].blank? ? nil : layer['position'].to_i,
         rule:         layer['rule'].blank? ? nil : layer['rule'].to_json,

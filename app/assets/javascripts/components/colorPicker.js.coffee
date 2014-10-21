@@ -19,7 +19,7 @@ App.components.colorPicker = ->
     @fieldEl?.hide()
     @pickerEl.colpick
       layout: 'hex'
-      color: @attr.defaultColor
+      color: @getValue()
       submit: false
       onChange: @onPickerChange.bind(this)
 
@@ -41,7 +41,8 @@ App.components.colorPicker = ->
   getValue: -> @color
 
   onPickerChange: (hsb, hex, rgb, el, bySetColor) ->
-    @onChange '#' + hex
+    color = '#' + hex
+    @onChange color if @getValue() isnt color
 
   onFieldChange: ->
     @onChange @fieldEl.val()
@@ -53,4 +54,5 @@ App.components.colorPicker = ->
   update: ->
     @previewEl.css 'background-color', @getValue()
     @container.data 'colorPicker-color', @getValue()
+    @pickerEl.colpickSetColor @getValue(), true
     @fieldEl?.val @getValue()
