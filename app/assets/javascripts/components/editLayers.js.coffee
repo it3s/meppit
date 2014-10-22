@@ -6,8 +6,8 @@ DataForm = ->
     @index = opts.index
     @el = $ @template(opts)
     @findFields()
-    @status = 'hidden'
     @bindEvents()
+    @status = "active"
     this
 
   show: ->
@@ -17,6 +17,9 @@ DataForm = ->
   hide: ->
     @el.slideUp('fast')
     @status = "hidden"
+
+  toggle: ->
+    if @status is 'hidden' then @show() else @hide()
 
   findFields: ->
     @fields = {}
@@ -127,6 +130,7 @@ LayerItem = ->
     @colorPreviewEl.css
       'background-color': value.fill_color
       'border-color': value.stroke_color
+    this
 
   onChange: ->
     @update()
@@ -137,7 +141,16 @@ LayerItem = ->
 
   toggleData: (evt)->
     evt.preventDefault()
-    if @data.status is 'hidden' then @data.show() else @data.hide()
+    @data.toggle()
+    this
+
+  showData: ->
+    @data.show()
+    this
+
+  hideData: ->
+    @data.hide()
+    this
 
   bindEvents: ->
     @el.find('.list-item-remove-btn').click @onRemove.bind(this)
@@ -170,15 +183,16 @@ App.components.editLayers = ->
   loadData: ->
     entries = _.sortBy JSON.parse(@attr.layersInput.val()), 'position'
     _.each entries, (entry) =>
-      item = @addItem()
-      item.setValue(entry)
+      item = @addItem(entry)
 
-  addItem: ->
+  addItem: (entry) ->
     item = LayerItem().init _.extend({}, @attr.data, {index: @attr.counter++})
     item.setValue @itemDefaultValue
     @attr.items.push item
     @attr.itemsContainer.append(item.el)
     App.mediator.publish 'components:start', item.el
+    if entry?
+      item.setValue(entry).hideData()
     item
 
   listen: ->
