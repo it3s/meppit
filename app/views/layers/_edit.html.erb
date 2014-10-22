@@ -2,7 +2,9 @@
                          data-editlayers-options='<%= {data: layers_manager_data}.to_json %>'>
 
   <%= f.input :layers_attributes, as: :hidden, input_html: { class: 'layers-value', value: f.object.layers_values.to_json } %>
-  <div class="layers-list"></div>
+
+  <div class="layers-list" data-components="sortable"></div>
+
   <button class="add-new-btn" title="<%= t 'layers.title.add' %>">
     <%= icon 'plus',  t('layers.add') %>
   </button>
