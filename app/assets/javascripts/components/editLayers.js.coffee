@@ -146,7 +146,6 @@ LayerItem = ->
     App.mediator.subscribe 'layerData:changed', @dataChanged.bind(this)
 
 
-#TODO: allow to reorder
 App.components.editLayers = ->
   itemDefaultValue:
     visible: true
@@ -169,7 +168,7 @@ App.components.editLayers = ->
     @listen()
 
   loadData: ->
-    entries = JSON.parse @attr.layersInput.val()
+    entries = _.sortBy JSON.parse(@attr.layersInput.val()), 'position'
     _.each entries, (entry) =>
       item = @addItem()
       item.setValue(entry)
@@ -184,6 +183,7 @@ App.components.editLayers = ->
 
   listen: ->
     @on @attr.addButton, 'click', @onAdd
+    @on @attr.itemsContainer, 'sortupdate', @onChange.bind(this)
     App.mediator.subscribe 'layerItem:removed', @onRemove.bind(this)
     App.mediator.subscribe 'layerItem:changed', @onChange.bind(this)
 
