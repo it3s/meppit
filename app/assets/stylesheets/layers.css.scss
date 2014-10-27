@@ -2,8 +2,8 @@
   .layer {
     .layer-header { @include clearfix; }
     .layer-color-preview {
-      width: 28px;
-      height: 28px;
+      width: 2em;
+      height: 2em;
       border: 3px solid $soft-grey;
       border-radius: 5px;
       float: left;
@@ -12,11 +12,11 @@
       float:left;
       color: $text-color;
       font-family: $main-font;
-      margin: 5px 10px;
+      margin: 0.35em 0.6em;
     }
     .layer-controls { float:right; }
     .layer-data {
-      margin: 15px 0;
+      margin: 1em 0;
 
       .data-main-fields {
         @include span-columns(8 of 9);
@@ -29,13 +29,13 @@
 
       .color-picker {
         &:nth-of-type(1) {
-          margin: 0 0 22px 0;
+          margin: 0 0 1.8em 0;
           position: relative;
           z-index: 1;
         }
 
         &:nth-of-type(2) {
-          margin: 0 0 0 -25px;
+          margin: 0 0 0 -2em;
         }
       }
     }

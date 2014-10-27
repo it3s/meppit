@@ -206,6 +206,8 @@ App.components.map = ->
     @map.hideButton 'collapse'
 
   expand: ->
+    @_cloneLayersList()
+    @layersList.show()
     @map.hideButton 'expand'
     @map.showButton 'collapse'
     if not @expanded
@@ -226,14 +228,34 @@ App.components.map = ->
       height: $(window).height() - top
       width: $(window).width()
       'z-index': 9
+    @map.zoomIn 2, animate: false
     @map.refresh()
     @expanded = true
 
   collapse: ->
     return if not @expanded
+    @layersList.hide()
     @map.hideButton 'collapse'
     @map.showButton 'expand'
     $(window).scrollTop(@_originalScrollTop)
     @container.css @_originalCss
+    @map.zoomOut 2, animate: false
     @map.refresh()
     @expanded = false
+
+  _cloneLayersList: ->
+    return if @layersList?
+    @layersList = $('#map-layers').clone()
+    return if @layersList.length is 0
+    App.mediator.publish('components:start', @layersList)
+    @container.append @layersList
+    @layersList.css
+      width: '250px',
+      position: 'absolute'
+      bottom: '25px'
+      right: '25px'
+      maxHeight: '60%'
+      fontSize: '0.75em'
+      backgroundColor: 'white'
+      padding: '10px'
+      overflowY: 'auto'
