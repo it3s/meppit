@@ -249,13 +249,3 @@ App.components.map = ->
     return if @layersList.length is 0
     App.mediator.publish('components:start', @layersList)
     @container.append @layersList
-    @layersList.css
-      width: '250px',
-      position: 'absolute'
-      bottom: '25px'
-      right: '25px'
-      maxHeight: '60%'
-      fontSize: '0.75em'
-      backgroundColor: 'white'
-      padding: '10px'
-      overflowY: 'auto'
