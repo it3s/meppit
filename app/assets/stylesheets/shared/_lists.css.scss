@@ -22,6 +22,10 @@ nav.pagination { display: none; }  // We are using infinite scroll
     i { margin: 2px 0; }
   }
 
+  &.hidden {
+    opacity: 0.4;
+  }
+
   &.small {
     .item-avatar, img {
       font-size: 30px;
@@ -31,7 +35,7 @@ nav.pagination { display: none; }  // We are using infinite scroll
     }
 
     .item {
-      width: 400px;
+      width: 385px;
     }
 
     .item-excerpt { font-size: 0.95em; }

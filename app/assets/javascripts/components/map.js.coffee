@@ -146,10 +146,17 @@ App.components.map = ->
     window.map = this
     @mapEl = $('<div>').addClass('map-container')
     @container.append @mapEl
+    groups = []
+    # make sure the layer rules are correctly parsed
+    if @attr.layers?
+      for group in @attr.layers
+        group.rule.value = JSON.parse(group.rule.value) if group.rule?.value?
+        groups.push group
     @map = new Meppit.Map
       element: @mapEl[0],
       enableGeoJsonTile: false
       featureURL: @attr.featureURL
+      groups: groups
     feature = @attr.geojson or @attr.featuresIds
     if feature
       @show(feature, => @edit feature if @attr.editor)
@@ -176,10 +183,22 @@ App.components.map = ->
       callback?()
 
   bindEvents: ->
-    App.mediator.subscribe 'remoteForm:beforeSubmit', () =>
-      @map.done()
-    $(window).resize =>
-      @expand() if @expanded
+    App.mediator.subscribe 'remoteForm:beforeSubmit', @onBeforeFormSubmit.bind(this)
+    $(window).resize @onWindowResize.bind(this)
+    App.mediator.subscribe 'layer:shown',  @onLayerShown.bind(this)
+    App.mediator.subscribe 'layer:hidden', @onLayerHidden.bind(this)
+
+  onBeforeFormSubmit: ->
+    @map.done()
+
+  onWindowResize: ->
+    @expand() if @expanded
+
+  onLayerShown: (evt, data) ->
+    @map.showLayer data.id
+
+  onLayerHidden: (evt, data) ->
+    @map.hideLayer data.id
 
   addButtons: ->
     @map.addButton 'expand', 'fa-expand', @expand.bind(this), @attr.data['expand_button_title'], 'topright'

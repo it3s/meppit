@@ -1,8 +1,12 @@
 .map {
   .leaflet-tile {
-    filter: grayscale(80%) brightness(105%);
-    -moz-filter: grayscale(80%) brightness(105%);
-    -webkit-filter: grayscale(80%) brightness(105%);
+    filter: grayscale(80%) brightness(105%) opacity(60%);
+    -moz-filter: grayscale(80%) brightness(105%) opacity(60%);
+    -webkit-filter: grayscale(80%) brightness(105%) opacity(60%);
+  }
+
+  .map-container {
+    background: $white;
   }
 
   .selector {

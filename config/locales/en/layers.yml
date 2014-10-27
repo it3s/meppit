@@ -1,8 +1,10 @@
 en:
   layers:
+    list_title: 'Layers'
     add: 'Add layer'
     empty: 'There are no layers yet for this map'
     unnamed: 'Unnamed Layer'
+    others: 'Others'
 
     invalid:
       empty_rule: 'You must provide the layer rule'

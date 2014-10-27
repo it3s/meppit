@@ -31,17 +31,22 @@
 
 
     <div class="tab-content" id="data" data-components="list" data-list='{"scroll": {"behavior": "local"}}'>
-      <div id="geo_data_collection-pagination">
-        <%= paginate @geo_data_collection, remote: true,
-          params: {controller: 'maps', action: 'geo_data', user_id: map.id} %>
+      <div class="main-info">
+        <div id="geo_data_collection-pagination">
+          <%= paginate @geo_data_collection, remote: true,
+            params: {controller: 'maps', action: 'geo_data', user_id: map.id} %>
+        </div>
+        <ul id="geo_data-list" class="list geo_data-list">
+          <% unless @geo_data_collection.empty? %>
+            <%= render @geo_data_collection, :size => :small %>
+          <% else %>
+            <p class="empty"><%= t 'maps.data.empty', name: map.name %></p>
+          <% end %>
+        </ul>
       </div>
-      <ul id="geo_data-list" class="list geo_data-list">
-        <% unless @geo_data_collection.empty? %>
-          <%= render @geo_data_collection, :size => :small %>
-        <% else %>
-          <p class="empty"><%= t 'maps.data.empty', name: map.name %></p>
-        <% end %>
-      </ul>
+      <div class="extra-info" >
+        <%= render 'layers/view', object: map %>
+      </div>
     </div>
 
     <div class="tab-content" id="talk">

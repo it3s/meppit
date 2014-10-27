@@ -1,8 +1,10 @@
 pt-BR:
   layers:
+    list_title: 'Camadas'
     add: 'Adicionar camada'
     empty: 'Não há camadas ainda para este mapa'
     unnamed: 'Layer sem nome'
+    others: 'Outros'
 
     invalid:
       empty_rule: 'Você deve fornecer uma regra para a camada'
