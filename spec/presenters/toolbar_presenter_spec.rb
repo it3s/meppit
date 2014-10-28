@@ -8,10 +8,12 @@ describe ToolbarPresenter do
 
   let(:logged_in)  { mock_context(:in) }
   let(:logged_out) { mock_context(:out) }
+  let(:logged_in_admin) { mock_context(:in, true) }
 
-  def mock_context(type=:in)
+  def mock_context(type=:in, admin=false)
     _user = (type == :in) ? user : nil
-    double('Context', current_user: _user, t: '', url_for: '', request: double('request', path: ''), follow_options_for: '{}', settings_path: '')
+    params = { id: _user.try(:id) }
+    double('Context', current_user: _user, is_admin?: admin, params: params, t: '', url_for: '', request: double('request', path: ''), follow_options_for: '{}', settings_path: '')
   end
 
   def tp(obj, ctx=nil)

@@ -7,8 +7,11 @@ feature "frontpage"  do
   scenario { expect(page).to have_selector '#header' }
   scenario { expect(page).to have_selector '.footer' }
 
+  scenario { expect(page).to have_selector '.signup' }
   scenario { expect(page).to have_selector '.login' }
-  scenario { expect(page).to have_selector '.video' }
+  scenario { expect(page).to have_selector '.marketing-section' }
+  scenario { expect(page).to have_selector '.featured-maps' }
+  scenario { expect(page).to have_selector '.partners' }
   scenario { expect(page).to have_selector '.flexslider[data-components=flexslider]' }
 end
 
