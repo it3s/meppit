@@ -185,8 +185,8 @@ App.components.map = ->
   bindEvents: ->
     App.mediator.subscribe 'remoteForm:beforeSubmit', @onBeforeFormSubmit.bind(this)
     $(window).resize @onWindowResize.bind(this)
-    App.mediator.subscribe 'layer:shown',  @onLayerShown.bind(this)
-    App.mediator.subscribe 'layer:hidden', @onLayerHidden.bind(this)
+    App.mediator.subscribe 'layer:show', @onLayerShow.bind(this)
+    App.mediator.subscribe 'layer:hide', @onLayerHide.bind(this)
 
   onBeforeFormSubmit: ->
     @map.done()
@@ -194,10 +194,10 @@ App.components.map = ->
   onWindowResize: ->
     @expand() if @expanded
 
-  onLayerShown: (evt, data) ->
+  onLayerShow: (evt, data) ->
     @map.showLayer data.id
 
-  onLayerHidden: (evt, data) ->
+  onLayerHide: (evt, data) ->
     @map.hideLayer data.id
 
   addButtons: ->
