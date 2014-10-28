@@ -3,6 +3,7 @@ pt-BR:
     tabs:
       content: "Conteúdo"
       data: "Dados"
+      layers: "Camadas"
       talk: "Conversa"
 
     list:

@@ -146,10 +146,17 @@ App.components.map = ->
     window.map = this
     @mapEl = $('<div>').addClass('map-container')
     @container.append @mapEl
+    groups = []
+    # make sure the layer rules are correctly parsed
+    if @attr.layers?
+      for group in @attr.layers
+        group.rule.value = JSON.parse(group.rule.value) if group.rule?.value?
+        groups.push group
     @map = new Meppit.Map
       element: @mapEl[0],
       enableGeoJsonTile: false
       featureURL: @attr.featureURL
+      groups: groups
     feature = @attr.geojson or @attr.featuresIds
     if feature
       @show(feature, => @edit feature if @attr.editor)
@@ -176,10 +183,22 @@ App.components.map = ->
       callback?()
 
   bindEvents: ->
-    App.mediator.subscribe 'remoteForm:beforeSubmit', () =>
-      @map.done()
-    $(window).resize =>
-      @expand() if @expanded
+    App.mediator.subscribe 'remoteForm:beforeSubmit', @onBeforeFormSubmit.bind(this)
+    $(window).resize @onWindowResize.bind(this)
+    App.mediator.subscribe 'layer:show', @onLayerShow.bind(this)
+    App.mediator.subscribe 'layer:hide', @onLayerHide.bind(this)
+
+  onBeforeFormSubmit: ->
+    @map.done()
+
+  onWindowResize: ->
+    @expand() if @expanded
+
+  onLayerShow: (evt, data) ->
+    @map.showLayer data.id
+
+  onLayerHide: (evt, data) ->
+    @map.hideLayer data.id
 
   addButtons: ->
     @map.addButton 'expand', 'fa-expand', @expand.bind(this), @attr.data['expand_button_title'], 'topright'
@@ -187,6 +206,8 @@ App.components.map = ->
     @map.hideButton 'collapse'
 
   expand: ->
+    @_cloneLayersList()
+    @layersList.show()
     @map.hideButton 'expand'
     @map.showButton 'collapse'
     if not @expanded
@@ -198,6 +219,7 @@ App.components.map = ->
         height: @container.css('height')
         width: @container.css('width')
         'z-index': @container.css('z-index')
+      @map.zoomIn 2, animate: false
     top = $("#header").height()
     $(window).scrollTop(0)
     @container.css
@@ -212,9 +234,18 @@ App.components.map = ->
 
   collapse: ->
     return if not @expanded
+    @layersList.hide()
     @map.hideButton 'collapse'
     @map.showButton 'expand'
     $(window).scrollTop(@_originalScrollTop)
     @container.css @_originalCss
+    @map.zoomOut 2, animate: false
     @map.refresh()
     @expanded = false
+
+  _cloneLayersList: ->
+    return if @layersList?
+    @layersList = $('#map-layers').clone()
+    return if @layersList.length is 0
+    App.mediator.publish('components:start', @layersList)
+    @container.append @layersList

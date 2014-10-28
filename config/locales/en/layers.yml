@@ -1,0 +1,28 @@
+en:
+  layers:
+    list_title: 'Layers'
+    add: 'Add layer'
+    empty: 'There are no layers yet for this map'
+    unnamed: 'Unnamed Layer'
+    others: 'Others'
+
+    invalid:
+      empty_rule: 'You must provide the layer rule'
+      empty_fill_color: "You must provide the layer fill color"
+      empty_stroke_color: "You must provide the layer stroke color"
+
+    title:
+      add: 'Add new layer'
+      remove: 'Remove this layer'
+      data: 'Display layer data'
+      fill_color: 'Select the fill color'
+      stroke_color: 'Select the stroke color'
+
+    data:
+      name: 'Name'
+      visible: 'Visible'
+      color: 'Color'
+      fill_color: 'Fill Color'
+      stroke_color: 'Stroke Color'
+      rule: 'Rule'
+      tags: 'Tags'

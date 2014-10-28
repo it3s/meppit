@@ -2,7 +2,7 @@
 <%= render 'shared/export/export_object', object: map %>
 <%= render "maps/add_geo_data_modal", map: map %>
 
-<section class="main-info">
+<section class="main-content">
 
   <div class="map-tabs" data-components="tabs">
     <ul>
@@ -11,35 +11,42 @@
       <li><a href="#talk"><%= icon "comments", t('maps.tabs.talk') %></a></li>
     </ul>
 
-    <div class="extra-info" >
-      <%= render 'users/administrator', user: map.administrator %>
-      <%= render 'shared/contacts/view', object: map %>
-      <%= render 'shared/tags', tags: map.tags %>
+    <div class="tab-content" id="content">
+      <div class="main-info">
+        <div class="description">
+          <% if map.description.blank? %>
+            <p class="empty"><%= t 'maps.description.empty', name: map.name %></p>
+          <% else %>
+            <%= raw map.description %>
+          <% end %>
+        </div>
+        <%= render 'shared/additional_info/show', object: map %>
+      </div>
+      <div class="extra-info" >
+        <%= render 'users/administrator', user: map.administrator %>
+        <%= render 'shared/contacts/view', object: map %>
+        <%= render 'shared/tags', tags: map.tags %>
+      </div>
     </div>
 
-    <div class="tab-content" id="content">
-      <div class="description">
-        <% if map.description.blank? %>
-          <p class="empty"><%= t 'maps.description.empty', name: map.name %></p>
-        <% else %>
-          <%= raw map.description %>
-        <% end %>
-      </div>
-      <%= render 'shared/additional_info/show', object: map %>
-    </div>
 
     <div class="tab-content" id="data" data-components="list" data-list='{"scroll": {"behavior": "local"}}'>
-      <div id="geo_data_collection-pagination">
-        <%= paginate @geo_data_collection, remote: true,
-          params: {controller: 'maps', action: 'geo_data', user_id: map.id} %>
+      <div class="main-info">
+        <div id="geo_data_collection-pagination">
+          <%= paginate @geo_data_collection, remote: true,
+            params: {controller: 'maps', action: 'geo_data', user_id: map.id} %>
+        </div>
+        <ul id="geo_data-list" class="list geo_data-list">
+          <% unless @geo_data_collection.empty? %>
+            <%= render @geo_data_collection, :size => :small %>
+          <% else %>
+            <p class="empty"><%= t 'maps.data.empty', name: map.name %></p>
+          <% end %>
+        </ul>
       </div>
-      <ul id="geo_data-list" class="list geo_data-list">
-        <% unless @geo_data_collection.empty? %>
-          <%= render @geo_data_collection, :size => :small %>
-        <% else %>
-          <p class="empty"><%= t 'maps.data.empty', name: map.name %></p>
-        <% end %>
-      </ul>
+      <div class="extra-info" >
+        <div id="map-layers"><%= render 'layers/view', object: map %></div>
+      </div>
     </div>
 
     <div class="tab-content" id="talk">

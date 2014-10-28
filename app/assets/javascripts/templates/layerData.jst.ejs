@@ -1,0 +1,21 @@
+<div class="layer-data">
+  <div class="wrapper">
+    <div class="data-main-fields">
+      <label><%= data_name %></label>
+      <input type="text" class="data_name" id="layer_name_<%= index %>"/>
+      <label class="checkbox-label">
+        <input type="checkbox" class="data_visible" id="layer_visible_<%= index %>"/>
+        <%= data_visible %>
+      </label>
+    </div>
+    <div class="data-color-picker">
+      <label><%= data_color %></label>
+      <input type="text" title="<%= fill_color_title %>" class="data_fill_color" id="layer_fill_color_<%= index %>" data-components="colorPicker"/>
+      <input type="text" title="<%= stroke_color_title %>" class="data_stroke_color" id="layer_stroke_color_<%= index %>" data-components="colorPicker"/>
+    </div>
+  </div>
+  <div class="data-rule">
+    <label><%= data_tags %></label>
+    <input type="text" class="data_tags" id="layer_tags_<%= index %>" data-components="tags"/>
+  </div>
+</div>

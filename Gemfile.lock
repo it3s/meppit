@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/it3s/meppit-map-rails.git
-  revision: e7b81c9ab6f4cdb03da8d8eff680b8dbb3dc2645
+  revision: e91cb7605515395ab692b5cf6bdbfd95f65719d6
   specs:
-    meppit-map-rails (0.1.5)
+    meppit-map-rails (0.2.0)
       coffee-rails
       rails (~> 4.1.1)
 
@@ -213,7 +213,7 @@ GEM
       rails (>= 3.2.13)
       rest-client (>= 1.6.7)
     method_source (0.8.2)
-    mime-types (2.4.2)
+    mime-types (2.4.3)
     mini_magick (3.8.1)
       subexec (~> 0.2.1)
     mini_portile (0.6.0)

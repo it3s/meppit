@@ -23,6 +23,7 @@
 @import "jquery-ui/datepicker";
 @import "jquery-ui/tabs";
 @import "meppit-map";
+@import "colpick";
 
 // app common
 @import "shared/page";
@@ -43,6 +44,7 @@
 @import "shared/export";
 @import "shared/options";
 @import "shared/map";
+@import "shared/colorPicker";
 
 @import "sessions/sign_in";
 
@@ -64,3 +66,4 @@
 @import "pictures";
 @import "import";
 @import "comments";
+@import "layers";

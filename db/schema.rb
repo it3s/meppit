@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141013145901) do
+ActiveRecord::Schema.define(version: 20141019190542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "postgis"
   enable_extension "hstore"
+  enable_extension "uuid-ossp"
+  enable_extension "postgis"
   enable_extension "pg_trgm"
   enable_extension "fuzzystrmatch"
 
@@ -80,16 +81,18 @@ ActiveRecord::Schema.define(version: 20141013145901) do
   add_index "followings", ["follower_id"], :name => "index_followings_on_follower_id"
 
   create_table "geo_data", force: true do |t|
-    t.string   "name",                                                                  null: false
+    t.string   "name",                                                                     null: false
     t.text     "description"
     t.hstore   "contacts"
-    t.text     "tags",                                                     default: [],              array: true
+    t.text     "tags",                                                     default: [],                 array: true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.spatial  "location",        limit: {:srid=>4326, :type=>"geometry"}
     t.json     "additional_info"
+    t.boolean  "is_featured",                                              default: false, null: false
   end
 
+  add_index "geo_data", ["is_featured"], :name => "index_geo_data_on_is_featured"
   add_index "geo_data", ["location"], :name => "index_geo_data_on_location", :spatial => true
   add_index "geo_data", ["tags"], :name => "index_geo_data_on_tags"
 
@@ -106,6 +109,20 @@ ActiveRecord::Schema.define(version: 20141013145901) do
   add_index "imports", ["map_id"], :name => "index_imports_on_map_id"
   add_index "imports", ["user_id"], :name => "index_imports_on_user_id"
 
+  create_table "layers", force: true do |t|
+    t.string   "name"
+    t.integer  "position"
+    t.boolean  "visible"
+    t.string   "fill_color",   limit: 10
+    t.string   "stroke_color", limit: 10
+    t.hstore   "rule"
+    t.integer  "map_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "layers", ["map_id"], :name => "index_layers_on_map_id"
+
   create_table "mappings", force: true do |t|
     t.integer  "geo_data_id", null: false
     t.integer  "map_id",      null: false
@@ -117,17 +134,19 @@ ActiveRecord::Schema.define(version: 20141013145901) do
   add_index "mappings", ["map_id"], :name => "index_mappings_on_map_id"
 
   create_table "maps", force: true do |t|
-    t.string   "name",                          null: false
+    t.string   "name",                             null: false
     t.text     "description"
     t.hstore   "contacts"
-    t.text     "tags",             default: [],              array: true
+    t.text     "tags",             default: [],                 array: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "administrator_id",              null: false
+    t.integer  "administrator_id",                 null: false
     t.json     "additional_info"
+    t.boolean  "is_featured",      default: false, null: false
   end
 
   add_index "maps", ["administrator_id"], :name => "index_maps_on_administrator_id"
+  add_index "maps", ["is_featured"], :name => "index_maps_on_is_featured"
   add_index "maps", ["tags"], :name => "index_maps_on_tags"
 
   create_table "notifications", force: true do |t|
