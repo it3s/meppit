@@ -1,12 +1,13 @@
 pt-BR:
   frontpage:
-    title: 'mapeamento colaborativo da sua região.'
+    title: 'Mapeamento colaborativo da sua região.'
 
     call:
       participate: 'Quer participar'
       edit: 'Edite o mapa.'
       anyone: 'Qualquer um pode ajudar!'
       create_account: 'Crie sua conta'
+      login: 'Ou entre'
 
     what:
       what_is_it_for: 'Para que serve?'
@@ -21,13 +22,21 @@ pt-BR:
       guide: 'Guia do bairro'
       guide_explanation: "Mapeie serviços que existem na sua vizinhança. Ajude outros moradores a conhecerem melhor o território e a utilizarem os recursos locais."
 
-    projects:
-      title: 'Projetos que usam o Meppit'
+    featured:
+        featured-maps: 'Mapas em destaque'
+        explore: 'Explore mais mapas'
+
+    testimonials:
+      title: 'Depoimentos'
+      formely_known_as: 'Meppit era anteriormente conhecido como MootiroMaps.'
 
     news:
+      title: 'Novidades'
       blog_title: 'blog do IT3S'
       blog_visit: 'visite o blog'
 
-      updates_title: 'Últimas atualizações'
+      updates_title: 'Atualizações mais recentes'
       updates_all: 'ver todas'
 
+    partners:
+      title: 'Parceiros'
