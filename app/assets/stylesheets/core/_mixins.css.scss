@@ -4,19 +4,6 @@
   @include sprite($map, $sprite, true);
 }
 
-@mixin resize-sprite($map, $sprite, $percent) {
-  $spritePath:    sprite-path($map);
-  $spriteWidth:   image-width($spritePath);
-  $spriteHeight:  image-height($spritePath);
-  $width: image-width(sprite-file($map, $sprite));
-  $height: image-height(sprite-file($map, $sprite));
-
-  background-size: ceil($spriteWidth * ($percent/100)) ceil($spriteHeight * ($percent/100));
-  width: ceil($width*($percent/100));
-  height: ceil($height*($percent/100));
-  background-position: 0 floor(nth(sprite-position($map, $sprite), 2)  * ($percent/100) );
-}
-
 @mixin modal() {
   display: none;
   min-width: 400px;

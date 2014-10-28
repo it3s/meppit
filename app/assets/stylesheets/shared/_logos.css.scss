@@ -8,22 +8,22 @@
   &.polis-logo    { @include sprite-image($logos-map, polis); }
 
   &.medium {
-    &.it3s-logo     { @include resize-sprite($logos-map, it3s, 60); }
-    &.cea-logo      { @include resize-sprite($logos-map, cea, 60); }
-    &.cenpec-logo   { @include resize-sprite($logos-map, cenpec, 60); }
-    &.aldeias-logo  { @include resize-sprite($logos-map, aldeias, 60); }
-    &.cedaps-logo   { @include resize-sprite($logos-map, cedaps, 60); }
-    &.soudapaz-logo { @include resize-sprite($logos-map, sou-da-paz, 60); }
-    &.polis-logo    { @include resize-sprite($logos-map, polis, 60); }
+    &.it3s-logo     { @include sprite-image($logos-medium-map, it3s); }
+    &.cea-logo      { @include sprite-image($logos-medium-map, cea); }
+    &.cenpec-logo   { @include sprite-image($logos-medium-map, cenpec); }
+    &.aldeias-logo  { @include sprite-image($logos-medium-map, aldeias); }
+    &.cedaps-logo   { @include sprite-image($logos-medium-map, cedaps); }
+    &.soudapaz-logo { @include sprite-image($logos-medium-map, sou-da-paz); }
+    &.polis-logo    { @include sprite-image($logos-medium-map, polis); }
   }
 
   &.small {
-    &.it3s-logo     { @include resize-sprite($logos-map, it3s, 30); }
-    &.cea-logo      { @include resize-sprite($logos-map, cea, 30); }
-    &.cenpec-logo   { @include resize-sprite($logos-map, cenpec, 30); }
-    &.aldeias-logo  { @include resize-sprite($logos-map, aldeias, 30); }
-    &.cedaps-logo   { @include resize-sprite($logos-map, cedaps, 30); }
-    &.soudapaz-logo { @include resize-sprite($logos-map, sou-da-paz, 30); }
-    &.polis-logo    { @include resize-sprite($logos-map, polis, 30); }
+    &.it3s-logo     { @include sprite-image($logos-small-map, it3s); }
+    &.cea-logo      { @include sprite-image($logos-small-map, cea); }
+    &.cenpec-logo   { @include sprite-image($logos-small-map, cenpec); }
+    &.aldeias-logo  { @include sprite-image($logos-small-map, aldeias); }
+    &.cedaps-logo   { @include sprite-image($logos-small-map, cedaps); }
+    &.soudapaz-logo { @include sprite-image($logos-small-map, sou-da-paz); }
+    &.polis-logo    { @include sprite-image($logos-small-map, polis); }
   }
 }

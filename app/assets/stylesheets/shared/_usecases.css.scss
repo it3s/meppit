@@ -1,7 +1,7 @@
 .image.usecase {
-  &.journalism { @include sprite-image($usecases-map, journalism); }
-  &.network    { @include sprite-image($usecases-map, network); }
-  &.evaluation { @include sprite-image($usecases-map, evaluation); }
-  &.diagnosis  { @include sprite-image($usecases-map, diagnosis); }
-  &.guide      { @include sprite-image($usecases-map, guide); }
+  &.journalism { @include sprite-image($usecases-medium-map, journalism); }
+  &.network    { @include sprite-image($usecases-medium-map, network); }
+  &.evaluation { @include sprite-image($usecases-medium-map, evaluation); }
+  &.diagnosis  { @include sprite-image($usecases-medium-map, diagnosis); }
+  &.guide      { @include sprite-image($usecases-medium-map, guide); }
 }

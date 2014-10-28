@@ -87,13 +87,6 @@
         margin-bottom: 1em;
       }
 
-      .image {
-        &.journalism { @include resize-sprite($usecases-map, journalism, 40); }
-        &.network    { @include resize-sprite($usecases-map, network, 40); }
-        &.evaluation { @include resize-sprite($usecases-map, evaluation, 40); }
-        &.diagnosis  { @include resize-sprite($usecases-map, diagnosis, 40); }
-        &.guide      { @include resize-sprite($usecases-map, guide, 40); }
-      }
       p { padding: 0.5em 0.2em 0; }
     }
   }
