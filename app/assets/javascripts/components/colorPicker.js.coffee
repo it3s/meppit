@@ -45,12 +45,12 @@ App.components.colorPicker = ->
     @onChange color if @getValue() isnt color
 
   onFieldChange: ->
-    @onChange @fieldEl.val()
+    @onChange @fieldEl.val() if @getValue() isnt @fieldEl.val()
 
   onChange: (color) ->
     @setValue color
-    @_triggerFieldChange ?= _.debounce () -> @fieldEl?.trigger 'change', 100
-    @_triggerFieldChange()
+    @fieldEl?.val @getValue()
+    @fieldEl?.trigger 'change'
     App.mediator.publish 'colorpicker:changed', color
 
   update: ->

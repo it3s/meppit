@@ -219,6 +219,7 @@ App.components.map = ->
         height: @container.css('height')
         width: @container.css('width')
         'z-index': @container.css('z-index')
+      @map.zoomIn 2, animate: false
     top = $("#header").height()
     $(window).scrollTop(0)
     @container.css
@@ -228,7 +229,6 @@ App.components.map = ->
       height: $(window).height() - top
       width: $(window).width()
       'z-index': 9
-    @map.zoomIn 2, animate: false
     @map.refresh()
     @expanded = true
 

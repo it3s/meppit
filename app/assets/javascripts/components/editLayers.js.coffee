@@ -29,22 +29,6 @@ DataForm = ->
   onChange: ->
     App.mediator.publish 'layerData:changed', @index
 
-  _getRule: ->
-    tags = @fields['tags'].val()
-    if tags.length > 0
-      {
-        operator: 'has'
-        property: 'tags'
-        value: tags.split(',')
-      }
-    else
-      null
-
-  _setRule: (rule) ->
-    if rule? and rule.operator == 'has' and rule.property == 'tags' and rule.value?
-      value = JSON.parse(rule.value).join(',')
-      @fields['tags'].setComponentValue('tags', value)
-
   getValue: ->
     vals = {}
     _.each @_params, (key) =>
@@ -69,6 +53,22 @@ DataForm = ->
   bindEvents: ->
     _.each @fields, (el, key) =>
       el.change _.debounce(@onChange.bind(this), 100)
+
+  _getRule: ->
+    tags = @fields['tags'].val()
+    if tags.length > 0
+      {
+        operator: 'has'
+        property: 'tags'
+        value: tags.split(',')
+      }
+    else
+      null
+
+  _setRule: (rule) ->
+    if rule? and rule.operator == 'has' and rule.property == 'tags' and rule.value?
+      value = JSON.parse(rule.value).join(',')
+      @fields['tags'].setComponentValue('tags', value)
 
 
 LayerItem = ->

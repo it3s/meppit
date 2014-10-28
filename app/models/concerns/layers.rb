@@ -11,7 +11,7 @@ module Layers
     end
 
     def layers_values
-      layers.map do |l|
+      (layers.map do |l|
         {
           id: l.id,
           name: l.name,
@@ -21,7 +21,7 @@ module Layers
           position: l.position,
           rule: l.rule,
         }
-      end
+      end).sort_by { |layer| layer[:position] }
     end
 
     def save_layers_from_attributes
