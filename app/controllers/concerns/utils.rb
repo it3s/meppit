@@ -94,6 +94,21 @@ module Utils
     )
   end
 
+  def cleaned_layers_attributes(_params)
+    _attrs = JSON.parse _params[:layers_attributes]
+    _attrs.map do |layer|
+      OpenStruct.new(
+        id:           layer['id'].blank? ? nil : layer['id'].to_i,
+        name:         layer['name'].blank? ? nil : layer['name'],
+        fill_color:   layer['fill_color'].blank? ? nil : layer['fill_color'],
+        stroke_color: layer['stroke_color'].blank? ? nil : layer['stroke_color'],
+        visible:      layer['visible'].nil? ? true : layer['visible'],
+        position:     layer['position'].blank? ? nil : layer['position'].to_i,
+        rule:         layer['rule'].blank? ? nil : layer['rule'],
+      )
+    end
+  end
+
   def cleaned_location(_params)
     GeoJSON.parse(_params[:location])
   end

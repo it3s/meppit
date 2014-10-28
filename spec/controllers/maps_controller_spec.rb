@@ -157,6 +157,37 @@ describe MapsController do
         it { expect(response.body).to eq({errors: {additional_info: [I18n.t('additional_info.invalid')]}}.to_json) }
       end
     end
+
+    describe "save layers" do
+      let(:layers_params) {
+        { layers_attributes: [{
+          id: "2", name: "Layer Name", visible: true, fill_color: "#ff000", stroke_color: "#00ff00", position: "3", rule: {operator: "has", property: "tags", value: ["tagA","tagB"]}
+        }].to_json}
+      }
+
+      it "saves properly" do
+        post :update, {id: map.id, map: map_params.merge(layers_params)}
+        expect(assigns :map).to eq map
+        expect(response.body).to match({:redirect => map_path(map)}.to_json)
+
+        map.reload
+        values = map.layers_values.first
+
+        expect(values).to eq({
+          id: 2,
+          name: "Layer Name",
+          position: 3,
+          visible: true,
+          fill_color: "#ff000",
+          stroke_color: "#00ff00",
+          rule: {
+            "value" => '["tagA", "tagB"]',
+            "operator" => "has",
+            "property" => "tags",
+          }
+        })
+      end
+    end
   end
 
   describe "GET geo_data from maps" do

@@ -2,9 +2,9 @@
 #= require jquery
 #= require jquery_ujs
 #= require jquery.remotipart
-#= require jquery.ui.autocomplete
-#= require jquery.ui.datepicker
-#= require jquery.ui.datepicker-pt-BR
+#= require jquery-ui/autocomplete
+#= require jquery-ui/datepicker
+#= require jquery-ui/datepicker-pt-BR
 #= require jquery.infinitescroll
 #= require jquery.cookie
 #= require jquery.sticky-kit.min

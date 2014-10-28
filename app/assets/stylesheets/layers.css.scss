@@ -1,0 +1,43 @@
+.layers-list {
+  .layer {
+    .layer-header { @include clearfix; }
+    .layer-color-preview {
+      width: 2em;
+      height: 2em;
+      border: 3px solid $soft-grey;
+      border-radius: 5px;
+      float: left;
+    }
+    .layer-name-preview {
+      float:left;
+      color: $text-color;
+      font-family: $main-font;
+      margin: 0.35em 0.6em;
+    }
+    .layer-controls { float:right; }
+    .layer-data {
+      margin: 1em 0;
+
+      .data-main-fields {
+        @include span-columns(8 of 9);
+      }
+      .data-color-picker {
+        @include span-columns(1 of 9);
+      }
+
+      .data_name { font-size: 1.3em; }
+
+      .color-picker {
+        &:nth-of-type(1) {
+          margin: 0 0 1.8em 0;
+          position: relative;
+          z-index: 1;
+        }
+
+        &:nth-of-type(2) {
+          margin: 0 0 0 -2em;
+        }
+      }
+    }
+  }
+}

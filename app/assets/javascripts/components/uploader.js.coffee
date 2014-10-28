@@ -12,7 +12,7 @@ App.components.uploader = ->
   method: 'PATCH'
 
   attributes: ->
-    _uploader = $ _.template(uploaderTemplate, buttonLabel: @buttonLabel)
+    _uploader = $ _.template(uploaderTemplate)(buttonLabel: @buttonLabel)
     {
       field:    @container.closest('.field')
       uploader: _uploader

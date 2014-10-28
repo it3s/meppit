@@ -4,6 +4,7 @@ class Map < ActiveRecord::Base
   include Followable
   include Contributable
   include Mappable
+  include Layers
   include Searchable
   include Exportable
   include PublicActivity::Common

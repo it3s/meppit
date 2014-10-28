@@ -404,6 +404,15 @@ HTML
       end
     end
 
+    describe "#layers_manager_data" do
+      it "expects all required keys to be present" do
+        keys = [:tags_autocomplete_url, :remove_title, :unnamed_layer,
+                :data_title, :fill_color_title, :stroke_color_title,
+                :data_name, :data_visible, :data_color, :data_tags]
+        expect(helper.layers_manager_data.keys).to match_array keys
+      end
+    end
+
     describe "#show_relation_metadata" do
       it "retuns false for empty" do
         rel = {metadata: {}}
@@ -452,20 +461,20 @@ HTML
       let(:user)     { FactoryGirl.create :user }
 
       it "expects all required keys to be present" do
-        keys = [:geojson, :featuresIds, :featureURL, :hasLocation]
+        keys = [:layers, :geojson, :featuresIds, :featureURL, :hasLocation]
         expect(helper.map_options(geo_data).keys).to eq keys
       end
 
       context "edit_mode" do
         before { allow(helper).to receive(:edit_mode?).and_return(true) }
         it "expects all keys related to editor to be present" do
-          keys = [:geojson, :featuresIds, :featureURL, :hasLocation, :editor,
+          keys = [:layers, :geojson, :featuresIds, :featureURL, :hasLocation, :editor,
                   :inputSelector]
           expect(helper.map_options(geo_data).keys).to eq keys
         end
 
         it "expects all keys related to user location editor to be present" do
-          keys = [:geojson, :featuresIds, :featureURL, :hasLocation, :editor,
+          keys = [:layers, :geojson, :featuresIds, :featureURL, :hasLocation, :editor,
                   :inputSelector, :geometryType, :geolocation]
           expect(helper.map_options(user).keys).to eq keys
         end

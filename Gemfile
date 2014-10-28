@@ -14,11 +14,11 @@ gem 'pg_search'                     # postgres fulltext search
 gem 'thin'                          # server to run faye
 gem 'faye'                          # realtime pub/sub
 
-gem 'coffee-rails', '~> 4.0.0'      # coffeescript
+gem 'coffee-rails', '~> 4.0.1'      # coffeescript
 gem 'uglifier', '>= 1.3.0'          # minify
 gem 'jquery-rails'                  # jquery
 gem 'underscore-rails'              # underscore
-gem 'sass-rails', '4.0.2'           # scss support
+gem 'sass-rails', '~> 4.0.3'        # scss support
 gem 'bourbon'                       # sass mixins and utilities
 gem 'neat'                          # semantic grid system
 gem 'compass-rails'                 # sass mixins and sprites generation
@@ -80,7 +80,7 @@ group :test do
   gem 'capybara'                    # acceptance tests
   gem 'poltergeist'                 # phantomjs driver
   gem 'database_cleaner'            # improved database cleaning for tests
-  gem 'simplecov', '~> 0.7.1', require: false   # coverage report
+  gem 'simplecov', '~> 0.9.0', require: false   # coverage report
   gem 'coveralls', require: false   # use coveralls with travisCI
 end
 

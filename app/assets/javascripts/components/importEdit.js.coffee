@@ -33,9 +33,9 @@ App.components.importEdit = ->
 
   showErrors: ->
     if !@hasMap()
-      _tpl = _.template(@errMessage, msg: I18n.imports.errors.map)
+      _tpl = _.template(@errMessage)(msg: I18n.imports.errors.map)
       @attr.errsDiv.append _tpl
 
     if !@allEntriesAreValid()
-      _tpl = _.template(@errMessage, msg: I18n.imports.errors.invalid)
+      _tpl = _.template(@errMessage)(msg: I18n.imports.errors.invalid)
       @attr.errsDiv.append _tpl

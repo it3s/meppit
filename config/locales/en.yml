@@ -13,7 +13,7 @@ en:
   profile: 'profile'
   you: 'you'
 
-  empty_location: "Loocation not provided yet"
+  empty_location: "Location not provided yet"
 
   search:
     empty: "No results found!"
