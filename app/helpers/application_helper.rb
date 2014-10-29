@@ -45,10 +45,10 @@ module ApplicationHelper
     }.to_json
   end
 
-  def feature_button_options_for(obj)
+  def featured_button_options_for(obj)
     {
-      isFeatured: obj.is_featured?,
-      url: url_for([obj, :feature]),
+      isFeatured: obj.featured?,
+      url: url_for([obj, :featured]),
       id: identifier_for(obj)
     }.to_json
   end

@@ -60,7 +60,7 @@ Meppit::Application.routes.draw do
   end
 
   concern :featurable do
-    resource :feature, controller: :feature, only: [:create, :destroy]
+    resource :featured, controller: :featured, only: [:create, :destroy]
   end
 
   resources :users, except: [:destroy, :index],

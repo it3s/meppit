@@ -1,15 +1,17 @@
-class FeatureController < ApplicationController
+class FeaturedController < ApplicationController
 
   # TODO: uncomments after merging `flag`
   #before_action :is_admin
   before_action :find_featurable
 
   def create
-    feature_button_json_response(@featurable.set_featured)
+    @featurable.featured = true
+    featured_button_json_response(true)
   end
 
   def destroy
-    feature_button_json_response(@featurable.unset_featured)
+    @featurable.featured = false
+    featured_button_json_response(true)
   end
 
   private
@@ -18,9 +20,9 @@ class FeatureController < ApplicationController
       @featurable = find_polymorphic_object
     end
 
-    def feature_button_json_response(action_result)
+    def featured_button_json_response(action_result)
       if action_result
-        render json: {ok: true, is_featured: @featurable.is_featured?}
+        render json: {ok: true, featured: @featurable.featured?}
       else
         render json: {ok: false}, status: :unprocessable_entity
       end

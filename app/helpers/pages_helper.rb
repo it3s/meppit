@@ -79,7 +79,7 @@ module PagesHelper
   end
 
   def featured_maps(limit = 6)
-    Map.where(is_featured: true).limit(limit)
+    Featured.get_by_type(Map).limit(limit)
   end
 
 end

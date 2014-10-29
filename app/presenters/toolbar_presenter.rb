@@ -26,10 +26,10 @@ class ToolbarPresenter
       current_user == object ? [:edit, :settings] : [:star, :flag]
     when 'geo_data'
       (current_user ? [:edit] : []) + [:star, :history, :flag, :delete] +
-        (is_admin? ? [:feature] : [])
+        (is_admin? ? [:featured] : [])
     when 'map'
       (current_user ? [:edit] : []) + [:star, :history, :flag, :delete] +
-        (is_admin? ? [:feature] : [])
+        (is_admin? ? [:featured] : [])
     else
       available_tools
     end
@@ -97,10 +97,10 @@ class ToolbarPresenter
       { icon: :'trash-o', title: t('toolbar.delete'), url: "" }
     end
 
-    def _feature_tool
-      { icon: :'certificate', title: t('toolbar.feature'), url: "#",
-        active?: object.is_featured?,
-        component: _feature_component }
+    def _featured_tool
+      { icon: :'certificate', title: t('toolbar.featured'), url: "#",
+        active?: object.featured?,
+        component: _featured_component }
     end
 
     def _follow_component
@@ -111,11 +111,11 @@ class ToolbarPresenter
       }
     end
 
-    def _feature_component
-      opts_json = ctx.feature_button_options_for object
+    def _featured_component
+      opts_json = ctx.featured_button_options_for object
       {
-        :type => "featureButton loginRequired",
-        :opts => "data-featureButton-options=#{ opts_json } "
+        :type => "featuredButton loginRequired",
+        :opts => "data-featuredButton-options=#{ opts_json } "
       }
     end
 

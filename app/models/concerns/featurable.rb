@@ -2,18 +2,29 @@ module Featurable
   extend ActiveSupport::Concern
 
   included do
-    def is_featured?
-      self.is_featured
+    after_destroy :clean_featured_for_destroyed_featurable!
+
+    def featured?
+      Featured.where(_featured_params).exists?
     end
 
-    def set_featured
-      self.is_featured = true
-      self.save
+    def featured=(value)
+      if value == true
+        Featured.find_or_create_by(_featured_params)
+      elsif value == false
+        featured = Featured.where(_featured_params).first
+        featured.destroy if featured
+      end
     end
 
-    def unset_featured
-      self.is_featured = false
-      self.save
-    end
+    private
+
+      def _featured_params
+        {featurable: self}
+      end
+
+      def clean_featured_for_destroyed_featurable!
+        Featured.where(_featured_params).destroy_all
+      end
   end
 end

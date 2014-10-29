@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
 
   def admin?
     # TODO replace by the real implementation when merging `flag`
-    self.id == 1
+    self.id == 2
   end
 
   private
