@@ -16,7 +16,7 @@ class ToolbarPresenter
   end
 
   def available_tools
-    [:edit, :star, :comment, :history, :settings, :flag, :delete]
+    [:edit, :star, :comment, :history, :settings, :flag, :delete, :featured]
   end
 
   # Select which tools will be displayed given the current object
@@ -99,7 +99,7 @@ class ToolbarPresenter
 
     def _featured_tool
       { icon: :'certificate', title: t('toolbar.featured'), url: "#",
-        active?: object.featured?,
+        active?: object.try(:featured?),
         component: _featured_component }
     end
 

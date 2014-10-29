@@ -7,4 +7,4 @@ en:
     flag: "Flag inappropraite content"
     settings: "Settings"
     delete: 'Request deletion'
-    feature: 'Set featured'
+    featured: 'Set as featured'

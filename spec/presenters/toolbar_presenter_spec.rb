@@ -13,7 +13,7 @@ describe ToolbarPresenter do
   def mock_context(type=:in, admin=false)
     _user = (type == :in) ? user : nil
     params = { id: _user.try(:id) }
-    double('Context', current_user: _user, is_admin?: admin, params: params, t: '', url_for: '', request: double('request', path: ''), follow_options_for: '{}', settings_path: '')
+    double('Context', current_user: _user, is_admin?: admin, params: params, t: '', url_for: '', request: double('request', path: ''), follow_options_for: '{}', featured_button_options_for: {}, settings_path: '')
   end
 
   def tp(obj, ctx=nil)
@@ -29,7 +29,7 @@ describe ToolbarPresenter do
   describe "#available_tools" do
     let (:presenter) { tp user }
     it { expect(presenter.available_tools).to be_a_kind_of Array }
-    it { expect(presenter.available_tools.size).to eq 7 }
+    it { expect(presenter.available_tools.size).to eq 8 }
     it { expect(presenter.available_tools.first).to be_a_kind_of Symbol }
   end
 
@@ -52,6 +52,11 @@ describe ToolbarPresenter do
         it { expect(presenter.select_tools).to eq [:edit, :star, :history, :flag, :delete] }
       end
 
+      context "logged in_admin" do
+        let(:presenter) { tp geo_data, logged_in_admin }
+        it { expect(presenter.select_tools).to eq [:edit, :star, :history, :flag, :delete, :featured] }
+      end
+
       context "logged out" do
         let(:presenter) { tp geo_data, logged_out }
         it { expect(presenter.select_tools).to eq [:star, :history, :flag, :delete] }
@@ -62,6 +67,11 @@ describe ToolbarPresenter do
       context "logged in" do
         let(:presenter) { tp map, logged_in }
         it { expect(presenter.select_tools).to eq [:edit, :star, :history, :flag, :delete] }
+      end
+
+      context "logged in_admin" do
+        let(:presenter) { tp map, logged_in_admin }
+        it { expect(presenter.select_tools).to eq [:edit, :star, :history, :flag, :delete, :featured] }
       end
 
       context "logged out" do
@@ -86,7 +96,7 @@ describe ToolbarPresenter do
   end
 
   describe "tools options" do
-    let(:presenter) { tp double('object'), logged_in }
+    let(:presenter) { tp double('object'), logged_in_admin }
 
     it "has icon, title and url options for all tools" do
       presenter.tools.each { |tool|

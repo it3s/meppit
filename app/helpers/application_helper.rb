@@ -47,7 +47,7 @@ module ApplicationHelper
 
   def featured_button_options_for(obj)
     {
-      isFeatured: obj.featured?,
+      featured: obj.featured?,
       url: url_for([obj, :featured]),
       id: identifier_for(obj)
     }.to_json

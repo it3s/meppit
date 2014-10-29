@@ -178,6 +178,28 @@ describe ApplicationHelper do
     end
   end
 
+  describe "#render_activity" do
+    let(:user) { FactoryGirl.create :user }
+    let(:geo_data) { FactoryGirl.create :geo_data }
+    let(:activity) { geo_data.create_activity :update, owner: user, parameters: {changes: {"name"=>["bla", geo_data.try(:name)]}} }
+
+    context "user activity" do
+      it 'has no activity owner info' do
+        content = helper.render_activity(activity, user)
+        expect(content).to_not include 'owner-avatar'
+        expect(content).to_not include 'event-owner'
+      end
+    end
+
+    context "global activity" do
+      it 'has activity owner info' do
+        content = helper.render_activity(activity)
+        expect(content).to include 'owner-avatar'
+        expect(content).to include 'event-owner'
+      end
+    end
+  end
+
   describe "Concerns::I18nHelper" do
     describe "#i18n_language_names" do
       it 'has names for all availables locales' do
