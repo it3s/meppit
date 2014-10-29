@@ -1,6 +1,7 @@
 class FeatureController < ApplicationController
 
-  before_action :require_admin_role
+  # TODO: uncomments after merging `flag`
+  #before_action :is_admin
   before_action :find_featurable
 
   def create
