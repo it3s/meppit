@@ -1,0 +1,10 @@
+pt-BR:
+  flags:
+    reason:
+      deletion: 'Requisitar Deleção'
+      spam: 'Spam'
+      inappropriate: 'Inapropriado'
+      tos_violation: 'Violação de Termos de Serviço'
+      copyright: 'Violação de Copyright'
+      wrong_info: 'Informação Errada'
+      other: 'Outro'

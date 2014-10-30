@@ -1,0 +1,10 @@
+en:
+  flags:
+    reason:
+      deletion: 'Request for Deletion'
+      spam: 'Spam'
+      inappropriate: 'Inappropriate'
+      tos_violation: 'Terms of Service Violation'
+      copyright: 'Copyright Violation'
+      wrong_info: 'Wrong Information'
+      other: 'Other

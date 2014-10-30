@@ -1,6 +1,6 @@
 <div class="flags">
   <%= remote_form_for @flag, url: flags_path, method: 'post' do |f| %>
-    <%= f.input :reason, collection: @flag.reason_choices %>
+    <%= f.select :reason, flag_reason_options %>
     <%= f.input :comment, as: :text, input_html: { 'data-components' => 'editor' } %>
   <% end %>
 </div>
