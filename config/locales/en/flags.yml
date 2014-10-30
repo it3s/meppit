@@ -5,6 +5,8 @@ en:
 
     reason_label: 'Reason'
 
+    message_sent: 'Message sent to a moderator.'
+
     reason:
       deletion: 'Request for Deletion'
       spam: 'Spam'

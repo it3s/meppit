@@ -5,6 +5,8 @@ pt-BR:
 
     reason_label: 'Motivo'
 
+    message_sent: 'Mensagem enviada a um moderador.'
+
     reason:
       deletion: 'Requisitar Deleção'
       spam: 'Spam'

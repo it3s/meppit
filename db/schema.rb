@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141019134734) do
+ActiveRecord::Schema.define(version: 20141030173752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,13 +77,17 @@ ActiveRecord::Schema.define(version: 20141019134734) do
   add_index "contributings", ["contributor_id"], :name => "index_contributings_on_contributor_id"
 
   create_table "flags", force: true do |t|
-    t.integer  "user_id",                    null: false
-    t.string   "reason",                     null: false
+    t.integer  "user_id",                        null: false
+    t.string   "reason",                         null: false
     t.text     "comment"
-    t.boolean  "solved",     default: false, null: false
+    t.boolean  "solved",         default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "flaggable_id"
+    t.string   "flaggable_type"
   end
+
+  add_index "flags", ["flaggable_id", "flaggable_type"], :name => "index_flags_on_flaggable_id_and_flaggable_type"
 
   create_table "followings", force: true do |t|
     t.integer  "follower_id"
