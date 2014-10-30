@@ -8,20 +8,24 @@ class Flag < ActiveRecord::Base
   scope :unsolved, -> { where(solved: false) }
 
   def self.reason_choices
-    {
-      'deletion'      => 'Request for Deletion',
-      'spam'          => 'Spam',
-      'inappropriate' => 'Inappropriate',
-      'tos_violation' => 'Terms of Service Violation',
-      'copyright'     => 'Copyright Violation',
-      'wronf_info'    => 'Wrong Information',
-      'other'         => 'Other'
-    }
+    @reasons_ ||= [
+      'deletion'      ,  # 'Request for Deletion',
+      'spam'          ,  # 'Spam',
+      'inappropriate' ,  # 'Inappropriate',
+      'tos_violation' ,  # 'Terms of Service Violation',
+      'copyright'     ,  # 'Copyright Violation',
+      'wrong_info'    ,  # 'Wrong Information',
+      'other'         ,  # 'Other'
+    ]
+  end
+
+  def reason_choices
+    self.class.reason_choices
   end
 
   private
 
     def reason_from_list
-      errors.add :reason, 'Invalid reason' if reason && !self.class.reason_choices.keys.include?(reason)
+      errors.add :reason, 'Invalid reason' if reason && !reason_choices.include?(reason)
     end
 end

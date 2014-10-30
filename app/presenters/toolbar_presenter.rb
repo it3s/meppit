@@ -84,7 +84,8 @@ class ToolbarPresenter
     end
 
     def _flag_tool
-      { icon: :flag, title: t('toolbar.flag'), url: "" }
+      { icon: :flag, title: t('toolbar.flag'), url: ctx.new_flag_path,
+        component: _flag_component }
     end
 
     def _delete_tool
@@ -94,8 +95,15 @@ class ToolbarPresenter
     def _follow_component
       opts_json = ctx.follow_options_for object
       {
-        :type => "follow loginRequired",
-        :opts => "data-follow-options=#{ opts_json } "
+        type: "follow loginRequired",
+        opts: "data-follow-options=#{ opts_json } "
+      }
+    end
+
+    def _flag_component
+      {
+        type: "modal loginRequired",
+        opts: "data-modal-options=#{ {remote: true, login_required: true}.to_json } "
       }
     end
 end

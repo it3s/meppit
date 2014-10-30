@@ -113,6 +113,8 @@ Meppit::Application.routes.draw do
     post :load,    on: :member
   end
 
+  resources :flags, only: [:new, :create]
+
   namespace :api do
     namespace :v1 do
       resources :geo_data, only: [:show, :index]
