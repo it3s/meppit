@@ -13,6 +13,7 @@ pt-BR:
         name: 'Nome'
         email: 'E-mail'
         password: 'Senha'
+        comment: 'Comentário'
 
       user:
         new:

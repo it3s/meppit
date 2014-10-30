@@ -1,5 +1,10 @@
 pt-BR:
   flags:
+
+    title: 'Denunciar Conteúdo'
+
+    reason_label: 'Motivo'
+
     reason:
       deletion: 'Requisitar Deleção'
       spam: 'Spam'

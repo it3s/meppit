@@ -1,5 +1,10 @@
 en:
   flags:
+
+    title: 'Flag Content'
+
+    reason_label: 'Reason'
+
     reason:
       deletion: 'Request for Deletion'
       spam: 'Spam'
@@ -7,4 +12,4 @@ en:
       tos_violation: 'Terms of Service Violation'
       copyright: 'Copyright Violation'
       wrong_info: 'Wrong Information'
-      other: 'Other
+      other: 'Other'
