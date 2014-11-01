@@ -5,8 +5,8 @@ class Flag < ActiveRecord::Base
   validates :user, :reason, :flaggable, presence: true
   validate  :reason_from_list
 
-  scope :solved,   -> { where(solved: true)  }
-  scope :unsolved, -> { where(solved: false) }
+  scope :solved,   -> { where(solved: true).order('created_at desc')  }
+  scope :unsolved, -> { where(solved: false).order('created_at desc') }
 
   def self.reason_choices
     @reasons_ ||= [

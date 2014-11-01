@@ -59,6 +59,8 @@ class UsersController < ApplicationController
   end
 
   def admin
+    @unsolved_flags = Flag.unsolved
+    @solved_flags = Flag.solved
   end
 
   private

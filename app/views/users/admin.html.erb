@@ -1,1 +1,22 @@
-ADMIN PAGE
+<div class="site-page admin">
+
+  <div class="admin-tabs" data-components="tabs">
+    <ul>
+      <li><a href="#flags"><%= icon "flag", t('admin.tabs.flags') %></a></li>
+    </ul>
+
+    <div class="tab-content" id="flags">
+
+      <section class="flags-list unsolved-flags">
+        <h2><%= t 'admin.flags.unsolved' %></h2>
+        <%= @unsolved_flags %>
+      </section>
+
+      <section class="flags-list solved-flags">
+        <h2><%= t 'admin.flags.solved' %></h2>
+        <%= @solved_flags %>
+      </section>
+    </div>
+  </div>
+
+</div>

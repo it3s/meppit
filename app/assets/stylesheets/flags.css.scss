@@ -9,3 +9,13 @@
     float: right;
   }
 }
+
+.flags-list {
+  margin-bottom: 20px;
+
+  h2 {
+    color: $grey;
+    padding-bottom: 10px;
+    border-bottom: solid 1px $soft-grey;
+  }
+}
