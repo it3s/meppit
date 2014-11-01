@@ -1,6 +1,7 @@
 class FlagsController < ApplicationController
   before_action :require_login
-  before_action :find_flaggable, only: [:create]
+  before_action :find_flaggable,        only: [:create]
+  after_action  :publish_flagged_event, only: [:create]
 
   def new
     @flag = Flag.new
@@ -10,7 +11,6 @@ class FlagsController < ApplicationController
   def create
     @flag = Flag.new flag_params
     if @flag.valid? && @flag.save
-      # EventBus.publish "flagged", flag: @flag
       flash[:notice] = t('flags.message_sent')
       render json: {redirect: polymorphic_path([@flaggable])}
     else
@@ -30,4 +30,7 @@ class FlagsController < ApplicationController
       params.require(:flag).permit(:comment, :reason).merge(user: current_user, flaggable: @flaggable)
     end
 
+    def publish_flagged_event
+      EventBus.publish "flagged", object: @flaggable, current_user: current_user, changes: {@flag.reason => ""} if response.ok?
+    end
 end
