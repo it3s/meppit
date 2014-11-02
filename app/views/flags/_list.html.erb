@@ -1,13 +1,15 @@
-<section class="list flags-list <%= type %>-flags">
+<section class="flags-list-container <%= type %>-flags">
   <h2><%= t "flags.list.#{ type }" %></h2>
 
   <% if flags.empty? %>
     <div class="empty"> <%= t 'flags.list.empty' %> </div>
 
   <% else %>
-    <% flags.each do |flag| %>
-      <%= flag.attributes %>
-    <% end %>
+    <ul class="flags-list">
+      <% flags.each do |flag| %>
+        <%= render 'flags/flag', presenter: FlagPresenter.new(flag: flag, ctx: self) %>
+      <% end %>
+    </ul>
 
   <% end %>
 </section>
