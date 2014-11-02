@@ -16,8 +16,8 @@ module AdminActions
     end
 
     def find_flags
-      @unsolved_flags = Flag.includes(:flaggable).unsolved
-      @solved_flags = Flag.includes(:flaggable).solved
+      @unsolved_flags = Flag.includes(:flaggable, :user).unsolved
+      @solved_flags = Flag.includes(:flaggable, :user).solved
     end
 
 end

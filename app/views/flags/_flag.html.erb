@@ -1,3 +1,39 @@
 <li class="flag">
-  <%= presenter.name %>
+  <div class="wrapper">
+    <div class="flag-headline">
+      <div class="flag-avatar">
+        <a href="<%= presenter.url %>" title="<%= presenter.name %>">
+          <%= presenter.avatar %>
+        </a>
+      </div>
+
+      <div class="flag-name">
+        <%= link_to presenter.name, presenter.url %>
+      </div>
+
+      <time class="flag-time" datetime="<%= presenter.time.to_datetime.rfc3339 %>">
+        <%= presenter.time_ago %>
+      </time>
+
+      <%= link_to t("flags.list.mark_as_solved"), '#', class: 'mark-as-solved' %>
+    </div>
+
+    <div class="flag-info">
+      <div class="flag-user">
+        &raquo; <%= t 'by' %>
+        <%= link_to presenter.user.name, user_path(presenter.user), class: 'user-name' %>
+      </div>
+
+      <div class="flag-reason">
+        <%= presenter.reason %>
+      </div>
+    </div>
+
+
+    <% unless presenter.comment.blank? %>
+      <div class="flag-comment-container">
+        <div class="comment"><%= raw presenter.comment %></div>
+      </div>
+    <% end %>
+  </div>
 </li>

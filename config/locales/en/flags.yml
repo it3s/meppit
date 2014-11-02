@@ -19,5 +19,6 @@ en:
     list:
       solved: 'Solved'
       unsolved: 'Unsolved'
+      mark_as_solved: 'Mark as Solved'
 
       empty: 'Empty List'

@@ -19,6 +19,7 @@ pt-BR:
     list:
       solved: 'Resolvido'
       unsolved: 'Não-resolvido'
+      mark_as_solved: 'Marcar como Resolvido'
 
       empty: 'Lista Vazia'
 
