@@ -15,3 +15,10 @@ pt-BR:
       copyright: 'Violação de Copyright'
       wrong_info: 'Informação Errada'
       other: 'Outro'
+
+    list:
+      solved: 'Resolvido'
+      unsolved: 'Não-resolvido'
+
+      empty: 'Lista Vazia'
+

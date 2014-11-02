@@ -6,16 +6,8 @@
     </ul>
 
     <div class="tab-content" id="flags">
-
-      <section class="flags-list unsolved-flags">
-        <h2><%= t 'admin.flags.unsolved' %></h2>
-        <%= @unsolved_flags %>
-      </section>
-
-      <section class="flags-list solved-flags">
-        <h2><%= t 'admin.flags.solved' %></h2>
-        <%= @solved_flags %>
-      </section>
+      <%= render 'flags/list', flags: @unsolved_flags, type: 'unsolved' %>
+      <%= render 'flags/list', flags: @solved_flags, type: 'solved' %>
     </div>
   </div>
 

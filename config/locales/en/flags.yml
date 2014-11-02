@@ -15,3 +15,9 @@ en:
       copyright: 'Copyright Violation'
       wrong_info: 'Wrong Information'
       other: 'Other'
+
+    list:
+      solved: 'Solved'
+      unsolved: 'Unsolved'
+
+      empty: 'Empty List'
