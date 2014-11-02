@@ -5,7 +5,7 @@ pt-BR:
       flags: 'Denuncias'
 
     confirm:
-      title: 'Você tem certeza que deseja excluir %{name} ?'
+      title: 'Você tem certeza que deseja excluir %{name}?'
       yes_btn: 'deletar'
 
     deleted: '%{name} foi deletado'

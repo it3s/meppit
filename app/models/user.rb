@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   include Follower
   include Searchable
   include PublicActivity::Common
+  include Flaggable
 
   mount_uploader :avatar, AvatarUploader
   process_in_background :avatar
@@ -72,6 +73,6 @@ class User < ActiveRecord::Base
     end
 
     def generate_auth_token
-      SecureRandom.uuid.gsub /\-/, ''
+      SecureRandom.uuid.gsub(/\-/, '')
     end
 end

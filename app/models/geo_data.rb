@@ -10,6 +10,7 @@ class GeoData < ActiveRecord::Base
   include Exportable
   include PublicActivity::Common
   include Commentable
+  include Flaggable
 
   geojson_field :location
   searchable_tags :tags
