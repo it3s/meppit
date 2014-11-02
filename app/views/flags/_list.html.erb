@@ -7,7 +7,7 @@
   <% else %>
     <ul class="flags-list">
       <% flags.each do |flag| %>
-        <%= render 'flags/flag', presenter: FlagPresenter.new(flag: flag, ctx: self) %>
+        <%= render 'flags/flag', presenter: FlagPresenter.new(flag: flag, ctx: self) if flag.flaggable  %>
       <% end %>
     </ul>
 

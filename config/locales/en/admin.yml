@@ -3,3 +3,9 @@ en:
 
     tabs:
       flags: 'Flags'
+
+    confirm:
+      title: 'Are you sure you want to delete %{name} ?'
+      yes_btn: 'delete'
+
+    deleted: '%{name} deleted'

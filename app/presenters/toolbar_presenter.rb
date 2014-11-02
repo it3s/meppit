@@ -89,11 +89,12 @@ class ToolbarPresenter
 
     def _flag_tool
       { icon: :flag, title: t('toolbar.flag'), url: ctx.new_flag_path,
-        component: _flag_component }
+        component: _modal_component }
     end
 
     def _delete_tool
-      { icon: :'trash-o', title: t('toolbar.delete'), url: "" }
+      { icon: :'trash-o', title: t('toolbar.delete'), url: ctx.confirm_deletion_admin_path(current_user),
+        component: _modal_component }
     end
 
     def _follow_component
@@ -104,7 +105,7 @@ class ToolbarPresenter
       }
     end
 
-    def _flag_component
+    def _modal_component
       {
         type: "modal loginRequired",
         opts: "data-modal-options=#{ {remote: true, login_required: true}.to_json } "

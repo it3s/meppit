@@ -29,9 +29,7 @@ class FlagsController < ApplicationController
   private
 
     def find_flaggable
-      resource, id = URI(request.referer).path.split('/')[1..2]
-      _model = resource.classify.constantize
-      @flaggable = _model.find(id)
+      @flaggable = find_object_from_referer
     end
 
     def flag_params

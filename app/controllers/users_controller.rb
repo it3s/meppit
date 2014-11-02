@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   include PasswordResets
-  include AdminActions
 
   before_action :require_login,      only: [:edit, :update, :upload_avatar, :admin]
   before_action :find_user,          only: [:show, :edit, :update, :upload_avatar, :admin]
