@@ -64,7 +64,11 @@ Meppit::Application.routes.draw do
       get "activity" => "activities#user_activity"
       patch :upload_avatar
       resource :settings, only: [:show, :update]
-      get :admin
+
+      resource :admin, only: [:show] do
+        get  :confirm_deletion
+        post :delete_object
+      end
     end
 
     collection do

@@ -23,7 +23,7 @@ class FlagsController < ApplicationController
     @flag = Flag.find params[:id]
     @flag.solved = true
     @flag.save
-    redirect_to admin_user_path(current_user)
+    redirect_to admin_path(current_user)
   end
 
   private

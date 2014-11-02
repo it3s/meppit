@@ -4,7 +4,7 @@
   <ul class="settings-tooltip">
 
     <% if current_user && current_user.admin? %>
-    <li><%= link_to icon('wrench', t('header.settings_menu.moderations')), admin_user_path(current_user), class: 'settings-item' %></li>
+    <li><%= link_to icon('wrench', t('header.settings_menu.moderations')), admin_path(current_user), class: 'settings-item' %></li>
 
     <% end %>
 

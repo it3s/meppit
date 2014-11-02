@@ -25,12 +25,16 @@ class ToolbarPresenter
     when 'user'
       current_user == object ? [:edit, :settings] : [:star, :flag]
     when 'geo_data'
-      (current_user ? [:edit] : []) + [:star, :history, :flag, :delete]
+      (current_user ? [:edit] : []) + [:star, :history, :flag] + (can_delete? ? [:delete] : [])
     when 'map'
-      (current_user ? [:edit] : []) + [:star, :history, :flag, :delete]
+      (current_user ? [:edit] : []) + [:star, :history, :flag] + (can_delete? ? [:delete] : [])
     else
       available_tools
     end
+  end
+
+  def can_delete?
+    current_user && current_user.admin?
   end
 
   # Build a list of OpenStruct with the options for each of the selected tools
