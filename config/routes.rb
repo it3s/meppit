@@ -113,7 +113,9 @@ Meppit::Application.routes.draw do
     post :load,    on: :member
   end
 
-  resources :flags, only: [:new, :create]
+  resources :flags, only: [:new, :create] do
+    post :mark_as_solved, on: :member
+  end
 
   namespace :api do
     namespace :v1 do

@@ -15,7 +15,9 @@
         <%= presenter.time_ago %>
       </time>
 
-      <%= link_to t("flags.list.mark_as_solved"), '#', class: 'mark-as-solved' %>
+      <% unless presenter.solved? %>
+        <%= link_to t("flags.list.mark_as_solved"), presenter.solve_path, method: 'post', class: 'mark-as-solved' %>
+      <% end %>
     </div>
 
     <div class="flag-info">

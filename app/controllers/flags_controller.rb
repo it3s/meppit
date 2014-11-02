@@ -2,6 +2,7 @@ class FlagsController < ApplicationController
   before_action :require_login
   before_action :find_flaggable,        only: [:create]
   after_action  :publish_flagged_event, only: [:create]
+  before_action :require_admin,         only: [:mark_as_solved]
 
   def new
     @flag = Flag.new
@@ -16,6 +17,13 @@ class FlagsController < ApplicationController
     else
       render json: {errors: @flag.errors.messages}, status: :unprocessable_entity
     end
+  end
+
+  def mark_as_solved
+    @flag = Flag.find params[:id]
+    @flag.solved = true
+    @flag.save
+    redirect_to admin_user_path(current_user)
   end
 
   private

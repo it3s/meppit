@@ -50,7 +50,11 @@ class FlagPresenter
     flag.comment
   end
 
-  # def type
-  #   flag.solved ? 'solved' : 'unsolved'
-  # end
+  def solved?
+    flag.solved
+  end
+
+  def solve_path
+    ctx.mark_as_solved_flag_path(flag)
+  end
 end
