@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   include PasswordResets
 
-  before_action :require_login,      only: [:edit, :update, :upload_avatar, :admin]
-  before_action :find_user,          only: [:show, :edit, :update, :upload_avatar, :admin]
-  before_action :is_current_user,    only: [:edit, :update, :upload_avatar, :admin]
+  before_action :require_login,      only: [:edit, :update, :upload_avatar]
+  before_action :find_user,          only: [:show, :edit, :update, :upload_avatar]
+  before_action :is_current_user,    only: [:edit, :update, :upload_avatar]
   before_action :contributions_list, only: [:show]
   before_action :following_list,     only: [:show]
   before_action :activities_list,    only: [:show]
