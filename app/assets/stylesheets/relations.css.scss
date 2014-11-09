@@ -58,21 +58,7 @@
   }
 
   &.edit {
-    .add-new-relation {
-      @include button;
-      margin-bottom: 20px;
-    }
-
-    .relations-list {
-      height: 400px;
-      overflow-y: scroll;
-    }
-
-    .relation-item {
-      background-color: $meppit-light-blue;
-      padding: 15px 10px;
-      margin-bottom: 15px;
-      border-radius: 4px;
+    .list-item {
 
       .relation_type {
         width: 210px;
@@ -82,23 +68,9 @@
         display: inline-block;
         width: 238px;
       }
-
-      .relation-metadata-btn, .relation-remove-btn {
-        @include button;
-        padding: 3px 9px;
-      }
     }
 
     .relation-metadata {
-      label {
-        color: $grey;
-        margin-top: 10px;
-      }
-
-      .inline-field, {
-        display: inline-block;
-      }
-
       .time-field     { width: 150px; }
       .currency-field { width: 50px; }
       .amount-field   { width: 140px; }

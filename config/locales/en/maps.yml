@@ -3,6 +3,7 @@ en:
     tabs:
       content: "Content"
       data: "Data"
+      layers: "Layers"
       talk: "Talk"
 
     list:

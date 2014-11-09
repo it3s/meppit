@@ -26,7 +26,7 @@ App.components.pictureUploader = ->
       , 200)
 
     addPictureThumb: (result) ->
-      picture = $ _.template(@pictureThumb, result)
+      picture = $ _.template(@pictureThumb)(result)
       @picturesList.prepend picture
       App.mediator.publish 'components:start', picture
 

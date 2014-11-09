@@ -2,7 +2,7 @@ nav.pagination { display: none; }  // We are using infinite scroll
 
 .list-item {
   clear: both;
-  padding: 15px 0;
+  padding: 1em 0;
   border-bottom: 1px solid $list-item-separator-color;
 
   &:hover { background: $dark-white; }
@@ -22,6 +22,10 @@ nav.pagination { display: none; }  // We are using infinite scroll
     i { margin: 2px 0; }
   }
 
+  &.hidden {
+    opacity: 0.4;
+  }
+
   &.small {
     .item-avatar, img {
       font-size: 30px;
@@ -31,7 +35,7 @@ nav.pagination { display: none; }  // We are using infinite scroll
     }
 
     .item {
-      width: 400px;
+      width: 385px;
     }
 
     .item-excerpt { font-size: 0.95em; }
@@ -291,3 +295,39 @@ nav.pagination { display: none; }  // We are using infinite scroll
   .index-map .location .map { height: 500px; }
 }
 
+.list-editor {
+  .add-new-btn {
+    @include button;
+    margin-bottom: 20px;
+  }
+
+  .list {
+    height: 400px;
+    overflow-y: scroll;
+  }
+
+  .list-item {
+    background-color: $meppit-light-blue;
+    padding: 15px 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+
+    label {
+      color: $grey;
+      margin-top: 10px;
+
+      &.checkbox-label {
+        color: $ultra-dark-grey;
+      }
+    }
+
+    .inline-field, {
+      display: inline-block;
+    }
+
+    .list-item-metadata-btn, .list-item-remove-btn {
+      @include button;
+      padding: 3px 9px;
+    }
+  }
+}

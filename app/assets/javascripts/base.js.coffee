@@ -14,23 +14,35 @@ asyncFn = (fn) ->
   , 0)
   deferred
 
+randomId = ->
+  Math.random().toString(36).substring(7)
+
+getRef = (container) ->
+  href = container.attr('href')
+  if href?.length > 0 && href isnt "#" then href else undefined
+
+compId = (name, container) ->
+  _id = container.attr('id') || getRef(container) || randomId(container)
+  "#{name}:#{_id}"
+
 # components namespaces
-components = { _instances: {} }
+components =
+  _instances: {}
+
+  _getInstanceFor: (name, container) ->
+    components._instances[compId(name, container)]
+
+  _getInstancesFor: (container) ->
+    comps = container.data('components')?.split ' '
+    _.without (_.map comps, (name) -> components._getInstanceFor name, container)
+      , undefined
 
 componentBuilder = (name, container) ->
   options: ->
     container.data("#{name.toLowerCase()}-options")
 
-  randomId: ->
-    Math.random().toString(36).substring(7)
-
-  getRef: ->
-    href = container.attr('href')
-    if href?.length > 0 && href isnt "#" then href else undefined
-
   compId: ->
-    _id = container.attr('id') || @getRef() || @randomId()
-    "#{name}:#{_id}"
+    compId name, container
 
   start: ->
     if not components[name]?
@@ -52,6 +64,7 @@ componentBuilder = (name, container) ->
       target.on evt, fn.bind(_comp)
 
     _comp.initialize()
+    components._instances[_comp.identifier] = _comp
     _comp
 
 componentsManager = (container) ->
@@ -92,6 +105,18 @@ spinner = {
 
   hide: -> @spinner?.remove()
 }
+
+# declare jQuery functions
+(($) ->
+  $.fn.setComponentValue = (name, value) ->
+    if value is undefined
+      value = name
+      _.each components._getInstancesFor(this), (instance) ->
+        instance.setValue? value
+    else
+      components._getInstanceFor(name, this)?.setValue? value
+    this
+)(jQuery)
 
 # setup global App namesmpace
 window.App =

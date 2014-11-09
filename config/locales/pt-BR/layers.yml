@@ -1,0 +1,28 @@
+pt-BR:
+  layers:
+    list_title: 'Camadas'
+    add: 'Adicionar camada'
+    empty: 'Não há camadas ainda para este mapa'
+    unnamed: 'Layer sem nome'
+    others: 'Outros'
+
+    invalid:
+      empty_rule: 'Você deve fornecer uma regra para a camada'
+      empty_fill_color: "Você deve fornecer uma cor de preenchimento para a camada"
+      empty_stroke_color: "Você deve fornecer uma cor de contorno para a camada"
+
+    title:
+      add: 'Adicionar nova camada'
+      remove: 'Remover essa camada'
+      data: 'Exibir dados da camada'
+      fill_color: 'Selecionar a cor de preenchimento'
+      stroke_color: 'Selecionar a cor de contorno'
+
+    data:
+      name: 'Nome'
+      visible: 'Visível'
+      color: 'Cor'
+      fill_color: 'Cor de preenchimento'
+      stroke_color: 'Cor de contorno'
+      rule: 'Regra'
+      tags: 'Tags'

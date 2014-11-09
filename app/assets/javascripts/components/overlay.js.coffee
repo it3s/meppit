@@ -13,6 +13,6 @@ App.components.overlay = ->
     @render()
 
   render: ->
-    @overlay = $ _.template(overlayTemplate, @attr)
+    @overlay = $ _.template(overlayTemplate)(@attr)
     @container.css 'position', 'relative'
     @container.prepend @overlay

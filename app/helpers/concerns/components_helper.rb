@@ -66,6 +66,21 @@ module Concerns
       }
     end
 
+    def layers_manager_data
+      {
+        tags_autocomplete_url: '', #TODO
+        remove_title: t("layers.title.remove"),
+        data_title: t("layers.title.data"),
+        fill_color_title: t("layers.title.fill_color"),
+        stroke_color_title: t("layers.title.stroke_color"),
+        unnamed_layer: t("layers.unnamed"),
+        data_name: t("layers.data.name"),
+        data_visible: t("layers.data.visible"),
+        data_color: t("layers.data.color"),
+        data_tags: t("layers.data.tags"),
+      }
+    end
+
     def map_data
       # Data used by map
       data = {
@@ -91,6 +106,7 @@ module Concerns
     def map_options(obj)
       obj_type = object_type obj
       opts = {
+        layers: obj.try(:layers_values),
         geojson: obj.location_geohash,
         featuresIds: (obj.try(:geo_data_ids) || obj.id || nil),
         featureURL: "\#{baseURL}#{obj_type}/\#{id}/",

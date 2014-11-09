@@ -1,0 +1,21 @@
+<h2><%= t 'layers.list_title' %></h2>
+<ul class="layers-list" data-components="layers">
+  <% for layer in object.layers_values %>
+    <li class="list-item layer <% if not layer[:visible] %>hidden<% end %>" data-layer="<%= layer.to_json %>">
+      <div class="layer-header">
+        <div class="layer-color-preview"></div>
+        <h3 class="layer-name-preview item-title">
+          <%= layer[:name] %>
+        </h3>
+      </div>
+    </li>
+  <% end %>
+  <li class="list-item layer" data-layer="<%= {id: -1, visible: true, fill_color: '#0000ff', stroke_color: '#0000ff'}.to_json %>">
+      <div class="layer-header">
+        <div class="layer-color-preview"></div>
+        <h3 class="layer-name-preview item-title">
+          <%= t 'layers.others' %>
+        </h3>
+      </div>
+    </li>
+</ul>

@@ -105,8 +105,8 @@ relationItem = ->
     if @metadata.status is 'hidden' then @metadata.show() else @metadata.hide()
 
   bindEvents: ->
-    @el.find('.relation-remove-btn').click @onRemove.bind(this)
-    @el.find('.relation-metadata-btn').click @toggleMetadata.bind(this)
+    @el.find('.list-item-remove-btn').click @onRemove.bind(this)
+    @el.find('.list-item-metadata-btn').click @toggleMetadata.bind(this)
 
     @targetEl.change @onChange.bind(this)
     @typeEl.change @onChange.bind(this)
@@ -117,7 +117,7 @@ relationItem = ->
 App.components.editRelations = ->
   attributes: ->
     itemsContainer: @container.find('.relations-list')
-    addButton     : @container.find('.add-new-relation')
+    addButton     : @container.find('.add-new-btn')
     relationsInput: @container.find('.relations-value')
     items         : []
     counter       : 0
