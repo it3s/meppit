@@ -31,6 +31,10 @@ class ActivityListener
     save_activity payload, :object, :comment
   end
 
+  def flagged(payload)
+    save_activity payload, :object, :flag
+  end
+
   private
 
     def save_activity(params, key, action)

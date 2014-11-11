@@ -1,0 +1,101 @@
+.flags {
+  h2 { margin-bottom: 10px; }
+
+  select {
+    width: 355px;
+  }
+
+  input[type=submit] {
+    float: right;
+  }
+}
+
+.flags-list-container {
+  margin-bottom: 20px;
+
+  h2 {
+    color: $grey;
+    padding-bottom: 10px;
+    border-bottom: solid 1px $soft-grey;
+  }
+
+  .empty {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    color: $grey;
+    margin-top: 20px;
+  }
+  .flag {
+    background-color: $meppit-light-blue;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 5px 0;
+    color: $dark-grey;
+
+    a { color: $dark-grey; }
+
+    .flag-headline {
+      margin-bottom: 5px;
+    }
+
+    .flag-avatar {
+      display: inline-block;
+      position: relative;
+      margin-right: 5px;
+
+      img {
+        width: 22px;
+        height: 22px;
+      }
+    }
+
+    .flag-name {
+      display: inline-block;
+      color: $grey;
+      font-weight: bold;
+    }
+
+    .flag-time {
+      display: inline-block;
+      font-size: 0.8em;
+      color: $grey;
+      margin-left: 10px;
+    }
+
+    .flag-user {
+      display: inline-block;
+      margin-left: 20px;
+      font-size: 0.9em;
+      color: $grey;
+
+      .user-name { font-weight: bold; }
+    }
+
+    .flag-reason {
+      display: inline-block;
+      margin-left: 20px;
+      background: lighten($meppit-light-blue, 10%);
+      font-size: 0.9em;
+      font-weight: bold;
+      padding: 2px 4px;
+      border: solid 1px $soft-grey;
+      border-radius: 4px;
+    }
+
+    .flag-comment-container {
+      margin-top: 10px;
+      margin-left: 20px;
+
+      .comment {
+        border-left: solid 2px $soft-grey;
+        padding-left: 10px;
+      }
+    }
+
+    .mark-as-solved {
+      @include blue-button-with-border;
+      float: right;
+    }
+  }
+}

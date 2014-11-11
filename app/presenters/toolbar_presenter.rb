@@ -25,12 +25,16 @@ class ToolbarPresenter
     when 'user'
       current_user == object ? [:edit, :settings] : [:star, :flag]
     when 'geo_data'
-      (current_user ? [:edit] : []) + [:star, :history, :flag, :delete]
+      (current_user ? [:edit] : []) + [:star, :history, :flag] + (can_delete? ? [:delete] : [])
     when 'map'
-      (current_user ? [:edit] : []) + [:star, :history, :flag, :delete]
+      (current_user ? [:edit] : []) + [:star, :history, :flag] + (can_delete? ? [:delete] : [])
     else
       available_tools
     end
+  end
+
+  def can_delete?
+    current_user && current_user.admin?
   end
 
   # Build a list of OpenStruct with the options for each of the selected tools
@@ -84,18 +88,27 @@ class ToolbarPresenter
     end
 
     def _flag_tool
-      { icon: :flag, title: t('toolbar.flag'), url: "" }
+      { icon: :flag, title: t('toolbar.flag'), url: ctx.new_flag_path,
+        component: _modal_component }
     end
 
     def _delete_tool
-      { icon: :'trash-o', title: t('toolbar.delete'), url: "" }
+      { icon: :'trash-o', title: t('toolbar.delete'), url: ctx.confirm_deletion_admin_path(current_user),
+        component: _modal_component }
     end
 
     def _follow_component
       opts_json = ctx.follow_options_for object
       {
-        :type => "follow loginRequired",
-        :opts => "data-follow-options=#{ opts_json } "
+        type: "follow loginRequired",
+        opts: "data-follow-options=#{ opts_json } "
+      }
+    end
+
+    def _modal_component
+      {
+        type: "modal loginRequired",
+        opts: "data-modal-options=#{ {remote: true, login_required: true}.to_json } "
       }
     end
 end

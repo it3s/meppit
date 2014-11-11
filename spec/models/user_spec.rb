@@ -145,4 +145,17 @@ describe User do
       user.settings
     end
   end
+
+  describe "#admin?" do
+    let!(:user) { FactoryGirl.create :user }
+
+    context "is not an admin" do
+      it { expect(user.admin?).to be false }
+    end
+
+    context "is admin" do
+      let!(:admin) { Admin.create(user: user) }
+      it { expect(user.admin?).to be true }
+    end
+  end
 end

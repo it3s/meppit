@@ -3,6 +3,11 @@
 <template id="settings-tooltip-tpl">
   <ul class="settings-tooltip">
 
+    <% if current_user && current_user.admin? %>
+    <li><%= link_to icon('wrench', t('header.settings_menu.moderations')), admin_path(current_user), class: 'settings-item' %></li>
+
+    <% end %>
+
     <% if current_user %>
       <li><%= link_to icon('cog', t('header.settings_menu.settings')), settings_path(current_user), class: 'settings-item' %></li>
     <% end %>

@@ -1,0 +1,25 @@
+pt-BR:
+  flags:
+
+    title: 'Denunciar Conteúdo'
+
+    reason_label: 'Motivo'
+
+    message_sent: 'Mensagem enviada a um moderador.'
+
+    reason:
+      deletion: 'Requisitar Deleção'
+      spam: 'Spam'
+      inappropriate: 'Inapropriado'
+      tos_violation: 'Violação de Termos de Serviço'
+      copyright: 'Violação de Copyright'
+      wrong_info: 'Informação Errada'
+      other: 'Outro'
+
+    list:
+      solved: 'Resolvido'
+      unsolved: 'Não-resolvido'
+      mark_as_solved: 'Marcar como Resolvido'
+
+      empty: 'Lista Vazia'
+

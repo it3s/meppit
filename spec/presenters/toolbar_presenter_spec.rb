@@ -11,7 +11,8 @@ describe ToolbarPresenter do
 
   def mock_context(type=:in)
     _user = (type == :in) ? user : nil
-    double('Context', current_user: _user, t: '', url_for: '', request: double('request', path: ''), follow_options_for: '{}', settings_path: '')
+    double('Context', current_user: _user, t: '', url_for: '', request: double('request', path: ''),
+           follow_options_for: '{}', settings_path: '', new_flag_path: '', confirm_deletion_admin_path: '')
   end
 
   def tp(obj, ctx=nil)
@@ -47,24 +48,29 @@ describe ToolbarPresenter do
     context "geo_data" do
       context "logged in" do
         let(:presenter) { tp geo_data, logged_in }
-        it { expect(presenter.select_tools).to eq [:edit, :star, :history, :flag, :delete] }
+        it { expect(presenter.select_tools).to eq [:edit, :star, :history, :flag] }
+
+        context "admin" do
+          before { Admin.create(user: user) }
+          it { expect(presenter.select_tools).to eq [:edit, :star, :history, :flag, :delete] }
+        end
       end
 
       context "logged out" do
         let(:presenter) { tp geo_data, logged_out }
-        it { expect(presenter.select_tools).to eq [:star, :history, :flag, :delete] }
+        it { expect(presenter.select_tools).to eq [:star, :history, :flag] }
       end
     end
 
     context "map" do
       context "logged in" do
         let(:presenter) { tp map, logged_in }
-        it { expect(presenter.select_tools).to eq [:edit, :star, :history, :flag, :delete] }
+        it { expect(presenter.select_tools).to eq [:edit, :star, :history, :flag] }
       end
 
       context "logged out" do
         let(:presenter) { tp map, logged_out }
-        it { expect(presenter.select_tools).to eq [:star, :history, :flag, :delete] }
+        it { expect(presenter.select_tools).to eq [:star, :history, :flag] }
       end
     end
 

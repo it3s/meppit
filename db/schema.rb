@@ -11,13 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141019190542) do
+ActiveRecord::Schema.define(version: 20141030173752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "hstore"
-  enable_extension "uuid-ossp"
   enable_extension "postgis"
+  enable_extension "hstore"
   enable_extension "pg_trgm"
   enable_extension "fuzzystrmatch"
 
@@ -37,6 +36,14 @@ ActiveRecord::Schema.define(version: 20141019190542) do
   add_index "activities", ["owner_id", "owner_type"], :name => "index_activities_on_owner_id_and_owner_type"
   add_index "activities", ["recipient_id", "recipient_type"], :name => "index_activities_on_recipient_id_and_recipient_type"
   add_index "activities", ["trackable_id", "trackable_type"], :name => "index_activities_on_trackable_id_and_trackable_type"
+
+  create_table "admins", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "admins", ["user_id"], :name => "index_admins_on_user_id"
 
   create_table "authentications", force: true do |t|
     t.integer  "user_id",    null: false
@@ -69,6 +76,19 @@ ActiveRecord::Schema.define(version: 20141019190542) do
   add_index "contributings", ["contributable_id", "contributable_type"], :name => "index_contributings_on_contributable_id_and_contributable_type"
   add_index "contributings", ["contributor_id"], :name => "index_contributings_on_contributor_id"
 
+  create_table "flags", force: true do |t|
+    t.integer  "user_id",                        null: false
+    t.string   "reason",                         null: false
+    t.text     "comment"
+    t.boolean  "solved",         default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "flaggable_id"
+    t.string   "flaggable_type"
+  end
+
+  add_index "flags", ["flaggable_id", "flaggable_type"], :name => "index_flags_on_flaggable_id_and_flaggable_type"
+
   create_table "followings", force: true do |t|
     t.integer  "follower_id"
     t.integer  "followable_id"
@@ -81,18 +101,16 @@ ActiveRecord::Schema.define(version: 20141019190542) do
   add_index "followings", ["follower_id"], :name => "index_followings_on_follower_id"
 
   create_table "geo_data", force: true do |t|
-    t.string   "name",                                                                     null: false
+    t.string   "name",                                                                  null: false
     t.text     "description"
     t.hstore   "contacts"
-    t.text     "tags",                                                     default: [],                 array: true
+    t.text     "tags",                                                     default: [],              array: true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.spatial  "location",        limit: {:srid=>4326, :type=>"geometry"}
     t.json     "additional_info"
-    t.boolean  "is_featured",                                              default: false, null: false
   end
 
-  add_index "geo_data", ["is_featured"], :name => "index_geo_data_on_is_featured"
   add_index "geo_data", ["location"], :name => "index_geo_data_on_location", :spatial => true
   add_index "geo_data", ["tags"], :name => "index_geo_data_on_tags"
 
@@ -134,19 +152,17 @@ ActiveRecord::Schema.define(version: 20141019190542) do
   add_index "mappings", ["map_id"], :name => "index_mappings_on_map_id"
 
   create_table "maps", force: true do |t|
-    t.string   "name",                             null: false
+    t.string   "name",                          null: false
     t.text     "description"
     t.hstore   "contacts"
-    t.text     "tags",             default: [],                 array: true
+    t.text     "tags",             default: [],              array: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "administrator_id",                 null: false
+    t.integer  "administrator_id",              null: false
     t.json     "additional_info"
-    t.boolean  "is_featured",      default: false, null: false
   end
 
   add_index "maps", ["administrator_id"], :name => "index_maps_on_administrator_id"
-  add_index "maps", ["is_featured"], :name => "index_maps_on_is_featured"
   add_index "maps", ["tags"], :name => "index_maps_on_tags"
 
   create_table "notifications", force: true do |t|

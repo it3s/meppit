@@ -1,0 +1,24 @@
+en:
+  flags:
+
+    title: 'Flag Content'
+
+    reason_label: 'Reason'
+
+    message_sent: 'Message sent to a moderator.'
+
+    reason:
+      deletion: 'Request for Deletion'
+      spam: 'Spam'
+      inappropriate: 'Inappropriate'
+      tos_violation: 'Terms of Service Violation'
+      copyright: 'Copyright Violation'
+      wrong_info: 'Wrong Information'
+      other: 'Other'
+
+    list:
+      solved: 'Solved'
+      unsolved: 'Unsolved'
+      mark_as_solved: 'Mark as Solved'
+
+      empty: 'Empty List'

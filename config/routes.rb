@@ -64,6 +64,11 @@ Meppit::Application.routes.draw do
       get "activity" => "activities#user_activity"
       patch :upload_avatar
       resource :settings, only: [:show, :update]
+
+      resource :admin, only: [:show] do
+        get  :confirm_deletion
+        post :delete_object
+      end
     end
 
     collection do
@@ -110,6 +115,10 @@ Meppit::Application.routes.draw do
   resources :imports, only: [:create, :edit, :update] do
     get  :example, on: :collection
     post :load,    on: :member
+  end
+
+  resources :flags, only: [:new, :create] do
+    post :mark_as_solved, on: :member
   end
 
   namespace :api do

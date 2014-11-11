@@ -9,3 +9,4 @@ en:
       delete:  'deleted'
       follow:  'followed'
       comment: 'commented'
+      flag:    'denounced'

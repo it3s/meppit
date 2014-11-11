@@ -17,6 +17,7 @@ en:
         email: 'E-mail'
         password: 'Password'
         description: 'Description'
+        comment: 'Comment'
 
       user:
         new:

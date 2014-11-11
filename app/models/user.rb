@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   include Follower
   include Searchable
   include PublicActivity::Common
+  include Flaggable
 
   mount_uploader :avatar, AvatarUploader
   process_in_background :avatar
@@ -60,6 +61,10 @@ class User < ActiveRecord::Base
     @settings ||= Settings.new(self)
   end
 
+  def admin?
+    Admin.where(user_id: id).exists?
+  end
+
   private
 
     def set_auth_token
@@ -68,6 +73,6 @@ class User < ActiveRecord::Base
     end
 
     def generate_auth_token
-      SecureRandom.uuid.gsub /\-/, ''
+      SecureRandom.uuid.gsub(/\-/, '')
     end
 end

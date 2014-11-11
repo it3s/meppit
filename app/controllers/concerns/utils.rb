@@ -40,9 +40,12 @@ module Utils
   end
 
   def find_polymorphic_object
-    resource, id = request.path.split('/')[1..2]
-    _model = resource.classify.constantize
-    instance_variable_set "@#{_model.name.underscore}", _model.find(id)  # set var and return the obj
+    _obj = _find_polymorphic_object_from_uri request
+    instance_variable_set "@#{_obj.class.name.underscore}", _obj  # set var and return the obj
+  end
+
+  def find_object_from_referer
+    _find_polymorphic_object_from_uri URI(request.referer)
   end
 
   def find_polymorphic_model
@@ -126,5 +129,13 @@ module Utils
     end
     activities
   end
+
+  protected
+
+    def _find_polymorphic_object_from_uri(uri)
+      resource, id = uri.path.split('/')[1..2]
+      _model = resource.classify.constantize
+      _model.find(id)
+    end
 end
 
