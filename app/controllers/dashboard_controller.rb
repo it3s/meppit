@@ -2,6 +2,7 @@ class DashboardController < ApplicationController
   before_action :require_login,    only: [:dashboard]
   before_action :activities_list,  only: [:dashboard]
   before_action :maps_list,        only: [:dashboard]
+  before_action :unsolved_flags_list,        only: [:dashboard]
 
   def dashboard
   end
@@ -16,4 +17,7 @@ class DashboardController < ApplicationController
       @activities ||= news_feed_results
     end
 
+    def unsolved_flags_list
+      @unsolved_flags ||= Flag.includes(:flaggable, :user).unsolved
+    end
 end

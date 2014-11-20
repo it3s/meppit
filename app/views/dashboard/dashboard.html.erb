@@ -7,6 +7,14 @@
     </section>
   </div>
   <div class="side-pane">
+    <% if current_user.admin? %>
+    <section class="moderation">
+      <h2><%= t 'dashboard.panes.moderation.title' %></h2>
+      <div id="moderation" data-components="list">
+        <%= render 'flags/list', flags: @unsolved_flags, type: 'unsolved' %>
+      </div>
+    </section>
+    <% end %>
     <section class="contributions">
       <h2><%= t 'dashboard.panes.maps.title' %></h2>
       <div id="contributions" data-components="list">

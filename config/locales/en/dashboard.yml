@@ -3,3 +3,5 @@ en:
     panes:
       maps:
         title: 'Maps you contribute to'
+      moderation:
+        title: 'Moderation'

@@ -3,3 +3,5 @@ pt-BR:
     panes:
       maps:
         title: 'Mapas para os quais contribui'
+      moderation:
+        title: 'Moderação'
