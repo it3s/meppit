@@ -12,7 +12,8 @@ feature "frontpage"  do
   scenario { expect(page).to have_selector '.marketing-section' }
   scenario { expect(page).to have_selector '.featured-maps' }
   scenario { expect(page).to have_selector '.partners' }
-  scenario { expect(page).to have_selector '.flexslider[data-components=flexslider]' }
+  scenario { expect(page).to have_selector '.testimonials' }
+  scenario { expect(page).to have_selector '.testimonials .flexslider[data-components=flexslider]' }
 end
 
 feature 'Sign in' do
