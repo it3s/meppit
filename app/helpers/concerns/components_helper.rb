@@ -136,6 +136,10 @@ module Concerns
       end
     end
 
+    def flag_reason_options
+      Flag.reason_choices.map { |reason| [t("flags.reason.#{reason}"), reason] }
+    end
+
     private
 
       def _hash_with_humanized_keys(hash)

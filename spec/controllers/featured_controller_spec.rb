@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe FeaturedController do
-  #TODO: refactor to user de real implementation of `admin?' to check
-  #      permission
   let(:user) { FactoryGirl.create :user, id: 2}
   let(:geo_data) { FactoryGirl.create :geo_data }
 
@@ -16,49 +14,55 @@ describe FeaturedController do
   end
 
   describe "POST create" do
-    it "adds as featured" do
-      expect(geo_data.featured?).to eq false
-      post :create, params
-      expect(response.header['Content-Type']).to match 'application/json'
-      expect(response.body).to match featured_response
-      expect(geo_data.reload.featured?).to eq true
-    end
+    context "admin" do
+      before { Admin.create(user: user) }
+      it "adds as featured" do
+        expect(geo_data.featured?).to eq false
+        post :create, params
+        expect(response.header['Content-Type']).to match 'application/json'
+        expect(response.body).to match featured_response
+        expect(geo_data.reload.featured?).to eq true
+      end
 
-    it "do not creates duplicated 'featured'" do
-      expect(geo_data.featured?).to eq false
-      expect(Featured.count).to eq 0
+      it "do not creates duplicated 'featured'" do
+        expect(geo_data.featured?).to eq false
+        expect(Featured.count).to eq 0
 
-      post :create, params
-      expect(response.body).to match featured_response
-      expect(geo_data.reload.featured?).to eq true
-      expect(Featured.count).to eq 1
+        post :create, params
+        expect(response.body).to match featured_response
+        expect(geo_data.reload.featured?).to eq true
+        expect(Featured.count).to eq 1
 
-      post :create, params
-      expect(Featured.count).to eq 1
+        post :create, params
+        expect(Featured.count).to eq 1
+      end
     end
   end
 
   describe "DELETE destroy" do
-    it "sets as not featured" do
-      geo_data.featured = true
-      expect(geo_data.featured?).to eq true
-      expect(Featured.count).to eq 1
+    context "admin" do
+      before { Admin.create(user: user) }
+      it "sets as not featured" do
+        geo_data.featured = true
+        expect(geo_data.featured?).to eq true
+        expect(Featured.count).to eq 1
 
-      delete :destroy, params
+        delete :destroy, params
 
-      expect(response.header['Content-Type']).to match 'application/json'
-      expect(response.body).to match not_featured_response
-      expect(geo_data.reload.featured?).to eq false
-      expect(Featured.count).to eq 0
-    end
+        expect(response.header['Content-Type']).to match 'application/json'
+        expect(response.body).to match not_featured_response
+        expect(geo_data.reload.featured?).to eq false
+        expect(Featured.count).to eq 0
+      end
 
-    it "Do nothing if there is no matching following" do
-      delete :destroy, params
+      it "Do nothing if there is no matching following" do
+        delete :destroy, params
 
-      expect(response.header['Content-Type']).to match 'application/json'
-      expect(response.body).to match not_featured_response
-      expect(geo_data.reload.featured?).to eq false
-      expect(Featured.count).to eq 0
+        expect(response.header['Content-Type']).to match 'application/json'
+        expect(response.body).to match not_featured_response
+        expect(geo_data.reload.featured?).to eq false
+        expect(Featured.count).to eq 0
+      end
     end
   end
 

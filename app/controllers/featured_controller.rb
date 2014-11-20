@@ -1,6 +1,6 @@
 class FeaturedController < ApplicationController
 
-  before_action :is_admin
+  before_action :require_admin
   before_action :find_featurable
 
   def create

@@ -26,11 +26,11 @@ class ApplicationController < ActionController::Base
     redirect_to login_path
   end
 
-  def is_admin
-    redirect_to(root_path, notice: t('access_denied')) unless current_user.admin?
-  end
+  protected
 
-  private
+    def require_admin
+      redirect_to(root_path, notice: t('access_denied')) unless current_user.admin?
+    end
 
     def set_locale
       I18n.locale = (current_user.try(:language) || session[:language] ||

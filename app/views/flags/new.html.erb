@@ -1,0 +1,16 @@
+<div class="site-page flags new">
+  <h2><%= t 'flags.title' %></h2>
+  <%= remote_form_for @flag, url: flags_path, method: 'post' do |f| %>
+
+    <p class="field">
+      <%= f.label t('flags.reason_label') %>
+      <%= f.select :reason, flag_reason_options %>
+    </p>
+
+    <%= f.input :comment, as: :text, input_html: { class: 'tinymce', 'data-components' => 'editor', 'data-editor-options' => '{"height":100}' } %>
+
+    <p>
+      <%= f.submit  t('save') %>
+    </p>
+  <% end %>
+</div>

@@ -1,0 +1,14 @@
+<div class="site-page admin">
+
+  <div class="admin-tabs" data-components="tabs">
+    <ul>
+      <li><a href="#flags"><%= icon "flag", t('admin.tabs.flags') %></a></li>
+    </ul>
+
+    <div class="tab-content" id="flags">
+      <%= render 'flags/list', flags: @unsolved_flags, type: 'unsolved' %>
+      <%= render 'flags/list', flags: @solved_flags, type: 'solved' %>
+    </div>
+  </div>
+
+</div>
