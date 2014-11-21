@@ -2,6 +2,9 @@ pt-BR:
   lists:
     select_all: 'Selecionar Todos'
 
+    buttons:
+      remove: 'Remover'
+      
     filters:
       title: 'Visualização e opções de filtragem'
       filtering_by: 'filtrando pelas palavras'
@@ -25,4 +28,3 @@ pt-BR:
         order: 'Ordem'
         asc: 'Ascendente'
         desc: 'Descendente'
-

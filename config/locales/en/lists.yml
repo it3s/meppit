@@ -2,6 +2,9 @@ en:
   lists:
     select_all: 'Select All'
 
+    buttons:
+      remove: 'Remove'
+
     filters:
       title: 'Visualization and filter options'
       filtering_by: 'filtering by tags'
@@ -25,7 +28,3 @@ en:
         order: 'Order'
         asc: 'Ascending'
         desc: 'Descending'
-
-
-
-

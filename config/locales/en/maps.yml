@@ -27,3 +27,9 @@ en:
       exists: "<b>%{target}</b> already on this map"
       explanation: "Select the content you want to insert in this map"
       invalid: "Invalid Data"
+
+    remove_geo_data:
+      title: "Remove data"
+      removed: "Removed <b>%{target}</b> from this map"
+      explanation: "Select the content you want to remove from this map"
+      invalid: "Invalid Data"

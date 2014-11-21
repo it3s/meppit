@@ -23,6 +23,10 @@ class ListItemPresenter
     object.id
   end
 
+  def identifier
+    ctx.identifier_for object
+  end
+
   def title
     ctx.truncate ctx.strip_tags(object.try(:name)), length: (size_ == :small ? 55 : 85)
   end
@@ -49,6 +53,8 @@ class ListItemPresenter
     case control_type_
     when :follow_button
       return ctx.render 'shared/follow_button', object: object unless object == ctx.current_user
+    when :remove_button
+      return ctx.render 'shared/remove_button', object: object, parent: parent if parent
     else
       return ctx.render 'shared/counters',
         presenter: CountersPresenter.new(object: object, ctx: ctx, size: (size_ == :small ? :small : :medium))

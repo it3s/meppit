@@ -96,10 +96,29 @@ class ObjectsController < ApplicationController
       end
     end
 
+    def remove_mapping_to(target_model)
+      target_ref = target_model.name.underscore
+      if target = target_model.find_by(id: params[target_ref.to_sym])
+        _mapping, msg = delete_mapping target
+        count_method = :"#{target_ref.pluralize}_count"
+        render json: {flash: flash_xhr(msg), count: current_object.send(count_method)}
+      else
+        msg = t("#{controller_name}.remove_#{target_ref}.invalid")
+        render json: {flash: flash_xhr(msg)}, status: :unprocessable_entity
+      end
+    end
+
     def create_mapping(target)
       add_method = :"add_#{target.class.name.underscore}"
       mapping = current_object.send add_method, target
       msg_type = mapping.id ? 'added' : 'exists'
       [mapping, t("#{controller_name}.#{add_method}.#{msg_type}", target: target.name)]
+    end
+
+    def delete_mapping(target)
+      remove_method = :"remove_#{target.class.name.underscore}"
+      mapping = current_object.send remove_method, target
+      msg_type = 'removed'
+      [mapping, t("#{controller_name}.#{remove_method}.#{msg_type}", target: target.name)]
     end
 end
