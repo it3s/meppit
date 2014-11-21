@@ -241,6 +241,28 @@ describe MapsController do
     end
   end
 
+  describe "POST remove_geo_data" do
+    before { login_user user }
+
+    context "success" do
+      it "removes geo_data from map" do
+        expect(map.geo_data_count).to eq(0)
+        map.add_geo_data geo_data
+        expect(map.geo_data_count).to eq(1)
+        post :remove_geo_data, {id: map.id, geo_data: geo_data.id}
+        expect(response.body).to eq({flash: "", count: 0}.to_json)
+      end
+    end
+
+    context "failure" do
+      it "returns invalid message" do
+        expect(controller).to receive(:flash_xhr).with I18n.t('maps.remove_geo_data.invalid')
+        post :remove_geo_data, {id: map.id, geo_data: nil}
+        expect(response.status).to eq 422
+      end
+    end
+  end
+
   describe "create_mapping" do
     before { controller.instance_variable_set "@map", map }
 

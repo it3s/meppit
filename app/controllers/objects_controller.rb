@@ -103,7 +103,7 @@ class ObjectsController < ApplicationController
         count_method = :"#{target_ref.pluralize}_count"
         render json: {flash: flash_xhr(msg), count: current_object.send(count_method)}
       else
-        msg = t("#{controller_name}.add_#{target_ref}.invalid")
+        msg = t("#{controller_name}.remove_#{target_ref}.invalid")
         render json: {flash: flash_xhr(msg)}, status: :unprocessable_entity
       end
     end
