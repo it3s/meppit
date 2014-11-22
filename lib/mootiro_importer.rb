@@ -44,15 +44,38 @@ module MootiroImporter
         activation_state: d[:is_active] ? 'active' : 'pending',
         contacts: (d[:contacts] || {}).compact,
         location: d[:geometry],
-        avatar: (d[:avatar] || '').split('/').last,
+        # avatar: (d[:avatar] || '').split('/').last,
         language: d[:language] == 'pt-br' ? 'pt-BR' : d[:language],
       )
       valid = user.valid?(:update)
       if valid
-        r = user.save(validate: false)
+        # TODO figure out how to do Avatar migration
+        user.save(validate: false)
+        MootiroOID.create content: user, oid: d[:oid]
         Admin.create(user: user) if d[:is_admin]
       end
       valid
+    end
+  end
+
+  def import_organization(d)
+    importation d[:oid] do
+      geo_data = GeoData.new(
+        name: d[:name],
+        description: d[:description] ? RDiscount.new(d[:description]).to_html : nil,
+        created_at: d[:created_at].to_date,
+        contacts: (d[:contacts] || {}).compact,
+        location: d[:geometry],
+      )
+      saved = geo_data.save
+      MootiroOID.creat content: geo_data, oid: d[:oid] if saved
+      saved
+      # "aditional_info": {
+      #     'target_audiences':  [ta.name for ta in obj.target_audiences.all() if ta],
+      #     'short_description': obj.short_description,
+      #     'creator': obj.creator.name if obj.creator else None,
+      # },
+      # 'tags': [tag.name for tag in obj.tags.all() if tag] + [c.get_translated_name() for c in obj.categories.all() if c],
     end
   end
 
