@@ -41,6 +41,7 @@
 
 # uploads
 /public/uploads
+/public/mootiro_media
 
 # vagrant
 .vagrant

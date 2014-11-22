@@ -42,6 +42,16 @@ module MootiroImporter
     d[:geometry] ? wkt_with_reversed_coords(d[:geometry]) : None
   end
 
+  def media_file(field)
+    fname = field.split('/').last
+    if fname
+      path = Rails.root.join('public', 'mootiro_media', fname)
+      File.open path
+    else
+      nil
+    end
+  end
+
   def importation(oid, &blk)
     valid = yield
     valid ? redis.del("mootiro:#{oid}") : enqueue_invalid(oid)
@@ -58,14 +68,13 @@ module MootiroImporter
         activation_state: d[:is_active] ? 'active' : 'pending',
         contacts: (d[:contacts] || {}).compact,
         location: parse_geometry(d),
-        # avatar: (d[:avatar] || '').split('/').last,
         language: d[:language] == 'pt-br' ? 'pt-BR' : d[:language],
       )
       valid = user.valid?(:update)
       if valid
-        # TODO figure out how to do Avatar migration
         user.save(validate: false)
         MootiroOID.create content: user, oid: d[:oid]
+        user.update_attributes(avatar: media_file(d[:avatar])) unless d[:avatar].blank?
         Admin.create(user: user) if d[:is_admin]
       end
       valid
