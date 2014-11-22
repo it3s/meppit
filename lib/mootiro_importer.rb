@@ -11,9 +11,14 @@ module MootiroImporter
     _redis ||= Redis.new(host: REDIS_HOST, port: REDIS_PORT) # , password: REDIS_PASS)
   end
 
+  IMPORT_LIST = ["usr", "org", "com"]
+  def should_import?(oid)
+    IMPORT_LIST.include?(oid[0...3])
+  end
+
   def import
     while oid = dequeue
-      if ["usr", "org"].include?(oid[0...3])
+      if should_import?(oid)
         data = JSON.parse redis.get("mootiro:#{oid}")
         send(:"import_#{data['mootiro_type']}", data.with_indifferent_access)
       end
@@ -86,6 +91,29 @@ module MootiroImporter
 
       additional_info = {}
       additional_info.merge! d[:target_audiences] unless d[:target_audiences].blank?
+      additional_info.merge! RDiscount.new(d[:short_description]).to_html unless d[:short_description].blank?
+      additional_info.merge! d[:creator] unless d[:creator].blank?
+
+      geo_data = GeoData.new(
+        name: d[:name],
+        description: d[:description] ? RDiscount.new(d[:description]).to_html : nil,
+        created_at: d[:created_at].to_date,
+        contacts: (d[:contacts] || {}).compact,
+        location: parse_geometry(d),
+        tags: d[:tags],
+        additional_info: additional_info,
+      )
+      saved = geo_data.save
+      MootiroOID.create content: geo_data, oid: d[:oid] if saved
+      saved
+    end
+  end
+
+  def import_community(d)
+    importation d[:oid] do
+
+      additional_info = {}
+      additional_info.merge! d[:population] unless d[:population].blank?
       additional_info.merge! RDiscount.new(d[:short_description]).to_html unless d[:short_description].blank?
       additional_info.merge! d[:creator] unless d[:creator].blank?
 
