@@ -13,7 +13,7 @@ module MootiroImporter
 
   def import
     while oid = dequeue
-      if oid.include?("usr_")
+      if ["usr", "org"].include?(oid[0...3])
         data = JSON.parse redis.get("mootiro:#{oid}")
         send(:"import_#{data['mootiro_type']}", data.with_indifferent_access)
       end
@@ -26,6 +26,20 @@ module MootiroImporter
 
   def enqueue_invalid(oid)
     redis.rpush "mootiro:invalid", oid
+  end
+
+  # Here be dragons! black magic all the way
+  COORD_REGEX =  /(-?\w+\.?\w+)\s(-?\w+\.?\w+)/
+  def wkt_with_reversed_coords(location)
+    loc_str = location.to_s
+    loc_str.scan(COORD_REGEX).each { |pair|
+      loc_str.gsub!("#{pair[0]} #{pair[1]}", "#{pair[1]} #{pair[0]}")
+    }
+    loc_str
+  end
+
+  def parse_geometry(d)
+    d[:geometry] ? wkt_with_reversed_coords(d[:geometry]) : None
   end
 
   def importation(oid, &blk)
@@ -43,7 +57,7 @@ module MootiroImporter
         created_at: d[:created_at].to_date,
         activation_state: d[:is_active] ? 'active' : 'pending',
         contacts: (d[:contacts] || {}).compact,
-        location: d[:geometry],
+        location: parse_geometry(d),
         # avatar: (d[:avatar] || '').split('/').last,
         language: d[:language] == 'pt-br' ? 'pt-BR' : d[:language],
       )
@@ -60,22 +74,24 @@ module MootiroImporter
 
   def import_organization(d)
     importation d[:oid] do
+
+      additional_info = {}
+      additional_info.merge! d[:target_audiences] unless d[:target_audiences].blank?
+      additional_info.merge! RDiscount.new(d[:short_description]).to_html unless d[:short_description].blank?
+      additional_info.merge! d[:creator] unless d[:creator].blank?
+
       geo_data = GeoData.new(
         name: d[:name],
         description: d[:description] ? RDiscount.new(d[:description]).to_html : nil,
         created_at: d[:created_at].to_date,
         contacts: (d[:contacts] || {}).compact,
-        location: d[:geometry],
+        location: parse_geometry(d),
+        tags: d[:tags],
+        additional_info: additional_info,
       )
       saved = geo_data.save
-      MootiroOID.creat content: geo_data, oid: d[:oid] if saved
+      MootiroOID.create content: geo_data, oid: d[:oid] if saved
       saved
-      # "aditional_info": {
-      #     'target_audiences':  [ta.name for ta in obj.target_audiences.all() if ta],
-      #     'short_description': obj.short_description,
-      #     'creator': obj.creator.name if obj.creator else None,
-      # },
-      # 'tags': [tag.name for tag in obj.tags.all() if tag] + [c.get_translated_name() for c in obj.categories.all() if c],
     end
   end
 
