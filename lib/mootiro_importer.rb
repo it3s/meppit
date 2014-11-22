@@ -11,7 +11,7 @@ module MootiroImporter
     _redis ||= Redis.new(host: REDIS_HOST, port: REDIS_PORT) # , password: REDIS_PASS)
   end
 
-  IMPORT_LIST = ["usr", "org", "com", "res"]
+  IMPORT_LIST = ["usr", "org", "com", "res", "ned", "cmt", "dis"]
   def should_import?(oid)
     IMPORT_LIST.include?(oid[0...3])
   end
@@ -55,6 +55,10 @@ module MootiroImporter
     else
       nil
     end
+  end
+
+  def model_from_oid(oid)
+    oid ? MootiroOID.where(oid).first.content : nil
   end
 
   def build_geo_data(d, &blk)
@@ -132,4 +136,34 @@ module MootiroImporter
       build_geo_data d
     end
   end
+
+  def import_need(d)
+    importation d[:oid] do
+      build_geo_data d do |geo_data|
+        geo_data.additional_info.merge! target_audiences: d[:target_audiences] unless d[:target_audiences].blank?
+      end
+    end
+  end
+
+  #==============================================================
+  # depends on others
+
+  # def import_comment(d)
+  #   importation d[:oid] do
+  #     comment = Comment.new(
+  #       user: model_from_oid(d[:author]),
+  #       comment: d[:comment],
+  #       created_at: d[:created_at].to_date,
+  #       content: model_from_oid(d[:content_object]),
+  #     )
+
+  #     saved = comment.save
+  #     MootiroOID.create content: comment, oid: d[:oid] if saved
+  #     saved
+  #   end
+  # end
+
+  # def import_discussion(d)
+  #   import_comment(d)
+  # end
 end
