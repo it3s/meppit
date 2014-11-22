@@ -11,7 +11,7 @@ module MootiroImporter
     _redis ||= Redis.new(host: REDIS_HOST, port: REDIS_PORT) # , password: REDIS_PASS)
   end
 
-  IMPORT_LIST = ["usr", "org", "com"]
+  IMPORT_LIST = ["usr", "org", "com", "res"]
   def should_import?(oid)
     IMPORT_LIST.include?(oid[0...3])
   end
@@ -57,6 +57,31 @@ module MootiroImporter
     end
   end
 
+  def build_geo_data(d, &blk)
+    importation d[:oid] do
+
+      additional_info = {}
+      additional_info.merge! short_description: RDiscount.new(d[:short_description]).to_html unless d[:short_description].blank?
+      additional_info.merge! creator: d[:creator] unless d[:creator].blank?
+
+      geo_data = GeoData.new(
+        name: d[:name],
+        description: d[:description] ? RDiscount.new(d[:description]).to_html : nil,
+        created_at: d[:created_at].to_date,
+        contacts: (d[:contacts] || {}).compact,
+        location: parse_geometry(d),
+        tags: d[:tags],
+        additional_info: additional_info,
+      )
+      yield geo_data if blk.present?
+
+      saved = geo_data.save
+
+      MootiroOID.create content: geo_data, oid: d[:oid] if saved
+      saved
+    end
+  end
+
   def importation(oid, &blk)
     valid = yield
     valid ? redis.del("mootiro:#{oid}") : enqueue_invalid(oid)
@@ -88,48 +113,23 @@ module MootiroImporter
 
   def import_organization(d)
     importation d[:oid] do
-
-      additional_info = {}
-      additional_info.merge! d[:target_audiences] unless d[:target_audiences].blank?
-      additional_info.merge! RDiscount.new(d[:short_description]).to_html unless d[:short_description].blank?
-      additional_info.merge! d[:creator] unless d[:creator].blank?
-
-      geo_data = GeoData.new(
-        name: d[:name],
-        description: d[:description] ? RDiscount.new(d[:description]).to_html : nil,
-        created_at: d[:created_at].to_date,
-        contacts: (d[:contacts] || {}).compact,
-        location: parse_geometry(d),
-        tags: d[:tags],
-        additional_info: additional_info,
-      )
-      saved = geo_data.save
-      MootiroOID.create content: geo_data, oid: d[:oid] if saved
-      saved
+      build_geo_data d do |geo_data|
+        geo_data.additional_info.merge! target_audiences: d[:target_audiences] unless d[:target_audiences].blank?
+      end
     end
   end
 
   def import_community(d)
     importation d[:oid] do
-
-      additional_info = {}
-      additional_info.merge! d[:population] unless d[:population].blank?
-      additional_info.merge! RDiscount.new(d[:short_description]).to_html unless d[:short_description].blank?
-      additional_info.merge! d[:creator] unless d[:creator].blank?
-
-      geo_data = GeoData.new(
-        name: d[:name],
-        description: d[:description] ? RDiscount.new(d[:description]).to_html : nil,
-        created_at: d[:created_at].to_date,
-        contacts: (d[:contacts] || {}).compact,
-        location: parse_geometry(d),
-        tags: d[:tags],
-        additional_info: additional_info,
-      )
-      saved = geo_data.save
-      MootiroOID.create content: geo_data, oid: d[:oid] if saved
-      saved
+      build_geo_data d do |geo_data|
+        geo_data.additional_info.merge! population: d[:population] unless d[:population].blank?
+      end
     end
   end
 
+  def import_resource(d)
+    importation d[:oid] do
+      build_geo_data d
+    end
+  end
 end
