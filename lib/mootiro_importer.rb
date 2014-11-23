@@ -69,6 +69,10 @@ module MootiroImporter
     mootiro_oid ? mootiro_oid.content : nil
   end
 
+  def default_user
+    User.where(name: "IT3S Dev").first
+  end
+
   def build_geo_data(d, &blk)
     importation d[:oid] do
 
@@ -170,7 +174,7 @@ module MootiroImporter
         description: d[:description] ? RDiscount.new(d[:description]).to_html : nil,
         created_at: d[:created_at].to_date,
         contacts: (d[:contacts] || {}).compact,
-        administrator: model_from_oid(d[:creator]),
+        administrator: d[:creator] ? model_from_oid(d[:creator]) : default_user,
         tags: d[:tags],
         additional_info: additional_info,
         migrated_info: {
@@ -294,7 +298,7 @@ module MootiroImporter
           image: media_file(d[:file]),
           description: d[:subtitle],
           content: model_from_oid(d[:content_object]),
-          author: User.where(name: "IT3S Dev").first,
+          author: default_user,
         )
 
         saved = picture.save
