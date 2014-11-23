@@ -11,7 +11,7 @@ module MootiroImporter
     _redis ||= Redis.new(host: REDIS_HOST, port: REDIS_PORT) # , password: REDIS_PASS)
   end
 
-  IMPORT_LIST = ["usr", "org", "com", "res", "ned", "cmt", "dis"]
+  IMPORT_LIST = ["usr", "org", "com", "res", "ned", "pro", "cmt", "dis"]
   def should_import?(oid)
     IMPORT_LIST.include?(oid[0...3])
   end
@@ -58,7 +58,9 @@ module MootiroImporter
   end
 
   def model_from_oid(oid)
-    oid ? MootiroOID.where(oid).first.content : nil
+    return nil unless oid
+    mootiro_oid = MootiroOID.where(oid: oid).first
+    mootiro_oid ? mootiro_oid.content : nil
   end
 
   def build_geo_data(d, &blk)
@@ -142,6 +144,49 @@ module MootiroImporter
       build_geo_data d do |geo_data|
         geo_data.additional_info.merge! target_audiences: d[:target_audiences] unless d[:target_audiences].blank?
       end
+    end
+  end
+
+  def import_project(d)
+    importation d[:oid] do
+
+      additional_info = {}
+      additional_info.merge! short_description: RDiscount.new(d[:short_description]).to_html unless d[:short_description].blank?
+
+      map = Map.new(
+        name: d[:name],
+        description: d[:description] ? RDiscount.new(d[:description]).to_html : nil,
+        created_at: d[:created_at].to_date,
+        contacts: (d[:contacts] || {}).compact,
+        administrator: model_from_oid(d[:creator]),
+        tags: d[:tags],
+        additional_info: additional_info,
+        migrated_info: {
+          maptype: d[:maptype],
+          bbox: d[:bbox],
+          custom_bbox: d[:custom_bbox],
+          logo: d[:logo],
+          partners_logo: d[:partners_logo],
+        }
+      )
+
+      saved = map.save
+
+      if saved
+        MootiroOID.create(content: map, oid: d[:oid])
+
+        d[:contributors].each do |c|
+          contributor = model_from_oid(c)
+          Contributing.create(contributor: contributor, contributable: map) if contributor
+        end
+
+        d[:related_items].each do |oid|
+          item = model_from_oid(oid)
+          Mapping.create(geo_data: item, map: map) if item
+        end
+      end
+
+      saved
     end
   end
 
