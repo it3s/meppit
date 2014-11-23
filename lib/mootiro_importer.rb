@@ -6,9 +6,13 @@ module MootiroImporter
   REDIS_PORT = ENV['MOOTIRO_REDIS_PORT'] || 6379
   REDIS_PASS = ENV['MOOTIRO_REDIS_PASS'] || ''
 
-  _redis = nil
-  def redis
-    _redis ||= Redis.new(host: REDIS_HOST, port: REDIS_PORT) # , password: REDIS_PASS)
+  _redis_pool = nil
+  def redis_pool
+    _redis_pool ||= begin
+      ConnectionPool.new(size: 5, timeout: 5) do
+        Redis.new(host: REDIS_HOST, port: REDIS_PORT, password: REDIS_PASS)
+      end
+    end
   end
 
   IMPORT_LIST = ["usr", "org", "com", "res", "ned", "pro", "lay", "cmt", "dis",
@@ -20,18 +24,19 @@ module MootiroImporter
   def import
     while oid = dequeue
       if should_import?(oid)
-        data = JSON.parse redis.get("mootiro:#{oid}")
+        raw = redis_pool.with { |conn| conn.get("mootiro:#{oid}") }
+        data = JSON.parse raw
         send(:"import_#{data['mootiro_type']}", data.with_indifferent_access)
       end
     end
   end
 
   def dequeue
-    redis.lpop('mootiro:migrations')
+    redis_pool.with { |conn| conn.lpop('mootiro:migrations') }
   end
 
   def enqueue_invalid(oid)
-    redis.rpush "mootiro:invalid", oid
+    redis_pool.with { |conn| conn.rpush "mootiro:invalid", oid }
   end
 
   # Here be dragons! black magic all the way
@@ -91,7 +96,13 @@ module MootiroImporter
 
   def importation(oid, &blk)
     valid = yield
-    valid ? redis.del("mootiro:#{oid}") : enqueue_invalid(oid)
+    if valid
+      print '.'
+      redis_pool.with { |conn| conn.del("mootiro:#{oid}") }
+    else
+      print 'F'
+      enqueue_invalid(oid)
+    end
   end
 
   def import_user(d)
