@@ -11,7 +11,7 @@ module MootiroImporter
     _redis ||= Redis.new(host: REDIS_HOST, port: REDIS_PORT) # , password: REDIS_PASS)
   end
 
-  IMPORT_LIST = ["usr", "org", "com", "res", "ned", "pro", "cmt", "dis"]
+  IMPORT_LIST = ["usr", "org", "com", "res", "ned", "pro", "lay", "cmt", "dis", "rel"]
   def should_import?(oid)
     IMPORT_LIST.include?(oid[0...3])
   end
@@ -67,7 +67,7 @@ module MootiroImporter
     importation d[:oid] do
 
       additional_info = {}
-      additional_info.merge! short_description: RDiscount.new(d[:short_description]).to_html unless d[:short_description].blank?
+      additional_info.merge! short_description: d[:short_description] unless d[:short_description].blank?
       additional_info.merge! creator: d[:creator] unless d[:creator].blank?
 
       geo_data = GeoData.new(
@@ -151,7 +151,7 @@ module MootiroImporter
     importation d[:oid] do
 
       additional_info = {}
-      additional_info.merge! short_description: RDiscount.new(d[:short_description]).to_html unless d[:short_description].blank?
+      additional_info.merge! short_description: d[:short_description] unless d[:short_description].blank?
 
       map = Map.new(
         name: d[:name],
@@ -190,25 +190,75 @@ module MootiroImporter
     end
   end
 
-  #==============================================================
-  # depends on others
+  def import_layer(d)
+    importation d[:oid] do
 
-  # def import_comment(d)
-  #   importation d[:oid] do
-  #     comment = Comment.new(
-  #       user: model_from_oid(d[:author]),
-  #       comment: d[:comment],
-  #       created_at: d[:created_at].to_date,
-  #       content: model_from_oid(d[:content_object]),
-  #     )
+      layer = Layer.new(
+        name: d[:name],
+        map: model_from_oid(d[:project]),
+        position: d[:position],
+        visible: d[:visible],
+        fill_color: d[:fill_color],
+        stroke_color: d[:stroke_color],
+        rule: d[:rule],
+      )
 
-  #     saved = comment.save
-  #     MootiroOID.create content: comment, oid: d[:oid] if saved
-  #     saved
-  #   end
-  # end
+      saved = layer.save
+      MootiroOID.create(content: layer, oid: d[:oid]) if saved
 
-  # def import_discussion(d)
-  #   import_comment(d)
-  # end
+      saved
+    end
+  end
+
+  def import_comment(d)
+    importation d[:oid] do
+      comment = Comment.new(
+        user: model_from_oid(d[:author]),
+        comment: d[:comment],
+        created_at: d[:created_at].to_date,
+        content: model_from_oid(d[:content_object]),
+      )
+
+      saved = comment.save
+      MootiroOID.create content: comment, oid: d[:oid] if saved
+      saved
+    end
+  end
+
+  def import_discussion(d)
+    import_comment(d)
+  end
+
+  def import_relation(d)
+    importation d[:oid] do
+      model1 = model_from_oid(d[:oid_1])
+      model2 = model_from_oid(d[:oid_2])
+      return false unless model1 && model2
+
+      relation = Relation.new(
+        related_ids:[ model1.id, model2.id ],
+        rel_type: d[:rel_type].underscore,
+        direction: d[:direction],
+        created_at: d[:created_at].to_date,
+      )
+      saved = relation.save
+
+      if saved
+        MootiroOID.create content: relation, oid: d[:oid]
+
+        m = d[:metadata]
+        RelationMetadata.create(
+          relation:    relation,
+          description: m['description'],
+          start_date:  m['start_date'].try(:to_date),
+          end_date:    m['end_date'].try(:to_date),
+          created_at:  d['created_at'].to_date,
+          currency:    m['currency'].try(:downcase),
+          amount:      m['value'],
+        )
+      end
+
+      saved
+    end
+  end
 end
