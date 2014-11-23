@@ -12,7 +12,7 @@ module MootiroImporter
   end
 
   IMPORT_LIST = ["usr", "org", "com", "res", "ned", "pro", "lay", "cmt", "dis",
-                 "rel", "sig"]
+                 "rel", "sig", "fil"]
   def should_import?(oid)
     IMPORT_LIST.include?(oid[0...3])
   end
@@ -272,6 +272,25 @@ module MootiroImporter
 
       saved = following.save
       MootiroOID.create content: following, oid: d[:oid] if saved
+      saved
+    end
+  end
+
+  def import_file(d)
+    importation d[:oid] do
+      begin
+        picture = Picture.new(
+          image: media_file(d[:file]),
+          description: d[:subtitle],
+          content: model_from_oid(d[:content_object]),
+          author: User.where(name: "IT3S Dev").first,
+        )
+
+        saved = picture.save
+        MootiroOID.create content: picture, oid: d[:oid] if saved
+      rescue Errno::ENOENT # file does not exist
+        saved = false
+      end
       saved
     end
   end
