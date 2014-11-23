@@ -11,7 +11,8 @@ module MootiroImporter
     _redis ||= Redis.new(host: REDIS_HOST, port: REDIS_PORT) # , password: REDIS_PASS)
   end
 
-  IMPORT_LIST = ["usr", "org", "com", "res", "ned", "pro", "lay", "cmt", "dis", "rel"]
+  IMPORT_LIST = ["usr", "org", "com", "res", "ned", "pro", "lay", "cmt", "dis",
+                 "rel", "sig"]
   def should_import?(oid)
     IMPORT_LIST.include?(oid[0...3])
   end
@@ -258,6 +259,19 @@ module MootiroImporter
         )
       end
 
+      saved
+    end
+  end
+
+  def import_signature(d)
+    importation d[:oid] do
+      following = Following.new(
+        follower: model_from_oid(d[:user]),
+        followable: model_from_oid(d[:content_object]),
+      )
+
+      saved = following.save
+      MootiroOID.create content: following, oid: d[:oid] if saved
       saved
     end
   end
