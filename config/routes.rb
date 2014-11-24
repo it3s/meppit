@@ -108,6 +108,7 @@ Meppit::Application.routes.draw do
     member do
       get  :geo_data
       post :add_geo_data
+      post :remove_geo_data
     end
 
     collection do

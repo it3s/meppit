@@ -49,6 +49,7 @@ gem 'differ'                        # build diffs
 gem 'safe_yaml', require: false     # safe yaml loading
 gem "active_model_serializers", "~> 0.8.0"  # model serializer
 gem 'public_activity'               # record users activity
+gem 'connection_pool'               # connection pool used for mootiro migration
 
 gem 'better_errors'                 # better error page, and shell session when crash
 gem 'binding_of_caller'             # used by better_errors

@@ -406,6 +406,7 @@ DEPENDENCIES
   clean_logger
   coffee-rails (~> 4.0.1)
   compass-rails
+  connection_pool
   coveralls
   database_cleaner
   differ

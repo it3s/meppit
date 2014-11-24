@@ -28,3 +28,8 @@ pt-BR:
       explanation: "Selecione o conteúdo que você deseja inserir neste mapa"
       invalid: "Dado Inválido"
 
+    remove_geo_data:
+      title: "Remover dado"
+      removed: "<b>%{target}</b> foi removido deste mapa"
+      explanation: "Selecione o conteúdo que você deseja remover deste mapa"
+      invalid: "Dado Inválido"

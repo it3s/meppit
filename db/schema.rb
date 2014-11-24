@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141030173752) do
+ActiveRecord::Schema.define(version: 20141122232948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "postgis"
   enable_extension "hstore"
+  enable_extension "uuid-ossp"
+  enable_extension "postgis"
   enable_extension "pg_trgm"
   enable_extension "fuzzystrmatch"
 
@@ -76,6 +77,15 @@ ActiveRecord::Schema.define(version: 20141030173752) do
   add_index "contributings", ["contributable_id", "contributable_type"], :name => "index_contributings_on_contributable_id_and_contributable_type"
   add_index "contributings", ["contributor_id"], :name => "index_contributings_on_contributor_id"
 
+  create_table "featureds", force: true do |t|
+    t.integer  "featurable_id"
+    t.string   "featurable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "featureds", ["featurable_id", "featurable_type"], :name => "index_featureds_on_featurable_id_and_featurable_type"
+
   create_table "flags", force: true do |t|
     t.integer  "user_id",                        null: false
     t.string   "reason",                         null: false
@@ -89,14 +99,6 @@ ActiveRecord::Schema.define(version: 20141030173752) do
 
   add_index "flags", ["flaggable_id", "flaggable_type"], :name => "index_flags_on_flaggable_id_and_flaggable_type"
 
-  create_table "featureds", force: true do |t|
-    t.integer  "featurable_id"
-    t.string   "featurable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "featureds", ["featurable_id", "featurable_type"], :name => "index_featureds_on_featurable_id_and_featurable_type"
   create_table "followings", force: true do |t|
     t.integer  "follower_id"
     t.integer  "followable_id"
@@ -168,10 +170,19 @@ ActiveRecord::Schema.define(version: 20141030173752) do
     t.datetime "updated_at"
     t.integer  "administrator_id",              null: false
     t.json     "additional_info"
+    t.json     "migrated_info"
   end
 
   add_index "maps", ["administrator_id"], :name => "index_maps_on_administrator_id"
   add_index "maps", ["tags"], :name => "index_maps_on_tags"
+
+  create_table "mootiro_oids", force: true do |t|
+    t.string  "oid"
+    t.integer "content_id"
+    t.string  "content_type"
+  end
+
+  add_index "mootiro_oids", ["content_id", "content_type"], :name => "index_mootiro_oids_on_content_id_and_content_type"
 
   create_table "notifications", force: true do |t|
     t.integer  "user_id",                        null: false

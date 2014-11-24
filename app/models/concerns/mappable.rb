@@ -21,6 +21,7 @@ module Mappable
         has_many mapping_type, through: :mappings
         define_method :"#{mapping_type}_count" do send(mapping_type).count end
         define_method :"add_#{obj_ref}" do |obj| mappings.create(obj_ref => obj) end
+        define_method :"remove_#{obj_ref}" do |obj| send(mapping_type).delete(obj) end
       end
   end
 end

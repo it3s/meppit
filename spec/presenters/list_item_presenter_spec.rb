@@ -84,6 +84,14 @@ describe ListItemPresenter do
         end
       end
 
+      describe "with remove button" do
+        let(:presenter_) { ListItemPresenter.new object: object, ctx: double('ctx'), parent: double('ctx'), control_type: :remove_button }
+        it "renders remove button for objects" do
+          expect(presenter_.ctx).to receive(:render).with('shared/remove_button', anything()).and_return 'remove button tag'
+          expect(presenter_.controls).to eq 'remove button tag'
+        end
+      end
+
       describe "with counters" do
         let(:presenter_) { ListItemPresenter.new object: object, ctx: double('ctx'), control_type: :counters }
         it "renders counters" do

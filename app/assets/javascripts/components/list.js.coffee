@@ -14,11 +14,20 @@ App.components.list = ->
   initialize: ->
     options = @handleOptions()
     @startInfiniteScroll(options)
+    App.mediator.subscribe "listItem:remove", (evt, data) =>
+      @removeItemByInternalId(data.id)
 
   handleOptions: ->
     options = _.defaults(@attr.scroll, @attr.infiniteScrollDefaults)
     options.binder ?= container if options['behavior'] is 'local'
     options
+
+  getItemByInternalId: (id) ->
+    @attr.list.find("[data-listItem-id=#{id}]")
+
+  removeItemByInternalId: (id) ->
+    item = @getItemByInternalId id
+    item.remove()
 
   startInfiniteScroll: (opts) ->
     _this = this

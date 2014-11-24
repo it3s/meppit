@@ -105,6 +105,20 @@ describe ApplicationHelper do
     end
   end
 
+  describe "#remove_button_options_for" do
+    let(:user) { FactoryGirl.create :user}
+    let(:geo_data) { FactoryGirl.create :geo_data}
+    let(:map) { FactoryGirl.create :map}
+
+    before { allow(helper).to receive(:current_user).and_return user }
+
+    it "returns a json" do
+      resp = helper.remove_button_options_for geo_data, map
+      expect(resp).to be_a String
+      expect{JSON.parse resp}.to_not raise_error
+    end
+  end
+
   describe "#collection_location" do
     let(:geom1) { RGeo::Cartesian.simple_factory.parse_wkt "GEOMETRYCOLLECTION (POINT (-10.000 -10.000))" }
     let(:geo_data1) { FactoryGirl.create(:geo_data, location: geom1) }
