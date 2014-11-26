@@ -132,7 +132,9 @@ Meppit::Application.routes.draw do
 
   namespace :embed do
     namespace :v1 do
-      resources :maps,     only: [:show]
+      resources :maps, only: [:show] do
+        get :help, on: :collection
+      end
     end
   end
 

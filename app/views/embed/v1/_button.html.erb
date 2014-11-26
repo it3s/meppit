@@ -1,0 +1,15 @@
+<%= link_to_modal icon("code"), "#embed-modal", html: {class: "embed", title: t('embed.link_title')} %>
+
+<div id="embed-modal" class="embed-modal modal" data-components="embedder">
+  <header><h2><%= t 'embed.title' %></h2></header>
+
+  <section>
+    <p class="explanation"><%= t 'embed.explanation' %></p>
+
+    <div class="embed-options options">
+    </div>
+    <div class="help">
+      <%= link_to_modal t('embed.help'), help_embed_v1_maps_path, remote: true %>
+    </div>
+  </section>
+</div>

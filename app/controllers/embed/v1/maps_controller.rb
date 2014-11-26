@@ -6,6 +6,10 @@ module Embed
       def show
       end
 
+      def help
+        render layout: nil
+      end
+
       private
 
       def find_map
