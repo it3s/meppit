@@ -124,9 +124,9 @@ drawAssistence = =>
 App.components.map = ->
   initialize: ->
     @startMap()
-    @addButtons()
+    @addButtons() if not @attr.embeded
     @bindEvents()
-    if @attr.editor and not @attr.hasLocation
+    if not @embeded and @attr.editor and not @attr.hasLocation
       @startDrawAssistence()
 
   startDrawAssistence: ->

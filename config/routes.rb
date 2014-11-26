@@ -130,6 +130,12 @@ Meppit::Application.routes.draw do
     end
   end
 
+  namespace :embed do
+    namespace :v1 do
+      resources :maps,     only: [:show]
+    end
+  end
+
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
