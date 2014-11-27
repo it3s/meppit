@@ -34,6 +34,8 @@
 
   .location {
     @include map-view;
+
+    .map { height: 170px; }
   }
 
   h1.name {

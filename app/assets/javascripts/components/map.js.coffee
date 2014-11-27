@@ -219,7 +219,7 @@ App.components.map = ->
         height: @container.css('height')
         width: @container.css('width')
         'z-index': @container.css('z-index')
-      @map.zoomIn 2, animate: false
+      @map.zoomIn 1, animate: false
     top = $("#header").height()
     $(window).scrollTop(0)
     @container.css
@@ -239,7 +239,7 @@ App.components.map = ->
     @map.showButton 'expand'
     $(window).scrollTop(@_originalScrollTop)
     @container.css @_originalCss
-    @map.zoomOut 2, animate: false
+    @map.zoomOut 1, animate: false
     @map.refresh()
     @expanded = false
 
