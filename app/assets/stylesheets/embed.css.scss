@@ -29,6 +29,7 @@ html{
 }
 body {
   min-height: 100%;
+  min-width: 0;
 }
 
 .location {
@@ -49,11 +50,13 @@ body {
   height: 100%;
   float: left;
 
+  > h2 { display: none; }
+
   font-size: 0.8em;
   padding: 0 5px;
 
   .layers-list {
-    height: 90%;
     overflow: auto;
+    height: 100%;
   }
 }
