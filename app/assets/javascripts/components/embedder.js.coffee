@@ -10,6 +10,8 @@ App.components.embedder = ->
       style:  "border:none;"
 
     @populateCodeArea()
+    @bindEvents()
+    @attr.codeInput.select()
 
   url: ->
     "#{@attr.baseUrl}"
@@ -19,3 +21,13 @@ App.components.embedder = ->
 
   populateCodeArea : ->
     @attr.codeInput.val @code()
+
+  bindEvents: ->
+    @attr.codeInput.focus =>
+      @attr.codeInput.select()
+
+      # Work around Chrome's little problem
+      @attr.codeInput.mouseup =>
+        # Prevent further mouseup intervention
+        @attr.codeInput.unbind "mouseup"
+        return false
