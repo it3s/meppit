@@ -262,6 +262,16 @@ describe ApplicationHelper do
     end
   end
 
+  describe "#tag_path_for" do
+    let(:user) { FactoryGirl.create :user }
+    let(:geo_data) { FactoryGirl.create :geo_data }
+    let(:map) { FactoryGirl.create :map }
+
+    it { expect(helper.tag_path_for(geo_data, 'tagname')).to eq helper.geo_data_index_path(list_filter: { tags: 'tagname' }) }
+    it { expect(helper.tag_path_for(map, 'tagname')).to eq helper.maps_path(list_filter: { tags: 'tagname' }) }
+    it { expect(helper.tag_path_for(user, 'tagname')).to eq helper.geo_data_index_path(list_filter: { tags: 'tagname' }) }
+  end
+
   describe "Concerns::ComponentsHelper" do
     describe "#hash_to_attributes" do
       it "return empty string for empty hash" do

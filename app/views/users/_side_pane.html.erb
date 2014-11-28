@@ -14,7 +14,7 @@
   <% else %>
 
     <%= render 'shared/contacts/view', object: user %>
-    <%= render 'shared/tags', tags: user.interests %>
+    <%= render 'shared/tags', tags: user.interests, object: user %>
 
   <% end %>
 </div>

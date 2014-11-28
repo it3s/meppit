@@ -63,6 +63,11 @@ module ApplicationHelper
     end
   end
 
+  def tag_path_for(obj, tag)
+    cls = obj.class == User ? GeoData : obj.class
+    url_for([cls, list_filter: {tags: tag}])
+  end
+
   def collection_location(collection)
     ids = collection.map { |item| item.is_a?(Map) ? item.geo_data.pluck(:id) : item.id }.flatten.uniq
     geo_data = GeoData.where(id: ids)

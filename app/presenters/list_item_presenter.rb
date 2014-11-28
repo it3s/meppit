@@ -45,7 +45,7 @@ class ListItemPresenter
 
   def tags
     if size_ == :big and object.respond_to? :tags
-      ctx.render 'shared/tags', :tags => object.tags
+      ctx.render 'shared/tags', tags: object.tags, object: object
     end
   end
 
