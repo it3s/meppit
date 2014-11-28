@@ -1,0 +1,4 @@
+<div style="position: absolute; height: <%= @height %>; width: <%= @width %>">
+<%= render 'shared/location',  object: @map, embeded: true %>
+<div class="map-layers"><%= render 'layers/view', object: @map, embeded: true%></div>
+</div>

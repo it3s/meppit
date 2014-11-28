@@ -17,9 +17,7 @@
       height: 150px;
     }
   }
-  #yaml-help {
-    @include modal;
-
+  .yaml-help {
     font-size: 0.9em;
 
     pre {

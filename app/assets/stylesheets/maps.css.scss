@@ -66,6 +66,12 @@
     float: right;
   }
 
+  .embed {
+    @include button;
+    margin-left: 10px;
+    float: right;
+  }
+
   .map-tabs {
     margin-top: 48px;
 
