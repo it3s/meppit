@@ -1,10 +1,12 @@
-<div class="list-actions" data-components="stick" data-stick-options='{ "get_width_from": ".site-page" }'>
+<div class="list-actions" data-components="stick listActions" data-stick-options='{ "get_width_from": ".site-page" }'>
   <button class="select-all-btn" data-components='selectAll'>
     <input type="checkbox" name="all" /><%= t 'lists.select_all' %>
   </button>
 
-  <%= render 'imports/modal' %>
-  <%= render 'shared/export/export_object', object: nil %>
+  <span class="bulkActions">
+    <%= render 'shared/export/export_object', object: nil %>
+  </span>
 
+  <%= render 'imports/modal' %>
   <%= link_to icon('globe', t('maps.list.add_new')), new_map_path, class: 'add-new-btn' , "data-components" => "loginRequired" %>
 </div>

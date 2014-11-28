@@ -11,6 +11,9 @@ en:
 
     warn_notice: '<b>Warning</b>: On the CSV use a semicolon (<b>;</b>) as separator. Also use quotes (<b>"</b>) to enclose values.'
 
+    button:
+      title: "Upload content in batch"
+
     example_value:
       'name': "content name"
       'description': "content description"
@@ -43,5 +46,3 @@ en:
       empty: 'There are no importations for %{name}'
       imported:     'Already imported'
       not_imported: 'Not imported yet'
-
-

@@ -48,6 +48,14 @@
     background: $bg-hover;
     color: $fg-hover;
   }
+
+  &[disabled], &[disabled]:hover {
+    text-decoration: none;
+    background: $bg;
+    color: $fg;
+    opacity: 0.6;
+    cursor: default;
+  }
 }
 
 @mixin green-button {

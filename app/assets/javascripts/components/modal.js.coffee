@@ -26,7 +26,8 @@ App.components.modal = ->
     if @attr.remote || @attr.autoload then @container else @referedElement()
 
   referedElement: ->
-    $("#{ @container.attr('href') }")
+    # try "data-href" to allow another elements
+    $("#{ @container.attr('href') || @container.attr('data-href') }")
 
   open: ->
     if @shouldOpen()

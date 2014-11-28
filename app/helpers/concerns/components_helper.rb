@@ -24,6 +24,14 @@ module Concerns
       "<a href=\"#{selector}\" data-components=\"tooltip\" data-tooltip-options='#{ {template: selector}.to_json }'>#{body}</a>".html_safe
     end
 
+    def button_to_modal(body, url, options={})
+      html_attrs = hash_to_attributes(options[:html]) if options[:html]
+      modal_attrs = options.except(:html).to_json
+      components = ["modal"] + (options[:login_required] ? ["loginRequired"] : [])
+
+      "<button data-href=\"#{url}\" #{html_attrs} data-components=\"#{ components.join(' ') }\" data-modal-options='#{ modal_attrs }'>#{body}</button>".html_safe
+    end
+
     def remote_form_for(record, options={}, &block)
       options.deep_merge!(:remote => true, :html => {'data-components' => 'remoteForm', 'multipart' => true})
       simple_form_for(record, options, &block)

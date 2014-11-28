@@ -18,7 +18,7 @@ App.components.removeButton = ->
       dataType: "json"
       data:     @requestData()
       success:  (data) =>
-        App.mediator.publish "listItem:remove", _.extend(data, {id: @attr.id})
+        App.mediator.publish "list:remove", _.extend(data, {id: @attr.id})
     false
 
   requestData: ->

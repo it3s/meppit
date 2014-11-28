@@ -1,17 +1,16 @@
 App.components.selectAll = ->
   attributes: ->
     checkbox:     @container.find('input[type=checkbox]')
-    listItems:    $('.list-item input[type=checkbox]')
-    itemsChecked: '.list-item input[type=checkbox]:checked'
-    count:        $('.selected-count')
 
   initialize: ->
     @on 'click', @toggle
-    @on @attr.listItems, 'change', @updateSelectCount
+
+    App.mediator.subscribe "listItem:unselected", (evt, data) =>
+      @uncheck() if @checked()
 
   toggle: ->
     if @checked() then @uncheck() else @check()
-    @updateSelectCount()
+    App.mediator.publish "list:#{ if @checked() then "selectAll" else "unselectAll" }"
 
   checked: ->
     @attr.checkbox.is(':checked')
@@ -24,10 +23,3 @@ App.components.selectAll = ->
 
   setCheck: (val) ->
     @attr.checkbox.prop('checked', val)
-    @attr.listItems.prop('checked', val)
-
-  updateSelectCount: (evt, el) ->
-    count = $(@attr.itemsChecked).length
-    @attr.count.text if count > 0 then I18n.pluralize(I18n.lists.selected, count) else ""
-
-
