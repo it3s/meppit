@@ -308,6 +308,26 @@ describe ApplicationHelper do
       end
     end
 
+    describe "#button_to_modal" do
+      context "regular modal" do
+        let(:anchor) { '<button data-href="#some-id" class="button" data-components="modal" data-modal-options=\'{}\'>Open Modal</button>' }
+        it "renders modal component" do
+          expect(helper.button_to_modal 'Open Modal', '#some-id', :html => { :class => 'button'} ).to eq anchor
+        end
+      end
+
+      context "remote modal" do
+        let(:link) { helper.link_to_modal 'Open Modal', '#some-id', :remote => true }
+        it { expect(link).to include 'data-modal-options=\'{"remote":true}\'' }
+      end
+
+      context "autoload and prevent_close" do
+        let(:link) { helper.link_to_modal 'Open Modal', '#some-id', :autoload => true, :prevent_close => true }
+        it { expect(link).to include 'data-modal-options=\'{"autoload":true,"prevent_close":true}\'' }
+      end
+
+    end
+
     describe "#remote_form_for" do
       let(:user) { FactoryGirl.build(:user) }
 
