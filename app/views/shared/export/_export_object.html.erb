@@ -6,6 +6,11 @@
   <section>
     <p class="explanation"><%= t 'export.explanation' %></p>
 
+    <% if object.nil? %>
+      <%= form_tag '#', method: :post, id: "bulk-download-form", "data-components" => "remoteForm" do %>
+        <%= hidden_field_tag :objects_ids , "", id: "objects_ids" %>
+      <% end %>
+    <% end %>
     <div class="export-options options">
       <%= link_to "JSON",    export_path_for(object, :json),    class: "option" %>
       <%= link_to "GeoJSON", export_path_for(object, :geojson), class: "option" %>
