@@ -55,16 +55,15 @@ feature "DownloadsController" do
   end
 
   feature "bulk_export" do
-    background {
-      FactoryGirl.create :geo_data
-      FactoryGirl.create :map
-      visit polymorphic_path([:bulk_export, url_name], format: format)
-    }
+    given(:geo_data) { FactoryGirl.create :geo_data }
+    given(:map) { FactoryGirl.create :map }
+
+    background { visit polymorphic_path([:bulk_export, url_name], format: format, objects_ids: ids.join(',')) }
 
     shared_examples_for "download_resources" do
       scenario "downloads json file" do
         expect(page.status_code).to eq 200
-        expect(page.body).to eq model.serialized_as(format)
+        expect(page.body).to eq model.serialized_as(format, ids)
         expect(page.response_headers["Content-Disposition"]).to eq "attachment; filename=\"#{fname}.#{format}\""
         expect(page.response_headers["Content-Transfer-Encoding"]).to eq "binary"
         expect(page.response_headers["Content-Type"]).to eq(format == :csv ? "text/csv" : "application/#{format}")
@@ -95,6 +94,7 @@ feature "DownloadsController" do
 
     context "geo_data" do
       given(:model) { GeoData }
+      given(:ids) { [geo_data.id] }
       given(:fname) { 'geo_data' }
       given(:url_name) { 'geo_data_index' }
 
@@ -103,6 +103,7 @@ feature "DownloadsController" do
 
     context "maps" do
       given(:model) { Map }
+      given(:ids) { [map.id] }
       given(:fname) { 'map' }
       given(:url_name) { 'maps' }
 

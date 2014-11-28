@@ -39,8 +39,13 @@ class DownloadsController < ApplicationController
     end
 
     def download_resource(format)
-      target = @bulk ? @model : @downloadable
-      send_data target.serialized_as(format), filename: filename(format)
+      if @bulk
+        ids = params["objects_ids"].split ','
+        content = @model.serialized_as(format, ids)
+      else
+        content = @downloadable.serialized_as(format)
+      end
+      send_data content, filename: filename(format)
     end
 
 end
