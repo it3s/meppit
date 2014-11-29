@@ -8,19 +8,20 @@
       <li><a href="#talk"><%= icon "comments", t('geo_data.tabs.talk') %></a></li>
     </ul>
 
-    <div class="extra-info" >
-      <%= render 'shared/contacts/edit', :object => geo_data %>
-      <div class="tags">
-        <%= tags_input f, :tags, geo_data.tags %>
-      </div>
-    </div>
-
     <div class="tab-content" id="content">
-      <%= f.input :location, :as => :hidden %>
-      <div class="description">
-        <%= f.input :description, :as => :text, :input_html => {:class => 'tinymce', 'data-components' => 'editor'} %>
+      <div class="main-info">
+        <%= f.input :location, :as => :hidden %>
+        <div class="description">
+          <%= f.input :description, :as => :text, :input_html => {:class => 'tinymce', 'data-components' => 'editor'} %>
+        </div>
+        <%= render 'shared/additional_info/edit', f: f %>
       </div>
-      <%= render 'shared/additional_info/edit', f: f %>
+      <div class="extra-info" >
+        <%= render 'shared/contacts/edit', :object => geo_data %>
+        <div class="tags">
+          <%= tags_input f, :tags, geo_data.tags %>
+        </div>
+      </div>
     </div>
     <div class="tab-content" id="relations">
       <%= render 'relations/edit', f: f %>
