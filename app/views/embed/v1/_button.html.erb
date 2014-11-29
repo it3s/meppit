@@ -1,4 +1,4 @@
-<%= link_to_modal icon("code"), "#embed-modal", html: {class: "embed", title: t('embed.link_title')} %>
+<%= link_to_modal icon("code"), "#embed-modal", html: {class: "embed button", title: t('embed.link_title')} %>
 
 <div id="embed-modal" class="embed-modal modal" data-components="embedder" data-embedder-options="<%= {baseUrl: embed_v1_map_path(only_path: false)}.to_json %>">
   <header><h2><%= t 'embed.title' %></h2></header>

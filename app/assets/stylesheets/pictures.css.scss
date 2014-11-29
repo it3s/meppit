@@ -1,7 +1,6 @@
 .pictures {
 
   .uploader .upload-button {
-    @include button;
     width: auto;
 
     i { margin-right: 5px; }
@@ -62,13 +61,22 @@
     margin-top: 10px;
 
     .delete-button {
-      @include red-button;
       display: inline-block;
       margin-right: 40px;
+
+      background-color: $dark-red;
+      color: $white;
+      $border-color: $dark-red;
+
+      &:hover { background-color: $red; }
     }
     .save-button {
-      @include green-button;
       display: inline-block;
+      background-color: $meppit-dark-green;
+      color: $white;
+      border-color: $meppit-dark-green;
+
+      &:hover { background-color: $meppit-green; }
     }
   }
 }

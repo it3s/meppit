@@ -1,5 +1,4 @@
 .sign-up {
-  @include modal;
   display: block;
 
   form {
@@ -21,8 +20,6 @@
 }
 
 .user-created {
-  @include modal;
-
   width: 500px;
   padding-bottom: 20px;
 

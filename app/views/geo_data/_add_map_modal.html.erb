@@ -1,6 +1,6 @@
-<%= link_to_modal icon("globe", t("geo_data.add_map.title")), "#add-to-map-modal", login_required: true, html: {class: "add-to-map"} %>
+<%= link_to_modal icon("globe", t("geo_data.add_map.title")), "#add-to-map-modal", login_required: true, html: {class: "add-to-map button"} %>
 
-<div id="add-to-map-modal" class="add-to-map-modal" data-components="addMapping"
+<div id="add-to-map-modal" class="add-to-map-modal modal" data-components="addMapping"
      data-addmapping-options="<%= { mapping: 'map', formId: 'add-to-map-form', objectIdentifier: identifier_for(geo_data) }.to_json %>">
   <header><h2><%= t 'geo_data.add_map.title' %></h2></header>
   <section>
@@ -11,9 +11,8 @@
       </p>
 
       <p class="btns">
-        <%= submit_tag t('save'), class: "submit-btn" %>
+        <%= submit_tag t('save'), class: "submit-btn button" %>
       </p>
     <% end %>
   </section>
 </div>
-

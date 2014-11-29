@@ -119,7 +119,6 @@ nav.pagination { display: none; }  // We are using infinite scroll
     border-bottom: solid 1px $ultra-soft-grey;
 
     .upload-btn, .download, .select-all-btn {
-      @include button;
       float: none;
       margin-left: 0;
     }
@@ -130,7 +129,6 @@ nav.pagination { display: none; }  // We are using infinite scroll
     }
 
     .select-all-btn {
-      padding-top: 5px;
       input[type=checkbox] { position: relative; top: 3px; }
     }
   }
@@ -139,8 +137,12 @@ nav.pagination { display: none; }  // We are using infinite scroll
     .list-actions {
 
       .add-new-btn {
-        @include button($meppit-data-color, $meppit-dark-blue, $white, $border: $meppit-data-color);
+        background-color: $meppit-data-color;
+        color: $white;
+        border-color: $meppit-data-color;
         float: right;
+
+        &:hover { background-color: $meppit-dark-blue; }
       }
       .add-to-map { float: none; }
     }
@@ -150,7 +152,10 @@ nav.pagination { display: none; }  // We are using infinite scroll
     .list-actions {
 
       .add-new-btn {
-        @include button($meppit-maps-color, $dark-orange, $white, $border: $meppit-maps-color);
+        background-color: $meppit-maps-color;
+        &:hover { background-color: $dark-orange; }
+        color: $white;
+        border-color: $meppit-maps-color;
         float: right;
       }
     }
@@ -183,7 +188,13 @@ nav.pagination { display: none; }  // We are using infinite scroll
       }
 
       .toggle-panel {
-        @include blue-button;
+        background-color: $meppit-dark-blue;
+        color: $white;
+        border-color: $meppit-dark-blue;
+        float: right;
+
+        &:hover { background-color: lighten($meppit-dark-blue, 10%); }
+
         display: inline-block;
         cursor: pointer;
         padding: 4px 8px;
@@ -287,7 +298,13 @@ nav.pagination { display: none; }  // We are using infinite scroll
         margin-top: 10px;
 
         .apply-btn {
-          @include blue-button;
+          background-color: $meppit-dark-blue;
+          color: $white;
+          border-color:  $meppit-dark-blue;
+          float: right;
+
+          &:hover { background-color: lighten($meppit-dark-blue, 10%); }
+
           position: absolute;
           right: 0;
           padding: 4px 25px;
@@ -302,7 +319,6 @@ nav.pagination { display: none; }  // We are using infinite scroll
 
 .list-editor {
   .add-new-btn {
-    @include button;
     margin-bottom: 20px;
   }
 
@@ -331,7 +347,6 @@ nav.pagination { display: none; }  // We are using infinite scroll
     }
 
     .list-item-metadata-btn, .list-item-remove-btn {
-      @include button;
       padding: 3px 9px;
     }
   }

@@ -31,11 +31,14 @@
   }
 
   .add-data {
-    @include button($meppit-data-color, $meppit-dark-blue, $white, $border: $meppit-data-color);
+    background-color: $meppit-data-color;
+    color: $white;
+    border-color: $meppit-data-color;
     float: right;
+
+    &:hover { background-color: $meppit-dark-blue; }
   }
   .add-data-modal {
-    @include modal;
     min-height: 150px;
 
     header {
@@ -49,31 +52,32 @@
       margin-top: 10px;
 
       .cancel-btn {
-        @include button;
         float: right;
       }
       .submit-btn {
-        @include green-button;
+        background-color: $meppit-dark-green;
+        color: $white;
+        border-color: $meppit-dark-green;
         float: right;
         margin-left: 5px;
+
+        &:hover { background-color: $meppit-green; }
       }
     }
   }
 
   .download {
-    @include button;
     margin-left: 10px;
     float: right;
   }
 
   .embed {
-    @include button;
     margin-left: 10px;
     float: right;
   }
 
   .map-tabs {
-    margin-top: 48px;
+    clear: both;
 
     .tab-content {
       @include span-columns(12);

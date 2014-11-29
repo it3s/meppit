@@ -7,10 +7,14 @@
     }
 
     .delete-btn {
-      @include red-button;
+      background-color: $dark-red;
+      color: $white;
+      $border-color: $dark-red;
       width: 50%;
       margin: 0 25%;
       text-align: center;
+
+      &:hover { background-color: $red; }
     }
   }
 }

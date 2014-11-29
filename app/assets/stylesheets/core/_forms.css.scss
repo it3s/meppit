@@ -18,8 +18,12 @@ form {
 
   input[type=button],
   input[type=submit] {
-    @include green-button;
+    @include button;
+    background-color: $meppit-dark-green;
+    color: $white;
+    border-color: $meppit-dark-green;
     width: auto;
+    &:hover { background-color: $meppit-green; }
   }
 
   input[type="radio"],
@@ -50,7 +54,12 @@ form {
     padding: 15px 0;
 
     .edit-save {
-      @include blue-button($border: darken($meppit-dark-blue, 20%));
+      background-color: $meppit-dark-green;
+      color: $white;
+      border-color: $meppit-dark-green;
+      width: auto;
+      &:hover { background-color: $meppit-green; }
+
       max-width: 200px;
       margin-right: 10px;
       padding: 5px 25px;

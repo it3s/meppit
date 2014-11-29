@@ -1,5 +1,4 @@
 .import-modal {
-  @include modal;
 
   h2 {
     text-align: center;
@@ -24,8 +23,12 @@
   }
 
   .upload-button {
-    @include blue-button-with-border;
+    background-color: $meppit-dark-blue;
+    color: $white;
+    border-color: darken($meppit-dark-blue, 20%);
     padding: 15px 80px;
+
+    &:hover { background-color: lighten($meppit-dark-blue, 10%); }
   }
 }
 
@@ -48,9 +51,13 @@
     display: inline-block;
 
     .upload-button {
-      @include blue-button-with-border;
+      background-color: $meppit-dark-blue;
+      color: $white;
+      border-color: darken($meppit-dark-blue, 20%);
       padding: 5px 10px;
       width: auto;
+
+      &:hover { background-color: lighten($meppit-dark-blue, 10%); }
     }
   }
 
@@ -60,11 +67,15 @@
     .ui-autocomplete-input { width: 250px; }
 
     .submit-btn {
-      @include blue-button-with-border;
+      background-color: $meppit-dark-blue;
+      color: $white;
+      border-color: darken($meppit-dark-blue, 20%);
       display: inline-block;
       position: absolute;
       right: 0;
       top: -5px;
+
+      &:hover { background-color: lighten($meppit-dark-blue, 10%); }
     }
   }
 
@@ -124,7 +135,6 @@
       }
 
       .see-table-button {
-        @include button;
         display: inline-block;
         position: absolute;
         right: 10px;

@@ -31,11 +31,14 @@
   }
 
   .add-to-map {
-    @include button($meppit-maps-color, $dark-orange, $white, $border: $meppit-maps-color);
+    background-color: $meppit-maps-color;
+    color: $white;
+    border-color: $meppit-maps-color;
     float: right;
+
+    &:hover { background-color: $dark-orange; }
   }
   .add-to-map-modal {
-    @include modal;
     min-height: 150px;
 
     header {
@@ -49,25 +52,27 @@
       margin-top: 10px;
 
       .cancel-btn {
-        @include button;
         float: right;
       }
       .submit-btn {
-        @include green-button;
+        background-color: $meppit-dark-green;
+        color: $white;
+        border-color: $meppit-dark-green;
         float: right;
         margin-left: 5px;
+
+        &:hover { background-color: $meppit-green; }
       }
     }
   }
 
   .download {
-    @include button;
     margin-left: 10px;
     float: right;
   }
 
   .data-tabs {
-    margin-top: 48px;
+    clear: both;
 
     .tab-content {
       @include inline-pane(65%);

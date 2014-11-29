@@ -35,17 +35,16 @@
     }
 
     .version-revert {
-      @include blue-button;
-    }
-    .version-see-object {
-      @include button;
+      border-color: $meppit-dark-blue;
+      background-color: $meppit-dark-blue;
+      color: $white;
+
+      &:hover { background-color: lighten($meppit-dark-blue, 10%); }
     }
 
     .action-btn {
       float: right;
       margin: 0 5px;
-      font-size: 0.8em;
-      padding: 3px 14px;
     }
   }
   .version-diff {

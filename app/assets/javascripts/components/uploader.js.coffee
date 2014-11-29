@@ -2,7 +2,7 @@
 
 uploaderTemplate = """
   <div class="uploader">
-    <span class="upload-button"><%= buttonLabel %></span>
+    <span class="upload-button button"><%= buttonLabel %></span>
   </div>
 """
 

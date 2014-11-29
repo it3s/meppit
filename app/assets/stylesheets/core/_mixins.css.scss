@@ -30,9 +30,7 @@
   background-color: $bg;
   border: 1px solid $border;
   border-radius: 4px;
-  padding: 8px 14px;
-
-  @include linear-gradient($bg, darken($bg, 10%));
+  padding: 12px 14px;
 
   text-decoration: none;
   font-weight: bold;
@@ -56,22 +54,6 @@
     opacity: 0.6;
     cursor: default;
   }
-}
-
-@mixin green-button {
-  @include button($meppit-dark-green, $meppit-green, $white, $border: $meppit-dark-green);
-}
-
-@mixin blue-button($border: $meppit-dark-blue) {
-  @include button($meppit-dark-blue, lighten($meppit-dark-blue, 10%), $white, $border: $border);
-}
-
-@mixin blue-button-with-border {
-  @include blue-button($border: darken($meppit-dark-blue, 20%));
-}
-
-@mixin red-button {
-  @include button($dark-red, $red, $white, $border: $dark-red);
 }
 
 @mixin map-view() {

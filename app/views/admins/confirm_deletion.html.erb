@@ -1,5 +1,5 @@
 <div class="admin confirm-deletion">
   <h2> <%= t('admin.confirm.title', name: @deletable.name) %></h2>
 
-  <%= link_to t('admin.confirm.yes_btn'), delete_object_admin_path(current_user), method: 'post', class: 'delete-btn' %>
+  <%= link_to t('admin.confirm.yes_btn'), delete_object_admin_path(current_user), method: 'post', class: 'delete-btn button' %>
 </div>
