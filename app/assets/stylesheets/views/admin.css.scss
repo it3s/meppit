@@ -6,15 +6,10 @@
       margin-bottom: 20px;
     }
 
-    .delete-btn {
-      background-color: $dark-red;
-      color: $white;
-      $border-color: $dark-red;
+    .button-delete {
       width: 50%;
       margin: 0 25%;
       text-align: center;
-
-      &:hover { background-color: $red; }
     }
   }
 }

@@ -31,12 +31,7 @@
   }
 
   .add-data {
-    background-color: $meppit-data-color;
-    color: $white;
-    border-color: $meppit-data-color;
     float: right;
-
-    &:hover { background-color: $meppit-dark-blue; }
   }
   .add-data-modal {
     min-height: 150px;
@@ -54,14 +49,9 @@
       .cancel-btn {
         float: right;
       }
-      .submit-btn {
-        background-color: $meppit-dark-green;
-        color: $white;
-        border-color: $meppit-dark-green;
+      .button-save {
         float: right;
         margin-left: 5px;
-
-        &:hover { background-color: $meppit-green; }
       }
     }
   }

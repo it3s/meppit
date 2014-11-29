@@ -60,23 +60,12 @@
     text-align: center;
     margin-top: 10px;
 
-    .delete-button {
+    .button-delete {
       display: inline-block;
       margin-right: 40px;
-
-      background-color: $dark-red;
-      color: $white;
-      $border-color: $dark-red;
-
-      &:hover { background-color: $red; }
     }
-    .save-button {
+    .button-save {
       display: inline-block;
-      background-color: $meppit-dark-green;
-      color: $white;
-      border-color: $meppit-dark-green;
-
-      &:hover { background-color: $meppit-green; }
     }
   }
 }

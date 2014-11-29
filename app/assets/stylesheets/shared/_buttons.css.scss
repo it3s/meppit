@@ -21,3 +21,48 @@
   }
 
 }
+
+.button,
+.button-primary,
+.button-success,
+.button-info,
+.button-warning,
+.button-danger,
+.button-submit,
+.button-save,
+.button-delete,
+.button-map,
+.button-data {
+  @include button;
+}
+
+.button-primary {
+  @include button-color($primary-color-bg, $primary-color-fg);
+}
+
+.button-success,
+.button-save,
+.button-submit {
+  @include button-color($success-color-bg, $success-color-fg);
+}
+
+.button-info {
+  @include button-color($info-color-bg, $info-color-fg);
+}
+
+.button-warning {
+  @include button-color($warning-color-bg, $warning-color-fg);
+}
+
+.button-danger,
+.button-delete {
+  @include button-color($danger-color-bg, $danger-color-fg);
+}
+
+.button-map {
+  @include button-color($meppit-maps-color, $primary-color-fg);
+}
+
+.button-data {
+  @include button-color($meppit-data-color, $primary-color-fg);
+}

@@ -25,10 +25,13 @@
 @import "colpick";
 
 // commons
+@import "shared/buttons";
+@import "shared/forms";
+
+// layout
 @import "shared/layout/page";
 @import "shared/layout/header";
 @import "shared/layout/footer";
-@import "shared/forms";
 
 // components
 @import "shared/components/alerts";

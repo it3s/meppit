@@ -24,10 +24,10 @@
 }
 
 @mixin button($bg: $ultra-soft-grey, $bg-hover: $grey , $fg: $text-color, $fg-hover: $white, $border: $grey) {
+  @include button-color($bg, $fg, $bg-hover, $fg-hover, $border);
+
   cursor: pointer;
   display: inline-block;
-  color: $fg;
-  background-color: $bg;
   border: 1px solid $border;
   border-radius: 4px;
   padding: 12px 14px;
@@ -43,16 +43,32 @@
 
   &:active, &:hover {
     text-decoration: none;
+  }
+
+  &[disabled], &[disabled]:hover {
+    text-decoration: none;
+    opacity: 0.6;
+    cursor: default;
+  }
+}
+
+@mixin button-color($bg: $ultra-soft-grey, $fg: $text-color, $bg-hover: "", $fg-hover: "", $border: "") {
+  @if $bg-hover == "" { $bg-hover: darken($bg, 10%);  }
+  @if $fg-hover == "" { $fg-hover: $fg;              }
+  @if $border   == "" { $border: darken($bg, 15%); }
+
+  background-color: $bg;
+  color: $fg;
+  border-color: $border;
+
+  &:active, &:hover {
     background: $bg-hover;
     color: $fg-hover;
   }
 
   &[disabled], &[disabled]:hover {
-    text-decoration: none;
     background: $bg;
     color: $fg;
-    opacity: 0.6;
-    cursor: default;
   }
 }
 

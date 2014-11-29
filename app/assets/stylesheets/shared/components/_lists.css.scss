@@ -137,12 +137,7 @@ nav.pagination { display: none; }  // We are using infinite scroll
     .list-actions {
 
       .add-new-btn {
-        background-color: $meppit-data-color;
-        color: $white;
-        border-color: $meppit-data-color;
         float: right;
-
-        &:hover { background-color: $meppit-dark-blue; }
       }
       .add-to-map { float: none; }
     }
@@ -152,10 +147,6 @@ nav.pagination { display: none; }  // We are using infinite scroll
     .list-actions {
 
       .add-new-btn {
-        background-color: $meppit-maps-color;
-        &:hover { background-color: $dark-orange; }
-        color: $white;
-        border-color: $meppit-maps-color;
         float: right;
       }
     }
@@ -188,12 +179,7 @@ nav.pagination { display: none; }  // We are using infinite scroll
       }
 
       .toggle-panel {
-        background-color: $meppit-dark-blue;
-        color: $white;
-        border-color: $meppit-dark-blue;
         float: right;
-
-        &:hover { background-color: lighten($meppit-dark-blue, 10%); }
 
         display: inline-block;
         cursor: pointer;
@@ -293,22 +279,8 @@ nav.pagination { display: none; }  // We are using infinite scroll
       .order .choice { width: 110px; }
 
       .filters-apply {
-        position: relative;
-        height: 1.8em;
+        text-align: right;
         margin-top: 10px;
-
-        .apply-btn {
-          background-color: $meppit-dark-blue;
-          color: $white;
-          border-color:  $meppit-dark-blue;
-          float: right;
-
-          &:hover { background-color: lighten($meppit-dark-blue, 10%); }
-
-          position: absolute;
-          right: 0;
-          padding: 4px 25px;
-        }
       }
     }
 

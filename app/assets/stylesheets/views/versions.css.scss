@@ -34,14 +34,6 @@
       margin-left: 10px;
     }
 
-    .version-revert {
-      border-color: $meppit-dark-blue;
-      background-color: $meppit-dark-blue;
-      color: $white;
-
-      &:hover { background-color: lighten($meppit-dark-blue, 10%); }
-    }
-
     .action-btn {
       float: right;
       margin: 0 5px;

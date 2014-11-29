@@ -31,13 +31,9 @@
   }
 
   .add-to-map {
-    background-color: $meppit-maps-color;
-    color: $white;
-    border-color: $meppit-maps-color;
     float: right;
-
-    &:hover { background-color: $dark-orange; }
   }
+
   .add-to-map-modal {
     min-height: 150px;
 
@@ -54,14 +50,9 @@
       .cancel-btn {
         float: right;
       }
-      .submit-btn {
-        background-color: $meppit-dark-green;
-        color: $white;
-        border-color: $meppit-dark-green;
+      .button-save {
         float: right;
         margin-left: 5px;
-
-        &:hover { background-color: $meppit-green; }
       }
     }
   }
