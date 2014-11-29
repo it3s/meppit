@@ -11,6 +11,9 @@ pt-BR:
 
     warn_notice: '<b>Aviso</b>: No CSV use ponto-e-vírgula (<b>;</b>) como separador. Também use aspas (<b>"</b>) para incluir valores.'
 
+    button:
+      title: "Enviar conteúdo em lote"
+
     example_value:
       'name': "nome do conteúdo name"
       'description': "descrição do conteúdo"
@@ -43,12 +46,3 @@ pt-BR:
       empty: 'Não há importações para %{name}'
       imported:     'Já foi importado'
       not_imported: 'Não importado ainda'
-
-
-
-
-
-
-
-
-

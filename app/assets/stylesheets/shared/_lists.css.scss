@@ -124,6 +124,11 @@ nav.pagination { display: none; }  // We are using infinite scroll
       margin-left: 0;
     }
 
+    .upload-btn {
+      float: right;
+      margin-left: 3px;
+    }
+
     .select-all-btn {
       padding-top: 5px;
       input[type=checkbox] { position: relative; top: 3px; }
