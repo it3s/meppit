@@ -1,32 +1,50 @@
 .site-page.geo_data,
 .site-page.maps {
 
-  .data-logo,
-  .map-logo {
-    width: 50px;
-    height:50px;
-    font-size: 40px;
-    color: $white;
-    text-align: center;
-    background-color: $soft-grey;
-    border-radius: 5px;
-    float: left;
-    margin-right: 20px;
-  }
-  .title {
-    h1 {
-      @include inline-pane(52%);
-      margin: 0;
-    }
-    .counters {
-      @include inline-pane(38%);
-      margin: 0;
-    }
-  }
+  .data-header,
+  .map-header {
+    @include span-columns(12);
+    margin-bottom: 10px;
 
-  .last-update {
-    color: $secondary-content-color;
-    font-size: $secondary-content-font-size;
+    .title {
+      @include span-columns(8 of 12);
+
+      .data-logo,
+      .map-logo {
+        display: inline-block;
+        width: 50px;
+        height:50px;
+        font-size: 40px;
+        color: $white;
+        text-align: center;
+        background-color: $soft-grey;
+        border-radius: 5px;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+
+      .data-title,
+      .map-title {
+        display: inline-block;
+        vertical-align: middle;
+        max-width: 500px;
+        margin-top: 5px;
+
+        h1 {
+          margin: 0;
+        }
+
+        .last-update {
+          color: $secondary-content-color;
+          font-size: $secondary-content-font-size;
+        }
+      }
+    }
+
+    .counters {
+      @include span-columns(4 of 12);
+      margin-top: 25px;
+    }
   }
 
   .location {

@@ -1,17 +1,19 @@
 .counters {
+  white-space: nowrap;
   float: right;
+  text-align: right;
   margin: 5px 0 0;
 
   .counter {
-    float: left;
-    margin: 0 0 0 15px;
+    display: inline;
+    margin: 0 0 0 10px;
 
     &:first-child {
       margin: 0;
     }
 
     a {
-      padding: 10px;
+      padding: 5px;
       color: $secondary-content-color;
       outline: 0;
 
