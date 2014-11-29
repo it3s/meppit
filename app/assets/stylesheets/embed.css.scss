@@ -1,27 +1,23 @@
 // reset and base libs
 @import "compass/reset";
-@import "compass/utilities/sprites";
 @import "bourbon";
 @import "neat";
-@import "font-awesome-sprockets";
-@import "font-awesome";
 
 // settings, mixins and core style
-@import "settings";
+@import "config/settings";
 @import "core/normalize";
 @import "core/mixins";
 @import "core/base";
-@import "core/forms";
-@import "core/sprites";
 
 // vendor
 @import "meppit-map";
 
-// app common
-@import "shared/lists";
-@import "shared/map";
-@import "maps";
-@import "layers";
+// components
+@import "shared/components/lists";
+@import "shared/components/map";
+
+// views
+@import "views/layers";
 
 
 html{
