@@ -43,7 +43,7 @@
 
     .counters {
       @include span-columns(4 of 12);
-      margin-top: 25px;
+      margin-top: 15px;
     }
   }
 
@@ -135,8 +135,21 @@
       label { display: none; }
     }
 
+    .data-header,
+    .map-header {
+      .title {
+        @include span-columns(12 of 12);
+
+        .data-title,
+        .map-title {
+          width: 814px;
+          max-width: 100%;
+        }
+
+      }
+    }
+
     h1.name input[type=text] {
-      margin: 0 0 20px;
       width: 100%;
     }
 
