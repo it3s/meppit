@@ -1,6 +1,6 @@
 App.components.listActions = ->
   attributes: ->
-    bulkButtons: @container.find('.bulkActions button')
+    bulkButtons: @container.find('.bulk-actions button')
 
   initialize: ->
     @count = 0

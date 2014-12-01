@@ -1,19 +1,87 @@
-.button {
+// Buttons
+//
+// see also `core/_mixins.css.scss`.
+//
+// Summary:
+//
+// * Generic Button
+// * Buttons Colors
+// * Follow/Unfollow Button
 
-  &.follow {
-    @include button;
-    width: 90px;
-    margin: 5px;
 
-    .label {
-      display: block;
-      min-width: 4.5em;
-    }
+// Generic Button
+// ==============
 
-    &.active {
-      @include button($ocean-blue, $dark-red, $white, $border: $ocean-blue);
-      &:hover { background: $dark-red; border-color: $dark-red; }  // turns to 'Unfollow' button
-    }
+.button,
+.button-primary,
+.button-success,
+.button-info,
+.button-warning,
+.button-danger,
+.button-submit,
+.button-save,
+.button-delete,
+.button-map,
+.button-data,
+.button-follow {
+  @include button;
+}
+
+
+// Buttons Colors
+// ==============
+
+.button-primary {
+  @include button-color($primary-color-bg, $primary-color-fg);
+}
+
+.button-success,
+.button-save,
+.button-submit {
+  @include button-color($success-color-bg, $success-color-fg);
+}
+
+.button-info {
+  @include button-color($info-color-bg, $info-color-fg);
+}
+
+.button-warning {
+  @include button-color($warning-color-bg, $warning-color-fg);
+}
+
+.button-danger,
+.button-delete {
+  @include button-color($danger-color-bg, $danger-color-fg);
+}
+
+.button-map {
+  @include button-color($meppit-maps-color, $primary-color-fg);
+}
+
+.button-data {
+  @include button-color($meppit-data-color, $primary-color-fg);
+}
+
+
+// Follow/Unfollow Button
+// ======================
+
+.button-follow {
+  margin: 5px;
+
+  .label {
+    display: block;
+    min-width: 5em;
   }
 
+  &.active {
+    background-color: $ocean-blue;
+    color: $white;
+    border-color: $ocean-blue;
+
+    &:hover { // turns to 'Unfollow' button
+      background: $dark-red;
+      border-color: $dark-red;
+    }
+  }
 }

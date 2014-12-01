@@ -1,5 +1,4 @@
 .import-modal {
-  @include modal;
 
   h2 {
     text-align: center;
@@ -24,7 +23,6 @@
   }
 
   .upload-button {
-    @include blue-button-with-border;
     padding: 15px 80px;
   }
 }
@@ -48,7 +46,6 @@
     display: inline-block;
 
     .upload-button {
-      @include blue-button-with-border;
       padding: 5px 10px;
       width: auto;
     }
@@ -59,8 +56,7 @@
 
     .ui-autocomplete-input { width: 250px; }
 
-    .submit-btn {
-      @include blue-button-with-border;
+    .button-submit {
       display: inline-block;
       position: absolute;
       right: 0;
@@ -124,7 +120,6 @@
       }
 
       .see-table-button {
-        @include button;
         display: inline-block;
         position: absolute;
         right: 10px;

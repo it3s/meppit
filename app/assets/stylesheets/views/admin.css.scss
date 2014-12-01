@@ -6,8 +6,7 @@
       margin-bottom: 20px;
     }
 
-    .delete-btn {
-      @include red-button;
+    .button-delete {
       width: 50%;
       margin: 0 25%;
       text-align: center;

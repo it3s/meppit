@@ -14,7 +14,7 @@
       <div class="list-headline">
         <h1 class="title">
           <%= raw t('geo_data.list.title', :count => "<em>#{@geo_data_collection.total_count}</em>") %>
-          <div class="selected-count"></div>
+          <span class="selected-count"></span>
         </h1>
         <div id="geodata-pagination"><%= paginate @geo_data_collection, :remote => true %></div>
       </div>

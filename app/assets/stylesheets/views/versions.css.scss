@@ -34,18 +34,9 @@
       margin-left: 10px;
     }
 
-    .version-revert {
-      @include blue-button;
-    }
-    .version-see-object {
-      @include button;
-    }
-
     .action-btn {
       float: right;
       margin: 0 5px;
-      font-size: 0.8em;
-      padding: 3px 14px;
     }
   }
   .version-diff {

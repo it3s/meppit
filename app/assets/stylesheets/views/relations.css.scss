@@ -31,7 +31,6 @@
       .item-title a { color: $meppit-data-color; }
 
       .metadata-btn {
-        @include button;
         font-size: 0.8em;
         padding: 2px 8px;
         float: right;

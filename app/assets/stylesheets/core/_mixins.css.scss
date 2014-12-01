@@ -24,15 +24,13 @@
 }
 
 @mixin button($bg: $ultra-soft-grey, $bg-hover: $grey , $fg: $text-color, $fg-hover: $white, $border: $grey) {
+  @include button-color($bg, $fg, $bg-hover, $fg-hover, $border);
+
   cursor: pointer;
   display: inline-block;
-  color: $fg;
-  background-color: $bg;
   border: 1px solid $border;
   border-radius: 4px;
-  padding: 8px 14px;
-
-  @include linear-gradient($bg, darken($bg, 10%));
+  padding: 12px 14px;
 
   text-decoration: none;
   font-weight: bold;
@@ -45,33 +43,33 @@
 
   &:active, &:hover {
     text-decoration: none;
-    background: $bg-hover;
-    color: $fg-hover;
   }
 
   &[disabled], &[disabled]:hover {
     text-decoration: none;
-    background: $bg;
-    color: $fg;
     opacity: 0.6;
     cursor: default;
   }
 }
 
-@mixin green-button {
-  @include button($meppit-dark-green, $meppit-green, $white, $border: $meppit-dark-green);
-}
+@mixin button-color($bg: $ultra-soft-grey, $fg: $text-color, $bg-hover: "", $fg-hover: "", $border: "") {
+  @if $bg-hover == "" { $bg-hover: darken($bg, 10%);  }
+  @if $fg-hover == "" { $fg-hover: $fg;              }
+  @if $border   == "" { $border: darken($bg, 15%); }
 
-@mixin blue-button($border: $meppit-dark-blue) {
-  @include button($meppit-dark-blue, lighten($meppit-dark-blue, 10%), $white, $border: $border);
-}
+  background-color: $bg;
+  color: $fg;
+  border-color: $border;
 
-@mixin blue-button-with-border {
-  @include blue-button($border: darken($meppit-dark-blue, 20%));
-}
+  &:active, &:hover {
+    background: $bg-hover;
+    color: $fg-hover;
+  }
 
-@mixin red-button {
-  @include button($dark-red, $red, $white, $border: $dark-red);
+  &[disabled], &[disabled]:hover {
+    background: $bg;
+    color: $fg;
+  }
 }
 
 @mixin map-view() {

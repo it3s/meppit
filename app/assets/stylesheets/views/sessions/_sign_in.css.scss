@@ -1,7 +1,6 @@
 $signin_box_width: 560px;
 
 .sign-in {
-  @include modal;
   width: $signin_box_width;
 
   * { @include box-sizing(border-box); }

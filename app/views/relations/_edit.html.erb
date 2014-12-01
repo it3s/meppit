@@ -3,7 +3,7 @@
 
   <%= f.input :relations_attributes, as: :hidden, input_html: { class: 'relations-value', value: f.object.relations_values.to_json } %>
   <div class="relations-list"></div>
-  <button class="add-new-btn" title="<%= t 'relations.title.add' %>">
+  <button class="add-new-btn button" title="<%= t 'relations.title.add' %>">
     <%= icon 'plus',  t('relations.add') %>
   </button>
 

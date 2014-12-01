@@ -1,41 +1,62 @@
+.site-page.geo_data,
 .site-page.maps {
-  .map-logo {
-    width: 50px;
-    height:50px;
-    font-size: 40px;
-    color: $white;
-    text-align: center;
-    background-color: $soft-grey;
-    border-radius: 5px;
-    float: left;
-    margin-right: 20px;
-  }
-  .title {
-    h1 {
-      @include inline-pane(52%);
-      margin: 0;
-    }
-    .counters {
-      @include inline-pane(38%);
-      margin: 0;
-    }
+
+  .page-actions {
+    text-align: right;
   }
 
-  .last-update {
-    color: $secondary-content-color;
-    font-size: $secondary-content-font-size;
+  .data-header,
+  .map-header {
+    @include span-columns(12);
+    margin-bottom: 10px;
+
+    .title {
+      @include span-columns(8 of 12);
+
+      .data-logo,
+      .map-logo {
+        display: inline-block;
+        width: 50px;
+        height:50px;
+        font-size: 40px;
+        color: $white;
+        text-align: center;
+        background-color: $soft-grey;
+        border-radius: 5px;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+
+      .data-title,
+      .map-title {
+        display: inline-block;
+        vertical-align: middle;
+        max-width: 500px;
+        margin-top: 5px;
+
+        h1 {
+          margin: 0;
+        }
+
+        .last-update {
+          color: $secondary-content-color;
+          font-size: $secondary-content-font-size;
+        }
+      }
+    }
+
+    .counters {
+      @include span-columns(4 of 12);
+      margin-top: 15px;
+    }
   }
 
   .location {
     @include map-view;
   }
 
-  .add-data {
-    @include button($meppit-data-color, $meppit-dark-blue, $white, $border: $meppit-data-color);
-    float: right;
-  }
+  .add-to-map-modal,
   .add-data-modal {
-    @include modal;
     min-height: 150px;
 
     header {
@@ -49,31 +70,18 @@
       margin-top: 10px;
 
       .cancel-btn {
-        @include button;
         float: right;
       }
-      .submit-btn {
-        @include green-button;
+      .button-save {
         float: right;
         margin-left: 5px;
       }
     }
   }
 
-  .download {
-    @include button;
-    margin-left: 10px;
-    float: right;
-  }
-
-  .embed {
-    @include button;
-    margin-left: 10px;
-    float: right;
-  }
-
+  .data-tabs,
   .map-tabs {
-    margin-top: 48px;
+    clear: both;
 
     .tab-content {
       @include span-columns(12);
@@ -116,13 +124,31 @@
       label { display: none; }
     }
 
+    .data-header,
+    .map-header {
+      .title {
+        @include span-columns(12 of 12);
+
+        .data-title,
+        .map-title {
+          width: 814px;
+          max-width: 100%;
+        }
+
+      }
+    }
+
     h1.name input[type=text] {
-      margin: 0 0 20px;
       width: 100%;
     }
 
     .location {
       margin: 0 0 15px;
+    }
+
+    .data-tabs,
+    .map-tabs  {
+      margin-top: 5px;
     }
 
     input[type=text] {

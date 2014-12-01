@@ -1,12 +1,13 @@
 <div class="list-filters" data-components="listFilter">
 
   <div class="filter-headline">
-    <span class="title"><%= t 'lists.filters.title' %></span>
-    <% unless list_filter.tags.empty? %>
-    <span class="filtering-by">
-      (<%= t 'lists.filters.filtering_by' %>: <em><%= list_filter.tags.join(', ') %></em>)
-    </span>
+    <div class="title"><%= t 'lists.filters.title' %>
+      <% unless list_filter.tags.empty? %>
+      <span class="filtering-by">
+        (<%= t 'lists.filters.filtering_by' %>: <em><%= list_filter.tags.join(', ') %></em>)
+      </span>
     <% end %>
+    </div>
     <div class="toggle-panel <%= I18n.locale %>" data-toggle="collapsed">
       <%= icon('chevron-down', t('js.lists.expand')) %>
     </div>
