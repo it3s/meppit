@@ -28,7 +28,7 @@ describe ToolbarPresenter do
   describe "#available_tools" do
     let (:presenter) { tp user }
     it { expect(presenter.available_tools).to be_a_kind_of Array }
-    it { expect(presenter.available_tools.size).to eq 8 }
+    it { expect(presenter.available_tools.size).to eq 7 }
     it { expect(presenter.available_tools.first).to be_a_kind_of Symbol }
   end
 

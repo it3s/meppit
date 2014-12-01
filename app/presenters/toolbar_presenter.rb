@@ -16,7 +16,7 @@ class ToolbarPresenter
   end
 
   def available_tools
-    [:edit, :star, :comment, :history, :settings, :flag, :delete, :featured]
+    [:edit, :star, :history, :settings, :flag, :delete, :featured]
   end
 
   # Select which tools will be displayed given the current object
@@ -75,10 +75,6 @@ class ToolbarPresenter
       { icon: :star, title: t('toolbar.star'), url: "#",
         active?: current_user && current_user.follow?(object),
         component: _follow_component }
-    end
-
-    def _comment_tool
-      { icon: :comment, title: t('toolbar.comment'), url: "" }
     end
 
     def _history_tool

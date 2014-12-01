@@ -62,15 +62,6 @@ module ApplicationHelper
     }.to_json
   end
 
-  def remove_button_options_for(obj, parent)
-    route = "remove_#{obj.class.name.underscore}"
-    {
-      url: url_for([route, parent]),
-      id: identifier_for(obj),
-      parentId: identifier_for(parent)
-    }.to_json
-  end
-
   def export_path_for(obj, format)
     if obj.nil?
       ctrl = controller_name == 'geo_data' ? 'geo_data_index' : controller_name
@@ -105,9 +96,5 @@ module ApplicationHelper
     else
       render 'activities/activity', activity: ActivityPresenter.new(object: activity, ctx: self)
     end
-  end
-
-  def is_admin?
-    current_user && current_user.admin?
   end
 end
