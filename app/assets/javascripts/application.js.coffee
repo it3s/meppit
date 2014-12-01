@@ -15,8 +15,13 @@
 #= require_tree ./templates
 #= require_tree ./components
 
+window.__testing__ ?= {}
+
 onReady = ->
-  App.faye = new Faye.Client(fayeUrl)
+  try
+    App.faye = new Faye.Client(fayeUrl)
+  catch e
+    console?.error e
   App.mediator.publish('components:start')
   $('.central-pane, .side-pane').stick_in_parent()
 

@@ -1,11 +1,16 @@
-<%= link_to_modal icon("download"), "#export-object", html: {class: "download", title: t('export.link_title')} %>
+<%= button_to_modal icon("download"), "#export-object", html: {class: "download button", title: t('export.link_title')} %>
 
-<div id="export-object" class="export" data-components="exporter">
+<div id="export-object" class="export-modal modal" data-components="exporter">
   <header><h2><%= t 'export.download' %></h2></header>
 
   <section>
     <p class="explanation"><%= t 'export.explanation' %></p>
 
+    <% if object.nil? %>
+      <%= form_tag '#', method: :post, id: "bulk-download-form", "data-components" => "remoteForm" do %>
+        <%= hidden_field_tag :objects_ids , "", id: "objects_ids" %>
+      <% end %>
+    <% end %>
     <div class="export-options options">
       <%= link_to "JSON",    export_path_for(object, :json),    class: "option" %>
       <%= link_to "GeoJSON", export_path_for(object, :geojson), class: "option" %>

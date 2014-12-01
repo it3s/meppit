@@ -1,0 +1,160 @@
+.site-page.geo_data,
+.site-page.maps {
+
+  .page-actions {
+    text-align: right;
+  }
+
+  .data-header,
+  .map-header {
+    @include span-columns(12);
+    margin-bottom: 10px;
+
+    .title {
+      @include span-columns(8 of 12);
+
+      .data-logo,
+      .map-logo {
+        display: inline-block;
+        width: 50px;
+        height:50px;
+        font-size: 40px;
+        color: $white;
+        text-align: center;
+        background-color: $soft-grey;
+        border-radius: 5px;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+
+      .data-title,
+      .map-title {
+        display: inline-block;
+        vertical-align: middle;
+        max-width: 500px;
+        margin-top: 5px;
+
+        h1 {
+          margin: 0;
+        }
+
+        .last-update {
+          color: $secondary-content-color;
+          font-size: $secondary-content-font-size;
+        }
+      }
+    }
+
+    .counters {
+      @include span-columns(4 of 12);
+      margin-top: 15px;
+    }
+  }
+
+  .location {
+    @include map-view;
+  }
+
+  .add-to-map-modal,
+  .add-data-modal {
+    min-height: 150px;
+
+    header {
+      margin-bottom: 20px;
+      h2 {text-align: center}
+    }
+
+    .explanation { margin: 0 0 5px 5px; }
+
+    .btns {
+      margin-top: 10px;
+
+      .cancel-btn {
+        float: right;
+      }
+      .button-save {
+        float: right;
+        margin-left: 5px;
+      }
+    }
+  }
+
+  .data-tabs,
+  .map-tabs {
+    clear: both;
+
+    .tab-content {
+      @include span-columns(12);
+    }
+  }
+
+  .main-info {
+    @include span-columns(8 of 12);
+  }
+
+  .extra-info {
+    @include span-columns(4 of 12);
+
+    h2 {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    .administrator{
+      margin-bottom: 30px;
+
+      a {
+        color: $link-color;
+        text-decoration: none;
+      }
+      .avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 15px;
+        top: 10px;
+        position: relative;
+        margin-right: 5px;
+      }
+    }
+  }
+
+  &.edit, &.new {
+    .field {
+      padding: 0;
+      label { display: none; }
+    }
+
+    .data-header,
+    .map-header {
+      .title {
+        @include span-columns(12 of 12);
+
+        .data-title,
+        .map-title {
+          width: 814px;
+          max-width: 100%;
+        }
+
+      }
+    }
+
+    h1.name input[type=text] {
+      width: 100%;
+    }
+
+    .location {
+      margin: 0 0 15px;
+    }
+
+    .data-tabs,
+    .map-tabs  {
+      margin-top: 5px;
+    }
+
+    input[type=text] {
+      font: inherit;
+      color: inherit;
+      letter-spacing: inherit;
+    }
+  }
+}

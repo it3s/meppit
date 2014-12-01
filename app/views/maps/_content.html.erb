@@ -1,6 +1,9 @@
 
-<%= render 'shared/export/export_object', object: map %>
-<%= render "maps/add_geo_data_modal", map: map %>
+<div class="page-actions">
+  <%= render "maps/add_geo_data_modal", map: map %>
+  <%= render 'shared/export/export_object', object: map %>
+  <%= render 'embed/v1/button', object: map %>
+</div>
 
 <section class="main-content">
 
@@ -25,7 +28,7 @@
       <div class="extra-info" >
         <%= render 'users/administrator', user: map.administrator %>
         <%= render 'shared/contacts/view', object: map %>
-        <%= render 'shared/tags', tags: map.tags %>
+        <%= render 'shared/tags', tags: map.tags, object: map %>
       </div>
     </div>
 

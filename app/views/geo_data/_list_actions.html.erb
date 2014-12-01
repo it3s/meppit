@@ -1,11 +1,23 @@
-<div class="list-actions" data-components="stick" data-stick-options='{ "get_width_from": ".site-page" }'>
-  <button class="select-all-btn" data-components='selectAll'>
-    <input type="checkbox" name="all" /><%= t 'lists.select_all' %>
-  </button>
-  <%= link_to_modal icon("globe", t("geo_data.add_map.title")), "#bulk-add-to-map-modal",
-        login_required: true, html: {class: "add-to-map", id: "bulk-add-to-map"} %>
-  <%= render 'imports/modal' %>
-  <%= render 'shared/export/export_object', object: nil %>
-  <%= link_to icon('map-marker', t('geo_data.list.add_new')), new_geo_data_path, class: 'add-new-btn' , "data-components" => "loginRequired" %>
+<div class="list-actions" data-components="stick listActions" data-stick-options='{ "get_width_from": ".site-page" }'>
+
+  <div class="main-actions">
+    <button class="select-all-btn button" data-components='selectAll'>
+      <input type="checkbox" name="all" /><%= t 'lists.select_all' %>
+    </button>
+
+    <span class="bulk-actions">
+      <%= button_to_modal icon("globe", t("geo_data.add_map.title")), "#bulk-add-to-map-modal",
+      login_required: true, html: {class: "add-to-map button-map", id: "bulk-add-to-map"} %>
+      <%= render 'shared/export/export_object', object: nil %>
+    </span>
+
+    <%= render "geo_data/bulk_add_map_modal" %>
+  </div>
+
+  <div class="secondary-actions">
+    <%= render 'imports/modal' %>
+    <%= link_to icon('map-marker', t('geo_data.list.add_new')), new_geo_data_path, class: 'add-new-btn button-data' , "data-components" => "loginRequired" %>
+  </div>
+
 </div>
 <%= render "geo_data/bulk_add_map_modal" %>

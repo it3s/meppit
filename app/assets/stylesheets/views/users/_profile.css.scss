@@ -1,0 +1,80 @@
+.site-page.users {
+
+  // left pane
+  .avatar {
+    margin: 0 0 10px 0;
+
+    img {
+      width: 220px;
+      height: 220px;
+      border-radius: 5px;
+    }
+
+    .upload-button {
+      width: 220px;
+    }
+  }
+
+  .extra-info {
+    margin-top: 30px;
+    width: auto !important;  // Fix a conflict (FIXME: should not be done this way)
+
+    input[type=text] {
+      width: 195px;
+      margin: -5px -1px;
+    }
+  }
+
+  // Central pane
+  .main-title {
+    float:left;
+    width: 425px;
+  }
+
+  .location {
+    @include map-view;
+
+    .map { height: 170px; }
+  }
+
+  h1.name {
+    margin: 0;
+    input[type=text] { margin: -5px 0 20px -5px; }
+  }
+  .joined {
+    color: $secondary-content-color;
+    font-size: $secondary-content-font-size;
+  }
+
+  .content-info {
+    margin: 0 0 20px;
+  }
+
+  .involvement > div {
+    overflow-y: auto;
+    height: 400px;
+  }
+
+  &.edit {
+    .field {
+      padding: 0;
+      label { display: none; }
+    }
+
+    .main-title {
+      width: 100%;
+
+      h1.name input[type=text] { margin: 0 0 20px; }
+    }
+
+    .location {
+      margin: 0 0 15px;
+    }
+
+    input[type=text] {
+      font: inherit;
+      color: inherit;
+      letter-spacing: inherit;
+    }
+  }
+}

@@ -124,9 +124,9 @@ drawAssistence = =>
 App.components.map = ->
   initialize: ->
     @startMap()
-    @addButtons()
+    @addButtons() if not @attr.embeded
     @bindEvents()
-    if @attr.editor and not @attr.hasLocation
+    if not @embeded and @attr.editor and not @attr.hasLocation
       @startDrawAssistence()
     App.mediator.publish 'component:initialized', this
 
@@ -221,7 +221,7 @@ App.components.map = ->
         height: @container.css('height')
         width: @container.css('width')
         'z-index': @container.css('z-index')
-      @map.zoomIn 2, animate: false
+      @map.zoomIn 1, animate: false
     top = $("#header").height()
     $(window).scrollTop(0)
     # make sure the map position is really absolute
@@ -244,7 +244,7 @@ App.components.map = ->
     $(window).scrollTop(@_originalScrollTop)
     $('.site-page').css position: @_sitePageOriginalPosition
     @container.css @_originalCss
-    @map.zoomOut 2, animate: false
+    @map.zoomOut 1, animate: false
     @map.refresh()
     @expanded = false
 

@@ -1,20 +1,24 @@
-<header class="wrapper">
-  <div class="map-logo"><%= icon "globe" %></div>
+<header class="wrapper map-header">
   <div class="title">
-  <% if edit_mode? %>
+    <div class="map-logo"><%= icon "globe" %></div>
+    <div class="map-title">
+    <% if edit_mode? %>
 
-    <div><h1 class="name"><%= f.input :name %></h1></div>
+      <h1 class="name"><%= f.input :name %></h1>
 
-  <% else %>
+    <% else %>
 
-    <div>
       <h1 class="name"><%= map.name %></h1>
-      <%= render 'shared/counters', presenter: CountersPresenter.new(object: map, ctx: self, size: :big) %>
-    </div>
-    <time class="last-update" datetime="<%= map.updated_at.to_datetime.rfc3339 %>">
-      <%= t 'maps.last_updated', date: time_ago_in_words(map.updated_at) %>
-    </time>
+      <time class="last-update" datetime="<%= map.updated_at.to_datetime.rfc3339 %>">
+        <%= t 'maps.last_updated', date: time_ago_in_words(map.updated_at) %>
+      </time>
 
-  <% end %>
+    <% end %>
+    </div>
   </div>
+
+  <% unless edit_mode? %>
+    <%= render 'shared/counters', presenter: CountersPresenter.new(object: map, ctx: self, size: :big) %>
+  <% end %>
+
 </header>

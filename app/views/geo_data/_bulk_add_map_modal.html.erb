@@ -1,4 +1,4 @@
-<div id="bulk-add-to-map-modal" class="add-to-map-modal" data-components="addMappingBulk">
+<div id="bulk-add-to-map-modal" class="add-to-map-modal modal" data-components="addMappingBulk">
   <header><h2><%= t 'geo_data.bulk_add_map.title' %></h2></header>
   <section>
     <div class="explanation"><%=  t 'geo_data.bulk_add_map.explanation' %></div>
@@ -9,9 +9,8 @@
       <%= hidden_field_tag :geo_data_ids , "", id: "geo_data_ids" %>
 
       <p class="btns">
-        <%= submit_tag t('save'), class: "submit-btn" %>
+        <%= submit_tag t('save'), class: "button-save" %>
       </p>
     <% end %>
   </section>
 </div>
-

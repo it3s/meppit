@@ -297,6 +297,16 @@ describe ApplicationHelper do
     end
   end
 
+  describe "#tag_path_for" do
+    let(:user) { FactoryGirl.create :user }
+    let(:geo_data) { FactoryGirl.create :geo_data }
+    let(:map) { FactoryGirl.create :map }
+
+    it { expect(helper.tag_path_for(geo_data, 'tagname')).to eq helper.geo_data_index_path(list_filter: { tags: 'tagname' }) }
+    it { expect(helper.tag_path_for(map, 'tagname')).to eq helper.maps_path(list_filter: { tags: 'tagname' }) }
+    it { expect(helper.tag_path_for(user, 'tagname')).to eq helper.geo_data_index_path(list_filter: { tags: 'tagname' }) }
+  end
+
   describe "Concerns::ComponentsHelper" do
     describe "#hash_to_attributes" do
       it "return empty string for empty hash" do
@@ -341,6 +351,26 @@ describe ApplicationHelper do
       it "renders tooltip component" do
         expect(helper.link_to_tooltip 'Open', '#tpl').to eq anchor
       end
+    end
+
+    describe "#button_to_modal" do
+      context "regular modal" do
+        let(:anchor) { '<button data-href="#some-id" class="button" data-components="modal" data-modal-options=\'{}\'>Open Modal</button>' }
+        it "renders modal component" do
+          expect(helper.button_to_modal 'Open Modal', '#some-id', :html => { :class => 'button'} ).to eq anchor
+        end
+      end
+
+      context "remote modal" do
+        let(:link) { helper.link_to_modal 'Open Modal', '#some-id', :remote => true }
+        it { expect(link).to include 'data-modal-options=\'{"remote":true}\'' }
+      end
+
+      context "autoload and prevent_close" do
+        let(:link) { helper.link_to_modal 'Open Modal', '#some-id', :autoload => true, :prevent_close => true }
+        it { expect(link).to include 'data-modal-options=\'{"autoload":true,"prevent_close":true}\'' }
+      end
+
     end
 
     describe "#remote_form_for" do

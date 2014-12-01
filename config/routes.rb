@@ -46,8 +46,9 @@ Meppit::Application.routes.draw do
   end
 
   concern :downloadable do
-    get "export" => "downloads#export", on: :member
-    get "bulk_export" => "downloads#bulk_export", on: :collection
+    get  "export" => "downloads#export", on: :member
+    get  "bulk_export" => "downloads#bulk_export", on: :collection
+    post "bulk_export" => "downloads#bulk_export", on: :collection
   end
 
   concern :has_media do
@@ -134,6 +135,14 @@ Meppit::Application.routes.draw do
       resources :geo_data, only: [:show, :index]
       resources :maps,     only: [:show, :index]
       resources :users,    only: [:show]
+    end
+  end
+
+  namespace :embed do
+    namespace :v1 do
+      resources :maps, only: [:show] do
+        get :help, on: :collection
+      end
     end
   end
 

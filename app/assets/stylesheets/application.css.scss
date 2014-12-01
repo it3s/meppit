@@ -1,4 +1,4 @@
-// reset and base libs
+// resets and base libs
 @import "compass/reset";
 @import "compass/utilities/sprites";
 @import "bourbon";
@@ -7,14 +7,13 @@
 @import "font-awesome";
 
 // settings, mixins and core style
-@import "settings";
+@import "config/settings";
 @import "core/normalize";
 @import "core/mixins";
 @import "core/base";
-@import "core/forms";
 @import "core/sprites";
 
-// vendor
+// vendors
 @import "jquery.modal";
 @import "flexslider";
 @import "jquery.qtip";
@@ -25,50 +24,55 @@
 @import "meppit-map";
 @import "colpick";
 
-// app common
+// commons
+@import "shared/buttons";
+@import "shared/forms";
 @import "shared/logos";
 @import "shared/usecases";
-@import "shared/page";
-@import "shared/header";
-@import "shared/footer";
-@import "shared/alerts";
-@import "shared/toolbar";
-@import "shared/contacts";
-@import "shared/uploader";
-@import "shared/tags";
-@import "shared/stick";
-@import "shared/tabs";
-@import "shared/counters";
-@import "shared/lists";
-@import "shared/buttons";
-@import "shared/search";
-@import "shared/additional_info";
-@import "shared/export";
-@import "shared/options";
-@import "shared/map";
-@import "shared/colorPicker";
 
-@import "sessions/sign_in";
+// layout
+@import "shared/layout/page";
+@import "shared/layout/header";
+@import "shared/layout/footer";
 
-@import "users/sign_up";
-@import "users/password_reset";
-@import "users/profile";
-@import "users/settings";
+// components
+@import "shared/components/alerts";
+@import "shared/components/toolbar";
+@import "shared/components/contacts";
+@import "shared/components/uploader";
+@import "shared/components/tags";
+@import "shared/components/stick";
+@import "shared/components/tabs";
+@import "shared/components/counters";
+@import "shared/components/lists";
+@import "shared/components/search";
+@import "shared/components/additional_info";
+@import "shared/components/export";
+@import "shared/components/options";
+@import "shared/components/map";
+@import "shared/components/colorPicker";
+@import "shared/components/embed";
+@import "shared/components/modal";
 
-@import "pages/frontpage";
-
-@import "updates/last_updates";
-
-@import "geo_data";
-@import "maps";
-@import "versions";
-@import "relations";
-@import "activities";
-@import "notifications";
-@import "pictures";
-@import "import";
-@import "comments";
-@import "dashboard";
-@import "flags";
-@import "admin";
-@import "layers";
+// views specifics
+@import "views/users/sign_up";
+@import "views/users/password_reset";
+@import "views/users/profile";
+@import "views/users/settings";
+@import "views/pages/frontpage";
+@import "views/updates/last_updates";
+@import "views/sessions/sign_in";
+@import "views/object";
+@import "views/geo_data";
+@import "views/maps";
+@import "views/versions";
+@import "views/relations";
+@import "views/activities";
+@import "views/notifications";
+@import "views/pictures";
+@import "views/import";
+@import "views/comments";
+@import "views/dashboard";
+@import "views/flags";
+@import "views/admin";
+@import "views/layers";

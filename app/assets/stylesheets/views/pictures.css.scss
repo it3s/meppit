@@ -1,0 +1,71 @@
+.pictures {
+
+  .uploader .upload-button {
+    width: auto;
+
+    i { margin-right: 5px; }
+  }
+
+  .pictures-thumbs {
+    margin-top: 10px;
+    margin-left: -5px;
+
+    li { display: inline-block; }
+
+    .thumb {
+      display: inline-block;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 5px;
+      background-color: $meppit-light-blue;
+      vertical-align: top;
+      width: 125px;
+      height: 125px;
+
+      &:hover {
+        background-color: $meppit-blue;
+      }
+
+      .thumb-image {
+        width: 105px;
+        max-height: 105px;
+        border-radius: 5px;
+
+      }
+    }
+  }
+}
+
+.picture {
+  .picture-image {
+    text-align: center;
+
+    img {
+      max-width: 400px;
+      max-height: 400px;
+    }
+  }
+
+  .picture-description {
+    margin-top: 10px;
+
+    textarea {
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+
+  .actions {
+    position: relative;
+    text-align: center;
+    margin-top: 10px;
+
+    .button-delete {
+      display: inline-block;
+      margin-right: 40px;
+    }
+    .button-save {
+      display: inline-block;
+    }
+  }
+}

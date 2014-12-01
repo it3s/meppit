@@ -70,10 +70,6 @@ h3 {
   @include outer-container;
 }
 
-.button {
-  @include button;
-}
-
 .blocker { z-index: 10000 !important; }
 .modal {
   @include box-sizing(content-box);

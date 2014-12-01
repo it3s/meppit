@@ -1,0 +1,58 @@
+// reset and base libs
+@import "compass/reset";
+@import "bourbon";
+@import "neat";
+
+// settings, mixins and core style
+@import "config/settings";
+@import "core/normalize";
+@import "core/mixins";
+@import "core/base";
+
+// vendor
+@import "meppit-map";
+
+// components
+@import "shared/components/lists";
+@import "shared/components/map";
+
+// views
+@import "views/layers";
+
+
+html{
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  min-width: 0;
+}
+
+.location {
+  width: 80%;
+  height: 100%;
+  float: left;
+
+    & .map {
+    &, & .map-container {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.map-layers {
+  width: 20%;
+  height: 100%;
+  float: left;
+
+  > h2 { display: none; }
+
+  font-size: 0.8em;
+  padding: 0 5px;
+
+  .layers-list {
+    overflow: auto;
+    height: 100%;
+  }
+}

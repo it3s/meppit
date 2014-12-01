@@ -1,10 +1,10 @@
 
 <div class='version-diff-before'>
   <div class='before-title'><%= t 'before'%>:</div>
-  <%= render('shared/location', object: before) %>
+  <%= render('shared/location', object: before, embeded: true) %>
 </div>
 
 <div class='version-diff-after'>
   <div class='after-title'><%= t 'after' %>:</div>
-  <%= render('shared/location',  object: after) %>
+  <%= render('shared/location',  object: after, embeded: true) %>
 </div>

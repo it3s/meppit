@@ -3,7 +3,7 @@
     <span class='icon'><%= icon('map-marker') %></span>
     <span class="number" title="line number"><%= presenter.number %></span>
     <span class="title"><%= presenter.data[:name] %></span>
-    <%= link_to icon('table'), "##{ presenter.data_preview_id }", class: 'see-table-button', title: 'see data', 'data-components' => 'togglePanel' %>
+    <%= link_to icon('table'), "##{ presenter.data_preview_id }", class: 'see-table-button button', title: 'see data', 'data-components' => 'togglePanel' %>
 
     <% unless presenter.valid? %>
       <ul class="invalid-attrs">

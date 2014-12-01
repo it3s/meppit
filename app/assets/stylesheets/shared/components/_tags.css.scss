@@ -1,0 +1,26 @@
+$tag-color: darken($meppit-dark-blue, 20%);
+
+.tags .tag, div.tagsinput span.tag {
+  display: inline-block;
+  color: $tag-color;
+  border: solid 1px $tag-color;
+  border-radius: 4px;
+  background-color: $meppit-light-blue;
+  padding: 5px 10px;
+  margin: 0 5px 5px 0;
+
+  a { color: $tag-color; }
+}
+
+div.tagsinput {
+  background: inherit;
+  min-height: 0 !important;
+  border: none;
+
+  input {
+    background-color: $white;
+    border: 1px solid $grey;
+    padding: 4px;
+    min-width: 150px;
+  }
+}

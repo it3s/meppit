@@ -1,0 +1,92 @@
+$signin_box_width: 560px;
+
+.sign-in {
+  width: $signin_box_width;
+
+  * { @include box-sizing(border-box); }
+
+  h2 {
+    text-align: center;
+    font-size: 20px;
+    margin: 0.67em 0;
+  }
+
+  .external_providers, form {
+    padding: 10px;
+    float: left;
+  }
+
+}
+
+.separator {
+  $separator_height: 130px;
+  width: $signin_box_width * 0.10;
+  height: $separator_height;
+  text-align: center;
+  line-height: $separator_height;
+  font-style: italic;
+  font-weight: bold;
+  margin-top: 22px;
+  float: left;
+
+  position: relative;
+
+  .vertical_line {
+    position: absolute;
+    left: 50%;
+    height: $separator_height * 0.40;
+    border-left: 1px solid #333;
+    width: 1px;
+  }
+  .vertical_line.top { top: 0 }
+  .vertical_line.bottom { bottom: 0 }
+}
+
+
+.external_providers {
+  width: $signin_box_width * 0.4;
+  margin-top: 25px;
+
+  li {
+    margin: 15px 0;
+
+    .button {
+      text-align: center;
+      width: 100%;
+      padding: 7px 6px 2px;
+      border: 0;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 13px;
+
+      .image {
+        width: 22px;
+        height: 22px;
+        float: left;
+        display: block;
+      }
+    }
+
+    .image.login-google   { @include sprite-image($logos-map, login-google); }
+    .image.login-facebook { @include sprite-image($logos-map, login-facebook); }
+
+    .button.google {
+      background: $google_red;
+      &:hover { background: lighten($google_red, 20%%); }
+    }
+    .button.facebook {
+      background: $facebook_blue;
+      &:hover { background: lighten($facebook_blue, 20%%); }
+    }
+  }
+
+}
+
+.login-form {
+  width: $signin_box_width * 0.5;
+
+  input[type=submit] {
+    padding: 8px 30px;
+    width: 100%;
+  }
+}

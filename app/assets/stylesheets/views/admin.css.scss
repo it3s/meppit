@@ -1,0 +1,15 @@
+.admin {
+  &.confirm-deletion {
+    h2 {
+      text-align: center;
+      color: $grey;
+      margin-bottom: 20px;
+    }
+
+    .button-delete {
+      width: 50%;
+      margin: 0 25%;
+      text-align: center;
+    }
+  }
+}
