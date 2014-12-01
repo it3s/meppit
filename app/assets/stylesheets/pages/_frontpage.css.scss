@@ -93,18 +93,26 @@
 
   .featured-maps {
     background-color: $soft-blue;
-    h2, a, .map  { color: $white }
     a:hover { text-decoration: none; }
 
-    .map {
+    h2, .button { color: $white }
+
+    .map-container {
       @include span-columns(4 of 12);
       padding: 5px;
+    }
 
-      img {
-        width: 100%;
-        height: 150px;
-        margin: 0 0 10px;
-      }
+    .location {
+      @include map-view;
+
+      width: 100%;
+      margin: 0 0 10px;
+
+      .leaflet-control-attribution { display: none; }
+    }
+
+    .map-link {
+      & { color: $white }
       p { padding: 0.5em 0.2em 0; }
     }
 

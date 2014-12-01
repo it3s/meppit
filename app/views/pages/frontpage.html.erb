@@ -40,11 +40,13 @@
       <% delay = 0 %>
       <% featured_maps(3).each do |map| %>  <%# pages_helper#featured_maps %>
         <% delay = delay + 0.25 %>
-        <a class="map animation fadeIn" data-wow-delay="<%= delay %>s" href="<%= url_for map %>">
-          <%= image_tag map[:image] %>
-          <h3><%= sanitize map[:name] %></h3>
-          <p><%= truncate sanitize(map[:description]), length: 150 %></p>
-        </a>
+        <div class="map-container animation fadeIn" data-wow-delay="<%= delay %>s">
+          <%= render('shared/location', object: map) %>
+          <a class="map-link" href="<%= url_for map %>">
+            <h3><%= sanitize map[:name] %></h3>
+            <p><%= truncate sanitize(map[:description]), length: 150 %></p>
+          </a>
+        </div>
       <% end %>
     </div>
     <div class="explore">
