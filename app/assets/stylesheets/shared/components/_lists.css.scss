@@ -1,91 +1,18 @@
-nav.pagination { display: none; }  // We are using infinite scroll
+// Lists
+//
+// Summary:
+//
+// * List HeadLine
+// * List Filters Box
+// * List Actions Bar
+// * Pagination
+// * List Items
+// * List Editor
+// * List Inside Modal
 
-.list-item {
-  clear: both;
-  padding: 1em 0;
-  border-bottom: 1px solid $list-item-separator-color;
 
-  &:hover { background: $dark-white; }
-
-  a, a:hover { text-decoration: none; }
-
-  .item-avatar, .item-checkbox { float: left; }
-
-  .item-avatar {
-    display: block;
-    overflow: hidden;
-    font-size: 3em;
-    width: 1.15em;
-    height: 1.15em;
-    background: $soft-grey;
-    color: #fff;
-    text-align: center;
-    border-radius: 0.2em;
-
-    i { margin: 2px 0; }
-
-    img {
-      width: 1.15em;
-      height: 1.15em;
-    }
-  }
-
-  &.hidden { opacity: 0.4; }
-
-  .item { margin-left: 8.3em; }
-
-  .item-content { margin-right: 12em; }
-
-  .item-title {
-    font-family: inherit;
-    font-size: 1.15em;
-    color: $text-link-color;
-    margin: 0 0 0.2em;
-  }
-
-  .item-excerpt { color: $text-color; }
-
-  .tags { margin-top: 0.8em; }
-
-  .item-controls {
-    text-align: center;
-    float: right;
-  }
-
-  &.map {
-    .item-avatar { background: $meppit-maps-color; }
-    .item .item-title { color: $meppit-maps-color; }
-  }
-  &.geo_data {
-    .item-avatar { background: $meppit-data-color; }
-    .item .item-title { color: $meppit-data-color; }
-  }
-
-  &.small {
-    .item-avatar { font-size: 2em; }
-
-    .item { margin-left: 2.8em; }
-
-    .item-excerpt { font-size: 0.95em; }
-  }
-
-  &.big {
-    .item-checkbox { margin: 1.8em 1em; }
-
-    .item-avatar { font-size: 4em; }
-
-    .item { min-height: 4.8em; }
-  }
-}
-
-.modal {
-   .list-container {
-     height: 400px;
-     overflow-y: auto;
-   }
-
-   .item-excerpt { display: none; }
-}
+// List HeadLine
+// =============
 
 .list-headline {
   border-bottom: solid 1px $ultra-soft-grey;
@@ -97,25 +24,9 @@ nav.pagination { display: none; }  // We are using infinite scroll
   }
 }
 
-.list-actions {
-  position: relative;
-  padding: 1em 0;
-  border-bottom: solid 1px $ultra-soft-grey;
 
-  .main-actions,
-  .secondary-actions { display: inline }
-  .secondary-actions {
-    position: absolute;
-    right: 0;
-  }
-
-  .button {
-    input[type=checkbox] {
-      margin-right: 3px;
-      vertical-align: middle;
-    }
-  }
-}
+// List Filters Box
+// ================
 
 .list-filters {
   background-color: $meppit-light-blue;
@@ -221,9 +132,123 @@ nav.pagination { display: none; }  // We are using infinite scroll
     text-align: right;
     margin-top: 1.5em;
   }
-
-
 }
+
+
+// List Actions Bar
+// ================
+
+.list-actions {
+  position: relative;
+  padding: 1em 0;
+  border-bottom: solid 1px $ultra-soft-grey;
+
+  .main-actions,
+  .secondary-actions { display: inline }
+  .secondary-actions {
+    position: absolute;
+    right: 0;
+  }
+
+  .button {
+    input[type=checkbox] {
+      margin-right: 3px;
+      vertical-align: middle;
+    }
+  }
+}
+
+
+// Pagination
+// ==========
+
+nav.pagination { display: none; }  // We are using infinite scroll
+
+
+// List Items
+// ==========
+
+.list-item {
+  clear: both;
+  padding: 1em 0;
+  border-bottom: 1px solid $list-item-separator-color;
+
+  &:hover { background: $dark-white; }
+
+  a, a:hover { text-decoration: none; }
+
+  .item-avatar, .item-checkbox { float: left; }
+
+  .item-avatar {
+    display: block;
+    overflow: hidden;
+    font-size: 3em;
+    width: 1.15em;
+    height: 1.15em;
+    background: $soft-grey;
+    color: #fff;
+    text-align: center;
+    border-radius: 0.2em;
+
+    i { margin: 2px 0; }
+
+    img {
+      width: 1.15em;
+      height: 1.15em;
+    }
+  }
+
+  &.hidden { opacity: 0.4; }
+
+  .item { margin-left: 8.3em; }
+
+  .item-content { margin-right: 12em; }
+
+  .item-title {
+    font-family: inherit;
+    font-size: 1.15em;
+    color: $text-link-color;
+    margin: 0 0 0.2em;
+  }
+
+  .item-excerpt { color: $text-color; }
+
+  .tags { margin-top: 0.8em; }
+
+  .item-controls {
+    text-align: center;
+    float: right;
+  }
+
+  &.map {
+    .item-avatar { background: $meppit-maps-color; }
+    .item .item-title { color: $meppit-maps-color; }
+  }
+  &.geo_data {
+    .item-avatar { background: $meppit-data-color; }
+    .item .item-title { color: $meppit-data-color; }
+  }
+
+  &.small {
+    .item-avatar { font-size: 2em; }
+
+    .item { margin-left: 2.8em; }
+
+    .item-excerpt { font-size: 0.95em; }
+  }
+
+  &.big {
+    .item-checkbox { margin: 1.8em 1em; }
+
+    .item-avatar { font-size: 4em; }
+
+    .item { min-height: 4.8em; }
+  }
+}
+
+
+// List Editor
+// ===========
 
 .list-editor {
   .add-new-btn {
@@ -258,4 +283,17 @@ nav.pagination { display: none; }  // We are using infinite scroll
       padding: 3px 9px;
     }
   }
+}
+
+
+// List Inside Modal
+// =================
+
+.modal {
+  .list-container {
+    height: 400px;
+    overflow-y: auto;
+  }
+
+  .item-excerpt { display: none; }
 }

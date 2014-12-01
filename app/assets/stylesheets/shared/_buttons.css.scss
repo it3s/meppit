@@ -1,26 +1,16 @@
-.button {
+// Buttons
+//
+// see also `core/_mixins.css.scss`.
+//
+// Summary:
+//
+// * Generic Button
+// * Buttons Colors
+// * Follow/Unfollow Button
 
-  &.follow {
-    margin: 5px;
 
-    .label {
-      display: block;
-      min-width: 5em;
-    }
-
-    &.active {
-      background-color: $ocean-blue;
-      color: $white;
-      border-color: $ocean-blue;
-
-      &:hover { // turns to 'Unfollow' button
-        background: $dark-red;
-        border-color: $dark-red;
-      }
-    }
-  }
-
-}
+// Generic Button
+// ==============
 
 .button,
 .button-primary,
@@ -32,9 +22,14 @@
 .button-save,
 .button-delete,
 .button-map,
-.button-data {
+.button-data,
+.button-follow {
   @include button;
 }
+
+
+// Buttons Colors
+// ==============
 
 .button-primary {
   @include button-color($primary-color-bg, $primary-color-fg);
@@ -65,4 +60,28 @@
 
 .button-data {
   @include button-color($meppit-data-color, $primary-color-fg);
+}
+
+
+// Follow/Unfollow Button
+// ======================
+
+.button-follow {
+  margin: 5px;
+
+  .label {
+    display: block;
+    min-width: 5em;
+  }
+
+  &.active {
+    background-color: $ocean-blue;
+    color: $white;
+    border-color: $ocean-blue;
+
+    &:hover { // turns to 'Unfollow' button
+      background: $dark-red;
+      border-color: $dark-red;
+    }
+  }
 }
