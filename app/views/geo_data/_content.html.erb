@@ -1,6 +1,7 @@
-
-<%= render 'shared/export/export_object', object: geo_data %>
-<%= render "geo_data/add_map_modal", geo_data: geo_data %>
+<div class="page-actions">
+  <%= render "geo_data/add_map_modal", geo_data: geo_data %>
+  <%= render 'shared/export/export_object', object: geo_data %>
+</div>
 
 <section class="main-content">
 

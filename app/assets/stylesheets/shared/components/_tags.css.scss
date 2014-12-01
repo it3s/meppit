@@ -1,9 +1,5 @@
 $tag-color: darken($meppit-dark-blue, 20%);
 
-.tags {
-  margin-top: 20px;
-}
-
 .tags .tag, div.tagsinput span.tag {
   display: inline-block;
   color: $tag-color;
@@ -17,12 +13,14 @@ $tag-color: darken($meppit-dark-blue, 20%);
 }
 
 div.tagsinput {
+  background: inherit;
+  min-height: 0 !important;
   border: none;
 
   input {
+    background-color: $white;
     border: 1px solid $grey;
     padding: 4px;
-    width: 100% !important;
+    min-width: 150px;
   }
 }
-

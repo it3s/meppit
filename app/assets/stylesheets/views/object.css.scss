@@ -1,6 +1,10 @@
 .site-page.geo_data,
 .site-page.maps {
 
+  .page-actions {
+    text-align: right;
+  }
+
   .data-header,
   .map-header {
     @include span-columns(12);
@@ -51,11 +55,6 @@
     @include map-view;
   }
 
-  .add-to-map,
-  .add-data {
-    float: right;
-  }
-
   .add-to-map-modal,
   .add-data-modal {
     min-height: 150px;
@@ -78,16 +77,6 @@
         margin-left: 5px;
       }
     }
-  }
-
-  .download {
-    margin-left: 10px;
-    float: right;
-  }
-
-  .embed {
-    margin-left: 10px;
-    float: right;
   }
 
   .data-tabs,

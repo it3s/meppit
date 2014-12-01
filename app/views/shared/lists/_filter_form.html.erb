@@ -1,57 +1,59 @@
 <%= form_tag '', method: 'get' do %>
 
-  <section>
+  <section class="filter-section">
     <header><%= t('lists.filters.filter_by') %>:</header>
     <div class="filter-tags">
-      <%= label_tag :tags, t('lists.filters.tags') %>
-      <div class="tags">
-        <%= text_field_tag 'list_filter[tags]', '', "data-components" => "tags",
-          "data-tags-options" => {tags: list_filter.tags, autocomplete: tag_search_path }.to_json %>
+      <div class="tags-field">
+        <%= label_tag :tags, t('lists.filters.tags') %>
+        <div class="tags">
+          <%= text_field_tag 'list_filter[tags]', '', "data-components" => "tags",
+            "data-tags-options" => {tags: list_filter.tags, autocomplete: tag_search_path }.to_json %>
+        </div>
       </div>
-      <div class="tags_type">
+      <div class="tags-type">
         <%= radio_button_tag('list_filter[tags_type]', "all", list_filter.checked?('tags_type', 'all')) %>
-        <%= label_tag(:list_filter_tags_type, t('lists.filters.tags_type.all')) %>
+        <%= label_tag(:list_filter_tags_type_all, t('lists.filters.tags_type.all')) %>
         <%= radio_button_tag('list_filter[tags_type]', "any", list_filter.checked?('tags_type', 'any')) %>
-        <%= label_tag(:list_filter_tags_type, t('lists.filters.tags_type.any')) %>
+        <%= label_tag(:list_filter_tags_type_any, t('lists.filters.tags_type.any')) %>
       </div>
     </div>
   </section>
 
   <div>
-    <section class="splitted">
+    <section class="splitted filter-section">
       <header><%= t('lists.filters.sort_by') %>:</header>
 
       <div class="sort_by">
         <span class="choice-title"><%= t('lists.filters.sort.field') %>:</span>
         <div class="choice">
           <%= radio_button_tag('list_filter[sort_by]', "name", list_filter.checked?('sort_by', 'name')) %>
-          <%= label_tag(:list_filter_sort_by, t('lists.filters.name')) %>
+          <%= label_tag(:list_filter_sort_by_name, t('lists.filters.name')) %>
           <%= radio_button_tag('list_filter[sort_by]', "created_at", list_filter.checked?('sort_by', 'created_at')) %>
-          <%= label_tag(:list_filter_sort_by, t('lists.filters.date')) %>
+          <%= label_tag(:list_filter_sort_by_created_at, t('lists.filters.date')) %>
         </div>
       </div>
       <div class="order">
         <span class="choice-title"><%= t('lists.filters.sort.order') %>:</span>
         <div class="choice">
           <%= radio_button_tag('list_filter[order]', "asc", list_filter.checked?('order', 'asc')) %>
-          <%= label_tag(:list_filter_order, t('lists.filters.sort.asc')) %>
+          <%= label_tag(:list_filter_order_asc, t('lists.filters.sort.asc')) %>
           <%= radio_button_tag('list_filter[order]', "desc", list_filter.checked?('order', 'desc')) %>
-          <%= label_tag(:list_filter_order, t('lists.filters.sort.desc')) %>
+          <%= label_tag(:list_filter_order_desc, t('lists.filters.sort.desc')) %>
         </div>
       </div>
     </section>
 
     <div class="vertical-separator"> </div>
 
-    <section class="splitted right">
+    <section class="splitted filter-section">
       <header><%= t('lists.filters.visualization') %>:</header>
 
       <span class="choice-title"><%= t('lists.filters.display') %>:</span>
       <div class="choice">
         <%= radio_button_tag('list_filter[visualization]', "list", list_filter.checked?('visualization', 'list')) %>
-        <%= label_tag(:list_filter_visualization, t('lists.filters.list')) %>
+        <%= label_tag(:list_filter_visualization_list, t('lists.filters.list')) %>
         <%= radio_button_tag('list_filter[visualization]', "map", list_filter.checked?('visualization', 'map')) %>
-        <%= label_tag(:list_filter_visualization, t('lists.filters.map')) %>
+        <%= label_tag(:list_filter_visualization_map, t('lists.filters.map')) %>
       </div>
     </section>
   </div>
