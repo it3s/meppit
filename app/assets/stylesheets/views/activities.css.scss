@@ -1,8 +1,6 @@
 .activities-list {
   .list-item {
 
-    &.small .item { width: 550px; }
-
     .trackable { font-weight: bold; }
 
     &.user {
@@ -32,13 +30,12 @@
     display: inline-block;
     font-size: 0.8em;
     color: $grey;
-    margin-left: 10px;
   }
 
   .owner-avatar {
     display: inline-block;
     float: left;
-    margin: -3px 6px 0 -22px;
+    margin: -4px 6px 0 -15px;
     position: relative;
 
     img {

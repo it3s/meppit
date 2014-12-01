@@ -13,60 +13,43 @@ nav.pagination { display: none; }  // We are using infinite scroll
 
   .item-avatar {
     display: block;
-    margin: 0 10px 0 0;
+    overflow: hidden;
+    font-size: 3em;
+    width: 1.15em;
+    height: 1.15em;
     background: $soft-grey;
     color: #fff;
     text-align: center;
+    border-radius: 0.2em;
 
     i { margin: 2px 0; }
-  }
 
-  &.hidden {
-    opacity: 0.4;
-  }
-
-  &.small {
-    .item-avatar, img {
-      font-size: 30px;
-      width: 32px;
-      height: 32px;
-      border-radius: 5px;
-    }
-
-    .item {
-      width: 380px;
-    }
-
-    .item-excerpt { font-size: 0.95em; }
-  }
-
-  &.big {
-    .item-checkbox { margin: 22px 15px; }
-
-    .item-avatar, img {
-      font-size: 54px;
-      width: 64px;
-      height: 64px;
-      border-radius: 7px;
-    }
-
-    .item {
-      min-height: 64px;
-      width: 620px;
+    img {
+      width: 1.15em;
+      height: 1.15em;
     }
   }
 
-  .item {
-    float: left;
+  &.hidden { opacity: 0.4; }
 
-    .item-title {
-      font-family: inherit;
-      font-size: 1.15em;
-      color: $text-link-color;
-      margin: 0 0 2px;
-    }
+  .item { margin-left: 8.3em; }
 
-    .item-excerpt { color: $text-color; }
+  .item-content { margin-right: 12em; }
+
+  .item-title {
+    font-family: inherit;
+    font-size: 1.15em;
+    color: $text-link-color;
+    margin: 0 0 0.2em;
+  }
+
+  .item-excerpt { color: $text-color; }
+
+  .tags { margin-top: 0.8em; }
+
+  .item-controls {
+    text-align: center;
+    float: right;
   }
 
   &.map {
@@ -78,9 +61,20 @@ nav.pagination { display: none; }  // We are using infinite scroll
     .item .item-title { color: $meppit-data-color; }
   }
 
-  .item-controls {
-    text-align: center;
-    .counters { margin: 8px 0;  }
+  &.small {
+    .item-avatar { font-size: 2em; }
+
+    .item { margin-left: 2.8em; }
+
+    .item-excerpt { font-size: 0.95em; }
+  }
+
+  &.big {
+    .item-checkbox { margin: 1.8em 1em; }
+
+    .item-avatar { font-size: 4em; }
+
+    .item { min-height: 4.8em; }
   }
 }
 
@@ -90,15 +84,7 @@ nav.pagination { display: none; }  // We are using infinite scroll
      overflow-y: auto;
    }
 
-   .list-item {
-
-      .item {
-        min-height: 0;
-        width: 200px;
-      }
-
-      .item-excerpt { display: none; }
-   }
+   .item-excerpt { display: none; }
 }
 
 .list-headline {
@@ -107,18 +93,21 @@ nav.pagination { display: none; }  // We are using infinite scroll
   .selected-count {
     font-size: 0.7em;
     color: $soft-grey;
-    margin-left: 0.51em;
+    margin-left: 0.5em;
   }
 }
 
 .list-actions {
-  @include clearfix;
-
-  padding: 10px 0;
+  position: relative;
+  padding: 1em 0;
   border-bottom: solid 1px $ultra-soft-grey;
 
-  .main-actions      { float: left;  }
-  .secondary-actions { float: right; }
+  .main-actions,
+  .secondary-actions { display: inline }
+  .secondary-actions {
+    position: absolute;
+    right: 0;
+  }
 
   .button {
     input[type=checkbox] {
@@ -131,8 +120,8 @@ nav.pagination { display: none; }  // We are using infinite scroll
 .list-filters {
   background-color: $meppit-light-blue;
   border: $meppit-blue 1px solid;
-  border-radius: 5px;
-  padding: 10px;
+  border-radius: 0.5em;
+  padding: 1em;
 
   .filter-headline {
     position: relative;
@@ -175,16 +164,16 @@ nav.pagination { display: none; }  // We are using infinite scroll
     header {
       font-size: 1.1em;
       font-weight: bold;
-      margin: 10px 0;
+      margin: 0.8em 0;
     }
   }
 
   .vertical-separator {
     float: left;
     width: 1px;
-    height: 60px;
-    margin-left: -20px;
-    margin-top: 20px;
+    height: 4.5em;
+    margin-left: -2%;
+    margin-top: 1.5em;
     border-left: solid 1px $soft-grey;
   }
 
@@ -217,7 +206,7 @@ nav.pagination { display: none; }  // We are using infinite scroll
 
   .choice-title {
     font-weight: bold;
-    margin-right: 20px;
+    margin-right: 1em;
     vertical-align: top;
   }
 
@@ -230,7 +219,7 @@ nav.pagination { display: none; }  // We are using infinite scroll
   .filters-apply {
     @include span-columns(12 of 12);
     text-align: right;
-    margin-top: 20px;
+    margin-top: 1.5em;
   }
 
 
