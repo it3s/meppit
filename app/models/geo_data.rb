@@ -22,6 +22,11 @@ class GeoData < ActiveRecord::Base
 
   validates :name, presence: true
 
+  scope :nearest, -> lon, lat do
+    point = geofactory.point(lon, lat).as_text
+    order{ST_Distance(location, ST_Geomfromtext(point, 4326))}
+  end
+
   def geojson_properties
     active_model_serializer.new(self).serializable_hash.except(:location)
   end

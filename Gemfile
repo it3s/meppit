@@ -53,6 +53,7 @@ gem 'connection_pool'               # connection pool used for mootiro migration
 
 gem 'better_errors'                 # better error page, and shell session when crash
 gem 'binding_of_caller'             # used by better_errors
+gem 'squeel'                        # improved Active Record used for spatial queries
 
 group :doc do
   gem 'sdoc', require: false

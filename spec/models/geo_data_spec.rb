@@ -33,15 +33,15 @@ describe GeoData do
     it { expect{ JSON.parse data.location_geojson }.to_not raise_error  }
   end
 
-  describe "#has_location?" do
+  describe "#location?" do
     let(:data) { FactoryGirl.create(:geo_data) }
     it "returns false if there is no location defined" do
       data.location = nil
-      expect(data.has_location?).to be false
+      expect(data.location?).to be false
     end
     it "returns true if there is location defined" do
       data.location = "POINT (16.0 26.0)"
-      expect(data.has_location?).to be true
+      expect(data.location?).to be true
     end
   end
 
@@ -98,6 +98,23 @@ describe GeoData do
     it { expect(GeoData.search_by_name('okf' ).map(&:name)).to eq ['OKFN-br', 'OKFN'] }
     it { expect(GeoData.search_by_name('br'  ).map(&:name)).to eq ['OKFN-br'] }
     it { expect(GeoData.search_by_name('bl'  ).map(&:name)).to eq ['bla', 'ble'] }
+  end
+
+  describe "spatial queries" do
+    let(:geoms) do
+      [[10, 10], [20, 10],  [30, 10], [40, 10]
+      ].collect { |lon, lat| RGeo::Cartesian.simple_factory.parse_wkt "GEOMETRYCOLLECTION (POINT (#{lon} #{lat}))"  }
+    end
+    before do
+      [['a', geoms[0]], ['b', geoms[1]], ['c', geoms[2]], ['d', geoms[3]]
+      ].each { |n, l| FactoryGirl.create :geo_data, name: n, location: l }
+    end
+
+    describe ".nearest" do
+      it { expect(GeoData.nearest(5,  10).map(&:name)).to eq ['a', 'b', 'c', 'd'] }
+      it { expect(GeoData.nearest(18, 10).map(&:name)).to eq ['b', 'a', 'c', 'd'] }
+      it { expect(GeoData.nearest(50, 10).map(&:name)).to eq ['d', 'c', 'b', 'a'] }
+    end
   end
 
   describe "versioning", versioning: true do

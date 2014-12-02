@@ -118,7 +118,7 @@ module Concerns
         geojson: obj.location_geohash,
         featuresIds: (obj.try(:geo_data_ids) || obj.id || nil),
         featureURL: "\#{baseURL}#{obj_type}/\#{id}/",
-        hasLocation: obj.try(:'has_location?'),
+        hasLocation: obj.try(:'location?'),
       }
       opts = opts.merge({
         editor: true,
