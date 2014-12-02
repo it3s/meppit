@@ -182,12 +182,12 @@ describe GeoData do
       }
 
       it "removes rel1, updates rel2, and add relation to another.id" do
-        expect(geo_data.send(:get_all_relateds).keys).to eq [geo_data.id, other.id]
+        expect(geo_data.send(:get_all_relateds).keys).to match_array [geo_data.id, other.id]
         geo_data.relations_attributes = @attrs
         geo_data.save_relations_from_attributes
         geo_data.relations.reload
 
-        expect(geo_data.send(:get_all_relateds).keys).to eq [other.id, another.id]
+        expect(geo_data.send(:get_all_relateds).keys).to match_array [other.id, another.id]
         expect(@rel2.reload.rel_type).to eq 'ownership'
       end
     end

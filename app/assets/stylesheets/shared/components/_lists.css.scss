@@ -9,6 +9,7 @@
 // * List Items
 // * List Editor
 // * List Inside Modal
+// * List inside Side Panes
 
 
 // List HeadLine
@@ -295,5 +296,13 @@ nav.pagination { display: none; }  // We are using infinite scroll
     overflow-y: auto;
   }
 
+  .item-excerpt { display: none; }
+}
+
+
+// List inside Side Panes
+// ======================
+
+.side-pane {
   .item-excerpt { display: none; }
 }

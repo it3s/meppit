@@ -15,8 +15,9 @@ ActiveRecord::Schema.define(version: 20141122232948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "postgis"
   enable_extension "hstore"
+  enable_extension "uuid-ossp"
+  enable_extension "postgis"
   enable_extension "pg_trgm"
   enable_extension "fuzzystrmatch"
 
@@ -75,6 +76,15 @@ ActiveRecord::Schema.define(version: 20141122232948) do
 
   add_index "contributings", ["contributable_id", "contributable_type"], :name => "index_contributings_on_contributable_id_and_contributable_type"
   add_index "contributings", ["contributor_id"], :name => "index_contributings_on_contributor_id"
+
+  create_table "featureds", force: true do |t|
+    t.integer  "featurable_id"
+    t.string   "featurable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "featureds", ["featurable_id", "featurable_type"], :name => "index_featureds_on_featurable_id_and_featurable_type"
 
   create_table "flags", force: true do |t|
     t.integer  "user_id",                        null: false

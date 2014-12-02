@@ -16,7 +16,7 @@ class ToolbarPresenter
   end
 
   def available_tools
-    [:edit, :star, :comment, :history, :settings, :flag, :delete]
+    [:edit, :star, :history, :settings, :flag, :delete, :featured]
   end
 
   # Select which tools will be displayed given the current object
@@ -25,9 +25,11 @@ class ToolbarPresenter
     when 'user'
       current_user == object ? [:edit, :settings] : [:star, :flag]
     when 'geo_data'
-      (current_user ? [:edit] : []) + [:star, :history, :flag] + (can_delete? ? [:delete] : [])
+      (current_user ? [:edit] : []) + [:star, :history, :flag] + (can_delete? ? [:delete] : []) +
+        (is_admin? ? [:featured] : [])
     when 'map'
-      (current_user ? [:edit] : []) + [:star, :history, :flag] + (can_delete? ? [:delete] : [])
+      (current_user ? [:edit] : []) + [:star, :history, :flag] + (can_delete? ? [:delete] : []) +
+        (is_admin? ? [:featured] : [])
     else
       available_tools
     end
@@ -57,6 +59,10 @@ class ToolbarPresenter
     ctx.current_user
   end
 
+  def is_admin?
+    current_user && current_user.admin?
+  end
+
   private
 
     def _edit_tool
@@ -71,10 +77,6 @@ class ToolbarPresenter
         component: _follow_component }
     end
 
-    def _comment_tool
-      { icon: :comment, title: t('toolbar.comment'), url: "" }
-    end
-
     def _history_tool
       history_url = ctx.url_for([object, :history])
       { icon: :'clock-o', title: t('toolbar.history'), url: history_url,
@@ -82,7 +84,7 @@ class ToolbarPresenter
     end
 
     def _settings_tool
-      settings_url = ctx.settings_path
+      settings_url = ctx.settings_path id: _user_id
       { icon: :'cog', title: t('toolbar.settings'), url: settings_url,
         active?: ctx.request.path == settings_url }
     end
@@ -95,6 +97,12 @@ class ToolbarPresenter
     def _delete_tool
       { icon: :'trash-o', title: t('toolbar.delete'), url: ctx.confirm_deletion_admin_path(current_user),
         component: _modal_component }
+    end
+
+    def _featured_tool
+      { icon: :'certificate', title: t('toolbar.featured'), url: "#",
+        active?: object.try(:featured?),
+        component: _featured_component }
     end
 
     def _follow_component
@@ -110,5 +118,17 @@ class ToolbarPresenter
         type: "modal loginRequired",
         opts: "data-modal-options=#{ {remote: true, login_required: true}.to_json } "
       }
+    end
+
+    def _featured_component
+      opts_json = ctx.featured_button_options_for object
+      {
+        :type => "featuredButton loginRequired",
+        :opts => "data-featuredButton-options=#{ opts_json } "
+      }
+    end
+
+    def _user_id
+      ctx.params[:id] || ctx.params[:user_id]
     end
 end

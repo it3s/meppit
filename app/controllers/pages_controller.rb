@@ -2,8 +2,10 @@
 
 class PagesController < ApplicationController
   def frontpage
+    return redirect_to dashboard_path if current_user
     @activities = news_feed_results
     @news = news
+    render layout: 'landingpage'
   end
 
   def export_help

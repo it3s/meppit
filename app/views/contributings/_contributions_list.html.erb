@@ -1,0 +1,8 @@
+<div id="contributions-pagination"><%= paginate contributions, remote: true, params: local_assigns[:paginate_params] || {} %></div>
+  <ul id="contributions-list" class="list contributions-list">
+    <% unless contributions.empty? %>
+      <%= render contributions, size: :small %>
+    <% else %>
+      <p class="empty"><%= t 'contributings.empty.contributions' %></p>
+    <% end %>
+  </ul>

@@ -27,6 +27,8 @@
 // commons
 @import "shared/buttons";
 @import "shared/forms";
+@import "shared/logos";
+@import "shared/usecases";
 
 // layout
 @import "shared/layout/page";
@@ -70,6 +72,7 @@
 @import "views/pictures";
 @import "views/import";
 @import "views/comments";
+@import "views/dashboard";
 @import "views/flags";
 @import "views/admin";
 @import "views/layers";

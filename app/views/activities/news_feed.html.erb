@@ -13,15 +13,6 @@
   </div>
   <% end %>
   <div id="activity" data-components="list">
-    <div id="activities-pagination"><%= paginate @activities, :remote => true %></div>
-    <ul id="activities-list" class="list activities-list">
-        <% unless @activities.empty? %>
-          <% @activities.each do |activity| %>
-            <%= render 'activities/activity', activity: ActivityPresenter.new(object: activity, ctx: self) %>
-          <% end %>
-        <% else %>
-          <p class="empty"><%= t 'news_feed.empty' %></p>
-        <% end %>
-    </ul>
+    <%= render 'activities/activities_list', activities: @activities %>
   </div>
 </section>

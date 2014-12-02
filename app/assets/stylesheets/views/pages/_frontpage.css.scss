@@ -1,94 +1,144 @@
+@import "animate";
+
 .frontpage {
+  > section {
+    padding: 40px 0;
 
-  .title {
-    padding-top: 50px;
-    text-align: center;
+    > .wrapper > .content {
+      @include span-columns(12);
+    }
 
-    .maps-logo {
-      @include sprite-image($logos-map, mootiro-maps);
+    h2 {
+      font-size: 2em;
+      text-align: center;
+      margin: 0 0 20px;
+    }
+  }
+
+  .button.signup {
+    background: $soft-green;
+    border: 2px solid $white;
+    color: $white;
+    padding: 20px;
+    margin: 90px 0 35px;
+    font-size: 1.5em;
+
+    &:hover {
+      background: $green-lime;
+    }
+  }
+
+  .marketing-section {
+    color: $white;
+    background: $ocean-blue url('imgs/marketing-bg.png') no-repeat;
+    min-height: 360px;
+    overflow: hidden;
+
+    .marketing-section-main {
+      @include span-columns(9 of 12);
+
+      .screenshots {
+        position: relative;
+        bottom: -51px;
+        left: -50px;
+        margin-top: -25px;
+      }
+    }
+
+    .marketing-section-signup {
+      @include span-columns(3 of 12);
+
+      text-align: center;
+
+      .marketing-section-login {
+        display: block;
+        color: white;
+        font-size: 1.5em;
+      }
     }
 
     h1 {
-      display: inline-block;
-      color: $ultra-dark-grey;
-      font-size: 32px;
-      letter-spacing: -1px;
-      font-weight: 400;
-      margin: -45px 0 0 10px;
-      vertical-align: middle;
-      text-rendering: optimizelegibility;
-    }
-
-    .video {
-      margin: 30px;
-      text-align: center;
+      font-family: $main-font;
+      font-size: 3.5em;
+      margin: 0 0 0 30px;
+      line-height: 0.8em;
+      width: 80%;
     }
   }
-
-
-  .call-for-action {
-    background-color: $ultra-soft-grey;
-    width: 80%;
-    padding: 20px;
-    text-align: center;
-    margin: 0 auto;
-
-    h2 { margin-top: -10px; }
-    .button { margin: 0 0 -10px 20px; }
-  }
-
 
   .what-is-it-for {
-    white-space: nowrap; /* hack for windows */
+    text-align: center;
 
     *  { @include box-sizing(border-box); }
     a  { color: inherit }
-    h2 { margin: 40px 0 10px 40px; }
 
     .topic {
       white-space: normal; /* hack for windows */
 
       vertical-align: top;
       display: inline-block;
+      text-align: center;
       width: 19%;
-      margin: 0 0.35%;
-
-      &:hover {
-        background: $ultra-soft-grey;
-        h3 { background: $meppit-blue; }
-      }
+      margin: 25px 5%;
 
       h3 {
-        display: inline-block;
-        padding: 0.5em 1em;
-        margin-bottom: 1em;
-        border-bottom: 1px solid $ocean-blue;
-        width: 100%;
-        font-size: 20px;
-        text-align: center;
         color: $ocean-blue;
+        font-size: 1.3em;
+        margin-bottom: 1em;
       }
 
-      img { max-width: 100%; }
       p { padding: 0.5em 0.2em 0; }
     }
   }
 
-  .projects {
-    background-color: $ultra-soft-grey;
-    margin-top: 50px;
-    padding-bottom: 10px;
+  .featured-maps {
+    background-color: $soft-blue;
+    a:hover { text-decoration: none; }
 
-    h2 { padding: 20px; }
+    h2, .button { color: $white }
 
+    .map-container {
+      @include span-columns(4 of 12);
+      padding: 5px;
+    }
+
+    .location {
+      @include map-view;
+
+      width: 100%;
+      margin: 0 0 10px;
+
+      .map { height: 180px; }
+
+      .leaflet-control-attribution { display: none; }
+    }
+
+    .map-link {
+      & { color: $white }
+      p { padding: 0.5em 0.2em 0; }
+    }
+
+    .explore {
+      font-size: 1.5em;
+      text-align: center;
+
+      .button {
+         padding: 20px;
+         border: 2px solid $white;
+         margin: 40px 0 20px;
+         background: $meppit-maps-color;
+       }
+    }
+  }
+
+  .testimonials {
     .flexslider {
       background-color: inherit;
       width: 800px;
       height: 150px;
       position: relative;
       left: 50%;
-      margin-top: 20px;
-      margin-left: -400px;
+      margin: 20px 0 0 -400px;
       border: none;
       box-shadow: none;
 
@@ -111,59 +161,84 @@
         text-align: justify;
 
         .author-info {
+          display: inline-block;
           float: right;
           text-align: right;
           margin-top: 0.5em;
           font-size: 80%;
           max-width: 80%;
-          display: inline-block;
         }
       }
 
       .aldeias-infantis {
         img { margin-left: 30px }
-        p { margin-top: 15px }
+        p   { margin-top: 15px }
       }
       .heliopolis-verde {
         img { margin-left: 35px }
-        p { margin-top: 0 }
+        p   { margin-top: 0 }
       }
       .bairro-educador {
         img { margin-left: 40px }
-        p { margin-top: 20px }
+        p   { margin-top: 20px }
       }
       .educar-na-cidade {
         img { margin-left: 45px}
       }
     }
+
+    .formely-known-as {
+      text-align: right;
+      color: $medium-grey;
+      margin: 0 75px 0 0;
+    }
+  }
+
+  .signup-bottom {
+    text-align: center;
+
+    .button.signup { margin: 0; }
+  }
+
+  .partners {
+    background: $transparent-blue;
+
+    .content {
+      text-align: center;
+
+      div {
+        display: inline-block;
+        vertical-align: middle;
+        width: 14.25%;
+        margin: 0 1%;
+        padding: 20px;
+
+
+        img { width: 100%; }
+      }
+    }
   }
 
   .news {
-    margin: 20px 0 40px;
-    > div {
-      @include box-sizing(border-box);
+    .blog {
+      @include span-columns(5 of 12);
 
-      display: inline-block;
-      vertical-align: top;
-      width: 45%;
-      margin: 1%;
+      > h3 { margin-left: 5px }
 
-      h3{ text-indent: 5px; }
-    }
-
-    .blog li {
-      :hover { background: $meppit-light-blue; }
-      a {
-        display: block;
-        padding: 5px;
-        text-decoration: none;
+      li {
+        :hover { background: $meppit-light-blue; }
+        a {
+          display: block;
+          padding: 5px;
+          text-decoration: none;
+        }
+        span { color: $text-color; }
+        img  { margin-right: 0.2em }
       }
-      span { color: $text-color; }
-      img { margin-right: 0.2em }
     }
 
     .last_updates {
-      margin: 0;
+      @include span-columns(7 of 12);
 
       #activity {
          height: 310px;
@@ -171,7 +246,7 @@
       }
 
       .activities-list {
-        .list-item { 
+        .list-item {
           &.small .item { width: 350px; }
         }
       }

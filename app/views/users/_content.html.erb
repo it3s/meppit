@@ -23,5 +23,7 @@
   <%= render 'users/contributions_list', user: user, contributions: @contributions %>
   <%= render 'users/activities_list',    user: user, activities:    @activities    %>
   <%= render 'users/following_list',     user: user, following:     @following     %>
+  <% if show_imports?(user) %>
   <%= render 'users/imports_list',       user: user, imports:       @imports       %>
+  <% end %>
 </div>

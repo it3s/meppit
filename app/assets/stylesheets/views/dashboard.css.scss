@@ -1,0 +1,10 @@
+.site-page.dashboard {
+  width: 100.1%;  // fix jquery.sticky-kit related issue
+  .central-pane {
+    float: left;
+  }
+
+  .side-pane {
+    float: right;
+  }
+}

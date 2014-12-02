@@ -3,7 +3,27 @@ $icon-spacing: 10px;
 @include all-icons-sprites;
 $icons-map: sprite-map("icons/*.png");
 
-$logos-spacing: 20px;
+$logos-spacing: 30px;
 @import "logos/*.png";
 @include all-logos-sprites;
 $logos-map: sprite-map("logos/*.png");
+
+$logos-medium-spacing: 20px;
+@import "logos-medium/*.png";
+@include all-logos-medium-sprites;
+$logos-medium-map: sprite-map("logos-medium/*.png");
+
+$logos-small-spacing: 10px;
+@import "logos-small/*.png";
+@include all-logos-small-sprites;
+$logos-small-map: sprite-map("logos-small/*.png");
+
+$usecases-spacing: 30px;
+@import "usecases/*.png";
+@include all-usecases-sprites;
+$usecases-map: sprite-map("usecases/*.png");
+
+$usecases-medium-spacing: 30px;
+@import "usecases-medium/*.png";
+@include all-usecases-medium-sprites;
+$usecases-medium-map: sprite-map("usecases-medium/*.png");

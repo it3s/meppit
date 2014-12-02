@@ -1,0 +1,29 @@
+.image {
+  &.it3s-logo     { @include sprite-image($logos-map, it3s); }
+  &.cea-logo      { @include sprite-image($logos-map, cea); }
+  &.cenpec-logo   { @include sprite-image($logos-map, cenpec); }
+  &.aldeias-logo  { @include sprite-image($logos-map, aldeias); }
+  &.cedaps-logo   { @include sprite-image($logos-map, cedaps); }
+  &.soudapaz-logo { @include sprite-image($logos-map, sou-da-paz); }
+  &.polis-logo    { @include sprite-image($logos-map, polis); }
+
+  &.medium {
+    &.it3s-logo     { @include sprite-image($logos-medium-map, it3s); }
+    &.cea-logo      { @include sprite-image($logos-medium-map, cea); }
+    &.cenpec-logo   { @include sprite-image($logos-medium-map, cenpec); }
+    &.aldeias-logo  { @include sprite-image($logos-medium-map, aldeias); }
+    &.cedaps-logo   { @include sprite-image($logos-medium-map, cedaps); }
+    &.soudapaz-logo { @include sprite-image($logos-medium-map, sou-da-paz); }
+    &.polis-logo    { @include sprite-image($logos-medium-map, polis); }
+  }
+
+  &.small {
+    &.it3s-logo     { @include sprite-image($logos-small-map, it3s); }
+    &.cea-logo      { @include sprite-image($logos-small-map, cea); }
+    &.cenpec-logo   { @include sprite-image($logos-small-map, cenpec); }
+    &.aldeias-logo  { @include sprite-image($logos-small-map, aldeias); }
+    &.cedaps-logo   { @include sprite-image($logos-small-map, cedaps); }
+    &.soudapaz-logo { @include sprite-image($logos-small-map, sou-da-paz); }
+    &.polis-logo    { @include sprite-image($logos-small-map, polis); }
+  }
+}

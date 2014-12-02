@@ -7,6 +7,8 @@
 #= require jquery-ui/datepicker-pt-BR
 #= require jquery.infinitescroll
 #= require jquery.cookie
+#= require jquery.sticky-kit.min
+#= require wow
 
 #= require base
 
@@ -21,6 +23,7 @@ onReady = ->
   catch e
     console?.error e
   App.mediator.publish('components:start')
+  $('.central-pane, .side-pane').stick_in_parent()
 
 $(document).ready onReady
 

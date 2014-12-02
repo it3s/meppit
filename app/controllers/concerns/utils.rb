@@ -121,7 +121,7 @@ module Utils
     render_to_string(partial: 'shared/alerts')
   end
 
-  def news_feed_results(all=false)
+  def news_feed_results(all = false)
     if all || !current_user
       activities = paginate PublicActivity::Activity.order('created_at desc').includes(:trackable, :owner)
     else

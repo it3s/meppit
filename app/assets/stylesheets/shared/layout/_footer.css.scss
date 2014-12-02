@@ -34,17 +34,4 @@
     text-align: justify;
   }
 
-  .it3s-logo     { @include sprite-image($logos-map, it3s); }
-
-  .cea-logo      { @include sprite-image($logos-map, cea-footer); }
-
-  .cenpec-logo   { @include sprite-image($logos-map, cenpec); }
-
-  .aldeias-logo  { @include sprite-image($logos-map, aldeias); }
-
-  .cedaps-logo   { @include sprite-image($logos-map, cedaps); }
-
-  .soudapaz-logo { @include sprite-image($logos-map, sou-da-paz); }
-
-  .polis-logo    { @include sprite-image($logos-map, polis); }
 }

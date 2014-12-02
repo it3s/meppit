@@ -4,39 +4,39 @@ module PagesHelper
     # MOCKED
     [
       {
-        :href  => '#use_cases#diagnostico_de_territorio',
-        :title => t('frontpage.what.diagnosis'),
-        :image => 'imgs/diagnosis.png',
-        :text  => t('frontpage.what.diagnosis_explanation'),
+        :href  => '#use_cases#jornalismo_de_dados',
+        :title => t('frontpage.what.journalism'),
+        :sprite => 'journalism',
+        :text  => t('frontpage.what.journalism_explanation'),
       },
       {
         :href  => '#use_cases#mapeamento_de_redes',
         :title => t('frontpage.what.network'),
-        :image => 'imgs/network.png',
+        :sprite => 'network',
         :text  => t('frontpage.what.network_explanation'),
       },
       {
         :href  => '#use_cases#avaliacao_de_projetos_e_programas',
         :title => t('frontpage.what.evaluation'),
-        :image => 'imgs/evaluation.png',
+        :sprite => 'evaluation',
         :text  => t('frontpage.what.evaluation_explanation'),
       },
       {
-        :href  => '#use_cases#jornalismo_de_dados',
-        :title => t('frontpage.what.journalism'),
-        :image => 'imgs/journalism.png',
-        :text  => t('frontpage.what.journalism_explanation'),
+        :href  => '#use_cases#diagnostico_de_territorio',
+        :title => t('frontpage.what.diagnosis'),
+        :sprite => 'diagnosis',
+        :text  => t('frontpage.what.diagnosis_explanation'),
       },
       {
         :href  => '#use_cases#guia_do_bairro',
         :title => t('frontpage.what.guide'),
-        :image => 'imgs/guide.png',
+        :sprite => 'guide',
         :text  => t('frontpage.what.guide_explanation'),
       },
     ]
   end
 
-  def projects_slides
+  def testimonials
     # MOCKED
     [
       {
@@ -76,6 +76,10 @@ module PagesHelper
         :author_title => 'analista do <a href="http://maps.mootiro.org/organization/25">CENPEC</a>'
       },
     ]
+  end
+
+  def featured_maps(limit = 6)
+    Featured.get_by_type(Map).limit(limit)
   end
 
 end

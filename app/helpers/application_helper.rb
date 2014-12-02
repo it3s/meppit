@@ -45,6 +45,14 @@ module ApplicationHelper
     }.to_json
   end
 
+  def featured_button_options_for(obj)
+    {
+      featured: obj.featured?,
+      url: url_for([obj, :featured]),
+      id: identifier_for(obj)
+    }.to_json
+  end
+
   def remove_button_options_for(obj, parent)
     route = "remove_#{obj.class.name.underscore}"
     {
@@ -80,5 +88,13 @@ module ApplicationHelper
 
   def show_imports?(user)
     logged_in? && user == current_user && !@imports.empty?
+  end
+
+  def render_activity(activity, user = nil)
+    if user
+      render 'activities/user_activity', activity: ActivityPresenter.new(object: activity, ctx: self)
+    else
+      render 'activities/activity', activity: ActivityPresenter.new(object: activity, ctx: self)
+    end
   end
 end

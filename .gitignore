@@ -30,6 +30,7 @@
 /app/assets/images/icons/menu-*.png
 /app/assets/images/logos-*.png
 /app/assets/images/imgs-*.png
+/app/assets/images/usecases-*.png
 
 # secrets
 /config/secrets.yml

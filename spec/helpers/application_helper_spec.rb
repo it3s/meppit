@@ -92,6 +92,19 @@ describe ApplicationHelper do
     end
   end
 
+  describe "#featured_button_options_for" do
+    let(:user) { FactoryGirl.create :user}
+    let(:geo_data) { FactoryGirl.create :geo_data}
+
+    before { allow(helper).to receive(:current_user).and_return user }
+
+    it "returns a json" do
+      resp = helper.featured_button_options_for geo_data
+      expect(resp).to be_a String
+      expect{JSON.parse resp}.to_not raise_error
+    end
+  end
+
   describe "#remove_button_options_for" do
     let(:user) { FactoryGirl.create :user}
     let(:geo_data) { FactoryGirl.create :geo_data}
@@ -175,6 +188,28 @@ describe ApplicationHelper do
 
           it { expect(helper.show_imports?(user)).to eq true }
         end
+      end
+    end
+  end
+
+  describe "#render_activity" do
+    let(:user) { FactoryGirl.create :user }
+    let(:geo_data) { FactoryGirl.create :geo_data }
+    let(:activity) { geo_data.create_activity :update, owner: user, parameters: {changes: {"name"=>["bla", geo_data.try(:name)]}} }
+
+    context "user activity" do
+      it 'has no activity owner info' do
+        content = helper.render_activity(activity, user)
+        expect(content).to_not include 'owner-avatar'
+        expect(content).to_not include 'event-owner'
+      end
+    end
+
+    context "global activity" do
+      it 'has activity owner info' do
+        content = helper.render_activity(activity)
+        expect(content).to include 'owner-avatar'
+        expect(content).to include 'event-owner'
       end
     end
   end

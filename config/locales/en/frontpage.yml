@@ -1,12 +1,13 @@
 en:
   frontpage:
-    title: 'colaborative mapping of your region.'
+    title: 'Collaborative mapping of your region.'
 
     call:
       participate: 'Want to participate'
       edit: 'Edit the map.'
       anyone: 'Anyone can help!'
-      create_account: 'Create your account'
+      create_account: "Sign Up - It\'s Free"
+      login: 'Or log in'
 
     what:
       what_is_it_for: 'What is it for?'
@@ -21,13 +22,21 @@ en:
       guide: 'Neighborhood guide'
       guide_explanation: "Map existing services in your neighborhood. Help other dwellers to know the territory better and use local resources."
 
-    projects:
-      title: 'Projects that uses MootiroMaps'
+    featured:
+      featured-maps: 'Featured Maps'
+      explore: 'Explore more maps'
+
+    testimonials:
+      title: 'Testimonials'
+      formely_konwn_as: 'Meppit was formerly known as MootiroMaps.'
 
     news:
+      title: 'News'
       blog_title: 'IT3S blog'
       blog_visit: 'visit the blog'
 
       updates_title: 'Last updates'
       updates_all: 'see all'
 
+    partners:
+      title: 'Partners'

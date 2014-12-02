@@ -57,6 +57,7 @@ App.components.list = ->
     @attr.list.infinitescroll opts, ->
       _this.bindItemsEvents.bind(_this)(this)
       _this.startComponents.bind(_this)(this)
+      App.mediator.publish 'component:changed', _this
 
   bindItemsEvents: (container) ->
     _this = this

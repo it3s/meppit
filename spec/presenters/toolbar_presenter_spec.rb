@@ -11,8 +11,8 @@ describe ToolbarPresenter do
 
   def mock_context(type=:in)
     _user = (type == :in) ? user : nil
-    double('Context', current_user: _user, t: '', url_for: '', request: double('request', path: ''),
-           follow_options_for: '{}', settings_path: '', new_flag_path: '', confirm_deletion_admin_path: '')
+    params = { id: _user.try(:id) }
+    double('Context', current_user: _user, params: params, t: '', url_for: '', request: double('request', path: ''), follow_options_for: '{}', featured_button_options_for: {}, new_flag_path: '', confirm_deletion_admin_path: '', settings_path: '')
   end
 
   def tp(obj, ctx=nil)
@@ -52,7 +52,7 @@ describe ToolbarPresenter do
 
         context "admin" do
           before { Admin.create(user: user) }
-          it { expect(presenter.select_tools).to eq [:edit, :star, :history, :flag, :delete] }
+          it { expect(presenter.select_tools).to eq [:edit, :star, :history, :flag, :delete, :featured] }
         end
       end
 
@@ -66,6 +66,11 @@ describe ToolbarPresenter do
       context "logged in" do
         let(:presenter) { tp map, logged_in }
         it { expect(presenter.select_tools).to eq [:edit, :star, :history, :flag] }
+
+        context "admin" do
+          before { Admin.create(user: user) }
+          it { expect(presenter.select_tools).to eq [:edit, :star, :history, :flag, :delete, :featured] }
+        end
       end
 
       context "logged out" do
@@ -90,7 +95,8 @@ describe ToolbarPresenter do
   end
 
   describe "tools options" do
-    let(:presenter) { tp double('object'), logged_in }
+    before { Admin.create(user: user) }
+    let(:presenter) { tp map, logged_in }
 
     it "has icon, title and url options for all tools" do
       presenter.tools.each { |tool|

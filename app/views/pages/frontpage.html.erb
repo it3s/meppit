@@ -1,69 +1,133 @@
-<div class="frontpage">
+<div class="frontpage" data-components="animation">
 
-  <section class="title">
-    <header>
-      <span class="maps-logo"></span>
-      <h1><%= t 'frontpage.title' %></h1>
-    </h1>
-
-    <div class="video">
-      <iframe src="http://player.vimeo.com/video/56746348?title=0&amp;byline=0&amp;portrait=0&amp;color=28b8ce" width="600" height="337" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+  <section class="marketing-section">
+    <div class="wrapper">
+    <div class="content">
+      <div class="marketing-section-main">
+        <h1 class="animation bounceInDown"><%= t 'frontpage.title' %></h1>
+        <%= image_tag 'imgs/marketing-screenshots.png', class: 'screenshots animation fadeIn' %>
+      </div>
+      <div class="marketing-section-signup">
+        <%= link_to_modal t('frontpage.call.create_account'), new_user_path, remote: true, html: {class: 'big button signup'} %>
+        <%= link_to_modal t('frontpage.call.login'), '#sign-in', html: {id: "call-sign-in-modal", class: "marketing-section-login"} %>
+      </div>
     </div>
-  </section>
-
-  <section class="call-for-action">
-    <% if logged_in? %>
-      <h2><%= t 'frontpage.call.participate' %>, <%= current_user.name %>?
-        <a href="#map-panel-add"><%= t 'frontpage.call.edit' %></a>
-      </h2>
-    <% else %>
-      <h2><%= t 'frontpage.call.anyone' %>
-        <a class="big button" href="#"><%= t 'frontpage.call.create_account' %></a>
-      </h2>
-    <% end %>
+    </div>
   </section>
 
   <section class="what-is-it-for">
-    <h2><%= t 'frontpage.what.what_is_it_for' %></h2>
-
-    <% use_cases.each do |use_case| %>  <%# pages_helper#use_cases %>
-      <a href="<%= use_case[:href] %>">
-        <div class="topic">
-          <h3><%= use_case[:title] %></h3>
-          <%= image_tag use_case[:image] %>
-          <p><%= use_case[:text] %></p>
-        </div>
-      </a>
-    <% end %>
-
-  </section>
-
-
-  <section class="projects">
-    <h2><%= t('frontpage.projects.title') %></h2>
-
-    <div class="flexslider" data-components="flexslider">
-      <ul class="slides">
-        <% projects_slides.each do |proj| %>  <%# pages_helper#projects_slides %>
-          <li class="<%= proj[:name] %>">
-            <a href="<%= proj[:href] %>"><%= image_tag proj[:image] %></a>
-            <p class="testimony">
-              “<%= proj[:text] %>” <br/>
-              <span class="author-info">
-                — <a href="<%= proj[:author_href] %>"><%= proj[:author_name] %></a>,
-                <%= raw proj[:author_title] %>.
-              </span>
-            </p>
-          </li>
-        <% end %>
-      </ul>
+    <div class="wrapper">
+    <div class="content">
+      <h2 class="animation fadeIn"><%= t 'frontpage.what.what_is_it_for' %></h2>
+      <% delay = 0 %>
+      <% use_cases.each do |use_case| %>  <%# pages_helper#use_cases %>
+        <a href="<%= use_case[:href] %>">
+          <div class="topic animation fadeIn">
+            <span class="image usecase <%= use_case[:sprite] %>"></span>
+            <h3><%= use_case[:title] %></h3>
+            <p><%= use_case[:text] %></p>
+          </div>
+        </a>
+      <% end %>
+    </div>
     </div>
   </section>
 
-
-  <section class="news">
-    <%= render 'pages/blog_updates', :news => @news %>
-    <%= render 'pages/updates', :updates => [] %>
+  <section class="featured-maps">
+    <div class="wrapper">
+    <div class="content">
+      <h2 class="animation fadeIn"><%= t 'frontpage.featured.featured-maps' %></h2>
+      <% delay = 0 %>
+      <% featured_maps(3).each do |map| %>  <%# pages_helper#featured_maps %>
+        <% delay = delay + 0.25 %>
+        <div class="map-container animation fadeIn" data-wow-delay="<%= delay %>s">
+          <%= render('shared/location', object: map) %>
+          <a class="map-link" href="<%= url_for map %>">
+            <h3><%= sanitize map[:name] %></h3>
+            <p><%= truncate sanitize(map[:description]), length: 150 %></p>
+          </a>
+        </div>
+      <% end %>
+    </div>
+    <div class="explore">
+      <a class="big button" href="<%= maps_path %>">
+        <%= icon "globe", t('frontpage.featured.explore') %>
+      </a>
+    </div>
+    </div>
   </section>
 
+  <section class="testimonials">
+    <div class="wrapper">
+    <div class="content">
+      <h2 class="animation fadeIn"><%= t 'frontpage.testimonials.title' %></h2>
+
+      <div class="flexslider animation fadeIn" data-components="flexslider">
+        <ul class="slides">
+          <% testimonials.each do |testimonial| %>  <%# pages_helper#testimonials %>
+            <li class="<%= testimonial[:name] %>">
+              <a href="<%= testimonial[:href] %>"><%= image_tag testimonial[:image] %></a>
+              <p class="testimony">
+                “<%= testimonial[:text] %>” <br/>
+                <span class="author-info">
+                  — <a href="<%= testimonial[:author_href] %>"><%= testimonial[:author_name] %></a>,
+                  <%= raw testimonial[:author_title] %>.
+                </span>
+              </p>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="formely-known-as"><%= t 'frontpage.testimonials.formely_konwn_as' %></div>
+    </div>
+    </div>
+  </section>
+
+  <section class="partners">
+    <div class="wrapper">
+    <div class="content">
+      <h2 class="animation fadeIn"><%= t 'frontpage.partners.title' %></h2>
+      <div class="animation fadeIn">
+        <span class="image medium cea-logo"></span>
+      </div>
+      <div class="animation fadeIn">
+        <span class="image medium cenpec-logo"></span>
+      </div>
+      <div class="animation fadeIn">
+        <span class="image medium aldeias-logo"></span>
+      </div>
+      <div class="animation fadeIn">
+        <span class="image medium cedaps-logo"></span>
+      </div>
+      <div class="animation fadeIn">
+        <span class="image medium soudapaz-logo"></span>
+      </div>
+      <div class="animation fadeIn">
+        <span class="image medium polis-logo"></span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="news">
+    <div class="wrapper">
+    <div class="content">
+      <h2 class="animation fadeIn"><%= t 'frontpage.news.title' %></h2>
+      <div class="animation fadeIn">
+        <%= render 'pages/blog_updates', :news => @news %>
+      </div>
+      <div class="animation fadeIn">
+      <%= render 'pages/updates', :updates => [] %>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="signup-bottom">
+    <div class="wrapper">
+    <div class="content">
+      <%= link_to_modal t('frontpage.call.create_account'), new_user_path, remote: true, html: {class: 'big button signup animation bounceInDown'} %>
+    </div>
+    </div>
+  </section>
 </div>
