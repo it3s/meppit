@@ -26,7 +26,7 @@ describe GeoData do
   end
 
   describe "#location_geojson" do
-    let(:geom) { RGeo::Cartesian.simple_factory.parse_wkt "GEOMETRYCOLLECTION (POINT (-10.000 -10.000))" }
+    let(:geom) { RGeo::Cartesian.simple_factory.parse_wkt "POINT (-10.000 -10.000)" }
     let(:data) { FactoryGirl.create(:geo_data, location: geom) }
 
     it { expect(data.location_geojson).to be_a String }
@@ -103,7 +103,7 @@ describe GeoData do
   describe "spatial queries" do
     let(:geoms) do
       [[10, 10], [20, 10],  [30, 10], [40, 10]
-      ].collect { |lon, lat| RGeo::Cartesian.simple_factory.parse_wkt "GEOMETRYCOLLECTION (POINT (#{lon} #{lat}))"  }
+      ].collect { |lon, lat| RGeo::Cartesian.simple_factory.parse_wkt "POINT (#{lon} #{lat})"  }
     end
     before do
       [['a', geoms[0]], ['b', geoms[1]], ['c', geoms[2]], ['d', geoms[3]]
@@ -114,6 +114,15 @@ describe GeoData do
       it { expect(GeoData.nearest(5,  10).map(&:name)).to eq ['a', 'b', 'c', 'd'] }
       it { expect(GeoData.nearest(18, 10).map(&:name)).to eq ['b', 'a', 'c', 'd'] }
       it { expect(GeoData.nearest(50, 10).map(&:name)).to eq ['d', 'c', 'b', 'a'] }
+    end
+
+    describe ".tile" do
+      it { expect(GeoData.tile(540, 483, 10).map(&:name)).to eq ['a'] }
+      it { expect(GeoData.tile(568, 483, 10).map(&:name)).to eq ['b'] }
+      it { expect(GeoData.tile(597, 483, 10).map(&:name)).to eq ['c'] }
+      it { expect(GeoData.tile(625, 483, 10).map(&:name)).to eq ['d'] }
+      it { expect(GeoData.tile(8, 7, 4).map(&:name)).to eq ['a', 'b'] }
+      it { expect(GeoData.tile(9, 7, 4).map(&:name)).to eq ['c', 'd'] }
     end
   end
 
