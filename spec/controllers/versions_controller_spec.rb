@@ -174,7 +174,7 @@ describe VersionsController, versioning: true do
 
   describe "version_location" do
     let!(:geo_data) do
-      geo_data = FactoryGirl.create :geo_data, location: "GeometryCollection (Point (-10.0 -10.0))"
+      geo_data = FactoryGirl.create :geo_data, location: "Point (-10.0 -10.0)"
       geo_data.update_attributes! location: nil
       geo_data
     end
@@ -182,7 +182,7 @@ describe VersionsController, versioning: true do
     it "parses properly the wkt string for the location of a reified object" do
       expect(geo_data.location).to eq nil
       controller.instance_variable_set "@version", geo_data.versions.last
-      expect(controller.send(:version_location)).to eq "GeometryCollection (Point (-10.0 -10.0))"
+      expect(controller.send(:version_location)).to eq "Point (-10.0 -10.0)"
     end
     it "returns nil if version has no location" do
       controller.instance_variable_set "@version", double(object: "no_location: true")

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe GeoJSON do
-  let(:wkt) {  "GEOMETRYCOLLECTION (POINT (-46.747319110450746 -23.56587791267138))" }
+  let(:wkt) {  "POINT (-46.747319110450746 -23.56587791267138)" }
   let(:geom) { RGeo::Cartesian.simple_factory.parse_wkt wkt }
   let(:geojson) do
     {
@@ -10,12 +10,7 @@ describe GeoJSON do
         {
           "type"       => "Feature",
           "properties" => {},
-          "geometry"   => {
-            "type"       => "GeometryCollection",
-            "geometries" => [
-              {"type" => "Point", "coordinates" => [-46.747319110450746, -23.56587791267138]}
-            ]
-          }
+          "geometry"   => {"type" => "Point", "coordinates" => [-46.747319110450746, -23.56587791267138]}
         }
       ]
     }
@@ -39,12 +34,7 @@ describe GeoJSON do
               "type"       => "Feature",
               "id"         => 1,
               "properties" => {"name" => "John"},
-              "geometry"   => {
-                "type"       => "GeometryCollection",
-                "geometries" => [
-                  {"type" => "Point", "coordinates" => [-46.747319110450746, -23.56587791267138]}
-                ]
-              }
+              "geometry"   => {"type" => "Point", "coordinates" => [-46.747319110450746, -23.56587791267138]}
             }
           ]
         }
@@ -105,12 +95,7 @@ describe GeoJSON do
         "features" => [
           {
             "type" => "Feature",
-            "geometry" => {
-              "type" => "GeometryCollection",
-              "geometries" => [
-                {"type"=> "Point", "coordinates" => [-46.747319110450746, -23.56587791267138]}
-              ]
-            },
+            "geometry" => {"type"=> "Point", "coordinates" => [-46.747319110450746, -23.56587791267138]},
             "properties" => {},
             "id" => user.id
           }
@@ -129,12 +114,7 @@ describe GeoJSON do
     let(:hash) {
       {
        "type" => "Feature",
-       "geometry" => {
-         "type" => "GeometryCollection",
-         "geometries" => [
-           {"type"=> "Point", "coordinates" => [-46.747319110450746, -23.56587791267138]}
-         ]
-       },
+       "geometry" => {"type"=> "Point", "coordinates" => [-46.747319110450746, -23.56587791267138]},
        "properties" => {},
        "id" => user.id
       }

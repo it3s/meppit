@@ -120,18 +120,15 @@ describe ApplicationHelper do
   end
 
   describe "#collection_location" do
-    let(:geom1) { RGeo::Cartesian.simple_factory.parse_wkt "GEOMETRYCOLLECTION (POINT (-10.000 -10.000))" }
+    let(:geom1) { RGeo::Cartesian.simple_factory.parse_wkt "POINT (-10.000 -10.000)" }
     let(:geo_data1) { FactoryGirl.create(:geo_data, location: geom1) }
-    let(:geom2) { RGeo::Cartesian.simple_factory.parse_wkt "GEOMETRYCOLLECTION (POINT (-20.000 -20.000))" }
+    let(:geom2) { RGeo::Cartesian.simple_factory.parse_wkt "POINT (-20.000 -20.000)" }
     let(:geo_data2) { FactoryGirl.create(:geo_data, location: geom2) }
     let(:map) { FactoryGirl.create :map }
     let(:geojson1) {
       {
         "type"=>"Feature",
-        "geometry"=>{
-          "type"=>"GeometryCollection",
-          "geometries"=>[{"type"=>"Point", "coordinates"=>[-10.0, -10.0]}]
-        },
+        "geometry"=>{"type"=>"Point", "coordinates"=>[-10.0, -10.0]},
         "properties"=> geo_data1.geojson_properties.stringify_keys,
         "id"=>geo_data1.id
       }.to_json
@@ -139,10 +136,7 @@ describe ApplicationHelper do
     let(:geojson2) {
       {
         "type"=>"Feature",
-        "geometry"=>{
-          "type"=>"GeometryCollection",
-          "geometries"=>[{"type"=>"Point", "coordinates"=>[-20.0, -20.0]}]
-        },
+        "geometry"=>{"type"=>"Point", "coordinates"=>[-20.0, -20.0]},
         "properties"=> geo_data2.geojson_properties.stringify_keys,
         "id"=>geo_data2.id
       }.to_json

@@ -111,7 +111,7 @@ describe DiffPresenter do
 
   context "location" do
     let(:key)  { :location }
-    let(:vals) { OpenStruct.new before: {}, after: {"wkt" => "GeometryCollection (Point (-10.0 -10.0))"} }
+    let(:vals) { OpenStruct.new before: {}, after: {"wkt" => "Point (-10.0 -10.0)"} }
 
     it "show calls _location_diff" do
       expect(presenter).to receive(:_location_diff).with(vals).and_return ''
@@ -129,10 +129,9 @@ describe DiffPresenter do
         presenter.send :_parse_location, vals, :before
       end
       it "buils a GeoData with the parsed location" do
-        expect(::GeoData).to receive(:new).with(location: "GeometryCollection (Point (-10.0 -10.0))")
+        expect(::GeoData).to receive(:new).with(location: "Point (-10.0 -10.0)")
         presenter.send :_parse_location, vals, :after
       end
     end
   end
 end
-
