@@ -44,6 +44,36 @@ describe MapsController do
           expect((assigns :maps_collection).map(&:name)).to eq ['a', 'b', 'c', 'd']
         end
       end
+
+      describe "sort by name" do
+        context "asc" do
+          it do
+            get :index, list_filter: {sort_by: 'name', order: 'asc'}
+            expect((assigns :maps_collection).map(&:name)).to eq ['a', 'b', 'c', 'd']
+          end
+        end
+        context "desc" do
+          it do
+            get :index, list_filter: {sort_by: 'name', order: 'desc'}
+            expect((assigns :maps_collection).map(&:name)).to eq ['d', 'c', 'b', 'a']
+          end
+        end
+      end
+
+      describe "sort by date" do
+        context "asc" do
+          it do
+            get :index, list_filter: {sort_by: 'created_at', order: 'asc'}
+            expect((assigns :maps_collection).map(&:name)).to eq ['b', 'd', 'c', 'a']
+          end
+        end
+        context "desc" do
+          it do
+            get :index, list_filter: {sort_by: 'created_at', order: 'desc'}
+            expect((assigns :maps_collection).map(&:name)).to eq ['a', 'c', 'd', 'b']
+          end
+        end
+      end
     end
   end
 
