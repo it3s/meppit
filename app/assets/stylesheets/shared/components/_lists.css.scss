@@ -69,7 +69,7 @@
     padding: 10px;
 
     &.splitted {
-      @include span-columns(6 of 12);
+      @include span-columns(3 of 12);
       border-bottom: none;
     }
 
@@ -83,9 +83,9 @@
   .vertical-separator {
     float: left;
     width: 1px;
-    height: 4.5em;
+    height: 5.5em;
     margin-left: -2%;
-    margin-top: 1.5em;
+    margin-top: 2em;
     border-left: solid 1px $soft-grey;
   }
 
@@ -110,10 +110,6 @@
       vertical-align: top;
       margin-top: 5px;
     }
-  }
-
-  .sort_by, .order {
-    @include span-columns(3 of 6);
   }
 
   .choice-title {

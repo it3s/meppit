@@ -4,7 +4,7 @@ pt-BR:
 
     buttons:
       remove: 'Remover'
-      
+
     filters:
       title: 'Visualização e opções de filtragem'
       filtering_by: 'filtrando pelas palavras'
@@ -15,6 +15,7 @@ pt-BR:
       tags: 'Palavras-chave'
       name: 'Nome'
       date: 'Data'
+      location: 'Distância'
       list: 'Lista'
       map: 'Mapa'
       display: 'Exibição'

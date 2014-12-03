@@ -15,6 +15,7 @@ en:
       tags: 'Tags'
       name: 'Name'
       date: 'Date'
+      location: 'Distance'
       list: 'List'
       map: 'Map'
       display: 'Display'
