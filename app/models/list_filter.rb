@@ -43,15 +43,15 @@ class ListFilter
     end
 
     def sort(queryset)
-      _sort_by = sort_by
-      if _sort_by == 'location'
+      if sort_by == 'location'
         if queryset.respond_to?(:nearest)
           queryset = queryset.nearest(longitude, latitude)
         else
-          _sort_by = 'name'
+          # sort by name if the queryset doesn't support sort by location
+          queryset = queryset.order "name #{order}"
         end
       else
-        queryset = queryset.order "#{_sort_by} #{order}"
+        queryset = queryset.order "#{sort_by} #{order}"
       end
       queryset
     end

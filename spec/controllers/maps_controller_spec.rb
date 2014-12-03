@@ -24,6 +24,27 @@ describe MapsController do
         expect(response).to render_template(:layout => nil)
       end
     end
+
+    describe "list filter" do
+      before do
+        ['b', 'd', 'c', 'a'].each { |n| FactoryGirl.create :map, name: n }
+      end
+
+      describe "sort by location should behave like sort by name" do
+        it "uses distance from (5, 10)" do
+          get :index, list_filter: {sort_by: 'location', longitude: 5, latitude: 10}
+          expect((assigns :maps_collection).map(&:name)).to eq ['a', 'b', 'c', 'd']
+        end
+        it "uses distance from (-180, 10)" do
+          get :index, list_filter: {sort_by: 'location', longitude: 18, latitude: 10}
+          expect((assigns :maps_collection).map(&:name)).to eq ['a', 'b', 'c', 'd']
+        end
+        it "uses distance from (150, 10)" do
+          get :index, list_filter: {sort_by: 'location', longitude: 50, latitude: 10}
+          expect((assigns :maps_collection).map(&:name)).to eq ['a', 'b', 'c', 'd']
+        end
+      end
+    end
   end
 
   describe "GET show" do
