@@ -6,6 +6,9 @@ module MootiroImporter
   REDIS_PORT = ENV['MOOTIRO_REDIS_PORT'] || 6379
   REDIS_PASS = ENV['MOOTIRO_REDIS_PASS'] || ''
 
+  $ok_count = 0
+  $failed_count = 0
+
   _redis_pool = nil
   def redis_pool
     _redis_pool ||= begin
@@ -24,11 +27,14 @@ module MootiroImporter
   def import
     while oid = dequeue
       if should_import?(oid)
+        print "Importing #{oid}... "
         raw = redis_pool.with { |conn| conn.get("mootiro:#{oid}") }
         data = JSON.parse raw
         send(:"import_#{data['mootiro_type']}", data.with_indifferent_access)
       end
     end
+    print "\n"
+    print "Success: #{$ok_count}. Failures: #{$failed_count}.\n"
   end
 
   def dequeue
@@ -42,6 +48,7 @@ module MootiroImporter
   # Here be dragons! black magic all the way
   COORD_REGEX =  /(-?\w+\.?\w+)\s(-?\w+\.?\w+)/
   def wkt_with_reversed_coords(location)
+    print "Reversing coords... "
     loc_str = location.to_s
     loc_str.scan(COORD_REGEX).each { |pair|
       loc_str.gsub!("#{pair[0]} #{pair[1]}", "#{pair[1]} #{pair[0]}")
@@ -50,10 +57,13 @@ module MootiroImporter
   end
 
   def remove_geometrycollection(location)
+    print "Removing GeometryCollection... "
+    return nil if location.eql? 'EMPTY GEOMETRYCOLLECTION'
     return location unless location.include? "GEOMETRYCOLLECTION"
 
     factory = RGeo::Geographic.spherical_factory :srid => 4326
     geom = factory.parse_wkt location
+    return nil if geom.nil?
     return geom[0].as_text unless geom.size != 1
 
     points   = []
@@ -135,11 +145,13 @@ module MootiroImporter
   def importation(oid, &blk)
     valid = yield
     if valid
-      print '.'
       redis_pool.with { |conn| conn.del("mootiro:#{oid}") }
+      $ok_count += 1
+      print "OK.\n"
     else
-      print 'F'
       enqueue_invalid(oid)
+      print "Failed.\n"
+      $failed_count += 1
     end
   end
 
@@ -338,6 +350,7 @@ module MootiroImporter
         saved = picture.save
         MootiroOID.create content: picture, oid: d[:oid] if saved
       rescue Errno::ENOENT # file does not exist
+        print "File not found! "
         saved = false
       end
       saved
