@@ -49,8 +49,42 @@ module MootiroImporter
     loc_str
   end
 
+  def remove_geometrycollection(location)
+    return location unless location.include? "GEOMETRYCOLLECTION"
+
+    factory = RGeo::Geographic.spherical_factory :srid => 4326
+    geom = factory.parse_wkt location
+    return geom[0].as_text unless geom.size != 1
+
+    points   = []
+    polygons = []
+    lines    = []
+    others   = []
+    geom.each { |g|
+      case g.geometry_type
+      when RGeo::Feature::Point
+        points.push g
+      when RGeo::Feature::Polygon
+        polygons.push g
+      when RGeo::Feature::Linestring
+        lines.push g
+      else
+        others.push g
+      end
+    }
+
+    # TODO: what should we do when there is more than one type of geometry or
+    # an untreated type of geometry?
+
+    return factory.multi_polygon(polygons).as_text  if polygons.size > 0
+    return factory.multi_line_string(lines).as_text if lines.size > 0
+    return factory.multi_point(points).as_text      if points.size > 0
+
+    location
+  end
+
   def parse_geometry(d)
-    d[:geometry] ? wkt_with_reversed_coords(d[:geometry]) : None
+    d[:geometry] ? remove_geometrycollection(wkt_with_reversed_coords(d[:geometry])) : None
   end
 
   def media_file(field)
