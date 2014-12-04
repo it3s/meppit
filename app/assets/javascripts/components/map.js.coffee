@@ -155,8 +155,9 @@ App.components.map = ->
         groups.push group
     @map = new Meppit.Map
       element: @mapEl[0],
-      enableGeoJsonTile: false
+      enableGeoJsonTile: @attr.enableGeoJsonTile
       featureURL: @attr.featureURL
+      geojsonTileURL: "#{@attr.geojsonTileURL}#{window.location.search}"
       groups: groups
     feature = @attr.geojson or @attr.featuresIds
     if feature

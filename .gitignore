@@ -40,6 +40,9 @@
 # code coverage
 /coverage
 
+# profile
+/profile
+
 # uploads
 /public/uploads
 /public/mootiro_media

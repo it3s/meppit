@@ -1,5 +1,5 @@
 class MapsController < ObjectsController
-  before_action :require_login, except: [:index, :show, :geo_data, :search_by_name]
+  before_action :require_login, except: [:index, :show, :geo_data, :search_by_name, :tile]
   before_action :geo_data_list, only:   [:show, :edit, :new]
 
   def create
@@ -18,6 +18,13 @@ class MapsController < ObjectsController
 
   def remove_geo_data
     remove_mapping_to GeoData
+  end
+
+  def tile
+    content = ''
+    collection = @map.try(:geo_data).tile(params[:x].to_i, params[:y].to_i, params[:zoom].to_i)
+    content = collection unless collection.nil?
+    render json: content
   end
 
   private

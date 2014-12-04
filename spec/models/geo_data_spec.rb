@@ -117,12 +117,12 @@ describe GeoData do
     end
 
     describe ".tile" do
-      it { expect(GeoData.tile(540, 483, 10).map(&:name)).to eq ['a'] }
-      it { expect(GeoData.tile(568, 483, 10).map(&:name)).to eq ['b'] }
-      it { expect(GeoData.tile(597, 483, 10).map(&:name)).to eq ['c'] }
-      it { expect(GeoData.tile(625, 483, 10).map(&:name)).to eq ['d'] }
-      it { expect(GeoData.tile(8, 7, 4).map(&:name)).to eq ['a', 'b'] }
-      it { expect(GeoData.tile(9, 7, 4).map(&:name)).to eq ['c', 'd'] }
+      it { expect(GeoData.tile(540, 483, 10)[:features].map{|i| i[:properties][:name]}).to eq ['a'] }
+      it { expect(GeoData.tile(568, 483, 10)[:features].map{|i| i[:properties][:name]}).to eq ['b'] }
+      it { expect(GeoData.tile(597, 483, 10)[:features].map{|i| i[:properties][:name]}).to eq ['c'] }
+      it { expect(GeoData.tile(625, 483, 10)[:features].map{|i| i[:properties][:name]}).to eq ['d'] }
+      it { expect(GeoData.tile(8, 7, 4)[:features].map{|i| i[:properties][:name]}).to eq ['a', 'b'] }
+      it { expect(GeoData.tile(9, 7, 4)[:features].map{|i| i[:properties][:name]}).to eq ['c', 'd'] }
     end
   end
 

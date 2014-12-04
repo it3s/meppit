@@ -1,6 +1,6 @@
 class GeoDataController < ObjectsController
-  before_action :require_login, except: [:index, :show, :maps, :search_by_name]
-  before_action :find_object,   except: [:index, :new, :create, :search_by_name, :bulk_add_map]
+  before_action :require_login, except: [:index, :show, :maps, :search_by_name, :tile]
+  before_action :find_object,   except: [:index, :new, :create, :search_by_name, :bulk_add_map, :tile]
 
   def maps
     @maps = paginate @geo_data.maps
@@ -14,6 +14,13 @@ class GeoDataController < ObjectsController
   def bulk_add_map
     msg, status = (map =  find_map) ? bulk_add(map) : invalid_map
     render json: {flash: flash_xhr(msg)}, status: status
+  end
+
+  def tile
+    content = ''
+    collection = object_collection.tile(params[:x].to_i, params[:y].to_i, params[:zoom].to_i)
+    content = collection unless collection.nil?
+    render json: content
   end
 
   private

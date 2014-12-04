@@ -100,6 +100,7 @@ Meppit::Application.routes.draw do
     collection do
       get  :search_by_name
       post :bulk_add_map
+      get  "tile/:zoom/:x/:y" => "geo_data#tile", as: :geo_data_tile
     end
   end
 
@@ -110,6 +111,7 @@ Meppit::Application.routes.draw do
       get  :geo_data
       post :add_geo_data
       post :remove_geo_data
+      get  "tile/:zoom/:x/:y" => "maps#tile", as: :maps_tile
     end
 
     collection do

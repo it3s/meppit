@@ -12,6 +12,7 @@ module Relationships
 
     def relations_values(splitted_type=false)
       relations_with_relateds.map do |r|
+        return if r.related.nil?
         rel = r.relation
         {
           id:       rel.id,
