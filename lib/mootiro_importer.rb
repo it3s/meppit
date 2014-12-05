@@ -76,7 +76,7 @@ module MootiroImporter
         points.push g
       when RGeo::Feature::Polygon
         polygons.push g
-      when RGeo::Feature::Linestring
+      when RGeo::Feature::LineString
         lines.push g
       else
         others.push g
