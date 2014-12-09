@@ -20,7 +20,7 @@
     </div>
   </div>
   <div class="index-map" id="geodata-list">
-    <%= render 'shared/location', object: collection_location(@geo_data_collection) %>
+    <%= render 'shared/location', object: collection_location(@geo_data_collection), auto_locate: true %>
   </div>
 
   <% else %>

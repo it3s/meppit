@@ -125,6 +125,7 @@ App.components.map = ->
   initialize: ->
     @startMap()
     @addButtons() if not @attr.embeded
+    @autoLocate() if @attr.autoLocate
     @bindEvents()
     if not @embeded and @attr.editor and not @attr.hasLocation
       @startDrawAssistence()
@@ -206,6 +207,9 @@ App.components.map = ->
     @map.addButton 'expand', 'fa-expand', @expand.bind(this), @attr.data['expand_button_title'], 'topright'
     @map.addButton 'collapse', 'fa-compress', @collapse.bind(this), @attr.data['collapse_button_title'], 'topright'
     @map.hideButton 'collapse'
+
+  autoLocate: ->
+    @map.locate (e) => @map.fit e.location
 
   expand: ->
     @_cloneLayersList()
