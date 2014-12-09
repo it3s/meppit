@@ -24,7 +24,7 @@ class GeoData < ActiveRecord::Base
 
   scope :nearest, -> lon, lat do
     point = geofactory.point(lon, lat).as_text
-    order{ST_Distance(location, ST_Geomfromtext(point, 4326))}
+    order{ST_Distance(ST_MakeValid(location), ST_Geomfromtext(point, 4326))}
   end
 
   scope :tile, -> x, y, zoom do
