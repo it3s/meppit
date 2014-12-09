@@ -17,11 +17,24 @@
 
 .list-headline {
   border-bottom: solid 1px $ultra-soft-grey;
+  position: relative;
+
+  .title {
+    display: inline-block;
+    margin: 1em 0 0.5em 0;
+  }
 
   .selected-count {
+    display: inline-block;
     font-size: 0.7em;
     color: $soft-grey;
     margin-left: 0.5em;
+  }
+
+  .selector {
+    display: inline-block;
+    position: absolute;
+    right: 0;
   }
 }
 

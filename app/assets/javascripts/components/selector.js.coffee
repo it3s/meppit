@@ -79,7 +79,7 @@ App.components.selector = ->
     App.utils.spinner.hide()
 
   getURLParams: ->
-    params = {}
+    params = _.clone @queryValues
     for paramName, param of @params
       params[paramName] = param.value if param.value?
     params
