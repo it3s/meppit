@@ -45,17 +45,20 @@ module MootiroImporter
     redis_pool.with { |conn| conn.rpush "mootiro:invalid", oid }
   end
 
+  # DEPRECATED: Using PostGIS ST_FlipCoordinates instead.
   # Here be dragons! black magic all the way
   COORD_REGEX =  /(-?\w+\.?\w+)\s(-?\w+\.?\w+)/
   def wkt_with_reversed_coords(location)
     print "Reversing coords... "
-    loc_str = location.to_s
-    loc_str.scan(COORD_REGEX).each { |pair|
-      loc_str.gsub!("#{pair[0]} #{pair[1]}", "#{pair[1]} #{pair[0]}")
-    }
-    loc_str
+    return location.gsub(COORD_REGEX, '\2 \1')
+    #loc_str = location.to_s
+    #loc_str.scan(COORD_REGEX).each { |pair|
+    #  loc_str.gsub!("#{pair[0]} #{pair[1]}", "#{pair[1]} #{pair[0]}")
+    #}
+    #loc_str
   end
 
+  # DEPRECATED: Already getting the correct geometry type.
   def remove_geometrycollection(location)
     print "Removing GeometryCollection... "
     return nil if location.eql? 'EMPTY GEOMETRYCOLLECTION'
@@ -90,14 +93,16 @@ module MootiroImporter
     return factory.multi_line_string(lines).as_text if lines.size > 0
     return factory.multi_point(points).as_text      if points.size > 0
 
+    print "Could not remove... "
     location
   end
 
   def parse_geometry(d)
-    d[:geometry] ? remove_geometrycollection(wkt_with_reversed_coords(d[:geometry])) : None
+    d[:geometry] ? "SRID=4326;#{d[:geometry]}" : None
   end
 
   def media_file(field)
+    print "Getting Media File... "
     fname = field.split('/').last
     if fname
       path = Rails.root.join('public', 'mootiro_media', fname)
@@ -110,7 +115,8 @@ module MootiroImporter
   def model_from_oid(oid)
     return nil unless oid
     mootiro_oid = MootiroOID.where(oid: oid).first
-    mootiro_oid ? mootiro_oid.content : nil
+    # Don't get unnecessary data to avoid RGeo objects
+    mootiro_oid ? mootiro_oid.association(:content).association_scope.select(:id).first : nil
   end
 
   def default_user
@@ -118,6 +124,7 @@ module MootiroImporter
   end
 
   def build_geo_data(d, &blk)
+    print "Building GeoData... "
     importation d[:oid] do
 
       additional_info = {}
@@ -129,13 +136,19 @@ module MootiroImporter
         description: d[:description] ? RDiscount.new(d[:description]).to_html : nil,
         created_at: d[:created_at].to_date,
         contacts: (d[:contacts] || {}).compact,
-        location: parse_geometry(d),
         tags: d[:tags],
         additional_info: additional_info,
       )
       yield geo_data if blk.present?
 
       saved = geo_data.save
+
+      print "Adding Location Data... "
+      # Save WKT directly to avoid RGeo objects
+      geo_data.update_columns(location: parse_geometry(d))
+      print "Flipping Coordinates... "
+      # Flip coordinates
+      ActiveRecord::Base.connection.execute("UPDATE geo_data SET location = ST_FlipCoordinates(location) WHERE geo_data.id=#{geo_data.id};")
 
       MootiroOID.create content: geo_data, oid: d[:oid] if saved
       saved
@@ -165,7 +178,6 @@ module MootiroImporter
         created_at: d[:created_at].to_date,
         activation_state: d[:is_active] ? 'active' : 'pending',
         contacts: (d[:contacts] || {}).compact,
-        location: parse_geometry(d),
         language: d[:language] == 'pt-br' ? 'pt-BR' : d[:language],
       )
       valid = user.valid?(:update)
@@ -173,6 +185,12 @@ module MootiroImporter
         user.save(validate: false)
         MootiroOID.create content: user, oid: d[:oid]
         user.update_attributes(avatar: media_file(d[:avatar])) unless d[:avatar].blank?
+
+        # Save WKT directly to avoid RGeo objects
+        user.update_columns(location: parse_geometry(d))
+        # Flip coordinates
+        ActiveRecord::Base.connection.execute("UPDATE users SET location = ST_FlipCoordinates(location) WHERE users.id=#{user.id};")
+
         Admin.create(user: user) if d[:is_admin]
       end
       valid
