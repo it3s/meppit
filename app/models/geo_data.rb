@@ -30,7 +30,7 @@ class GeoData < ActiveRecord::Base
   scope :tile, -> x, y, zoom do
     polygon = tile_as_polygon(x, y, zoom)
     # Gets GeoJSON directly from PostGIS because RGeo is very slow.
-    features = select("geo_data.id, geo_data.name, geo_data.tags, geo_data.created_at, geo_data.updated_at, ST_AsGeoJSON(geo_data.location) as geometry").where{ST_Intersects(ST_Envelope(location), ST_Geomfromtext(polygon, 4326))}.map {
+    features = select("geo_data.id, geo_data.name, geo_data.tags, geo_data.created_at, geo_data.updated_at, ST_AsGeoJSON(geo_data.location) as geometry").where{ST_Intersects(location, ST_Geomfromtext(polygon, 4326))}.map {
       |item|
       {
         type: "Feature",
