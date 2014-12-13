@@ -24,13 +24,14 @@ class GeoData < ActiveRecord::Base
 
   scope :nearest, -> lon, lat do
     point = geofactory.point(lon, lat).as_text
-    order{ST_Distance(ST_MakeValid(location), ST_Geomfromtext(point, 4326))}
+    where("NOT ST_IsEmpty(location)").order("location <-> ST_Geomfromtext('#{point}', 4326)")
   end
 
   scope :tile, -> x, y, zoom do
     polygon = tile_as_polygon(x, y, zoom)
     # Gets GeoJSON directly from PostGIS because RGeo is very slow.
-    features = select("geo_data.id, geo_data.name, geo_data.tags, geo_data.created_at, geo_data.updated_at, ST_AsGeoJSON(geo_data.location) as geometry").where{ST_Intersects(location, ST_Geomfromtext(polygon, 4326))}.map {
+    features = select("geo_data.id, geo_data.name, geo_data.tags, geo_data.created_at, geo_data.updated_at, ST_AsGeoJSON(geo_data.location) as geometry").where(
+      "ST_Geomfromtext('#{polygon}', 4326) && geo_data.location").limit(nil).map {
       |item|
       {
         type: "Feature",
