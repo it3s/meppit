@@ -8,7 +8,7 @@ namespace :tags do
     User.all.each { |u| index_tags u.interests }
   end
 
-  desc "index GeodData tags"
+  desc "index GeoData tags"
   task :geo_data => :environment do
     GeodData.all.each { |g| index_tags g.tags }
   end

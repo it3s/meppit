@@ -52,7 +52,7 @@ module Relationships
 
       def get_all_relateds
         _ids = relations.map { |r| related_id_for_relation(r) }.uniq
-        Hash[ *GeoData.select([:id, :name]).where{id >> _ids}.map { |g| [g.id, g] }.flatten ]
+        Hash[ *GeoData.select([:id, :name]).where('id IN (?)', _ids).map { |g| [g.id, g] }.flatten ]
       end
 
       def relation_type(r)
