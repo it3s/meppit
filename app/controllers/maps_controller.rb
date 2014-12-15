@@ -1,6 +1,6 @@
 class MapsController < ObjectsController
   before_action :require_login, except: [:index, :show, :geo_data, :search_by_name, :tile]
-  before_action :geo_data_list, only:   [:show, :edit, :new]
+  before_action :geo_data_list, only:   [:show, :edit, :geo_data]
 
   def create
     _params = cleaned_params.merge(administrator: current_user)
@@ -8,7 +8,6 @@ class MapsController < ObjectsController
   end
 
   def geo_data
-    @geo_data_collection = paginate @map.geo_data
     render layout: nil if request.xhr?
   end
 
@@ -21,15 +20,13 @@ class MapsController < ObjectsController
   end
 
   def tile
-    content = ''
-    collection = @map.try(:geo_data).tile(params[:x].to_i, params[:y].to_i, params[:zoom].to_i)
-    content = collection unless collection.nil?
-    render json: content
+    @geo_data_collection = @list_filter.filter(@map.geo_data).tile(params[:zoom].to_i, params[:x].to_i, params[:y].to_i)
+    render json: @geo_data_collection.as_geojson
   end
 
   private
 
     def geo_data_list
-      @geo_data_collection ||= paginate @map.try(:geo_data), params[:data_page]
+      @geo_data_collection ||= paginate @map.geo_data, params[:data_page]
     end
 end

@@ -22,32 +22,6 @@ class GeoData < ActiveRecord::Base
 
   validates :name, presence: true
 
-  scope :nearest, -> lon, lat do
-    point = geofactory.point(lon, lat).as_text
-    where("NOT ST_IsEmpty(location)").order("location <-> ST_Geomfromtext('#{point}', 4326)")
-  end
-
-  scope :tile, -> x, y, zoom do
-    polygon = tile_as_polygon(x, y, zoom)
-    # Gets GeoJSON directly from PostGIS because RGeo is very slow.
-    features = select("geo_data.id, geo_data.name, geo_data.tags, geo_data.created_at, geo_data.updated_at, ST_AsGeoJSON(geo_data.location) as geometry").where(
-      "ST_Geomfromtext('#{polygon}', 4326) && geo_data.location").limit(nil).map {
-      |item|
-      {
-        type: "Feature",
-        id: item.id,
-        properties: {
-          name: item.name,
-          created_at: item.created_at,
-          updated_at: item.updated_at,
-          tags: item.tags
-        },
-        geometry: JSON.parse(item.geometry)
-      }
-    }
-    {type: "FeatureCollection", features: features}
-  end
-
   def geojson_properties
     active_model_serializer.new(self).serializable_hash.except(:location)
   end

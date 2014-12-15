@@ -95,9 +95,9 @@ describe GeoData do
       ['OKFN', 'OKFN-br', 'bla', 'ble'].each { |n| FactoryGirl.create :geo_data, name: n }
     end
 
-    it { expect(GeoData.search_by_name('okf' ).map(&:name)).to eq ['OKFN-br', 'OKFN'] }
-    it { expect(GeoData.search_by_name('br'  ).map(&:name)).to eq ['OKFN-br'] }
-    it { expect(GeoData.search_by_name('bl'  ).map(&:name)).to eq ['bla', 'ble'] }
+    it { expect(GeoData.search_by_name('okf' ).map(&:name)).to match_array ['OKFN-br', 'OKFN'] }
+    it { expect(GeoData.search_by_name('br'  ).map(&:name)).to match_array ['OKFN-br'] }
+    it { expect(GeoData.search_by_name('bl'  ).map(&:name)).to match_array ['bla', 'ble'] }
   end
 
   describe "spatial queries" do
@@ -117,12 +117,12 @@ describe GeoData do
     end
 
     describe ".tile" do
-      it { expect(GeoData.tile(540, 483, 10)[:features].map{|i| i[:properties][:name]}).to eq ['a'] }
-      it { expect(GeoData.tile(568, 483, 10)[:features].map{|i| i[:properties][:name]}).to eq ['b'] }
-      it { expect(GeoData.tile(597, 483, 10)[:features].map{|i| i[:properties][:name]}).to eq ['c'] }
-      it { expect(GeoData.tile(625, 483, 10)[:features].map{|i| i[:properties][:name]}).to eq ['d'] }
-      it { expect(GeoData.tile(8, 7, 4)[:features].map{|i| i[:properties][:name]}).to eq ['a', 'b'] }
-      it { expect(GeoData.tile(9, 7, 4)[:features].map{|i| i[:properties][:name]}).to eq ['c', 'd'] }
+      it { expect(GeoData.tile(10, 540, 483).map(&:name)).to match_array ['a'] }
+      it { expect(GeoData.tile(10, 568, 483).map(&:name)).to match_array ['b'] }
+      it { expect(GeoData.tile(10, 597, 483).map(&:name)).to match_array ['c'] }
+      it { expect(GeoData.tile(10, 625, 483).map(&:name)).to match_array ['d'] }
+      it { expect(GeoData.tile(4, 8, 7).map(&:name)).to match_array ['a', 'b'] }
+      it { expect(GeoData.tile(4, 9, 7).map(&:name)).to match_array ['c', 'd'] }
     end
   end
 
