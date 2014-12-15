@@ -24,6 +24,57 @@ describe MapsController do
         expect(response).to render_template(:layout => nil)
       end
     end
+
+    describe "list filter" do
+      before do
+        ['b', 'd', 'c', 'a'].each { |n| FactoryGirl.create :map, name: n }
+      end
+
+      describe "sort by location should behave like sort by name" do
+        it "uses distance from (5, 10)" do
+          get :index, list_filter: {sort_by: 'location', longitude: 5, latitude: 10}
+          expect((assigns :maps_collection).map(&:name)).to eq ['a', 'b', 'c', 'd']
+        end
+        it "uses distance from (-180, 10)" do
+          get :index, list_filter: {sort_by: 'location', longitude: 18, latitude: 10}
+          expect((assigns :maps_collection).map(&:name)).to eq ['a', 'b', 'c', 'd']
+        end
+        it "uses distance from (150, 10)" do
+          get :index, list_filter: {sort_by: 'location', longitude: 50, latitude: 10}
+          expect((assigns :maps_collection).map(&:name)).to eq ['a', 'b', 'c', 'd']
+        end
+      end
+
+      describe "sort by name" do
+        context "asc" do
+          it do
+            get :index, list_filter: {sort_by: 'name', order: 'asc'}
+            expect((assigns :maps_collection).map(&:name)).to eq ['a', 'b', 'c', 'd']
+          end
+        end
+        context "desc" do
+          it do
+            get :index, list_filter: {sort_by: 'name', order: 'desc'}
+            expect((assigns :maps_collection).map(&:name)).to eq ['d', 'c', 'b', 'a']
+          end
+        end
+      end
+
+      describe "sort by date" do
+        context "asc" do
+          it do
+            get :index, list_filter: {sort_by: 'created_at', order: 'asc'}
+            expect((assigns :maps_collection).map(&:name)).to eq ['b', 'd', 'c', 'a']
+          end
+        end
+        context "desc" do
+          it do
+            get :index, list_filter: {sort_by: 'created_at', order: 'desc'}
+            expect((assigns :maps_collection).map(&:name)).to eq ['a', 'c', 'd', 'b']
+          end
+        end
+      end
+    end
   end
 
   describe "GET show" do

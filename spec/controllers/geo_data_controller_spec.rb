@@ -20,6 +20,62 @@ describe GeoDataController do
         expect(response).to render_template(:layout => nil)
       end
     end
+
+    describe "list filter" do
+      let(:geoms) do
+        [[10, 10], [20, 10],  [30, 10], [40, 10]
+        ].collect { |lon, lat| RGeo::Cartesian.simple_factory.parse_wkt "POINT (#{lon} #{lat})"  }
+      end
+      before do
+        [['b', geoms[1]], ['c', geoms[2]], ['a', geoms[0]], ['d', geoms[3]]
+        ].each { |n, l| FactoryGirl.create :geo_data, name: n, location: l }
+      end
+
+      describe "sort by location" do
+        it "uses distance from (5, 10)" do
+          get :index, list_filter: {sort_by: 'location', longitude: 5, latitude: 10}
+          expect((assigns :geo_data_collection).map(&:name)).to eq ['a', 'b', 'c', 'd']
+        end
+        it "uses distance from (18, 10)" do
+          get :index, list_filter: {sort_by: 'location', longitude: 18, latitude: 10}
+          expect((assigns :geo_data_collection).map(&:name)).to eq ['b', 'a', 'c', 'd']
+        end
+        it "uses distance from (50, 10)" do
+          get :index, list_filter: {sort_by: 'location', longitude: 50, latitude: 10}
+          expect((assigns :geo_data_collection).map(&:name)).to eq ['d', 'c', 'b', 'a']
+        end
+      end
+
+      describe "sort by name" do
+        context "asc" do
+          it do
+            get :index, list_filter: {sort_by: 'name', order: 'asc'}
+            expect((assigns :geo_data_collection).map(&:name)).to eq ['a', 'b', 'c', 'd']
+          end
+        end
+        context "desc" do
+          it do
+            get :index, list_filter: {sort_by: 'name', order: 'desc'}
+            expect((assigns :geo_data_collection).map(&:name)).to eq ['d', 'c', 'b', 'a']
+          end
+        end
+      end
+
+      describe "sort by date" do
+        context "asc" do
+          it do
+            get :index, list_filter: {sort_by: 'created_at', order: 'asc'}
+            expect((assigns :geo_data_collection).map(&:name)).to eq ['b', 'c', 'a', 'd']
+          end
+        end
+        context "desc" do
+          it do
+            get :index, list_filter: {sort_by: 'created_at', order: 'desc'}
+            expect((assigns :geo_data_collection).map(&:name)).to eq ['d', 'a', 'c', 'b']
+          end
+        end
+      end
+    end
   end
 
   describe "GET show" do

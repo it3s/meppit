@@ -41,8 +41,8 @@ describe Map do
   describe "mappings" do
     let(:map) { FactoryGirl.create :map }
 
-    let(:geom1) { RGeo::Cartesian.simple_factory.parse_wkt "GEOMETRYCOLLECTION (POINT (-10.000 -10.000))" }
-    let(:geom2) { RGeo::Cartesian.simple_factory.parse_wkt "GEOMETRYCOLLECTION (POINT (-10.001 -10.001))" }
+    let(:geom1) { RGeo::Cartesian.simple_factory.parse_wkt "POINT (-10.000 -10.000)" }
+    let(:geom2) { RGeo::Cartesian.simple_factory.parse_wkt "POINT (-10.001 -10.001)" }
 
     let(:data1) { FactoryGirl.create :geo_data, name: 'Data 1', location: geom1 }
     let(:data2) { FactoryGirl.create :geo_data, name: 'Data 2', location: geom2 }
@@ -53,19 +53,13 @@ describe Map do
         "features" => [
           {
             "type" => "Feature",
-            "geometry" => {
-              "type" => "GeometryCollection",
-              "geometries" => [{"type"=>"Point", "coordinates"=>[-10.0, -10.0]}]
-            },
+            "geometry" => {"type"=>"Point", "coordinates"=>[-10.0, -10.0]},
             "properties" => data1.geojson_properties.stringify_keys,
             "id" => data1.id
           },
           {
             "type" => "Feature",
-            "geometry" => {
-              "type" => "GeometryCollection",
-              "geometries" => [{"type"=>"Point", "coordinates"=>[-10.001, -10.001]}]
-            },
+            "geometry" => {"type"=>"Point", "coordinates"=>[-10.001, -10.001]},
             "properties" => data2.geojson_properties.stringify_keys,
             "id" => data2.id
           }
