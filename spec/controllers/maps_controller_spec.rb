@@ -8,6 +8,13 @@ describe MapsController do
   describe "GET index" do
     context "regular request" do
       let!(:map) { FactoryGirl.create :map }
+
+      it 'calls object_collection filter' do
+        controller.stub(:object_collection).and_call_original
+        controller.should_receive :object_collection
+        get :index
+      end
+
       it 'renders maps list and asigns @maps_collection' do
         get :index
         expect(response).to render_template :index
@@ -27,7 +34,24 @@ describe MapsController do
 
     describe "list filter" do
       before do
-        ['b', 'd', 'c', 'a'].each { |n| FactoryGirl.create :map, name: n }
+        ['b', 'd', 'c', 'a'].each { |n| FactoryGirl.create :map, name: n, tags: ['z', n] }
+      end
+
+      describe "filter by tags" do
+        it "contains one tag" do
+          get :index, list_filter: {tags: 'a', tags_type: 'all'}
+          expect((assigns :maps_collection).map(&:name)).to match_array ['a']
+        end
+
+        it "contains two tags" do
+          get :index, list_filter: {tags: 'z,b', tags_type: 'all'}
+          expect((assigns :maps_collection).map(&:name)).to match_array ['b']
+        end
+
+        it "contains at least one tag" do
+          get :index, list_filter: {tags: 'b,c', tags_type: 'any'}
+          expect((assigns :maps_collection).map(&:name)).to match_array ['b', 'c']
+        end
       end
 
       describe "sort by location should behave like sort by name" do
@@ -79,6 +103,7 @@ describe MapsController do
 
   describe "GET show" do
     it 'calls find_object filter' do
+      controller.stub(:find_object).and_call_original
       controller.should_receive :find_object
       get :show, {:id => map.id}
     end
@@ -94,6 +119,7 @@ describe MapsController do
     context "not logged in" do
       before { logout_user }
       it "require_login" do
+        controller.stub(:require_login).and_call_original
         controller.should_receive :require_login
         get :new
         expect(controller.logged_in?).to be false
@@ -104,7 +130,8 @@ describe MapsController do
       before { login_user user }
 
       it 'calls build_instance filter' do
-        controller.should_receive :build_instance
+          controller.stub(:build_instance).and_call_original
+          controller.should_receive :build_instance
         get :new
       end
 
@@ -144,6 +171,7 @@ describe MapsController do
     context "not logged in" do
       before { logout_user }
       it "require_login" do
+        controller.stub(:require_login).and_call_original
         controller.should_receive :require_login
         get :edit, {:id => map.id}
         expect(controller.logged_in?).to be false
@@ -154,6 +182,7 @@ describe MapsController do
       before { login_user user }
 
       it 'calls find_object filter' do
+        controller.stub(:find_object).and_call_original
         controller.should_receive :find_object
         get :edit, {:id => map.id}
       end
@@ -331,4 +360,36 @@ describe MapsController do
     end
   end
 
+  describe "GET tile" do
+    let(:geoms) do
+      [[10, 10], [20, 10],  [30, 10], [40, 10]
+      ].collect { |lon, lat| RGeo::Cartesian.simple_factory.parse_wkt "POINT (#{lon} #{lat})"  }
+    end
+    before do
+      [['b', geoms[1]], ['c', geoms[2]], ['a', geoms[0]], ['d', geoms[3]]
+    ].each { |n, l| map.mappings.create geo_data: FactoryGirl.create(:geo_data, name: n, location: l, tags: ['z', n]) }
+    end
+
+    it 'gets only the objects that intersects the tile' do
+      get :tile, id: map.id, zoom: 4, x: 9, y: 7
+      expect((assigns :geo_data_collection).map(&:name)).to match_array ['c', 'd']
+    end
+
+    describe "filter by tags" do
+      it "contains one tag" do
+        get :tile, id: map.id, zoom: 4, x: 8, y: 7, list_filter: {tags: 'a', tags_type: 'all'}
+        expect((assigns :geo_data_collection).map(&:name)).to match_array ['a']
+      end
+
+      it "contains two tags" do
+        get :tile, id: map.id, zoom: 4, x: 8, y: 7, list_filter: {tags: 'z,b', tags_type: 'all'}
+        expect((assigns :geo_data_collection).map(&:name)).to match_array ['b']
+      end
+
+      it "contains at least one tag" do
+        get :tile, id: map.id, zoom: 4, x: 8, y: 7, list_filter: {tags: 'z,b', tags_type: 'any'}
+        expect((assigns :geo_data_collection).map(&:name)).to match_array ['a', 'b']
+      end
+    end
+  end
 end

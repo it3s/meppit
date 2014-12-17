@@ -2,7 +2,7 @@ class ObjectsController < ApplicationController
   before_action :find_object,              except: [:index, :new, :create, :search_by_name]
   before_action :build_instance,           only:   [:new, :create]
   before_action :validate_additional_info, only:   [:create, :update]
-  before_action :build_list_filter,        only:   [:index]
+  before_action :build_list_filter,        only:   [:index, :tile]
 
   def index
     instance_variable_set "@#{controller_name}_collection", object_collection

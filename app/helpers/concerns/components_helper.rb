@@ -113,11 +113,14 @@ module Concerns
 
     def map_options(obj)
       obj_type = object_type obj
+      geojsonTileURL = obj_type == :map ? "/maps/#{obj.id}/tile/{z}/{x}/{y}" : "/geo_data/tile/{z}/{x}/{y}"
       opts = {
         layers: obj.try(:layers_values),
         geojson: obj.location_geohash,
         featuresIds: (obj.try(:geo_data_ids) || obj.id || nil),
-        featureURL: "\#{baseURL}#{obj_type}/\#{id}/",
+        featureURL: "\#{baseURL}geo_data/\#{id}/",
+        geojsonTileURL: geojsonTileURL,
+        enableGeoJsonTile: obj_type != :geo_data,
         hasLocation: obj.try(:'location?'),
       }
       opts = opts.merge({

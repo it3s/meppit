@@ -89,3 +89,7 @@ end
 group :production, :staging do
   gem 'mailgun_rails'               # mailgun integration for actionmailer
 end
+
+group :profile do
+  gem 'ruby-prof'
+end

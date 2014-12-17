@@ -2,6 +2,6 @@
   <% if edit_mode? %>
     <div class="map" data-components="map" data-map-options="<%= map_options(object).merge({data: map_data}).to_json %>"></div>
   <% else %>
-    <%= render 'shared/map', object: object, embeded: local_assigns[:embeded] %>
+    <%= render 'shared/map', local_assigns %>
   <% end %>
 </section>

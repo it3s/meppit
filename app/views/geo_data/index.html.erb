@@ -4,8 +4,23 @@
 
   <% if @list_filter.map? %>
 
-  <div class="index-map">
-    <%= render 'shared/location', object: collection_location(@geo_data_collection) %>
+  <div class="list-headline">
+    <h1 class="title">
+      <%= raw t('geo_data.list.title', :count => "<em>#{@geo_data_collection.total_count}</em>") %>
+      <span class="selected-count"></span>
+    </h1>
+    <div class="selector" data-components="selector" data-selector-options="<%= {autoload: true}.to_json %>">
+      <span class="options-label"><%= t('lists.filters.visualization') %>:</span>
+      <div class="options-container">
+        <div class="options" data-selector-param="list_filter[visualization]">
+          <%= selector_option t('lists.filters.list'), 'list_filter[visualization]', :list      %>
+          <%= selector_option t('lists.filters.map'),  'list_filter[visualization]', :map, true %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="index-map" id="geodata-list">
+    <%= render 'shared/location', object: collection_location(@geo_data_collection), auto_locate: true %>
   </div>
 
   <% else %>
@@ -16,6 +31,15 @@
           <%= raw t('geo_data.list.title', :count => "<em>#{@geo_data_collection.total_count}</em>") %>
           <span class="selected-count"></span>
         </h1>
+        <div class="selector" data-components="selector" data-selector-options="<%= {autoload: true}.to_json %>">
+          <span class="options-label"><%= t('lists.filters.visualization') %>:</span>
+          <div class="options-container">
+            <div class="options" data-selector-param="list_filter[visualization]">
+              <%= selector_option t('lists.filters.list'), 'list_filter[visualization]', :list, true %>
+              <%= selector_option t('lists.filters.map'),  'list_filter[visualization]', :map        %>
+            </div>
+          </div>
+        </div>
         <div id="geodata-pagination"><%= paginate @geo_data_collection, :remote => true %></div>
       </div>
 

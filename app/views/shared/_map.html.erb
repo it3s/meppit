@@ -1,5 +1,5 @@
 <% if object.location %>
-  <div class="map" data-components="map" data-map-options="<%= map_options(object).merge({data: map_data, embeded: local_assigns[:embeded]}).to_json %>"></div>
+  <div class="map" data-components="map" data-map-options="<%= map_options(object).merge({data: map_data, embeded: local_assigns[:embeded], autoLocate: local_assigns[:auto_locate]}).to_json %>"></div>
 <% else %>
   <div data-components='overlay' data-overlay-options='<%= {message: t("empty_location")}.to_json %>'>
     <%= image_tag "imgs/map-placeholder-wide.png", :alt => 'location', :class => 'placeholder' %>

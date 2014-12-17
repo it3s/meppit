@@ -248,7 +248,7 @@ describe ApplicationController do
     describe "#cleaned_tags" do
       context 'default field name' do
         let(:params) { {tags: "foo,bar,baz"} }
-        it { expect(controller.send :cleaned_tags, params).to eq ["foo", "bar", "baz"]}
+        it { expect(controller.send :cleaned_tags, params).to match_array ["foo", "bar", "baz"]}
       end
       context 'other field name' do
         let(:params) { {interests: "foo,bar,baz"} }

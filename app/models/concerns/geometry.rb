@@ -1,12 +1,65 @@
 module Geometry
   extend ActiveSupport::Concern
 
+  included do
+    scope :deselect, -> (*columns) do
+      select(column_names - columns.map(&:to_s))
+    end
+
+    scope :with_geojson, -> (field=nil) do
+      # Use the first geojson field defined using `geojson_field` by default.
+      field = @geojson_fields.first unless field
+      select("ST_AsGeoJSON(#{field}) as #{field}_geometry")
+    end
+
+    scope :nearest, -> (lon, lat, field=nil) do
+      # Use the first geojson field defined using `geojson_field` by default.
+      field = @geojson_fields.first unless field
+      point = geofactory.point(lon, lat).as_text
+      where("NOT ST_IsEmpty(\"#{table_name}\".\"#{field}\")").order(
+        "\"#{table_name}\".\"#{field}\" <-> ST_Geomfromtext('#{point}', 4326)")
+    end
+
+    scope :tile, -> (zoom, x, y, field=nil) do
+      # Use the first geojson field defined using `geojson_field` by default.
+      field = @geojson_fields.first unless field
+      polygon = tile_as_polygon(zoom, x, y)
+      # Gets GeoJSON directly from PostGIS because RGeo is very slow.
+      with_geojson(field).deselect(field).where(
+        "NOT ST_IsEmpty(\"#{table_name}\".\"#{field}\") AND (ST_Geomfromtext('#{polygon}', 4326) && \"#{table_name}\".\"#{field}\")"
+      ).limit(nil)
+    end
+
+    scope :as_geojson, -> (field=nil) do
+      # Use the first geojson field defined using `geojson_field` by default.
+      field = @geojson_fields.first unless field
+      features = where('1=1').map { |item|
+        geometry = item.send("#{field}_geometry").nil? ? item.send("#{field}") : JSON.parse(item.send("#{field}_geometry"))
+        {
+          type: "Feature",
+          id: item.id,
+          properties: { # TODO: use `geojson_properties`
+            name: item.name,
+            created_at: item.created_at,
+            updated_at: item.updated_at,
+            tags: item.tags
+          },
+          geometry: geometry
+        }
+      }
+      {type: "FeatureCollection", features: features}
+    end
+  end
+
   module ClassMethods
+
     def geofactory
       RGeo::Geographic.spherical_factory :srid => 4326
     end
 
     def geojson_field(*fields)
+      @geojson_fields ||= []
+      @geojson_fields.push(*fields)
       fields.each do |field|
         set_rgeo_factory_for_column field, geofactory.projection_factory
         define_method "#{field}_geojson" do
@@ -20,22 +73,22 @@ module Geometry
 
     private
 
-    def tile_as_lat(y, zoom)
+    def tile_as_lat(zoom, y)
       n = 2.0 ** zoom
       lat_rad = Math::atan(Math::sinh(Math::PI * (1 - 2 * y / n)))
       lat = 180.0 * (lat_rad / Math::PI)
     end
 
-    def tile_as_lon(x, zoom)
+    def tile_as_lon(zoom, x)
       n = 2.0 ** zoom
       lon = x / n * 360.0 - 180.0
     end
 
-    def tile_as_polygon(x, y, zoom)
-      north = tile_as_lat(y, zoom)
-      south = tile_as_lat(y + 1, zoom)
-      west  = tile_as_lon(x, zoom)
-      east  = tile_as_lon(x + 1, zoom)
+    def tile_as_polygon(zoom, x, y)
+      north = tile_as_lat(zoom, y)
+      south = tile_as_lat(zoom, y + 1)
+      west  = tile_as_lon(zoom, x)
+      east  = tile_as_lon(zoom, x + 1)
       nw = geofactory.point(west, north)
       ne = geofactory.point(east, north)
       sw = geofactory.point(west, south)

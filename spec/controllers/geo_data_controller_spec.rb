@@ -7,6 +7,12 @@ describe GeoDataController do
 
   describe "GET index" do
     context "regular request" do
+      it 'calls object_collection filter' do
+        controller.stub(:object_collection).and_call_original
+        controller.should_receive :object_collection
+        get :index
+      end
+
       it 'renders geo_data list' do
         get :index
         expect(response).to render_template :index
@@ -28,7 +34,24 @@ describe GeoDataController do
       end
       before do
         [['b', geoms[1]], ['c', geoms[2]], ['a', geoms[0]], ['d', geoms[3]]
-        ].each { |n, l| FactoryGirl.create :geo_data, name: n, location: l }
+      ].each { |n, l| FactoryGirl.create :geo_data, name: n, location: l, tags:['z', n] }
+      end
+
+      describe "filter by tags" do
+        it "contains one tag" do
+          get :index, list_filter: {tags: 'a', tags_type: 'all'}
+          expect((assigns :geo_data_collection).map(&:name)).to match_array ['a']
+        end
+
+        it "contains two tags" do
+          get :index, list_filter: {tags: 'z,b', tags_type: 'all'}
+          expect((assigns :geo_data_collection).map(&:name)).to match_array ['b']
+        end
+
+        it "contains at least one tag" do
+          get :index, list_filter: {tags: 'b,c', tags_type: 'any'}
+          expect((assigns :geo_data_collection).map(&:name)).to match_array ['b', 'c']
+        end
       end
 
       describe "sort by location" do
@@ -349,4 +372,42 @@ describe GeoDataController do
     end
   end
 
+  describe "GET tile" do
+    let(:geoms) do
+      [[10, 10], [20, 10],  [30, 10], [40, 10]
+      ].collect { |lon, lat| RGeo::Cartesian.simple_factory.parse_wkt "POINT (#{lon} #{lat})"  }
+    end
+    before do
+      [['b', geoms[1]], ['c', geoms[2]], ['a', geoms[0]], ['d', geoms[3]]
+    ].each { |n, l| FactoryGirl.create :geo_data, name: n, location: l, tags: ['z', n] }
+    end
+
+    it 'calls object_collection filter' do
+      controller.stub(:object_collection).and_call_original
+      controller.should_receive :object_collection
+      get :tile, zoom: 4, x: 9, y: 7
+    end
+
+    it 'gets only the objects that intersects the tile' do
+      get :tile, zoom: 4, x: 9, y: 7
+      expect((assigns :geo_data_collection).map(&:name)).to match_array ['c', 'd']
+    end
+
+    describe "filter by tags" do
+      it "contains one tag" do
+        get :tile, zoom: 4, x: 8, y: 7, list_filter: {tags: 'a', tags_type: 'all'}
+        expect((assigns :geo_data_collection).map(&:name)).to match_array ['a']
+      end
+
+      it "contains two tags" do
+        get :tile, zoom: 4, x: 8, y: 7, list_filter: {tags: 'z,b', tags_type: 'all'}
+        expect((assigns :geo_data_collection).map(&:name)).to match_array ['b']
+      end
+
+      it "contains at least one tag" do
+        get :tile, zoom: 4, x: 8, y: 7, list_filter: {tags: 'z,b', tags_type: 'any'}
+        expect((assigns :geo_data_collection).map(&:name)).to match_array ['a', 'b']
+      end
+    end
+  end
 end
