@@ -30,7 +30,7 @@ module Geometry
       ).limit(nil)
     end
 
-    scope :as_geojson, -> (field=nil) do
+    scope :to_geojson, -> (field=nil) do
       # Use the first geojson field defined using `geojson_field` by default.
       field = @geojson_fields.first unless field
       features = where('1=1').map { |item|

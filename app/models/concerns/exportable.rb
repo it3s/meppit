@@ -2,6 +2,14 @@ module Exportable
   extend ActiveSupport::Concern
 
   included do
+    def to_geojson
+      serialized_as :geojson
+    end
+
+    def to_csv
+      serialized_as :csv
+    end
+
     def serialized_as(format)
       active_model_serializer.new(self).send(:"to_#{format}")
     end

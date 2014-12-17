@@ -37,7 +37,6 @@ class Map < ActiveRecord::Base
     location ? location.to_json : nil
   end
 
-
   def geojson_properties
     active_model_serializer.new(self).serializable_hash.except(:location, :geo_data)
   end

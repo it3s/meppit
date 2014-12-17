@@ -293,6 +293,8 @@ GEM
     redis-namespace (1.5.1)
       redis (~> 3.0, >= 3.0.4)
     remotipart (1.2.1)
+    responders (1.1.2)
+      railties (>= 3.2, < 4.2)
     rest-client (1.7.2)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
@@ -450,6 +452,7 @@ DEPENDENCIES
   rails (~> 4.1.1)
   rdiscount
   remotipart
+  responders
   rgeo
   rgeo-geojson
   rspec-rails (~> 2.0)

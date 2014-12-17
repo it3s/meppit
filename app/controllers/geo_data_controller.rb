@@ -18,7 +18,7 @@ class GeoDataController < ObjectsController
 
   def tile
     @geo_data_collection = object_collection.tile(params[:zoom].to_i, params[:x].to_i, params[:y].to_i)
-    render json: @geo_data_collection.as_geojson
+    render geojson: @geo_data_collection
   end
 
   private
