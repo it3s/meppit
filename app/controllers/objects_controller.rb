@@ -63,7 +63,7 @@ class ObjectsController < ApplicationController
     end
 
     def object_collection
-      @list_filter.filter(model).page(params[:page]).per(params[:per])
+      paginate @list_filter.filter(model)
     end
 
     def cleaned_params

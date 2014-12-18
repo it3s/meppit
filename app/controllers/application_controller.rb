@@ -26,6 +26,10 @@ class ApplicationController < ActionController::Base
     redirect_to login_path
   end
 
+  def current_url(overwrite={})
+    url_for :only_path => false, :params => params.except(:action, :controller).merge(overwrite)
+  end
+
   protected
 
     def require_admin
