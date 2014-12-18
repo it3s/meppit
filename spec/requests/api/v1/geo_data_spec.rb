@@ -104,13 +104,15 @@ describe "API::V1::GeoData" do
           expect(JSON::parse(response.body).map{ |item| item["name"] }).to match_array ["a", "d"]
         end
         it "gets the pagination headers" do
-          get "/api/v1/geo_data", {page: 2, per: 2}, headers
+          get "/api/v1/geo_data", {page: 1, per: 2}, headers
           expect(response.headers.has_key? "Link").to be true
           expect(response.headers.has_key? "X-Per-Page").to be true
+          expect(response.headers.has_key? "X-Page").to be true
           expect(response.headers.has_key? "X-Pages").to be true
           expect(response.headers.has_key? "X-Total-Count").to be true
 
           expect(response.headers["X-Per-Page"]).to eq "2"
+          expect(response.headers["X-Page"]).to eq "1"
           expect(response.headers["X-Pages"]).to eq "2"
           expect(response.headers["X-Total-Count"]).to eq "4"
         end
