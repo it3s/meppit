@@ -1,6 +1,6 @@
 module PaginateResponder
   def to_format
-    if get?
+    if get? && (@resource.kind_of?(Array) || @resource.respond_to?(:page))
       page = @controller.params[:page].to_i || 1
       per  = @controller.params[:per].to_i  || 100
       per  = 100 if per > 100

@@ -7,4 +7,9 @@ class GeoDataSerializer < ActiveModel::Serializer
   def relations
     object.relations_values(splitted_type: true)
   end
+
+  def location
+    # some times we don't get location from database
+    object.try(:location)
+  end
 end
