@@ -13,6 +13,6 @@ describe Taggable do
     expect(Tag.all.map(&:tag)).to eq []
     user.interests = ['aa', 'bb']
     user.save
-    expect(Tag.all.map(&:tag)).to eq ['aa', 'bb']
+    expect(Tag.all.map(&:tag)).to match_array ['aa', 'bb']
   end
 end

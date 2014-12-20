@@ -83,7 +83,7 @@ describe Map do
     end
 
     describe "#geo_data_ids" do
-      it { expect(map.geo_data_ids).to eq [data1.id, data2.id] }
+      it { expect(map.geo_data_ids).to match_array [data1.id, data2.id] }
     end
 
     describe "#location" do
@@ -158,10 +158,10 @@ describe Map do
       ['Open Data Orgs', 'ONGS', 'Data Centers', 'bla', 'ble'].each { |n| FactoryGirl.create :map, name: n }
     end
 
-    it { expect(Map.search_by_name('op'  ).map(&:name)).to eq ['Open Data Orgs'] }
-    it { expect(Map.search_by_name('on'  ).map(&:name)).to eq ['ONGS'] }
-    it { expect(Map.search_by_name('data').map(&:name)).to eq ['Open Data Orgs', 'Data Centers'] }
-    it { expect(Map.search_by_name('bl'  ).map(&:name)).to eq ['bla', 'ble'] }
+    it { expect(Map.search_by_name('op'  ).map(&:name)).to match_array ['Open Data Orgs'] }
+    it { expect(Map.search_by_name('on'  ).map(&:name)).to match_array ['ONGS'] }
+    it { expect(Map.search_by_name('data').map(&:name)).to match_array ['Open Data Orgs', 'Data Centers'] }
+    it { expect(Map.search_by_name('bl'  ).map(&:name)).to match_array ['bla', 'ble'] }
   end
 
   describe "versioning", versioning: true do
