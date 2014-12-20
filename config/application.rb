@@ -25,5 +25,11 @@ module Meppit
     I18n.available_locales = [:en, :'pt-BR']
     # config.i18n.default_locale = :'pt-BR'
     I18n.enforce_available_locales = false  # stop annoying messages
+
+    config.to_prepare do
+      Doorkeeper::ApplicationsController.layout "application"
+      Doorkeeper::AuthorizationsController.layout "application"
+      Doorkeeper::AuthorizedApplicationsController.layout "application"
+    end
   end
 end

@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
 
   has_many :imports
   has_many :oauth_applications, class_name: 'Doorkeeper::Application', as: :owner
-  has_many :oauth_access_tokens, class_name: 'Doorkeeper::AccessToken', as: :resource_owner
 
   attr_reader :license_aggrement
 
@@ -65,6 +64,14 @@ class User < ActiveRecord::Base
 
   def admin?
     Admin.where(user_id: id).exists?
+  end
+
+  def oauth_access_tokens
+    Doorkeeper::AccessToken.where(resource_owner_id: id)
+  end
+
+  def oauth_authorized_applications
+    Doorkeeper::Application.joins(:access_tokens).where(access_tokens: {resource_owner_id: id})
   end
 
   private
