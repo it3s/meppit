@@ -233,7 +233,7 @@ describe UsersController do
       it 'cleans contacts field' do
         user_params.merge! :site => "", :twitter => ""
         post :update, {:id => user.id, :user => user_params}
-        expect(controller.send(:user_params)[:contacts].keys).to eq ['address', 'phone']
+        expect(controller.send(:user_params)[:contacts].keys).to match_array ['address', 'phone']
       end
 
       it 'saves user and return redirect' do

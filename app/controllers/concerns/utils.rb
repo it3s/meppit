@@ -138,4 +138,3 @@ module Utils
       _model.find(id)
     end
 end
-

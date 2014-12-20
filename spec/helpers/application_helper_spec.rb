@@ -268,7 +268,7 @@ describe ApplicationHelper do
       end
 
       it "each contact field has key, icon, value and name" do
-        expect(helper.contacts_fields_for(user).first.keys).to eq [:key, :icon, :value, :name]
+        expect(helper.contacts_fields_for(user).first.keys).to match_array [:key, :icon, :value, :name]
       end
     end
   end

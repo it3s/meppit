@@ -14,15 +14,15 @@ describe Searchable do
   end
 
   it "search on different models by name" do
-    expect(search_for "awes").to eq ["Awesome user", "Awesome org", "Non-awesome map"]
+    expect(search_for "awes").to match_array ["Awesome user", "Awesome org", "Non-awesome map"]
   end
 
   it "search on different models by description" do
-    expect(search_for "great").to eq ["kid user", "Awesome org"]
+    expect(search_for "great").to match_array ["kid user", "Awesome org"]
   end
 
   it "search across diferent field and diferent models" do
-    expect(search_for "dumb").to eq ["Dumb user", "Non-awesome map"]
+    expect(search_for "dumb").to match_array ["Dumb user", "Non-awesome map"]
   end
 
 end

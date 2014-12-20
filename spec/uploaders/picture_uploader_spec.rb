@@ -20,7 +20,7 @@ describe PictureUploader do
     @uploader.remove!
   end
 
-  it { expect(subject.extension_white_list).to eq ['jpg', 'jpeg', 'png'] }
+  it { expect(subject.extension_white_list).to match_array ['jpg', 'jpeg', 'png'] }
 
   context 'the thumb version' do
     it "should scale down a landscape image to be exactly 240 by 200 pixels" do

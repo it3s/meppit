@@ -2,7 +2,6 @@ class ObjectsController < ApplicationController
   before_action :find_object,              except: [:index, :new, :create, :search_by_name]
   before_action :build_instance,           only:   [:new, :create]
   before_action :validate_additional_info, only:   [:create, :update]
-  before_action :build_list_filter,        only:   [:index, :tile]
 
   def index
     instance_variable_set "@#{controller_name}_collection", object_collection
@@ -56,14 +55,21 @@ class ObjectsController < ApplicationController
       instance_variable_set "@#{object_sym}", model.new
     end
 
-    def build_list_filter
-      _filter_params = params.fetch(:list_filter, {})
-      _filter_params[:tags] = _filter_params[:tags].split(',') if _filter_params[:tags]
-      @list_filter = ListFilter.new _filter_params
+    def filter_params
+      default = {
+        'tags' => '',
+        'tags_type' => 'all',
+        'sort_by' => 'name',
+        'order' => 'asc',
+        'visualization' => 'list'
+      }
+      @filter_params = default.merge(params.fetch(:list_filter, {}))
+      @filter_params['tags'] = @filter_params['tags'].split(',')
+      @filter_params
     end
 
     def object_collection
-      @list_filter.filter(model).page(params[:page]).per(params[:per])
+      paginate model.filter(filter_params)
     end
 
     def cleaned_params

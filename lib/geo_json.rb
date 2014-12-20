@@ -28,7 +28,10 @@ module GeoJSON
 
   # buid a geometry feature for a activerecord model
   def feature_from_model(model, field=:location)
-    build_feature model.send(field), model.id, model.geojson_properties
+    geometry = model.respond_to?("#{field}_geometry") ?
+      model.send("#{field}_geometry") : # get geometry geojson from database
+      model.send(field)                 # get geometry from rgeo object
+    build_feature geometry, model.id, model.geojson_properties
   end
 
   def encode_feature_collection(features)
@@ -41,7 +44,12 @@ module GeoJSON
 
   def encode_feature(feature)
     if feature.geometry
-      RGeo::GeoJSON.encode feature
+      if feature.geometry.kind_of? String
+        # got the geometry as geojson directly from database
+        {"type"=>"Feature", "geometry"=>JSON::parse(feature.geometry),"properties"=>feature.properties, "id"=>feature.properties["id"]}
+      else
+        RGeo::GeoJSON.encode feature
+      end
     else
       {"type"=>"Feature", "geometry"=>nil,"properties"=>feature.properties, "id"=>feature.properties["id"]}
     end

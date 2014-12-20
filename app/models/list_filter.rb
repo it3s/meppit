@@ -11,7 +11,7 @@ class ListFilter
   end
 
   def filter(queryset)
-    queryset = queryset.with_tags(tags, tags_type.to_sym) unless tags.empty?
+    queryset = filter_by_tags(queryset) unless tags.empty?
     queryset = sort queryset
     queryset
   end
@@ -32,14 +32,11 @@ class ListFilter
     visualization == 'map'
   end
 
-  private
+  protected
 
-    def set_defaults
-      self.tags ||= []
-      self.tags_type ||= 'all'
-      self.sort_by ||= 'name'
-      self.order ||= 'asc'
-      self.visualization ||= 'list'
+    def filter_by_tags(queryset)
+      queryset = queryset.with_tags(tags, tags_type.to_sym) if queryset.respond_to?(:with_tags)
+      queryset
     end
 
     def sort(queryset)
@@ -54,6 +51,16 @@ class ListFilter
         queryset = queryset.order "#{sort_by} #{order}"
       end
       queryset
+    end
+
+  private
+
+    def set_defaults
+      self.tags ||= []
+      self.tags_type ||= 'all'
+      self.sort_by ||= 'name'
+      self.order ||= 'asc'
+      self.visualization ||= 'list'
     end
 
 end

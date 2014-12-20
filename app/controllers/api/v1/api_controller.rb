@@ -4,7 +4,8 @@ module API
 
       before_action :authenticate_or_resquest
 
-      respond_to :json, :xml
+      responders PaginateResponder, FilterResponder
+      respond_to :json, :xml, :geojson
 
       def show
         respond_with model.find(params[:id])
@@ -22,7 +23,6 @@ module API
             User.find_by(auth_token: token).present?
           end
         end
-
     end
   end
 end

@@ -29,26 +29,6 @@ module Geometry
         "NOT ST_IsEmpty(\"#{table_name}\".\"#{field}\") AND (ST_Geomfromtext('#{polygon}', 4326) && \"#{table_name}\".\"#{field}\")"
       ).limit(nil)
     end
-
-    scope :as_geojson, -> (field=nil) do
-      # Use the first geojson field defined using `geojson_field` by default.
-      field = @geojson_fields.first unless field
-      features = where('1=1').map { |item|
-        geometry = item.send("#{field}_geometry").nil? ? item.send("#{field}") : JSON.parse(item.send("#{field}_geometry"))
-        {
-          type: "Feature",
-          id: item.id,
-          properties: { # TODO: use `geojson_properties`
-            name: item.name,
-            created_at: item.created_at,
-            updated_at: item.updated_at,
-            tags: item.tags
-          },
-          geometry: geometry
-        }
-      }
-      {type: "FeatureCollection", features: features}
-    end
   end
 
   module ClassMethods

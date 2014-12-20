@@ -1,7 +1,7 @@
 <div class="site-page full map-list maps index">
 
   <%# We can't sort maps by location and don't makes sense display maps using map visualization, so let's hide these options %>
-  <%= render 'shared/lists/filters', list_filter: @list_filter, hide_location: true, hide_visualization: true %>
+  <%= render 'shared/lists/filters', filter_params: @filter_params, hide_location: true, hide_visualization: true %>
 
   <div data-components="list">
     <div class="list-headline">

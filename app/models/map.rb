@@ -11,6 +11,7 @@ class Map < ActiveRecord::Base
   include Commentable
   include Flaggable
   include Featurable
+  include Filterable
 
   belongs_to :administrator, class_name: 'User'
 
@@ -36,7 +37,6 @@ class Map < ActiveRecord::Base
   def location_geojson
     location ? location.to_json : nil
   end
-
 
   def geojson_properties
     active_model_serializer.new(self).serializable_hash.except(:location, :geo_data)

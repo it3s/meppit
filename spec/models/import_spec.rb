@@ -13,7 +13,7 @@ describe Import do
     it { expect(parsed.first).to be_a_kind_of OpenStruct }
     it { expect(parsed.first.row).to_not be nil }
     it { expect(parsed.first.data).to be_a_kind_of Hash }
-    it { expect(parsed.first.data.keys).to eq [:name, :description, :tags, :contacts, :additional_info] }
+    it { expect(parsed.first.data.keys).to match_array [:name, :description, :tags, :contacts, :additional_info] }
   end
 
   describe ".csv_headers" do

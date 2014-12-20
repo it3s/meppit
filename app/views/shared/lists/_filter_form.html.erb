@@ -7,13 +7,13 @@
         <%= label_tag :tags, t('lists.filters.tags') %>
         <div class="tags">
           <%= text_field_tag 'list_filter[tags]', '', "data-components" => "tags",
-            "data-tags-options" => {tags: list_filter.tags, autocomplete: tag_search_path }.to_json %>
+            "data-tags-options" => {tags: filter_params['tags'], autocomplete: tag_search_path }.to_json %>
         </div>
       </div>
       <div class="tags-type">
-        <%= radio_button_tag('list_filter[tags_type]', "all", list_filter.checked?('tags_type', 'all')) %>
+        <%= radio_button_tag('list_filter[tags_type]', "all", filter_params['tags_type'] == 'all') %>
         <%= label_tag(:list_filter_tags_type_all, t('lists.filters.tags_type.all')) %>
-        <%= radio_button_tag('list_filter[tags_type]', "any", list_filter.checked?('tags_type', 'any')) %>
+        <%= radio_button_tag('list_filter[tags_type]', "any", filter_params['tags_type'] == 'any') %>
         <%= label_tag(:list_filter_tags_type_any, t('lists.filters.tags_type.any')) %>
       </div>
     </div>
@@ -25,9 +25,9 @@
 
     <span class="choice-title"><%= t('lists.filters.display') %>:</span>
     <div class="choice">
-      <%= radio_button_tag('list_filter[visualization]', "list", list_filter.checked?('visualization', 'list')) %>
+      <%= radio_button_tag('list_filter[visualization]', "list", filter_params['visualization'] == 'list') %>
       <%= label_tag(:list_filter_visualization_list, t('lists.filters.list')) %>
-      <%= radio_button_tag('list_filter[visualization]', "map", list_filter.checked?('visualization', 'map')) %>
+      <%= radio_button_tag('list_filter[visualization]', "map", filter_params['visualization'] == 'map') %>
       <%= label_tag(:list_filter_visualization_map, t('lists.filters.map')) %>
     </div>
   </section>
@@ -41,15 +41,15 @@
     <div class="sort_by">
       <span class="choice-title"><%= t('lists.filters.sort.field') %>:</span>
       <div class="choice">
-        <%= radio_button_tag('list_filter[sort_by]', "name", list_filter.checked?('sort_by', 'name')) %>
+        <%= radio_button_tag('list_filter[sort_by]', "name", filter_params['sort_by'] == 'name') %>
         <%= label_tag(:list_filter_sort_by_name, t('lists.filters.name')) %>
-        <%= radio_button_tag('list_filter[sort_by]', "created_at", list_filter.checked?('sort_by', 'created_at')) %>
+        <%= radio_button_tag('list_filter[sort_by]', "created_at", filter_params['sort_by'] == 'created_at') %>
         <%= label_tag(:list_filter_sort_by_created_at, t('lists.filters.date')) %>
         <% unless local_assigns[:hide_location] %>
-        <%= radio_button_tag('list_filter[sort_by]', "location", list_filter.checked?('sort_by', 'location')) %>
+        <%= radio_button_tag('list_filter[sort_by]', "location", filter_params['sort_by'] == 'location') %>
         <%= label_tag(:list_filter_sort_by_location, t('lists.filters.location')) %>
-        <%= hidden_field_tag('list_filter[longitude]', list_filter.longitude) %>
-        <%= hidden_field_tag('list_filter[latitude]', list_filter.latitude) %>
+        <%= hidden_field_tag('list_filter[longitude]', filter_params['longitude']) %>
+        <%= hidden_field_tag('list_filter[latitude]', filter_params['latitude']) %>
         <% end %>
       </div>
     </div>
@@ -61,9 +61,9 @@
     <div class="order">
       <span class="choice-title"><%= t('lists.filters.sort.order') %>:</span>
       <div class="choice">
-        <%= radio_button_tag('list_filter[order]', "asc", list_filter.checked?('order', 'asc')) %>
+        <%= radio_button_tag('list_filter[order]', "asc", filter_params['order'] == 'asc') %>
         <%= label_tag(:list_filter_order_asc, t('lists.filters.sort.asc')) %>
-        <%= radio_button_tag('list_filter[order]', "desc", list_filter.checked?('order', 'desc')) %>
+        <%= radio_button_tag('list_filter[order]', "desc", filter_params['order'] == 'desc') %>
         <%= label_tag(:list_filter_order_desc, t('lists.filters.sort.desc')) %>
       </div>
     </div>

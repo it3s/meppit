@@ -12,6 +12,7 @@ class GeoData < ActiveRecord::Base
   include Commentable
   include Flaggable
   include Featurable
+  include Filterable
 
   geojson_field :location
   searchable_tags :tags

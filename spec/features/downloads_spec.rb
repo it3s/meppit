@@ -13,7 +13,7 @@ feature "DownloadsController" do
         expect(page.body).to eq object.serialized_as(format)
         expect(page.response_headers["Content-Disposition"]).to eq "attachment; filename=\"#{obj_name}_#{object.id}.#{format}\""
         expect(page.response_headers["Content-Transfer-Encoding"]).to eq "binary"
-        expect(page.response_headers["Content-Type"]).to eq(format == :csv ? "text/csv" : "application/#{format}")
+        expect(page.response_headers["Content-Type"]).to eq(format == :csv ? "text/csv" : format == :geojson ? "application/vnd.geo+json" : "application/#{format}")
       end
     end
 
@@ -66,7 +66,7 @@ feature "DownloadsController" do
         expect(page.body).to eq model.serialized_as(format, ids)
         expect(page.response_headers["Content-Disposition"]).to eq "attachment; filename=\"#{fname}.#{format}\""
         expect(page.response_headers["Content-Transfer-Encoding"]).to eq "binary"
-        expect(page.response_headers["Content-Type"]).to eq(format == :csv ? "text/csv" : "application/#{format}")
+        expect(page.response_headers["Content-Type"]).to eq(format == :csv ? "text/csv" : format == :geojson ? "application/vnd.geo+json" : "application/#{format}")
       end
     end
 

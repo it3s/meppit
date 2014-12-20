@@ -2,6 +2,20 @@ module Exportable
   extend ActiveSupport::Concern
 
   included do
+
+    scope :to_geojson, -> do
+      features = where('1=1').map { |item| JSON.parse item.to_geojson }
+      {type: "FeatureCollection", features: features}.to_json
+    end
+
+    def to_geojson
+      serialized_as :geojson
+    end
+
+    def to_csv
+      serialized_as :csv
+    end
+
     def serialized_as(format)
       active_model_serializer.new(self).send(:"to_#{format}")
     end
