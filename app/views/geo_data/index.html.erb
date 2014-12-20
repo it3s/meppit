@@ -1,8 +1,8 @@
 <div class="site-page full data-list geo_data index">
 
-  <%= render 'shared/lists/filters', list_filter: @list_filter %>
+  <%= render 'shared/lists/filters', filter_params: @filter_params %>
 
-  <% if @list_filter.map? %>
+  <% if @filter_params['visualization'] == 'map' %>
 
   <div class="list-headline">
     <h1 class="title">

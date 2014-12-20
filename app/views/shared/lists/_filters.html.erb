@@ -2,9 +2,9 @@
 
   <div class="filter-headline">
     <div class="title"><%= t 'lists.filters.title' %>
-      <% unless list_filter.tags.empty? %>
+      <% unless filter_params['tags'].empty? %>
       <span class="filtering-by">
-        (<%= t 'lists.filters.filtering_by' %>: <em><%= list_filter.tags.join(', ') %></em>)
+        (<%= t 'lists.filters.filtering_by' %>: <em><%= filter_params['tags'].join(', ') %></em>)
       </span>
     <% end %>
     </div>

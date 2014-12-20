@@ -4,7 +4,7 @@ module API
 
       before_action :authenticate_or_resquest
 
-      responders PaginateResponder
+      responders PaginateResponder, FilterResponder
       respond_to :json, :xml, :geojson
 
       def show

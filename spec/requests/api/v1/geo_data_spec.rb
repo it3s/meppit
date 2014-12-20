@@ -101,7 +101,7 @@ describe "API::V1::GeoData" do
         end
         it "gets the correct objects" do
           get "/api/v1/geo_data", {page: 2, per: 2}, headers
-          expect(JSON::parse(response.body).map{ |item| item["name"] }).to match_array ["a", "d"]
+          expect(JSON::parse(response.body).map{ |item| item["name"] }).to match_array ["c", "d"]
         end
         it "gets the pagination headers" do
           get "/api/v1/geo_data", {page: 1, per: 2}, headers

@@ -11,6 +11,7 @@ class Map < ActiveRecord::Base
   include Commentable
   include Flaggable
   include Featurable
+  include Filterable
 
   belongs_to :administrator, class_name: 'User'
 

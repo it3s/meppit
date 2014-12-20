@@ -20,7 +20,7 @@ class MapsController < ObjectsController
   end
 
   def tile
-    @geo_data_collection = @list_filter.filter(@map.geo_data).tile(params[:zoom].to_i, params[:x].to_i, params[:y].to_i)
+    @geo_data_collection = @map.geo_data.filter(filter_params).tile(params[:zoom].to_i, params[:x].to_i, params[:y].to_i)
     render geojson: @geo_data_collection
   end
 
