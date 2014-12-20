@@ -14,6 +14,8 @@ module FilterResponder
         'tags_type' => @controller.params.fetch('tags_type', 'all'),
         'sort_by' => @controller.params.fetch('sort', 'name'),
         'order' => @controller.params.fetch('order', 'asc'),
+        'latitude' => @controller.params.fetch('latitude', nil),
+        'longitude' => @controller.params.fetch('longitude', nil),
       }
       @filter_params['tags'] = @filter_params['tags'].split(',')
       @filter_params
