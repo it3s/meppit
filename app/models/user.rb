@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   search_fields multi: [:name, :about_me]
 
   has_many :imports
+  has_many :oauth_applications, class_name: 'Doorkeeper::Application', as: :owner
+  has_many :oauth_access_tokens, class_name: 'Doorkeeper::AccessToken', as: :resource_owner
 
   attr_reader :license_aggrement
 

@@ -30,6 +30,10 @@ class ApplicationController < ActionController::Base
     url_for :only_path => false, :params => params.except(:action, :controller).merge(overwrite)
   end
 
+  def doorkeeper_unauthorized_render_options
+    {:json => {:error => "Not authorized"}}
+  end
+
   protected
 
     def require_admin

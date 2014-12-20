@@ -55,6 +55,7 @@ gem 'better_errors'                 # better error page, and shell session when 
 gem 'binding_of_caller'             # used by better_errors
 gem 'responders'                    # a set of Rails responders
 gem 'squeel'                        # improved Active Record used for spatial queries
+gem 'doorkeeper'                    # OAuth2 provider
 
 group :doc do
   gem 'sdoc', require: false

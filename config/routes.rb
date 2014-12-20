@@ -1,4 +1,5 @@
 Meppit::Application.routes.draw do
+  use_doorkeeper
   root "pages#frontpage"
 
   get "dashboard" => "dashboard#dashboard"

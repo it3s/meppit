@@ -2,7 +2,7 @@ module API
   module V1
     class APIController < ApplicationController
 
-      before_action :authenticate_or_resquest
+      before_action :authenticate_with_token
 
       responders PaginateResponder, FilterResponder
       respond_to :json, :xml, :geojson
@@ -18,10 +18,18 @@ module API
       protected
 
         # curl -H "Authorization: Token token=usertokengoeshere" http://...
-        def authenticate_or_resquest
-          authenticate_or_request_with_http_token do |token, opt|
-            User.find_by(auth_token: token).present?
+        def authenticate_with_token
+          # TODO check the authentication type (Bearer or Token)
+          # First try to authenticate using the user token, if fail try OAuth token.
+          @current_resource_owner = authenticate_with_http_token do |token, opt|
+            User.find_by(auth_token: token)
           end
+          @current_resource_owner || doorkeeper_authorize!
+        end
+
+        def current_resource_owner
+          @current_resource_owner ||= User.find_by_id(doorkeeper_token.resource_owner_id) if doorkeeper_token
+          @current_resource_owner
         end
     end
   end
