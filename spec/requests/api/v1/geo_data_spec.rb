@@ -9,12 +9,12 @@ describe "API::V1::GeoData" do
       it "401 unauthorized when auth_token is empty" do
         get "/api/v1/geo_data/#{geo_data.id}"
         expect(response.status).to eq 401
-        expect(response.body).to match 'HTTP Token: Access denied.'
+        expect(response.body).to match '{"error":"Not authorized"}'
       end
       it "401 unauthorized when auth_token is invalid" do
         get "/api/v1/geo_data/#{geo_data.id}", {}, {'Authorization'=>"Token token=fake_token"}
         expect(response.status).to eq 401
-        expect(response.body).to match 'HTTP Token: Access denied.'
+        expect(response.body).to match '{"error":"Not authorized"}'
       end
     end
 
@@ -49,12 +49,12 @@ describe "API::V1::GeoData" do
       it "401 unauthorized when auth_token is empty" do
         get "/api/v1/geo_data"
         expect(response.status).to eq 401
-        expect(response.body).to match 'HTTP Token: Access denied.'
+        expect(response.body).to match '{"error":"Not authorized"}'
       end
       it "401 unauthorized when auth_token is invalid" do
         get "/api/v1/geo_data", {}, {'Authorization'=>"Token token=fake_token"}
         expect(response.status).to eq 401
-        expect(response.body).to match 'HTTP Token: Access denied.'
+        expect(response.body).to match '{"error":"Not authorized"}'
       end
     end
 

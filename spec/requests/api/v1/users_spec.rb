@@ -8,12 +8,12 @@ describe "API::V1::Users" do
       it "401 unauthorized when auth_token is empty" do
         get "/api/v1/users/#{user.id}"
         expect(response.status).to eq 401
-        expect(response.body).to match 'HTTP Token: Access denied.'
+        expect(response.body).to match '{"error":"Not authorized"}'
       end
       it "401 unauthorized when auth_token is invalid" do
         get "/api/v1/users/#{user.id}", {}, {'Authorization'=>"Token token=fake_token"}
         expect(response.status).to eq 401
-        expect(response.body).to match 'HTTP Token: Access denied.'
+        expect(response.body).to match '{"error":"Not authorized"}'
       end
     end
 

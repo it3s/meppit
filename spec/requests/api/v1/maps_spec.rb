@@ -9,12 +9,12 @@ describe "API::V1::Maps" do
       it "401 unauthorized when auth_token is empty" do
         get "/api/v1/maps/#{map.id}"
         expect(response.status).to eq 401
-        expect(response.body).to match 'HTTP Token: Access denied.'
+        expect(response.body).to match '{"error":"Not authorized"}'
       end
       it "401 unauthorized when auth_token is invalid" do
         get "/api/v1/maps/#{map.id}", {}, {'Authorization'=>"Token token=fake_token"}
         expect(response.status).to eq 401
-        expect(response.body).to match 'HTTP Token: Access denied.'
+        expect(response.body).to match '{"error":"Not authorized"}'
       end
     end
 
@@ -49,12 +49,12 @@ describe "API::V1::Maps" do
       it "401 unauthorized when auth_token is empty" do
         get "/api/v1/maps"
         expect(response.status).to eq 401
-        expect(response.body).to match 'HTTP Token: Access denied.'
+        expect(response.body).to match '{"error":"Not authorized"}'
       end
       it "401 unauthorized when auth_token is invalid" do
         get "/api/v1/maps", {}, {'Authorization'=>"Token token=fake_token"}
         expect(response.status).to eq 401
-        expect(response.body).to match 'HTTP Token: Access denied.'
+        expect(response.body).to match '{"error":"Not authorized"}'
       end
     end
 
