@@ -94,6 +94,33 @@ describe "API::V1::GeoData" do
         [['b', geoms[1]], ['c', geoms[2]], ['a', geoms[0]], ['d', geoms[3]]
         ].each { |n, l| FactoryGirl.create :geo_data, name: n, location: l, tags: ['z', n] }
       end
+
+      describe "sorting" do
+        it "sorts by name by default" do
+          get "/api/v1/geo_data", {}, headers
+          expect(JSON::parse(response.body).map{ |item| item["name"] }).to eq ["a", "b", "c", "d"]
+        end
+        it "sorts by created_at" do
+          get "/api/v1/geo_data", {sort: 'created_at'}, headers
+          expect(JSON::parse(response.body).map{ |item| item["name"] }).to eq ["b", "c", "a", "d"]
+        end
+        it "sorts by name desc" do
+          get "/api/v1/geo_data", {sort: 'name', order: 'desc'}, headers
+          expect(JSON::parse(response.body).map{ |item| item["name"] }).to eq ["d", "c", "b", "a"]
+        end
+        it "sorts by location" do
+          get "/api/v1/geo_data", {sort: 'location', longitude: '22', latitude: '10'}, headers
+          expect(JSON::parse(response.body).map{ |item| item["name"] }).to eq ["b", "c", "a", "d"]
+        end
+      end
+
+      describe "filtering" do
+        it "filters by tags" do
+          get "/api/v1/geo_data", {tags: 'z,a'}, headers
+          expect(JSON::parse(response.body).map{ |item| item["name"] }).to match_array ["a"]
+        end
+      end
+
       describe "pagination" do
         it "gets the correct number of objects per page" do
           get "/api/v1/geo_data", {page: 1, per: 2}, headers

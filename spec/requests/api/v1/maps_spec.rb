@@ -88,6 +88,29 @@ describe "API::V1::Maps" do
       before do
         ['b', 'c', 'a', 'd'].each { |n| FactoryGirl.create :map, name: n, tags: ['z', n] }
       end
+
+      describe "sorting" do
+        it "sorts by name by default" do
+          get "/api/v1/maps", {}, headers
+          expect(JSON::parse(response.body).map{ |item| item["name"] }).to eq ["a", "b", "c", "d"]
+        end
+        it "sorts by created_at" do
+          get "/api/v1/maps", {sort: 'created_at'}, headers
+          expect(JSON::parse(response.body).map{ |item| item["name"] }).to eq ["b", "c", "a", "d"]
+        end
+        it "sorts by name desc" do
+          get "/api/v1/maps", {sort: 'name', order: 'desc'}, headers
+          expect(JSON::parse(response.body).map{ |item| item["name"] }).to eq ["d", "c", "b", "a"]
+        end
+      end
+
+      describe "filtering" do
+        it "filters by tags" do
+          get "/api/v1/maps", {tags: 'z,a'}, headers
+          expect(JSON::parse(response.body).map{ |item| item["name"] }).to match_array ["a"]
+        end
+      end
+
       describe "pagination" do
         it "gets the correct number of objects per page" do
           get "/api/v1/maps", {page: 1, per: 2}, headers
