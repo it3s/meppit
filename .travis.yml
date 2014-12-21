@@ -22,4 +22,4 @@ before_script:
 
 script:
   - bundle exec rspec
-  - bundle exec rake konacha:run
+  - bundle exec rake tmp:clear konacha:run
