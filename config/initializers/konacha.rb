@@ -1,3 +1,7 @@
+Capybara.register_driver :slow_poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, timeout: 2.minutes)
+end
+
 Konacha.configure do |config|
   require 'capybara/poltergeist'
 
@@ -5,6 +9,6 @@ Konacha.configure do |config|
   config.spec_matcher = /_spec\.|_test\./
   config.stylesheets  = %w(application)
 
-  config.driver       = :poltergeist
+  config.driver       = :slow_poltergeist
   # config.driver      = :selenium
 end if defined?(Konacha)

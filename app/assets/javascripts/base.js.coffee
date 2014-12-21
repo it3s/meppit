@@ -48,7 +48,7 @@ componentBuilder = (name, container) ->
     if not components[name]?
       console?.error "Component not found: #{name}"
       return
-    console?.log "Starting Component: #{name}"
+    log "Starting Component: #{name}"
     _comp = components[name]()
     _comp.container = container
     _comp.identifier = @compId()
@@ -100,19 +100,34 @@ stickyRecalc = () ->
   setTimeout () -> $(document.body).trigger 'sticky_kit:recalc', 100
 
 componentInitialized = (evt, component) ->
-  console.log "Component Initialized: #{component}"
+  log "Component Initialized: #{component}"
   stickyRecalc()
 
 mediator.subscribe 'component:initialized', componentInitialized
 
 componentChanged = (evt, component) ->
-  console.log "Component Changed: #{component}"
+  log "Component Changed: #{component}"
   stickyRecalc()
 
 mediator.subscribe 'component:changed', componentChanged
 
+log = () ->
+  
+  getDate = (date) ->
+    months = ['January', 'February', 'March', 'April', 'May', 'June',
+              'July', 'August', 'September', 'October', 'November', 'December']
+    date ?= new Date()
+    day = date.getDate()
+    month = date.getMonth()
+    yy = date.getYear()
+    year = if yy < 1000 then yy + 1900 else yy
 
-flashMessage = (msg)->
+    "#{months[month]} #{day} #{year}"
+
+  args = ["[#{getDate()}]"].concat Array.prototype.slice.call(arguments)
+  console?.log(args.join(' ')) if !!window.DEBUG
+
+flashMessage = (msg) ->
   flashMsg = $(msg)
   $('body').append(flashMsg)
   mediator.publish 'components:start', flashMsg
@@ -140,6 +155,7 @@ spinner = {
 
 # setup global App namesmpace
 window.App =
+  log       : log
   mediator  : mediator
   components: components
   utils     :

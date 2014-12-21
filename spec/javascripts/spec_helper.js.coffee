@@ -1,4 +1,5 @@
 #= require support/load_env
+#= require es5-shim
 #= require helpers/spy
 
 #= require application
@@ -27,3 +28,4 @@ window.Faye = {
       publish: ->
     }
 }
+window.DEBUG = false
