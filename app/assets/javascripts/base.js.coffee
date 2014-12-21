@@ -67,6 +67,9 @@ componentBuilder = (name, container) ->
     components._instances[_comp.identifier] = _comp
     _comp
 
+startComponent = (name, container) ->
+  componentBuilder(name, container).start()
+
 componentsManager = (container) ->
   container: container
 
@@ -79,17 +82,19 @@ componentsManager = (container) ->
   buildComponents: ->
     unless @started()
       _.each @names, (name) =>
-        componentBuilder(name, @container).start()
+        startComponent(name, @container)
         @onStarted()
 
-startComponents = (evt, root=document) ->
+startComponents = (root=document) ->
   attr = 'data-components'
   $root = $ root
+  # start the root components
   componentsManager($root).buildComponents() if $root.attr(attr)
+  # start the children components
   $root.find("[#{attr}]").each (i, container) =>
     componentsManager($(container)).buildComponents()
 
-mediator.subscribe 'components:start', startComponents
+mediator.subscribe 'components:start', (evt, root) => startComponents(root)
 
 stickyRecalc = () ->
   setTimeout () -> $(document.body).trigger 'sticky_kit:recalc', 100
@@ -145,3 +150,4 @@ window.App =
 # setup testing ns
 window.__testing__?.base =
   startComponents: startComponents
+  startComponent: startComponent

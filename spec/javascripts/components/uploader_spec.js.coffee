@@ -14,34 +14,27 @@ describe 'uploader', ->
 
   describe 'component', ->
     beforeEach ->
-      @component = App.components.uploader @container
+      @component = _base.startComponent 'uploader', @container
 
     it 'hides input', ->
-      @component.hideInput()
+      @component.render()
       expect($('.field').css 'display').to.be.eq 'none'
 
     it 'gets the field name', ->
       expect(@component.fieldName()).to.be.eq 'avatar'
 
     it 'adds the necessary markup', ->
-      expect(@component.message).to.be.undefined
-      expect(@component.button).to.be.undefined
-
-      @component.addUploaderHtml()
-
       expect($('.uploader').length).to.be.eq 1
-      expect(@component.message).to.not.be.undefined
-      expect(@component.button).to.not.be.undefined
+      expect(@component.attr.button).to.not.be.undefined
       expect(@component.container.closest('.field').next().is('.uploader')).to.be.true
 
     it 'binds events', ->
-      @component.addUploaderHtml()
-      spy @component.button, 'on', =>
+      spy @component.attr.button, 'on', =>
         @component.bindEvents()
-        expect(@component.button.on).to.be.calledWith 'click'
+        expect(@component.attr.button.on).to.be.calledWith 'click'
 
         sinon.stub @component.container, 'trigger', -> ''
-        @component.button.trigger 'click'
+        @component.attr.button.trigger 'click'
         expect(@component.container.trigger).to.be.calledWith 'click'
         @component.container.trigger.restore()
 
@@ -50,18 +43,18 @@ describe 'uploader', ->
         @component.startPlugin()
         expect(@component.container.fileupload).to.be.called
 
-    it 'starts plugin on init', ->
+    it 'starts plugin on initialize', ->
       spy @component, 'startPlugin', =>
-        @component.init()
+        @component.initialize()
         expect(@component.startPlugin).to.be.called
 
     it 'adds error message when fail', ->
-      @component.init()
+      @component.initialize()
       _data = {jqXHR: {responseJSON:{ errors: {avatar: ['Upload error']}}}}
 
       spy @component, 'startPlugin', =>
         @component.onFail({}, _data)
-        errEl = @component.uploaderContainer.find('.error')
+        errEl = @component.attr.uploader.find('.error')
 
         expect(errEl.length).to.be.eq 1
         expect(errEl.text()).to.be.eq 'Upload error'

@@ -7,8 +7,11 @@ App.components.alert = (container) ->
     alerts     : @container.closest('.alerts')
 
   initialize: ->
-    @on @attr.closeButton, 'click', @close
+    @bindEvents()
     setTimeout @close.bind(this), @attr.closeTime
+
+  bindEvents: ->
+    @on @attr.closeButton, 'click', @close
 
   close: () ->
     unless @attr.closed

@@ -1,4 +1,3 @@
-
 App.components.pictureUploader = ->
   _.extend App.components.uploader(), {
 

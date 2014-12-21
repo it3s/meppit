@@ -12,14 +12,9 @@ describe "flexslider", ->
 
   describe 'component', ->
     beforeEach ->
-      @component = App.components.flexslider @container
-
-    it 'calls start', ->
-      spy @component, 'start', =>
-        @component.init()
-        expect(@component.start).to.be.called
+      @component = _base.startComponent 'flexslider', @container
 
     it 'calls jquery-flexslider plugin', ->
       spy @component.container, 'flexslider', =>
-        @component.init()
+        @component.initialize()
         expect(@component.container.flexslider).to.be.calledWith({animation: 'slide'})

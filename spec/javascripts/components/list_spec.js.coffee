@@ -13,9 +13,9 @@ describe "list", ->
   describe 'component', ->
     beforeEach ->
       @container = $ JST['templates/list']()
-      @component = App.components.list @container
+      @component = _base.startComponent 'list', @container
 
     it 'calls infinite-scroll plugin', ->
-      spy @component.list, 'infinitescroll', =>
-        @component.init()
-        expect(@component.list.infinitescroll).to.be.calledWith @component.infiniteScrollDefaults
+      spy @component.attr.list, 'infinitescroll', =>
+        @component.initialize()
+        expect(@component.attr.list.infinitescroll).to.be.calledWith @component.attr.infiniteScrollDefaults

@@ -4,16 +4,16 @@ describe 'follow', ->
   beforeEach ->
     $('body').html JST['templates/follow']()
     @container = $('#follow-btn')
+    window.I18n = followings: { follow: '', unfollow: '', following: '' }
 
   it 'initializes component', ->
     spy App.components, 'follow', =>
-      App.mediator.publish 'components:start'
+      App.mediator.publish 'components:start', @container
       expect(App.components.follow).to.be.called
 
   describe 'component', ->
     beforeEach ->
-      @component = App.components.follow @container
-      @component.init()
+      @component = _base.startComponent 'follow', @container
 
     context 'active', ->
       beforeEach ->
@@ -22,8 +22,8 @@ describe 'follow', ->
       it '#isActive returns true', ->
         expect(@component.isActive()).to.be.true
 
-      it '#method returns delete', ->
-        expect(@component.method()).to.be.equal 'delete'
+      it '#requestData returns delete', ->
+        expect(@component.requestData()._method).to.be.equal 'delete'
 
       it '#toggleActive remove class', ->
         expect(@container.is('.active')).to.be.true
@@ -37,11 +37,10 @@ describe 'follow', ->
       it '#isActive returns false', ->
         expect(@component.isActive()).to.be.false
 
-      it '#method returns post', ->
-        expect(@component.method()).to.be.equal 'post'
+      it '#requestData returns post', ->
+        expect(@component.requestData()._method).to.be.equal 'post'
 
       it '#toggleActive add class', ->
         expect(@container.is('.active')).to.be.false
         @component.toggleActive()
         expect(@container.is('.active')).to.be.true
-

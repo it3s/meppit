@@ -1,10 +1,3 @@
-expanded = """
-<i class="fa fa-chevron-up"></i> #{I18n.lists.collapse}
-"""
-collapsed = """
-<i class="fa fa-chevron-down"></i> #{I18n.lists.expand}
-"""
-
 App.components.listFilter = ->
   attributes: ->
     toggleBtn:      @container.find('.toggle-panel')
@@ -13,6 +6,12 @@ App.components.listFilter = ->
     latitudeField:  @container.find('#list_filter_latitude')
     orderSection:   @container.find('.filter-order')
     filterForm:     @container.find('.filter-form')
+    expanded: """
+    <i class="fa fa-chevron-up"></i> #{I18n.lists.collapse}
+    """
+    collapsed: """
+    <i class="fa fa-chevron-down"></i> #{I18n.lists.expand}
+    """
 
   initialize: ->
     @bindEvents()
@@ -31,12 +30,12 @@ App.components.listFilter = ->
   collapse: ->
     @attr.filterForm.slideUp('fast')
     @attr.toggleBtn.data('toggle', 'collapsed')
-    @attr.toggleBtn.html collapsed
+    @attr.toggleBtn.html @attr.collapsed
 
   expand: ->
     @attr.filterForm.slideDown('fast')
     @attr.toggleBtn.data('toggle', 'expanded')
-    @attr.toggleBtn.html expanded
+    @attr.toggleBtn.html @attr.expanded
 
   wait: ->
     App.utils.spinner.show()

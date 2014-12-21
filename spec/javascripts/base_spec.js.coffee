@@ -2,8 +2,6 @@
 #= require helpers/test_components
 
 describe 'Base', ->
-  _base = __testing__.base
-
   describe 'mediator', ->
     it 'defines obj mediator', ->
       expect(App.mediator.obj).to.be.a 'object'
@@ -44,45 +42,36 @@ describe 'Base', ->
       expect(cb).to.be.called
       expect(cb).to.have.returned 'received ok'
 
-  describe 'setupContainer', ->
-    it 'initializes component', (done) ->
+  describe 'instantiate components', ->
+    it 'initializes component', ->
       container = $(JST['templates/test_component']())
-      _base.setupContainer(container)
+      _base.startComponents(container)
 
-      setTimeout( ->
-        component = App.components._instances['testComponent:test']
-        expect(component.init).to.be.called
-        expect(container.find('h1').html()).to.be.equal 'Hello'
-        done()
-      , 10)
+      component = App.components._instances['testComponent:test']
+      expect(component.initialize).to.be.called
+      expect(container.find('h1').html()).to.be.equal 'Hello'
 
-    it 'instantiates multi components', (done) ->
+    it 'instantiates multi components', ->
       container = $(JST['templates/multi_component']())
-      _base.setupContainer(container)
+      _base.startComponents(container)
 
-      setTimeout( ->
-        component1 = App.components._instances['testComponent:multi']
-        component2 = App.components._instances['otherComponent:multi']
-        expect(component1.init).to.be.called
-        expect(component2.init).to.be.called
-        done()
-      , 20)
+      component1 = App.components._instances['testComponent:multi']
+      component2 = App.components._instances['otherComponent:multi']
+      expect(component1.initialize).to.be.called
+      expect(component2.initialize).to.be.called
+
 
   describe 'startComponents', ->
       beforeEach ->
         $('body').html(JST['templates/start_components']())
 
-      it 'start all components on the body', (done) ->
+      it 'start all components on the body', ->
         _base.startComponents()
 
-        setTimeout( ->
-          component1 = App.components._instances['testComponent:test']
-          component2 = App.components._instances['otherComponent:other']
-          expect(component1.init).to.be.called
-          expect(component2.init).to.be.called
-          done()
-        , 20)
-
+        component1 = App.components._instances['testComponent:test']
+        component2 = App.components._instances['otherComponent:other']
+        expect(component1.initialize).to.be.called
+        expect(component2.initialize).to.be.called
 
       it 'listens to components:start event and receive a different root', ->
         spy App.components, 'testComponent', =>
