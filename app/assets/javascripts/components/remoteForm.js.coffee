@@ -1,5 +1,8 @@
 App.components.remoteForm = ->
   initialize: ->
+    @bindEvents()
+
+  bindEvents: ->
     @on 'ajax:complete', @onAjaxComplete.bind(this)
     @on 'submit', @onSubmit.bind(this)
 
@@ -33,5 +36,3 @@ App.components.remoteForm = ->
   cleanErrors: ->
     @container.find('.error').remove()
     @container.find('.field_with_errors').removeClass('field_with_errors')
-
-

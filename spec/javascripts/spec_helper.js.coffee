@@ -1,4 +1,5 @@
 #= require support/load_env
+#= require es5-shim
 #= require helpers/spy
 
 #= require application
@@ -14,4 +15,17 @@ mocha.ui('bdd')                      # set the Mocha test interface
 # mocha.ignoreLeaks();               # or, ignore all leaks
 # mocha.timeout(5);                  # set slow test timeout in ms
 
-chai.Assertion.includeStack = true;  # Show stack trace on failing assertion.
+chai.config.includeStack = true;     # Show stack trace on failing assertion.
+
+window._base = __testing__.base
+window.I18n = {}
+# Create a fake Faye Client
+window.fayeUrl = ''
+window.Faye = {
+  Client: () ->
+    {
+      subscribe: ->
+      publish: ->
+    }
+}
+window.DEBUG = false

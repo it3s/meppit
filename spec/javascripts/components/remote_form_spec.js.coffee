@@ -17,11 +17,11 @@ describe 'remoteForm', ->
   describe 'component', ->
     beforeEach ->
       container = @container.find('form')
-      @component = App.components.remoteForm container
+      @component = _base.startComponent 'remoteForm', container
 
-    it 'on init call bindEvents', ->
+    it 'on initialize call bindEvents', ->
       spy @component, 'bindEvents', =>
-        @component.init()
+        @component.initialize()
         expect(@component.bindEvents).to.be.called
 
     describe 'cleanErrors', ->
@@ -76,5 +76,3 @@ describe 'remoteForm', ->
           spy @component, 'onSuccess', =>
             @component.container.trigger 'ajax:complete', {status: '200', responseText: '{}'}
             expect(@component.onSuccess).to.be.called
-
-

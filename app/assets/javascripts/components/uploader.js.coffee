@@ -21,9 +21,12 @@ App.components.uploader = ->
 
   initialize: ->
     @render()
-    @on @attr.button, 'click', (evt) => @container.trigger 'click'
+    @bindEvents()
     @afterInitialize?()
     @startPlugin()
+
+  bindEvents: ->
+    @on @attr.button, 'click', (evt) => @container.trigger 'click'
 
   render: ->
     @attr.field.hide()

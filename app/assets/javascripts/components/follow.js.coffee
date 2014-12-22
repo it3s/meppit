@@ -29,6 +29,9 @@ App.components.follow = ->
   requestData: ->
     {_method: if @attr.following then "delete" else "post"}
 
+  isActive: ->
+    @container.is('.active')
+
   toggleActive: (following) ->
     following ?= not @attr.following
     @attr.following = following
@@ -36,7 +39,7 @@ App.components.follow = ->
     @resetLabel()
 
   toggleLabel: ->
-    @attr.label.text I18n?.followings[ if @attr.following then 'unfollow' else 'follow' ]
+    @attr.label.text I18n.followings[ if @attr.following then 'unfollow' else 'follow' ]
 
   resetLabel: ->
-    @attr.label.text I18n?.followings[ if @attr.following then 'following' else 'follow' ]
+    @attr.label.text I18n.followings[ if @attr.following then 'following' else 'follow' ]

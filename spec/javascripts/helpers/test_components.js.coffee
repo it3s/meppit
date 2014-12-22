@@ -1,7 +1,7 @@
 App.components.testComponent = (container) ->
   {
     container: container
-    init: sinon.spy( ->
+    initialize: sinon.spy( ->
       @container.find('h1').html('Hello')
     )
   }
@@ -9,5 +9,5 @@ App.components.testComponent = (container) ->
 App.components.otherComponent = (container) ->
   {
     container: container
-    init: sinon.spy( -> 'other')
+    initialize: sinon.spy( -> 'other')
   }

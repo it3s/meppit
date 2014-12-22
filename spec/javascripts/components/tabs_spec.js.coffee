@@ -12,9 +12,9 @@ describe "tabs", ->
 
   describe 'component', ->
     beforeEach ->
-      @component = App.components.tabs @container
+      @component = _base.startComponent 'tabs', @container
 
     it 'calls jquery-ui.tabs plugin', ->
       spy @component.container, 'tabs', =>
-        @component.init()
+        @component.initialize()
         expect(@component.container.tabs).to.be.called

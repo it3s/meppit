@@ -3,6 +3,10 @@
 describe 'modal', ->
   beforeEach ->
     @container = $ JST['templates/modal']()
+    @clock = sinon.useFakeTimers()
+
+  afterEach ->
+    @clock.restore()
 
   it 'defines modal component', ->
     expect(App.components.modal).to.not.be.undefined
@@ -15,134 +19,95 @@ describe 'modal', ->
   describe 'component', ->
     beforeEach ->
       container = @container.find('#modal-link')
-      @component = App.components.modal container
+      @component = _base.startComponent 'modal', container
 
     it 'has defaults', ->
-      expect(@component.defaults).to.be.deep.equal {
-        fadeDuration: 150
-        zIndex: 200
-      }
+      expect(@component.attr.defaults.fadeDuration).to.be.equal 150
+      expect(@component.attr.defaults.zIndex).to.be.equal 200
 
     it 'sets preventClose options', ->
-      expect(@component.preventClose).to.be.deep.equal {
+      expect(@component.attr.preventCloseOpts).to.be.deep.equal {
         escapeClose: false
         clickClose: false
         closeText: ''
         showClose: false
       }
 
-    it 'calls start', ->
-      spy @component, 'start', =>
-
-        @component.init()
-        expect(@component.start).to.be.called
-
-    it 'retrieves json data', ->
-      @component.init()
-      expect(@component.data).to.be.deep.equal {test: true}
-
     it 'gets the referedElement', ->
       expect(@component.referedElement().selector).to.be.equal '#test'
 
     describe 'regular modal', ->
       it 'set target to referedElement', ->
-        @component.init()
-        expect(@component.target.selector).to.be.equal '#test'
+        expect(@component.attr.target.selector).to.be.equal '#test'
 
       it 'opens the target as a modal with defaults', ->
-        @component.init()
-
-        spy @component.target, 'modal', =>
+        spy @component.attr.target, 'modal', =>
           @component.open()
-          expect(@component.target.modal).to.be.calledWith @component.defaults
+          expect(@component.attr.target.modal).to.be.calledWith @component.attr.defaults
 
 
-      it 'bind on click starts', ->
+      it 'bind on click opens', ->
         spy @component.container, 'on', =>
-          spy @component, 'start', =>
-            @component.init()
+          spy @component, 'open', =>
+            @component.initialize()
             expect(@component.container.on).to.be.calledWith('click')
-
             @component.container.trigger('click')
-            expect(@component.start).to.be.called
+            expect(@component.open).to.be.called
 
       it 'does not open if login_required and user not loggedIn', ->
-        @component.init()
-        @component.data.login_required = true
+        @component.attr.login_required = true
         $.removeCookie 'logged_in'
 
         expect(@component.shouldOpen()).to.be.false
 
-        spy @component.target, "modal", =>
+        spy @component.attr.target, "modal", =>
           @component.open()
-          expect(@component.target.modal).to.not.be.called
+          expect(@component.attr.target.modal).to.not.be.called
 
 
     describe 'remote modal', ->
       beforeEach ->
         @container = $ JST['templates/modal_remote']()
-        @component = App.components.modal @container
+        @component = _base.startComponent 'modal', @container
 
-      it 'has remote=true on data', ->
-        @component.init()
-        expect(@component.data).to.be.deep.equal {remote: true}
+      it 'has remote=true on attr', ->
+        expect(@component.attr.remote).to.be.equal true
 
       it 'sets target to container', ->
-        @component.init()
-        expect(@component.target).to.be.deep.equal @component.container
+        expect(@component.attr.target).to.be.deep.equal @component.container
 
-      it 'bind onAjaxComplete on ajax complete', ->
-        spy @component.container, 'on', =>
-          spy @component, 'onAjaxComplete', =>
-            @component.init()
-            expect(@component.container.on).to.be.calledWith 'modal:ajax:complete'
-
-            @component.container.trigger 'modal:ajax:complete'
-            expect(@component.onAjaxComplete).to.be.called
-
-
-      it 'start components with loaded DOM as root', (done) ->
+      it 'start components with loaded DOM as root', ->
         sinon.spy App.mediator, 'publish'
 
-        @component.init()
-        @component.onAjaxComplete()
-        setTimeout( ->
-          args = App.mediator.publish.args[0]
-          expect(args[0]).to.be.equal 'components:start'
-          expect(args[1]).to.be.deep.equal $('.modal.current')
+        @component.afterOpen(null, {identifier: @component.identifier})
+        @clock.tick(@component.attr.defaults.fadeDuration)
 
-          App.mediator.publish.restore()
-          done()
-        , @component.defaults.fadeDuration)
+        args = App.mediator.publish.args[0]
+        expect(args[0]).to.be.equal 'components:start'
+        expect(args[1]).to.be.deep.equal $('.modal.current')
+
+        App.mediator.publish.restore()
 
     describe 'autoload with prevent close', ->
       beforeEach ->
         @container = $ JST['templates/modal_autoload']()
-        @component = App.components.modal @container
+        @component = _base.startComponent 'modal', @container
 
-      it 'set data', ->
-        @component.init()
-        expect(@component.data).to.be.deep.equal {autoload: true, prevent_close: true}
+      it 'set attr', ->
+        expect(@component.attr.autoload).to.be.equal true
+        expect(@component.attr.prevent_close).to.be.equal true
 
       it 'sets target to container', ->
-        @component.init()
-        expect(@component.target).to.be.deep.equal @component.container
+        expect(@component.attr.target).to.be.deep.equal @component.container
 
       it 'opens the target as a modal with prevent_close options', ->
-        @component.init()
-        spy @component.target, 'modal', =>
-          expectedOptions = _.extend({}, @component.defaults, @component.preventClose)
+        spy @component.attr.target, 'modal', =>
+          expectedOptions = _.extend({}, @component.attr.defaults, @component.attr.preventCloseOpts)
 
           @component.open()
-          expect(@component.target.modal).to.be.calledWith expectedOptions
+          expect(@component.attr.target.modal).to.be.calledWith expectedOptions
 
-      it 'opens on start', ->
+      it 'opens on initialize', ->
         spy @component, 'open', =>
-          @component.init()
+          @component.initialize()
           expect(@component.open).to.be.called
-
-
-
-
-
-

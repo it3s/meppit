@@ -12,9 +12,9 @@ describe "stick", ->
 
   describe 'component', ->
     beforeEach ->
-      @component = App.components.stick @container
+      @component = _base.startComponent 'stick', @container
 
     it 'calls jquery-sticky plugin', ->
       spy @component.container, 'sticky', =>
-        @component.init()
+        @component.initialize()
         expect(@component.container.sticky).to.be.called

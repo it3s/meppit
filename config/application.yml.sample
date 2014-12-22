@@ -3,7 +3,7 @@ FIXED_SALT: "long and complicated salt goes here"
 FAYE_TOKEN: "token for faye authentication"
 
 development:
-  PORT: 3000
+  PORT: "3000"
   OAUTH_CALLBACK_HOST: "http://localhost:3000"
   FACEBOOK_KEY: ""
   FACEBOOK_SECRET: ""

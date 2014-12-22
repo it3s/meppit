@@ -21,7 +21,6 @@ App.components.modal = ->
     App.mediator.subscribe 'modal:close', @close.bind(this)
     App.mediator.subscribe 'modal:afterOpen', @afterOpen.bind(this)
 
-
   getTarget: ->
     if @attr.remote || @attr.autoload then @container else @referedElement()
 
@@ -50,7 +49,7 @@ App.components.modal = ->
       App.mediator.publish('components:start', currentModal)
 
   pluginOptions: ->
-    closeOptions = if @attr.prevent_close then  @attr.preventCloseOpts else {}
+    closeOptions = if @attr.prevent_close then @attr.preventCloseOpts else {}
     _.extend {}, @attr.defaults, closeOptions
 
   shouldOpen: ->

@@ -1,4 +1,3 @@
-
 App.components.importUploader = ->
   _.extend App.components.uploader(), {
 
