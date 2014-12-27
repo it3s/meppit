@@ -45,10 +45,10 @@ then
   gem install bundler
 
   # Setup
-  sudo -u vagrant bundle
-  sudo -u vagrant bundle exec rake db:create db:migrate
-  sudo -u vagrant bundle exec rake db:create db:migrate RAILS_ENV=test
-  sudo -u vagrant bundle exec rspec
+  sudo su - vagrant -c "cd ~/meppit && bundle"
+  sudo su - vagrant -c "cd ~/meppit && bundle exec rake db:create db:migrate"
+  sudo su - vagrant -c "cd ~/meppit && bundle exec rake db:create db:migrate RAILS_ENV=test"
+  sudo su - vagrant -c "cd ~/meppit && bundle exec rspec"
 
   touch ~/runonce
 fi
