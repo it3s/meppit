@@ -6,7 +6,10 @@ class SessionsController < ApplicationController
   def create
     if user = login(params[:email], params[:password], to_bool(params[:remember_me]))
       set_logged_in_cookie
-      render :json => { redirect: login_redirect_path }
+      respond_to do |format|
+        format.html { render :json => { redirect: login_redirect_path } }
+        format.json { render :json => { redirect: login_redirect_path } }
+      end
     else
       render :json => { errors: error_message }, status: :unprocessable_entity
     end

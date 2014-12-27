@@ -2,7 +2,10 @@ module API
   module V1
     class APIController < ApplicationController
 
-      before_action :authenticate_with_token
+      skip_before_filter :verify_authenticity_token, only: [:options]
+      before_action :authenticate_with_token, except: [:options]
+      before_filter :cors_preflight_check
+      after_filter :cors_set_access_control_headers
 
       responders PaginateResponder, FilterResponder
       respond_to :json, :xml, :geojson
@@ -13,6 +16,9 @@ module API
 
       def index
         respond_with model.all
+      end
+
+      def options
       end
 
       protected
@@ -31,6 +37,7 @@ module API
           @current_resource_owner ||= User.find_by_id(doorkeeper_token.resource_owner_id) if doorkeeper_token
           @current_resource_owner
         end
+
     end
   end
 end

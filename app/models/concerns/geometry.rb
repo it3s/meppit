@@ -16,8 +16,8 @@ module Geometry
       # Use the first geojson field defined using `geojson_field` by default.
       field = @geojson_fields.first unless field
       point = geofactory.point(lon, lat).as_text
-      where("NOT ST_IsEmpty(\"#{table_name}\".\"#{field}\")").order(
-        "\"#{table_name}\".\"#{field}\" <-> ST_Geomfromtext('#{point}', 4326)")
+      select("*, round(CAST(ST_Distance_Sphere(ST_Centroid(\"#{table_name}\".\"#{field}\"), ST_GeomFromText('#{point}',4326)) As numeric),2) As distance")
+      .where("NOT ST_IsEmpty(\"#{table_name}\".\"#{field}\")").order("distance")
     end
 
     scope :tile, -> (zoom, x, y, field=nil) do
