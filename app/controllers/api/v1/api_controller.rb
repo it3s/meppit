@@ -3,7 +3,7 @@ module API
     class APIController < ApplicationController
 
       skip_before_filter :verify_authenticity_token, only: [:options]
-      #before_action :authenticate_with_token, except: [:options]
+      before_action :authenticate_with_token, except: [:options]
 
       responders PaginateResponder, FilterResponder
       respond_to :json, :xml, :geojson

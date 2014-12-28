@@ -41,7 +41,16 @@ module Meppit
           methods: [:get, :post, :put, :delete, :options],
           credentials: false,
           max_age: 0
+      end
 
+      allow do
+        origins '*'
+
+        resource '/oauth/token',
+          headers: :any,
+          methods: [:post, :options],
+          credentials: false,
+          max_age: 0
       end
     end
   end
