@@ -31,5 +31,18 @@ module Meppit
       Doorkeeper::AuthorizationsController.layout "application"
       Doorkeeper::AuthorizedApplicationsController.layout "application"
     end
+
+    config.middleware.insert_before 0, "Rack::Cors", :debug => true, :logger => (-> { Rails.logger }) do
+      allow do
+        origins '*'
+
+        resource '/api/*',
+          headers: :any,
+          methods: [:get, :post, :put, :delete, :options],
+          credentials: false,
+          max_age: 0
+
+      end
+    end
   end
 end

@@ -3,9 +3,7 @@ module API
     class APIController < ApplicationController
 
       skip_before_filter :verify_authenticity_token, only: [:options]
-      before_action :authenticate_with_token, except: [:options]
-      before_filter :cors_preflight_check
-      after_filter :cors_set_access_control_headers
+      #before_action :authenticate_with_token, except: [:options]
 
       responders PaginateResponder, FilterResponder
       respond_to :json, :xml, :geojson
@@ -16,9 +14,6 @@ module API
 
       def index
         respond_with model.all
-      end
-
-      def options
       end
 
       protected

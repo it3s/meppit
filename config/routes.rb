@@ -136,8 +136,6 @@ Meppit::Application.routes.draw do
   namespace :api do
     namespace :v1 do
       get "me" => "users#me"
-      # Enable CORS preflight
-      match "*path" => "api#options", via: [:options]
       resources :geo_data, only: [:show, :index]
       resources :maps,     only: [:show, :index]
       resources :users,    only: [:show]

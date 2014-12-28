@@ -56,6 +56,7 @@ gem 'binding_of_caller'             # used by better_errors
 gem 'responders'                    # a set of Rails responders
 gem 'squeel'                        # improved Active Record used for spatial queries
 gem 'doorkeeper'                    # OAuth2 provider
+gem 'rack-cors', :require => 'rack/cors'  # enable CORS
 
 group :doc do
   gem 'sdoc', require: false
