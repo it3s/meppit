@@ -13,7 +13,7 @@ Meppit::Application.routes.draw do
   post "login"  => "sessions#create",  as: :do_login
 
   get  "oauth/login" => "sessions#oauth_login", as: :oauth_login
-  
+
   post "oauth/:provider/callback"  => "authentications#callback"
   get  "oauth/:provider/callback"  => "authentications#callback"
   get  "oauth/:provider" => "authentications#oauth", as: :auth_at_provider
@@ -141,6 +141,7 @@ Meppit::Application.routes.draw do
       resources :geo_data, only: [:show, :index]
       resources :maps,     only: [:show, :index]
       resources :users,    only: [:show]
+      resources :comments, only: [:show, :index]
     end
   end
 

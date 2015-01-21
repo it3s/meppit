@@ -16,6 +16,7 @@ module FilterResponder
         'order' => @controller.params.fetch('order', 'asc'),
         'latitude' => @controller.params.fetch('latitude', nil),
         'longitude' => @controller.params.fetch('longitude', nil),
+        'owner' => @controller.params.fetch('owner', nil),
       }
       @filter_params['tags'] = @filter_params['tags'].split(',')
       @filter_params

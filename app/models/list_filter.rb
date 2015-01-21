@@ -3,7 +3,7 @@ class ListFilter
   extend ActiveModel::Naming
   include ActiveModel::Conversion
 
-  attr_accessor :tags, :tags_type, :sort_by, :order, :visualization, :longitude, :latitude
+  attr_accessor :tags, :tags_type, :sort_by, :order, :visualization, :longitude, :latitude, :owner
 
   def initialize(attributes = {})
     attributes.each { |name, value| send "#{name}=", value }
@@ -12,6 +12,7 @@ class ListFilter
 
   def filter(queryset)
     queryset = filter_by_tags(queryset) unless tags.empty?
+    queryset = filter_by_owner(queryset)
     queryset = sort queryset
     queryset
   end
@@ -32,10 +33,23 @@ class ListFilter
     visualization == 'map'
   end
 
+  def owner_type
+    owner.split('#')[0]
+  end
+
+  def owner_id
+    owner.split('#')[1]
+  end
+
   protected
 
     def filter_by_tags(queryset)
       queryset = queryset.with_tags(tags, tags_type.to_sym) if queryset.respond_to?(:with_tags)
+      queryset
+    end
+
+    def filter_by_owner(queryset)
+      queryset = queryset.by_owner(owner_type, owner_id) if queryset.respond_to?(:by_owner)
       queryset
     end
 
@@ -47,7 +61,7 @@ class ListFilter
           # sort by name if the queryset doesn't support sort by location
           queryset = queryset.order "name #{order}"
         end
-      else
+      elsif queryset.klass.columns_hash.keys.include?(sort_by)
         queryset = queryset.order "#{sort_by} #{order}"
       end
       queryset
