@@ -12,6 +12,8 @@ Meppit::Application.routes.draw do
   get  "login"  => "sessions#new",     as: :login
   post "login"  => "sessions#create",  as: :do_login
 
+  get  "oauth/login" => "sessions#oauth_login", as: :oauth_login
+  
   post "oauth/:provider/callback"  => "authentications#callback"
   get  "oauth/:provider/callback"  => "authentications#callback"
   get  "oauth/:provider" => "authentications#oauth", as: :auth_at_provider

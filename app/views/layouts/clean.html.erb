@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= stylesheet_link_tag "clean", media: "all" %>
+  <%= csrf_meta_tags %>
+  <%= javascript_include_tag "clean" %>
+  <%= yield :head %>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+</head>
+<body data-locale="<%= I18n.locale %>">
+  <%= content_for?(:content) ? yield(:content) : yield %>
+</body>
+</html>

@@ -11,7 +11,7 @@ Doorkeeper.configure do
     # Example implementation:
     # User.find_by_id(session[:user_id]) || redirect_to(new_user_session_url)
     session[:return_to_url] = request.original_fullpath
-    current_user || redirect_to(login_path)
+    current_user || redirect_to(oauth_login_path)
   end
 
   # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.

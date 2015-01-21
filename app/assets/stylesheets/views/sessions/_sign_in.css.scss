@@ -1,4 +1,5 @@
 $signin_box_width: 560px;
+$mobile: new-breakpoint(max-width 500px 4);
 
 .sign-in {
   width: $signin_box_width;
@@ -14,6 +15,17 @@ $signin_box_width: 560px;
   .external_providers, form {
     padding: 10px;
     float: left;
+  }
+
+  @include media($mobile) {
+    width: auto;
+
+    .external_providers, form {
+      padding: 10px;
+      float: none;
+      width: 100%;
+      margin-top: 0;
+    }
   }
 
 }
@@ -38,6 +50,21 @@ $signin_box_width: 560px;
     border-left: 1px solid #333;
     width: 1px;
   }
+
+  @include media($mobile) {
+    float: none;
+    height: auto;
+    width: auto;
+    line-height: inherit;
+    text-align: center;
+    margin: 0;
+
+    .vertical_line {
+      display: none;
+      height: auto;
+    }
+  }
+
   .vertical_line.top { top: 0 }
   .vertical_line.bottom { bottom: 0 }
 }

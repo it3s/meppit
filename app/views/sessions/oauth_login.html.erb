@@ -1,0 +1,17 @@
+<section class="sign-in standalone">
+
+  <header>
+    <h2><%= t 'sessions.login' %></h2>
+  </header>
+
+  <div>
+    <ul class="external_providers">
+      <%= render 'sessions/external_login', :provider => :google %>
+      <%= render 'sessions/external_login', :provider => :facebook %>
+    </ul>
+
+    <%= render 'shared/vertical_separator' %>
+
+    <%= render "sessions/login_form" %>
+  </div>
+</section>

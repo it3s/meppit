@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
 
+  def oauth_login
+    render layout: 'clean'
+  end
+
   def new
   end
 

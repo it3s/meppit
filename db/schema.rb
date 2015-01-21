@@ -111,14 +111,14 @@ ActiveRecord::Schema.define(version: 20141220035117) do
   add_index "followings", ["follower_id"], :name => "index_followings_on_follower_id"
 
   create_table "geo_data", force: true do |t|
-    t.string   "name",                                                                     null: false
+    t.string   "name",                                                                  null: false
     t.text     "description"
     t.hstore   "contacts"
-    t.text     "tags",                                                     default: [],                 array: true
+    t.text     "tags",                                                     default: [],              array: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.spatial  "location",        limit: {:srid=>4326, :type=>"geometry"}
     t.json     "additional_info"
+    t.spatial  "location",        limit: {:srid=>4326, :type=>"geometry"}
   end
 
   add_index "geo_data", ["location"], :name => "index_geo_data_on_location", :spatial => true
@@ -162,13 +162,13 @@ ActiveRecord::Schema.define(version: 20141220035117) do
   add_index "mappings", ["map_id"], :name => "index_mappings_on_map_id"
 
   create_table "maps", force: true do |t|
-    t.string   "name",                             null: false
+    t.string   "name",                          null: false
     t.text     "description"
     t.hstore   "contacts"
-    t.text     "tags",             default: [],                 array: true
+    t.text     "tags",             default: [],              array: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "administrator_id",                 null: false
+    t.integer  "administrator_id",              null: false
     t.json     "additional_info"
     t.json     "migrated_info"
   end
@@ -303,12 +303,12 @@ ActiveRecord::Schema.define(version: 20141220035117) do
     t.text     "about_me"
     t.hstore   "contacts"
     t.string   "avatar"
-    t.spatial  "location",                        limit: {:srid=>4326, :type=>"geometry"}
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.text     "interests",                                                                default: [],                   array: true
     t.string   "auth_token"
     t.string   "mail_notifications",                                                       default: "daily"
+    t.spatial  "location",                        limit: {:srid=>4326, :type=>"geometry"}
   end
 
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"
