@@ -28,7 +28,7 @@ module Meppit
 
     config.to_prepare do
       Doorkeeper::ApplicationsController.layout "application"
-      Doorkeeper::AuthorizationsController.layout "application"
+      Doorkeeper::AuthorizationsController.layout "clean"
       Doorkeeper::AuthorizedApplicationsController.layout "application"
     end
 
