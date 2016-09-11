@@ -12,4 +12,8 @@ class NotificationsController < ApplicationController
     render json: {ok: true}
   end
 
+  def count
+    count = Notification.unread.where(user_id: current_user.id).count
+    render json: {count: count}
+  end
 end

@@ -19,13 +19,4 @@ chai.config.includeStack = true;     # Show stack trace on failing assertion.
 
 window._base = __testing__.base
 window.I18n = {}
-# Create a fake Faye Client
-window.fayeUrl = ''
-window.Faye = {
-  Client: () ->
-    {
-      subscribe: ->
-      publish: ->
-    }
-}
 window.DEBUG = false

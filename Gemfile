@@ -12,7 +12,6 @@ gem 'rgeo-geojson'                  # geojson encode/decode
 gem 'activerecord-postgis-adapter'  # postgis
 gem 'pg_search'                     # postgres fulltext search
 gem 'thin'                          # server to run faye
-gem 'faye'                          # realtime pub/sub
 
 gem 'coffee-rails', '~> 4.0.1'      # coffeescript
 gem 'uglifier', '>= 1.3.0'          # minify
@@ -72,7 +71,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.0'       # BDD
   gem 'pry'                         # better shell sessions and debug tool
   gem 'pry-rails'                   # use pry as rails console
-  gem 'konacha'                     # js tests with mocha + chai
+  # gem 'konacha'                     # js tests with mocha + chai
   gem 'guard-rspec', require: false # launch specs when files are modified
   gem 'i18n-tasks'                  # check for translations
 end
@@ -85,6 +84,7 @@ group :test do
   gem 'database_cleaner'            # improved database cleaning for tests
   gem 'simplecov', '~> 0.9.0', require: false   # coverage report
   gem 'coveralls', require: false   # use coveralls with travisCI
+  gem 'konacha'                     # js tests with mocha + chai
 end
 
 group :production, :staging do

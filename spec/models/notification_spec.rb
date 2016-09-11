@@ -25,13 +25,4 @@ describe Notification do
       Notification.build_notifications activity
     end
   end
-
-  describe "#rt_notify" do
-    let!(:notification) { Notification.create user: user, activity: activity }
-
-    it "publishes message to FayeClient" do
-      expect(FayeClient).to receive(:publish).with "/notifications/#{user.id}", {count: 1}
-      notification.rt_notify
-    end
-  end
 end

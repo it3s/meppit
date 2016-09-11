@@ -6,7 +6,6 @@ class NotificationWorker
     users_to_receive_notification(activity).each do |user_id|
       if user_id != activity.owner_id
         notification = Notification.create activity: activity, user_id: user_id
-        notification.rt_notify
       end
     end
   end

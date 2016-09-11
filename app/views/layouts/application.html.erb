@@ -34,10 +34,7 @@
     window.I18n.pluralize = function(key, count) {
       return count === 1 ? key.one : key.other.replace('%{count}', count)
     };
-
-    window.fayeUrl = "<%= ENV['FAYE_URL'] %>";
   </script>
-
-  <%= javascript_include_tag "application", ENV['FAYE_JS'] %>
+  <%= javascript_include_tag "application" %>
 </body>
 </html>

@@ -22,6 +22,7 @@ Meppit::Application.routes.draw do
 
   get  "notifications" => "notifications#notifications", as: :notifications
   post "notifications/read" => "notifications#read", as: :read_notifications
+  get "notifications/count" => "notifications#count", as: :count_notifications
 
   concern :contributable do
     get "contributors" => "contributings#contributors"

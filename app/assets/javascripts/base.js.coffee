@@ -112,7 +112,7 @@ componentChanged = (evt, component) ->
 mediator.subscribe 'component:changed', componentChanged
 
 log = () ->
-  
+
   getDate = (date) ->
     months = ['January', 'February', 'March', 'April', 'May', 'June',
               'July', 'August', 'September', 'October', 'November', 'December']

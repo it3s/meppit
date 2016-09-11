@@ -11,7 +11,7 @@ then
   # Install dependencies
   echo "-- SETUP DEPS"
   sudo apt-get install -y curl vim build-essential libtool checkinstall python-pip python-dev gcc make sqlite3 libcurl4-openssl-dev ruby-dev libssl-dev openssl libreadline-dev git
-  sudo apt-get install -y redis-server libpq-dev nodejs libxslt1.1 imagemagick libjson0-dev libxml2-dev libproj-dev python2.7-dev swig libgeos-3.4.2 libgeos-dev gdal-bin libgdal1-1.10.1-grass libgdal1-dev
+  sudo apt-get install -y redis-server libpq-dev nodejs phantomjs libxslt1.1 imagemagick libjson0-dev libxml2-dev libproj-dev python2.7-dev swig libgeos-3.4.2 libgeos-dev gdal-bin libgdal1-1.10.1-grass libgdal1-dev
   sudo apt-get install --reinstall -y language-pack-en language-pack-pt
   git config --global color.ui true
 

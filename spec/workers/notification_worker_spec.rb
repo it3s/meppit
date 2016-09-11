@@ -21,13 +21,5 @@ describe NotificationWorker do
       worker.perform activity.id
       expect(Notification.count).to eq 1
     end
-
-    it "calls rt_notify on the created notification" do
-      notification = Notification.create activity: activity, user: user
-      allow(Notification).to receive(:create).and_return notification
-      expect(notification).to receive(:rt_notify)
-      worker.perform activity.id
-    end
   end
-
 end

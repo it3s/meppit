@@ -4,13 +4,10 @@ class Notification < ActiveRecord::Base
 
   validates :user, :activity, presence: true
 
+  scope :unread, ->{ where(status: "unread") }
+
   def self.build_notifications(activity)
     _id = activity.is_a?(PublicActivity::Activity) ? activity.id : activity
     NotificationWorker.perform_async(_id)
-  end
-
-  def rt_notify
-    count = Notification.where(user_id: user_id, status: "unread").count
-    FayeClient::publish "/notifications/#{user_id}", {count: count}
   end
 end
