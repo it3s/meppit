@@ -4,11 +4,11 @@ Maps rebuild
 [![Code Climate](https://codeclimate.com/github/it3s/meppit.png)](https://codeclimate.com/github/it3s/meppit)
 [![Coverage Status](https://coveralls.io/repos/it3s/meppit/badge.png)](https://coveralls.io/r/it3s/meppit)
 
-* Ruby version: 2.0.0
+* Ruby version: 2.0.0 (p648)
 
 ### System dependencies:
 
-* postgresql 9.3 (with postgis2.x and postgresql-contrib for hstore)
+* postgresql 9.4 (with postgis2.1 and postgresql-contrib for hstore)
 * redis
 * you need to have a execjs runtime (i.e. Nodejs, rhyno, therubyracer)
 * imagemagick
@@ -27,4 +27,7 @@ Maps rebuild
 
 ### Vagrant:
 
-We recomend you to use vagrant. Just `vagrant up` and everything is set up.
+We recomend you to use vagrant:
+- `vagrant up`
+- `vagrant ssh`
+- `cd meppit; ./bootstrap.sh`
