@@ -34,6 +34,7 @@
     window.I18n.pluralize = function(key, count) {
       return count === 1 ? key.one : key.other.replace('%{count}', count)
     };
+    window.mapboxToken = "<%= get_mapbox_token %>";
   </script>
   <%= javascript_include_tag "application" %>
 </body>

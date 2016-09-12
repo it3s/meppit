@@ -1,6 +1,6 @@
 class MapsController < ObjectsController
   before_action :require_login, except: [:index, :show, :geo_data, :search_by_name, :tile]
-  before_action :geo_data_list, only:   [:show, :edit, :geo_data]
+  before_action :geo_data_list, only:   [:show, :new, :edit, :geo_data]
 
   def create
     _params = cleaned_params.merge(administrator: current_user)

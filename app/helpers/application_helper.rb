@@ -97,4 +97,8 @@ module ApplicationHelper
       render 'activities/activity', activity: ActivityPresenter.new(object: activity, ctx: self)
     end
   end
+
+  def get_mapbox_token
+    ENV['MAPBOX_TOKEN'].to_s
+  end
 end

@@ -160,6 +160,7 @@ App.components.map = ->
       featureURL: @attr.featureURL
       geojsonTileURL: "#{@attr.geojsonTileURL}#{window.location.search}"
       groups: groups
+      mapboxToken: window.mapboxToken
     feature = @attr.geojson or @attr.featuresIds
     if feature
       @show(feature, => @edit feature if @attr.editor)

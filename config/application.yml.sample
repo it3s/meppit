@@ -8,6 +8,7 @@ development:
   FACEBOOK_SECRET: ""
   GOOGLE_KEY: ""
   GOOGLE_SERCRET: ""
+  MAPBOX_TOKEN: ""
 
 test:
   FIXED_SALT: "test-salt"
@@ -16,6 +17,7 @@ test:
   FACEBOOK_SECRET: ""
   GOOGLE_KEY: ""
   GOOGLE_SECRET: ""
+  MAPBOX_TOKEN: ""
 
 staging:
   SECRET_TOKEN: ""
@@ -27,6 +29,7 @@ staging:
   MAILGUN_API_KEY: ""
   MAILGUN_DOMAIN: ""
   MEPPIT_HOST: ""
+  MAPBOX_TOKEN: ""
 
 production:
   SECRET_TOKEN: ""
@@ -38,3 +41,4 @@ production:
   MAILGUN_API_KEY: ""
   MAILGUN_DOMAIN: ""
   MEPPIT_HOST: ""
+  MAPBOX_TOKEN: ""
