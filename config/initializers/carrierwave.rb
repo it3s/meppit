@@ -14,6 +14,6 @@ else
     config.cache_dir = "#{Rails.root}/tmp/uploads"
     config.fog_directory  = ENV["S3_BUCKET"]
     # config.fog_public = false
-    condig.storage = :fog
+    config.storage = :fog
   end
 end
