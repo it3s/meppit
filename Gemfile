@@ -38,6 +38,7 @@ gem 'sidekiq'                       # background jobs
 gem 'http_accept_language'          # get locale from http headers
 gem 'carrierwave'                   # file uploads abstraction
 gem 'carrierwave_backgrounder'      # delegate uploads to background jobs
+gem 'fog'                       # store images on s3
 gem 'fog-aws'                       # store images on s3
 gem 'mini_magick'                   # image processing for uploaders
 gem 'remotipart'                    # enable ajax file uploads on remote forms
