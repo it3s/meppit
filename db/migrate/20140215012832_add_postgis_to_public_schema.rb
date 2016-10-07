@@ -1,3 +1,3 @@
 class AddPostgisToPublicSchema < ActiveRecord::Migration
-  execute "CREATE EXTENSION postgis;"
+  execute "CREATE EXTENSION IF NOT EXISTS postgis;"
 end
