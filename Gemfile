@@ -38,6 +38,7 @@ gem 'sidekiq'                       # background jobs
 gem 'http_accept_language'          # get locale from http headers
 gem 'carrierwave'                   # file uploads abstraction
 gem 'carrierwave_backgrounder'      # delegate uploads to background jobs
+gem 'fog-aws'                       # store images on s3
 gem 'mini_magick'                   # image processing for uploaders
 gem 'remotipart'                    # enable ajax file uploads on remote forms
 gem 'kaminari'                      # paginator
@@ -88,6 +89,7 @@ end
 
 group :production, :staging do
   gem 'mailgun_rails'               # mailgun integration for actionmailer
+  gem 'rails_12factor'              # used for deploying in heroku
 end
 
 group :profile do
